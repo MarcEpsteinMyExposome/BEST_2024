@@ -1,0 +1,570 @@
+---
+output:
+  html_document:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    mode: selfcontained
+    theme: cerulean
+    toc: true
+    number_sections: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    df_print: "paged"
+    keep_md: true
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  word_document:
+    reference_docx: MyExposomeFormat_1527_v6.docx
+  editor_options: 
+  chunk_output_type: console
+---
+
+<!-- 
+  Themes:
+  - cerulean is the BEST so far
+  - theme: cerulean
+  - theme: sandstone
+  - highlight: tango
+-->
+<!-- 
+  NEW IDEA FOR BIG IMPROVEMENT:
+  - Read in dataset of ALL DATA COLLECTED PRIOR TO THIS NEW DATASET and then do some analysis
+  - New compounds never before seen
+  - Compare % of various classifications
+  - Etc etc
+  BUT THIS IS OUR SECRET SAUCE not to be included/shown to anyone else YET
+
+  SEE THIS location for files that start this:
+  D:\Users\Marc\Documents\Kevin Oregon Wristband\DATA\R_analysis\BEST_JULY_2018_DRS_MORE\data\CombinedTestData
+-->
+<!-- 
+  Another idea: new way to do HEAT MAP
+  https://themockup.blog/posts/2020-08-28-heatmaps-in-ggplot2/
+-->
+<!-- 
+  LINKS FOR IMPROVING HTML REPORTS:
+  - https://holtzy.github.io/Pimp-my-rmd/#github-link (Many ideas for better HTML reports)
+  - https://epirhandbook.com/en/heat-plots.html (Great resource)
+  - https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html (3D plots)
+-->
+<!-- 
+  NEW IDEA: Techniques to prevent label overlap in GGPLOT2
+  https://www.andrewheiss.com/blog/2022/06/23/long-labels-ggplot/
+-->
+<!-- 
+  SEE WORD DOCUMENT:
+  Outline of all RMD files and sections.DOCX which has the basic outline
+-->
+<!-- 
+  FUTURE IDEAS TO-DO list:
+  - TO MAKE FLOATING HTML TABLE OF CONTENTS
+    toc_float: yes
+    toc_collapsed: yes
+  - #number_sections: yes (Adds section #'s which take up a lot of space)
+-->
+<!-- 
+  GREAT YOUTUBE intro and examples:
+  - https://www.youtube.com/watch?v=WkF7nqEYF1E
+  - https://github.com/jthomasmock/rmd-nhs
+-->
+<!-- 
+  HTML Tools:
+  - https://rstudio.github.io/htmltools/
+  - HIDE X axis labels where they will be too scrunched
+  - HIDE Y axis labels where they will be too scrunched
+  - ADD MESSAGE saying X axis or Y axis is scrunched compressed and contact us for info
+-->
+<!-- 
+  FIGURE OUT SHINY: Seems to be for "live" docs with a server component
+  - https://shiny.rstudio.com/tutorial/
+-->
+<!-- 
+  REMEMBER TO USE "addins" "styler" to format code and RMD
+-->
+<!-- 
+  SEE THIS: https://bookdown.org/yihui/rmarkdown/html-document.html
+  COOL LINKS:
+  - https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html
+-->
+<!-- 
+  Formatting notes:
+  - I was using a backslash followed by "s" for newline but changed to just backslash for PDF, HTML, and DOC
+  - Changed to <br> for best compatibility
+  - Comment size: HTML was height 7, width 6.5 (changing)
+  - (comment) RANDOM COMMENT that stays HIDDEN: toc:yes in HTML
+  - Update RStudio and all components
+  - KEY OBSERVATIONS about 10x values: THIS IS NOW THE BASE VERSION FOR ALL RUNS.
+  - USE THIS VERSION FOR EVERY TEST and create new PAH / FLAME / etc from THIS or it won't work.
+  - Old config: reference_docx: MyExposomeFormat_20.docx
+  - TITLE and AUTHOR set below R code using --- to allow variable use
+  - Add MesgV for wristbands with NO compounds found
+  - Top section: pdf_document: fig_height: 6.5 keep_tex: yes
+-->
+ 
+# TEST TES TES TES TES TEst
+
+ 
+```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
+
+# THIS FILE requires that an R source file be run first to
+#     populate the environment.
+#     CAN BE DONE HERE or done before knit'ing this file
+   
+#test
+
+#
+# Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
+if (!exists("subject")) {
+  source("MyExp_set_key_variables.R")
+}
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+if (!exists("masterParam")) {
+  source(r_code)
+}
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+if (!exists("buildMesgV")) {
+  source(support.functions.filename)
+}
+
+
+## THE weird "r include problem Where if I optionally include a RMD file the EVAL value must be an actual value and not a compound value with lots of parts?
+##  requires me to calculate this here to use in this RMD instead of using the compound expression
+Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
+NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
+is_RMD_type_equal_DRS <- RMD_type == "DRS"
+```
+
+
+
+
+```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap=""}
+
+# {r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=2, fig.align="center"}
+
+img <- readPNG("images/myExposomeLogo.png")
+grid.raster(img, name = NULL)
+rm(img)
+```
+
+
+```{r loadUCSFPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="", eval = FALSE}
+# note CAN change eval=FAlSE to eval=UCSF2020Fixup
+
+# TEST loading UCSF logo
+img <- readPNG("images/UCSF_LOGO_bigger_2.png")
+grid.raster(img, name = NULL)
+rm(img)
+```
+
+
+---
+title: "`r testName`"
+author: "MyExposome, Inc."
+---
+
+```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
+
+# !diagnostics suppress=masterParam,testResults.big,class_L,SubClassScores,ParameterID,classification
+
+# Create text string with comma in it for the # of chemicals tested
+howManyChemicalsTested <- format(nrow(masterParam), big.mark = ",", scientific = FALSE)
+
+# ONLY USE the non-zero rows in testResult to be sure we're only counting values >0
+# Number of total non-zero results divided by # of WBs (that weren't all zero's)
+averageNumberChemsFound <- round(nrow(testResults.big[testResults.big$Result > 0, ]) /
+  length(unique(testResults.big[testResults.big$Result > 0, ]$SampleNumber)), 1)
+
+# Figure out TOTAL chemicals found ANYWHERE by Classification
+CountChemicalsInEachClassification <-
+  left_join(
+    testResults.big %>% select(ParameterID) %>% distinct(),
+    class_L,
+    by = "ParameterID"
+  ) %>%
+  mutate_if(is.factor, as.character) %>%
+  group_by(classification) %>%
+  dplyr::summarise(TotalFoundAnywhere = dplyr::n())
+
+###### NOW set up class Compare variables
+# This WAS in the GROUP COMPARE section but moved up to allow for summary paragrapha at top
+# Set up the classCompare variable for later display
+# THIS IS MARC new system to find ClassCompare instead of using ClassSub at all
+# idea is to use SubClassScores which is a LONG table mapping class/sampleN/Aggregates
+#     with another slice of that same table to product an integrated summary
+#
+#  First build with NO subject column... then add in SUBJECT column later in subject-specific-section
+#
+ClassCompareNoSubject <- SubClassScores %>%
+  group_by(classification) %>%
+  summarize(max = max(aggScore), avg = round(mean(aggScore), 1)) %>%
+  mutate_if(is.factor, as.character) %>% # Eliminate classification as a FACTOR so it sorts
+  arrange(classification)
+
+if (!DoSpecificSubjectAnalysis) { # IF WE do NOT want to do ANY subject SPECIFIC analysis In This Report
+  subject <- "Never-Going-to-Match"
+}
+```
+
+
+```{r UseSetupSubject, echo=FALSE, message=FALSE, include=FALSE, eval = DoSpecificSubjectAnalysis}
+
+############### REMEMBER TO SET DATA FILE and SUBJECT TO MATCH
+
+# Grab NON-zero rows which match our one subject
+oneResult <- testResults.big[testResults.big$Result > 0 & testResults.big$SampleNumber == subject, ]
+if (nrow(oneResult) > 0) { # SO if we actually have anything in ONE RESULT THEN we're going to do something... otherwise just nonsense
+  oneResult_with_Y_flag <- testResults.big[(testResults.big$Flag == "Y" | testResults.big$Result > 0) & testResults.big$SampleNumber == subject, ]
+  # Sort Test Results by ParameterName
+  oneResult <- arrange(oneResult, ParameterName)
+  # Find PureSampleName of this sample
+  pureSubjectName <- oneResult[1, "PureSampleName"]
+} else {
+  oneResult_with_Y_flag <- oneResult
+  pureSubjectName <- oneResult
+}
+
+
+# howManyChemsFoundThisWristband <- nrow(testResults[testResults$SampleNumber==subject,])
+# ONLY USE the non-zero rows in testResult to be sure we're only counting values >0
+howManyChemicalsFoundThisWristband <- nrow(oneResult_with_Y_flag)
+
+
+### TO DO
+### TO DO   NEED to continue to fix Y flag stuf for Individual User
+### TO DO
+### TO DO
+
+## Now try and find the median/min/max/sddev for each chemical found
+
+
+# statSummary
+
+
+###### NOW set up class Compare variables
+# This WAS in the GROUP COMPARE section but moved up to allow for summary paragrapha at top
+# Set up the classCompare variable for later display
+### idea is to smash together summarized data with just one column of data by using JOIN
+####    LEFT join is key cause "any found category" is superset of "categories of this subject"
+### so the two things we "join" are a summarization of the LONG classification of all subjects SCORES
+#       with the scores for this individual subject
+# ONCE we've joined those together then PIPE it over to select our columns/elim NA/arrange
+
+ClassCompareSubject <- left_join(
+  ClassCompareNoSubject %>% mutate_if(is.factor, as.character),
+  SubClassScores[SubClassScores$SampleNumber == subject, ] %>% mutate_if(is.factor, as.character),
+  by = "classification"
+) %>%
+  arrange(classification) %>%
+  dplyr::rename(Participant = aggScore, Average = avg, maxFoundAnyOneBand = max) %>%
+  select(classification, Participant, Average, maxFoundAnyOneBand) %>%
+  replace_na(list(Participant = 0))
+```
+
+
+
+```{r separateNoteToSelf, echo=FALSE, message=FALSE, include=FALSE}
+
+## NOTES ON FUTURE "DO TO" with this RMD file
+####  DONE SOMEWHAT  Add copyright and LIMITS OF LIABILITY to end of report.
+#
+# and SEE OTHER COMMENTS up at top of this doc
+```
+
+# Introduction and Summary
+
+
+<!-- PRINT MESSAGE ABOUT WHAT COMPANY THIS TEST WAS DONE "FOR" -->
+`r if(testDoneFor != ""){ paste("**This test was done for:     ",testDoneFor, "**")   }`
+
+
+<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
+```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = DoGroupAnalysisOnly}
+
+```
+
+<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL AND GROUP REPORT -->
+```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=DoSpecificSubjectAnalysis}
+
+```
+
+
+
+
+
+```{r  IRiS_Prop65_IARC_Group_Results, results='asis', echo=FALSE, message=FALSE}
+
+# Calculate epa IRIS results but display it later
+
+# FOR ALL CHEMICALS FOUND on ANY wristband
+# Figure how WHAT the hits were on each database of bad chems
+# and figure out how-many hits
+
+# FOR EPAIRIS
+# Find all hits agaisnt this DB found in any wristband
+EPAirisHits <- testResults.big %>%
+  mutate(Result = case_when(
+    Flag == "Y" ~ 100,
+    TRUE ~ Result
+  )) %>% # IF we have a Y flag on an item set the ZERO value to 100
+  filter(Result > 0) %>%
+  select(ParameterID, ParameterName) %>%
+  distinct() %>%
+  inner_join(epaIris, by = "ParameterID") %>%
+  select(ParameterName, IRIS_Summary) %>%
+  dplyr::rename("Chemical Name" = ParameterName, "IRIS Summary Web Link" = IRIS_Summary)
+
+# FOR EPA IRIS count'm up
+countEPAiristHits <- nrow(EPAirisHits)
+
+#--------------------------
+
+# calculate PROP 65 results, print later
+
+# Find all hits agaisnt this DB found in any wristband
+CalifProp65Hits <- testResults.big %>%
+  mutate(Result = case_when(
+    Flag == "Y" ~ 100,
+    TRUE ~ Result
+  )) %>% # IF we have a Y flag on an item set the ZERO value to 100
+  filter(Result > 0) %>%
+  select(ParameterID, ParameterName) %>%
+  distinct() %>%
+  inner_join(riskCalifProp65, by = "ParameterID") %>%
+  select(ParameterName, toxicityType) %>%
+  dplyr::rename("Chemical Name" = ParameterName, "Risk Type Per California Prop 65" = toxicityType)
+
+
+# FOR Prop 65 count'm up
+countCalifProp65Hits <- nrow(CalifProp65Hits)
+
+
+# calculate IARC results, print later
+
+# Find all hits agaisnt this DB found in any wristband
+IARCHits <- testResults.big %>%
+  mutate(Result = case_when(
+    Flag == "Y" ~ 100,
+    TRUE ~ Result
+  )) %>% # IF we have a Y flag on an item set the ZERO value to 100
+  filter(Result > 0) %>%
+  select(ParameterID, ParameterName) %>%
+  distinct() %>%
+  inner_join(IARCRisk, by = "ParameterID") %>%
+  select(ParameterName, IARC_Classification) %>%
+  dplyr::rename("Chemical Name" = ParameterName, "Risk Type Per IARC" = IARC_Classification)
+
+
+# FOR Prop 65 count'm up
+countIARCHits <- nrow(IARCHits)
+```
+
+
+
+```{r IRiS_Prop65_IARC_Individual_Results, results='asis', echo=FALSE, message=FALSE, eval=DoSpecificSubjectAnalysis}
+
+
+# Calculate epa IRIS results but display it later
+
+#  Join our results on one subject with classification table to get classification(s) of each chem
+#  DO THIS without using SQL
+#  Do this for ONERESULT
+oneResultEpaIris <- inner_join(oneResult_with_Y_flag, epaIris, by = "ParameterID") %>%
+  select(ParameterName, IRIS_Summary) %>%
+  arrange(ParameterName)
+
+names(oneResultEpaIris) <- c("Chemical Name", "IRIS Summary Web Link")
+
+numEPAirisFound <- nrow(oneResultEpaIris)
+
+
+
+# calculate califProp65 results but print later
+
+#  Join our results on one subject with classification table to get classification(s) of each chem
+# Without using SQL
+oneResultCalifProp65Risk <- inner_join(oneResult_with_Y_flag, riskCalifProp65, by = "ParameterID") %>%
+  select(ParameterName, Risk_Description = toxicityType) %>%
+  arrange(ParameterName)
+
+names(oneResultCalifProp65Risk) <- c("Chemical Name", "Risk Type Per California Prop 65")
+
+# #How many were found?
+numCalProp65Found <- nrow(oneResultCalifProp65Risk)
+#
+
+
+
+# rm(riskCalifProp65)
+
+# calculate IARC results, print later
+
+#  Join our results on one subject with classification table to get classification(s) of each chem
+# Without using SQL
+oneResultIARCRisk <- inner_join(oneResult_with_Y_flag, IARCRisk, by = "ParameterID") %>%
+  select(ParameterName, IARC_Classification) %>%
+  arrange(ParameterName)
+
+# Rename the two columns
+names(oneResultIARCRisk) <- c("Chemical Name", "Risk Type Per IARC")
+
+# How many were found
+numIARCRiskFound <- nrow(oneResultIARCRisk)
+```
+
+
+
+<!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
+```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = TRUE}
+
+```
+
+
+
+<!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
+```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = FALSE}
+
+```
+
+
+
+
+
+## List of Key Observations
+```{r BuildMessageString, results='asis', echo=FALSE, message=FALSE}
+
+# COMMENTS BY MARC:  We are building a MESSAGE STRING = "mesg.v"
+# and we will keep concatenating onto "mesg.v" with whatever new information we can
+#
+
+# Initialize mesg  to NULL
+mesg.v <- NULL # and use a vector
+
+### INDIVIDUAL RESULTS COME FIRST:
+####### add line to indicate start of INDIVIDUAL results
+
+if (DoSpecificSubjectAnalysis) {
+  mesg.v <- addMesg(mesg.v, 1, " ", "**INDIVIDUAL RESULTS**")
+  # Add things to mesg vector using a function call to support functions
+  mesg.v <- buildMesgVIndividual(
+    testResults.big,
+    mesg.v,
+    subject,
+    SubClassScores,
+    results_W,
+    numEPAirisFound,
+    numCalProp65Found,
+    numIARCRiskFound
+  )
+}
+
+### GROUP RESULTS COME AFTER INDIVIDUAL RESULTS
+####### add line to indicate start of GROUP results
+mesg.v <- addMesg(mesg.v, 1, " ", "**GROUP RESULTS**")
+# Add things to mesg vector using a function call to support functions
+mesg.v <- buildMesgVGroup(
+  testResults.big,
+  mesg.v,
+  SubClassScores,
+  results_W,
+  countEPAiristHits,
+  countCalifProp65Hits,
+  countIARCHits
+)
+
+
+pandoc.list(mesg.v) ## This prints the Individual Band (if doing) and Group bands report(s)
+rm(mesg.v)
+
+
+if (DoSpecificSubjectAnalysis) {
+  rm(numIARCRiskFound, numCalProp65Found, numEPAirisFound)
+}
+
+# rm(buildMesgV) # can't really remove this cause I'm using this as a flag to see if need to reload
+```
+
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){
+                            paste("**IMPORTANT NOTE:     ",length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$ParameterName)),
+                            "of the tested compounds impacting ",
+                            length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$SampleNumber)),
+                            "wristbands could not be fully quantified.**")
+                            }`
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){
+                            paste("\n Due instrument challenges some chemicals were present but could not be quantified.",
+                              "For reporting below, where numbers are needed, these specific results are counted as though",
+                              "they detected zero because we don't have an actual number to use in this report",
+                              "but we can report that these compounds were definitely detected on these wristbands")
+                            }`
+                            
+
+
+
+```{r BuildCaveatMessageString, results='asis', echo=FALSE, message=FALSE}
+
+### IMPORTANT CAVEATS That MUST be added
+### NOTE:  at the moment, the only caveat is the "Y" caveat
+
+### HERE IS SOME R error with below code, generating a WARNING for now... no idea why
+#
+# Warning message:
+# The `i` argument of ``[`()` can't be a matrix as of tibble 3.0.0.
+# Convert to a vector.
+# This warning is displayed once every 8 hours.
+# ## FIXED FIXED FIXED
+
+if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
+  mesg.v2 <- NULL
+  testResultsWith_Y_Flag <- arrange(testResults.big[testResults.big[, "Flag"] == "Y", ], ParameterName)
+  for (i in 1:nrow(testResultsWith_Y_Flag)) {
+    row <- testResultsWith_Y_Flag[i, ]
+    txt <- paste(row$ParameterName, "was detected on wristband:", row$SampleNumber)
+    mesg.v2 <- cbind(mesg.v2, txt)
+  }
+  pandoc.list(mesg.v2) ## This prints the Individual Band (if doing) and Group bands report(s)
+  rm(mesg.v2, testResultsWith_Y_Flag)
+}
+
+# rm(buildMesgV) # can't really remove this cause I'm using this as a flag to see if need to reload
+```
+
+<br>
+
+<!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
+```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = NotHideClassificationInformation}
+
+```
+
+
+<!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED DELETING THIS DELETE THIS DELETE THIS EVENTUALLY when we have violin charts working-->
+```{r IndividualResultsAnalysis_DELETING_EVENTUALLY, child='IndividualResultsAnalysis_text.Rmd', eval = FALSE}
+```
+
+<!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
+```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval = DoSpecificSubjectAnalysis}
+
+```
+
+
+
+<!-- SHOW RESULTS FOR FULL GROUP -->
+```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = TRUE}
+
+```
+
+
+```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval = (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
+
+```
+
+
+```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }
+
+```
