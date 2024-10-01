@@ -1,0 +1,36 @@
+
+
+<!-- PRINT Headline Rule for total chemical GROUP as denoted by Silent Spring using a separate RMD file-->
+
+<!--  Headlines for amount detected (by chemical group)     
+We propose applying these headlines to each chemical group separately. The participant would receive the top priority headline that applies for each chemical group. The headlines are not exhaustive (i.e., not all participants will necessarily receive a headline for every group). The headlines are intended to highlight particularly high or low.  
+
+SubClassScores seemss to already have manny values.  It shows how any of each category each person has.  SO for each CLASS (i.e. "Chemicals in Commerce") 
+BUT subclassscores doesn't have enough detail to do this
+
+You had some {group name} chemicals detected in your wristband that were not found in most others.
+
+NEED to add "classification" if it isn't already to the big result table.  THEN we can do anything w/ a query on that table.
+
+THIS IS COMPLICATED and unclear what I really want to display... TBD.
+
+-->
+
+
+
+## Total Chemical By Chemical Group 
+```{r printMessageForTotalChemByGroup, results='asis', echo=FALSE, message=FALSE,fig.width=10, fig.height=4}
+
+testResults.bigNoZeroWithClass  <- testResults.big %>%
+  filter(Result > 0) %>% # choose only hits
+  inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
+  select(ParameterID,SampleNumber,Result, classification)
+
+str(testResults.bigNoZeroWithClass)
+
+
+
+
+
+# 
+```

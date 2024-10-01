@@ -1,0 +1,1030 @@
+﻿Textbox15,Textbox17
+"COA Notes:
+",SOP 430.00 VOCs and SVOCs: 
+
+Textbox24,Textbox76,Textbox77,Textbox84,Textbox62,Textbox9,Textbox13,Textbox37,Textbox10,Textbox4,Textbox27,WPPRResultQualifier
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,3.46,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,1.57,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,52.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200555,DCA_1103,,4520,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,3270,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,2470,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200555,DCA_1103,,149,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,5180,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,2410,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,0.19,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,1330,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200555,DCA_1103,,3.16,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200555,DCA_1103,,24.1,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200555,DCA_1103,,14.5,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200555,DCA_1103,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200555,DCA_1103,,8.28,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,1.67,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,6.38,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,0.96,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200556,KDA_1118,,61.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,60.6,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200556,KDA_1118,,33200,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,20200,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,6840,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200556,KDA_1118,,273,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,40700,J
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,3650,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,1590,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200556,KDA_1118,,244,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,8.61,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200556,KDA_1118,,8,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200556,KDA_1118,,17.4,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200556,KDA_1118,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,0.58,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,4.52,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,1.54,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200557,KPU_0816,,63.5,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,57.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200557,KPU_0816,,19000,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,5960,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,4450,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200557,KPU_0816,,467,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,6880,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,2420,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,1310,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200557,KPU_0816,,168,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,799,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200557,KPU_0816,,7.5,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200557,KPU_0816,,13.9,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200557,KPU_0816,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,0.21,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,8.95,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,4.25,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,1.46,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,3.09,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,2.12,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200558,DDA_0823,,131,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,65.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200558,DDA_0823,,11300,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,4360,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,2020,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200558,DDA_0823,,1660,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,4460,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,1850,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,1020,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200558,DDA_0823,,187,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200558,DDA_0823,,11.2,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200558,DDA_0823,,17,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200558,DDA_0823,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200558,DDA_0823,,3.74,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,0.81,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,3.82,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200559,DDA_0117,,39.2,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,48.5,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200559,DDA_0117,,12600,J
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,7990,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,4680,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200559,DDA_0117,,257,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,9350,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,2930,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,0.33,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,2270,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200559,DDA_0117,,134,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,9.04,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200559,DDA_0117,,3.18,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200559,DDA_0117,,8.21,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200559,DDA_0117,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,5.55,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,15.9,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,3.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200560,KPU_0307,,119,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,191,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200560,KPU_0307,,30300,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,7530,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,6900,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200560,KPU_0307,,698,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,8980,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,4480,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.57,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,3440,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200560,KPU_0307,,213,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,109,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200560,KPU_0307,,7.81,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200560,KPU_0307,,13.9,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200560,KPU_0307,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,1.04,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,5.32,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,2.02,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200561,ARO_0702,,76.3,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,302,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200561,ARO_0702,,16100,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,4360,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,3550,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200561,ARO_0702,,597,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,12100,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,2530,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,1540,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200561,ARO_0702,,303,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200561,ARO_0702,,12,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200561,ARO_0702,,13.8,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200561,ARO_0702,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200562,ARO_1213,,17,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,23.6,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200562,ARO_1213,,13000,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,4150,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,2830,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200562,ARO_1213,,185,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,12000,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,1490,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,922,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200562,ARO_1213,,4.94,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200562,ARO_1213,,7.11,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200562,ARO_1213,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200563,JRI_0607,,115,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,186,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200563,JRI_0607,,21200,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,7510,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,5060,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200563,JRI_0607,,1770,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,9280,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,2350,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,1560,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,7.34,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200563,JRI_0607,,111,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200563,JRI_0607,,10.6,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200563,JRI_0607,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200564,JRI_1115,,68,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,137,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200564,JRI_1115,,13500,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,4340,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,2860,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200564,JRI_1115,,1020,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,6430,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,1230,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,1040,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200564,JRI_1115,,223,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200564,JRI_1115,,27.3,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200564,JRI_1115,,9.26,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200564,JRI_1115,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,0.42,JB
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200565,KDA_0820,,44.1,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,77.6,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200565,KDA_0820,,34800,J
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,6540,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,4610,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200565,KDA_0820,,398,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,11900,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,3940,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,2480,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200565,KDA_0820,,276,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,8.24,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200565,KDA_0820,,13.6,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200565,KDA_0820,,13.1,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200565,KDA_0820,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200566,DCA_0726,,46.5,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,70.2,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200566,DCA_0726,,0.22,J
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,9600,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,3200,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200566,DCA_0726,,658,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,2340,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,1640,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200566,DCA_0726,,61.9,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200566,DCA_0726,,10.9,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200566,DCA_0726,,124,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200566,DCA_0726,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,5.15,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,38.3,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200567,YPA_0611,,87200,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,2080,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,680,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.26 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,6090,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,16500,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,1030,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200567,YPA_0611,,129,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200567,YPA_0611,,5.45,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,5.74,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200567,YPA_0611,,10.9,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200567,YPA_0611,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,1.53,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,5.74,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,1.34,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,3.95,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200568,YPA_0107,,29.2,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,28.7,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200568,YPA_0107,,19400,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,12200,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,13500,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200568,YPA_0107,,295,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,10500,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,19800,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.31,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,11900,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200568,YPA_0107,,66.9,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.16 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,9.71,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.17,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200568,YPA_0107,,26.4,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200568,YPA_0107,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200568,YPA_0107,,7.6,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200569,MNO_0410,,45.4,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,41.2,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200569,MNO_0410,,32200,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,6860,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,3820,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200569,MNO_0410,,445,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,12000,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,1380,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,710,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200569,MNO_0410,,113,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200569,MNO_0410,,3.51,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200569,MNO_0410,,11.8,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200569,MNO_0410,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trichlorobenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,3-Trimethylbenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trichlorobenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,2,4-Trimethylbenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3,5-Trimethylbenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,"1,3-Dichlorobenze",F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,2-Chlorotolue,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,4-Chlorotolue,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Bromobenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.17 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Chlorobenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.21 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Cume,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Ethylbenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.20 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Butylbenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Deca,F20-08,MyExposome PO 225,A200570,MNO_1022,,18.6,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Dodeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,58.7,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Eicosa,F20-08,MyExposome PO 225,A200570,MNO_1022,,26800,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Heptadeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,10800,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Hexadeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,13800,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Nona,F20-08,MyExposome PO 225,A200570,MNO_1022,,107,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Octadeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,10900,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Pentadeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,39500,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Propylbenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Tetradeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,47200,J
+VOC and SVOC by GC-MS (ng/g),,,ng/g,n-Undeca,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Dichlorobenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.18 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,o-Xyle,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.22 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Dichlorobenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.90 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,p-Isopropyltolue,F20-08,MyExposome PO 225,A200570,MNO_1022,,5.53,B
+VOC and SVOC by GC-MS (ng/g),,,ng/g,sec-Butylbenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Styre,F20-08,MyExposome PO 225,A200570,MNO_1022,,8.86,
+VOC and SVOC by GC-MS (ng/g),,,ng/g,tert-Butylbenze,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (ng/g),,,ng/g,Xylenes (m and ,F20-08,MyExposome PO 225,A200570,MNO_1022,,< 0.19 U,U
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,28.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200555,DCA_1103,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.34,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,307,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200555,DCA_1103,,16000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,13600,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,10900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200555,DCA_1103,,1160,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,20400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,11400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,6700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.24,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200555,DCA_1103,,29.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200555,DCA_1103,,180,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200555,DCA_1103,,139,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200555,DCA_1103,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200555,DCA_1103,,78,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,13.9,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,53.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,7.96,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200556,KDA_1118,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200556,KDA_1118,,432,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,356,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200556,KDA_1118,,118000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,84100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,30200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200556,KDA_1118,,2130,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,160000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,17200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,8020,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200556,KDA_1118,,1560,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200556,KDA_1118,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,58.6,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200556,KDA_1118,,59.6,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200556,KDA_1118,,167,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200556,KDA_1118,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200556,KDA_1118,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,4.86,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,37.6,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,12.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200557,KPU_0816,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200557,KPU_0816,,446,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,337,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200557,KPU_0816,,67400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,24800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,19700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200557,KPU_0816,,3640,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,27000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,11400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,6620,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200557,KPU_0816,,1080,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200557,KPU_0816,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,5440,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200557,KPU_0816,,55.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200557,KPU_0816,,133,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200557,KPU_0816,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200557,KPU_0816,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,1.77,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,49.3,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,35.4,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,12.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200558,DDA_0823,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,27.4,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,20,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200558,DDA_0823,,921,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,384,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200558,DDA_0823,,40000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,18100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,8920,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200558,DDA_0823,,13000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,17500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,8710,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,5160,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200558,DDA_0823,,1200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200558,DDA_0823,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200558,DDA_0823,,83.4,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200558,DDA_0823,,163,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200558,DDA_0823,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200558,DDA_0823,,35.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,0.96,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,6.76,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,0.95,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,31.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,1.37,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200559,DDA_0117,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.32,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,0.99,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.66,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.73,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200559,DDA_0117,,276,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,285,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200559,DDA_0117,,44800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,33200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,20600,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200559,DDA_0117,,2010,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,36700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,13800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,2.78,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,11400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200559,DDA_0117,,858,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.12,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.82,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,61.5,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200559,DDA_0117,,23.7,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200559,DDA_0117,,78.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200559,DDA_0117,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200559,DDA_0117,,1.64,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,46.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,133,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,28.3,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200560,KPU_0307,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200560,KPU_0307,,837,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,1120,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200560,KPU_0307,,107000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,31300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,30500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200560,KPU_0307,,5440,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,35300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,21100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,17300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200560,KPU_0307,,1360,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200560,KPU_0307,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,742,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200560,KPU_0307,,58.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200560,KPU_0307,,134,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200560,KPU_0307,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200560,KPU_0307,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,8.62,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,44.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,16.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200561,ARO_0702,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200561,ARO_0702,,536,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,1770,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200561,ARO_0702,,57000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,18100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,15700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200561,ARO_0702,,4650,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,47500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,11900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,7770,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200561,ARO_0702,,1940,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200561,ARO_0702,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200561,ARO_0702,,89.3,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200561,ARO_0702,,132,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200561,ARO_0702,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200561,ARO_0702,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200562,ARO_1213,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200562,ARO_1213,,120,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,139,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200562,ARO_1213,,46100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,17300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,12500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200562,ARO_1213,,1440,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,47300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,7000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,4650,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.24,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200562,ARO_1213,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200562,ARO_1213,,36.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200562,ARO_1213,,68.3,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200562,ARO_1213,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200562,ARO_1213,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,0.96,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,1.41,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,0.95,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,1.37,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200563,JRI_0607,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.32,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,0.99,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.66,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.73,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200563,JRI_0607,,808,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,1090,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200563,JRI_0607,,75100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,31200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,22300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200563,JRI_0607,,13800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,36400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,11100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.37,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,7890,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.12,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.12,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.82,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,50,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200563,JRI_0607,,828,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200563,JRI_0607,,101,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200563,JRI_0607,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200563,JRI_0607,,1.64,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200564,JRI_1115,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200564,JRI_1115,,478,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,807,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200564,JRI_1115,,47700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,18000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,12600,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200564,JRI_1115,,7950,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,25300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,5810,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,5250,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200564,JRI_1115,,1430,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200564,JRI_1115,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200564,JRI_1115,,204,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200564,JRI_1115,,88.9,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200564,JRI_1115,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200564,JRI_1115,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,3.54,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200565,KDA_0820,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200565,KDA_0820,,310,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,456,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200565,KDA_0820,,123000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,27200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,20400,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200565,KDA_0820,,3100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,46800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,18600,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,12500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200565,KDA_0820,,1770,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200565,KDA_0820,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,56.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200565,KDA_0820,,101,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200565,KDA_0820,,126,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200565,KDA_0820,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200565,KDA_0820,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200566,DCA_0726,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200566,DCA_0726,,327,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,412,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200566,DCA_0726,,0.79,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,39900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,14200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200566,DCA_0726,,5130,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,0.87,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,11000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,8280,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.24,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200566,DCA_0726,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200566,DCA_0726,,461,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200566,DCA_0726,,105,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200566,DCA_0726,,925,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200566,DCA_0726,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200567,YPA_0611,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,38.4,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.34,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,225,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200567,YPA_0611,,309000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,8650,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,3000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200567,YPA_0611,,2.01,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,23900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,77900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,5200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200567,YPA_0611,,826,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200567,YPA_0611,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200567,YPA_0611,,40.6,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,42.8,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200567,YPA_0611,,105,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200567,YPA_0611,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200567,YPA_0611,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,0.96,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,12.7,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,0.95,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,47.7,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,11.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200568,YPA_0107,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.32,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,0.99,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.66,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,37.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200568,YPA_0107,,205,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,168,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200568,YPA_0107,,68700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,50900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,59500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200568,YPA_0107,,2300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,41100,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,93200,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,10.9,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,59900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200568,YPA_0107,,428,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.12,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.82,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,66,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200568,YPA_0107,,8.73,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200568,YPA_0107,,253,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200568,YPA_0107,,1.28,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200568,YPA_0107,,71.5,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200569,MNO_0410,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200569,MNO_0410,,319,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,242,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200569,MNO_0410,,114000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,28500,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,16900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200569,MNO_0410,,3470,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,47300,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,6480,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,3580,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200569,MNO_0410,,721,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200569,MNO_0410,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200569,MNO_0410,,26.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200569,MNO_0410,,113,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200569,MNO_0410,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200569,MNO_0410,,1.83,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trichlorobenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.07,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,3-Trimethylbenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.57,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trichlorobenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.05,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,2,4-Trimethylbenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3,5-Trimethylbenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,"1,3-Dichlorobenzene",F20-08,MyExposome PO 225,A200570,MNO_1022,,1.23,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,2-Chlorotoluene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.47,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,4-Chlorotoluene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.43,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Bromobenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Chlorobenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.84,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Cumene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.55,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Ethylbenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.93,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Butylbenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Decane,F20-08,MyExposome PO 225,A200570,MNO_1022,,131,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Dodecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,345,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Eicosane,F20-08,MyExposome PO 225,A200570,MNO_1022,,95000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Heptadecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,44900,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Hexadecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,60700,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Nonane,F20-08,MyExposome PO 225,A200570,MNO_1022,,837,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Octadecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,42800,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Pentadecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,186000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Propylbenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.52,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Tetradecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,238000,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,n-Undecane,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.24,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Dichlorobenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.25,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,o-Xylene,F20-08,MyExposome PO 225,A200570,MNO_1022,,2.03,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Dichlorobenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,6.13,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,p-Isopropyltoluene,F20-08,MyExposome PO 225,A200570,MNO_1022,,41.2,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,sec-Butylbenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.39,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Styrene,F20-08,MyExposome PO 225,A200570,MNO_1022,,85.1,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,tert-Butylbenzene,F20-08,MyExposome PO 225,A200570,MNO_1022,,1.42,
+VOC and SVOC by GC-MS (pMol/g),,,pMol/g,Xylenes (m and p),F20-08,MyExposome PO 225,A200570,MNO_1022,,1.83,
+

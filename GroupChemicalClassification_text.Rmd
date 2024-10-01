@@ -1,0 +1,41 @@
+
+
+## Chemical Classifications: Number of Unique Chemicals Found
+
+If we look at this data broken down by chemical classification we can also examine how many distinct chemical compounds of each classification were found across all the wristbands.  
+
+
+```{r UniqueClassificationsFound , results='asis', echo=FALSE, message=FALSE }
+
+#knitr::kable(ClassCompare[,2:ncol(ClassCompare)],format="markdown")
+#FIRST change column names so Partcipant becomes the actual name of the subject
+#names(ClassCompare)<-c("Classification",subject,"Average","Total Unique Chemicals")
+#SET names of COLUMNS but use "Participant" for subject for NOW and change it SOON
+#names(ClassCompare)<-c("classification",subject,"Average","Maximum Any Wristband")
+
+
+##ClassCompare3<-ClassCompare %>%
+#    mutate_if(is.factor, as.character) %>%   #Eliminate classification as a FACTOR so it sorts correctly
+#    arrange(classification) %>%
+#    select(classification,"Total Unique Across All Wristbands")
+
+####NOTE NOTE NOTE the line below WAS what was here THEN i did the usatoday ONE ROW and somehow needed to change 2 to 1???
+#pandoc.table(ClassCompare[,2:ncol(ClassCompare)],
+
+#pandoc.table(ClassCompare3[,1:ncol(ClassCompare3)],
+#              justify=c("left","center")
+#              ,split.table = Inf)
+             #justify=c("left","center","center","center"))
+              #justify=c("left","center","center","center","center")
+
+names(CountChemicalsInEachClassification)<-c("Classification","Unique Chemicals across all Wristbands")
+
+pandoc.table(CountChemicalsInEachClassification,
+              justify=c("left","center")
+              ,split.table = Inf)
+
+```
+
+
+<br>
+

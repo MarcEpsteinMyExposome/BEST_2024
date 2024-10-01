@@ -1,0 +1,39 @@
+
+The following list of chemicals were found in your wristband:
+
+
+### List of Chemicals found
+```{r  ListChemFoundNoClass, results='asis', echo=FALSE, message=FALSE}
+# Pull out the results for our ONE SUBJECT
+###  We doing as INNER cause we REQUIRE all internal data MUST map every tested chem to a classification
+
+
+#Convert classificaiton col to character
+# Do SQL call without doing SQL using native stuff
+oneResultClassified<-inner_join(oneResult_with_Y_flag,class_L, by="ParameterID") %>% 
+  select(ParameterName,CASNumber,classification) %>%
+  group_by(ParameterName,CASNumber) %>%
+  dplyr::summarise(Classifications=paste(classification,collapse=", ")) %>%
+  arrange(ParameterName) %>%
+  select(ParameterName,CASNumber)   
+# This is silly to group with classification and THEN ungroup but doing it for uniform approach
+
+
+
+names(oneResultClassified)<-c("Chemical Name", "CAS Number")
+
+
+#THIS REPORT got TOO WIDE so was made to fit onto multiple pages and so the basic table point was LOST
+# NOTE that "split.table= Inf" is the thing that makes this NEVER PAGE WRAP and so is good for HTML but not so good for WORD
+pandoc.table(as.data.frame(oneResultClassified)
+             ,caption="Report of Chemicals found on your Wristband"
+             ,justify=c("left","left")
+             ,emphasis.rownames=TRUE
+             ,split.table = Inf
+             )
+rm(oneResultClassified)
+
+```
+
+<br>
+

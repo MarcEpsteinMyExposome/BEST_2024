@@ -1,0 +1,71 @@
+ClientFormalName,COCID,COCNum,COCRecvDate,ReportDate,SampleName,AlternateName,PureSampleName,SampleNumber,SampledBy,SampledDate,LocationName,SampleExtComment,Matrix,TestTempReportName,TestTempName,TestTempMethodRef,WorkAreaName,ParameterName,rank,down,across,SWPPRCalc
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Anthracene,0,0,0,61.26
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1,0,1,2858.84
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,2,0,2,15665.5
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,3,1,0,302.28
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,4,1,1,1203.85
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,5,1,2,342.89
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,6,2,0,10318.8
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,7,2,1,885.68
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Thymol,8,2,2,335.67
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,9,3,0,725.73
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,10,3,1,539
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,11,3,2,1422.14
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9368,A150052,,2/3/2015 6:14,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,12,4,0,134.72
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,13,4,1,553.68
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,14,4,2,6953.7
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,15,5,0,10087.1
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,16,5,1,508.64
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,17,5,2,960
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Carvone,18,6,0,104.61
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,19,6,1,8101.2
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",20,6,2,283.91
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,21,7,0,1765.1
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,22,7,1,994.48
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,23,7,2,972.24
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,24,8,0,594.47
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,25,8,1,492.44
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,9567,A150053,,1/30/2015 9:25,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,26,8,2,586.95
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Anthracene,27,9,0,212.89
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,28,9,1,4181.39
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,29,9,2,2591.28
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,30,10,0,2692.13
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,31,10,1,1238.32
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,32,10,2,440.86
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Dicyclohexyl phthalate,33,11,0,1279.93
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluoranthene,34,11,1,35.34
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,35,11,2,1598.17
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin II,36,12,0,1996.23
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Pyrene,37,12,1,0.94
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,38,12,2,310.08
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,39,13,0,811.38
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,40,13,1,484.87
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,41,13,2,42.24
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3762,A150054,,1/30/2015 10:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,42,14,0,820.23
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Anthracene,43,14,1,47.54
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,44,14,2,1058.28
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,45,15,0,2191.88
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,46,15,1,3150.83
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,47,15,2,968.73
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-hexyl phthalate,48,16,0,2553.52
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,49,16,1,1054.32
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",50,16,2,351.52
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCEP,51,17,0,86.03
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,52,17,1,283.62
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,53,17,2,715.02
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,5721,A150055,,2/2/2015 9:13,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,54,18,0,218.87
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Anthracene,55,18,1,92.84
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,56,18,2,2278.48
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,57,19,0,3484.68
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,58,19,1,3225.36
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,59,19,2,867.19
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,60,20,0,1537.67
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,61,20,1,3127.88
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",62,20,2,2810.35
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,63,21,0,45.46
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCEP,64,21,1,117.52
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,65,21,2,648.92
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,66,22,0,2389.36
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,67,22,1,1233.64
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,68,22,2,115.13
+MyE,341,15FEB24-01,2/24/2015 9:52,44:50.7,NULL,NULL,3523,A150056,,2/1/2015 9:05,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,69,23,0,579.79

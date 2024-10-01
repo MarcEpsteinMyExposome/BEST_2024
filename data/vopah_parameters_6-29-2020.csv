@@ -1,0 +1,95 @@
+ParameterID,ParameterName,CASNumber,AlternateName,MolecularFormula,MolecularWeight
+27,"1,2,3-Trichlorobenzene",87-61-6,,C6H3Cl3,181.447
+30,"1,2,3-Trimethylbenzene",526-73-8,,C9H12,120.192
+32,"1,2,4-Trichlorobenzene",120-82-1,,C6H3Cl3,181.447
+33,"1,2,4-Trimethylbenzene",95-63-6,,C9H12,120.195
+36,o-Dichlorobenzene,95-50-1,"1,2-Dichlorobenzene",C6H4Cl2,147.002
+45,"1,3,5-Trimethylbenzene",108-67-8,Mesitylene,C9H12,120.195
+48,"1,3-Dichlorobenzene",541-73-1,,C6H4Cl2,147.002
+54,p-Dichlorobenzene,106-46-7,"1,4-Dichlorobenzene",C6H4Cl2,147.002
+69,1-methylnaphthalene,90-12-0,N1Me,C11H10,142.1971
+70,1-methylphenanthrene,832-69-9,PH1Me,C15H12,192.2558
+136,2-Chlorotoluene,95-49-8,,C7H7Cl,126.584
+146,2-methylnaphthalene,91-57-6,N2Me,C11H10,142.1971
+187,4-Chlorotoluene,106-43-4,,C7H7Cl,126.584
+201,6-methylchrysene,1705-85-7,CH6Me,C19H14,242.3145
+208,acenaphthene,83-32-9,AN,C12H10,154.2
+210,acenaphthylene,208-96-8,ANL,C12H8,152.1919
+247,anthracene,120-12-7,AC,C14H10,178.2292
+272,benz[a]anthracene,56-55-3,BaA,C18H12,228.288
+273,benzo[a]pyrene,50-32-8,BaP,C20H12,252.3093
+276,benzo[e]pyrene,192-97-2,BeP,C20H12,252.3
+277,Benzo[ghi]perylene,191-24-2,BghiP,C22H12,276.3307
+278,benzo[j]fluoranthene,205-82-3,BjF,C20H12,252.3093
+301,Bromobenzene,108-86-1,Brombenzol,C6H5Br,157.008
+375,Chlorobenzene,108-90-7,Benzenyl Chloride,C6H5Cl,112.557
+390,chrysene,218-01-9,CH,C18H12,228.2879
+434,"dibenzo[a,h]anthracene",53-70-3,DBahA,C22H14,278.3446
+436,"dibenzo[a,e]pyrene",192-65-4,DBaeP,C24H14,302.368
+481,fluoranthene,206-44-0,FA,C16H10,202.2506
+482,fluorene,86-73-7,FE,C13H10,166.2185
+580,n-Pentadecane,629-62-9,,C15H32,212.421
+584,n-Propylbenzene,103-65-1,NULL,C9H12,120.192
+587,n-Tetradecane,629-59-4,,C14H30,198.394
+593,n-Undecane,1120-21-4,,C11H24,156.308
+595,naphthalene,91-20-3,Nap,C10H8,128.1705
+621,o-Xylene,95-47-6,"1,2-dimethylbenzene",C8H10,106.165
+635,phenanthrene,85-01-8,PH,C14H10,178.2292
+678,Pyrene,129-00-0,Pyr,C16H10,202.2506
+788,Ethylbenzene,100-41-4,NULL,C8H10,106.165
+850,"indeno[1,2,3-cd]pyrene",193-39-5,IP,C22H12,276.3307
+875,n-Butylbenzene,104-51-8,NULL,C10H14,134.218
+876,n-Decane,124-18-5,NULL,C10H22,142.282
+878,n-Dodecane,112-40-3,NULL,C12H26,170.335
+880,n-Eicosane,112-95-8,,C20H42,282.547
+884,n-Heptadecane,629-78-7,,C17H36,240.468
+888,n-Hexadecane,544-76-3,,C16H34,226.441
+903,n-Nonane,111-84-2,,C9H20,128.255
+906,n-Octadecane,593-45-3,NULL,C18H38,254.494
+914,p-Isopropyltoluene,99-87-6,,C10H14,134.218
+963,sec-Butylbenzene,135-98-8,,C10H14,134.218
+988,Styrene,100-42-5,Phenethylene,C8H8,104.149
+1012,tert-Butylbenzene,98-06-6,,C10H14,134.222
+1037,TPP,115-86-6,Triphenylphosphate,C18H15O4P,326.2831
+1259,Xylenes (m and p),108-38-3 & 106-42-3,,C8H10,106.165
+1999,Cumene,98-82-8,2-phenylpropane,C9H12,120.192
+300291,"dibenzo[a,h]pyrene",189-64-0,DBahP,C24H14,302.368
+300293,"dibenzo[a,l]pyrene",191-30-0,DBalP,C24H14,302.368
+300295,"9,10-Anthraquinone",84-65-1,"9,10-Anthraquinone / 9,10-Anthracenedione",C14H8O2,208.2121
+300299,Benzanthrone,82-05-3,"1,9-Benz-10-anthrone/7H-Benz[de]anthracen-7-one",C17H10O,230.2607
+300306,9-Fluorenone,486-25-9,9H-Fluoren-9-one,C13H8O,180.202
+300312,9-methylanthracene,779-02-2,AC9Me,C15H12,192.2558
+300315,"2,3-dimethylanthracene",613-06-9,AC23DMe,C16H14,206.2824
+300317,"3,6-dimethylphenanthrene",1576-67-6,PH36DMe,C16H14,206.2824
+300318,triphenylene,217-59-4,Tphen,C18H12,228.2879
+300335,benzo[a]chrysene,213-46-7,Pic,C22H14,278.3466
+300336,coronene,191-07-1,CO,C24H12,300.3521
+300377,"dibenzo[a,e]fluoranthene",5385-75-1,DBaeF,C24H14,302.368
+300386,"1,6-dimethylnaphthalene",575-43-9,N16DMe,C12H12,156.2237
+300387,"1,2-dimethylnaphthalene",573-98-8,N12DMe,C12H12,156.2237
+300388,dibenzothiophene,132-65-0,DBT,C12H8S,184.257
+300389,2-methylphenanthrene,2531-84-2,PH2Me,C15H12,192.2558
+300390,2-methylanthracene,613-12-7,AC2Me,C15H12,192.2558
+300391,retene,483-65-8,Ret,C18H18,234.3355
+300392,1-methylpyrene,2381-21-7,P1Me,C17H12,216.2772
+300406,"dibenzo[a,i]pyrene",189-55-9,DBaiP,C24H14,302.368
+300416,Benzofluorenone,76723-60-9,11-benzo[a]fluorenone,C17H10O,230.266
+300503,anthanthrene,191-26-4,AA,C22H12,276.3307
+300639,Tributyl phosphate,126-73-8,,C12H27O4P,266.3141
+300685,"2,6-dimethylnaphthalene",581-42-0,N26DMe,C12H12,156.2237
+300739,cyclopenta[cd]pyrene,27208-37-3,CPcdP,C18H10,226.272
+301157,Xanthone,90-47-1,,C13H8O2,196.201
+301477,TCEP,115-96-8,Tris(2-chloroethyl) phosphate,C6H12Cl3O4P,285.49
+301624,Tris(2-ethylhexyl) phosphate,78-42-2,,C24H51O4P,434.642
+301722,Chromone,491-38-3,"1,4-benzopyrone",C9H602,146.14
+301765,"1,3-dimethylnaphthalene",575-41-7,,C12H12,156.224
+301863,2-Ethylanthraquinone,84-51-5,"2-Ethy-9,10-Anthraquinone",C16H12O2,236.265
+301971,TDCIPP,13674-87-8,"Phosphoric acid, tris(1,3-dichloro-2-propyl) ester",C9H15Cl6O4P,430.9
+302095,"1,8-dimethylnaphthalene",569-41-5,N18DMe,C12H12,156.2237
+302096,"1,4-dimethylnaphthalene",571-58-4,N14DMe,C12H12,156.2237
+302097,"1,5-dimethylnaphthalene",571-61-9,N15DMe,C12H12,156.2237
+302298,5-methylchrysene,3697-24-3,CH5Me,C19H14,242.3145
+302299,benzo[a]fluorene,238-84-6,BaFE,C17H12,216.2772
+303320,tricresyl phosphate,1330-78-5,,C21H21O4P,368.369
+303346,benzo[b+c]fluorene,,,,216.283
+303347,benzo[b+k]fluoranthene,,,,252.316

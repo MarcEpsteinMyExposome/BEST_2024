@@ -1,0 +1,46 @@
+
+# Additional Information
+
+### List of all chemicals
+
+The full list of all chemicals tested can be found online at: `r URL_of_Chemicals_Tested`
+
+```{r FullChemList, eval=FALSE, results='asis', echo=FALSE, message=FALSE}
+####I'm SUPPRESSING the full list, for now, because it is LONG.  Taking first 10 rows only.
+#mP<-masterParam[1:10,c("ParameterName","CASNumber")]
+mP<-masterParam[1:min(nrow(masterParam),100),
+                c("ParameterName","CASNumber")]
+names(mP)<-c("Chemical Name", "CAS Number")
+#knitr::kable(mP[1:10,],format="markdown")
+
+pandoc.table(mP,
+             caption="Full List of Chemicals",
+             justify=c("left","center"),
+             emphasis.rownames=TRUE,
+             split.table = Inf
+             )
+rm(mP)
+
+```
+
+
+<br>
+
+### Other information about report
+
+```{r Versions,  results='asis', echo=FALSE, message=FALSE}
+info <- sessionInfo()
+r_ver <- paste(info$R.version$major, info$R.version$minor, sep=".")
+today <- Sys.Date()
+
+```
+
+
+All analyses were performed using R (ver. `r r_ver`)[R Core Team, 2013]  and knitr (ver `r info$otherPkgs$knitr$Version`) [Xie, 2013] for reproducible research.  &nbsp;
+<br>
+
+Report run on `r format(today,"%m/%d/%y")`.  
+
+This information is made available to you by MyExposome, Inc.  Refer to www.MyExposome.com for our standard terms and conditions.  We do not provide medical advice. The Information provided is for research, informational, entertainment and educational use only as a result of the current research-based state of our approach. The Services are not intended to be used by the customer for any diagnostic purpose and are not a substitute for medical advice. 
+
+Report contents, structure, and results copyright(c) MyExposome, Inc.  All rights reserved.

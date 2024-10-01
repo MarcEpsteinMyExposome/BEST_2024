@@ -1,0 +1,76 @@
+ParameterID,ParameterName,CasNumber,AlternateName,MolecularFormula,MolecularWeight
+34,"1,2-Dibromo-3-chloropropane",96-12-8,DBCP,C3H5Br2Cl,
+170,"4,4'-DDD",72-54-8,"p,p'-DDD",C14H10Cl4,NULL
+171,"4,4'-DDE",72-55-9,"p,p'-DDE",C14H8Cl4,NULL
+172,"4,4'-DDT",50-29-3,"p,p'-DDT",C14H9Cl5,NULL
+224,Alachlor,15972-60-8,,C14H20ClNO2,
+228,Aldrin,309-00-2,NULL,C12H8Cl6,NULL
+231,alpha-BHC,319-84-6,NULL,C6H6Cl6,NULL
+232,alpha-Chlordane,5103-71-9,cis-Chlordane,C10H6Cl8,NULL
+255,Atrazine,1912-24-9,Atrazine {Cas # 93616-39-8},C8H14ClN5,215.69
+286,beta-BHC,319-85-7,NULL,C6H6Cl6,NULL
+351,Captafol,6/1/2425,,C10H9Cl4NO2S,
+352,Captan,133-06-2,,C9H8Cl3NO2S,
+377,Chlorobenzilate,510-15-6,,C16H14Cl2O3,
+382,Chloroneb,2675-77-6,,C8H8Cl2O2,
+385,Chloropropylate,10/2/5836,,C17H16Cl2O3,
+386,Chlorothalonil,1897-45-6,"2,4,5,6-tetrachloroisophthalonitrile",C8Cl4N2,265.91
+388,Chlorpyrifos,2921-88-2,Chlorpyrifos,C9H11Cl3NO3PS,350.58
+396,cis-Permethrin,61949-76-6,NULL,NULL,NULL
+415,Dacthal,1861-32-1,Chlorthal-dimethyl,C10H6Cl4O4,
+420,delta-BHC,319-86-8,,C6H6Cl6,
+431,Diallate I,2303-16-4,Trans Diallate,C10H17Cl2NOS,
+432,Diazinon,333-41-5,Diazinon,C12H21N2O3PS,304.34
+450,Dieldrin,60-57-1,NULL,C12H8Cl6O,NULL
+466,Dimethoate,60-51-5,,C5H12NO3PS2,
+512,gamma-Chlordane,5103-74-2,trans-Chlordane,C10H6Cl8,NULL
+521,Isodrin,465-73-6,NULL,C12H8Cl6,NULL
+550,Malathion,121-75-5,Malathion,C10H19O6PS2,138.26
+567,Methoxychlor,72-43-5,NULL,C16H15Cl3O2,NULL
+642,Phorate,298-02-2,,C7H17O2PS3,
+644,Imidan,732-11-6,"Phosmet / 2-(dimethoxyphosphinothioylsulfanylmethyl)isoindole-1,3-dione",C11H12NO4PS2,317.31
+668,Propachlor,1918-16-7,,C11H14ClNO,
+767,Endosulfan II,33213-65-9,Endosulfan (beta isomer),C9H6Cl6O3S,NULL
+768,Endosulfan sulfate,1031-07-8,NULL,C9H6Cl6O4S,NULL
+769,Endrin,72-20-8,NULL,C12H8Cl6O,NULL
+770,Endrin aldehyde,7421-93-4,NULL,C12H8Cl6O,NULL
+771,Endrin ketone,53494-70-5,NULL,C12H8Cl6O,NULL
+777,Ethion,563-12-2,NULL,C9H22O4P2S4,NULL
+812,Lindane,58-89-9,NULL,C6H6Cl6,NULL
+817,Heptachlor,76-44-8,NULL,C10H5Cl7,NULL
+818,Heptachlor epoxide,1024-57-3,Heptachlor exo-epoxide isomer B,C10H5Cl7O,NULL
+820,Hexachlorobenzene,118-74-1,NULL,C6Cl6,NULL
+822,HCCPD,77-47-4,Hexachlorocyclopentadiene,NULL,NULL
+857,Metolachlor,51218-45-2,2-chloro-2'-ethyl-N-(2-methoxy-1-methylethyl)-6'-methylacetanilide,C15H22ClNO2,283.8
+864,Mirex,2385-85-5,,C10Cl12,
+917,Parathion-ethyl,56-38-2,Parathion,C10H14NO5PS,
+919,Parathion-methyl,298-00-0,,C8H10NO5PS,
+952,Pentachloronitrobenzene,82-68-8,"Benzene, 1,2,3,4,5-pentachloro-6-nitro-",C6Cl5NO2,295.33
+974,Simazine,122-34-9,,C7H12ClN5,
+1019,trans-Nonachlor,39765-80-5,NULL,C10H5Cl9,NULL
+1020,trans-Permethrin,61949-77-7,NULL,NULL,NULL
+1034,Trifluralin,1582-09-8,NULL,C13H16F3N3O4,NULL
+300237,Bifenthrin,82657-04-3,,C23H22ClF3O2,
+300240,Pendimethalin,40487-42-1,Prowl,C13H19N3O4,
+300243,Prophos,13194-48-4,,,
+300246,Vinclozolin,50471-44-8,Vinclozolin,C12H9Cl2NO3,286.11
+300247,Propanil,709-98-8,,C9H9Cl2NO,
+300249,Endosulfan I,959-98-8,Endosulfan (alpha isomer),C9H6Cl6O3S,
+300250,Iprodione,36734-19-7,,C13H13Cl2N3O3,
+300253,Fenitrothion,122-14-5,,C9H12NO5PS,
+300604,"p,p'-Dicofol",115-32-2,"p,p'-Kelthane",C14H9Cl5O,
+300605,Perthane,72-56-0,,C18H20Cl2,
+300631,Esfenvalerate,66230-04-4,Asana,C25H22ClNO3,419.9
+300640,Oxadiazon,19666-30-9,,C15H18Cl2N2O3,
+301170,Fonofos,944-22-9,,C10H15OPS2,
+301213,Chlorpyrifos Methyl,5598-13-0,,C7H7Cl3NO3PS,
+301552,Fipronil-sulfide,120067-83-6,,C12H4Cl2F6N4S,
+301558,Fipronil,120068-37-3,,C12H4Cl2F6N4OS,
+301583,Fipronil-sulfone,120068-36-2,,C12H4Cl2F6N4O2S,
+301698,acetamiprid,135410-20-7,,C10H11ClN4,
+302157,Etridiazole,2593-15-9,,,
+302488,L-Cyhalothrin,91465-08-6,,,
+302489,"o,p'-Dicofol",10606-46-9,,,
+302496,Cypermethrin,52315-07-8,,,
+303176,Cyfluthrin,68359-37-5,,,
+303182,deltamethrin and tralomethrin,N/A,,,

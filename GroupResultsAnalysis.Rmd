@@ -1,0 +1,1107 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Group Comparison Results `r tabsetting`
+
+As previously stated, the average number of chemicals found was **`r round(averageNumberChemsFound,1)`**. All wristbands were tested for **`r howManyChemicalsTested`** chemicals.
+
+## Check against Databases
+
+For all the chemicals found on ANY wristband during this project we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals. Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
+
+```{r GroupDatabaseLookupReporting, child='GroupDatabaseLookupIARC_Prop65_IRIS.Rmd', eval = DoGroupDatabaseLookupReporting}
+```
+
+## Group: Chemical Info
+
+```{r GroupChemicalListWithClassification, child='GroupChemicalListWithClassification_text.Rmd', eval = NotHideClassificationInformation}
+```
+
+```{r GroupChemicalListWithOutClassification, child='GroupChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```
+
+```{r AirConcentrationNioshOsha, child='airConcentrationOutput.Rmd', eval = doAIRplusNioshOSHAreporting}
+```
+
+```{r GroupClassificationAnyWristband, child='GroupClassificationAnyWristband_text.Rmd', eval = NotHideClassificationInformation}
+```
+
+ 
+
+### Statistics on Chemicals Found
+
+One important way to look at the data is, for each chemical, what was the minimum/maximum/mean/median value found, how many wristbands was it found on, and the standard deviation of all the values found.
+
+```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=Not_weight_or_time_adjusted}
+
+cat("The data is the raw nanograms found in each wristband. " ,sep="")
+
+```
+
+```{r print_weight_only_adjust1, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
+
+cat("The data is the raw nanograms found in each gram of wristband. " ,sep="")
+
+```
+
+```{r print_loreal_4x, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_week_not_weight}
+
+cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one week. ",sep="")
+
+```
+
+```{r print_loreal_4x3, results="asis", echo=FALSE, eval=wristbands_week_and_weight_adjusted}
+
+cat("The data is the raw nanograms found in each gram of wristband normalized " ,
+      "to time-adjust the values as though the wristband were worn for exactly one week. ",
+      "In other words, the raw data was adjusted by the time worn and the size ",
+      "of the wristbands between participants to make data as comparable as ",
+      "possible before general statistics were performed on each chemical.",
+      sep="")
+
+```
+
+```{r print_loreal_4x2, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_day}
+
+cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one day. ")
+
+```
+
+Values below the limit of detection, or values that could not be quantified, are not included in the statistical analyses and are listed as zeros.
+
+That information is displayed below:  
+
+```{r StatSummary, results='asis', echo=FALSE, eval=TRUE, message=FALSE}
+
+### Had error where i was renaming columns for 2nd time so it didn't work.  
+### Need to test if column names wrong and rename only if wrong:
+
+if("Chemical_Name" %in% colnames(statSummary))
+{
+  statSummary <- statSummary %>%  dplyr::rename("Chemical Name"=Chemical_Name)
+}
+
+if("Standard_Deviation" %in% colnames(statSummary))
+{
+  statSummary <- statSummary %>%  dplyr::rename( "Standard Deviation"=Standard_Deviation)
+}
+#statSummary
+
+if (HideIndividualization) {
+  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+
+  pandoc.table(as.data.frame(statSummary)
+             ,caption="Statistical Report on all Chemicals on all Wristbands"
+             ,justify=c("right","right","right","right","right","right","right")
+             ,emphasis.rownames=TRUE
+             ,split.table = Inf
+             )
+} else {
+
+#  
+#THIS stuff below had conflict in GIT so i left it IN but then commented out the conflicted stuff 
+#<<<<<<< HEAD
+#  #
+#
+#  
+### IF I WANTED TO DO statSummaryand include e ONE user's chemical results in a list showing all chemicals found
+# Then:  make the oneResultStatSummary and other pandoc table below...
+  oneResultStatSummary<- oneResult %>%
+    select(ParameterName,Result) %>%
+    rename("Chemical Name"=ParameterName) %>%
+    right_join(statSummary,by="Chemical Name") %>%
+    replace_na(list(Result = 0)) %>%
+    rename(!!paste(subject,"Result",sep=" "):= Result)
+
+    panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+  
+  pandoc.table(as.data.frame(oneResultStatSummary)
+               ,caption=paste("Statistical Report on all Chemicals on just",subject,"wristband",sep=" ")
+               ,justify=c("right","right","right","right","right","right","right","right")
+               ,emphasis.rownames=TRUE
+               ,split.table = Inf
+               )
+}
+
+
+
+if (FALSE){ # THIS IS THE BIG DATA
+
+  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+
+  pandoc.table(as.data.frame(bigStatSummary)
+             ,caption="Statistical Report on all Chemicals on all Wristbands found  in Large Demo Set compared to this smaller data set"
+             ,justify='right'
+             ,emphasis.rownames=TRUE
+             ,split.table = Inf
+             )
+}
+
+
+if (OutputBigComparisonStatTable){
+
+  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+
+  pandoc.table(as.data.frame(bigStatSummaryJustTheseChemicals)
+             ,caption="Statistical Report on all Chemicals on This Groups Wristbands compared to values for these chemicals in Larger Demo  data set"
+             ,justify='right'
+             ,emphasis.rownames=TRUE
+             ,split.table = Inf
+             )
+}
+
+
+
+
+
+#=======
+###
+### THIS STUFF BELOW is the area that had some kinda conflict not sure what happened in GIT so i comment this out and leave stuff ABOVE for NOW
+###
+### IF I WANTED TO DO statSummaryand include e ONE user's chemical results in a list showing all chemicals found
+# Then:  make the oneResultStatSummary and other pandoc table below...
+#  oneResultStatSummary<- oneResult %>%
+#    select(ParameterName,Result) %>%
+#    rename(!!paste(subject,"Result",sep=" "):= Result) %>%
+#    rename("Chemical Name"=ParameterName) %>%
+#    right_join(statSummary,by="Chemical Name")
+#  
+#  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+#  
+#  pandoc.table(as.data.frame(oneResultStatSummary)
+#               ,caption=paste("Statistical Report on all Chemicals on just",subject,"wristband",sep=" ")
+#               ,justify=c("right","right","right","right","right","right","right","right")
+#               ,emphasis.rownames=TRUE
+#               ,split.table = Inf
+#               )
+#}
+#>>>>>>> 88bf3a8b0c245ea66eeb8eddcecef7284980b12c
+
+```
+
+<br> <br>
+
+### Chemicals Found as % of Participants
+
+Here are all the chemicals found on any wristband. If every participants wristband contained a given chemical that chemical will show height as 100%. If only one person had a chemical it will be the shortest possible bar. The dashed red line is drawn at 50% to more easily discern chemicals that were found in most of the samples.
+
+`r if(DoSpecificSubjectAnalysis){"If the chemical was found on your wristband then that bar is colored blue.  If the chemical was found on at least one other participant, but not on your wristband, the bar is colored grey.  For example, if you see a high percentage of blue bars up near 100% then your sample has a high overlap with the rest of the study group.  If most of the blue bars are down below 50% then your sample does not overlap as much with the rest of the group."}`
+
+```{r Chart_bar_Percentages, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300}
+###THIS IS a better version of above, eliminating SQLDF
+#     it gives us a table with 2 columns, ALL FOUND CHEMS and % wb w/ chem
+#### but now I'm adding a 3rd column, subHas, which will be true if OUR subject has THAT value
+# and I'm setting this to Z instead of X cause we've made all that nonsense not-needed
+
+
+### THIS IS PLAY AREA BELOW TO SEE WHAT IS HAPPENING:
+
+
+#### END PLAY AREA
+
+## OLDER VERSION before I added in making sure if FLAG=Y we also report that
+# z<-testResults.big[testResults.big$Result>0,] %>%                      # Pipe all non zero results
+#   select(ParameterName,SampleNumber)%>%                        # select only 2 columns
+#   group_by(ParameterName) %>%                                  # Group by one column
+#   summarise(PercentSubjects=round(n()/howManyWristbandsTested,2),             # COUNT how many values, and make %
+#             subjectHasChem=as.numeric(any(SampleNumber==subject)))     # Add 1 if our subject has, 0 otherwise
+# 
+
+## NEWER 3/7/2019 version that make sure to count any FLAG=Y as having a value
+z<-testResults.big %>%                      # Pipe all non zero results
+  mutate(Result = case_when (Flag=="Y" ~ 100,
+                             TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
+  filter(Result>0) %>%
+  select(ParameterName,SampleNumber)%>%                        # select only 2 columns
+  group_by(ParameterName) %>%                                  # Group by one column
+  summarise(PercentSubjects=round(dplyr::n()/howManyWristbandsTested,2),             # COUNT how many values, and make %
+            subjectHasChem=as.numeric(any(SampleNumber==subject))) 
+
+
+
+
+c <- ggplot(z, aes(y=PercentSubjects,
+                   factor(ParameterName),
+                   fill=factor(subjectHasChem)))
+c <- c+ geom_bar(stat="identity")
+
+#CLEANUP some extra things
+rm(z)
+
+ #SET FONT SIZE for X axis Labels
+ if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
+   x_axis_font_size = 12
+ } else if (howManyWristbandsTested <= 120) {
+   x_axis_font_size = 6
+ } else {
+   x_axis_font_size = 4
+}
+
+c<- c+theme(axis.line=element_blank(),
+           axis.ticks=element_blank(),
+           axis.title.x=element_blank(),
+           #axis.text.x = element_text(angle = 70,hjust = 1,size=4 ),
+           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size),
+           legend.position="none",
+           panel.background=element_blank(),
+           panel.border=element_blank(),
+           panel.grid.major=element_blank(),
+           panel.grid.minor=element_blank(),
+           plot.background=element_blank())
+if (HideIndividualization) {
+  c <- c + scale_fill_manual(values = c("blue","blue"))
+} else {
+  c <- c + scale_fill_manual(values = c("grey","blue"))
+}
+
+c <- c  +labs(x="All Chemicals Found", y="Percentage of Participants with Chemical",
+               title="All Chemicals Found")
+
+c <- c + geom_hline(yintercept=.50, linetype="dashed", color = "red")  # ADD horizontal red line at 50% 
+
+c <- c + scale_y_continuous(labels=percent) 
+c 
+
+rm(c)
+
+```
+
+```{r GroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = NotHideClassificationInformation}
+```
+
+```{r GroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = NotHideClassificationInformation}
+```
+
+### Chart of All Tested-for Chemicals
+
+As a more detailed breakdown, we can get an overview of the test for all the chemicals found in every tested wristband. The chart below has a horizontal line for every tested chemical. The blank space shows that most of the chemicals don't show up in any of the tested wristbands in this participant sample but, once a chemical is found in one of the wristbands it is typically found in others as well. This can be seen below by observing how frequently the horizontal light-blue lines are aligned. The diagram after this one provides more details about the specific chemicals found, the purpose of this diagram is to show an overview.
+
+```{r allChemChart, echo=FALSE, message=FALSE, fig.height=9, fig.cap=""}
+
+#Set Up basic all chemical GGPLOT
+
+#THIS commented version does NOT include using Y value of FLAG to fill in more 1's
+#Need to create version of data with EVERY chemical filling in zeros
+# place_holder <- masterParam %>% 
+#   merge(testResults.big%>%select(-ParameterName),by="ParameterID",all.x=TRUE) %>%
+#   select(ParameterName,Participant=SampleNumber,valueX=Result) %>%
+#   mutate(value=as.numeric(valueX>0)) %>%
+#   select(Participant,ParameterName,value) %>%
+#   spread(Participant,value,fill=0) 
+# 
+#Need to create version of data with EVERY chemical filling in zeros
+place_holder <- masterParam %>% 
+  merge(testResults.big%>%select(-ParameterName),by="ParameterID",all.x=TRUE) %>%
+  mutate(Result=case_when(Flag =="Y" ~ 100,   # IF flag is Y then pretend Result has some VALUE
+                     TRUE ~ Result)) %>%
+  select(ParameterName,Participant=SampleNumber,valueX=Result) %>%
+  mutate(value=as.numeric(valueX>0)) %>%
+  select(Participant,ParameterName,value) %>%
+  spread(Participant,value,fill=0) 
+
+#If we get bogus column, we'll delete it
+place_holder$"<NA>" <- NULL
+
+#Now return this to a LONG table instead of WIDE but, this time, with EVERY chemical
+place_holder <- place_holder %>%
+  gather(key="Participant",value="value",-ParameterName)
+
+allChemChart<-  ggplot(place_holder, 
+                       aes(y=factor(ParameterName,
+                                    levels=sort(unique(ParameterName),
+                                                decreasing=TRUE)),
+                           x=Participant,fill=value)
+) +  geom_tile() 
+
+#allChemChart
+#SET FONT SIZE for X axis Labels
+if (howManyWristbandsTested<=60) {
+  x_axis_font_size = 12
+} else if (howManyWristbandsTested <= 120) {
+  x_axis_font_size = 6
+} else {
+  x_axis_font_size = 4
+}
+# Add THEME elements, basically hiding most things
+allChemChart<-allChemChart + theme(legend.position="none", 
+                                   axis.text.y=element_blank(),
+                                   #axis.ticks.y=element_blank(), #SHOW TICKS by commenting this out
+                                   #axis.text.x = element_text(angle = 45, hjust = 1),
+                                   axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size ),
+                                   #axis.text.x = element_blank(),
+                                   axis.line=element_blank()
+)  
+# SET color elements to plot
+allChemChart<-allChemChart + scale_fill_gradient(low = "white",high = "steelblue")   #### This is causing problems
+#allChemChart<-allChemChart + scale_y_discrete(breaks=seq(1,10,100))
+
+#  allChemChart<-allChemChart + scale_y_discrete(breaks=function(n) 
+#  c(0
+#    , floor(max(as.integer(factor(n)))/500)
+#    , max(as.integer(factor(n))))
+#  ) 
+
+
+# Set X, Y and top labels/legends
+allChemChart<- allChemChart + 
+  labs(x="Participants", 
+       y=paste("Chemicals  (Compressed View of All ", howManyChemicalsTested," tested chemicals)",sep=""), 
+       title="All Chemicals Tested")
+
+#Now display the chart
+allChemChart 
+
+
+```
+
+<br> <br>
+
+### Chart of all Found Chemicals
+
+To allow us to look more carefully at the blue lines, we'll eliminate from the chart all those lines which represent chemicals found in none of the wristbands in this sample set. We'll also eliminate any of the wristbands that didn't have ANY chemicals found. The chart below has a horizontal line for every tested chemical that was seen in at least one wristband.
+
+`r if(DoSpecificSubjectAnalysis){"Your wristband is differentiated by color."}`
+
+```{r activeChemChart, echo=FALSE, message=FALSE, fig.height=12,fig.cap=""}
+
+options(height = 8)  #this is redundant with the heading setting I THINK but so what
+
+# Make copy of r_long so we don't change anything important here:
+
+## Playing Around:
+
+## end playing around
+
+
+### STUFF BELOW IS OLD before I added back in colorizing from FLAG
+# r_long_tmp<-testResults.big[testResults.big$Result>0,] %>%
+#   rename(value=Result,Participant=SampleNumber)
+# #Set all the values of r_long that are > 1 to be ONE so that I can later change the color...
+# r_long_tmp[ (r_long_tmp$value>0)  , ]$value <- 1   # This will set all results >=1 to be one
+# #Set all the values of r_long that have Y FLAG to be ONE so that I can later change the color...
+# r_long_tmp[ (r_long_tmp$Flag == "Y")  , ]$value <- 1   # This will set all results >=1 to be one
+# #r_long_tmp[ r_long_tmp$value>=1  , ]$value  #<-1   # This will set all results >=1 to be one
+
+### NOW I setup r_long_tmp correctly including noting that FLAG=Y does mean this wristband was counted.
+r_long_tmp<-testResults.big %>%
+  dplyr::rename(value=Result,Participant=SampleNumber)
+#Set all the values of r_long that are > 1 to be ONE so that I can later change the color...
+## FIRST way of setting this, below, can cause errors if there is nothing to set.  2nd way doesn't
+#r_long_tmp[ (r_long_tmp$value>0)  , ]$value <- 1   # This will set all results >=0 to be one
+r_long_tmp[ (r_long_tmp$value>0)  , "value"] <- 1   # This will set all results >=0 to be one
+
+
+
+
+#Set all the values of r_long that have Y FLAG to be ONE so that I can later change the color...
+# FIRST way of setting this, below, can cause errors if there is nothing to set.  2nd way doesn't
+#r_long_tmp[ (r_long_tmp$Flag == "Y")  , ]$value <- 1   # This will set all results >=1 to be one
+r_long_tmp[ (r_long_tmp$Flag == "Y")  ,"value" ] <- 1   # This will set all results >=1 to be one
+
+#Get rid of all rows that have NO values set
+r_long_tmp <- r_long_tmp %>% filter(value>0)
+
+
+#Set the subject value COLUMN in the chart to be a different COLOR
+if (!HideIndividualization) {
+  #r_long_tmp[ (r_long_tmp$Participant==subject) & (r_long_tmp$value==1)  , ]$value<-100   # This will turn RED
+  r_long_tmp[ (r_long_tmp$Participant==subject) & (r_long_tmp$value==1)  , "value"]<-100   # This will turn RED  
+}
+
+#r_long[ (r_long$Participant=="A150206") & (r_long$value==100)  , ]$value<-1
+#r_long[ (r_long$Participant=="A150206") & (r_long$value==100)  , ]$value
+
+#highlightColor<-"#d7191c"
+#highlightColor<-"hotpink1"
+highlightColor<-"maroon2"
+
+#  NOTE NOTE NOTE:  The color ramp palette below had a (3) instead of a (2) and so I changed it but vaguely remember this causes ERROR sometimes??  11/2016
+if (HideIndividualization) {   #HideIndividualization is so that the charts can be used without referencing one WB
+  colors <- colorRampPalette(c("#2c7bb6", "#2c7bb6"))(2)   #Set  colors as light blue and light blue
+} else {
+colors <- colorRampPalette(c("#2c7bb6", highlightColor))(2)   #Set two colors as light blue and RED--2 means find TWO colors in that range
+}
+
+
+#Setup basic chart
+activeChemChart<-ggplot(r_long_tmp[r_long_tmp$value>0 ,],
+                        aes(y=factor(ParameterName,
+                                     levels=sort(unique(ParameterName),
+                                                 decreasing=TRUE)),
+                            x=Participant,fill=factor(value)),
+                        ylab=NULL,
+                        xlab=NULL
+) + geom_tile() + scale_fill_manual(values=colors)
+
+# Make a list of all black repeated the number of times we have subjects in the experiment
+columnColors = rep("black",howManyWristbandsTested)
+# Change ONE item on the list to be the color we're going to use for highlighting
+columnColors[which (colnames(results_W)==subject)]<-highlightColor  #"#d7191c"
+
+#SET FONT SIZE for X axis Labels
+if (howManyWristbandsTested<=60) {
+  x_axis_font_size = 12
+} else if (howManyWristbandsTested <= 120) {
+  x_axis_font_size = 6
+} else {
+  x_axis_font_size = 4
+}
+
+#SET FONT SIZE for Y axis Labels
+if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
+  y_axis_font_size = 10
+} else if (howManyUniqueChemFoundAcrossAllWristbands <= 90) {
+  y_axis_font_size = 8
+} else if (howManyUniqueChemFoundAcrossAllWristbands <= 120) {
+  y_axis_font_size = 6
+} else {
+  y_axis_font_size = 4
+}
+
+
+
+
+#hide many items using element_blank() plus set other THEME things
+##NOTE that I got an ERROR about 
+#   ## Warning: Vectorized input to `element_text()` is not officially supported.
+#   # Results may be unexpected or may change in future versions of ggplot2.
+#SO i wrapped this in suppressMessagse and suppressWarnings... not sure this was wise
+
+activeChemChart <- activeChemChart + theme(axis.line=element_blank(),
+                                           axis.ticks=element_blank(),
+                                           axis.title.y=element_blank(),
+                                           axis.text.x = suppressMessages(suppressWarnings( element_text(angle = 70,  ##HERE is where i suppress errors
+                                                                      hjust = 1, 
+                                                                      colour=columnColors,
+                                                                      size=x_axis_font_size)#or leave blank? (Normally 6, SET To 4 if MANY wristbands)
+                                                                      )
+                                                                      ),  
+                                           axis.text.y = element_text( colour="black",size=y_axis_font_size), 
+                                           legend.position="none",
+                                           panel.background=element_blank(),
+                                           panel.border=element_blank(),
+                                           panel.grid.major=element_blank(),
+                                           panel.grid.minor=element_blank(),
+                                           plot.background=element_blank())
+
+#Setup labels
+activeChemChart<-activeChemChart     +labs(x="Participants",
+                                           
+                                           y="Chemicals",
+                                           title="Chemicals Found")
+
+#Set the Y label axis text to be dark red and smaller font so it fits
+#activeChemChart <- activeChemChart +   theme(axis.title.y = element_text(face="bold", colour="#990000", size=20))
+#activeChemChart <- activeChemChart + theme(axis.text.y = element_text( colour="#990000")) 
+#activeChemChart <- activeChemChart + theme(axis.text.y = element_text( colour="black")) 
+activeChemChart <- activeChemChart + theme(axis.text.y = element_text( colour="black",size=y_axis_font_size)) 
+
+#Show the chart
+activeChemChart
+
+rm(r_long_tmp,activeChemChart,columnColors,colors,highlightColor)
+
+```
+
+<br> <br>
+
+### Heat Map: "relatively how much" of each chemical
+
+The following chart shows how your wristband compares to each other wristband in this group in terms of how many, and how much, of each chemical was found. We eliminate from the chart all those lines which represent chemicals found in none of the wristbands in this sample set showing only chemicals that at least one person did show in his/her wristband.
+
+`r if(DoSpecificSubjectAnalysis){"Your wristband name is highlighted in green on the bottom row of the chart."}`
+
+NOTE: It is important to understand this chart properly. A more highly saturated red color means MORE of the chemical compound was found while a lighter color means relatively less was found. A white, or blank, means that none of that compound was detected in your wristband. Having said that, please do not try to compare BETWEEN ROWS. Mathematically speaking the colors have no meaning when compared between rows due to different rates of uptake of each chemical into a wristband. In other words, just compare the colors across a given row, not between rows.
+
+To create this chart, we normalized within each row based on the maximum value for that chemical in any wristband. We then separate the values into 5 groups and color coding all items within each group. It is useful to remember that the groups are relative to each row separately and independently. The five groups are:
+
+-   Top 25%
+-   3rd 25%
+-   2nd 25%
+-   Bottom 25%
+-   None Found
+
+In the image below the black squares highlight which wristband had the maximum value for each chemical. `r if(DoSpecificSubjectAnalysis){"The green dots indicate your wristband."}`
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below."}`
+
+```{r chart_heatmap_x5_activeChemChart, echo=FALSE, message=FALSE,fig.cap="",fig.height=10,dpi=150}
+# IF I SET fig.height=20,fig.width=25,dpi=300}   THEN even dartmouth w/ 300 chems and 600 people it works fine
+# but for normal processing all i need is fig.height=10,dpi=76}
+#
+# was no fig width and dpi was 150 height was 10
+#
+#
+#
+#{r x5_activeChemChart, echo=FALSE, message=FALSE,fig.cap="",dev='svg'}
+#{r x5_activeChemChart, echo=FALSE, message=FALSE, fig.height=8,fig.width=5,fig.cap="",dev='svg'}
+#options(height = 9)  #this is redundant with the heading setting I THINK but so what
+
+### NOW I KNOW how to do with LONG, not wide so big changes below
+#       ... so I did it.... USING testResults below
+
+# MARC TRYING to redo this the "right" way...
+# First, start with testResults and do not deal with any rows that are all-zero
+
+#NOW set the colors 
+num_Colors_Needed <- length(unique(testResults.big$quartile))
+# THIS Is the RIGHT WAY to choose colors
+#
+#library("colorspace")
+#pal <- choose_palette()
+
+# SHOW how to pick colors
+#colfunc<-colorRampPalette(c("yellow", "red"))
+#n<-10
+#colfunc(n)
+#plot(rep(1,n),col=colfunc(n),pch=19,cex=3)
+#colfunc<-colorRampPalette(c("lightyellow", "red"))
+#n<-20
+#colfunc(n)
+#plot(rep(1,n),col=colfunc(n),pch=19,cex=3)
+#colfunc(n)
+# MARC picked these colors manually
+x5_colors<-c("white" , "#FFE4C8" , "#FFC9B0" , "#FF9381" , "#FF0000")
+
+#ATTEMPTING to eliminate ZERO values from testResults.big with a filter
+tr.big.without.NotFound <- testResults.big %>% filter(PureSampleName!="not_found")
+
+x5_activeChemChart <- ggplot(
+    #testResults.big,
+    #testResults,
+    #ATTEMPTING to eliminate ZERO values from testResults.big with a filter
+    tr.big.without.NotFound, #Get rid of all rows that have NO values set
+    aes(
+        y = factor(ParameterName,
+                   levels = sort(unique(ParameterName),
+                                 decreasing = TRUE)),
+        x = SampleNumber,
+        fill = factor(quartile)),
+    ylab = NULL,
+    xlab = NULL
+    ) + 
+    geom_tile() + 
+    scale_fill_manual(values = x5_colors,
+                      name = "Relative \n Amount",
+                      breaks=c("0","1", "2", "3","4"),
+                      labels=c("None","Bottom 25%", "2nd 25%", "3rd 25%","Top 25%")
+                      )
+#x5_activeChemChart
+# Make a list of all black repeated the number of times we have subjects in the experiment
+x5_columnColors = rep("black",howManyWristbandsTested)
+# Change ONE item on the list to be the color we're going to use for highlighting
+
+if (! HideIndividualization) {  # Supress setting color of SampleName if we are trying to hide individualization
+  x5_columnColors[which (colnames(results_W)==subject)]<-"seagreen"     # was RED >>>   "#d7191c"
+} 
+
+# if (howManyWristbandsTested<=120) {
+#   x_axis_font_size = 6
+# } else {
+#   x_axis_font_size = 4
+# }
+#SET FONT SIZE for X axis Labels
+if (howManyWristbandsTested<=60) {
+  x_axis_font_size = 12
+} else if (howManyWristbandsTested <= 120) {
+  x_axis_font_size = 6
+} else {
+  x_axis_font_size = 4
+}
+#SET FONT SIZE for Y axis Labels
+if (howManyUniqueChemFoundAcrossAllWristbands<=55) { # Was <=60 but that was scrunched
+  y_axis_font_size = 10
+} else if (howManyUniqueChemFoundAcrossAllWristbands <= 90) {
+  y_axis_font_size = 8
+} else if (howManyUniqueChemFoundAcrossAllWristbands <= 120) {
+  y_axis_font_size = 6
+} else {
+  y_axis_font_size = 4
+}
+#hide many items using element_blank() plus set other THEME things
+#NOTE that I got an ERROR about 
+#   ## Warning: Vectorized input to `element_text()` is not officially supported.
+#   # Results may be unexpected or may change in future versions of ggplot2.
+#SO i wrapped this in suppressMessagse and suppressWarnings... not sure this was wise
+x5_activeChemChart <- x5_activeChemChart + 
+  theme(axis.line=element_blank()
+        ,axis.ticks=element_blank()
+        ,axis.title.y=element_blank()
+        ,axis.text.x = suppressMessages(suppressWarnings(   ## NOTE i added this to avoid element_text error
+          element_text(angle = 90, 
+                       hjust = 1,
+                       vjust = 0.4,
+                       colour=x5_columnColors
+                       #,size=12
+                       ,size=x_axis_font_size
+          )    ))
+        # ,axis.text.y = element_text(angle = 45 
+        #   ,hjust = 1
+        #  ,size=6)
+        #,axis.text.y = element_text(size=6)
+        ,axis.text.y = element_text( colour="black",size=y_axis_font_size) 
+        #,axis.text.y = element_text(size=4)
+        ,legend.position="bottom"
+        ,panel.background=element_blank()
+        ,panel.border=element_blank()
+        ,panel.grid.major=element_blank()
+        ,panel.grid.minor=element_blank()
+        ,plot.background=element_blank()) 
+#x5_activeChemChart
+
+
+#Setup labels
+x5_activeChemChart<-x5_activeChemChart  +
+  labs(x="Participants: Black dots show row maxiumum",
+       y="Chemicals",
+       title="Chemicals Found") 
+
+#Set the, Y label axis text to be dark red and smaller font so it fits
+x5_activeChemChart <- x5_activeChemChart + 
+  theme(axis.text.y = element_text( colour="black")) 
+#x5_activeChemChart
+
+if (! HideIndividualization) {  # If NOT hiding individualization
+  #CREATE the SUBSET that is the row of our own subject only
+  xs<-testResults.big %>%
+    filter(SampleNumber==subject)
+  #PUT a dot inside every square in  the column of our subject
+  x5_activeChemChart <- x5_activeChemChart+
+    geom_point(aes(),data=xs,color="seagreen",size=.1)
+} 
+
+
+
+## Add a black X shape to mark the maxium values found for each chemical
+## Try and make the Size of the black dot fit better
+#
+
+
+tooManyCHemicalsFoundToPrintMatrix <- 75
+tooManyBandsToPrintMatrix <-100
+
+if (howManyUniqueChemFoundAcrossAllWristbands < tooManyCHemicalsFoundToPrintMatrix && howManyWristbandsTested < tooManyBandsToPrintMatrix){
+  point_size_Heat_Map<-1.5
+} else {
+  point_size_Heat_Map<-0.6
+}
+
+xm<-testResults.big %>%
+  filter(is_this_max==TRUE)
+x5_activeChemChart  <- x5_activeChemChart + 
+  #geom_point(data=xm, mapping=aes(), shape=20, size=.6)  # was shape=15
+  geom_point(data=xm, mapping=aes(), shape=19, size=point_size_Heat_Map)  # was shape=15
+
+
+
+
+#x5_activeChemChart
+
+###
+##  NOW i was going to higlight  EVERY CELL with a MAX value BUT I can'd do that using x5_rlnn
+#       cause that already is grouped in zero to 5 values...
+###
+#x5_rlnn %>%
+#  group_by(ParameterName) %>%
+#  summarize(max(value))
+
+
+#suppressMessages(suppressWarnings(print(x5_activeChemChart)))
+x5_activeChemChart 
+#browser()
+
+
+######################### TEST TESTTEST RAY SHADER
+
+### THIS DIDN"T WORK cause (1) ugly and (2) NOT showing in the HTML it has special permissions and in pop-up and weird
+
+# 
+# 
+# library(rayshader)
+# 
+# 
+# x5_activeChemChartTEST <- ggplot(
+#   #testResults.big,
+#   #testResults,
+#   #ATTEMPTING to eliminate ZERO values from testResults.big with a filter
+#   tr.big.without.NotFound, #Get rid of all rows that have NO values set
+#   aes(
+#     y = factor(ParameterName,
+#                levels = sort(unique(ParameterName),
+#                              decreasing = TRUE)),
+#     x = SampleNumber,
+#     fill = quartile),
+#   ylab = NULL,
+#   xlab = NULL
+# ) +
+#   geom_tile()  #+
+#   # scale_fill_manual(values = x5_colors,
+#   #                   name = "Relative \n Amount",
+#   #                   breaks=c("0","1", "2", "3","4"),
+#   #                   labels=c("None","Bottom 25%", "2nd 25%", "3rd 25%","Top 25%")
+#   # )
+# 
+# 
+# 
+# x5_activeChemChartTEST
+# plot_gg(x5_activeChemChartTEST,multicore=TRUE,width=5,height=5,scale=250)
+# 
+
+######################### TEST TESTTEST RAY SHADER
+
+
+
+
+
+
+
+# TWO LIINES BELOW call PLOTLY to display chart as a "live" chart where HOVER does something
+# library(plotly)
+# ggplotly(x5_activeChemChart)
+
+rm(num_Colors_Needed,x5_colors,x5_columnColors,x5_activeChemChart)
+
+#TRIED to use D3 for heatmap BUT doesn't work w/ sparse matrix
+#CONVERT testResults.big into matrix with rows = compounds (as rownames) and columns=Wristbands (as column names)
+# t<-testResults.big %>%
+#   select(SampleNumber,ParameterName,Result)   %>%
+#   filter(Result>0)
+# tra<- as.matrix(spread(t,SampleNumber,as.numeric(Result),fill=0))
+# tr<-as.matrix(spread(t,SampleNumber,Result,fill=0))
+# 
+# tr2<-tr[,-1]
+# rownames(tr2)<-tr[,1]
+# mode(tr2)="numeric"
+# d3heatmap(tr2, scale = "column", colors = "Spectral",dendrogram="none")
+
+
+```
+
+### Nanograms of any Chemicals
+
+Each tested wristband picked up different amounts of different chemicals. One simple question is "how much total chemical compound, of any type, did each wristband, or each nanogram-of-wristband, pick up? In other words, if we tested for a list of chemicals, and Wristband-A picked up 10 nanograms of Chemical 1, and 10 nanograms of chemical 2 and none of the other chemicals, then Wristband-A picked up a total of 20 nanograms of chemicals. The exact number is not as interesting as is the SIZE OF THE NUMBER relative to other people who wore the wristband and were tested for the same chemical.
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below."}`
+
+```{r print_adjust_3b,  results="asis", echo=FALSE,   eval=wristbands_time_adjusted_not_weight}
+
+cat("The numbers were normalized relative to  the length of time the wristband was worn and ",
+  "hence can be relatively reliably compared. ",sep="")
+
+```
+
+```{r print_adjust_3, results="asis", echo=FALSE, eval=wristbands_time_and_weight_adjusted}
+
+cat("The numbers were normalized relative to both the size of the wristband and the length of time the wristband was worn and ",
+      "hence can be relatively reliably compared.  ",
+      sep="")
+
+```
+
+```{r print_weight_only_adjust2, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
+
+cat("The data is the raw nanograms found in each gram of wristband. " ,sep="")
+
+```
+
+```{r print_chem_response_factor_info, results="asis", echo=FALSE, eval=is_RMD_type_equal_DRS}
+
+cat("Additionally, the underlying chemical responses are within a factor of 2.5 with respect to accuracy based on the publication ",
+      "(https://link.springer.com/article/10.1007/s00216-018-0997-7).",
+      sep=" ")
+
+```
+
+`r if(DoSpecificSubjectAnalysis){"Your wristband is in GREEN."}`
+
+```{r chart_total_ng_found, echo=FALSE, message=FALSE, fig.height=6,fig.cap="",dpi=150}
+################BEGIN x5 Perc
+# IDEA is to get total RESULTS for each WB then graph that  in bar-chart
+ng_per_sample <-testResults.big %>%
+  group_by(SampleNumber) %>%
+  summarise(SumResult=sum(Result))
+
+ c<- ggplot(ng_per_sample, aes(y=SumResult ,factor(SampleNumber),fill=SampleNumber==subject)) +
+      geom_bar(stat="identity")+
+        labs(x="Every Wristband tested",
+         y="Nanograms Found",
+         title="Total NG of Any Chemical found")
+
+# c
+ #SET FONT SIZE for X axis Labels
+ if (howManyWristbandsTested<=60) {
+   x_axis_font_size = 10
+ } else if (howManyWristbandsTested <= 120) {
+   x_axis_font_size = 6
+ } else {
+   x_axis_font_size = 4
+ }
+ 
+c<- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+#            axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
+            axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=x_axis_font_size ),
+#            axis.text.x = element_text(angle = 90,size=8 ),
+            legend.position="none",
+            panel.background=element_blank(),
+            panel.border=element_blank(),
+            panel.grid.major=element_blank(),
+            panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+if (HideIndividualization) {
+  c <- c + scale_fill_manual(values = c("blue","blue"))
+} else {
+  c <- c + scale_fill_manual(values = c("blue","seagreen"))
+}
+
+
+c
+
+rm(c)
+
+```
+
+```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=show_loreal_venn_text}
+```
+
+### Numerical Matrixes of all Data
+
+We now provide a few numerical matrices so you can see the actual numbers that were used as the basis to create the charts above.
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from these matrixes below"}`
+
+```{r print_loreal_2, results="asis", echo=FALSE,   eval=wristbands_week_and_weight_adjusted}
+
+cat("The number is expressed as the number of **nanograms per gram of wristband** and is normalized for being worn for a one week period ",
+      "(in other words, if someone wore the wristband for 14 days instead of 7, ",
+      "we divided the total result in half to represent just one week of exposure ", 
+      "in order to allow easier comparison between wristbands). In other words, if we ",
+      "recovered 1,000 nano-grams of chemical X from the wristband, and the wristband weighed 4 grams, ",
+      "and the band was worn for 7 days, we would report ",
+      "that you had 250 nano-grams /gram of WB per week.  The exact number is not so important as ",
+      "is the SIZE OF THE NUMBER relative to other people who wore the ",
+      "wristband. ",sep=" ")
+
+```
+
+```{r print_DRS_detection_limit2, results="asis" , echo=FALSE, eval =  is_RMD_type_equal_DRS}
+
+cat("The median value for detection limits across all compounds ",
+      "is approximately 200 ng/Wristband or 50ng/gram silicone. ",sep="")
+
+```
+
+#### Matrix showing Quartiles
+
+The matrix below shows the result of normalizing the values found, based on the maximum value found, and then breaking up the values into 4 quartiles while leaving those with no-value-found at zero. In other words, we process each row so that it has only the values 0, 1, 2, 3, and 4.
+
+```{r  decide_if_skip_printing_big_matrix, results='asis', echo=FALSE, message=FALSE, eval=TRUE}
+tooManyBandsToPrintMatrix <- 100
+tooManyCHemicalsFoundToPrintMatrix <-75
+if (howManyUniqueChemFoundAcrossAllWristbands < tooManyCHemicalsFoundToPrintMatrix && howManyWristbandsTested < tooManyBandsToPrintMatrix){
+  allow_matrix_to_print<-TRUE
+} else {
+  allow_matrix_to_print<-FALSE
+}
+
+```
+
+```{r print_skip_printing_matrix_message, results="asis" , echo=FALSE, eval =  (!allow_matrix_to_print)}
+
+cat("**Please see separately provided files for large matrix data sets which would normally be displayed here.  Since your project had a large results table, it is easier to view on its own rather than in this file** ",sep="")
+
+```
+
+```{r  x5_pandoc_q, results='asis', echo=FALSE, message=FALSE, eval=allow_matrix_to_print}
+
+# NOTE that split.table=inf makes sure we never split table and it is as wide as data
+# could have used:  
+#   panderOptions('table.split.table', 300)
+# which I think says ... allow 300 columns
+
+#
+
+
+## Grab the parts of testResults I want to print which is 
+#     chemical name, wristband name (sampleNumber), and what quartile
+#     use replace_na to Get rid of all the NA values and replace with quartile of ZERO
+
+### NOTE that I filtered to get rid of Result>0 below BUT if a WB had NO compounds then
+#     it didn't show in matrix at ALL which seemed wrong SO...
+#     commenting this out and replacing w/ version without filter.
+#     HOPEFULLY this doesn't cause other problems?
+# quant_data<-testResults.big %>% filter(Result>0) %>%
+#   select(ParameterName,SampleNumber,quartile) %>%
+#   spread(SampleNumber,quartile) %>%
+#   replace(is.na(.), 0) %>%
+#   arrange(ParameterName) %>%
+#   rename('Chemical Name'=ParameterName) %>%
+#   as.data.frame()
+
+### 2/21/2019  NEW VERSION without FILTER
+# quant_data<-testResults.big  %>%
+#   select(ParameterName,SampleNumber,quartile) %>%
+#   distinct() %>%   #When i got rid of FILTER for zero on 2/21 I introduced duplicates maybe this fixes.  Fixed 2/24/2019
+#   spread(SampleNumber,quartile) %>%
+#   replace(is.na(.), 0) %>%    
+#   arrange(ParameterName) %>%
+#   dplyr::rename('Chemical Name'=ParameterName) %>%
+#   as.data.frame()
+
+## BUT UNFORTUNATELY (11/12/2021) NOW i get a weird "NOT FOUND" value in the rows so THAT didn't work... Try to get rid of that not-found and see if that helps....
+#ATTEMPTING to eliminate ZERO values from testResults.big with a filter
+tr.big.without.NotFound <- testResults.big %>% filter(PureSampleName!="not_found")
+quant_data<-tr.big.without.NotFound  %>%
+  select(ParameterName,SampleNumber,quartile) %>%
+  distinct() %>%   #When i got rid of FILTER for zero on 2/21 I introduced duplicates maybe this fixes.  Fixed 2/24/2019
+  spread(SampleNumber,quartile) %>%
+  replace(is.na(.), 0) %>%    
+  arrange(ParameterName) %>%
+  dplyr::rename('Chemical Name'=ParameterName) %>%
+  as.data.frame()
+
+
+
+
+
+
+
+
+pandoc.table(quant_data,
+             caption="Full List of Chemicals"  ,
+             justify=c("center"),
+             emphasis.rownames=TRUE,
+             #split.tables=110  #80 the default
+             split.table = Inf
+             )
+
+#CLEAN UP
+rm(quant_data)
+
+```
+
+#### Matrix showing Raw Values
+
+In this next matrix (below), you see the same data but it is not mean centered nor broken into quartiles.
+
+```{r print_loreal_4b, results="asis",  echo=FALSE, eval=wristbands_week_and_weight_adjusted}
+
+cat("More exactly, it is the raw nanograms found in each gram of wristband material ",
+      "normalized to time-adjust the values as though the wristband were worn for exactly one week. ",
+      sep=" ")
+
+```
+
+```{r print_loreal_4b_2, results="asis",  echo=FALSE, eval=wristbands_time_adjusted_one_week_not_weight}
+
+cat("More exactly, it is the raw nanograms found in each gram of wristband material ",
+      "normalized to time-adjust the values as though the wristband were worn for exactly one week. ",
+      sep=" ")
+
+```
+
+```{r print_DRS_detection_limit, results="asis" , echo=FALSE, eval =is_RMD_type_equal_DRS}
+
+cat("The median value for detection limits across all compounds ",
+      "is approximately 200 ng/Wristband or 50ng/gram silicone. ",sep="")
+
+```
+
+```{r print_OTHER_DETECTION_LIMIT, echo=FALSE, eval=FALSE}
+
+WE DO THE MAS15 detect limit above... 
+  IF MAS15 THEN
+    The median value for detection limits across all compounds is approximately 200 ng/Wristband or 50ng/gram silicone. 
+
+BUT NEED TO DO the other ones
+IF PAH then:
+  
+IF Pesticide THEN:
+  
+If VOC THEN
+  
+
+
+```
+
+```{r print_loreal_4c2,results="asis", echo=FALSE, eval =  FALSE}
+
+cat("Additionally, since the wristbands can be of different sizes, ",
+      "we normalize by size of wristband to create  the raw nanograms ",
+      "found in each gram of wristband material in each wristband normalized ",
+      "only to time-adjust the values as though the wristband were worn for exactly one week.  ",
+      sep=" ")
+
+```
+
+```{r print_loreal_4b2, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_day}
+
+cat("More exactly, it is the raw nanograms found  in each wristband normalized ",
+      "to time-adjust the values as though the wristband were worn for exactly one DAY. ",
+      "In other words, if a wristband was worn for 2.5 days, we divided the total " ,
+      "nanograms by 2.5 to result in the per day number.  Similarly if the wristband ",
+      "was worn for 5 days, we divided the total nanograms by 5 to result in the per day number. ",
+      "The median value for detection limits across all  compuonds is ",
+      "approximately 200 ng/Wristband or 50ng/gram.",
+      sep="") 
+
+```
+
+Therefore, these data give you a more direct sense of "how much" of a given chemical was found. Having said that, since chemicals enter the wristband at different rates, it is incorrect to try to deduce relative exposures between compounds. Numerical data should be compared amongst participants for one compound at-a-time. Numbers also have variability depending on the specific compound and analytical performance. Having provided that disclaimer, however, we're still showing the scientifically accurate "how much we found" information below which is in nanograms. Compounds not found and/or below the limit-of-detection are shown as zero values.
+
+```{r print_skip_printing_matrix_messageB, results="asis" , echo=FALSE, eval =  (!allow_matrix_to_print)}
+
+cat("**Please see separately provided files for large matrix data sets which would normally be displayed here.  Since your project had a large results table, it is easier to view on its own rather than in this file** ",sep="")
+
+```
+
+```{r  pandoc_X_NOT_normalized, results='asis', echo=FALSE, message=FALSE, eval=allow_matrix_to_print}
+
+# NEED TO SORT X2 so it matches the chart above
+
+### Grab the rows from testResults I need to print this data matrix
+#     rename them for better reading and print matris of all raw values for all chems /WB's
+#     use replace_na to Get rid of all the NA values and replace with quartile of ZERO
+
+### 2/21/2019  COMMENT OUT version with FILTER and replace with version with NO FILTER of zero vales
+# raw_data<-testResults.big %>%
+#   filter(Result>0)%>%
+#   select(ParameterName,SampleNumber,Result) %>%
+#   spread(SampleNumber,Result) %>%
+#   replace(is.na(.), 0) %>%    
+#   arrange(ParameterName) %>%
+#   rename('Chemical Name'=ParameterName) %>%
+#   as.data.frame()
+
+#ATTEMPTING to eliminate ZERO values from testResults.big with a filter
+tr.big.without.NotFound <- testResults.big %>% filter(PureSampleName!="not_found")
+
+### 2/21/2019  COMMENT OUT version with FILTER and replace with version with NO FILTER of zero vales
+### 11/12/2021 BUT then i got rows with "not_found" so I then filter THAT out which may recreate OTHER problem but....
+raw_data<-tr.big.without.NotFound %>%
+  select(ParameterName,SampleNumber,Result) %>%
+  distinct() %>%
+  spread(SampleNumber,Result) %>%
+  replace(is.na(.), 0) %>%    
+  arrange(ParameterName) %>%
+  dplyr::rename('Chemical Name'=ParameterName) %>%
+  as.data.frame()
+
+pandoc.table(raw_data,
+             caption="Full List of Chemicals"  ,
+             justify=c("center"),
+             emphasis.rownames=TRUE,
+             #split.tables=110  #80 the default
+             split.table = Inf
+             )
+
+#CLEAN UP
+rm(raw_data)
+
+```
+
+<br> <br>

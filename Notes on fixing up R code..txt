@@ -1,0 +1,33 @@
+
+
+# SO i'll create lookup tables
+testResultsParamLookup <- testResults %>% select(ParameterID,ParameterName,CASNumber) %>% unique()
+testResultsNameLookup <- testResults %>% select(PureSampleName,SampleNumber) %>% unique()
+
+AND THEN I created "tr" in the RMD file which was testResults with these lookups added back
+
+
+https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+https://rpubs.com/bradleyboehmke/data_wrangling
+
+also:  %>%   http://r4ds.had.co.nz/pipes.html  
+
+
+https://www.r-bloggers.com/dplyr-example-1/
+
+
+https://blog.exploratory.io/selecting-columns-809bdd1ef615
+
+https://stackoverflow.com/questions/21502465/replacement-for-rename-in-dplyr
+
+https://stackoverflow.com/questions/37364249/tidyr-how-to-spread-into-count-of-occurrence
+
+
+testResultsNonZero  <- testResults[testResults$Result>0,]
+r_wide same as   results_W
+
+rW_Norm_NotZ_wChems[,-1]
+rW_Norm_NotZ_wChems[1,-1]
+quantfun(as.numeric(as.data.frame(rW_Norm_NotZ_wChems[1,-1])))
+x<-as.numeric(as.data.frame(rW_Norm_NotZ_wChems[1,-1]))
+ length(unique(quantile(x, probs=0:4/4))<2)

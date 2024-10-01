@@ -1,0 +1,105 @@
+
+<br>
+<br>
+
+
+
+### EPA IRIS:  All Wristbands
+
+Some of the chemicals found on some of the wristbands in this group have evaluations available from the United States Environmental Protection Agency (EPA).  The EPA's Integrated Risk Information System (IRIS) is a human health assessment program that evaluates information on health effects that may result from exposure to environmental contaminants. Through the IRIS Program, EPA provides science-based human health assessments to support the Agency's regulatory activities. The IRIS database [(http://www.epa.gov/iris/)](http://www.epa.gov/iris/) is web accessible and contains information on more than 550 chemical substances.  We have looked up all the chemicals found on any wristband and provided links to the data on the EPA IRIS web site in those cases where the data is available. 
+<br>
+<br>
+
+
+```{r  GroupEpaIrisPrint, results='asis', echo=FALSE, message=FALSE}
+
+pandoc.table(as.data.frame(EPAirisHits),
+             caption="Observed Chemical List showing EPA IRIS URLs",
+             justify=c("left","center"),
+             emphasis.rownames=TRUE
+              ,split.table = Inf)
+
+#rm(oneResultEpaIris)
+#rm(epaIris)
+
+```
+
+
+<br>
+<br>
+
+
+```{r   GroupCalifProp65printx1, echo=FALSE,results='asis', eval=(countCalifProp65Hits!=0) }
+
+cat("### Proposition 65:  All Wristbands")
+
+
+
+```
+
+&nbsp;
+
+```{r   GroupCalifProp65printx2,results='asis', echo=FALSE,  eval=(countCalifProp65Hits!=0) }
+
+cat("Some of the chemicals found on wristbands in the group are classified per California ", 
+      "Proposition 65 [(http://www.oehha.ca.gov/prop65.html)](http://www.oehha.ca.gov/prop65.html)",
+      "which categorizes many different chemicals with respect to toxicity (potential hazard).",
+      "Of the chemicals found on your wristband, here are the ones that are listed as having ",
+      "some type of toxicity per California Proposition 65.",
+      "There are four types of toxicity catagorized by Prop65:  Cancer, Developmental Toxicity, ", 
+      "Female Reproductive Toxicity, and Male Reproductive Toxicity. ",
+      "We have summarized some of the listed risks in the table below but please refer to the official",
+      " California website listing specific risks for each chemical for up-to-date and accurate information:",
+      "[(https://www.p65warnings.ca.gov/fact-sheets)](https://www.p65warnings.ca.gov/fact-sheets)",
+      sep="")
+
+
+```
+
+
+```{r  GroupCalifProp65printx3, results='asis', echo=FALSE, message=FALSE, eval=(countCalifProp65Hits!=0)}
+
+pandoc.table(as.data.frame(CalifProp65Hits),
+             caption="Observed Chemical List showing California Prop 65",
+             justify=c("left","center")
+              ,split.table = Inf)
+
+#rm(oneResultCalifProp65Risk)
+
+```
+
+<br>
+<br>
+
+
+
+```{r   GroupIARCprintx1, results="asis", echo=FALSE, eval=(countIARCHits!=0)}
+
+cat("### IARC: All Wristbands")
+
+
+```
+
+```{r  GroupIARCprintx2,  results="asis",echo=FALSE, eval=(countIARCHits!=0)}
+
+cat("The chemicals found on the wristbands are classified by the International Agency for the Research on Cancer",
+      "[(https://monographs.iarc.who.int/agents-classified-by-the-iarc/)](https://monographs.iarc.who.int/agents-classified-by-the-iarc/)",
+      "which categorizes many different chemicals with respect to types of cancer risks.  Of the chemicals found on your wristband",
+      "here are the ones that are listed as having some type of rating per IARC.",
+      sep=" ")
+
+```
+
+
+```{r GroupIARCprintx3, results='asis', echo=FALSE, eval=(countIARCHits!=0), message=FALSE}
+
+pandoc.table(as.data.frame(IARCHits),
+             caption="Observed Chemical List showing IRAC classification",
+             justify=c("left","center")
+              ,split.table = Inf)
+
+
+```
+<br>
+<br>
+

@@ -1,0 +1,27 @@
+
+### At Least One of a Classification
+
+A related question is how many study participants had at least one of any given classification (e.g. how many participants had at least one "Flame Retardant").
+
+
+
+```{r atLeastOneEachClassification , results='asis', echo=FALSE, message=FALSE }
+
+#
+# NOTE:  I took away ONE from "ncol(cs)" when converting from SQLdf to dplyr/tidyr NOT SURE WHY
+#   cause this seems to work perfectly...maybe previous extra col was duplicated classifications?
+
+pandoc.table(SubClassAtleastOne,
+             split.cells=20,  #30 the default
+             justify=c("left","right","right"),  #
+             caption = "Tested Wristbands with **at least one** of a given classification"
+            # ,split.tables=110  #80 the default
+            ,split.table = Inf
+)
+
+
+```
+
+<br>
+
+

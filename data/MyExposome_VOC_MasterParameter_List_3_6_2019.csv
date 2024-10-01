@@ -1,0 +1,43 @@
+﻿ParameterID,ParameterName,CASNumber,AlternateName,MolecularFormula,MolecularWeight
+27,"1,2,3-Trichlorobenzene",87-61-6,,C6H3Cl3,181.447
+30,"1,2,3-Trimethylbenzene",526-73-8,,C9H12,120.192
+32,"1,2,4-Trichlorobenzene",120-82-1,,C6H3Cl3,181.447
+33,"1,2,4-Trimethylbenzene",95-63-6,,C9H12,120.195
+45,"1,3,5-Trimethylbenzene",108-67-8,Mesitylene,C9H12,120.195
+48,"1,3-Dichlorobenzene",541-73-1,,C6H4Cl2,145.002
+301765,"1,3-dimethylnaphthalene",575-41-7,,C12H12,156.224
+69,1-methylnaphthalene,90-12-0,N1Me,C11H10,142.2
+300685,"2,6-dimethylnaphthalene",581-42-0,N26DMe,C12H12,156.22
+136,2-Chlorotoluene,95-49-8,,C7H7Cl,126.584
+146,2-methylnaphthalene,91-57-6,N2Me,C11H10,142.2
+187,4-Chlorotoluene,106-43-4,,C7H7Cl,126.584
+267,Benzene,71-43-2,NULL,C6H6,78.112
+301,Bromobenzene,108-86-1,Brombenzol,C6H5Br,157.008
+375,Chlorobenzene,108-90-7,Benzenyl Chloride,C6H5Cl,112.557
+1999,Cumene,98-82-8,2-phenylpropane,C9H12,120.192
+788,Ethylbenzene,100-41-4,NULL,C8H10,106.165
+875,n-Butylbenzene,104-51-8,NULL,C10H14,134.218
+876,n-Decane,124-18-5,NULL,C10H22,142.282
+878,n-Dodecane,112-40-3,NULL,C12H26,170.335
+880,n-Eicosane,112-95-8,,C20H42,282.547
+884,n-Heptadecane,629-78-7,,C17H36,240.468
+885,n-Heptane,142-82-5,,C7H16,100.202
+888,n-Hexadecane,544-76-3,,C16H34,226.441
+903,n-Nonane,111-84-2,,C9H20,128.255
+906,n-Octadecane,593-45-3,NULL,C18H38,254.494
+577,n-Octane,111-65-9,NULL,C8H18,114.229
+580,n-Pentadecane,629-62-9,,C15H32,212.421
+584,n-Propylbenzene,103-65-1,NULL,C9H12,120.192
+587,n-Tetradecane,629-59-4,,C14H30,198.394
+593,n-Undecane,1120-21-4,,C11H24,156.308
+595,naphthalene,91-20-3,Nap,C10H8,128.17
+36,o-Dichlorobenzene,95-50-1,"1,2-Dichlorobenzene",C6H4Cl2,147.002
+621,o-Xylene,95-47-6,"1,2-dimethylbenzene",C8H10,106.165
+54,p-Dichlorobenzene,106-46-7,"1,4-Dichlorobenzene",C6H4Cl2,146.998
+914,p-Isopropyltoluene,99-87-6,,C10H14,134.218
+963,sec-Butylbenzene,135-98-8,,C10H14,134.218
+988,Styrene,100-42-5,Phenethylene,C8H8,104.149
+1012,tert-Butylbenzene,98-06-6,,C10H14,134.222
+705,Toluene,108-88-3,NULL,C7H8,92.138
+300639,Tributyl phosphate,126-73-8,,C12H27O4P,266.318
+1259,Xylenes (m and p),108-38-3 & 106-42-3,,C8H10,106.165

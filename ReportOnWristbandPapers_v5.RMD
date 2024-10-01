@@ -1,0 +1,374 @@
+---
+title: "ReportOnWristbandPapers"
+author: "me"
+date: "2022-12-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+suppressMessages(library("tidyverse"))
+library(readxl)
+
+
+if (!require("vtable")) {
+  install.packages("vtable", dependencies = TRUE)
+}
+library(vtable)
+
+
+if (!require("formattable")) {
+  install.packages("formattable", dependencies = TRUE)
+}
+library(formattable)
+
+```
+
+## R Markdown
+
+This is an R Markdown document.Just to fool around and analyze data in big XLS spreadsheet steven made...
+
+```{r getData, echo=FALSE}
+#
+#
+#  NOW try to create real data from Spreadsheet assuming that the unique values are as good as possible....
+#
+#  Make data "tidy" by converting from WIDE to LONG wherever practical
+
+WB_Paper_xls_name <- "D:/Users/Marc/Dropbox/MyExposomeSharedFolder/Data/Publication Database/WB and or silicone papers.xlsx" #  NOTE V2
+
+dataFile <- read_excel(WB_Paper_xls_name,
+                            sheet="Only WB - Oct 2022")
+
+
+
+### I'm replacing the working version of workingTibble with the version that does NOT assume the file is fixed-up with best-possible chemical info in columns
+### Idea is to do it HERE instead of in EXCEL
+### and use STEVEN fixup file HERE instead of via weird manual process in excel
+###
+
+stevenFixupXLS<- "D:/Users/Marc/Dropbox/MyExposomeSharedFolder/Data/Publication Database/Marc play copy/Unique_Abund_and_MAG_v5.xlsm" #
+
+stevenFixUP<- read_excel(stevenFixupXLS,
+                         sheet="Unique_Abund") %>%
+  select(ABUND_and_MAG,BestName) %>%
+  mutate(ABUND_and_MAG=str_trim(ABUND_and_MAG)) %>%
+  mutate(BestName=str_trim(BestName))
+
+workingTibble <- dataFile %>%
+  #select(Title,"ABUND (top cmpds)") %>%
+  rename(ABUNDtop ="ABUND (top cmpds)") %>%
+  ### NOW i realize I need to trim TRAILING semicolon so seaprate_rows works properly
+  mutate(ABUNDtop = if_else(str_detect(ABUNDtop,";$"),str_sub(ABUNDtop,end=-2),ABUNDtop)) %>%
+  separate_rows(ABUNDtop,sep=";") %>%
+  mutate(ABUNDtop= trimws(ABUNDtop)) %>%
+  ## NOW I'm going to fix-up the values in the table to a common name for each chemical
+  left_join(stevenFixUP, by=c("ABUNDtop"="ABUND_and_MAG")) %>%
+  mutate(ABUNDtop = if_else(is.na(BestName),ABUNDtop,BestName))%>%
+  select(-BestName) %>%
+  ### Done with fixup
+  rename(MAGtop ="MAG (top cmpds)") %>%
+  ### NOW i realize I need to trim TRAILING semicolon so separate_rows works properly
+  mutate(MAGtop = if_else(str_detect(MAGtop,";$"),str_sub(MAGtop,end=-2),MAGtop)) %>%
+  separate_rows(MAGtop,sep=";") %>%
+  mutate(MAGtop= trimws(MAGtop)) %>%
+  ## NOW I'm going to fix-up the values in the table to a common name for each chemical
+  left_join(stevenFixUP, by=c("MAGtop"="ABUND_and_MAG")) %>%
+  mutate(MAGtop = if_else(is.na(BestName),MAGtop,BestName))%>%
+  select(-BestName) %>%
+  ### Done with fixup
+  separate_rows(Authors,sep=";") %>%   # Split up authors
+  mutate(Authors= trimws(Authors)) %>%
+  filter(Authors != "") %>%  # Some rows have extra semi-colons which on the split makes blank values.  Drop any blank author values
+  pivot_longer(cols = c(NBRFs,OPEs,PAHs,PBDEs,PCBs,PHTHs,Pesticides,PPCPs,Other), names_to = "chemType", values_to = "Y_N_NA_For_Chem_Classes") %>%   # Pivot_Longer uses COLUMN Names as Row Values
+  mutate(Y_N_NA_For_Chem_Classes= trimws(Y_N_NA_For_Chem_Classes))  %>%
+  filter(Y_N_NA_For_Chem_Classes != "N")  %>%   #  GET rid of all N values for chem classes since that means we affirmatively DO NOT have them.... Y means YES, NA means we don't know yet
+  rename ( instrumentAnalysis = "Instrumental Analysis") %>%
+  separate_rows(instrumentAnalysis,sep=",") %>%
+  separate_rows(instrumentAnalysis,sep=";") %>%   # SOMETIMES the spreadsheet uses semi-colon, somtimes comma, to separate testing types
+  mutate(instrumentAnalysis= trimws(instrumentAnalysis)) %>%
+  rename ( chemInterest = "Chem interest") %>%
+  separate_rows(chemInterest,sep=";") %>%
+  mutate(chemInterest= trimws(chemInterest))# 
+
+
+
+## OK:  Now we  have workingTibble which is a LONG version of the data... and we can analyze or chart from here...
+```
+
+
+## Count Papers
+
+Let's just look at who did 3 or more papers
+
+```{r papers, echo=FALSE}
+## Like how many papers did Kim write:
+
+
+## NOW how many papers did EACH author participate in
+authorAnalysis <-
+  workingTibble %>%
+  select(Authors,Title) %>%
+  distinct() %>%
+  group_by(Authors)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+
+authorAnalysis
+
+
+
+# let's chart papers-by-author but only those with 4 or more papers
+ggplot(authorAnalysis %>%
+         filter(count>=3),
+       aes(reorder(Authors,count,sum),count))+
+  geom_col() +
+  coord_flip()
+
+
+```
+
+## Some Random other Stats
+
+run through some other status
+
+```{r p2, echo=FALSE}
+ 
+
+## NOW how many papers had what chemical FOCUS
+chemAnalysis <-workingTibble %>%
+  select(chemInterest,Title) %>%
+  distinct() %>%
+  group_by(chemInterest)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemAnalysis)
+
+## NOW how many papers Found each Chemical in abundance
+chemABUNDtop <-workingTibble %>%
+  select(ABUNDtop,Title) %>%
+  distinct() %>%
+  group_by(ABUNDtop)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemABUNDtop)
+
+## NOW how many papers Found each Chemical in MAG
+chemMAGtop <-workingTibble %>%
+  select(MAGtop,Title) %>%
+  distinct() %>%
+  group_by(MAGtop)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemMAGtop)
+
+
+## NOW how many papers each type of analysis tool
+instrumentType <-workingTibble %>%
+  select(instrumentAnalysis,Title) %>%
+  distinct() %>%
+  group_by(instrumentAnalysis)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(instrumentType)
+
+
+```
+
+## People Per Cohort
+
+Another
+
+```{r p3, echo=FALSE}
+ 
+#### how many people per cohort
+nCount<-workingTibble %>%
+  select(n,Title) %>%
+  distinct() %>%
+  mutate(n=as.numeric(n)) %>%
+  replace(is.na(.), 0) %>%
+  arrange(desc(n))
+
+nCount %>%
+  summarize(avg=mean(n), min=min(n), max=max(n))
+
+ggplot(nCount %>%
+         filter(n>=0),
+       aes(reorder(Title,n,sum),n))+
+  geom_col() +
+  scale_x_discrete(label = function(x) stringr::str_trunc(x, 40)) +
+  coord_flip()
+rm(nCount)
+```
+
+
+
+
+## And other
+
+JUst for fun
+
+```{r p4, echo=FALSE}
+kable(suppressWarnings (
+  workingTibble %>%
+    select(`myexpo client?`,n,Title) %>%
+    distinct() %>%
+    #filter(n != "NA") %>%
+    mutate(n=as.numeric(n)) %>%
+    replace(is.na(.), 0) %>%
+    group_by(`myexpo client?`)%>%
+    summarize(numberOfPapers=n(), numberOfWristbands=sum(n)) %>%
+    arrange(desc(numberOfWristbands)) %>%
+    mutate(across(where(is.numeric), ~ formattable::percent(./sum(.))))
+))
+
+# Let's see how many cohort members wore wristbands by year of publication
+kable(suppressWarnings (
+  workingTibble %>%
+    select(Year,n,Title) %>%
+    distinct() %>%
+    mutate(n=as.numeric(n)) %>%
+    replace(is.na(.), 0) %>%
+    group_by(Year)%>%
+    summarize(numberOfPapers=n(), numberOfWristbands=sum(n)) %>%
+    arrange(desc(Year))
+))
+
+
+
+# Let's see What the average # of days worn was
+kable(suppressWarnings (
+  workingTibble %>%
+    rename(days='Wearing Period [Days]') %>%
+    select(days,Title) %>%
+    distinct() %>%
+    mutate(days=as.numeric(days)) %>%
+    replace(is.na(.), 0) %>%
+    summarize(count=n(), mean=mean(days)) %>%
+    arrange(desc(count))
+))
+
+```
+
+
+## And still other
+
+JUst for fun again
+
+```{r p5, echo=FALSE}
+
+
+W_abund<-workingTibble %>%
+  select(ABUNDtop,chemInterest) %>%
+  rename(Chem=ABUNDtop) %>%
+  unique()
+#W_abund
+
+W_mag<-workingTibble %>%
+  select(MAGtop,chemInterest) %>%
+  rename(Chem=MAGtop) %>%
+  unique()
+
+#W_mag
+
+
+
+
+kable(merge(W_abund,W_mag) %>% 
+  unique()  %>%
+  arrange(desc(Chem)) )
+
+```
+
+
+
+
+
+## And still other
+
+JUst for fun again
+
+### after talking to steven... think about diff format outputs
+
+
+```{r p6, echo=FALSE}
+
+## NOW how many papers Found each Chemical in abundance
+chemABUNDtopFULL <-workingTibble %>%
+  select(ABUNDtop,Title) %>%
+  distinct() %>%
+  group_by(ABUNDtop)%>%
+  summarize(abundCount=n()) %>%
+  rename(Chem=ABUNDtop) %>%
+  #filter(abundCount>=4) %>%
+  arrange(desc(abundCount))
+kable(chemABUNDtopFULL)
+
+
+
+## NOW how many papers Found each Chemical in MAG
+chemMAGtopFULL <-workingTibble %>%
+  select(MAGtop,Title) %>%
+  distinct() %>%
+  group_by(MAGtop)%>%
+  summarize(magCount=n()) %>%
+  rename(Chem=MAGtop) %>%
+  #filter(magCount>=4) %>%
+  arrange(desc(magCount))
+kable(chemMAGtopFULL)
+
+
+merged<- full_join(chemABUNDtopFULL,chemMAGtopFULL)
+
+
+merged[is.na(merged)] <- 0
+
+merged <- merged %>%
+  mutate(totalCount=abundCount+magCount) %>%
+  arrange(desc(totalCount))
+
+filterMerged <- merged %>%
+  filter(totalCount>=4)
+
+#merged <-merge(chemMAGtop,chemABUNDtop)
+
+kable(filterMerged)
+
+ggplot(data=merged, aes(x = magCount, y = abundCount,label="Chem")) +
+  geom_point()
+
+ggplot(data=merged, aes(x = magCount, y = abundCount,colour="gre#en", label=Chem)) +
+  geom_point()+geom_text(hjust=0, vjust=0)
+
+```
+
+
+```{r WriteNewFIle, echo=FALSE, eval=FALSE}
+
+
+##### NOW REVERSE THE WIDE-to-LONG action   BUT NOT RUNNING THIS NOW... EVAL = FALSE FALSE FALSE
+
+
+workingTibbleWide<-workingTibble %>%
+  pivot_wider(names_from = chemType, values_from = Y_N_NA_For_Chem_Classes,values_fill='N' ) %>%
+  group_by(Title) %>%
+  summarise( chemInterest= paste0(unique(chemInterest),collapse=";"),
+             ABUNDtop=paste0(unique(ABUNDtop),collapse=";"),
+             MAGtop=paste0(unique(MAGtop),collapse=";"),
+             Authors=paste0(unique(Authors),collapse=";"),
+             instrumentAnalysis=paste0(unique(instrumentAnalysis),collapse=";"),
+             across()
+  ) %>%
+  #ungroup() %>%
+  distinct() %>%
+  arrange(number)
+
+sort(setdiff(colnames(dataFile), colnames(workingTibbleWide)))
+sort(setdiff(colnames(workingTibbleWide), colnames(dataFile)))
+
+WB_Paper_Unique_Abund_name <- "D:/Users/Marc/Dropbox/MyExposomeSharedFolder/Data/Publication Database/Marc play copy/WB_Excel_Database_v5.csv" #
+
+write_excel_csv(workingTibbleWide,WB_Paper_Unique_Abund_name)
+
+
+```

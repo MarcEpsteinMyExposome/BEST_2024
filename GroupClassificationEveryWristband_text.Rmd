@@ -1,0 +1,434 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+
+
+### Average Chemicals per Classification
+
+
+The average Number of Chemicals found on each wristband can be seen in a bar graph as shown below:  
+
+
+```{r countWhatFoundBarGraph2a , results='asis', echo=FALSE, message=FALSE, fig.height=8, fig.cap="",  eval=TRUE,dpi=72}
+
+# added "dpi=72" to shrink chart for dartmouth was set to 300
+
+# USE ONE OF THESE IN TEXT ABOVE  (THIS IS TRICKY... the "name" is countWhatFoundBarGraph2a but there is also a "b" and only ONE should be eval=TRUE and fix commented out text)
+#
+## The average Number of Chemicals found on each wristband can be seen in a bar graph as follows: 
+#
+#
+#The average Number of Chemicals found on each wristband can be seen in a bar graph below.  The data from "YOUR DATASET" is being compared to the data from the MyExposome larger dataset so you can see how the average number of compounds per wristband with each #classification found on your data compares with the average number of compounds per wristband with each classification that occurred in MyExposomes bigger dataset.  Please note that the bigger dataset is not intended to be taken as representative of any #particular population/cohort but rather just a gathering of available data to provide a very basic introductory point of comparison.  
+
+
+#
+# DRAW BAR GRAPHS showing avg # of each classification and avg total of NG of each classificaiton
+#
+# Create dataframe with count of # of each classification and value of each classification  
+x_axis_font_size_GroupClass = 12
+csSummary<-as.data.frame(
+  left_join(testResults.big
+            ,class_L
+            ,by="ParameterID"
+            ,relationship ="many-to-many"  # NEEDED TO ADD THIS to get around new error message from sql but this is what I want cause LATER i do distinct
+                                         # NOTE that there is surely a BETTER way to do this by doing a distinct earlier to achieve same result.                                 
+            
+            ) %>%
+  mutate(Result = case_when (Flag=="Y" ~ 100,  # COUNT as having value when Y is FLAG
+                             TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
+  select(classification,SampleNumber,Result) %>%
+  #filter(Result>0) %>%
+  group_by(classification,SampleNumber)  %>%
+  summarise(countResult=sum(Result > 0),sumResult=sum(Result)) %>%
+  group_by(classification) %>%
+  summarise(countMeanResult=
+              signif(mean(countResult),2),
+            meanSumResult=
+              signif(mean(sumResult),2)
+            )
+  )
+
+
+g<-ggplot(data=csSummary, aes(x=classification, y=countMeanResult)) +
+  geom_bar(stat="identity")+
+  geom_bar(stat="identity", fill="steelblue")+
+#  geom_text(aes(label=Average), vjust=1.6, color="white", size=3.5)+
+  geom_text(aes(label=countMeanResult), vjust=-0.3, size=3.5)+
+  labs(x="All Classifications", y="Average COUNT",
+               title="Average Number of Compounds with each Classification")+
+  theme(axis.line=element_blank(),
+           axis.ticks=element_blank(),
+           axis.title.x=element_blank(),
+           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass),
+           legend.position="none",
+           panel.background=element_blank(),
+           panel.border=element_blank(),
+           panel.grid.major=element_blank(),
+           panel.grid.minor=element_blank(),
+           plot.background=element_blank())
+
+g
+
+# # NOW try to do it side-by-side bar chart adding data from the big data set
+# csSummaryA<- csSummary %>% 
+#   select(classification,countMeanResult,combinedTestDataCountMeanResult) %>%
+#   melt(id='classification',variable.name = "whichDataSource",  value.name = "averageCount")
+# 
+# g<-ggplot(data = csSummaryA, aes(x = classification, y = averageCount, fill = whichDataSource)) +
+#   geom_bar(stat = "identity", position = position_dodge(), alpha = 0.75)+
+#   theme(axis.line=element_blank(),
+#            axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass))+
+#   geom_text(aes(label=averageCount), 
+#             fontface = "bold", 
+#             vjust = -0.5,
+#             position = position_dodge(.9), 
+#             size = 3
+#             ) +
+#   labs(x = "Classification", y = "Average Count of Compounds", title = "\n Average Count of each Classification in Wristbands \n") +
+#   labs(fill = "Which Data Set")+
+#   scale_fill_discrete(name = "Which Data Set", labels = c("Your\nData", "Master\nDataset"))
+# 
+# g
+
+
+
+
+```
+
+
+<br>
+<br>
+
+<!-- The average Number of Chemicals found on each wristband can be seen in a bar graph below.  The data from "YOUR DATASET" is being compared to the data from the MyExposome larger dataset so you can see how the average number of compounds per wristband with each classification found on your data compares with the average number of compounds per wristband with each classification that occurred in MyExposomes bigger dataset.  Please note that the bigger dataset is not intended to be taken as representative of any particular population/cohort but rather just a gathering of available data to provide a very basic introductory point of comparison.   -->
+
+
+```{r countWhatFoundBarGraph2b , results='asis', echo=FALSE, message=FALSE, fig.height=8, fig.cap="",  eval=FALSE, dpi=72}
+
+# added "dpi=72" to shrink chart for dartmouth was set to 300}
+# USE ONE OF THESE IN TEXT ABOVE
+#
+## The average Number of Chemicals found on each wristband can be seen in a bar graph as follows: 
+#
+#
+#The average Number of Chemicals found on each wristband can be seen in a bar graph below.  The data from "YOUR DATASET" is being compared to the data from the MyExposome larger dataset so you can see how the average number of compounds per wristband with each #classification found on your data compares with the average number of compounds per wristband with each classification that occurred in MyExposomes bigger dataset.  Please note that the bigger dataset is not intended to be taken as representative of any #particular population/cohort but rather just a gathering of available data to provide a very basic introductory point of comparison.  
+
+
+x_axis_font_size_GroupClass = 12
+
+#
+# DRAW BAR GRAPHS showing avg # of each classification and avg total of NG of each classificaiton
+#
+# Create dataframe with count of # of each classification and value of each classification  
+# csSummary<-as.data.frame(
+#   left_join(testResults.big,class_L,by="ParameterID") %>%
+#   mutate(Result = case_when (Flag=="Y" ~ 100,  # COUNT as having value when Y is FLAG
+#                              TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
+#   select(classification,SampleNumber,Result) %>%
+#   #filter(Result>0) %>%
+#   group_by(classification,SampleNumber)  %>%
+#   summarise(countResult=sum(Result > 0),sumResult=sum(Result)) %>%
+#   group_by(classification) %>%
+#   summarise(countMeanResult=
+#               signif(mean(countResult),2),
+#             meanSumResult=
+#               signif(mean(sumResult),2)
+#             )
+#   )
+# 
+# 
+# g<-ggplot(data=csSummary, aes(x=classification, y=countMeanResult)) +
+#   geom_bar(stat="identity")+
+#   geom_bar(stat="identity", fill="steelblue")+
+# #  geom_text(aes(label=Average), vjust=1.6, color="white", size=3.5)+
+#   geom_text(aes(label=countMeanResult), vjust=-0.3, size=3.5)+
+#   labs(x="All Classifications", y="Average COUNT",
+#                title="Average Number of Compounds with each Classification")+
+#   theme(axis.line=element_blank(),
+#            axis.ticks=element_blank(),
+#            axis.title.x=element_blank(),
+#            axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size),
+#            legend.position="none",
+#            panel.background=element_blank(),
+#            panel.border=element_blank(),
+#            panel.grid.major=element_blank(),
+#            panel.grid.minor=element_blank(),
+#            plot.background=element_blank())
+# 
+# g
+
+# NOW try to do it side-by-side bar chart adding data from the big data set
+csSummaryA<- csSummary %>% 
+  select(classification,countMeanResult,combinedTestDataCountMeanResult) %>%
+  melt(id='classification',variable.name = "whichDataSource",  value.name = "averageCount")
+
+g<-ggplot(data = csSummaryA, aes(x = classification, y = averageCount, fill = whichDataSource)) +
+  geom_bar(stat = "identity", position = position_dodge(), alpha = 0.75)+
+  theme(axis.line=element_blank(),
+           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass))+
+  geom_text(aes(label=averageCount), 
+            fontface = "bold", 
+            vjust = -0.5,
+            position = position_dodge(.9), 
+            size = 3
+            ) +
+  labs(x = "Classification", y = "Average Count of Compounds", title = "\n Average Count of each Classification in Wristbands \n") +
+  labs(fill = "Which Data Set")+
+  scale_fill_discrete(name = "Which Data Set", labels = c("Your\nData", "Master\nDataset"))
+
+g
+
+
+
+
+```
+
+<br>
+<br>
+
+
+
+
+### Average Nanograms per Classification
+
+The average nanograams of Chemicals for each classification found on wristbands can be seen in a bar graph as follows:
+
+
+```{r countWhatFoundBarGraph1a , results='asis', echo=FALSE, message=FALSE , fig.height=8, fig.cap="",  eval=TRUE ,dpi=72}
+
+# added "dpi=72" to shrink chart for dartmouth was set to 300
+
+
+
+#DRAW BAR GRAPHS showing avg # of each classification and avg total of NG of each classificaiton
+
+
+g<-ggplot(data=csSummary, aes(x=classification, y=meanSumResult)) +
+  geom_bar(stat="identity")+
+  geom_bar(stat="identity", fill="steelblue")+
+#  geom_text(aes(label=Average), vjust=1.6, color="white", size=3.5)+
+  geom_text(aes(label=meanSumResult), vjust=-0.3, size=3.5)+
+  labs(x="All Classifications", y="Average NG",
+               title="Average NANOGRAMS of each Classification")+
+  theme(axis.line=element_blank(),
+           axis.ticks=element_blank(),
+           axis.title.x=element_blank(),
+           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass),
+           legend.position="none",
+           panel.background=element_blank(),
+           panel.border=element_blank(),
+           panel.grid.major=element_blank(),
+           panel.grid.minor=element_blank(),
+           plot.background=element_blank())
+
+g
+
+
+# # NOW try to do it side-by-side bar chart adding data from the big data set
+# csSummaryA<- csSummary %>% 
+#   select(classification,meanSumResult,combinedTestDataMeanSumResult) %>%
+#   melt(id='classification',variable.name = "whichDataSource",  value.name = "averageResult")
+# 
+# g<-ggplot(data = csSummaryA, aes(x = classification, y = averageResult, fill = whichDataSource)) +
+#   geom_bar(stat = "identity", position = position_dodge(), alpha = 0.75)+
+#   theme(axis.line=element_blank(),
+#            axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass))+
+#   geom_text(aes(label=averageResult), 
+#             fontface = "bold", 
+#             vjust = -0.5,
+#             position = position_dodge(.9), 
+#             size = 3
+#             ) +
+#   labs(x = "Classification", y = "Average Sum of Nanograms", title = "\n Average Sum of Nanograms each Classification in Wristbands \n") +
+#   labs(fill = "Which Data Set")+
+#   scale_fill_discrete(name = "Which Data Set", labels = c("Your\nData", "Master\nDataset"))
+# 
+# g
+
+
+
+```
+
+
+<br>
+<br>
+
+<!-- The average nanograams of Chemicals for each classification found on wristbands can be seen in a bar graph.  The data from "YOUR DATASET" is being compared to the data from the MyExposome larger dataset so you can see how the average number of NANOGRAMS per wristband for each classification found on your data compares with the average number of NANOGRAMS per wristband for each classification that occurred in MyExposomes bigger dataset.  Please note that the bigger dataset is not intended to be taken as representative of any particular population/cohort but rather just a gathering of available data to provide a very basic introductory point of comparison.   -->
+
+
+
+```{r countWhatFoundBarGraph1b , results='asis', echo=FALSE, message=FALSE , fig.height=8, fig.cap="",  eval=FALSE,dpi=72}
+
+# added "dpi=72" to shrink chart for dartmouth was set to 300
+
+
+#
+# DRAW BAR GRAPHS showing avg # of each classification and avg total of NG of each classificaiton
+#
+# 
+# g<-ggplot(data=csSummary, aes(x=classification, y=meanSumResult)) +
+#   geom_bar(stat="identity")+
+#   geom_bar(stat="identity", fill="steelblue")+
+# #  geom_text(aes(label=Average), vjust=1.6, color="white", size=3.5)+
+#   geom_text(aes(label=meanSumResult), vjust=-0.3, size=3.5)+
+#   labs(x="All Classifications", y="Average NG",
+#                title="Average NANOGRAMS of each Classification")+
+#   theme(axis.line=element_blank(),
+#            axis.ticks=element_blank(),
+#            axis.title.x=element_blank(),
+#            axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass),
+#            legend.position="none",
+#            panel.background=element_blank(),
+#            panel.border=element_blank(),
+#            panel.grid.major=element_blank(),
+#            panel.grid.minor=element_blank(),
+#            plot.background=element_blank())
+# 
+# g
+
+
+# NOW try to do it side-by-side bar chart adding data from the big data set
+csSummaryA<- csSummary %>% 
+  select(classification,meanSumResult,combinedTestDataMeanSumResult) %>%
+  melt(id='classification',variable.name = "whichDataSource",  value.name = "averageResult")
+
+g<-ggplot(data = csSummaryA, aes(x = classification, y = averageResult, fill = whichDataSource)) +
+  geom_bar(stat = "identity", position = position_dodge(), alpha = 0.75)+
+  theme(axis.line=element_blank(),
+           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size_GroupClass))+
+  geom_text(aes(label=averageResult), 
+            fontface = "bold", 
+            vjust = -0.5,
+            position = position_dodge(.9), 
+            size = 3
+            ) +
+  labs(x = "Classification", y = "Average Sum of Nanograms", title = "\n Average Sum of Nanograms each Classification in Wristbands \n") +
+  labs(fill = "Which Data Set")+
+  scale_fill_discrete(name = "Which Data Set", labels = c("Your\nData", "Master\nDataset"))
+
+g
+
+
+
+```
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+### Chemical Classification on every Wristband
+
+The count of how many chemicals, broken down by classification, was found in every tested wristband,  is as follows:
+
+
+```{r should_we_print_chem_class_matrix , results='asis', echo=FALSE, message=FALSE  }
+
+tooManyBandsToPrintClassMatrix <- 100
+
+if (howManyWristbandsTested < tooManyBandsToPrintClassMatrix){
+  allow_class_matrix_to_print<-TRUE
+} else {
+  allow_class_matrix_to_print<-FALSE
+}
+```
+
+
+```{r print_skip_printing_class_matrix_message, results="asis" , echo=FALSE, eval =  (!allow_class_matrix_to_print)}
+
+cat("**Please see separately provided files for large matrix data sets which would normally be displayed here.  Since you had either many chemicals found, many wristbands tested, or both, it makes more sense to provide these data as separate text files** ",sep="")
+
+```
+
+
+
+```{r countWhatFound , results='asis', echo=FALSE, message=FALSE , fig.height=6, fig.cap="",dpi=72, eval=allow_class_matrix_to_print}
+
+# added "dpi=72" to shrink chart for dartmouth was set to 300
+
+#WEIRDLY with one row someting goes wrong with ClassSub
+#cs<-data.frame(ClassSub[,2:ncol(ClassSub)])
+
+# THE IDEA is a matrix where the ROWS are each CLASSIFICATION
+#   and the columns are wristbands (like "A140392")
+#   and the contents are COUNTS of how-many-of-each-type-of-compound were found
+#
+# USING pipes/joins/group_by etc to build CS on the fly
+#   SUMMARIZE keeps all the GROUP_BY
+#         and just ADDS the new summary columns
+#         and removes <i think>, not provedhere, any unmentioned columns
+#       but need to convert back to DATAFRAME to let PANDER work?
+#
+# cs<-(left_join(testResults[testResults$Result>0,],class_L,by="ParameterID") %>%
+#   select(classification,SampleNumber) %>%
+#   group_by(classification,SampleNumber) %>% 
+#   summarise(n=n())) %>%
+#   spread(SampleNumber,n) %>%
+#   ungroup
+
+### THIS BELOW caused problems with wristbands which had NO COMPOUNDS found
+### COULD fix by joining-back the full list of WB with zeros or something
+#### but instead, below, I replace this with version that filters for result>0 near BOTTOM 
+####  not near top   --- FIXED 2/21/2019
+# cs<-as.data.frame(left_join(testResults.big[testResults.big$Result>0,],class_L,by="ParameterID") %>%
+#   select(classification,SampleNumber) %>%
+#   group_by(classification,SampleNumber) %>% 
+#   summarise(n=n())) %>%
+#   spread(SampleNumber,n,fill=0)  # Setting fill to zero same as: cs[is.na(cs)] <- 0
+#
+# Create dataframe for Panda to outpuot showing matrix of count
+cs<-as.data.frame(left_join(testResults.big
+                            ,class_L
+                            ,by="ParameterID"
+                            ,relationship ="many-to-many"  # NEEDED TO ADD THIS to get around new error message from sql but this is what I want cause LATER i do distinct
+                                                           # NOTE that there is surely a BETTER way to do this by doing a distinct earlier to achieve same result.                                 
+                            
+                            ) %>%
+  mutate(Result = case_when (Flag=="Y" ~ 100,  # COUNT as having value when Y is FLAG
+                             TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
+  select(classification,SampleNumber,Result) %>%
+  group_by(classification,SampleNumber) %>% 
+  summarise(n=sum(Result > 0))) %>%
+  spread(SampleNumber,n,fill=0)  # Setting fill to zero same as: cs[is.na(cs)] <- 0
+
+
+#
+# EXPERIMENTING with PANDER
+#  http://rapporter.github.io/pander/#table-and-cell-width
+#set.caption(NULL)  # COULD USE THIS TO SET CAPTION
+#emphasize.strong.rows(NULL)  #COULD USE THIS TO pick rows or columns to emphasize
+# split.tables=80 is the default
+# split.cells=30 is the default
+#
+# NOTE:  I took away ONE from "ncol(cs)" when converting from SQLdf to dplyr/tidyr NOT SURE WHY
+#   cause this seems to work perfectly...maybe previous extra col was duplicated classifications?
+pandoc.table(cs,
+             split.cells=20,  #30 the default
+             justify=c("left",rep("center", (ncol(cs)-1))),  #"rep-eat "center" for ncol of cs"
+             caption = "Classification of Chemicals in Every Tested Wristband"
+            # ,split.tables=110  #80 the default
+            ,split.table = Inf
+)
+
+
+
+
+
+
+```
+
+<br>
+<br>
+
+
+
+

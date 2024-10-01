@@ -1,0 +1,363 @@
+ParameterID,ClientFormalName,COCID,COCNum,COCRecvDate,ReportDate,SampleName,AlternateName,PureSampleName,SampleNumber,SampledBy,SampledDate,LocationName,SampleExtComment,Matrix,TestTempReportName,TestTempName,TestTempMethodRef,WorkAreaName,ParameterName,Result
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+300226,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bisphenol A,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+664,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,1177,A150184,,5/9/2015 17:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+184,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,4-Chloro-3-methylphenol,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+301116,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,o-Phenylphenol,1
+664,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3949,A150185,,5/7/2015 16:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6810,A150186,,5/27/2015 8:03,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+300386,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"1,6-dimethylNaphthalene",1
+69,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,1-Methylnaphthalene,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+146,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,2-Methylnaphthalene,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+754,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diphenylamine,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+664,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4130,A150187,,5/9/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,9745,A150188,,5/7/2015 22:10,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+302672,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,2',4,6'-Tetrabromodiphenyl ether",1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+301831,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb artifact [5-isopropyl-3-methylphenol],1
+301642,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Pyriproxyfen,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5690,A150189,,5/10/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+210,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Acenaphthylene,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+301116,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,o-Phenylphenol,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+301624,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2269,A150190,,5/1/2015 19:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tris(2-ethylhexyl) phosphate,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+301449,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Cashmeran,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+301561,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4081,A150191,,5/6/2015 12:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+300237,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bifenthrin,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+481,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluoranthene,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6996,A150192,,5/21/2015 20:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+430,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-octyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,5868,A150193,,5/21/2015 21:57,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+300237,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bifenthrin,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301561,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4819,A150194,,5/11/2015 11:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6364,A150195,,5/7/2015 17:35,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+69,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,1-Methylnaphthalene,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2256,A150196,,5/4/2015 15:50,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+301606,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-hexyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301477,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCEP,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8361,A150197,,5/8/2015 17:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301831,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb artifact [5-isopropyl-3-methylphenol],1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6305,A150198,,5/21/2015 18:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301831,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Promecarb artifact [5-isopropyl-3-methylphenol],1
+301437,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Thymol,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3973,A150199,,5/6/2015 17:15,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+146,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,2-Methylnaphthalene,1
+208,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Acenaphthene,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+437,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Dibenzofuran,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+301669,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Ethofenprox,1
+481,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluoranthene,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301376,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Piperonyl butoxide,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301437,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Thymol,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+301429,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,6864,A150200,,5/5/2015 12:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triethylphosphate,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+301558,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fipronil,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+301749,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Methoprene II,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2276,A150201,,5/8/2015 9:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+482,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Fluorene,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+956,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Permethrin,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,2820,A150202,,5/8/2015 11:20,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+69,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,1-Methylnaphthalene,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+301537,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Musk Ketone,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+603,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Nicotine,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301437,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Thymol,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,4366,A150203,,5/16/2015 13:30,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+146,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,2-Methylnaphthalene,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+1264,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Biphenyl,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301449,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Cashmeran,1
+301673,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Di-n-nonyl phthalate,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8085,A150204,,5/18/2015 8:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+69,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,1-Methylnaphthalene,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+301479,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzyl benzoate,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+283,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butyl benzyl phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+301493,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Caffeine,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+301443,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Eugenol,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+302170,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TCPP,1
+301437,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Thymol,1
+301505,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tonalide,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+300639,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,3920,A150205,,5/10/2015 0:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Tributyl phosphate,1
+69,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,1-Methylnaphthalene,1
+300685,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"2,6-Dimethylnaphthalene",1
+301430,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,4-Chlorophenyl isocyanate,1
+301134,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Benzophenone,1
+293,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Bis(2-ethylhexyl)phthalate,1
+301114,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Butylated hydroxyanisole,1
+462,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diethyl phthalate,1
+301502,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Diisobutyl phthalate,1
+302850,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Galaxolide,1
+300641,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,"N,N-Diethyl-m-toluamide",1
+595,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Naphthalene,1
+635,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Phenanthrene,1
+1037,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,TPP,1
+301561,MyE,351,15MAY28-01,5/28/2015 9:08,04:25.9,NULL,NULL,8806,A150206,,5/8/2015 11:00,NULL,NULL,PSD-Personal,,GC-MS - RTL DRS Screening - 1418 analytes,,Organics - Dilution,Triclosan,1

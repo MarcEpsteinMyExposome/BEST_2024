@@ -1,0 +1,323 @@
+---
+title: "ReportOnWristbandPapers"
+author: "me"
+date: "2022-12-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+suppressMessages(library("tidyverse"))
+library(readxl)
+
+
+if (!require("vtable")) {
+  install.packages("vtable", dependencies = TRUE)
+}
+library(vtable)
+
+
+if (!require("formattable")) {
+  install.packages("formattable", dependencies = TRUE)
+}
+library(formattable)
+
+```
+
+## R Markdown
+
+This is an R Markdown document.Just to fool around and analyze data in big XLS spreadsheet steven made...
+
+```{r getData, echo=FALSE}
+#
+#
+#  NOW try to create real data from Spreadsheet assuming that the unique values are as good as possible....
+#
+#  Make data "tidy" by converting from WIDE to LONG wherever practical
+
+WB_Paper_xls_name <- "D:/Users/Marc/Dropbox/MyExposomeSharedFolder/Data/Publication Database/Marc play copy/WB and or silicone papers_v2.xlsx" #  NOTE V2
+
+dataFile <- read_excel(WB_Paper_xls_name,
+                            sheet="Only WB - Oct 2022")
+
+
+
+
+workingTibble <- dataFile %>%
+  #select(Title,"ABUND (top cmpds)") %>%
+  rename(ABUNDtop ="ABUND (top cmpds)") %>%
+  ### NOW i realize I need to trim TRAILING semicolon so seaprate_rows works properly
+  mutate(ABUNDtop = if_else(str_detect(ABUNDtop,";$"),str_sub(ABUNDtop,end=-2),ABUNDtop)) %>%
+  separate_rows(ABUNDtop,sep=";") %>%
+  mutate(ABUNDtop= trimws(ABUNDtop)) %>%
+  #filter(substr(ABUNDtop,1,1)!="(") %>%  ## DO NOT need to drop any extra rows
+  #
+  #select(Title,"MAG (top cmpds)") %>%
+  rename(MAGtop ="MAG (top cmpds)") %>%
+  ### NOW i realize I need to trim TRAILING semicolon so seaprate_rows works properly
+  mutate(MAGtop = if_else(str_detect(MAGtop,";$"),str_sub(MAGtop,end=-2),MAGtop)) %>%
+  separate_rows(MAGtop,sep=";") %>%
+  mutate(MAGtop= trimws(MAGtop)) %>%
+  #filter(substr(MAGtop,1,1)!="(") %>%  ## DO NOT need to drop any extra rows
+  #
+  #select(Title,Authors) %>%     ### There are various Select statements just for as debugging to focus on each section
+  separate_rows(Authors,sep=";") %>%   # Split up authors
+  mutate(Authors= trimws(Authors)) %>%
+  filter(Authors != "") %>%  # Some rows have extra semi-colons which on the split makes blank values.  Drop any blank author values
+  #select(Title,NBRFs,OPEs,PAHs,PBDEs,PCBs,PHTHs,Pesticides,PPCPs,Other) %>%  # COMMENT OUT THIS SELECTION LINE TO GET REAL OUTPUT... THIS IS FOR TESTING FOCUS
+  pivot_longer(cols = c(NBRFs,OPEs,PAHs,PBDEs,PCBs,PHTHs,Pesticides,PPCPs,Other), names_to = "chemType", values_to = "Y_N_NA_For_Chem_Classes") %>%   # Pivot_Longer uses COLUMN Names as Row Values
+  mutate(Y_N_NA_For_Chem_Classes= trimws(Y_N_NA_For_Chem_Classes))  %>%
+  filter(Y_N_NA_For_Chem_Classes != "N")  %>%   #  GET rid of all N values for chem classes since that means we affirmatively DO NOT have them.... Y means YES, NA means we don't know yet
+  #select(Title,"Instrumental Analysis") %>%
+  rename ( instrumentAnalysis = "Instrumental Analysis") %>%
+  separate_rows(instrumentAnalysis,sep=",") %>%
+  separate_rows(instrumentAnalysis,sep=";") %>%   # SOMETIMES the spreadsheet uses semi-colon, somtimes comma, to separate testing types
+  mutate(instrumentAnalysis= trimws(instrumentAnalysis)) %>%
+  #select(Title,"Chem interest") %>%
+  rename ( chemInterest = "Chem interest") %>%
+  separate_rows(chemInterest,sep=";") %>%
+  mutate(chemInterest= trimws(chemInterest))# %>%
+  #select (-c("number","Samon rev (2022)","Waclawik rev (2022)","Hamzai rev (2022)", "Hou rev (2021)","In MyE folder:","Need access?" ))
+
+## OK:  Now we  have workingTibble which is a LONG version of the data... and we can analyze or chart from here...
+```
+
+
+## Count Papers
+
+Let's just look at who did 3 or more papers
+
+```{r papers, echo=FALSE}
+## Like how many papers did Kim write:
+
+
+## NOW how many papers did EACH author participate in
+authorAnalysis <-
+  workingTibble %>%
+  select(Authors,Title) %>%
+  distinct() %>%
+  group_by(Authors)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+
+authorAnalysis
+
+
+
+# let's chart papers-by-author but only those with 4 or more papers
+ggplot(authorAnalysis %>%
+         filter(count>=3),
+       aes(reorder(Authors,count,sum),count))+
+  geom_col() +
+  coord_flip()
+
+
+```
+
+## Some Random other Stats
+
+run through some other status
+
+```{r p2, echo=FALSE}
+ 
+
+## NOW how many papers had what chemical FOCUS
+chemAnalysis <-workingTibble %>%
+  select(chemInterest,Title) %>%
+  distinct() %>%
+  group_by(chemInterest)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemAnalysis)
+
+## NOW how many papers Found each Chemical in abundance
+chemABUNDtop <-workingTibble %>%
+  select(ABUNDtop,Title) %>%
+  distinct() %>%
+  group_by(ABUNDtop)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemABUNDtop)
+
+## NOW how many papers Found each Chemical in MAG
+chemMAGtop <-workingTibble %>%
+  select(MAGtop,Title) %>%
+  distinct() %>%
+  group_by(MAGtop)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(chemMAGtop)
+
+
+## NOW how many papers each type of analysis tool
+instrumentType <-workingTibble %>%
+  select(instrumentAnalysis,Title) %>%
+  distinct() %>%
+  group_by(instrumentAnalysis)%>%
+  summarize(count=n()) %>%
+  arrange(desc(count))
+kable(instrumentType)
+
+
+```
+
+## People Per Cohort
+
+Another
+
+```{r p3, echo=FALSE}
+ 
+#### how many people per cohort
+nCount<-workingTibble %>%
+  select(n,Title) %>%
+  distinct() %>%
+  mutate(n=as.numeric(n)) %>%
+  replace(is.na(.), 0) %>%
+  arrange(desc(n))
+
+nCount %>%
+  summarize(avg=mean(n), min=min(n), max=max(n))
+
+ggplot(nCount %>%
+         filter(n>=0),
+       aes(reorder(Title,n,sum),n))+
+  geom_col() +
+  scale_x_discrete(label = function(x) stringr::str_trunc(x, 40)) +
+  coord_flip()
+rm(nCount)
+```
+
+
+
+
+## And other
+
+JUst for fun
+
+```{r p4, echo=FALSE}
+kable(suppressWarnings (
+  workingTibble %>%
+    select(`myexpo client?`,n,Title) %>%
+    distinct() %>%
+    #filter(n != "NA") %>%
+    mutate(n=as.numeric(n)) %>%
+    replace(is.na(.), 0) %>%
+    group_by(`myexpo client?`)%>%
+    summarize(numberOfPapers=n(), numberOfWristbands=sum(n)) %>%
+    arrange(desc(numberOfWristbands)) %>%
+    mutate(across(where(is.numeric), ~ formattable::percent(./sum(.))))
+))
+
+# Let's see how many cohort members wore wristbands by year of publication
+kable(suppressWarnings (
+  workingTibble %>%
+    select(Year,n,Title) %>%
+    distinct() %>%
+    mutate(n=as.numeric(n)) %>%
+    replace(is.na(.), 0) %>%
+    group_by(Year)%>%
+    summarize(numberOfPapers=n(), numberOfWristbands=sum(n)) %>%
+    arrange(desc(Year))
+))
+
+
+
+# Let's see What the average # of days worn was
+kable(suppressWarnings (
+  workingTibble %>%
+    rename(days='Wearing Period [Days]') %>%
+    select(days,Title) %>%
+    distinct() %>%
+    mutate(days=as.numeric(days)) %>%
+    replace(is.na(.), 0) %>%
+    summarize(count=n(), mean=mean(days)) %>%
+    arrange(desc(count))
+))
+
+```
+
+
+## And still other
+
+JUst for fun again
+
+```{r p5, echo=FALSE}
+
+
+W_abund<-workingTibble %>%
+  select(ABUNDtop,chemInterest) %>%
+  rename(Chem=ABUNDtop) %>%
+  unique()
+#W_abund
+
+W_mag<-workingTibble %>%
+  select(MAGtop,chemInterest) %>%
+  rename(Chem=MAGtop) %>%
+  unique()
+
+#W_mag
+
+
+
+
+kable(merge(W_abund,W_mag) %>% 
+  unique()  %>%
+  arrange(desc(Chem)) )
+
+```
+
+
+
+
+
+## And still other
+
+JUst for fun again
+
+### after talking to steven... think about diff format outputs
+
+
+```{r p6, echo=FALSE}
+
+## NOW how many papers Found each Chemical in abundance
+chemABUNDtop <-workingTibble %>%
+  select(ABUNDtop,Title) %>%
+  distinct() %>%
+  group_by(ABUNDtop)%>%
+  summarize(abundCount=n()) %>%
+  rename(Chem=ABUNDtop) %>%
+  filter(abundCount>=4) %>%
+  arrange(desc(abundCount))
+kable(chemABUNDtop)
+
+
+
+## NOW how many papers Found each Chemical in MAG
+chemMAGtop <-workingTibble %>%
+  select(MAGtop,Title) %>%
+  distinct() %>%
+  group_by(MAGtop)%>%
+  summarize(magCount=n()) %>%
+  rename(Chem=MAGtop) %>%
+  filter(magCount>=4) %>%
+  arrange(desc(magCount))
+kable(chemMAGtop)
+
+
+merged<- full_join(chemMAGtop,chemABUNDtop)
+
+
+merged[is.na(merged)] <- 0
+
+#merged <-merge(chemMAGtop,chemABUNDtop)
+
+kable(merged)
+
+ggplot(data=merged, aes(x = magCount, y = abundCount,label="Chem")) +
+  geom_point()
+
+ggplot(data=merged, aes(x = magCount, y = abundCount,colour="gre#en", label=Chem)) +
+  geom_point()+geom_text(hjust=0, vjust=0)
+
+
+

@@ -1,0 +1,37 @@
+
+### Classifications on ANY Wristband
+
+While the above table shows all the chemicals, and all classifications for each chemical, this information can sometimes more easily be understood by seeing that same data organized by classification.  This allows you to see all the chemicals of a particular "type" grouped together (remembering that some chemical compounds are repeated in multiple categories).  
+
+
+```{r  ListClassFoundAllWB, results='asis', echo=FALSE, message=FALSE}
+
+testResultsWithClass<- left_join(testResults.big
+                                 , class_L
+                                 ,by="ParameterID"
+                                 ,relationship ="many-to-many"  # NEEDED TO ADD THIS to get around new error message from sql but this is what I want cause LATER i do distinct
+                                                                # NOTE that there is surely a BETTER way to do this by doing a distinct earlier to achieve same result.                                 
+                                 ) %>%
+  filter(Result>0)
+
+
+AllResultInvertClassified<- as.data.frame(
+    testResultsWithClass %>% 
+    select(classification,ParameterName) %>%
+    distinct() %>%
+    group_by(classification) %>%
+    summarise(ParameterNames=paste(ParameterName,collapse=", ")) %>%
+    ungroup %>%
+    mutate_if(is.factor, as.character) %>%  #Eliminate classification as a FACTOR so it sorts correctly
+    arrange(classification))
+
+names(AllResultInvertClassified)<-c("Classification", "Chemical Name(s)" )
+pandoc.table(AllResultInvertClassified,
+             caption="Classification Report across all Wristbands",
+             justify=c("left","center")
+              ,split.table = Inf
+             ,emphasis.rownames=TRUE)
+
+```
+
+

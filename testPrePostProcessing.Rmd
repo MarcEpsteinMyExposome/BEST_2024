@@ -1,0 +1,478 @@
+
+
+
+# DEMO of PRE POST processing (Experimental Output)
+
+You wore a wristband two times.  One "PRE" and once "POST."  Let's compare them
+
+
+## Comparing Pre and Post Totals
+
+One simple starting point to comparing a set of wristbands, some of which are were worn before some intervention, and a complementing set were worn after an intervention, is just to look at the total nanograms of compound found on the wristband.
+
+
+```{r PrePostTotalChart, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300}
+###
+# ONE IDEA is a bar chart.  X axis is chemicals, Y axis is RESULT, for each chemical, one bar for PRE, one for POST
+
+
+#rm(class_L,class_L_maxC,epaIris,holdmP,IARCRisk,result_file_output_done,riskCalifProp65,statSummary,SubClassAtleastOne,SubClassScores,testResultsWith_Y_Flag,results_W)
+
+
+### FIRST I'll just SUM up all them by PrePost
+ng_per_PrePost <- testResultsPrePost %>%
+  select(PrePost,Result,PartName) %>%
+  group_by(PrePost,PartName) %>%
+  summarise(SumResult=sum(Result))
+
+c <-
+  ggplot(ng_per_PrePost, aes(
+    y = SumResult,
+    x=factor(PrePost),
+    fill = as_factor(str_sub(PrePost, start = -5))
+  )) +
+  geom_bar(stat = "identity") +
+  labs(x = "Total for all Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+
+# c
+c<- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.text.x = element_text(angle = 70,vjust=.9,hjust=.5,size=12 ),
+            legend.position="bottom",
+            panel.background=element_blank(),
+            panel.border=element_blank(),
+            panel.grid.major=element_blank(),
+            panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c <- c + scale_y_continuous(name="Nanograms Found", labels = comma)
+
+c
+
+#rm(ng_per_PrePost,c)
+
+```
+
+
+## Comparing Pre and Post Totals by Pre vs Post Wristbands
+
+Another logical stop is to split the totals by sample (by person by wristband) thereby showing the TOTAL NANOGRAMS of any compound found on each wristband.  Grouping the data by participant allows you to see the PRE vs POST total-nanograms for each participant.
+
+
+```{r PrePostChartTotalsByWB, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300}
+###
+#### another IDEA is to just chart total NG found, PRE vs POST for all WBs
+testResultsPrePostGRAPH <- testResultsPrePost %>% 
+  mutate(SampleNumber=paste(PartName, PrePost,sep="-")) %>%
+  arrange(PartName,desc(PrePost))
+
+# IDEA is to get total RESULTS for each WB then graph that  in bar-chart
+ng_per_sample <-testResultsPrePostGRAPH %>%
+  group_by(SampleNumber) %>%
+  summarise(SumResult=sum(Result))
+
+c <-
+  ggplot(ng_per_sample, aes(
+    y = SumResult,
+    factor(SampleNumber),
+    fill = as_factor(str_sub(SampleNumber, start = -5))
+  )) +
+  geom_bar(stat = "identity") +
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+# c
+# 
+#  
+ #SET FONT SIZE for X axis Labels
+ if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
+   x_axis_font_size = 8
+ } else if (howManyWristbandsTested <= 120) {
+   x_axis_font_size = 6
+ } else {
+   x_axis_font_size = 4
+}
+c<- c+theme(axis.line=element_blank(),
+            #axis.ticks=element_blank(),
+            #axis.title.x=element_blank(),
+            #axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=x_axis_font_size ),
+            axis.text.x = element_text(angle = 90,vjust=0,hjust=0,size=x_axis_font_size ),
+            legend.position="bottom",
+            #panel.background=element_blank(),
+            #panel.border=element_blank(),
+            #panel.grid.major=element_blank(),
+            #panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+c <- c + scale_y_continuous(name="Nanograms Found", labels = comma)
+
+c
+
+#rm(c,ng_per_sample)
+
+
+
+```
+
+## Comparing Pre and Post Totals by Chemical
+
+Another way to look at the data is to examine each chemical and see if the total across all worn wristbands varied in the PRE vs POST bands.  So summing up all the nanograms of each individual chemical allows us to look at pre vs post bands by compound.
+
+```{r PrePostChartTotalByChemical, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300}
+###
+
+#### NOW I want to SUMMARIZE by CHEMMICAL by PREPOST
+#
+testResultsPrePostSumByChem <- testResultsPrePost %>% 
+  mutate(SampleNumber=paste(PartName, PrePost,sep="-")) %>%
+  group_by(ParameterName,PrePost)%>%
+  summarise(SumResult=sum(Result))
+
+# NOW need to delete all rows where for same compound both First and Second =0
+# Figure out which chemicals do not sum to ZERO
+testResultsPrePostChems2Keep <-testResultsPrePostSumByChem %>%
+  group_by(ParameterName)%>%
+  summarise(SumSumResult=sum(SumResult)) %>%
+  filter(SumSumResult != 0)
+
+# Using the list of non-zero compounds, filter them out
+testResultsPrePostSumByChem <-testResultsPrePostSumByChem %>%
+  filter(ParameterName %in% testResultsPrePostChems2Keep$ParameterName )
+
+c <-
+  ggplot(testResultsPrePostSumByChem, aes(
+    y = SumResult,
+    factor(ParameterName),
+    fill = as_factor(PrePost)
+  )) +
+  geom_bar(stat = "identity" , position = 'dodge')+
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+ 
+#SET FONT SIZE for X axis Labels
+ if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
+   x_axis_font_size = 10
+ } else if (howManyWristbandsTested <= 120) {
+   x_axis_font_size = 6
+ } else {
+   x_axis_font_size = 4
+ }
+
+c <- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            #axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
+            axis.text.x = element_text(angle = 90,vjust=.1,hjust=.5,size=x_axis_font_size ),
+            legend.position="bottom",
+            #panel.background=element_blank(),
+            #panel.border=element_blank(),
+            #panel.grid.major=element_blank(),
+            #panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+
+c <-
+  c + scale_y_continuous(
+    name = "Nanograms Found LOG SCALE",
+    labels = comma,
+    trans = "pseudo_log",
+    breaks = c(1, 10, 100, 1000, 10000, 100000),
+    minor = c(1:10,
+              seq(10, 100, by = 10),
+              seq(100, 1000, by = 100))
+  )
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c
+
+#rm(c,testResultsPrePostSumByChem,testResultsPrePostGRAPH)
+```
+
+## Comparing Pre and Post Totals by Chemical By Participant
+
+Finally, let's look at all wristbands for which we have both pre and post data and look at each chemical on each wristband to compare pre vs post.
+
+```{r PreVsPostByParticipantByChemical, echo=FALSE, message=FALSE, fig.cap="",  fig.asp = 1.3}
+#DELETED  figure.height=12   ---  , fig.asp = 1.5  -- out.height = "150%",  -   https://sebastiansauer.github.io/figure_sizing_knitr/
+##### NOW for each PERSON that has TWO wristbands (pre/post) 
+###     compare the pre with the post for each compound on one chart
+
+# NOW need to delete all rows where for same compound both First and Second =0
+
+# Figure out which chemicals do not sum to ZERO KEEP ONLY THOSE ROWS
+### Idea is only keep chemical if it had at least ONE value for ONE wristband
+testResultsShowNonZeroPairs <- testResultsPrePost %>%
+  filter(ParameterName %in% testResultsPrePostChems2Keep$ParameterName ) 
+
+
+### PICK JUST ONE PERSON to start doing this
+#David Camarena	
+#testResultsShowNonZeroPairsDavid <- testResultsShowNonZeroPairs %>%
+#  filter(PartName =="David Camarena")
+
+c <-
+  ggplot(testResultsShowNonZeroPairs, aes(
+    y = Result,
+    factor(ParameterName),
+    fill = as_factor(PrePost))) +
+  geom_bar(stat = "identity" , position = 'dodge')+
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+
+c <- c+theme(axis.line=element_blank(),
+            #axis.ticks=element_blank(),
+            #axis.title.x=element_blank(),
+            #axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
+            axis.text.x = element_text(angle = 90,vjust=.1,hjust=.5,size=8 )
+            ,axis.text.y = element_text(size=6 ) ,
+            legend.position="bottom"
+            #,strip.text.x = element_text(size = 2)
+            # panel.background=element_blank(),
+            # panel.border=element_blank(),
+            # panel.grid.major=element_blank(),
+            # panel.grid.minor=element_blank(),
+            # plot.background=element_blank()
+            )
+
+c <-
+  c + scale_y_continuous(
+    name = "Nanograms Found LOG SCALE",
+    labels = comma,
+    trans = "pseudo_log",
+    ,
+    breaks = c(1, 10, 100, 1000, 10000, 100000),
+    minor = c(1:10,
+              seq(10, 100, by = 10),
+              seq(100, 1000, by = 100))
+  )
+
+
+# This facet does it vertically which seems BETTER
+c <- c + facet_grid(PartName ~ . )
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c<- c + theme(strip.text.y = element_text(size = 8,angle = 0))
+
+c
+
+#rm(c,testResultsShowNonZeroPairs,testResultsPrePostChems2Keep, testResultsPrePost)
+
+```
+
+```{r BACKUP_JUST_IN_CASE, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300,eval=FALSE}
+###
+# ONE IDEA is a bar chart.  X axis is chemicals, Y axis is RESULT, for each chemical, one bar for PRE, one for POST
+
+
+#rm(class_L,class_L_maxC,epaIris,holdmP,IARCRisk,result_file_output_done,riskCalifProp65,statSummary,SubClassAtleastOne,SubClassScores,testResultsWith_Y_Flag,results_W)
+
+
+### FIRST I'll just SUM up all them by PrePost
+ng_per_PrePost <- testResultsPrePost %>%
+  select(PrePost,Result,PartName) %>%
+  group_by(PrePost,PartName) %>%
+  summarise(SumResult=sum(Result))
+
+c <-
+  ggplot(ng_per_PrePost, aes(
+    y = SumResult,
+    x=factor(PrePost),
+    fill = as_factor(str_sub(PrePost, start = -5))
+  )) +
+  geom_bar(stat = "identity") +
+  labs(x = "Total for all Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+
+# c
+c<- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.text.x = element_text(angle = 70,vjust=.9,hjust=.5,size=8 ),
+            legend.position="bottom",
+            panel.background=element_blank(),
+            panel.border=element_blank(),
+            panel.grid.major=element_blank(),
+            panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c <- c + scale_y_continuous(name="Nanograms Found", labels = comma)
+
+c
+
+rm(ng_per_PrePost,c)
+
+#### another IDEA is to just chart total NG found, PRE vs POST for all WBs
+testResultsPrePostGRAPH <- testResultsPrePost %>% 
+  mutate(SampleNumber=paste(PartName, PrePost,sep="-")) %>%
+  arrange(PartName,desc(PrePost))
+
+# IDEA is to get total RESULTS for each WB then graph that  in bar-chart
+ng_per_sample <-testResultsPrePostGRAPH %>%
+  group_by(SampleNumber) %>%
+  summarise(SumResult=sum(Result))
+
+c <-
+  ggplot(ng_per_sample, aes(
+    y = SumResult,
+    factor(SampleNumber),
+    fill = as_factor(str_sub(SampleNumber, start = -5))
+  )) +
+  geom_bar(stat = "identity") +
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+# c
+c<- c+theme(axis.line=element_blank(),
+            #axis.ticks=element_blank(),
+            #axis.title.x=element_blank(),
+            axis.text.x = element_text(angle = 70,vjust=.9,hjust=.5,size=8 ),
+            legend.position="bottom",
+            #panel.background=element_blank(),
+            #panel.border=element_blank(),
+            #panel.grid.major=element_blank(),
+            #panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+c <- c + scale_y_continuous(name="Nanograms Found", labels = comma)
+
+c
+
+rm(c,ng_per_sample)
+
+
+#### NOW I want to SUMMARIZE by CHEMMICAL by PREPOST
+#
+testResultsPrePostSumByChem <- testResultsPrePost %>% 
+  mutate(SampleNumber=paste(PartName, PrePost,sep="-")) %>%
+  group_by(ParameterName,PrePost)%>%
+  summarise(SumResult=sum(Result))
+
+# NOW need to delete all rows where for same compound both First and Second =0
+# Figure out which chemicals do not sum to ZERO
+testResultsPrePostChems2Keep <-testResultsPrePostSumByChem %>%
+  group_by(ParameterName)%>%
+  summarise(SumSumResult=sum(SumResult)) %>%
+  filter(SumSumResult != 0)
+
+# Using the list of non-zero compounds, filter them out
+testResultsPrePostSumByChem <-testResultsPrePostSumByChem %>%
+  filter(ParameterName %in% testResultsPrePostChems2Keep$ParameterName )
+
+c <-
+  ggplot(testResultsPrePostSumByChem, aes(
+    y = SumResult,
+    factor(ParameterName),
+    fill = as_factor(PrePost)
+  )) +
+  geom_bar(stat = "identity" , position = 'dodge')+
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+
+c <- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            #axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
+            axis.text.x = element_text(angle = 90,vjust=.1,hjust=.5,size=8 ),
+            legend.position="bottom",
+            #panel.background=element_blank(),
+            #panel.border=element_blank(),
+            #panel.grid.major=element_blank(),
+            #panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+
+c <-
+  c + scale_y_continuous(
+    name = "Nanograms Found LOG SCALE",
+    labels = comma,
+    trans = "pseudo_log",
+    breaks = c(1, 10, 100, 1000, 10000, 100000),
+    minor = c(1:10,
+              seq(10, 100, by = 10),
+              seq(100, 1000, by = 100))
+  )
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c
+
+rm(c,testResultsPrePostSumByChem,testResultsPrePostGRAPH)
+
+##### NOW for each PERSON that has TWO wristbands (pre/post) 
+###     compare the pre with the post for each compound on one chart
+
+# NOW need to delete all rows where for same compound both First and Second =0
+
+# Figure out which chemicals do not sum to ZERO KEEP ONLY THOSE ROWS
+### Idea is only keep chemical if it had at least ONE value for ONE wristband
+testResultsShowNonZeroPairs <- testResultsPrePost %>%
+  filter(ParameterName %in% testResultsPrePostChems2Keep$ParameterName ) 
+
+
+### PICK JUST ONE PERSON to start doing this
+#David Camarena	
+#testResultsShowNonZeroPairsDavid <- testResultsShowNonZeroPairs %>%
+#  filter(PartName =="David Camarena")
+
+c <-
+  ggplot(testResultsShowNonZeroPairs, aes(
+    y = Result,
+    factor(ParameterName),
+    fill = as_factor(PrePost))) +
+  geom_bar(stat = "identity" , position = 'dodge')+
+  labs(x = "Every Wristband tested",
+       y = "Nanograms Found",
+       title = "Total NG of Any Chemical found PRE vs POST")
+
+c <- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            #axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
+            axis.text.x = element_text(angle = 90,vjust=.1,hjust=.5,size=8 )
+            ,axis.text.y = element_text(size=6 ) ,
+            legend.position="bottom"
+            #,strip.text.x = element_text(size = 2)
+            # panel.background=element_blank(),
+            # panel.border=element_blank(),
+            # panel.grid.major=element_blank(),
+            # panel.grid.minor=element_blank(),
+            # plot.background=element_blank()
+            )
+
+c <-
+  c + scale_y_continuous(
+    name = "Nanograms Found LOG SCALE",
+    labels = comma,
+    trans = "pseudo_log",
+    ,
+    breaks = c(1, 10, 100, 1000, 10000, 100000),
+    minor = c(1:10,
+              seq(10, 100, by = 10),
+              seq(100, 1000, by = 100))
+  )
+
+
+# This facet does it vertically which seems BETTER
+c <- c + facet_grid(PartName ~ . )
+
+c<- c + scale_fill_discrete(name = "Which Wristband?", labels = c("First", "Second"))
+
+c + theme(strip.text.y = element_text(size = 8,angle = 0))
+
+#rm(c,testResultsShowNonZeroPairs,testResultsPrePostChems2Keep)
+
+```
+

@@ -1,0 +1,89 @@
+SEE BOOK that explains everything about RMarkdown for better info on
+figure_wideth and height and also OUTPUT_width and height and DPI
+I think between all that it is clear(er)
+
+NOTES On bug of printing via automated script compressing all images
+
+IN HEADER of RMD
+	  html_document:
+	    fig_height: 7
+    	    fig_width: 6.5
+    	    
+
+in Heat Map code in RMD:
+	fig.height=8
+
+{r x5_activeChemChart, echo=FALSE, message=FALSE, fig.height=8,fig.cap=""}
+
+THIS was in the OLD section but not in the new section:
+options(height = 8)  #this is redundant with the heading setting I THINK but so what
+
+in OUTPUT:
+label: setup_heatmap_chart (with options) 
+List of 4
+ $ echo      : logi FALSE
+ $ message   : logi FALSE
+ $ fig.height: num 8
+ $ fig.cap   : chr ""
+
+CURRENT THINKING
+	out.width = '40%' might work??
+	SOOOO it is NOTHING to with Pandoc or pander
+	it is all KNIT which writes out the file as PNG
+	we COULD change things in readking in the file in PANDER which processes the MD file 
+	but
+	that won't work cause knit is writing too small
+	
+SOOOOO:
+What WORKED for the heat map:
+	Testing knit-to-html menu
+	tested PRINT to html
+	not tested: print to DOCX
+		in DOCX it is terrible
+
+ANOTHER idea is writing to JPG file...
+
+ANOTHER idea is to set the DPI to 150
+	Testing knit-to-html menu -- good
+	tested PRINT to html  TOO BIG
+	
+another idea... NOTHIGN on parameters
+	Testing knit-to-html menu -- good
+		
+	Testing knit-to-word menu -- good
+		testing PRINT to DOCx --> ERROR on converstion-failure
+
+fig.height=6,dpi=150:  (but if I change dpi to 300 it does NOT work well (too big in print-to-html)
+	knit menu to html: good
+	knit menu to docx: good
+	knit menu to PDF: FAILURE (maybe failed before, do not know root cause)
+	print all to html:  GOOD
+	print all to docx  GOOD
+	print all to pdf:  Not ever done...
+
+TRY DPI=300 to see what happens...
+	
+another idea is thisS:   https://stackoverflow.com/questions/18884778/poor-resolution-in-knitr-using-rmd
+		
+
+
+````{r img-setup, include=FALSE, cache=FALSE}
+out.format <- knitr::opts_knit$get("out.format")
+img_template <- switch( out.format,
+                     word = list("img-params"=list(fig.width=6,
+                                                   fig.height=6,
+                                                   dpi=150)),
+                     {
+                       # default
+                       list("img-params"=list( dpi=150,
+                                               fig.width=6,
+                                               fig.height=6,
+                                               out.width="504px",
+                                               out.height="504px"))
+                     } )
+
+knitr::opts_template$set( img_template )
+````
+
+
+	

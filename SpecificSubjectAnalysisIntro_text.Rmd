@@ -1,0 +1,24 @@
+
+
+You have taken part in a MyExposome demonstration project to identify the chemical compounds 
+which were detected in your environment
+over a period of approximately one week.  We are using your wristband to report any detectable level of each of  **`r howManyChemicalsTested`** compounds.  
+
+**`r testExplanation`** 
+
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. All analysis was done "blind" to any aspect of the underlying study design with unique identifiers assigned to each wristband. Your unique subject name for the purposes of this analysis is:   **`r subject`**.
+
+
+[comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)
+
+[comment2]: # (You were originally assigned, by MyExposome, the unique subject identifier of **`r pureSubjectName`**.)
+
+The total number of chemicals found in your wristband was **`r howManyChemicalsFoundThisWristband`**. The average number of chemicals found across all tested wristbands in this project was **`r round(averageNumberChemsFound,1) `**.  The maximum number of chemicals found on any one wristband was **`r maxChemFoundOnAnyOneWristband`**.  The minimum number of chemicals found on any one wristband was **`r minChemFoundOnAnyOneWristband`**.   The standard deviation of the number of found chemicals per wristband was **`r stdDevChemFoundOnAnyOneWristband `**. 
+
+The total number of distinct chemicals found across all the wristbands in this study was **`r howManyUniqueChemFoundAcrossAllWristbands`**.
+
+
+
+
+
+

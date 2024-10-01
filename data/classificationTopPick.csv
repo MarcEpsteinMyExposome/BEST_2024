@@ -1,0 +1,1426 @@
+ParameterID,Classification
+32,Pesticide
+34,Pesticide
+36,Pesticide
+48,Pesticide
+54,Pesticide
+69,Polycyclic Aromatic Hydrocarbon (PAH)
+70,Polycyclic Aromatic Hydrocarbon (PAH)
+84,Polychlorinated Biphenyl
+85,Polychlorinated Biphenyl
+89,Pesticide
+90,Dioxins and Furans
+92,Chemicals in Commerce
+101,Pesticide
+102,Chemicals in Commerce
+104,Pesticide
+109,Pesticide
+111,Pharmacological
+114,Pesticide
+115,Pesticide
+116,Pesticide
+118,Chemicals in Commerce
+134,Pesticide
+146,Polycyclic Aromatic Hydrocarbon (PAH)
+148,Chemicals in Commerce
+152,Chemicals in Commerce
+160,Chemicals in Commerce
+165,Chemicals in Commerce
+167,Chemicals in Commerce
+170,Pesticide
+171,Pesticide
+172,Pesticide
+175,Chemicals in Commerce
+176,Pesticide
+178,Chemicals in Commerce
+184,Pesticide
+185,Pesticide
+186,Chemicals in Commerce
+189,Chemicals in Commerce
+191,Chemicals in Commerce
+192,Pesticide
+194,Chemicals in Commerce
+200,Polycyclic Aromatic Hydrocarbon (PAH)
+201,Polycyclic Aromatic Hydrocarbon (PAH)
+202,Polycyclic Aromatic Hydrocarbon (PAH)
+208,Polycyclic Aromatic Hydrocarbon (PAH)
+209,Polycyclic Aromatic Hydrocarbon (PAH)
+210,Polycyclic Aromatic Hydrocarbon (PAH)
+224,Pesticide
+228,Pesticide
+231,Pesticide
+232,Pesticide
+236,Pesticide
+238,Pesticide
+245,Pesticide
+246,Chemicals in Commerce
+247,Polycyclic Aromatic Hydrocarbon (PAH)
+251,Pesticide
+254,Pesticide
+255,Pesticide
+259,Pesticide
+260,Pesticide
+262,Pesticide
+264,Pesticide
+265,Pesticide
+271,Chemicals in Commerce
+272,Polycyclic Aromatic Hydrocarbon (PAH)
+273,Polycyclic Aromatic Hydrocarbon (PAH)
+275,Polycyclic Aromatic Hydrocarbon (PAH)
+276,Polycyclic Aromatic Hydrocarbon (PAH)
+277,Polycyclic Aromatic Hydrocarbon (PAH)
+278,Polycyclic Aromatic Hydrocarbon (PAH)
+279,Polycyclic Aromatic Hydrocarbon (PAH)
+283,Chemicals in Commerce
+286,Pesticide
+293,Pesticide
+298,Pesticide
+306,Pesticide
+309,Pesticide
+312,Pesticide
+351,Pesticide
+352,Pesticide
+353,Pesticide
+355,Pesticide
+361,Pesticide
+362,Pesticide
+371,Pesticide
+377,Pesticide
+382,Pesticide
+385,Pesticide
+386,Pesticide
+387,Pesticide
+388,Pesticide
+390,Polycyclic Aromatic Hydrocarbon (PAH)
+391,Polycyclic Aromatic Hydrocarbon (PAH)
+395,Pesticide
+402,Pesticide
+404,Pesticide
+410,Pesticide
+415,Pesticide
+420,Pesticide
+425,Pesticide
+429,Pesticide
+430,Chemicals in Commerce
+431,Pesticide
+432,Pesticide
+434,Polycyclic Aromatic Hydrocarbon (PAH)
+436,Polycyclic Aromatic Hydrocarbon (PAH)
+437,Dioxins and Furans
+443,Pesticide
+444,Pesticide
+445,Pesticide
+447,Pesticide
+448,Pesticide
+449,Pesticide
+450,Pesticide
+462,Pesticide
+463,Pharmacological
+465,Chemicals in Commerce
+466,Pesticide
+470,Pesticide
+471,Pesticide
+472,Pesticide
+473,Pesticide
+479,Pesticide
+480,Pesticide
+481,Polycyclic Aromatic Hydrocarbon (PAH)
+482,Polycyclic Aromatic Hydrocarbon (PAH)
+484,Pesticide
+512,Pesticide
+521,Pesticide
+531,Pesticide
+538,Pesticide
+540,Pesticide
+550,Pesticide
+565,Pesticide
+566,Pesticide
+567,Pesticide
+574,Pesticide
+594,Pesticide
+595,Polycyclic Aromatic Hydrocarbon (PAH)
+596,Polycyclic Aromatic Hydrocarbon (PAH)
+603,Pesticide
+611,Pesticide
+614,Pesticide
+625,Pesticide
+635,Polycyclic Aromatic Hydrocarbon (PAH)
+638,Pharmacological
+642,Pesticide
+643,Pesticide
+644,Pesticide
+645,Pesticide
+664,Pesticide
+665,Pesticide
+666,Pesticide
+667,Pesticide
+668,Pesticide
+670,Pesticide
+671,Pesticide
+676,Pesticide
+678,Polycyclic Aromatic Hydrocarbon (PAH)
+688,Pesticide
+698,Pesticide
+748,Pesticide
+751,Pesticide
+752,Pesticide
+753,Pesticide
+754,Pesticide
+755,Pesticide
+759,Pesticide
+760,Pesticide
+762,Pesticide
+767,Pesticide
+768,Pesticide
+769,Pesticide
+770,Pesticide
+771,Pesticide
+773,Pesticide
+774,Pesticide
+777,Pesticide
+793,Pesticide
+798,Pesticide
+812,Pesticide
+817,Pesticide
+818,Pesticide
+820,Pesticide
+824,Pesticide
+830,Pesticide
+850,Polycyclic Aromatic Hydrocarbon (PAH)
+857,Pesticide
+858,Pesticide
+859,Pesticide
+864,Pesticide
+866,Pesticide
+868,Pesticide
+908,Pesticide
+911,Pesticide
+917,Pesticide
+919,Pesticide
+949,Pesticide
+950,Pesticide
+952,Pesticide
+953,Pesticide
+956,Pesticide
+958,Polycyclic Aromatic Hydrocarbon (PAH)
+964,Pesticide
+974,Pesticide
+975,Pesticide
+992,Pesticide
+996,Pesticide
+997,Pesticide
+998,Pesticide
+1001,Pesticide
+1005,Pesticide
+1006,Pesticide
+1007,Pesticide
+1008,Pesticide
+1013,Pesticide
+1017,Pesticide
+1019,Pesticide
+1023,Chemicals in Commerce
+1026,Pesticide
+1030,Pesticide
+1032,Pesticide
+1034,Pesticide
+1037,Flame Retardant
+1051,Pesticide
+1250,Flame Retardant
+1264,Pesticide
+1933,Pesticide
+1974,Polychlorinated Biphenyl
+1991,Pesticide
+1992,Pesticide
+300219,Flame Retardant
+300222,Flame Retardant
+300226,Chemicals in Commerce
+300228,Pesticide
+300229,Pesticide
+300230,Pesticide
+300235,Pesticide
+300236,Pesticide
+300237,Pesticide
+300240,Pesticide
+300241,Pesticide
+300245,Pesticide
+300246,Pesticide
+300247,Pesticide
+300249,Pesticide
+300250,Pesticide
+300251,Pesticide
+300252,Pesticide
+300253,Pesticide
+300260,Polycyclic Aromatic Hydrocarbon (PAH)
+300261,Polycyclic Aromatic Hydrocarbon (PAH)
+300262,Polycyclic Aromatic Hydrocarbon (PAH)
+300263,Polycyclic Aromatic Hydrocarbon (PAH)
+300264,Polychlorinated Biphenyl
+300265,Polychlorinated Biphenyl
+300266,Polychlorinated Biphenyl
+300267,Polychlorinated Biphenyl
+300268,Polychlorinated Biphenyl
+300269,Polychlorinated Biphenyl
+300270,Polychlorinated Biphenyl
+300271,Polychlorinated Biphenyl
+300272,Polychlorinated Biphenyl
+300273,Polychlorinated Biphenyl
+300274,Polychlorinated Biphenyl
+300275,Polychlorinated Biphenyl
+300276,Polychlorinated Biphenyl
+300277,Polychlorinated Biphenyl
+300278,Polychlorinated Biphenyl
+300279,Polychlorinated Biphenyl
+300280,Polychlorinated Biphenyl
+300281,Polychlorinated Biphenyl
+300282,Polychlorinated Biphenyl
+300283,Polychlorinated Biphenyl
+300284,Polychlorinated Biphenyl
+300285,Polychlorinated Biphenyl
+300286,Polychlorinated Biphenyl
+300287,Polychlorinated Biphenyl
+300288,Polychlorinated Biphenyl
+300289,Polychlorinated Biphenyl
+300291,Polycyclic Aromatic Hydrocarbon (PAH)
+300293,Polycyclic Aromatic Hydrocarbon (PAH)
+300294,Oxygenated PAH
+300295,Oxygenated PAH
+300296,Pesticide
+300297,Oxygenated PAH
+300298,Oxygenated PAH
+300299,Oxygenated PAH
+300301,Oxygenated PAH
+300302,Oxygenated PAH
+300303,Oxygenated PAH
+300304,Oxygenated PAH
+300305,Oxygenated PAH
+300306,Oxygenated PAH
+300307,Oxygenated PAH
+300309,Oxygenated PAH
+300312,Polycyclic Aromatic Hydrocarbon (PAH)
+300315,Polycyclic Aromatic Hydrocarbon (PAH)
+300316,Polycyclic Aromatic Hydrocarbon (PAH)
+300317,Polycyclic Aromatic Hydrocarbon (PAH)
+300318,Polycyclic Aromatic Hydrocarbon (PAH)
+300327,Polycyclic Aromatic Hydrocarbon (PAH)
+300328,Polycyclic Aromatic Hydrocarbon (PAH)
+300329,Polycyclic Aromatic Hydrocarbon (PAH)
+300330,Polycyclic Aromatic Hydrocarbon (PAH)
+300333,Polycyclic Aromatic Hydrocarbon (PAH)
+300334,Polycyclic Aromatic Hydrocarbon (PAH)
+300335,Polycyclic Aromatic Hydrocarbon (PAH)
+300336,Polycyclic Aromatic Hydrocarbon (PAH)
+300337,Oxygenated PAH
+300347,Polycyclic Aromatic Hydrocarbon (PAH)
+300348,Polycyclic Aromatic Hydrocarbon (PAH)
+300349,Polycyclic Aromatic Hydrocarbon (PAH)
+300374,Polycyclic Aromatic Hydrocarbon (PAH)
+300377,Polycyclic Aromatic Hydrocarbon (PAH)
+300378,Polycyclic Aromatic Hydrocarbon (PAH)
+300379,Polychlorinated Biphenyl
+300386,Polycyclic Aromatic Hydrocarbon (PAH)
+300387,Polycyclic Aromatic Hydrocarbon (PAH)
+300388,Personal Care
+300389,Polycyclic Aromatic Hydrocarbon (PAH)
+300390,Polycyclic Aromatic Hydrocarbon (PAH)
+300391,Polycyclic Aromatic Hydrocarbon (PAH)
+300392,Polycyclic Aromatic Hydrocarbon (PAH)
+300406,Polycyclic Aromatic Hydrocarbon (PAH)
+300409,Polycyclic Aromatic Hydrocarbon (PAH)
+300432,Polychlorinated Biphenyl
+300433,Polychlorinated Biphenyl
+300435,Polychlorinated Biphenyl
+300436,Polychlorinated Biphenyl
+300437,Polychlorinated Biphenyl
+300438,Polychlorinated Biphenyl
+300440,Polychlorinated Biphenyl
+300441,Polychlorinated Biphenyl
+300442,Polychlorinated Biphenyl
+300503,Polycyclic Aromatic Hydrocarbon (PAH)
+300505,Polycyclic Aromatic Hydrocarbon (PAH)
+300604,Pesticide
+300605,Pesticide
+300628,Pesticide
+300629,Polychlorinated Biphenyl
+300631,Pesticide
+300636,Pesticide
+300638,Pesticide
+300639,Flame Retardant
+300640,Pesticide
+300641,Pesticide
+300659,Polycyclic Aromatic Hydrocarbon (PAH)
+300685,Polycyclic Aromatic Hydrocarbon (PAH)
+300698,Polychlorinated Biphenyl
+300699,Polychlorinated Biphenyl
+300700,Polychlorinated Biphenyl
+300701,Polychlorinated Biphenyl
+300703,Polychlorinated Biphenyl
+300704,Polychlorinated Biphenyl
+300705,Polychlorinated Biphenyl
+300707,Polychlorinated Biphenyl
+300708,Polychlorinated Biphenyl
+300711,Flame Retardant
+300713,Flame Retardant
+300714,Flame Retardant
+300715,Flame Retardant
+300716,Flame Retardant
+300718,Polychlorinated Biphenyl
+300719,Polychlorinated Biphenyl
+300720,Polychlorinated Biphenyl
+300721,Polychlorinated Biphenyl
+300722,Polychlorinated Biphenyl
+300723,Polychlorinated Biphenyl
+300724,Polychlorinated Biphenyl
+300725,Polychlorinated Biphenyl
+300726,Polychlorinated Biphenyl
+300727,Flame Retardant
+300728,Flame Retardant
+300729,Flame Retardant
+300730,Flame Retardant
+300731,Flame Retardant
+300732,Flame Retardant
+300733,Flame Retardant
+300734,Flame Retardant
+300736,Polychlorinated Biphenyl
+300737,Polychlorinated Biphenyl
+300739,Polycyclic Aromatic Hydrocarbon (PAH)
+300743,Polychlorinated Biphenyl
+300745,Polychlorinated Biphenyl
+300763,Polychlorinated Biphenyl
+300764,Polychlorinated Biphenyl
+300765,Polychlorinated Biphenyl
+300766,Polychlorinated Biphenyl
+300773,Polychlorinated Biphenyl
+300894,Polychlorinated Biphenyl
+300897,Polychlorinated Biphenyl
+300898,Polychlorinated Biphenyl
+300899,Polychlorinated Biphenyl
+300900,Polychlorinated Biphenyl
+300901,Polychlorinated Biphenyl
+300903,Polychlorinated Biphenyl
+300904,Polychlorinated Biphenyl
+300905,Polychlorinated Biphenyl
+300906,Polychlorinated Biphenyl
+300907,Polychlorinated Biphenyl
+300908,Polychlorinated Biphenyl
+300909,Polychlorinated Biphenyl
+300910,Polychlorinated Biphenyl
+300911,Polychlorinated Biphenyl
+300912,Polychlorinated Biphenyl
+300913,Polychlorinated Biphenyl
+300914,Polychlorinated Biphenyl
+300915,Polychlorinated Biphenyl
+300916,Polychlorinated Biphenyl
+300917,Polychlorinated Biphenyl
+300918,Polychlorinated Biphenyl
+300919,Polychlorinated Biphenyl
+300920,Polychlorinated Biphenyl
+300921,Polychlorinated Biphenyl
+300922,Polychlorinated Biphenyl
+300923,Polychlorinated Biphenyl
+300924,Polychlorinated Biphenyl
+300925,Polychlorinated Biphenyl
+300926,Polychlorinated Biphenyl
+300927,Polychlorinated Biphenyl
+300928,Polychlorinated Biphenyl
+300929,Polychlorinated Biphenyl
+300930,Polychlorinated Biphenyl
+300931,Polychlorinated Biphenyl
+300932,Polychlorinated Biphenyl
+300933,Polychlorinated Biphenyl
+300934,Polychlorinated Biphenyl
+300935,Polychlorinated Biphenyl
+300936,Polychlorinated Biphenyl
+300937,Polychlorinated Biphenyl
+300938,Polychlorinated Biphenyl
+300939,Polychlorinated Biphenyl
+300940,Polychlorinated Biphenyl
+300941,Polychlorinated Biphenyl
+300942,Polychlorinated Biphenyl
+300943,Polychlorinated Biphenyl
+300944,Polychlorinated Biphenyl
+300993,Polychlorinated Biphenyl
+300994,Polychlorinated Biphenyl
+300995,Polychlorinated Biphenyl
+300996,Polychlorinated Biphenyl
+300997,Polychlorinated Biphenyl
+300998,Polychlorinated Biphenyl
+300999,Polychlorinated Biphenyl
+301000,Polychlorinated Biphenyl
+301001,Polychlorinated Biphenyl
+301002,Polychlorinated Biphenyl
+301003,Polychlorinated Biphenyl
+301004,Polychlorinated Biphenyl
+301005,Polychlorinated Biphenyl
+301006,Polychlorinated Biphenyl
+301007,Polychlorinated Biphenyl
+301008,Polychlorinated Biphenyl
+301009,Polychlorinated Biphenyl
+301010,Polychlorinated Biphenyl
+301011,Polychlorinated Biphenyl
+301017,Polychlorinated Biphenyl
+301018,Polychlorinated Biphenyl
+301019,Polychlorinated Biphenyl
+301020,Polychlorinated Biphenyl
+301021,Polychlorinated Biphenyl
+301022,Polychlorinated Biphenyl
+301023,Polychlorinated Biphenyl
+301024,Polychlorinated Biphenyl
+301025,Polychlorinated Biphenyl
+301026,Polychlorinated Biphenyl
+301027,Polychlorinated Biphenyl
+301028,Polychlorinated Biphenyl
+301029,Polychlorinated Biphenyl
+301030,Polychlorinated Biphenyl
+301031,Polychlorinated Biphenyl
+301032,Polychlorinated Biphenyl
+301033,Polychlorinated Biphenyl
+301034,Polychlorinated Biphenyl
+301035,Polychlorinated Biphenyl
+301036,Polychlorinated Biphenyl
+301037,Polychlorinated Biphenyl
+301038,Polychlorinated Biphenyl
+301039,Polychlorinated Biphenyl
+301040,Polychlorinated Biphenyl
+301041,Polychlorinated Biphenyl
+301042,Polychlorinated Biphenyl
+301043,Polychlorinated Biphenyl
+301044,Polychlorinated Biphenyl
+301045,Polychlorinated Biphenyl
+301046,Polychlorinated Biphenyl
+301047,Polychlorinated Biphenyl
+301048,Polychlorinated Biphenyl
+301049,Polychlorinated Biphenyl
+301050,Polychlorinated Biphenyl
+301051,Polychlorinated Biphenyl
+301052,Polychlorinated Biphenyl
+301053,Polychlorinated Biphenyl
+301054,Polychlorinated Biphenyl
+301055,Polychlorinated Biphenyl
+301056,Polychlorinated Biphenyl
+301057,Polychlorinated Biphenyl
+301058,Polychlorinated Biphenyl
+301059,Polychlorinated Biphenyl
+301060,Polychlorinated Biphenyl
+301061,Polychlorinated Biphenyl
+301062,Polychlorinated Biphenyl
+301063,Polychlorinated Biphenyl
+301064,Polychlorinated Biphenyl
+301065,Polychlorinated Biphenyl
+301066,Polychlorinated Biphenyl
+301067,Polychlorinated Biphenyl
+301068,Polychlorinated Biphenyl
+301069,Polychlorinated Biphenyl
+301070,Polychlorinated Biphenyl
+301071,Polychlorinated Biphenyl
+301072,Polychlorinated Biphenyl
+301073,Polychlorinated Biphenyl
+301074,Polychlorinated Biphenyl
+301075,Polychlorinated Biphenyl
+301076,Polychlorinated Biphenyl
+301077,Polychlorinated Biphenyl
+301078,Polychlorinated Biphenyl
+301079,Polychlorinated Biphenyl
+301080,Polychlorinated Biphenyl
+301081,Polychlorinated Biphenyl
+301082,Polychlorinated Biphenyl
+301083,Polychlorinated Biphenyl
+301084,Polychlorinated Biphenyl
+301085,Polychlorinated Biphenyl
+301086,Polychlorinated Biphenyl
+301087,Polychlorinated Biphenyl
+301088,Polychlorinated Biphenyl
+301089,Polychlorinated Biphenyl
+301090,Polychlorinated Biphenyl
+301091,Polychlorinated Biphenyl
+301092,Polychlorinated Biphenyl
+301093,Polycyclic Aromatic Hydrocarbon (PAH)
+301094,Pesticide
+301095,Chemicals in Commerce
+301096,Chemicals in Commerce
+301097,Pesticide
+301098,Chemicals in Commerce
+301099,Pesticide
+301100,Pesticide
+301101,Chemicals in Commerce
+301102,Pesticide
+301103,Pesticide
+301104,Pesticide
+301105,Pesticide
+301106,Pharmacological
+301107,Pesticide
+301108,Pesticide
+301109,Pesticide
+301110,Pesticide
+301111,Pesticide
+301112,Pesticide
+301113,Pesticide
+301114,Personal Care
+301115,Pesticide
+301116,Pesticide
+301117,Pesticide
+301118,Pharmacological
+301119,Pesticide
+301120,Pesticide
+301121,Pesticide
+301122,Pesticide
+301123,Pesticide
+301124,Pesticide
+301125,Pesticide
+301126,Pesticide
+301127,Pesticide
+301128,Pesticide
+301129,Pesticide
+301130,Pesticide
+301131,Pesticide
+301132,Pesticide
+301133,Pesticide
+301134,Personal Care
+301135,Pesticide
+301136,Pesticide
+301137,Pesticide
+301138,Pesticide
+301139,Pesticide
+301140,Pesticide
+301141,Pesticide
+301142,Pesticide
+301143,Pesticide
+301144,Pesticide
+301145,Pesticide
+301146,Pesticide
+301147,Pesticide
+301148,Pesticide
+301149,Pesticide
+301150,Pesticide
+301151,Pesticide
+301152,Pesticide
+301153,Pesticide
+301154,Pesticide
+301155,Pesticide
+301156,Pesticide
+301158,Pesticide
+301159,Pesticide
+301160,Pesticide
+301161,Pesticide
+301162,Pesticide
+301163,Pesticide
+301164,Pesticide
+301165,Pesticide
+301166,Pharmacological
+301167,Pesticide
+301168,Pesticide
+301169,Pesticide
+301170,Pesticide
+301171,Pesticide
+301172,Pesticide
+301173,Pesticide
+301174,Pesticide
+301175,Pesticide
+301176,Pesticide
+301177,Pesticide
+301178,Pesticide
+301179,Pesticide
+301182,Pesticide
+301183,Pesticide
+301184,Pesticide
+301185,Pesticide
+301186,Pesticide
+301187,Pesticide
+301188,Pesticide
+301189,Pesticide
+301190,Pesticide
+301191,Pesticide
+301192,Pesticide
+301193,Pesticide
+301194,Pesticide
+301195,Pesticide
+301196,Pesticide
+301197,Pesticide
+301198,Pesticide
+301199,Pesticide
+301200,Pesticide
+301201,Polycyclic Aromatic Hydrocarbon (PAH)
+301202,Pesticide
+301203,Pesticide
+301204,Pesticide
+301205,Pesticide
+301206,Pesticide
+301207,Pesticide
+301208,Pesticide
+301209,Pesticide
+301210,Pesticide
+301211,Pesticide
+301212,Pesticide
+301213,Pesticide
+301214,Pesticide
+301215,Pesticide
+301216,Pesticide
+301217,Pesticide
+301218,Pesticide
+301219,Pesticide
+301220,Pesticide
+301221,Pesticide
+301222,Pesticide
+301223,Pesticide
+301224,Pesticide
+301225,Pesticide
+301226,Pesticide
+301227,Pesticide
+301228,Pesticide
+301229,Pesticide
+301230,Pesticide
+301231,Pesticide
+301232,Pesticide
+301233,Pesticide
+301234,Pesticide
+301235,Pesticide
+301236,Pesticide
+301237,Pesticide
+301238,Pesticide
+301239,Pesticide
+301240,Pesticide
+301241,Pesticide
+301242,Pesticide
+301243,Pesticide
+301244,Pesticide
+301245,Pesticide
+301246,Pesticide
+301247,Pesticide
+301248,Pesticide
+301249,Pesticide
+301250,Pesticide
+301251,Pesticide
+301252,Pesticide
+301253,Pesticide
+301254,Pesticide
+301255,Pesticide
+301256,Pesticide
+301257,Pesticide
+301258,Pesticide
+301259,Pesticide
+301260,Pesticide
+301261,Pesticide
+301262,Pesticide
+301263,Pesticide
+301264,Pesticide
+301265,Pesticide
+301266,Pesticide
+301267,Pesticide
+301268,Pesticide
+301269,Pesticide
+301270,Pesticide
+301271,Chemicals in Commerce
+301272,Pesticide
+301273,Pesticide
+301274,Pesticide
+301275,Pesticide
+301276,Pesticide
+301277,Pesticide
+301278,Pesticide
+301279,Pesticide
+301280,Pesticide
+301281,Pesticide
+301282,Pesticide
+301283,Pesticide
+301284,Pesticide
+301285,Pesticide
+301286,Pesticide
+301287,Pesticide
+301288,Pesticide
+301289,Pesticide
+301290,Pesticide
+301291,Pesticide
+301292,Pesticide
+301293,Pesticide
+301294,Pesticide
+301295,Pesticide
+301296,Pesticide
+301297,Pesticide
+301298,Pesticide
+301299,Pesticide
+301300,Pesticide
+301301,Pesticide
+301302,Pesticide
+301303,Pesticide
+301304,Pesticide
+301305,Pesticide
+301306,Pesticide
+301307,Pesticide
+301308,Pesticide
+301309,Pesticide
+301310,Pesticide
+301311,Pesticide
+301312,Pesticide
+301313,Pesticide
+301314,Pesticide
+301315,Chemicals in Commerce
+301316,Pesticide
+301317,Pesticide
+301318,Pesticide
+301319,Pesticide
+301320,Pesticide
+301321,Pesticide
+301322,Pesticide
+301323,Pesticide
+301324,Pesticide
+301325,Pesticide
+301326,Pesticide
+301327,Pesticide
+301328,Pesticide
+301329,Pesticide
+301330,Pesticide
+301331,Pesticide
+301332,Pesticide
+301333,Pesticide
+301334,Pesticide
+301335,Pesticide
+301336,Pesticide
+301337,Pesticide
+301338,Pesticide
+301339,Pesticide
+301340,Pesticide
+301341,Pesticide
+301342,Pesticide
+301344,Pesticide
+301345,Pesticide
+301346,Pesticide
+301347,Pesticide
+301348,Pesticide
+301349,Pesticide
+301350,Pesticide
+301351,Pesticide
+301352,Pesticide
+301353,Pesticide
+301354,Pesticide
+301355,Pesticide
+301356,Pesticide
+301357,Pesticide
+301358,Pesticide
+301359,Pesticide
+301360,Chemicals in Commerce
+301361,Pesticide
+301362,Pesticide
+301363,Pesticide
+301364,Pesticide
+301365,Pesticide
+301366,Pharmacological
+301367,Pesticide
+301368,Pesticide
+301369,Pesticide
+301370,Pesticide
+301371,Pesticide
+301372,Pesticide
+301373,Pesticide
+301374,Pesticide
+301375,Pesticide
+301376,Pesticide
+301377,Pesticide
+301378,Pesticide
+301379,Pesticide
+301380,Pesticide
+301381,Pesticide
+301382,Pesticide
+301383,Pesticide
+301384,Pesticide
+301385,Flame Retardant
+301386,Pesticide
+301387,Pesticide
+301388,Pesticide
+301389,Pesticide
+301390,Pesticide
+301391,Pesticide
+301392,Pesticide
+301393,Pesticide
+301394,Pesticide
+301395,Pesticide
+301396,Pesticide
+301397,Pesticide
+301398,Chemicals in Commerce
+301399,Pesticide
+301400,Pesticide
+301401,Pesticide
+301402,Pesticide
+301403,Pesticide
+301404,Pesticide
+301405,Pesticide
+301406,Pesticide
+301407,Pharmacological
+301408,Pesticide
+301409,Pesticide
+301410,Pesticide
+301411,Pesticide
+301412,Pesticide
+301413,Pharmacological
+301414,Pesticide
+301415,Pharmacological
+301416,Pesticide
+301417,Pesticide
+301418,Pesticide
+301419,Pesticide
+301420,Pesticide
+301421,Pesticide
+301422,Pharmacological
+301423,Pharmacological
+301424,Pesticide
+301425,Pesticide
+301426,Pesticide
+301427,Pesticide
+301428,Pesticide
+301429,Flame Retardant
+301430,Pesticide
+301431,Chemicals in Commerce
+301432,Chemicals in Commerce
+301433,Pesticide
+301434,Chemicals in Commerce
+301435,Pesticide
+301436,Personal Care
+301437,Pharmacological
+301438,Pesticide
+301439,Pesticide
+301440,Pesticide
+301441,Chemicals in Commerce
+301442,Pesticide
+301443,Pesticide
+301444,Pesticide
+301445,Flame Retardant
+301446,Pesticide
+301447,Pesticide
+301448,Pesticide
+301449,Polycyclic Aromatic Hydrocarbon (PAH)
+301450,Pesticide
+301451,Pharmacological
+301452,Pesticide
+301453,Chemicals in Commerce
+301454,Pesticide
+301455,Pesticide
+301456,Chemicals in Commerce
+301457,Pesticide
+301458,Pharmacological
+301459,Pesticide
+301460,Pesticide
+301461,Pesticide
+301462,Pesticide
+301463,Pesticide
+301464,Pesticide
+301465,Pesticide
+301466,Pesticide
+301467,Polycyclic Aromatic Hydrocarbon (PAH)
+301468,Pesticide
+301474,Pesticide
+301475,Pesticide
+301476,Pesticide
+301477,Flame Retardant
+301478,Polycyclic Aromatic Hydrocarbon (PAH)
+301479,Pesticide
+301480,Pesticide
+301481,Pesticide
+301482,Pesticide
+301483,Pesticide
+301484,Personal Care
+301485,Pesticide
+301486,Pesticide
+301487,Pesticide
+301488,Personal Care
+301489,Pesticide
+301490,Personal Care
+301491,Pesticide
+301492,Pesticide
+301493,Pharmacological
+301494,Pesticide
+301495,Pesticide
+301496,Personal Care
+301497,Pesticide
+301498,Chemicals in Commerce
+301499,Pesticide
+301500,Pesticide
+301501,Pharmacological
+301502,Chemicals in Commerce
+301503,Pesticide
+301504,Personal Care
+301505,Personal Care
+301506,Pesticide
+301507,Pesticide
+301508,Pesticide
+301509,Pesticide
+301510,Pesticide
+301511,Pesticide
+301512,Personal Care
+301513,Pesticide
+301514,Pesticide
+301515,Pesticide
+301516,Pesticide
+301517,Pesticide
+301518,Pesticide
+301519,Pesticide
+301520,Pesticide
+301521,Pesticide
+301522,Pesticide
+301523,Pesticide
+301524,Pesticide
+301525,Pesticide
+301526,Pesticide
+301527,Personal Care
+301528,Pesticide
+301529,Pesticide
+301530,Pesticide
+301531,Pesticide
+301532,Pesticide
+301533,Pesticide
+301534,Pesticide
+301535,Pesticide
+301536,Pharmacological
+301537,Personal Care
+301538,Pesticide
+301539,Pesticide
+301540,Pesticide
+301541,Pesticide
+301542,Pesticide
+301543,Pesticide
+301544,Pesticide
+301545,Pesticide
+301546,Pesticide
+301547,Pesticide
+301548,Pesticide
+301549,Pesticide
+301550,Pesticide
+301551,Pesticide
+301552,Pesticide
+301553,Pesticide
+301554,Pesticide
+301555,Pesticide
+301556,Pesticide
+301557,Pesticide
+301558,Pesticide
+301559,Pesticide
+301560,Pesticide
+301561,Personal Care
+301562,Pesticide
+301563,Pesticide
+301564,Pesticide
+301565,Pesticide
+301566,Pesticide
+301567,Pesticide
+301568,Pesticide
+301569,Pesticide
+301570,Pesticide
+301571,Pesticide
+301572,Pesticide
+301573,Pesticide
+301574,Pesticide
+301575,Pesticide
+301576,Pesticide
+301577,Pesticide
+301578,Pesticide
+301579,Pesticide
+301580,Pesticide
+301581,Pesticide
+301582,Pesticide
+301583,Pesticide
+301584,Pesticide
+301585,Pesticide
+301586,Pesticide
+301587,Pesticide
+301588,Pesticide
+301589,Pesticide
+301590,Pesticide
+301591,Pesticide
+301592,Pesticide
+301593,Chemicals in Commerce
+301594,Pesticide
+301595,Pesticide
+301596,Pesticide
+301597,Pesticide
+301598,Flame Retardant
+301599,Pesticide
+301600,Pesticide
+301601,Pesticide
+301602,Pesticide
+301603,Pesticide
+301604,Pesticide
+301605,Pesticide
+301606,Chemicals in Commerce
+301607,Pesticide
+301608,Pesticide
+301609,Pesticide
+301610,Pesticide
+301611,Pesticide
+301612,Pesticide
+301613,Chemicals in Commerce
+301614,Pesticide
+301615,Pesticide
+301616,Pesticide
+301617,Pesticide
+301618,Pesticide
+301619,Pesticide
+301620,Polycyclic Aromatic Hydrocarbon (PAH)
+301621,Pesticide
+301622,Pesticide
+301623,Pesticide
+301624,Chemicals in Commerce
+301625,Chemicals in Commerce
+301626,Pesticide
+301627,Pesticide
+301628,Pesticide
+301629,Pesticide
+301630,Pesticide
+301631,Pesticide
+301632,Pesticide
+301633,Pesticide
+301634,Pesticide
+301635,Pesticide
+301636,Pesticide
+301637,Pesticide
+301638,Pesticide
+301639,Pesticide
+301640,Pesticide
+301641,Pesticide
+301642,Pesticide
+301643,Pesticide
+301644,Pesticide
+301645,Pesticide
+301646,Pesticide
+301647,Pesticide
+301648,Flame Retardant
+301649,Pesticide
+301650,Pesticide
+301651,Pesticide
+301652,Pesticide
+301653,Flame Retardant
+301654,Pesticide
+301655,Pesticide
+301656,Pesticide
+301657,Flame Retardant
+301658,Pesticide
+301659,Polycyclic Aromatic Hydrocarbon (PAH)
+301660,Pesticide
+301661,Flame Retardant
+301662,Pesticide
+301663,Pesticide
+301664,Flame Retardant
+301665,Pesticide
+301666,Pesticide
+301667,Pesticide
+301668,Pesticide
+301669,Pesticide
+301670,Pesticide
+301671,Pesticide
+301672,Pesticide
+301673,Chemicals in Commerce
+301674,Pesticide
+301675,Pesticide
+301676,Pesticide
+301677,Pesticide
+301678,Pesticide
+301679,Pesticide
+301680,Flame Retardant
+301681,Pesticide
+301682,Pesticide
+301683,Pesticide
+301684,Chemicals in Commerce
+301685,Pesticide
+301686,Pesticide
+301687,Pesticide
+301688,Pesticide
+301689,Pesticide
+301690,Pesticide
+301691,Pesticide
+301692,Pesticide
+301693,Pesticide
+301694,Pesticide
+301695,Pesticide
+301696,Pesticide
+301697,Pesticide
+301698,Pesticide
+301699,Pesticide
+301700,Chemicals in Commerce
+301701,Pesticide
+301702,Pesticide
+301703,Pesticide
+301704,Pesticide
+301705,Pesticide
+301706,Pesticide
+301707,Pesticide
+301708,Pesticide
+301709,Pesticide
+301710,Pesticide
+301711,Pesticide
+301712,Pesticide
+301713,Pesticide
+301714,Pesticide
+301715,Pesticide
+301716,Pesticide
+301717,Oxygenated PAH
+301721,Oxygenated PAH
+301724,Polycyclic Aromatic Hydrocarbon (PAH)
+301725,Polycyclic Aromatic Hydrocarbon (PAH)
+301726,Chemicals in Commerce
+301727,Polycyclic Aromatic Hydrocarbon (PAH)
+301728,Polycyclic Aromatic Hydrocarbon (PAH)
+301729,Polycyclic Aromatic Hydrocarbon (PAH)
+301730,Polycyclic Aromatic Hydrocarbon (PAH)
+301731,Polycyclic Aromatic Hydrocarbon (PAH)
+301732,Polycyclic Aromatic Hydrocarbon (PAH)
+301733,Polycyclic Aromatic Hydrocarbon (PAH)
+301734,Polycyclic Aromatic Hydrocarbon (PAH)
+301735,Polycyclic Aromatic Hydrocarbon (PAH)
+301736,Polycyclic Aromatic Hydrocarbon (PAH)
+301737,Polycyclic Aromatic Hydrocarbon (PAH)
+301739,Polycyclic Aromatic Hydrocarbon (PAH)
+301740,Polycyclic Aromatic Hydrocarbon (PAH)
+301741,Polycyclic Aromatic Hydrocarbon (PAH)
+301742,Polycyclic Aromatic Hydrocarbon (PAH)
+301743,Pesticide
+301746,Pesticide
+301747,Pesticide
+301748,Pesticide
+301749,Pesticide
+301750,Pesticide
+301751,Pesticide
+301752,Pesticide
+301753,Pesticide
+301754,Pesticide
+301755,Pesticide
+301756,Pesticide
+301757,Pesticide
+301758,Pesticide
+301763,Dioxins and Furans
+301769,Pesticide
+301770,Pesticide
+301771,Pesticide
+301772,Pesticide
+301773,Pesticide
+301774,Pesticide
+301775,Pesticide
+301776,Pesticide
+301777,Pesticide
+301778,Pesticide
+301779,Pesticide
+301780,Pesticide
+301781,Pesticide
+301782,Pesticide
+301783,Pesticide
+301784,Pesticide
+301785,Pesticide
+301786,Pesticide
+301787,Pesticide
+301788,Pesticide
+301789,Pesticide
+301790,Pesticide
+301791,Pesticide
+301792,Pesticide
+301793,Pesticide
+301794,Pesticide
+301795,Pesticide
+301796,Pesticide
+301797,Pesticide
+301798,Pesticide
+301799,Pesticide
+301800,Pesticide
+301830,Polycyclic Aromatic Hydrocarbon (PAH)
+301831,Pesticide
+301832,Pesticide
+301833,Pesticide
+301971,Flame Retardant
+302066,Flame Retardant
+302067,Flame Retardant
+302068,Flame Retardant
+302069,Flame Retardant
+302070,Flame Retardant
+302071,Flame Retardant
+302072,Flame Retardant
+302073,Flame Retardant
+302074,Flame Retardant
+302075,Flame Retardant
+302076,Flame Retardant
+302077,Flame Retardant
+302078,Flame Retardant
+302079,Flame Retardant
+302080,Flame Retardant
+302081,Flame Retardant
+302082,Flame Retardant
+302083,Flame Retardant
+302084,Flame Retardant
+302085,Flame Retardant
+302086,Flame Retardant
+302088,Flame Retardant
+302089,Flame Retardant
+302090,Flame Retardant
+302091,Flame Retardant
+302092,Flame Retardant
+302095,Polycyclic Aromatic Hydrocarbon (PAH)
+302096,Polycyclic Aromatic Hydrocarbon (PAH)
+302097,Polycyclic Aromatic Hydrocarbon (PAH)
+302100,Polycyclic Aromatic Hydrocarbon (PAH)
+302101,Polycyclic Aromatic Hydrocarbon (PAH)
+302167,Flame Retardant
+302170,Flame Retardant
+302171,Flame Retardant
+302172,Flame Retardant
+302298,Polycyclic Aromatic Hydrocarbon (PAH)
+302299,Polycyclic Aromatic Hydrocarbon (PAH)
+302300,Polycyclic Aromatic Hydrocarbon (PAH)
+302301,Polycyclic Aromatic Hydrocarbon (PAH)
+302503,Flame Retardant
+302555,Flame Retardant
+302556,Flame Retardant
+302557,Flame Retardant
+302558,Flame Retardant
+302559,Flame Retardant
+302560,Flame Retardant
+302561,Flame Retardant
+302562,Flame Retardant
+302563,Flame Retardant
+302564,Flame Retardant
+302565,Flame Retardant
+302567,Flame Retardant
+302568,Flame Retardant
+302569,Flame Retardant
+302570,Flame Retardant
+302571,Flame Retardant
+302572,Flame Retardant
+302573,Flame Retardant
+302574,Flame Retardant
+302575,Flame Retardant
+302576,Flame Retardant
+302577,Flame Retardant
+302578,Flame Retardant
+302579,Flame Retardant
+302580,Flame Retardant
+302581,Flame Retardant
+302582,Flame Retardant
+302584,Flame Retardant
+302586,Flame Retardant
+302587,Flame Retardant
+302588,Flame Retardant
+302589,Flame Retardant
+302590,Flame Retardant
+302591,Flame Retardant
+302592,Flame Retardant
+302593,Flame Retardant
+302600,Chemicals in Commerce
+302601,Chemicals in Commerce
+302602,Chemicals in Commerce
+302603,Chemicals in Commerce
+302604,Chemicals in Commerce
+302605,Chemicals in Commerce
+302606,Chemicals in Commerce
+302607,Chemicals in Commerce
+302608,Chemicals in Commerce
+302610,Flame Retardant
+302612,Flame Retardant
+302613,Flame Retardant
+302615,Flame Retardant
+302616,Flame Retardant
+302617,Flame Retardant
+302623,Flame Retardant
+302626,Flame Retardant
+302627,Flame Retardant
+302635,Flame Retardant
+302636,Flame Retardant
+302637,Flame Retardant
+302638,Flame Retardant
+302639,Chemicals in Commerce
+302640,Chemicals in Commerce
+302641,Chemicals in Commerce
+302642,Chemicals in Commerce
+302643,Chemicals in Commerce
+302645,Chemicals in Commerce
+302647,Chemicals in Commerce
+302648,Chemicals in Commerce
+302649,Chemicals in Commerce
+302650,Chemicals in Commerce
+302651,Chemicals in Commerce
+302652,Chemicals in Commerce
+302653,Chemicals in Commerce
+302654,Chemicals in Commerce
+302655,Chemicals in Commerce
+302661,Personal Care
+302662,Personal Care
+302663,Flame Retardant
+302664,Flame Retardant
+302665,Flame Retardant
+302666,Flame Retardant
+302667,Flame Retardant
+302668,Flame Retardant
+302669,Flame Retardant
+302670,Flame Retardant
+302671,Flame Retardant
+302672,Flame Retardant
+302673,Flame Retardant
+302674,Flame Retardant
+302675,Flame Retardant
+302676,Flame Retardant
+302677,Flame Retardant
+302678,Flame Retardant
+302679,Flame Retardant
+302680,Flame Retardant
+302681,Flame Retardant
+302682,Flame Retardant
+302683,Flame Retardant
+302684,Flame Retardant
+302685,Flame Retardant
+302686,Flame Retardant
+302706,Dioxins and Furans
+302707,Dioxins and Furans
+302708,Dioxins and Furans
+302709,Dioxins and Furans
+302710,Dioxins and Furans
+302711,Dioxins and Furans
+302712,Dioxins and Furans
+302713,Dioxins and Furans
+302714,Dioxins and Furans
+302715,Dioxins and Furans
+302716,Dioxins and Furans
+302717,Dioxins and Furans
+302718,Dioxins and Furans
+302719,Dioxins and Furans
+302720,Dioxins and Furans
+302721,Dioxins and Furans
+302722,Dioxins and Furans
+302723,Dioxins and Furans
+302724,Dioxins and Furans
+302725,Dioxins and Furans
+302726,Dioxins and Furans
+302727,Dioxins and Furans
+302728,Dioxins and Furans
+302729,Dioxins and Furans
+302730,Dioxins and Furans
+302731,Dioxins and Furans
+302732,Dioxins and Furans
+302733,Dioxins and Furans
+302734,Dioxins and Furans
+302735,Dioxins and Furans
+302736,Dioxins and Furans
+302737,Dioxins and Furans
+302738,Dioxins and Furans
+302739,Chemicals in Commerce
+302740,Chemicals in Commerce
+302741,Dioxins and Furans
+302742,Dioxins and Furans
+302751,Dioxins and Furans
+302752,Dioxins and Furans
+302753,Dioxins and Furans
+302754,Dioxins and Furans
+302755,Dioxins and Furans
+302756,Dioxins and Furans
+302757,Dioxins and Furans
+302758,Dioxins and Furans
+302759,Dioxins and Furans
+302760,Dioxins and Furans
+302761,Dioxins and Furans
+302762,Dioxins and Furans
+302763,Chemicals in Commerce
+302764,Chemicals in Commerce
+302765,Chemicals in Commerce
+302766,Chemicals in Commerce
+302767,Chemicals in Commerce
+302768,Chemicals in Commerce
+302769,Chemicals in Commerce
+302770,Chemicals in Commerce
+302771,Chemicals in Commerce
+302772,Chemicals in Commerce
+302773,Chemicals in Commerce
+302774,Chemicals in Commerce
+302776,Chemicals in Commerce
+302849,Flame Retardant
+302850,Personal Care
+302325,Flame Retardant

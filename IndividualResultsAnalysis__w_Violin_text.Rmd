@@ -1,0 +1,404 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Individual Results `r tabsetting`
+
+
+
+## Graphics comparing your values of these chemicals to others
+
+First we'll provide a graphical representation showing how your detected amount of each of these compounds compares to OTHER PEOPLE IN THIS SAME STUDY who ALSO tested as having been exposed to these compounds.
+
+
+```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
+
+
+
+#  NOTE that I'm setting width and heigh directly here.  THERE ARE OTHER WAYS including most likely 
+# Convert ggplot to Plotly   
+# p_plotly <- ggplotly(p)
+# # # Set the width of the Plotly plot
+# p_plotly <- p_plotly %>% layout(width = 800) # Adjust the width as needed
+
+
+#Define Function to BUILD PLotly interactive PLot
+### I made this a FILE so i could loop through it and print all the plots for all the compounds
+### BUT BUT BUT because of weird problems printing things in loop i could not really get the control I wanted
+### but I'm leaving this function and using it but eventually may need to find way to print each plot separately
+#
+
+buildPlotlyViolin <- function(chemOfConcern,testResults_ChemOfConcern) {
+  #chemical_to_chart<-chemsOfConcern[7]
+  #nrow()
+
+
+  #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
+  # testResults_ChemOfConcern <- testResults.big %>%
+  #   filter(ParameterName == chemOfConcern) %>%
+  #   select(SampleNumber, Result, ParameterName)
+  
+  # PICK the highlight point which is OUR ONE USERS result for this one chemical
+  highlight_point <- testResults_ChemOfConcern[testResults_ChemOfConcern$SampleNumber ==
+                                                 subject, ]
+  
+  
+  # Calculate mean and median for each group
+  summary_stats <- testResults_ChemOfConcern %>%
+    group_by(ParameterName) %>%
+    summarise(mean_Result = mean(Result),
+              median_Result = median(Result))
+  
+  # Create the base ggplot with hover text which took lots of playing around to get it to work
+  ### NOTE:  I'm was surpressing   "Ignoring unknown aesthetics: text" which for some reason shows up but i fixed maybe
+  chemPlot <- ggplot(testResults_ChemOfConcern ,
+                     aes(
+                       x = factor(ParameterName),
+                       y = Result,
+                       fill = factor(ParameterName)
+                     )) +
+    geom_violin(trim = FALSE) +
+    #geom_boxplot(width=0.1, position=position_dodge(0.9)) +    # DELETE BOX PLOT as just confusing
+    geom_point(
+      data = summary_stats,
+      aes(x = factor(ParameterName), y = mean_Result),
+      color = "blue",
+      size = 2,
+      shape = 21,
+      fill = NA
+    ) +
+    geom_point(
+      data = summary_stats,
+      aes(x = factor(ParameterName), y = median_Result),
+      #color = "green",
+      color = "#008000",
+      size = 3,
+      shape = 21,
+      fill = NA
+      
+    ) +
+    geom_point(
+      data = highlight_point,
+      aes(x = factor(ParameterName), y = Result),
+      color = "red",
+      size = 4,
+      shape = 21,
+      fill = NA
+    ) +
+    labs(
+      #title = "Mean, Median, and Your exposure", y = "Nanograms per Gram Silicone", x = ""
+      title = "<span style='color:green;'>Mean</span>, <span style='color:blue;'>Median</span>, and <span style='color:red;'>Your</span> exposure",
+      y = "Nanograms per Gram Silicone",
+      x = ""
+      ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_markdown(size = 14, face = "bold")
+      ) +
+    scale_fill_brewer(palette = "Pastel1") +
+    theme_minimal(base_size = 15) +
+    theme(legend.position = "none") +
+    coord_flip()
+  
+  # Display the interactive plot but try to style just ONE POINT
+  text_MEDIAN_label <-  paste("Median Result:", round(summary_stats$median_Result, 2))
+  text_MEAN_label <-  paste("Mean Result:", round(summary_stats$mean_Result, 2))
+  text_YOURDATA_label <-  paste("Your Result:", round(highlight_point$Result, 2))
+  
+  chemPlot <- chemPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ','))
+  
+  #plotly_json(chemPlot)   # this is the command to run to figure out what "traces" to set to which info
+  
+  ### THIS SHOULD GET RID OF EXPONENTS
+  ### because I had problems formating TICKs but I need to format in GGPLOT not PLOTLY... and then plotly just works
+  #options(scipen = 999)
+  
+  chemPlot_interactive <- ggplotly(chemPlot)  %>%
+    style(hoverinfo = "none", traces = 1) %>%
+    style(text = text_MEDIAN_label, traces = 2)  %>%
+    style(text = text_MEAN_label, traces = 3) %>%
+    style(text = text_YOURDATA_label, traces = 4) %>%
+    config(displayModeBar = FALSE)
+  
+  #chemPlot_interactive
+  return(chemPlot_interactive)
+}
+
+
+# Make list of all chemicals that our ONE user had that showed up in "any" of the databases
+##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
+#
+chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
+      oneResultIARCRisk$`Chemical Name`))
+
+
+###
+## 
+# Additional Notes:
+# htmltools::tagList and tagAppendChild: These functions from the htmltools package help in 
+#   appending and managing multiple HTML widgets (like Plotly charts) in an RMarkdown document.
+# Explicit Rendering: By using tagList, each Plotly chart is managed as an individual HTML widget, 
+#   ensuring proper rendering in the knitted HTML output.
+### taglist
+
+#### NEW RESEARCH 9/27/2024:
+# https://stackoverflow.com/questions/49725591/dynamically-control-number-of-tabsets-in-r-markdown
+# https://stackoverflow.com/questions/43636120/how-to-embed-plots-into-a-tab-in-rmarkdown-in-a-procedural-fashion
+# https://github.com/rstudio/rstudio/issues/1795#issuecomment-505779701
+#
+### THIS IS IT >>  https://github.com/rstudio/rmarkdown/issues/2075  and is good but I actually used:
+###   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops 
+
+
+
+
+```
+
+
+
+### Here we have a  plot of each Chemical of Concern {.tabset  .tabset-pills}
+
+We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.
+
+Please click on each chemical name to see where your level of exposure compares to others in this study.
+
+```{r, include=FALSE}
+# THIS weird section is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
+fig <- ggplot(cars) + 
+  geom_point(aes(speed, dist))
+htmltools::tagList(ggplotly(fig))
+```
+
+
+
+```{r, results='asis',echo=FALSE,eval=TRUE}
+
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops 
+
+
+for (i in 1:length(chemsOfConcern)) {
+
+  chemOfConcern <- chemsOfConcern[i]
+  
+  #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had 
+  testResults_ChemOfConcern <- testResults.big %>%
+    filter(ParameterName == chemOfConcern) %>%
+    select(SampleNumber, Result, ParameterName)
+
+  if (nrow(testResults_ChemOfConcern)>1) {
+    cat("####", chemOfConcern, '{-}',  '\n\n')
+
+    print(htmltools::tagList(buildPlotlyViolin(chemOfConcern,testResults_ChemOfConcern)))
+    
+    cat('Your chemical ',chemOfConcern,' was found in such and such Database which I will add by pulling info from a database and giving a link as well')
+
+    cat(' \n \n')
+  }
+
+}
+
+
+```
+
+
+
+## Check against Databases 
+
+For all the chemicals found on your wristband we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals.  Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
+
+We are looking up all the chemicals you tested positive for that are listed in any of (1) The EPA's Integrated Risk Information System (IRIS) is a human health assessment program, (2) The California Proposition 65 chemical database which categorizes many different chemicals with respect to toxicity (potential hazard), and (3) Chemicals classified by the International Agency for the Research on Cancer which categorizes many different chemicals with respect to types of cancer risks
+
+### EPA IRIS 
+
+Some of the chemicals found on your wristband have evaluations available from the United States Environmental Protection Agency (EPA).  The EPA's Integrated Risk Information System (IRIS) is a human health assessment program that evaluates information on health effects that may result from exposure to environmental contaminants. Through the IRIS Program, EPA provides science-based human health assessments to support the Agency's regulatory activities. The IRIS database [(http://www.epa.gov/iris/)](http://www.epa.gov/iris/) is web accessible and contains information on more than 550 chemical substances.  We have looked up all the chemicals found on your wristband and provided links to the data on the EPA IRIS web site in those cases where the data is available. 
+<br>
+<br>
+
+
+
+```{r  epaIrisPrint, results='asis', echo=FALSE, message=FALSE}
+
+pandoc.table(as.data.frame(oneResultEpaIris),
+             caption="Observed Chemical List showing EPA IRIS URLs",
+             justify=c("left","center"),
+             emphasis.rownames=TRUE
+              ,split.table = Inf)
+
+#rm(oneResultEpaIris)
+#rm(epaIris)
+
+```
+
+
+
+<br>
+<br>
+
+
+
+```{r   califProp65printx1, results='asis',echo=FALSE,  eval=(nrow(oneResultCalifProp65Risk)!=0) }
+
+cat("### Proposition 65")
+
+```
+
+&nbsp;
+
+```{r   califProp65printx2, results='asis',echo=FALSE,  eval=(nrow(oneResultCalifProp65Risk)!=0) }
+
+cat("Some of the chemicals found on your wristband are classified per California Proposition 65",
+      "[(http://www.oehha.ca.gov/prop65.html)](http://www.oehha.ca.gov/prop65.html)",
+      "which categorizes many different chemicals with respect to toxicity (potential hazard). ",
+      "Of the chemicals found on your wristband, here are the ones that are listed as",
+      "having some type of toxicity per California Proposition 65. ",
+      "There are four types of toxicity catagorized by Prop65:  Cancer, Developmental Toxicity, ", 
+      "Female Reproductive Toxicity, and Male Reproductive Toxicity. ",
+      "We have summarized some of the listed ",
+      "risks in the table below but please refer to the official California website ",
+      "listing specific risks for each chemical for up-to-date and accurate information:",
+      "[(https://www.p65warnings.ca.gov/fact-sheets)](https://www.p65warnings.ca.gov/fact-sheets)",
+      sep=" ")
+
+
+```
+
+
+```{r  califProp65printx3, results='asis', echo=FALSE, message=FALSE, eval=(nrow(oneResultCalifProp65Risk)!=0)}
+
+pandoc.table(as.data.frame(oneResultCalifProp65Risk),
+             caption="Observed Chemical List showing California Prop 65",
+             justify=c("left","center")
+              ,split.table = Inf)
+
+#rm(oneResultCalifProp65Risk)
+
+```
+
+<br>
+<br>
+
+
+
+```{r   IARCprintx1, results='asis',echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0)}
+
+cat("### IARC")
+
+
+```
+
+```{r   IARCprintx2, results='asis',echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0)}
+
+cat("The chemicals found on the wristband are classified by the International Agency",
+      "for the Research on Cancer [(https://monographs.iarc.who.int/agents-classified-by-the-iarc/))](https://monographs.iarc.who.int/agents-classified-by-the-iarc/))",
+      "which categorizes many different chemicals with respect to types of cancer risks.",
+      "Of the chemicals found on your wristband, here are the ones that are listed as having some type of rating per IARC.  ",
+      sep=" ")
+
+```
+
+
+```{r   IARCprintx2a, results='asis',echo=FALSE, eval=FALSE}
+"[^1]: * **IARC classifies risks into four groups:**"
+cat("+ Group 1: The agent is carcinogenic to humans:  This category is used when there is sufficient evidence of carcinogenicity in humans.")
+cat("+ Group 2A: The agent is probably carcinogenic to humans:  This category is used when there is limited evidence of carcinogenicity in humans and sufficient evidence of carcinogenicity in experimental animals. ")
+cat("+ Group 2B: The agent is possibly carcinogenic to humans:  This category is used for agents for which there is limited evidence of carcinogenicity in humans and less than sufficient evidence of carcinogenicity in experimental animals. ")
+cat("+ Group 3: The agent is not classifiable as to its carcinogenicity to humans: This category is used most commonly for agents for which the evidence of carcinogenicity is inadequate in humans and inadequate or limited in experimental animals.  An evaluation in Group 3 is not a determination of non-carcinogenicity or overall safety. ")
+cat("+ Group 4: The agent is probably not carcinogenic to humans: This category is used for agents for which there is evidence suggesting lack of carcinogenicity in humans and in experimental animals. ")
+
+
+```
+
+
+```{r IARCprintx3, results='asis', echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0), message=FALSE}
+
+pandoc.table(as.data.frame(oneResultIARCRisk),
+             caption="Observed Chemical List showing IRAC classification",
+             justify=c("left","center")
+              ,split.table = Inf)
+
+
+#rm(oneResultIARCRisk)
+#rm(IARCRisk)
+
+```
+
+<br>
+<br>
+
+
+## Individual: Chemical Info
+
+
+
+```{r IndividualChemicalListWithClassification, child='IndividualChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
+```
+
+
+```{r IndividualChemicalListWithOutClassification, child='IndividualChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```
+
+
+
+```{r IndividualClassificationShowingChemicalsAndAverages, child='IndividualClassificationShowingChemicalsAndAverages_text.Rmd', eval = !HideClassificationInformation}
+```
+
+
+
+
+
+### Individual Percentage vs Maximum 
+
+
+Another way to look at this is to wonder what percentage of a chemical a particular individual had compared to the maximum found for that chemical in any wristband in this project.   In other words, if wristband-A had 100 nano-grams per gram of wristband, and the maximum found in any individual was 1,000 nano-grams per gram wristband, then wristband-A had 10% of the maximum value found. The chart below shows the percentage of maximum found for this subject for each chemical.
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
+
+
+```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=6,fig.cap="",dpi=150}
+################BEGIN x5 Perc
+
+perc_values <- testResults.big %>%   # NOTE using TR instead of testResults just cause then it has ParameterName
+  filter(SampleNumber==subject) %>%
+  select(ParameterName,norm_Result) 
+
+ c<-ggplot(perc_values, aes(y=norm_Result ,factor(ParameterName))) +
+    #geom_bar(stat="identity")+
+    geom_bar(stat="identity", fill="blue", colour="black")+
+    labs(x="All Chemicals Found for Anyone",
+         y="Percent of Max value Found",
+         title=paste("Your Percentage of Max Exposure\n",
+                     "Found per Chemical\n",
+                     "Subject = ",subject))
+#c
+
+axis.text.x.size <-6  # JUST changed to be a variable
+if (howManyUniqueChemFoundAcrossAllWristbands < 60 ) axis.text.x.size <-10
+c<- c+theme(axis.line=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+           axis.text.x = element_text(angle = 90, vjust=.1,hjust=1,size=axis.text.x.size ),
+#           axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=6 ),
+
+            legend.position="none",
+            panel.background=element_blank(),
+            panel.border=element_blank(),
+            panel.grid.major=element_blank(),
+            panel.grid.minor=element_blank(),
+            plot.background=element_blank())
+
+#c <- c + scale_y_continuous(labels=percent, limits=c(0,1))
+c <- c + scale_y_continuous(labels=percent)
+c
+
+rm(c,perc_values)
+
+```
+
+<br>
+<br>
+

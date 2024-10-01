@@ -1,0 +1,98 @@
+### Chemicals on ANY Wristband with Average Air Concentration
+
+Each of the following list of chemicals were found on at least one of the wristbands in this study. Each chemical is listed once along with the maximum average Air Concentration (in nanograms per liter) and the wristband on which that maximum average air concentration was found.
+
+```{r  ListChemFoundWithCaCalc, results='asis', echo=FALSE, message=FALSE}
+# Pull out the results for our ONE SUBJECT
+
+testResultsWithCaForCustomer <-
+  testResults.big %>%
+  filter(Result > 0) %>%
+  select(ParameterName, CASNumber, SampleNumber, Ca_for_Customer) %>%
+  group_by(ParameterName, CASNumber) %>%
+  filter(Ca_for_Customer == max(Ca_for_Customer)) %>%
+  mutate(Ca_for_Customer = signif(suppressWarnings(as.numeric(Ca_for_Customer)), digits = 3)) %>%
+  #  mutate(Ca_for_Customer = suppressWarnings(signif(as.numeric(Ca_for_Customer),digits=3) )) %>%
+  distinct() %>%
+  filter(!is.na(Ca_for_Customer)) %>%
+  arrange(ParameterName) %>%
+  rename(
+    "Chemical Name" = ParameterName,
+    "CAS Number" = CASNumber,
+    "Participant" = SampleNumber,
+    "Nanograms per Liter Air" = Ca_for_Customer
+  )
+
+
+
+
+pandoc.table(as.data.frame(testResultsWithCaForCustomer),
+  caption = "Maximum Air Concentration found for Each Found Chemical",
+  justify = c("left", "left", "center", "right"),
+  emphasis.rownames = TRUE,
+  split.table = Inf,
+  big.mark = ",",
+  missing = "not found",
+  digits = 2,
+  round = 2
+)
+
+rm(testResultsWithCaForCustomer)
+```
+
+<br> <br>
+
+### Chemicals on ANY Wristband with Average Air Concentration with NIOSH/OSHA LIMITS
+
+Each of the following list of chemicals were found on at least one of the wristbands in this study and has at least one of a NIOSH or OSHA limit. Each chemical is listed once along with the maximum "average Air Concentration (in nanograms per liter)" found on any wristband, the wristband with that maximum average value, and NIOSH and OSHA limits for that compound. All values are given in terms of Nanograms per Liter Air.
+
+```{r  ListChemFoundWithCaCalcPlusNIOSHosha, results='asis', echo=FALSE, message=FALSE, eval = TRUE}
+
+
+
+### Chemicals on ANY Wristband with Average Air Concentration with NIOSH/OSHA LIMITS
+
+# Each of the following list of chemicals were found on at least one of the wristbands in this study and has at least one of a NIOSH or OSHA limit.  Each chemical is listed once along with the maximum "average Air Concentration (in nanograms per liter)" found on any wristband, the wristband with that maximum average #value, and NIOSH and OSHA limits for that compound.  All values are given in terms of Nanograms per Liter Air.
+
+
+testResultsWithCaForCustomerPlusNioshOsha <-
+  testResults.big %>%
+  filter(Result > 0) %>%
+  mutate(NIOSH = suppressWarnings(as.numeric(NIOSH))) %>%
+  mutate(OSHA = suppressWarnings(as.numeric(as.numeric(OSHA)))) %>%
+  select(ParameterName, CASNumber, SampleNumber, Ca_for_Customer, NIOSH, OSHA) %>%
+  mutate(Ca_for_Customer = suppressWarnings(signif(as.numeric(Ca_for_Customer), digits = 3))) %>%
+  group_by(ParameterName, CASNumber, NIOSH, OSHA) %>%
+  filter(Ca_for_Customer == max(Ca_for_Customer)) %>%
+  distinct() %>%
+  # ungroup() %>%
+  #  filter(!(is.na(NIOSH) && is.na(OSHA))) %>%  # DO NOT include any which have no NIOSH or OSHA limits
+  filter(suppressWarnings((!is.na(as.numeric(NIOSH)) || !is.na(as.numeric(OSHA))))) %>% # DO NOT include any which have no NIOSH or OSHA limits
+  arrange(ParameterName) %>%
+  # arrange(NIOSH,OSHA)%>%
+  rename(
+    "Chemical Name" = ParameterName,
+    "CAS Number" = CASNumber,
+    "Participant" = SampleNumber,
+    "Nanograms per Liter Air" = Ca_for_Customer
+  )
+
+
+
+
+
+pandoc.table(as.data.frame(testResultsWithCaForCustomerPlusNioshOsha),
+  caption = "Maximum Air Concentration found for Each Found Chemical with NIOSH/OSHA limits",
+  justify = c("left", "left", "center", "right", "right", "right"),
+  emphasis.rownames = TRUE,
+  split.table = Inf,
+  big.mark = ",",
+  missing = "not found",
+  digits = 2,
+  round = 2
+)
+
+rm(testResultsWithCaForCustomerPlusNioshOsha)
+```
+
+<br> <br>
