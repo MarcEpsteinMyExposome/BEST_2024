@@ -23,6 +23,7 @@ output:
   word_document:
     reference_docx: MyExposomeFormat_1527_v6.docx
   editor_options: 
+    chunk_output_type: console
   chunk_output_type: console
 ---
 
@@ -138,6 +139,7 @@ if (!exists("buildMesgV")) {
 Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
 NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
 is_RMD_type_equal_DRS <- RMD_type == "DRS"
+
 ```
 
 
@@ -283,13 +285,18 @@ ClassCompareSubject <- left_join(
 `r if(testDoneFor != ""){ paste("**This test was done for:     ",testDoneFor, "**")   }`
 
 
-<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
-```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = DoGroupAnalysisOnly}
+<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL REPORT -->
+```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=(DoSpecificSubjectAnalysis && !DoGroupAnalysis) }
 
 ```
 
-<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL AND GROUP REPORT -->
-```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=DoSpecificSubjectAnalysis}
+<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
+```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
+
+```
+
+<!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE  INDIVIDUAL REPORT and GROUP MESSAGE -->
+```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval = (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
 
 ```
 
@@ -420,14 +427,14 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
-```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = FALSE}
+```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = DoSpecificSubjectAnalysis}
 
 ```
 
 
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
-```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = FALSE}
+```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = DoSpecificSubjectAnalysis}
 
 ```
 
@@ -465,17 +472,20 @@ if (DoSpecificSubjectAnalysis) {
 
 ### GROUP RESULTS COME AFTER INDIVIDUAL RESULTS
 ####### add line to indicate start of GROUP results
-mesg.v <- addMesg(mesg.v, 1, " ", "**GROUP RESULTS**")
-# Add things to mesg vector using a function call to support functions
-mesg.v <- buildMesgVGroup(
-  testResults.big,
-  mesg.v,
-  SubClassScores,
-  results_W,
-  countEPAiristHits,
-  countCalifProp65Hits,
-  countIARCHits
-)
+
+if (DoGroupAnalysis) {
+  mesg.v <- addMesg(mesg.v, 1, " ", "**GROUP RESULTS**")
+  # Add things to mesg vector using a function call to support functions
+  mesg.v <- buildMesgVGroup(
+    testResults.big,
+    mesg.v,
+    SubClassScores,
+    results_W,
+    countEPAiristHits,
+    countCalifProp65Hits,
+    countIARCHits
+  )
+}
 
 
 pandoc.list(mesg.v) ## This prints the Individual Band (if doing) and Group bands report(s)
@@ -554,7 +564,7 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 
 <!-- SHOW RESULTS FOR FULL GROUP -->
-```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = TRUE}
+```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = DoGroupAnalysis}
 
 ```
 

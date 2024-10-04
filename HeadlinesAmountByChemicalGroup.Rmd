@@ -19,6 +19,7 @@ THIS IS COMPLICATED and unclear what I really want to display... TBD.
 
 
 ## Total Chemical By Chemical Group 
+
 ```{r printMessageForTotalChemByGroup, results='asis', echo=FALSE, message=FALSE,fig.width=10, fig.height=4}
 
 testResults.bigNoZeroWithClass  <- testResults.big %>%
@@ -26,10 +27,9 @@ testResults.bigNoZeroWithClass  <- testResults.big %>%
   inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
   select(ParameterID,SampleNumber,Result, classification)
 
-str(testResults.bigNoZeroWithClass)
+#str(testResults.bigNoZeroWithClass)
 
-
-
+cat("This is not yet implemented.  This is to print HEADLINE RULES by CHEM GROUP if we decide to do that")
 
 
 # 
