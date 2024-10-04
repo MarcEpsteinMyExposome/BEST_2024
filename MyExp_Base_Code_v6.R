@@ -362,6 +362,7 @@ if (WisconsinFixup == TRUE && (RMD_type == "VOPAH" || RMD_type == "PAH" || RMD_t
 }
 
 
+
 # setdiff(testResultsRawTable$ParameterID,masterParam$ParameterID )
 # setdiff(masterParam$ParameterID, testResultsRawTable$ParameterID )
 
@@ -566,14 +567,21 @@ rm(
 # contains how may of each classification each subject got
 SubClassScores <- testResults %>%
   filter(Result > 0) %>% # choose only hits
-  inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
+  left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
+  ### DURING ETSTING i changed from INNER  JOIN to LEFT JOIN
+  #inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
   select(classification, SampleNumber) %>% # pick columns needed
   count(classification, SampleNumber) %>% # how many of each classification for each wristband
   arrange(SampleNumber) %>%
   dplyr::rename(aggScore = n)
 
-
+#testResults <- testResults.big
 # results_W is needed columns from testResult turned into a WIDE version
+
+#Error in `spread()`:
+#  ! Each row of output must be identified by a unique combination of keys.
+#  ℹ Keys are shared for 471 rows
+
 results_W <- testResults %>%
   select(SampleNumber, ParameterName, Result) %>%
   spread(SampleNumber, Result, fill = 0)

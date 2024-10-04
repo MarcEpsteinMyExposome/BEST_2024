@@ -181,26 +181,32 @@ htmltools::tagList(ggplotly(fig))
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops 
 
 
-for (i in 1:length(chemsOfConcern)) {
+if(length(chemsOfConcern>=1)){
+  for (i in 1:length(chemsOfConcern)) {
 
-  chemOfConcern <- chemsOfConcern[i]
-  
-  #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had 
-  testResults_ChemOfConcern <- testResults.big %>%
-    filter(ParameterName == chemOfConcern) %>%
-    select(SampleNumber, Result, ParameterName)
-
-  if (nrow(testResults_ChemOfConcern)>1) {
-    cat("####", chemOfConcern, '{-}',  '\n\n')
-
-    print(htmltools::tagList(buildPlotlyViolin(chemOfConcern,testResults_ChemOfConcern)))
+    chemOfConcern <- chemsOfConcern[i]
     
-    cat('Your chemical ',chemOfConcern,' was found in such and such Database which I will add by pulling info from a database and giving a link as well')
-
-    cat(' \n \n')
+    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had 
+    testResults_ChemOfConcern <- testResults.big %>%
+      filter(ParameterName == chemOfConcern) %>%
+      select(SampleNumber, Result, ParameterName)
+  
+    if (nrow(testResults_ChemOfConcern)>1) {
+      cat("####", chemOfConcern, '{-}',  '\n\n')
+  
+      print(htmltools::tagList(buildPlotlyViolin(chemOfConcern,testResults_ChemOfConcern)))
+      
+      cat('Your chemical ',chemOfConcern,' was found in such and such Database which I will add by pulling info from a database and giving a link as well')
+  
+      cat(' \n \n')
+    }
   }
-
+} else {
+  testResults_ChemOfConcern <- testResults.big %>%
+      filter(ParameterName == "NEVER MATCH") %>%
+      select(SampleNumber, Result, ParameterName)
 }
+
 
 
 ```

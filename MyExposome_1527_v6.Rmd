@@ -107,8 +107,8 @@ output:
   - Add MesgV for wristbands with NO compounds found
   - Top section: pdf_document: fig_height: 6.5 keep_tex: yes
 -->
- 
- 
+
+
  
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 
@@ -419,8 +419,8 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 
 
-<!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
-```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = TRUE}
+<!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
+```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = FALSE}
 
 ```
 

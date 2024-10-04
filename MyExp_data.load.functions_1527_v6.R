@@ -1196,18 +1196,22 @@ load.riskCalifProp65 <-
     riskCxx <- riskCxx[!riskCxx$toxicityType == "NULL",]
 
     # Collapse all values of Toxicity type so only one row for each parameterID
-    riskCxx2 <-
-      aggregate(toxicityType ~ ParameterID,
-                data = riskCxx,
-                paste,
-                collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
+    if (nrow(riskCxx)>0) {
+      riskCxx <-
+        aggregate(toxicityType ~ ParameterID,
+                  data = riskCxx,
+                  paste,
+                  collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
 
-    # Eliminate all rows where NO RISK
-    # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
-    # riskCalifProp65<-riskCalifProp65[,c("ParameterID","toxicityType")]
+      # Eliminate all rows where NO RISK
+      # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
+      # riskCalifProp65<-riskCalifProp65[,c("ParameterID","toxicityType")]
 
-    # riskCalifProp65
-    riskCxx2
+      # riskCalifProp65
+    }
+
+
+    riskCxx
   }
 #
 # READ in EPA IRIS chemical classification
@@ -1316,3 +1320,4 @@ load.IARCRisk <- function(IARCRiskTableName) {
 # testResults + classifications gives me the basic groups and is sorta the master results
 # IARCRisk, epaIris, riskCalifProp65 are the RISK databases
 # masterParam is maps ParameterID to ParameterName and CASNumber
+

@@ -90,11 +90,11 @@ FixupForAnyone <- any(
   ULILLEFRANCEFixup<-FALSE,
   UCONNFixUp <- FALSE,
   CHICAGOFixUp <- FALSE,
-  GEORGETOWNFixUp <- FALSE,
+  GEORGETOWNFixUp <- TRUE,
   SBIR_P1_May2022Fixup <- FALSE,
   UC_DAVISFixup <- FALSE,
   UniVisionFixup <- FALSE,
-  CombinedTestData <- TRUE,
+  CombinedTestData <- FALSE,
   BostonFixup <- FALSE,
   UFL_FloridaFixup <- FALSE
 )
@@ -115,8 +115,9 @@ FixupForAnyone <- any(
 #RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
 #RMD_type <- 'PEST'
 # RMD_type <- 'FLAME'
-RMD_type <- "DRS"
+#RMD_type <- "DRS"
 # RMD_type<-'SBIR_P1_DRS_plus'
+RMD_type <- 'PHTH'
 
 
 
@@ -289,12 +290,15 @@ if (UniVisionFixup) {
   testDoneFor <- "University of Illinois Chicago, School of Public Health "
 } else if (GEORGETOWNFixUp) { #  GEORGETOWN
   # Trying to do NO adjustment on U of New Mexico  (NOT MONTANA do not mix them up)
-  FixupFile <- "./data/Sample Key_Georgetown.csv" #
+  FixupFile <- "./data/Sample Key_Georgetown_PHTH.csv" #
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
   testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
+  if (RMD_type == "PHTH") {
+    ExpectedUnits <- "ng/g"
+  }
 } else if (WisconsinFixup) {
   # FixupFile <-"./data/Wisconsin ID and sample info_to_normalize.csv"
   # FixupFile <-"./data/Fixup_Sample Key_WI_Client3_LookupTable.csv"
@@ -380,7 +384,7 @@ OutputBigComparisonStatTable <- FALSE
 # set all parameters above as for REAL dataset but then set these two flags below:
 #
 
-makeIntoDemoData <- TRUE
+makeIntoDemoData <- FALSE
 if (makeIntoDemoData) {
   testDoneFor <- "Demonstration Purposes"
   howManyDemoResults <- 50 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
@@ -413,12 +417,12 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
 #### THIS FIRST SET is to DO the individualization
-HideIndividualization<-FALSE # idea is to hide, on the charts, the things that colorize charts for a specific individual
-DoSpecificSubjectAnalysis<-TRUE  #idea is to do BOTH group analysis and specific-subject-analysis output
+#HideIndividualization<-FALSE # idea is to hide, on the charts, the things that colorize charts for a specific individual
+#DoSpecificSubjectAnalysis<-TRUE  #idea is to do BOTH group analysis and specific-subject-analysis output
 
 #### THIS SECOND SET is to HIDE the individualization
-#HideIndividualization <- TRUE # idea is to hide, on the charts, the things that colorize charts for a specific individual
-#DoSpecificSubjectAnalysis <- FALSE # idea is to do BOTH group analysis and specific-subject-analysis output
+HideIndividualization <- TRUE # idea is to hide, on the charts, the things that colorize charts for a specific individual
+DoSpecificSubjectAnalysis <- FALSE # idea is to do BOTH group analysis and specific-subject-analysis output
 
 
 ### NOW OVERRIDE above 2 settings IF you are calling this from PRINT_ALL_SUBJECTS
@@ -484,6 +488,7 @@ industrial_text_string <- "Chemicals in Commerce"
 pest_text_string <- "Pesticides"
 consumerProduct_text_string <- "Consumer Products"
 dioxinsAndFurans_text_string <- "Dioxins and Furans"
+PHTH_text_string <- "Phthalates"
 
 #  HERE we set the parameter Table Names for all the available tests
 # drsMasterParamTableName <- "./data/MASV_parameters_7-18-17_fix1.csv"
@@ -511,6 +516,12 @@ vopahMasterParamTableName <- "./data/vopah_voc_parameters_8-24-2020.csv" #####  
 VOC_2024_MasterParamTableName <- "./data/MasterParamenter_Using_April2024_VOC_fixedList21.csv" #####  New April 2024 version (I kept the same name after fixing the 3 missing and changing 18 to 21 VOCs)
 #Marc created NEW LIST of master parameter teable
 
+### For Georgetown we did our FIRST Phthalate test
+#PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
+#PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
+PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv"    # New from Michael Barton with better parameter IDs
+
+
 
 
 
@@ -537,7 +548,30 @@ rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of DRS/1528 R Markdown File
 
 #### THESE PARAMETERS are UNIQUE to each TEST TYPE and EACH specific RESULT within that test
 #
-if (RMD_type == "SBIR_P1_DRS_plus") { #
+if (RMD_type == "PHTH") { #
+  rmd_code <- "MyExposome_1527_v6.Rmd"
+
+  URL_of_Chemicals_Tested <- "Will ADD Phtalate URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
+
+  testName <- "Phthalates Quantitative test "
+
+  testExplanation <- "This project provides a focused screen to identify Phthalates."
+
+  HideClassificationInformation <- TRUE # Set to TRUE for every report EXCEPT DRS and maybe ???
+
+  allowDifferentParameterCounts <- FALSE # DRS is the only method where the masterParameterTable and the resultsTable will always have different parameter counts cause DRS doesn't list all the zero parameters
+
+  masterParamTableName <- PHTHmasterParameterTable
+
+  #resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000.csv" # PLACEHOLDER for getting Phatlates to work.  Firs data had ug instead of ng so i converted by hand
+  #resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000_fix_ParameterID.csv" #
+  resultsTableName <- "./data/F24-21_MyExpo_P.O.#258_PHTH_CoA II_convert_ug_to_ng.csv" # Firs data had ug instead of ng so i converted by hand.  2nd had wrong ParamterID.
+
+  subject<-"A240945" #Randome one from Georgetown  BUT THIS IS new georegetown one from PHTH batch... the numbers changed!
+
+  ExpectedUnits <- "ng/g"   ### NOT SURE why have to change this HERE but makes sense it is TEST SPECIFIC and not CUSTOMER SPECIFIC
+
+} else if (RMD_type == "SBIR_P1_DRS_plus") { #
   rmd_code <- "MyExposome_1527_v6 - SBIR.Rmd" # Set up name of DRS/1528 R Markdown File
 
   URL_of_Chemicals_Tested <- "SBIR NEEDS TO BE UPDATED -- I DELETED THIS SECTION FROM SBIR REPORT" # USED in printing report   THIS IS WRONG WRONG WRONG
