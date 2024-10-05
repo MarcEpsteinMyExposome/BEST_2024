@@ -26,7 +26,15 @@ output:
     chunk_output_type: console
   chunk_output_type: console
 ---
+<!-- 
+  Other things to fix:
+    we use "week worn or time adjusted or weight adjusted as flags for printing MESSAGES but mostly we 
+    do NOT use those same flags for deciding FIXUP... we set fixup flags based on what test done 
+      THIS IS INCONSISTENT and easy to break and should be fixed
+      
+    
 
+-->
 <!-- 
   Themes:
   - cerulean is the BEST so far

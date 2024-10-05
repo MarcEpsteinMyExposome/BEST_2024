@@ -96,6 +96,7 @@ FixupForAnyone <- any(
   UniVisionFixup <- FALSE,
   CombinedTestData <- TRUE,
   BostonFixup <- FALSE,
+  LouisvilleFixup <- FALSE,
   UFL_FloridaFixup <- FALSE
 )
 
@@ -270,6 +271,16 @@ if (UniVisionFixup) {
   #### changed BACK to ng/WB after I fixed the data
   ExpectedUnits <- "ng/WB"
   testDoneFor <- "Université de Lille "
+} else if (LouisvilleFixup) { #        Louisville-JUST 4 I THINK
+
+  FixupFile <- "./data/Sample Key - Louisville Tehran_lookup.csv" #
+  wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
+  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+  wristbands_time_and_weight_adjusted <- TRUE
+  wristbands_week_and_weight_adjusted <- TRUE
+  ExpectedUnits <- "ng/WB"
+  testDoneFor <- "Louisville"
+
 } else if (UCONNFixUp) { #        University of Connecticut
   FixupFile <- "./data/Sample Key_UCONNHealth_Fixup.csv" #
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
@@ -298,6 +309,12 @@ if (UniVisionFixup) {
   testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
   if (RMD_type == "PHTH") {
     ExpectedUnits <- "ng/g"
+    wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
+    wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+    wristbands_time_and_weight_adjusted <- FALSE
+    wristbands_week_and_weight_adjusted <- FALSE
+    wristbands_time_adjusted_one_week_not_weight <- TRUE
+    wristbands_time_adjusted_not_weight <- TRUE
   }
 } else if (WisconsinFixup) {
   # FixupFile <-"./data/Wisconsin ID and sample info_to_normalize.csv"
@@ -853,6 +870,9 @@ if (RMD_type == "PHTH") { #
 
   #resultsTableName<-"./data/F24-20_MyExpo_PO257_OSU_MyE_Report.csv" # UFL Florida
   #subject<-"A240871" #Random one from UFL Florida
+
+  #resultsTableName<-"./data/F24-05_MyExposomeP.O.#250_CoA_Louisville.csv" #
+  #subject<-"A240020" #Random one from Louisville
 
 }
 

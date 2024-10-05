@@ -837,12 +837,15 @@ fixUpTestResults <- function(testResults) {
              COLORADOFixUp |
              ULILLEFRANCEFixup |
              UCONNFixUp |
-             CHICAGOFixUp |
-             GEORGETOWNFixUp |
+             (CHICAGOFixUp &&
+              RMD_type == "DRS") |
+             ( GEORGETOWNFixUp &&
+               RMD_type == "DRS") |
              SBIR_P1_May2022Fixup |
              UC_DAVISFixup |
              BostonFixup |
              UFL_FloridaFixup |
+             LouisvilleFixup |
              (UniVisionFixup &&
               RMD_type == "DRS")) {
     #### Worked for UNMFixup...trying to make it generic?

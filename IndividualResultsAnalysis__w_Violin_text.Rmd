@@ -130,9 +130,12 @@ buildPlotlyViolin <- function(chemOfConcern,testResults_ChemOfConcern) {
 # Make list of all chemicals that our ONE user had that showed up in "any" of the databases
 ##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
 #
-chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
-      oneResultIARCRisk$`Chemical Name`))
 
+#chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
+#      oneResultIARCRisk$`Chemical Name`))
+#
+### ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
+chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`)
 
 ###
 ## 
@@ -185,19 +188,62 @@ if(length(chemsOfConcern>=1)){
   for (i in 1:length(chemsOfConcern)) {
 
     chemOfConcern <- chemsOfConcern[i]
+    #chemOfConcern <- chemsOfConcern[9]
+    #chemOfConcern <- chemsOfConcern[1]
+    
     
     #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had 
     testResults_ChemOfConcern <- testResults.big %>%
       filter(ParameterName == chemOfConcern) %>%
       select(SampleNumber, Result, ParameterName)
+
   
     if (nrow(testResults_ChemOfConcern)>1) {
       cat("####", chemOfConcern, '{-}',  '\n\n')
   
       print(htmltools::tagList(buildPlotlyViolin(chemOfConcern,testResults_ChemOfConcern)))
+
+      newMessage<-NULL
+      newMessage <- paste(newMessage,' Your chemical ',chemOfConcern,' was found in one or more online databases as being of some concern. ')
+
+
+            
+      testInPROP65 <- oneResultCalifProp65Risk %>%
+        filter(`Chemical Name` == chemOfConcern)
+      if (nrow(testInPROP65) > 0) {
+        PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
+        newMessage <- paste (newMessage,  " ",
+                             " This chemical is classified per California Proposition 65 (",
+                             " http://www.oehha.ca.gov/prop65.html ",
+                             " ) ",
+                             " with the risk type noted as: ",
+                             PROP65_info,".")       
+        }
+
       
-      cat('Your chemical ',chemOfConcern,' was found in such and such Database which I will add by pulling info from a database and giving a link as well')
-  
+      # testInIARC <- oneResultIARCRisk %>%
+      #   filter(`Chemical Name` == chemOfConcern)
+      #  if (nrow(testInIARC) > 0) {
+      #    IARC_info <- testInIARC$`Risk Type Per IARC`
+      #    newMessage <- paste (newMessage,  " ",
+      #                         " This chemical is classified by the International Agency for the Research on Cancer ",
+      #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
+      #  }
+      
+      testInIRIS <- oneResultEpaIris %>%
+        filter(`Chemical Name` == chemOfConcern)
+       if (nrow(testInIRIS) > 0) {
+         IRIS_info <- testInIRIS$`IRIS Summary Web Link`
+         newMessage <- paste(      newMessage,
+                                   " ",
+                                   "The Environmental Protection Agency has classified this chemical ",
+                                   " as a chemical of concern.  You can find more information here: ",
+                                   IRIS_info,   " . "
+                                   )
+       }
+      
+      cat(newMessage)
+      
       cat(' \n \n')
     }
   }
@@ -213,128 +259,6 @@ if(length(chemsOfConcern>=1)){
 
 
 
-## Check against Databases 
-
-For all the chemicals found on your wristband we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals.  Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
-
-We are looking up all the chemicals you tested positive for that are listed in any of (1) The EPA's Integrated Risk Information System (IRIS) is a human health assessment program, (2) The California Proposition 65 chemical database which categorizes many different chemicals with respect to toxicity (potential hazard), and (3) Chemicals classified by the International Agency for the Research on Cancer which categorizes many different chemicals with respect to types of cancer risks
-
-### EPA IRIS 
-
-Some of the chemicals found on your wristband have evaluations available from the United States Environmental Protection Agency (EPA).  The EPA's Integrated Risk Information System (IRIS) is a human health assessment program that evaluates information on health effects that may result from exposure to environmental contaminants. Through the IRIS Program, EPA provides science-based human health assessments to support the Agency's regulatory activities. The IRIS database [(http://www.epa.gov/iris/)](http://www.epa.gov/iris/) is web accessible and contains information on more than 550 chemical substances.  We have looked up all the chemicals found on your wristband and provided links to the data on the EPA IRIS web site in those cases where the data is available. 
-<br>
-<br>
-
-
-
-```{r  epaIrisPrint, results='asis', echo=FALSE, message=FALSE}
-
-pandoc.table(as.data.frame(oneResultEpaIris),
-             caption="Observed Chemical List showing EPA IRIS URLs",
-             justify=c("left","center"),
-             emphasis.rownames=TRUE
-              ,split.table = Inf)
-
-#rm(oneResultEpaIris)
-#rm(epaIris)
-
-```
-
-
-
-<br>
-<br>
-
-
-
-```{r   califProp65printx1, results='asis',echo=FALSE,  eval=(nrow(oneResultCalifProp65Risk)!=0) }
-
-cat("### Proposition 65")
-
-```
-
-&nbsp;
-
-```{r   califProp65printx2, results='asis',echo=FALSE,  eval=(nrow(oneResultCalifProp65Risk)!=0) }
-
-cat("Some of the chemicals found on your wristband are classified per California Proposition 65",
-      "[(http://www.oehha.ca.gov/prop65.html)](http://www.oehha.ca.gov/prop65.html)",
-      "which categorizes many different chemicals with respect to toxicity (potential hazard). ",
-      "Of the chemicals found on your wristband, here are the ones that are listed as",
-      "having some type of toxicity per California Proposition 65. ",
-      "There are four types of toxicity catagorized by Prop65:  Cancer, Developmental Toxicity, ", 
-      "Female Reproductive Toxicity, and Male Reproductive Toxicity. ",
-      "We have summarized some of the listed ",
-      "risks in the table below but please refer to the official California website ",
-      "listing specific risks for each chemical for up-to-date and accurate information:",
-      "[(https://www.p65warnings.ca.gov/fact-sheets)](https://www.p65warnings.ca.gov/fact-sheets)",
-      sep=" ")
-
-
-```
-
-
-```{r  califProp65printx3, results='asis', echo=FALSE, message=FALSE, eval=(nrow(oneResultCalifProp65Risk)!=0)}
-
-pandoc.table(as.data.frame(oneResultCalifProp65Risk),
-             caption="Observed Chemical List showing California Prop 65",
-             justify=c("left","center")
-              ,split.table = Inf)
-
-#rm(oneResultCalifProp65Risk)
-
-```
-
-<br>
-<br>
-
-
-
-```{r   IARCprintx1, results='asis',echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0)}
-
-cat("### IARC")
-
-
-```
-
-```{r   IARCprintx2, results='asis',echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0)}
-
-cat("The chemicals found on the wristband are classified by the International Agency",
-      "for the Research on Cancer [(https://monographs.iarc.who.int/agents-classified-by-the-iarc/))](https://monographs.iarc.who.int/agents-classified-by-the-iarc/))",
-      "which categorizes many different chemicals with respect to types of cancer risks.",
-      "Of the chemicals found on your wristband, here are the ones that are listed as having some type of rating per IARC.  ",
-      sep=" ")
-
-```
-
-
-```{r   IARCprintx2a, results='asis',echo=FALSE, eval=FALSE}
-"[^1]: * **IARC classifies risks into four groups:**"
-cat("+ Group 1: The agent is carcinogenic to humans:  This category is used when there is sufficient evidence of carcinogenicity in humans.")
-cat("+ Group 2A: The agent is probably carcinogenic to humans:  This category is used when there is limited evidence of carcinogenicity in humans and sufficient evidence of carcinogenicity in experimental animals. ")
-cat("+ Group 2B: The agent is possibly carcinogenic to humans:  This category is used for agents for which there is limited evidence of carcinogenicity in humans and less than sufficient evidence of carcinogenicity in experimental animals. ")
-cat("+ Group 3: The agent is not classifiable as to its carcinogenicity to humans: This category is used most commonly for agents for which the evidence of carcinogenicity is inadequate in humans and inadequate or limited in experimental animals.  An evaluation in Group 3 is not a determination of non-carcinogenicity or overall safety. ")
-cat("+ Group 4: The agent is probably not carcinogenic to humans: This category is used for agents for which there is evidence suggesting lack of carcinogenicity in humans and in experimental animals. ")
-
-
-```
-
-
-```{r IARCprintx3, results='asis', echo=FALSE, eval=(nrow(oneResultIARCRisk)!=0), message=FALSE}
-
-pandoc.table(as.data.frame(oneResultIARCRisk),
-             caption="Observed Chemical List showing IRAC classification",
-             justify=c("left","center")
-              ,split.table = Inf)
-
-
-#rm(oneResultIARCRisk)
-#rm(IARCRisk)
-
-```
-
-<br>
-<br>
 
 
 ## Individual: Chemical Info
