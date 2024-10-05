@@ -776,6 +776,14 @@ minMaxTR <- testResults.big %>%
   summarise(Count = sum(Result > 0)) %>%
   arrange(desc(Count))
 
+if (makeIntoDemoData) {
+  #subject <- minMaxTR$SampleNumber[2]    ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
+  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
+  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
+  subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
+}
+
+
 maxChemFoundOnAnyOneWristband <- max(minMaxTR$Count)
 
 # What is Minimum chemicals found on ANY wristband in this set
@@ -791,7 +799,7 @@ minChemFoundOnAnyOneWristband <- min(minMaxTR$Count)
 stdDevChemFoundOnAnyOneWristband <- signif(sd(minMaxTR$Count), 3)
 
 # Remove minMaxTR because it SHOULDN'T be needed any more
-rm(minMaxTR)
+#rm(minMaxTR)
 
 ## Calculate statistics of min/max/etc of occurences of chemicans across wristbands
 #   Use only >0 values

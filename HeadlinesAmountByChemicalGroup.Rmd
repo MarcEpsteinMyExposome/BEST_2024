@@ -18,7 +18,7 @@ THIS IS COMPLICATED and unclear what I really want to display... TBD.
 
 
 
-## Total Chemical By Chemical Group 
+## Key Messages By Chemical Group 
 
 ```{r printMessageForTotalChemByGroup, results='asis', echo=FALSE, message=FALSE,fig.width=10, fig.height=4}
 

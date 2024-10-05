@@ -88,7 +88,7 @@ percentile_25 <- quantile(countChemsEachWristband$countPositiveResults  , 0.25)
 
 # Determine the message based on the value
 if (howManyChemicalsFoundThisWristband >= percentile_95) {
-  message <- "You had more chemicals detected in your wristband than 95% of other people in the study."
+  message <- "You had more chemicals detected in your wristband than 95% or more of other people in the study."
 } else if (howManyChemicalsFoundThisWristband >= percentile_75) {
   message <- "You had more chemicals detected in your wristband than 75% of other people in the study."
 } else if (howManyChemicalsFoundThisWristband >= percentile_25) {

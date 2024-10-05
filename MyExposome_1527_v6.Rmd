@@ -554,11 +554,6 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <br>
 
-<!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
-```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = NotHideClassificationInformation}
-
-```
-
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED DELETING THIS DELETE THIS DELETE THIS EVENTUALLY when we have violin charts working-->
 ```{r IndividualResultsAnalysis_DELETING_EVENTUALLY, child='IndividualResultsAnalysis_text.Rmd', eval = FALSE}
@@ -569,6 +564,11 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 ```
 
+
+<!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
+```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = NotHideClassificationInformation}
+
+```
 
 
 <!-- SHOW RESULTS FOR FULL GROUP -->
