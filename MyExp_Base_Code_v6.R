@@ -776,11 +776,11 @@ minMaxTR <- testResults.big %>%
   summarise(Count = sum(Result > 0)) %>%
   arrange(desc(Count))
 
-if (makeIntoDemoData) {
+if (makeIntoDemoData) {   #   Use this to set SUBJECT to min max middle as way of testing the various messages... if i want...
   #subject <- minMaxTR$SampleNumber[2]    ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
   #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
   #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
-  subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
+  #subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
 }
 
 
