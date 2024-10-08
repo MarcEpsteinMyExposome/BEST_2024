@@ -1,0 +1,28 @@
+---
+title: "Internal Link Demonstration"
+output: html_document
+---
+
+* Go to [tablex](#table)
+* Go to [plot](#custom-idx)
+
+```{r}
+#| include = FALSE
+library(dplyr)
+library(ggplot2)
+```
+
+### Plotx {#custom-idx}
+
+```{r plot-caption}
+mtcars %>% 
+  ggplot(aes(x = hp, y = mpg)) +
+  geom_point()
+```
+
+### Table
+
+```{r}
+mtcars %>% 
+  glimpse()
+```

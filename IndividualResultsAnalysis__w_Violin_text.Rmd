@@ -340,7 +340,7 @@ if (length(chemsOfConcern >= 1)) {
 ### Individual Percentage vs Maximum 
 
 
-Another way to look at this is to wonder what percentage of a chemical a particular individual had compared to the maximum found for that chemical in any wristband in this project.   In other words, if wristband-A had 100 nano-grams per gram of wristband, and the maximum found in any individual was 1,000 nano-grams per gram wristband, then wristband-A had 10% of the maximum value found. The chart below shows the percentage of maximum found for this subject for each chemical.
+Another way to look at this is to wonder what percentage of a chemical a particular individual had compared to the maximum found for that chemical in any wristband in this project.   In other words, if wristband-A had 100 nano-grams per gram of wristband, and the maximum found in any individual was 1,000 nano-grams per gram wristband, then wristband-A had 10% of the maximum value found. The chart below shows the percentage of maximum found for this participant for each chemical.
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 

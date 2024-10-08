@@ -2,6 +2,7 @@
 
 The following list of chemicals, along with their classifications, were found in your wristband:
 
+To see an explanation of **Classifications** :  [Click Here](#class_link_id)
 
 ### Chemicals showing Classifications
 ```{r  ListChemFound, results='asis', echo=FALSE, message=FALSE}

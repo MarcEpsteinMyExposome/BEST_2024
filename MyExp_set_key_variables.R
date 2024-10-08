@@ -85,9 +85,9 @@ FixupForAnyone <- any(
   UCSF2020Fixup <- FALSE,
   UMTFixup <- FALSE, # NEVER IMPLEMENTED THIS>.. BE CAREFUL...
   UNMFixup <- FALSE, # adding University New Mexico 1/14/2022  NEVER IMPLEMENTED THIS BE CAREFUL (MUST BE IMPLEMENTED NOW I THINK???)  HUH?  I think this is OK now?
-        # NOTE that UNM has an old version from 2022 and a new version with 20 wb from 2023    Using same FLAG but different fixup and resultstable settings
+  # NOTE that UNM has an old version from 2022 and a new version with 20 wb from 2023    Using same FLAG but different fixup and resultstable settings
   COLORADOFixUp <- FALSE,
-  ULILLEFRANCEFixup<-FALSE,
+  ULILLEFRANCEFixup <- FALSE,
   UCONNFixUp <- FALSE,
   CHICAGOFixUp <- FALSE,
   GEORGETOWNFixUp <- FALSE,
@@ -111,14 +111,14 @@ FixupForAnyone <- any(
 #   ONLY ONE OF THE FOLLOWING RMD_type can be selected at one time
 #
 # OLD OLD OLD RMD_type <- 'VOC'  # This WAS original VOC Thermal Desorption Test now discontinued DO NOT MIX UP WITH VOPAH
-#RMD_type <- 'PAH'
+# RMD_type <- 'PAH'
 # OLD OLD OLD  RMD_type <- 'VOPAH' ## although called VOPAH it is actually solvent VOC only with SPE clean.  It WAS VOC+PAH for a while but not successfully
-#RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
-#RMD_type <- 'PEST'
+# RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
+# RMD_type <- 'PEST'
 # RMD_type <- 'FLAME'
 RMD_type <- "DRS"
 # RMD_type<-'SBIR_P1_DRS_plus'
-#RMD_type <- 'PHTH'
+# RMD_type <- 'PHTH'
 
 
 
@@ -146,24 +146,20 @@ testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set th
 if (UniVisionFixup) {
   FixupFile <- "./data/Sample Key_Univision_lookup_table.csv"
   testDoneFor <- "TelevisaUnivision "
-  if(RMD_type == 'PEST'){
+  if (RMD_type == "PEST") {
     wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
     wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
     wristbands_time_and_weight_adjusted <- FALSE
     wristbands_week_and_weight_adjusted <- FALSE
     wristbands_time_adjusted_one_week_not_weight <- TRUE
     ExpectedUnits <- "ng/g"
-  } else if(RMD_type == 'DRS'){
+  } else if (RMD_type == "DRS") {
     wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
     wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
     wristbands_time_and_weight_adjusted <- TRUE
     wristbands_week_and_weight_adjusted <- TRUE
     ExpectedUnits <- "ng/WB"
-
   }
-
-
-
 } else if (UC_DAVISFixup) {
   FixupFile <- "./data/Sample Key_UCDavis_lookup_table.csv"
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
@@ -207,8 +203,8 @@ if (UniVisionFixup) {
   # FixupFile <-  "./data/Dartmouth/Dartmouth All IDs_2020_12_08.csv" # Batch # 13
   # FixupFile <-  "./data/Dartmouth/Dartmouth All IDs_2021_03_29.csv" # Batch # 14
   # FixupFile <-  "./data/Dartmouth/Dartmouth All IDs_2022_08_24.csv" # Batch # 15, 16, 17  H# Had a BUG in the DATES for batches 16 and 17
-  #FixupFile <- "./data/Dartmouth/Dartmouth All IDs_2022_08_27.csv" # Batch # 15, 16, 17
-  #FixupFile <- "./data/Dartmouth/Dartmouth All IDs_2023_05_04.csv" # Batch # 15, 16, 17...21
+  # FixupFile <- "./data/Dartmouth/Dartmouth All IDs_2022_08_27.csv" # Batch # 15, 16, 17
+  # FixupFile <- "./data/Dartmouth/Dartmouth All IDs_2023_05_04.csv" # Batch # 15, 16, 17...21
   FixupFile <- "./data/Dartmouth/Dartmouth All IDs_2024_04_25.csv" # Batch # 15, 16, 17...21 22 23 24 25 26
 
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
@@ -238,7 +234,7 @@ if (UniVisionFixup) {
 } else if (UNMFixup) { #  (MO = UMT)       THIS IS NEW MEXICO
   # Trying to do NO adjustment on U of New Mexico  (NOT MONTANA do not mix them up)
   ### HUH?  We ARE going to do adjust for UNM at least for the 2nd batch for SURE
-  #FixupFile <- "./data/Sample Key_NM_lookup_table.csv" # THIS IS FIRST BATCH
+  # FixupFile <- "./data/Sample Key_NM_lookup_table.csv" # THIS IS FIRST BATCH
   FixupFile <- "./data/Sample Key_UNM_2nd_batch_lookup_table.csv"
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
@@ -247,15 +243,15 @@ if (UniVisionFixup) {
   testDoneFor <- "University of New Mexico "
 } else if (COLORADOFixUp) { #        COLORADO
   # Trying to do NO adjustment on U of New Mexico  (NOT MONTANA do not mix them up)
-  #FixupFile <- "./data/Sample Key_UnvColorado_FixUp.csv" #  THIS IS FOR FIRST BATCH april 2022
-  #FixupFile <- "./data/Sample Key_UnvColorado_2ndVERSION_lookupTableJUST_NEW_DATA.csv" #  THIS IS FOR JUST 2nd batch Nov 2023
+  # FixupFile <- "./data/Sample Key_UnvColorado_FixUp.csv" #  THIS IS FOR FIRST BATCH april 2022
+  # FixupFile <- "./data/Sample Key_UnvColorado_2ndVERSION_lookupTableJUST_NEW_DATA.csv" #  THIS IS FOR JUST 2nd batch Nov 2023
   FixupFile <- "./data/Sample Key_UnvColorado_2ndVERSION_lookupTable.csv" #  THIS IS FOR First AND 2nd BATCH (maybe batch specific NOT NEEDED?)
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
-  #ExpectedUnits <- "ng/WB"
-  #ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!
+  # ExpectedUnits <- "ng/WB"
+  # ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!
   #### changed BACK to ng/WB after I fixed the data
   ExpectedUnits <- "ng/WB"
   testDoneFor <- "Colorado School of Public Health "
@@ -266,8 +262,8 @@ if (UniVisionFixup) {
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
-  #ExpectedUnits <- "ng/WB"
-  #ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!
+  # ExpectedUnits <- "ng/WB"
+  # ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!
   #### changed BACK to ng/WB after I fixed the data
   ExpectedUnits <- "ng/WB"
   testDoneFor <- "Université de Lille "
@@ -280,15 +276,14 @@ if (UniVisionFixup) {
   wristbands_week_and_weight_adjusted <- TRUE
   ExpectedUnits <- "ng/WB"
   testDoneFor <- "Louisville"
-
 } else if (UCONNFixUp) { #        University of Connecticut
   FixupFile <- "./data/Sample Key_UCONNHealth_Fixup.csv" #
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
-  #ExpectedUnits <- "ng/WB"
-  #ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!  Fixed from PETE so switching BACK
+  # ExpectedUnits <- "ng/WB"
+  # ExpectedUnits <- "pg/uL"  ####  NOTE WEIRD HACK had to change from ng/WB to pg/uL to make it work... but they are SAME THING!!!!!  Fixed from PETE so switching BACK
   ExpectedUnits <- "ng/WB"
   testDoneFor <- "University of Connecticut"
 } else if (CHICAGOFixUp) { #  CHICAGO
@@ -437,15 +432,15 @@ if (subsetBasedOnBatchNumber) {
 
 
 ## JUST do GROUp Analysis
-#DoSpecificSubjectAnalysis<-FALSE  #idea is to do specific-subject-analysis output with or without GROUP analysis
-#DoGroupAnalysis <- TRUE  # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-#HideIndividualization<-!DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+# DoSpecificSubjectAnalysis<-FALSE  #idea is to do specific-subject-analysis output with or without GROUP analysis
+# DoGroupAnalysis <- TRUE  # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+# HideIndividualization<-!DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
 
 
 ## JUST do SPECIFIC SUBJECT Analysis
-DoSpecificSubjectAnalysis<-TRUE  #idea is to do specific-subject-analysis output with or without GROUP analysis
-DoGroupAnalysis <- FALSE  # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-HideIndividualization<-!DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
 
 
 
@@ -500,7 +495,7 @@ if (WisconsinFixup & RMD_type == "VOPAH") { # STEVEN figured out that these two 
 
 PAH_text_string <- "Polycyclic Aromatic Hydrocarbons (PAHs)"
 VOC_text_string <- "Volatile Organic Compounds (VOCs)"
-VOC_2024_text_string <- "Volatile Organic Compounds (VOCs)"  # Revised 3rd time VOC test
+VOC_2024_text_string <- "Volatile Organic Compounds (VOCs)" # Revised 3rd time VOC test
 # VOPAH_text_string = "VOC and SVOC"  #  CAREFUL wit this caus is really combo of VOC and PAH, not a new unique classification really
 VOPAH_text_string <- "Volatile Organic Compounds (VOCs)" #  CAREFUL this USED TO BE VOPAH but now really is back to being just VOC via new method?
 # OPAH_text_string = "Oxygenated PAH"  # DROPPED REPORTING this after 6/19/2019
@@ -521,29 +516,29 @@ PHTH_text_string <- "Phthalates"
 
 SBIR_p1_MasterParamTableName <- "./data/MASV_sbir_parameter_list_based_on_DRS_plus_Missing.csv" # added ParameterID 1,000,000 for one extra. NOTE casnum NOT unique
 
-#drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed.csv" # UPdated this on 3/12/2019  Hopefully it works.  Also fixed wrong-date-format
+# drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed.csv" # UPdated this on 3/12/2019  Hopefully it works.  Also fixed wrong-date-format
 drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed.csv" # UPdated this on 9/22/2022
 
 flameMasterParamTableName <- "./data/MasterParameterTable_FlameR.csv"
-#pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_2-18-19.csv" # NEW UPDATED VERSION is the SAME except for unused columns
-#pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_03_20_2023_Hand_Fixup.csv" # Used Michael Barton "all parameters" file to fix this up by doing a diff
-pestMasterParameterTable <-  "./data/MasterParameterTable_Pesticide_03_20_2023_Hand_Fixup.csv" # Used Michael Barton "all parameters" file to fix this up by doing a diff
+# pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_2-18-19.csv" # NEW UPDATED VERSION is the SAME except for unused columns
+# pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_03_20_2023_Hand_Fixup.csv" # Used Michael Barton "all parameters" file to fix this up by doing a diff
+pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_03_20_2023_Hand_Fixup.csv" # Used Michael Barton "all parameters" file to fix this up by doing a diff
 
 ## OLD Parameter Table continaing VOC and PAH
 # vopahMasterParamTableName <-"./data/vopah_parameters_6-29-2020.csv" #####  New June 2020 version see email from Michael Barton (has about 94 compounds)
 ## Newer Paramater Table w/ Just VOC
 vopahMasterParamTableName <- "./data/vopah_voc_parameters_8-24-2020.csv" #####  New August 2020 version see email from Michael Barton (has 32  compounds)
-#vopahMasterParamTableName_SBIR <- "./data/vopah_voc_parameters_8-24-2020_SBIR.csv" #####  New August 2020 version see email from Michael Barton (has 32  compounds)
+# vopahMasterParamTableName_SBIR <- "./data/vopah_voc_parameters_8-24-2020_SBIR.csv" #####  New August 2020 version see email from Michael Barton (has 32  compounds)
 #         MARC checked January 2021 and this list of 32 compounds looks right???
 #           NOTE that SOME of the data received has one additional compound ParameterID 300639  but we will delete/ignore that somewhere/somehow
 
 VOC_2024_MasterParamTableName <- "./data/MasterParamenter_Using_April2024_VOC_fixedList21.csv" #####  New April 2024 version (I kept the same name after fixing the 3 missing and changing 18 to 21 VOCs)
-#Marc created NEW LIST of master parameter teable
+# Marc created NEW LIST of master parameter teable
 
 ### For Georgetown we did our FIRST Phthalate test
-#PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
-#PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
-PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv"    # New from Michael Barton with better parameter IDs
+# PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
+# PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
+PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv" # New from Michael Barton with better parameter IDs
 
 
 
@@ -554,7 +549,7 @@ if (RMD_type == "SBIR_P1_DRS_plus") { ## IF WE are doing the SBIR data I have up
 }
 
 
-#pahMasterParameterTable <- "./data/MasterParameterTable_PAH_2-15-19.csv" #####  New February 2019 version see email from Michael Barton
+# pahMasterParameterTable <- "./data/MasterParameterTable_PAH_2-15-19.csv" #####  New February 2019 version see email from Michael Barton
 pahMasterParameterTable <- "./data/MasterParameterTable_PAH_April2024.csv" #####  New April 2024 Derived from DATA in Wisconsin resultstable cause all other sources bad
 
 
@@ -581,13 +576,12 @@ if (RMD_type == "PHTH") { #
   allowDifferentParameterCounts <- FALSE # DRS is the only method where the masterParameterTable and the resultsTable will always have different parameter counts cause DRS doesn't list all the zero parameters
   masterParamTableName <- PHTHmasterParameterTable
 
-  #resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000.csv" # PLACEHOLDER for getting Phatlates to work.  Firs data had ug instead of ng so i converted by hand
-  #resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000_fix_ParameterID.csv" #
+  # resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000.csv" # PLACEHOLDER for getting Phatlates to work.  Firs data had ug instead of ng so i converted by hand
+  # resultsTableName <- "./data/F24-21_MyExpoP.O.#258_PHTH_CoA_MULITPLY_ug_by_1000_fix_ParameterID.csv" #
   resultsTableName <- "./data/F24-21_MyExpo_P.O.#258_PHTH_CoA II_convert_ug_to_ng.csv" # Firs data had ug instead of ng so i converted by hand.  2nd had wrong ParamterID.
 
-  subject<-"A240945" #Randome one from Georgetown  BUT THIS IS new georegetown one from PHTH batch... the numbers changed!
-  ExpectedUnits <- "ng/g"   ### NOT SURE why have to change this HERE but makes sense it is TEST SPECIFIC and not CUSTOMER SPECIFIC
-
+  subject <- "A240945" # Randome one from Georgetown  BUT THIS IS new georegetown one from PHTH batch... the numbers changed!
+  ExpectedUnits <- "ng/g" ### NOT SURE why have to change this HERE but makes sense it is TEST SPECIFIC and not CUSTOMER SPECIFIC
 } else if (RMD_type == "SBIR_P1_DRS_plus") { #
   rmd_code <- "MyExposome_1527_v6 - SBIR.Rmd" # Set up name of DRS/1528 R Markdown File
   URL_of_Chemicals_Tested <- "SBIR NEEDS TO BE UPDATED -- I DELETED THIS SECTION FROM SBIR REPORT" # USED in printing report   THIS IS WRONG WRONG WRONG
@@ -662,7 +656,7 @@ if (RMD_type == "PHTH") { #
   # resultsTableName<-"./data/F19-34 MyExposome PO#221 PAHs-MLB.csv" #Wisconin PAH testing 2nd batch
   # resultsTableName<-"./data/F20-08 MyExposome PO225 PAH.csv" #Wisconin PAH testing 3rD batch
   # resultsTableName<-"./data/Revised PO 221 and PO 225 Wisconsin for VOC Update/F19-34 PO#221 PAH.csv" #REVISED 8/27/2020 Wisconin PAH testing 2nd batch   (this is 221 same as old 221)
-  #resultsTableName <- "./data/F21-10 MyExposome P.O.#231_PAH.csv" # PAH testing 4th batch
+  # resultsTableName <- "./data/F21-10 MyExposome P.O.#231_PAH.csv" # PAH testing 4th batch
   resultsTableName <- "./data/F24-07 MyExposome PO 251 CoA report_CSV_PAH.csv" # PAH testing April 2024 Wisconsin
 
   # subject<-"A180237B"             #PAH fake  # THIS IS FOR PAH
@@ -700,9 +694,9 @@ if (RMD_type == "PHTH") { #
 
   ###  PO 221 plus PO 225 plus PO 226
   ###  LINES BELOW ARE LINKED SO be careful
-  #resultsTableName <- "./data/WI_Combined_1_2_3_PO206_PO221_PO225.csv" # 3 batches Wisconsin Data (1st batch originally run as VOC now combined run all as VOPAH)
+  # resultsTableName <- "./data/WI_Combined_1_2_3_PO206_PO221_PO225.csv" # 3 batches Wisconsin Data (1st batch originally run as VOC now combined run all as VOPAH)
   # allowDifferentParameterCounts <- TRUE  # SPECIFICALLY for PO_206 we are going to ALLOW different parameter counts   but all other VOPAH methods should NOT so set this to FALSE
-  #allowDifferentParameterCounts <- FALSE # SPECIFICALLY for PO_206 we are going to ALLOW different parameter counts   but all other VOPAH methods should NOT so set this to FALSE
+  # allowDifferentParameterCounts <- FALSE # SPECIFICALLY for PO_206 we are going to ALLOW different parameter counts   but all other VOPAH methods should NOT so set this to FALSE
 
   ###  PO 221 plus PO 225 plus PO 226 plus PO 231
   ###  LINES BELOW ARE LINKED SO be careful
@@ -714,22 +708,20 @@ if (RMD_type == "PHTH") { #
   # subject<-"A191134"  #PAH this is one of WISCONSIN from 2nd batch
   # subject<-"A200555"  # this is one of WISCONSIN from 3rd batch
   subject <- "A210328" # this is one of WISCONSIN from 4rd batch
-
 } else if (RMD_type == "VOC_2024") { # THIS has undergone weird changes.. is JUST VOC as of 2024
-  ######URL_of_Chemicals_Tested <- "https://www.myexposome.com/vopah" # USED in printing report
+  ###### URL_of_Chemicals_Tested <- "https://www.myexposome.com/vopah" # USED in printing report
   URL_of_Chemicals_Tested <- "Not Yet Up on Website but current full list is in show in Report" # USED in printing report
   testName <- "VOC 2024 Quantitative Test"
   testExplanation <- "This project focused on finding Volatile Organic Compounds (VOCs)."
   HideClassificationInformation <- TRUE # Set to TRUE for every report EXCEPT DRS and maybe ???  Implementing 6/30/2020
   masterParamTableName <- VOC_2024_MasterParamTableName
 
-  #resultsTableName <- "./data/F24-07 MyExposome PO 251 CoA report_CSV_VOC.csv" #  New VOC_2024 Test and data   BUT was missing 3 compounds
+  # resultsTableName <- "./data/F24-07 MyExposome PO 251 CoA report_CSV_VOC.csv" #  New VOC_2024 Test and data   BUT was missing 3 compounds
   resultsTableName <- "./data/F24-07 MyExposome PO 251 CoA report_Updated_VOC.csv" #  New VOC_2024 Test and data after ADDING back those 3 compounds-AND THEN a FIX and REDO (first time was bad, now OK)
   # allowDifferentParameterCounts <- TRUE  # SPECIFICALLY for PO_206 we are going to ALLOW different parameter counts   but all other VOPAH methods should NOT so set this to FALSE
   allowDifferentParameterCounts <- FALSE # SPECIFICALLY for PO_206 we are going to ALLOW different parameter counts   but all other VOPAH methods should NOT so set this to FALSE
 
   subject <- "A240027" # this is one of WISCONSIN from april 2024 batch
-
 } else if (RMD_type == "PEST") { # THESE 4 LINES are for PEST TEST
   URL_of_Chemicals_Tested <- "https://www.myexposome.com/pest" # USED in printing report
   testName <- "Pesticide Quantitative Analysis"
@@ -740,16 +732,16 @@ if (RMD_type == "PHTH") { #
   # resultsTableName<-"./data/PO_206_Pesticide_OSU_MyE_report.csv"
   # resultsTableName<-"./data/F19-34 MyExposome PO#221 Pesticides-MLB.csv"
   # resultsTableName<-"./data/F20-08 MyExposome PO225 Pesticides.csv"
-  #resultsTableName <- "./data/F21-10 MyExposome P.O.#231_PEST.csv"
-  #resultsTableName <- "./data/F23-10_MyExpoP.0#245_Pesticide_CoA_Univision.csv" # Univision Pest Info
-  #resultsTableName <- "./data/F23-10_MyExpoP.0#245_Pesticide_CoA_UnivisionWEIRD UNIT PROBLEM_Fix_By_Hand.csv" # Univision Pest Info
+  # resultsTableName <- "./data/F21-10 MyExposome P.O.#231_PEST.csv"
+  # resultsTableName <- "./data/F23-10_MyExpoP.0#245_Pesticide_CoA_Univision.csv" # Univision Pest Info
+  # resultsTableName <- "./data/F23-10_MyExpoP.0#245_Pesticide_CoA_UnivisionWEIRD UNIT PROBLEM_Fix_By_Hand.csv" # Univision Pest Info
   resultsTableName <- "./data/PO245 CSV version redone.csv" # Univision Pest Info  Reissue after having ONE bad datapoint...
 
   # subject<-"A180359"   #PEST this is one of WISCONSIN
   # subject<-"A191134"  #PAH this is one of WISCONSIN from 2nd batch
   # subject<-"A200555"  #PAH this is one of WISCONSIN from 3rd batch
-  #subject <- "A210328" # this is one of WISCONSIN from 4rd batch
-  subject<-"A230476" #Randome one from Univision
+  # subject <- "A210328" # this is one of WISCONSIN from 4rd batch
+  subject <- "A230476" # Randome one from Univision
 } else if (RMD_type == "FLAME") { # THESE 4 LINES are for FLAME TEST  (NOT firefighters!!!)
   URL_of_Chemicals_Tested <- "https://www.myexposome.com/flame" # USED in printing report
   # testingTypeText<- "Flame Retardants"
@@ -802,9 +794,9 @@ if (RMD_type == "PHTH") { #
   # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_for_519.csv"   # group of dartmouth   #NOTE:  is NOW the  12th BATCH
   # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_13_for_559.csv"   # group of dartmouth   #NOTE:  is NOW the 13
   # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_13_14_for_600.csv"   # group of dartmouth   #NOTE:  is NOW the 14
-  #resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_14_15_16_17_for_680.csv" # group of dartmouth   #NOTE:  is NOW the 17
-  #resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_etc_17_18_19_20_21_for_878.csv" # group of dartmouth   #NOTE:  is NOW the 21 lab submission number
-  #subject <- "A200961" # THIS is random one in DARTMOUTH BATCh 13
+  # resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_14_15_16_17_for_680.csv" # group of dartmouth   #NOTE:  is NOW the 17
+  # resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_etc_17_18_19_20_21_for_878.csv" # group of dartmouth   #NOTE:  is NOW the 21 lab submission number
+  # subject <- "A200961" # THIS is random one in DARTMOUTH BATCh 13
 
   # resultsTableName<-"./data/F21-07_MyExposome_P.0.#230_CoA_RYAN.csv"   # group of dartmouth   #NOTE:  is NOW the 13
 
@@ -824,21 +816,21 @@ if (RMD_type == "PHTH") { #
   # subject<-"A211319"  # RANDOM choice from UNM  NEW MEXICO
 
   # I"M GOING TO Do 2nd batch from UNM Univ New Mexico but NOT MERGE WITH FIRST BATCH.... just do this additional 20
-  #resultsTableName<-"./data/F23-09_03_P.O#244_MyExpo_CoA_UNM.csv" # University of NEW MEXICO 20 wristbands
-  #subject<-"A230400"  # RANDOM choice from UNM  NEW MEXICO 2nd batch
+  # resultsTableName<-"./data/F23-09_03_P.O#244_MyExpo_CoA_UNM.csv" # University of NEW MEXICO 20 wristbands
+  # subject<-"A230400"  # RANDOM choice from UNM  NEW MEXICO 2nd batch
 
 
   # resultsTableName<-"./data/F21-31_MyExpo_P.O#236_CoA_Colorado.csv" # Colorado FIRST BATCH
   # subject<-"A211668" #Randome one from Colorado
 
-  #resultsTableName<-"./data/F23-16_MyExpo_P.O.#247_CoA - Colorado.csv" # Colorado BATCH2
-  #resultsTableName<-"./data/F23-16_MyExpo_P.O.#247_CoA - Colorado_fixed_Units.csv" # Colorado BATCH2 WITH FIXED UNITS
+  # resultsTableName<-"./data/F23-16_MyExpo_P.O.#247_CoA - Colorado.csv" # Colorado BATCH2
+  # resultsTableName<-"./data/F23-16_MyExpo_P.O.#247_CoA - Colorado_fixed_Units.csv" # Colorado BATCH2 WITH FIXED UNITS
 
-  #resultsTableName<-"./data/F21-31_MyExpo_P.O#236_plus_#247_CoA_Colorado_batch1and2.csv" # Colorado BATCH1 and BATCH2
-  #subject<-"A231218" #Randome one from Colorado BATcH 2
+  # resultsTableName<-"./data/F21-31_MyExpo_P.O#236_plus_#247_CoA_Colorado_batch1and2.csv" # Colorado BATCH1 and BATCH2
+  # subject<-"A231218" #Randome one from Colorado BATcH 2
 
-  #resultsTableName<-"./data/F23-22_MyExposome #249_CoA_France.csv" # FRANCE LILLE
-  #subject<-"A232671" #Randome one from LILLE
+  # resultsTableName<-"./data/F23-22_MyExposome #249_CoA_France.csv" # FRANCE LILLE
+  # subject<-"A232671" #Randome one from LILLE
 
   #  resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_13_etc_20_21_22_23_24_25_26_for_1166_FixPO246units.csv" # Probably FINAL Dartmouth
   #  subject <- "A200961" # THIS is random one in DARTMOUTH BATCh 13
@@ -851,29 +843,28 @@ if (RMD_type == "PHTH") { #
 
   # resultsTableName<-"./data/F21-32_MyExpo_P.O.#237_CoA_Georgetown.csv" # Georgetown
 
-  resultsTableName<-"./data/CombinedTestData/Dart_Chic_Col_George.csv" # Georgetown
+  resultsTableName <- "./data/CombinedTestData/Dart_Chic_Col_George.csv" # Georgetown
   # subject<-"A211733" #Randome one from Georgetown
 
   # subject <- "A170186-DC" # This is My15 from Senator A170186 (DC)
 
-  subject<-"A211668" #Randome one from CombinedTEstData
+  subject <- "A211668" # Randome one from CombinedTEstData
 
-  #resultsTableName<-"./data/F23-10_MyExpoP.O#245_MASV15_CoA_UnivisionFIX.csv" # Univision (first try had wrong units this try sould work?)
-  #subject<-"A230476" #Randome one from Univision
+  # resultsTableName<-"./data/F23-10_MyExpoP.O#245_MASV15_CoA_UnivisionFIX.csv" # Univision (first try had wrong units this try sould work?)
+  # subject<-"A230476" #Randome one from Univision
 
-  #resultsTableName<-"./data/F23-21_MyExposome P.O.#248_CoA_UCONN.csv" # Connecticut
-  #resultsTableName<-"./data/F23-21_MyExpo_P.O.#248_CoA_reissue_ngPerWB_UCONN.csv" # Connecticut reissued with correct UNITS
-  #subject<-"A231970" #Random one from CONNECTICUT
+  # resultsTableName<-"./data/F23-21_MyExposome P.O.#248_CoA_UCONN.csv" # Connecticut
+  # resultsTableName<-"./data/F23-21_MyExpo_P.O.#248_CoA_reissue_ngPerWB_UCONN.csv" # Connecticut reissued with correct UNITS
+  # subject<-"A231970" #Random one from CONNECTICUT
 
-  #resultsTableName<-"./data/F24-14_MyExpo_P.O.#253_CoA.csv" # BOSTON
-  #subject<-"A240466" #Random one from BOSTON
+  # resultsTableName<-"./data/F24-14_MyExpo_P.O.#253_CoA.csv" # BOSTON
+  # subject<-"A240466" #Random one from BOSTON
 
-  #resultsTableName<-"./data/F24-20_MyExpo_PO257_OSU_MyE_Report.csv" # UFL Florida
-  #subject<-"A240871" #Random one from UFL Florida
+  # resultsTableName<-"./data/F24-20_MyExpo_PO257_OSU_MyE_Report.csv" # UFL Florida
+  # subject<-"A240871" #Random one from UFL Florida
 
-  #resultsTableName<-"./data/F24-05_MyExposomeP.O.#250_CoA_Louisville.csv" #
-  #subject<-"A240020" #Random one from Louisville
-
+  # resultsTableName<-"./data/F24-05_MyExposomeP.O.#250_CoA_Louisville.csv" #
+  # subject<-"A240020" #Random one from Louisville
 }
 
 #### THESE PARAMETERS are CONSISTENT across to each TEST TYPE and EACH specific RESULT within that test

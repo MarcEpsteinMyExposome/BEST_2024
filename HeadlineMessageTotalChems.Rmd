@@ -10,7 +10,6 @@ We propose applying these headlines to each chemical group separately. The parti
 
 ## Total Number of Chemicals Detected
 ```{r pickMessageForTotalNumberChemDetect, results='asis', echo=FALSE, message=FALSE,fig.width=10, fig.height=4}
-
 # I need to find out if >95% or >75 or 25-to-75 or < 25% chemicals detected compared to others then generate a text message and a number line
 # howManyChemicalsFoundThisWristband
 # round(averageNumberChemsFound,1)
@@ -18,7 +17,7 @@ We propose applying these headlines to each chemical group separately. The parti
 # minChemFoundOnAnyOneWristband
 
 ### function to create number line
-create_numberline <- function(cohort_values,individual_value) {
+create_numberline <- function(cohort_values, individual_value) {
   # Calculate min, median, and max
   min_value <- min(cohort_values)
   median_value <- median(cohort_values)
@@ -38,11 +37,11 @@ create_numberline <- function(cohort_values,individual_value) {
     20
   }
 
-   # Combine these values into a data frame
+  # Combine these values into a data frame
   values <- c(min_value, median_value, individual_value, max_value)
-  labels <- c("Minimum", "Median", paste("You: ", "\n",individual_value), "Maximum")
-  colors <- c("black", "black", "red", "black")  # Color for each label
-  positions <- c(-1.5, -1.5, 1.5, -1.5)  # Position for each label
+  labels <- c("Minimum", "Median", paste("You: ", "\n", individual_value), "Maximum")
+  colors <- c("black", "black", "red", "black") # Color for each label
+  positions <- c(-1.5, -1.5, 1.5, -1.5) # Position for each label
 
   data <- data.frame(
     value = values,
@@ -53,38 +52,41 @@ create_numberline <- function(cohort_values,individual_value) {
 
   # Create the plot
   p <- ggplot(data, aes(x = value, y = 1)) +
-    geom_hline(yintercept = 1, color = "gray", linetype = "dashed") +  # Add horizontal line
+    geom_hline(yintercept = 1, color = "gray", linetype = "dashed") + # Add horizontal line
     geom_point(aes(color = color), size = 3) +
     geom_label(aes(label = label, color = color, vjust = position), fill = "white", label.size = 0.5) +
     scale_color_identity() +
     scale_x_continuous(breaks = seq(0, max_value, by = increment), limits = c(0, max_value)) +
-    labs(title = "Number of chemicals detected per wristband",
-         x = "Number of chemicals",
-         y = "") +
+    labs(
+      title = "Number of chemicals detected per wristband",
+      x = "Number of chemicals",
+      y = ""
+    ) +
     theme_minimal() +
-    theme(aspect.ratio = 0.2,  # Adjust aspect ratio to make the plot 5 times wider than tall
-          axis.text.y = element_blank(),
-          axis.ticks.y = element_blank(),
-          panel.grid.major.y = element_blank(),
-          panel.grid.minor.y = element_blank()
-          #,
-          #plot.margin = unit(c(1, 1, 1, 1), "cm")  # Adjust margins
+    theme(
+      aspect.ratio = 0.2, # Adjust aspect ratio to make the plot 5 times wider than tall
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank()
+      # ,
+      # plot.margin = unit(c(1, 1, 1, 1), "cm")  # Adjust margins
     )
 }
 
 # so first I need a list of each wristband and how many compounds were found on that wristband
-countChemsEachWristband<-testResults.big %>% 
-  filter(Result>0) %>%
-  group_by(SampleNumber)%>%
-  summarise(countPositiveResults=n())
-  
-  
+countChemsEachWristband <- testResults.big %>%
+  filter(Result > 0) %>%
+  group_by(SampleNumber) %>%
+  summarise(countPositiveResults = n())
+
+
 
 
 # Calculate the percentiles
-percentile_95 <- quantile(countChemsEachWristband$countPositiveResults  , 0.95)
-percentile_75 <- quantile(countChemsEachWristband$countPositiveResults  , 0.75)
-percentile_25 <- quantile(countChemsEachWristband$countPositiveResults  , 0.25)
+percentile_95 <- quantile(countChemsEachWristband$countPositiveResults, 0.95)
+percentile_75 <- quantile(countChemsEachWristband$countPositiveResults, 0.75)
+percentile_25 <- quantile(countChemsEachWristband$countPositiveResults, 0.25)
 
 # Determine the message based on the value
 if (howManyChemicalsFoundThisWristband >= percentile_95) {
@@ -100,14 +102,13 @@ if (howManyChemicalsFoundThisWristband >= percentile_95) {
 # Print the message
 cat(message)
 
-#Now Show the Line Chart
+# Now Show the Line Chart
 
 
-p <- create_numberline (countChemsEachWristband$countPositiveResults,howManyChemicalsFoundThisWristband)
+p <- create_numberline(countChemsEachWristband$countPositiveResults, howManyChemicalsFoundThisWristband)
 p
 
-# 
+#
 ```
 
-The total number of chemicals found in your wristband was **`r howManyChemicalsFoundThisWristband`**. The average number of chemicals found across all tested wristbands in this project was **`r round(averageNumberChemsFound,1) `**.  The maximum number of chemicals found on any one wristband was **`r maxChemFoundOnAnyOneWristband`**.  The minimum number of chemicals found on any one wristband was **`r minChemFoundOnAnyOneWristband`**.   The total number of distinct chemicals found across all the wristbands in this study was **`r howManyUniqueChemFoundAcrossAllWristbands`**.
-
+The total number of chemicals found in your wristband was **`r howManyChemicalsFoundThisWristband`**. The average number of chemicals found across all tested wristbands in this project was **`r round(averageNumberChemsFound,1) `**.  The maximum number of chemicals found on any one wristband was **`r maxChemFoundOnAnyOneWristband`**.  The minimum number of chemicals found on any one wristband was **`r minChemFoundOnAnyOneWristband`**.  

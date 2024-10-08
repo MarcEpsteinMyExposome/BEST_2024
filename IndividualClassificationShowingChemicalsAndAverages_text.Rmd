@@ -42,7 +42,7 @@ If we look at this same data, broken down by chemical classification, and rememb
 
 ClassCompareSubject2 <- ClassCompareSubject %>%
     select(classification,Participant,Average) %>%
-    dplyr::rename(Subject=Participant)
+    dplyr::rename(You=Participant)
 
 
 pandoc.table(ClassCompareSubject2,

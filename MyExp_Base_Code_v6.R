@@ -156,10 +156,12 @@ load_package <- function(packages) {
 # List of required packages
 # PLOTLY is used to create interactive plots,   Added to help w/ VIOLIN charts
 # Added HTMLTOOLS because it allows better generation of html files and separate items in report (first used in violin)
-required_packages <- c("png", "ggplot2","ggtext", "plotly", "htmltools", "rlang",
-                       "RColorBrewer", "reshape2", "pander", "scales", "tidyverse","scriptName","knitr","rmarkdown","grid")
+required_packages <- c(
+  "png", "ggplot2", "ggtext", "plotly", "htmltools", "rlang",
+  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid", "styler"
+)
 
-other_packages <-c("sqldf","RSQLite","gplots")  # DO NOT LOAD THESE unless needed,  move then to required packages
+other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless needed,  move then to required packages
 
 # Load all required packages
 load_package(required_packages)
@@ -208,8 +210,8 @@ classification <-
 
 # Create the LONG version of "classification" (which is WIDE)
 class_L <- classification %>%
-  #gather(classification,
-    tidyr::gather(classification,
+  # gather(classification,
+  tidyr::gather(classification,
     value,
     colnames(classification[2:ncol(classification)]),
     factor_key = TRUE
@@ -398,7 +400,7 @@ testResults <- load.testResults(testResultsRawTable, masterParam)
 ### AT THIS POINT, testResults for DRS might have some ZERO values but always numeric results... the ZEROs are cause DRS has some weird values in it that get converted
 
 
-#rm(testResultsRawTable)
+# rm(testResultsRawTable)
 
 
 
@@ -440,8 +442,8 @@ if (makeIntoDemoData) {
 ##
 
 ### THIS just eliminates all ZERO result ROWS for now.... LaTER we will add them back
-testResults<-testResults%>%
-  filter(Result>0)
+testResults <- testResults %>%
+  filter(Result > 0)
 
 
 
@@ -598,18 +600,18 @@ rm(
 # contains how may of each classification each subject got
 SubClassScores <- testResults %>%
   filter(Result > 0) %>% # choose only hits
-  left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
+  left_join(class_L, by = "ParameterID", relationship = "many-to-many") %>% # add "classification" value
   ### DURING ETSTING i changed from INNER  JOIN to LEFT JOIN
-  #inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
+  # inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
   select(classification, SampleNumber) %>% # pick columns needed
   count(classification, SampleNumber) %>% # how many of each classification for each wristband
   arrange(SampleNumber) %>%
   dplyr::rename(aggScore = n)
 
-#testResults <- testResults.big
+# testResults <- testResults.big
 # results_W is needed columns from testResult turned into a WIDE version
 
-#Error in `spread()`:
+# Error in `spread()`:
 #  ! Each row of output must be identified by a unique combination of keys.
 #  ℹ Keys are shared for 471 rows
 
@@ -685,9 +687,9 @@ if (!result_file_output_done) {
 
 
 ### Lets get a small lookkup table to convert SampleNumber to PureSampleName
-sampleLookup<- testResults %>%
-  select(SampleNumber,PureSampleName) %>%
-  filter(PureSampleName != 'NA') %>%
+sampleLookup <- testResults %>%
+  select(SampleNumber, PureSampleName) %>%
+  filter(PureSampleName != "NA") %>%
   unique()
 
 # add back any ZERO values for results that should be here
@@ -699,22 +701,22 @@ testResults <- testResults %>%
 
 ### WE have BROKEN (for some old historical reason) the values of ParameterName and CASNumber by manipulating testResults
 ###  I will fix that now just by setting them using MasterParam
-testResults$ParameterName<-NULL
-testResults$CASNumber<-NULL
-testResults <- testResults %>% left_join(masterParam,by="ParameterID")
+testResults$ParameterName <- NULL
+testResults$CASNumber <- NULL
+testResults <- testResults %>% left_join(masterParam, by = "ParameterID")
 
 
 ### WE have BROKEN (for some old historical reason) the values of PureSampleName
 ###  I will fix that now just by setting them using sampleLookup
-testResults$PureSampleName<-NULL
-testResults <- testResults %>% left_join(sampleLookup,by="SampleNumber")
+testResults$PureSampleName <- NULL
+testResults <- testResults %>% left_join(sampleLookup, by = "SampleNumber")
 
 
 
-####TESTING TESTING
-####TESTING TESTING
-####TESTING TESTING
-####TESTING TESTING BELOW
+#### TESTING TESTING
+#### TESTING TESTING
+#### TESTING TESTING
+#### TESTING TESTING BELOW
 
 ### THIS SHOWS ME that some ParameterIDs have crept in that never were found... HOW?  I don't know.
 # twoRol<-testResults %>%
@@ -728,9 +730,9 @@ testResults <- testResults %>% left_join(sampleLookup,by="SampleNumber")
 #   mutate(norm_Result = Result / max(Result)) %>%
 #   filter(sum(Result) == 0)
 
-####TESTING TESTING  ABOVE
-####TESTING TESTING
-####TESTING TESTING
+#### TESTING TESTING  ABOVE
+#### TESTING TESTING
+#### TESTING TESTING
 
 
 # NEXT we add new columnst to testResults for later use
@@ -770,8 +772,8 @@ testResults.big <- testResults.big %>%
   mutate_if(is.character, ~ replace_na(., "not_found"))
 
 # Add actual chemical name (ParameterName) to testResults.big
-#testResults.big2 <- testResults.big %>%
-  #left_join(masterParam,by="ParameterID")
+# testResults.big2 <- testResults.big %>%
+# left_join(masterParam,by="ParameterID")
 
 
 # # ADDING CLASSIFICATION to testResults.big BUT NOTE that this creates duplicate rows cause some parameterID have multiple class SO
@@ -804,7 +806,7 @@ SubClassAtleastOne <- testResults.big %>%
     TRUE ~ Result
   )) %>% # IF we have a Y flag on an item set the ZERO value to 100
   filter(Result > 0) %>% # choose only hits
-  inner_join(class_L, by = "ParameterID",relationship ="many-to-many") %>% # add "classification" value and add many-to-many catch
+  inner_join(class_L, by = "ParameterID", relationship = "many-to-many") %>% # add "classification" value and add many-to-many catch
   select(classification, SampleNumber) %>% # pick columns needed
   unique() %>%
   group_by(classification) %>%
@@ -865,11 +867,11 @@ minMaxTR <- testResults.big %>%
   summarise(Count = sum(Result > 0)) %>%
   arrange(desc(Count))
 
-if (makeIntoDemoData) {   #   Use this to set SUBJECT to min max middle as way of testing the various messages... if i want...
-  subject <- minMaxTR$SampleNumber[2]    ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
-  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
-  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
-  #subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
+if (makeIntoDemoData) { #   Use this to set SUBJECT to min max middle as way of testing the various messages... if i want...
+  subject <- minMaxTR$SampleNumber[2] ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
+  # subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
+  # subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
+  # subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
 }
 
 
@@ -888,7 +890,7 @@ minChemFoundOnAnyOneWristband <- min(minMaxTR$Count)
 stdDevChemFoundOnAnyOneWristband <- signif(sd(minMaxTR$Count), 3)
 
 # Remove minMaxTR because it SHOULDN'T be needed any more
-#rm(minMaxTR)
+# rm(minMaxTR)
 
 ## Calculate statistics of min/max/etc of occurences of chemicans across wristbands
 #   Use only >0 values
@@ -980,7 +982,7 @@ if (CombinedTestData) {
 
 ## Create table summarizing average # of chemicals of each classification found in wristbands
 csSummary <- as.data.frame(
-  left_join(testResults.big, class_L, by = "ParameterID",relationship = "many-to-many") %>%
+  left_join(testResults.big, class_L, by = "ParameterID", relationship = "many-to-many") %>%
     mutate(Result = case_when(
       Flag == "Y" ~ 100, # COUNT as having value when Y is FLAG
       TRUE ~ Result
@@ -1136,5 +1138,3 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
 
 #######  NOW I"M GOING TO BUILD a VIOLIN CHART (Eventually move this to its own R code... maybe?)j  OR move into RMD file...
 ### PROBABLY make this its own R file and then load it somewhere and then USE it in RMD code????
-
-

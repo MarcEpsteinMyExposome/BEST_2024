@@ -6,7 +6,7 @@ over a period of approximately one week.  We are using your wristband to report 
 
 **`r testExplanation`** 
 
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. All analysis was done "blind" to any aspect of the underlying study design with unique identifiers assigned to each wristband. Your unique subject name for the purposes of this analysis is:   **`r subject`**.
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. All analysis was done "blind" to any aspect of the underlying study design with unique identifiers assigned to each wristband. Your unique participant identifier for the purposes of this analysis is:   **`r subject`**.
 
 
 [comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)
