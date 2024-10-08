@@ -1,5 +1,26 @@
 ---
 output:
+  rmdformats::readthedown:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  word_document:
+    reference_docx: MyExposomeFormat_1527_v6.docx
+  editor_options: 
+    chunk_output_type: console
+  chunk_output_type: console
+---
+<!-- 
+OLD HTML DOC:
   html_document:
     fig_height: 14
     fig_width: 10
@@ -14,19 +35,24 @@ output:
       smooth_scroll: true
     df_print: "paged"
     keep_md: true
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-  distill::distill_article:
-    toc: true
-    toc_depth: 4
-  word_document:
-    reference_docx: MyExposomeFormat_1527_v6.docx
-  editor_options: 
-    chunk_output_type: console
-  chunk_output_type: console
----
-<!-- 
+
+OR DID THIS 
+ALSO GOOD:  THIS IS MY CURRENT FAVORITE
+  rmdformats::readthedown:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+ALSO GOOD I THINK:
+  rmdformats::material:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    number_sections: true
+    df_print: "paged"
+
   Other things to fix:
     we use "week worn or time adjusted or weight adjusted as flags for printing MESSAGES but mostly we 
     do NOT use those same flags for deciding FIXUP... we set fixup flags based on what test done 

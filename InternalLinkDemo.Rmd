@@ -1,7 +1,52 @@
 ---
 title: "Internal Link Demonstration"
-output: html_document
+output:
+  rmdformats::readthedown:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  editor_options: 
+    chunk_output_type: console
+  
 ---
+
+<!--               
+output:
+  html_document:
+    fig_height: 14
+    fig_width: 10
+    self_contained: true
+    mode: selfcontained
+    theme: cerulean
+    toc: true
+    number_sections: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    df_print: "paged"
+    keep_md: true
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  editor_options: 
+    chunk_output_type: console
+  
+
+-->
+
 
 * Go to [tablex](#table)
 * Go to [plot](#custom-idx)
