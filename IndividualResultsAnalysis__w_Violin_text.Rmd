@@ -163,63 +163,118 @@ chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIri
 
 ### Here we have a  plot of each Chemical of Concern {.tabset  .tabset-pills}
 
-We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.
 
-Please click on each chemical name to see where your level of exposure compares to others in this study.
 
 ```{r, include=FALSE}
-# THIS weird section is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
+# THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
 fig <- ggplot(cars) + 
   geom_point(aes(speed, dist))
 htmltools::tagList(ggplotly(fig))
+
+
+### This next section is to figure how HOW MANY people HAD this compound and how many didn't
+howManyHaveParameterName <- testResults.big %>%
+  group_by(ParameterName) %>%
+  summarise(non_zero_count = sum(Result != 0))
+ 
+
+# Function to look up non_zero_count for a specific ParameterName
+lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
+  result <- howManyHaveParameterName %>%
+    filter(ParameterName == parameter_name) %>%
+    pull(non_zero_count)
+  return(result)
+}
+
+# Example usage
+#parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
+#non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
+#print(non_zero_count_value)
+
+
+
+
+
 ```
+
+
+We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.  We are comparing YOUR value on this chemical to OTHER PEOPLE WHO DID HAVE THIS COMPOUND.  Many people likely did NOT have this compound at all. 
+
+
+
+Please click on each chemical name to see where your level of exposure compares to others in this study.
 
 
 
 ```{r, results='asis',echo=FALSE,eval=TRUE}
 
+
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
-######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops 
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-if(length(chemsOfConcern>=1)){
+if (length(chemsOfConcern >= 1)) {
   for (i in 1:length(chemsOfConcern)) {
-
     chemOfConcern <- chemsOfConcern[i]
     #chemOfConcern <- chemsOfConcern[9]
     #chemOfConcern <- chemsOfConcern[1]
     
     
-    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had 
+    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
     testResults_ChemOfConcern <- testResults.big %>%
       filter(ParameterName == chemOfConcern) %>%
       select(SampleNumber, Result, ParameterName)
-
-  
-    if (nrow(testResults_ChemOfConcern)>1) {
-      cat("####", chemOfConcern, '{-}',  '\n\n')
-  
-      print(htmltools::tagList(buildPlotlyViolin(chemOfConcern,testResults_ChemOfConcern)))
-
-      newMessage<-NULL
-      newMessage <- paste(newMessage,' Your chemical ',chemOfConcern,' was found in one or more online databases as being of some concern. ')
-
-
-            
+    
+    
+    if (nrow(testResults_ChemOfConcern) > 1) {
+      cat("####", chemOfConcern, '{-}', '\n\n')
+      
+      print(htmltools::tagList(
+        buildPlotlyViolin(chemOfConcern, testResults_ChemOfConcern)
+      ))
+      
+      newMessage <- NULL
+      
+      newMessage <- paste (
+        newMessage,
+        " ",
+        chemOfConcern,
+        " was found on ",
+        lookup_non_zero_count(chemOfConcern, howManyHaveParameterName),
+        "out of the ",
+        howManyWristbandsTested,
+        "wristbands."
+      )
+      
+      
+      
+      # newMessage <- paste(
+      #   newMessage,
+      #   chemOfConcern,
+      #   ' was found in one or more online databases as being of some concern. '
+      # )
+      
+      
+      
+      
       testInPROP65 <- oneResultCalifProp65Risk %>%
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInPROP65) > 0) {
         PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
-        newMessage <- paste (newMessage,  " ",
-                             " This chemical is classified per California Proposition 65 (",
-                             " http://www.oehha.ca.gov/prop65.html ",
-                             " ) ",
-                             " with the risk type noted as: ",
-                             PROP65_info,".")       
-        }
-
+        newMessage <- paste (
+          newMessage,
+          " ",
+          " This chemical is classified per California Proposition 65 (",
+          " http://www.oehha.ca.gov/prop65.html ",
+          " ) ",
+          " with the risk type noted as: ",
+          PROP65_info,
+          "."
+        )
+      }
+      
       
       # testInIARC <- oneResultIARCRisk %>%
       #   filter(`Chemical Name` == chemOfConcern)
@@ -232,15 +287,17 @@ if(length(chemsOfConcern>=1)){
       
       testInIRIS <- oneResultEpaIris %>%
         filter(`Chemical Name` == chemOfConcern)
-       if (nrow(testInIRIS) > 0) {
-         IRIS_info <- testInIRIS$`IRIS Summary Web Link`
-         newMessage <- paste(      newMessage,
-                                   " ",
-                                   "The Environmental Protection Agency has classified this chemical ",
-                                   " as a chemical of concern.  You can find more information here: ",
-                                   IRIS_info,   " . "
-                                   )
-       }
+      if (nrow(testInIRIS) > 0) {
+        IRIS_info <- testInIRIS$`IRIS Summary Web Link`
+        newMessage <- paste(
+          newMessage,
+          " ",
+          "The Environmental Protection Agency has classified this chemical ",
+          " as a chemical of concern.  You can find more information here: ",
+          IRIS_info,
+          " . "
+        )
+      }
       
       cat(newMessage)
       
@@ -249,10 +306,9 @@ if(length(chemsOfConcern>=1)){
   }
 } else {
   testResults_ChemOfConcern <- testResults.big %>%
-      filter(ParameterName == "NEVER MATCH") %>%
-      select(SampleNumber, Result, ParameterName)
+    filter(ParameterName == "NEVER MATCH") %>%
+    select(SampleNumber, Result, ParameterName)
 }
-
 
 
 ```

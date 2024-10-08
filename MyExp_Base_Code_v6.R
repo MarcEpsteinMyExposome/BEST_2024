@@ -394,7 +394,13 @@ if (!(WisconsinFixup == TRUE && RMD_type == "PAH") && !(WisconsinFixup == TRUE &
 # setdiff(masterParam$ParameterID,testResultsRawTable$ParameterID )
 
 testResults <- load.testResults(testResultsRawTable, masterParam)
-rm(testResultsRawTable)
+
+### AT THIS POINT, testResults for DRS might have some ZERO values but always numeric results... the ZEROs are cause DRS has some weird values in it that get converted
+
+
+#rm(testResultsRawTable)
+
+
 
 #
 # rm(load.testResults)
@@ -409,6 +415,37 @@ if (FixupForAnyone) {
 } else if (doAIRplusNioshOSHAreporting) {
   stop("MyExp DEBUG: NOT doing ANY fixup so air calc won't work and maybe other problems---RESEARCH if hit this error")
 }
+
+
+
+# Here we're converting some REAL customer data into a DEMO dataset picking only a certain # of WBs
+if (makeIntoDemoData) {
+  testResults <- makeIntoDemoDataResults(testResults, howManyDemoResults) # Select only howManyDemoResults of unique SampleNumbers
+
+  # Now change SampleNumbers to other Strings
+  testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
+  subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
+  #
+  #
+  # KEY POINT is that when making it into demo data there might be some compounds which WERE found in the bigger set, NOT found in the demo set,
+  #     but MIGHT have zero values listed for them??? is that true?
+}
+
+
+#### NOW we have testResults which, for every test EXCEPT DRS it has the # of rows = to # of ParameterIDs in masterParameter times # of Wristbands (SampleNumber)
+### but for DRS only it has # of combinations of ParameterID and SampleNumber that were positive  NOPE.. i see some zeros... let's stry again
+#### but only for DRS sometimes we have a weird combination since some non-numeric values get set to ZERO we have SOME zero result rows and that is weird but happens
+#### so.... for DRS we have an indeterminate # of rows.
+### so we need to eliminate any zero Results from the data... and add them back later?
+##
+
+### THIS just eliminates all ZERO result ROWS for now.... LaTER we will add them back
+testResults<-testResults%>%
+  filter(Result>0)
+
+
+
+
 
 if (testing_PRE_POST) { # THIS IS MARC JUST PLaYING AROUND with PREPOST data to see how we might chart it
   # Create a subset that is only the rows that have BOTH either pre or POST and FORCE DATA manually to have both pre and post examples
@@ -454,13 +491,7 @@ if (doAIRplusNioshOSHAreporting) {
   testResults$MaxNioshOsha <- pmax(testResults$NIOSH, testResults$OSHA, na.rm = TRUE)
 }
 
-# Here we're converting some REAL customer data into a DEMO dataset picking only a certain # of WBs
-if (makeIntoDemoData) {
-  testResults <- makeIntoDemoDataResults(testResults, howManyDemoResults) # Select only howManyDemoResults of unique SampleNumbers
-  # Now change SampleNumbers to other Strings
-  testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
-  subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
-}
+
 
 # IF we only want to take a SUBSET of the testResults we can do that here by picking only one specific batch number
 if (subsetBasedOnBatchNumber) {
@@ -651,14 +682,61 @@ if (!result_file_output_done) {
 #  select(ParameterID,SampleNumber,Result) %>%
 #  complete(ParameterID,SampleNumber,fill=list(Result=0))
 
+
+
+### Lets get a small lookkup table to convert SampleNumber to PureSampleName
+sampleLookup<- testResults %>%
+  select(SampleNumber,PureSampleName) %>%
+  filter(PureSampleName != 'NA') %>%
+  unique()
+
 # add back any ZERO values for results that should be here
 testResults <- testResults %>%
   # select(ParameterID,SampleNumber,Result) %>%  # We're not going to drop columns  Do that LATER as NEEDED
   # IMPORTANT NOTE:  I needed to set all the NUMERIC values to 0 with FILL so that later things didn't break
   complete(ParameterID, SampleNumber, fill = list(Result = 0, ResultOriginal = 0, Days_worn = 0, size_factor = 0, week_factor = 0))
 
+
+### WE have BROKEN (for some old historical reason) the values of ParameterName and CASNumber by manipulating testResults
+###  I will fix that now just by setting them using MasterParam
+testResults$ParameterName<-NULL
+testResults$CASNumber<-NULL
+testResults <- testResults %>% left_join(masterParam,by="ParameterID")
+
+
+### WE have BROKEN (for some old historical reason) the values of PureSampleName
+###  I will fix that now just by setting them using sampleLookup
+testResults$PureSampleName<-NULL
+testResults <- testResults %>% left_join(sampleLookup,by="SampleNumber")
+
+
+
+####TESTING TESTING
+####TESTING TESTING
+####TESTING TESTING
+####TESTING TESTING BELOW
+
+### THIS SHOWS ME that some ParameterIDs have crept in that never were found... HOW?  I don't know.
+# twoRol<-testResults %>%
+#   select(ParameterID,SampleNumber,Result) %>%
+#   #unique() %>%
+#   group_by(ParameterID) %>%
+#   summarize(rTotal=sum(Result))
+#
+# testResults.bigX <- testResults %>%
+#   group_by(ParameterID) %>%
+#   mutate(norm_Result = Result / max(Result)) %>%
+#   filter(sum(Result) == 0)
+
+####TESTING TESTING  ABOVE
+####TESTING TESTING
+####TESTING TESTING
+
+
 # NEXT we add new columnst to testResults for later use
 # BUT we MUST REMEMBER that we have move to lookup tables ParameterID(ParameterName, CASNumber) and SampleNumber( PureSampleName )
+# testResults.big has # of rows = total-wristbands-tested multiplied by # of Chemicals found on any wristband.
+#       In other words, if NOBODY had that chemical, it is not in the data anywhere... BUT... if ANYONE had it then everyone has a value for it (like ZERO)
 testResults.big <- testResults %>%
   group_by(ParameterID) %>%
   mutate(norm_Result = Result / max(Result)) %>% # calc normalized result as % of max found
@@ -690,6 +768,17 @@ testResults.big <- testResults %>%
 testResults.big <- testResults.big %>%
   mutate_if(is.numeric, ~ replace_na(., 0)) %>%
   mutate_if(is.character, ~ replace_na(., "not_found"))
+
+# Add actual chemical name (ParameterName) to testResults.big
+#testResults.big2 <- testResults.big %>%
+  #left_join(masterParam,by="ParameterID")
+
+
+# # ADDING CLASSIFICATION to testResults.big BUT NOTE that this creates duplicate rows cause some parameterID have multiple class SO
+# #   ONLY use this when necessary to lookup CLASS
+# testResults.bigWithClass  <- testResults.big %>%
+#   left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
+#   select(ParameterID,SampleNumber,Result, classification)
 
 
 
@@ -777,7 +866,7 @@ minMaxTR <- testResults.big %>%
   arrange(desc(Count))
 
 if (makeIntoDemoData) {   #   Use this to set SUBJECT to min max middle as way of testing the various messages... if i want...
-  #subject <- minMaxTR$SampleNumber[2]    ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
+  subject <- minMaxTR$SampleNumber[2]    ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
   #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
   #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
   #subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds

@@ -1,42 +1,23 @@
+# Test various headline group thigns
 
-
-<!-- PRINT Headline Rule for total chemical GROUP as denoted by Silent Spring using a separate RMD file-->
-
-<!--  Headlines for amount detected (by chemical group)     
-We propose applying these headlines to each chemical group separately. The participant would receive the top priority headline that applies for each chemical group. The headlines are not exhaustive (i.e., not all participants will necessarily receive a headline for every group). The headlines are intended to highlight particularly high or low.  
-
-SubClassScores seemss to already have manny values.  It shows how any of each category each person has.  SO for each CLASS (i.e. "Chemicals in Commerce") 
-BUT subclassscores doesn't have enough detail to do this
-
-You had some {group name} detected in your wristband that were not found in most others.
-
-NEED to add "classification" if it isn't already to the big result table.  THEN we can do anything w/ a query on that table.
-
-THIS IS COMPLICATED and unclear what I really want to display... TBD.
-
--->
+HOLD_testResults.bigWithClass<-testResults.bigWithClass
+str(testResults.bigWithClass)
 
 
 
-## Key Messages By Chemical Group 
+#testResults <- testResults.bigWithClass
+#sampleNumber <- "AAG0FDC"
+# One thing to note is that && only works on single logical values,
+#i.e., logical vectors of length 1
+#(like you would pass into an if condition),
+#but & also works on vectors of length greater than 1.
 
-```{r printMessageForTotalChemByGroup, results='asis', echo=FALSE, message=FALSE,fig.width=10, fig.height=4}
+#testResults <- testResults.bigWithClass
+#sampleNumber <- "AAG0FDC"
 
-testResults.bigWithClass  <- testResults.big %>%
-  #filter(Result > 0) %>% # choose only hits
-  left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
-  select(ParameterID,ParameterName,SampleNumber,Result, classification)
+debug=FALSE
+debug2=FALSE
 
-# ADDING CLASSIFICATION to testResults.big BUT NOTE that this creates duplicate rows cause some parameterID have multiple class SO
-#   ONLY use this when necessary to lookup CLASS
-### NOTE NOPE NOTE:   I went back to base code, and made sure that EVERY data file, including DRS had one row for each unique combo of sampleNumber and ParameterID
-
-
-#str(testResults.bigNoZeroWithClass)
-#str(testResults.bigWithClass)
-
-
-# Define the function
 generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE) {
   #debug=TRUE
 
@@ -248,9 +229,6 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 }
 
 
-
-
-
 # Call the function
 report_messages <- generate_report(subject, testResults.bigWithClass)
 
@@ -262,16 +240,68 @@ for (message in report_messages) {
   cat("* ", message, "\n")
 }
 
-#generate_report("AAG0AAG", testResults.bigWithClass)
-#generate_report("AAG0AC0", testResults.bigWithClass)
-#generate_report("AAGA00C", testResults.bigWithClass)
-#generate_report("AAGA009", testResults.bigWithClass)
-#generate_report("AAG0CAA", testResults.bigWithClass)
-#generate_report("AAG0CAE", testResults.bigWithClass)
 
 
-cat("\n\n ** This is not yet implemented or tested FULLY.  This is to print HEADLINE RULES by CHEM GROUP if we decide to do that ** \n")
 
 
-# 
-```
+### FIRST CLEAR OUT OTHER VARIABLES
+message<-NULL
+messages<-NULL
+
+
+
+
+# LET'S SET ALL RESULTS = 1... then NOTHING should print I think
+testResults.bigWithClass$Result <- 1
+generate_report("AAG0FDC", testResults.bigWithClass)   #
+
+# LET'S SET ALL RESULTS = 0... then NOTHING should print I think
+testResults.bigWithClass$Result <- 0
+generate_report("AAG0FDC", testResults.bigWithClass)   #
+
+
+testResults.bigWithClass$Result <- sample(100, size = nrow(testResults.bigWithClass), replace = TRUE)
+generate_report("AAG0FDC", testResults.bigWithClass)   #
+
+
+
+#=====================================
+
+debug=FALSE
+debug2=FALSE
+
+
+#### ok... try setting EVERYTHING for EVERYBODY to RANDOM and then set one person   "AAG0FDC" differently
+### first set everthing to RANDOM
+testResults.bigWithClass$Result <- sample(100, size = nrow(testResults.bigWithClass), replace = TRUE)
+
+
+### Then set all pesticides for AAG0FDC to 300 but set everyone elses first to zero
+testResults.bigWithClass$Result[testResults.bigWithClass$classification == 'Pesticides'] <- 0 # EVERYONE gets a zero pesticidef
+testResults.bigWithClass$Result[testResults.bigWithClass$SampleNumber ==  "AAG0FDC" & testResults.bigWithClass$classification == 'Pesticides'] <- 300
+
+#Then set all Flame Retardants for AAG0FDC to ZERO
+### BUT BUT BUT this needs to set all compounds that are flame retardants to zero EVEN  if they also are other classifications
+# Step 1: Set Result to zero for Flame Retardant classification for AAG0FDC
+testResults.bigWithClass$Result[testResults.bigWithClass$SampleNumber == "AAG0FDC" &
+                                  testResults.bigWithClass$classification == 'Flame Retardant'] <- 0
+# Step 2: Identify all ParameterIDs for the above condition
+flame_retardant_param_ids <- unique(testResults.bigWithClass$ParameterID[testResults.bigWithClass$SampleNumber == "AAG0FDC" &
+                                                                           testResults.bigWithClass$classification == 'Flame Retardant'])
+# Step 3: Set Result to zero for rows with SampleNumber AAG0FDC and identified ParameterIDs
+testResults.bigWithClass$Result[testResults.bigWithClass$SampleNumber == "AAG0FDC" &
+                                  testResults.bigWithClass$ParameterID %in% flame_retardant_param_ids] <- 0
+
+
+
+
+
+
+
+#Then set all VOCs for AAG0FDC to 80
+testResults.bigWithClass$Result[testResults.bigWithClass$SampleNumber ==  "AAG0FDC" & testResults.bigWithClass$classification == "Volatile Organic Compounds (VOCs)" ] <- 80
+
+generate_report("AAG0FDC", testResults.bigWithClass)   #
+
+
+str(testResults.bigWithClass)
