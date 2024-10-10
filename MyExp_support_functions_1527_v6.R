@@ -45,24 +45,24 @@ buildMesgVIndividual <-
       select(SampleNumber,CountChem)%>%
       distinct()
 
-    # add message for number found in various databases.  Do NOT report if none-found
-    if (numEPAirisFound == 1) {
-      mesg.v <-
-        addMesg(
-          mesg.v,
-          numEPAirisFound,
-          numEPAirisFound,
-          "of your detected chemicals is listed in the **EPA IRIS** dataset."
-        )
-    } else if (numEPAirisFound > 1) {
-      mesg.v <-
-        addMesg(
-          mesg.v,
-          numEPAirisFound,
-          numEPAirisFound,
-          "of your detected chemicals are listed in the **EPA IRIS** dataset."
-        )
-    }
+    # # add message for number found in various databases.  Do NOT report if none-found
+    # if (numEPAirisFound == 1) {
+    #   mesg.v <-
+    #     addMesg(
+    #       mesg.v,
+    #       numEPAirisFound,
+    #       numEPAirisFound,
+    #       "of your detected chemicals is listed in the **EPA IRIS** dataset."
+    #     )
+    # } else if (numEPAirisFound > 1) {
+    #   mesg.v <-
+    #     addMesg(
+    #       mesg.v,
+    #       numEPAirisFound,
+    #       numEPAirisFound,
+    #       "of your detected chemicals are listed in the **EPA IRIS** dataset."
+    #     )
+    # }
 
     if (numCalProp65Found == 1) {
       mesg.v <-
@@ -83,24 +83,24 @@ buildMesgVIndividual <-
     }
 
 
-    if (numIARCRiskFound == 1) {
-      mesg.v <-
-        addMesg(
-          mesg.v,
-          numIARCRiskFound,
-          numIARCRiskFound,
-          "of your detected chemicals is listed in the **IARC** Cancer Report."
-        )
-    } else if (numIARCRiskFound > 1) {
-      mesg.v <-
-        addMesg(
-          mesg.v,
-          numIARCRiskFound,
-          numIARCRiskFound,
-          "of your detected chemicals are listed in the **IARC** Cancer Report."
-        )
-    }
-
+    # if (numIARCRiskFound == 1) {
+    #   mesg.v <-
+    #     addMesg(
+    #       mesg.v,
+    #       numIARCRiskFound,
+    #       numIARCRiskFound,
+    #       "of your detected chemicals is listed in the **IARC** Cancer Report."
+    #     )
+    # } else if (numIARCRiskFound > 1) {
+    #   mesg.v <-
+    #     addMesg(
+    #       mesg.v,
+    #       numIARCRiskFound,
+    #       numIARCRiskFound,
+    #       "of your detected chemicals are listed in the **IARC** Cancer Report."
+    #     )
+    # }
+    #
 
 
 

@@ -316,7 +316,7 @@ ClassCompareSubject <- left_join(
 
 
 <!-- PRINT MESSAGE ABOUT WHAT COMPANY THIS TEST WAS DONE "FOR" -->
-`r if(testDoneFor != ""){ paste("**This test was done for:     ",testDoneFor, "**")   }`
+`r if(testDoneFor != ""){ paste("**This test was done for    ",testDoneFor, "**.")   }`
 
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL REPORT -->
@@ -476,7 +476,7 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 
 
-## List of Key Observations
+## Observations
 ```{r BuildMessageString, results='asis', echo=FALSE, message=FALSE}
 
 # COMMENTS BY MARC:  We are building a MESSAGE STRING = "mesg.v"

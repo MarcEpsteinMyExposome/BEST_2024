@@ -4,7 +4,7 @@
 
 ## Check against Databases 
 
-For all the chemicals found on your wristband we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals.  Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
+For all the chemicals found on your wristband we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals.  Please note that unless we specificaly mention it, we do not have information that determines any of the levels reported on these compounds are unsafe.
 
 
 

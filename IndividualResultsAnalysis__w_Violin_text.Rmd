@@ -7,124 +7,10 @@ editor_options:
 # Individual Results `r tabsetting`
 
 
-
-## Graphics comparing your values of these chemicals to others
-
-First we'll provide a graphical representation showing how your detected amount of each of these compounds compares to OTHER PEOPLE IN THIS SAME STUDY who ALSO tested as having been exposed to these compounds.
-
-
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
 
-
-
-#  NOTE that I'm setting width and heigh directly here.  THERE ARE OTHER WAYS including most likely 
-# Convert ggplot to Plotly   
-# p_plotly <- ggplotly(p)
-# # # Set the width of the Plotly plot
-# p_plotly <- p_plotly %>% layout(width = 800) # Adjust the width as needed
-
-
-#Define Function to BUILD PLotly interactive PLot
-### I made this a FILE so i could loop through it and print all the plots for all the compounds
-### BUT BUT BUT because of weird problems printing things in loop i could not really get the control I wanted
-### but I'm leaving this function and using it but eventually may need to find way to print each plot separately
-#
-
-buildPlotlyViolin <- function(chemOfConcern,testResults_ChemOfConcern) {
-  #chemical_to_chart<-chemsOfConcern[7]
-  #nrow()
-
-
-  #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
-  # testResults_ChemOfConcern <- testResults.big %>%
-  #   filter(ParameterName == chemOfConcern) %>%
-  #   select(SampleNumber, Result, ParameterName)
-  
-  # PICK the highlight point which is OUR ONE USERS result for this one chemical
-  highlight_point <- testResults_ChemOfConcern[testResults_ChemOfConcern$SampleNumber ==
-                                                 subject, ]
-  
-  
-  # Calculate mean and median for each group
-  summary_stats <- testResults_ChemOfConcern %>%
-    group_by(ParameterName) %>%
-    summarise(mean_Result = mean(Result),
-              median_Result = median(Result))
-  
-  # Create the base ggplot with hover text which took lots of playing around to get it to work
-  ### NOTE:  I'm was surpressing   "Ignoring unknown aesthetics: text" which for some reason shows up but i fixed maybe
-  chemPlot <- ggplot(testResults_ChemOfConcern ,
-                     aes(
-                       x = factor(ParameterName),
-                       y = Result,
-                       fill = factor(ParameterName)
-                     )) +
-    geom_violin(trim = FALSE) +
-    #geom_boxplot(width=0.1, position=position_dodge(0.9)) +    # DELETE BOX PLOT as just confusing
-    geom_point(
-      data = summary_stats,
-      aes(x = factor(ParameterName), y = mean_Result),
-      color = "blue",
-      size = 2,
-      shape = 21,
-      fill = NA
-    ) +
-    geom_point(
-      data = summary_stats,
-      aes(x = factor(ParameterName), y = median_Result),
-      #color = "green",
-      color = "#008000",
-      size = 3,
-      shape = 21,
-      fill = NA
-      
-    ) +
-    geom_point(
-      data = highlight_point,
-      aes(x = factor(ParameterName), y = Result),
-      color = "red",
-      size = 4,
-      shape = 21,
-      fill = NA
-    ) +
-    labs(
-      #title = "Mean, Median, and Your exposure", y = "Nanograms per Gram Silicone", x = ""
-      title = "<span style='color:green;'>Mean</span>, <span style='color:blue;'>Median</span>, and <span style='color:red;'>Your</span> exposure",
-      y = "Nanograms per Gram Silicone",
-      x = ""
-      ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_markdown(size = 14, face = "bold")
-      ) +
-    scale_fill_brewer(palette = "Pastel1") +
-    theme_minimal(base_size = 15) +
-    theme(legend.position = "none") +
-    coord_flip()
-  
-  # Display the interactive plot but try to style just ONE POINT
-  text_MEDIAN_label <-  paste("Median Result:", round(summary_stats$median_Result, 2))
-  text_MEAN_label <-  paste("Mean Result:", round(summary_stats$mean_Result, 2))
-  text_YOURDATA_label <-  paste("Your Result:", round(highlight_point$Result, 2))
-  
-  chemPlot <- chemPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ','))
-  
-  #plotly_json(chemPlot)   # this is the command to run to figure out what "traces" to set to which info
-  
-  ### THIS SHOULD GET RID OF EXPONENTS
-  ### because I had problems formating TICKs but I need to format in GGPLOT not PLOTLY... and then plotly just works
-  #options(scipen = 999)
-  
-  chemPlot_interactive <- ggplotly(chemPlot)  %>%
-    style(hoverinfo = "none", traces = 1) %>%
-    style(text = text_MEDIAN_label, traces = 2)  %>%
-    style(text = text_MEAN_label, traces = 3) %>%
-    style(text = text_YOURDATA_label, traces = 4) %>%
-    config(displayModeBar = FALSE)
-  
-  #chemPlot_interactive
-  return(chemPlot_interactive)
-}
+## The function to build a violin plot is now in a separate R file
+source("BuildViolinPlot.R")
 
 
 # Make list of all chemicals that our ONE user had that showed up in "any" of the databases
@@ -137,35 +23,18 @@ buildPlotlyViolin <- function(chemOfConcern,testResults_ChemOfConcern) {
 ### ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
 chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`)
 
-###
-## 
-# Additional Notes:
-# htmltools::tagList and tagAppendChild: These functions from the htmltools package help in 
-#   appending and managing multiple HTML widgets (like Plotly charts) in an RMarkdown document.
-# Explicit Rendering: By using tagList, each Plotly chart is managed as an individual HTML widget, 
-#   ensuring proper rendering in the knitted HTML output.
-### taglist
 
-#### NEW RESEARCH 9/27/2024:
-# https://stackoverflow.com/questions/49725591/dynamically-control-number-of-tabsets-in-r-markdown
-# https://stackoverflow.com/questions/43636120/how-to-embed-plots-into-a-tab-in-rmarkdown-in-a-procedural-fashion
-# https://github.com/rstudio/rstudio/issues/1795#issuecomment-505779701
-#
-### THIS IS IT >>  https://github.com/rstudio/rmarkdown/issues/2075  and is good but I actually used:
-###   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops 
-
-
+## Make a list of all chemicals that our one user had that did NOT show up in any of the databases
+chemsNOTinConcernGroup <-oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
 
 
 ```
 
 
-
-### Here we have a  plot of each Chemical of Concern {.tabset  .tabset-pills}
-
+## Plot each Chemical of Concern {.tabset  .tabset-pills}
 
 
-```{r, include=FALSE}
+```{r PlotChemsOfConcern_Part1, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
 fig <- ggplot(cars) + 
   geom_point(aes(speed, dist))
@@ -197,16 +66,14 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 
 ```
 
-
-We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.  We are comparing YOUR value on this chemical to OTHER PEOPLE WHO DID HAVE THIS COMPOUND.  Many people likely did NOT have this compound at all. 
-
-
+We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.  We are comparing YOUR value on this chemical to OTHER people who also have this compound.  Others did not have this compound at all. 
 
 Please click on each chemical name to see where your level of exposure compares to others in this study.
 
 
 
-```{r, results='asis',echo=FALSE,eval=TRUE}
+
+```{r PlotChemsOfConcern_Part2, results='asis',echo=FALSE,eval=TRUE}
 
 
 ###
@@ -229,7 +96,7 @@ if (length(chemsOfConcern >= 1)) {
     
     
     if (nrow(testResults_ChemOfConcern) > 1) {
-      cat("####", chemOfConcern, '{-}', '\n\n')
+      cat("###", chemOfConcern, '{-}', '\n\n')
       
       print(htmltools::tagList(
         buildPlotlyViolin(chemOfConcern, testResults_ChemOfConcern)
@@ -275,7 +142,7 @@ if (length(chemsOfConcern >= 1)) {
         )
       }
       
-      
+      ##### DELETED IARC cause Silent Spring suggested gettign rid
       # testInIARC <- oneResultIARCRisk %>%
       #   filter(`Chemical Name` == chemOfConcern)
       #  if (nrow(testInIARC) > 0) {
@@ -317,6 +184,138 @@ if (length(chemsOfConcern >= 1)) {
 
 
 
+
+
+
+
+
+
+
+## Plot Remaining Chemicals {.tabset  .tabset-pills}
+
+
+```{r PlotOtherChems_Part1, include=FALSE}
+# THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
+fig <- ggplot(cars) + 
+  geom_point(aes(speed, dist))
+htmltools::tagList(ggplotly(fig))
+
+
+### This next section is to figure how HOW MANY people HAD this compound and how many didn't
+howManyHaveParameterName <- testResults.big %>%
+  group_by(ParameterName) %>%
+  summarise(non_zero_count = sum(Result != 0))
+ 
+
+# Function to look up non_zero_count for a specific ParameterName
+lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
+  result <- howManyHaveParameterName %>%
+    filter(ParameterName == parameter_name) %>%
+    pull(non_zero_count)
+  return(result)
+}
+
+# Example usage
+#parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
+#non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
+#print(non_zero_count_value)
+
+
+```
+
+
+In addition to the chemicals specifically mentioned by the information above, there were other chemicals found on your wristband.  Please note both that  that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe and it doesn't mean that it is of concern either. 
+
+Please click on each chemical name to see where your level of exposure compares to others in this study.
+
+
+
+```{r PlotOtherChems_Part2, results='asis',echo=FALSE,eval=TRUE}
+
+
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+
+
+if (length(chemsNOTinConcernGroup >= 1)) {
+  for (i in 1:length(chemsNOTinConcernGroup)) {
+    chemNOTinConcernGroup <- chemsNOTinConcernGroup[i]
+    #chemOfConcern <- chemsOfConcern[9]
+    #chemOfConcern <- chemsOfConcern[1]
+    
+    
+    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
+    testResults_ChemNOTinConcern <- testResults.big %>%
+      filter(ParameterName == chemNOTinConcernGroup) %>%
+      select(SampleNumber, Result, ParameterName)
+    
+    
+    if (nrow(testResults_ChemNOTinConcern) > 1) {
+      cat("###", chemNOTinConcernGroup, '{-}', '\n\n')
+      
+      print(htmltools::tagList(
+        buildPlotlyViolin(chemNOTinConcernGroup, testResults_ChemNOTinConcern)
+      ))
+      
+      newMessage <- NULL
+      
+      newMessage <- paste (
+        newMessage,
+        " ",
+        chemNOTinConcernGroup,
+        " was found on ",
+        lookup_non_zero_count(chemNOTinConcernGroup, howManyHaveParameterName),
+        "out of the ",
+        howManyWristbandsTested,
+        "wristbands."
+      )
+      
+      
+      
+      # newMessage <- paste(
+      #   newMessage,
+      #   chemOfConcern,
+      #   ' was found in one or more online databases as being of some concern. '
+      # )
+      
+      
+      
+      cat(newMessage)
+      
+      cat(' \n \n')
+    }
+  }
+} else {
+  testResults_ChemNOTinConcern <- testResults.big %>%
+    filter(ParameterName == "NEVER MATCH") %>%
+    select(SampleNumber, Result, ParameterName)
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Individual: Chemical Info
 
 
@@ -333,6 +332,11 @@ if (length(chemsOfConcern >= 1)) {
 ```{r IndividualClassificationShowingChemicalsAndAverages, child='IndividualClassificationShowingChemicalsAndAverages_text.Rmd', eval = !HideClassificationInformation}
 ```
 
+
+
+
+```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```
 
 
 

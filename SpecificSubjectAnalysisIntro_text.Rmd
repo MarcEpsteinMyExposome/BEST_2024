@@ -2,7 +2,7 @@
 
 You have taken part in a MyExposome demonstration project to identify the chemical compounds 
 which were detected in your environment
-over a period of approximately one week.  We are using your wristband to report any detectable level of each of  **`r howManyChemicalsTested`** compounds.  
+over a period of approximately one week.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
 
 **`r testExplanation`** 
 
