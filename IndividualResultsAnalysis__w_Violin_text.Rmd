@@ -301,21 +301,6 @@ if (length(chemsNOTinConcernGroup >= 1)) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Individual: Chemical Info
 
 

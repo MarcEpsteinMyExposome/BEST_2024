@@ -4,6 +4,11 @@
 While the above table shows all the chemicals, and every classification for each chemical, this information can sometimes more easily be understood by seeing that same data organized by classification.  This allows you to see all the chemicals of a particular "type" grouped together (remembering that some chemical compounds are repeated in multiple categories).  The following list of classifications, along with their chemicals, were found in your wristband:
 
 
+<!-- 
+[standard deviation](## "Standard deviation is blah blah.") 
+-->
+
+
 ```{r  ListClassFound, results='asis', echo=FALSE, message=FALSE}
 
 oneResultInvertClassified<- as.data.frame(
@@ -16,11 +21,42 @@ oneResultInvertClassified<- as.data.frame(
     arrange(classification))
 
 names(oneResultInvertClassified)<-c("Classification", "Chemical Name(s)" )
+
+
+
+classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
+
+### NOTE INFO:---  Making this tooltip was TRICKY... if we want to change it just get rid of it... not worth the time
+### NOTE INFO:---  Making this tooltip was TRICKY... if we want to change it just get rid of it... not worth the time
+
+
+# Create tooltips for each word
+create_tooltip <- function(classIf) {
+  class_row <- classExplainTable %>% filter(Classification == classIf)
+  if (nrow(class_row) == 0) {
+    return(classIf)
+  }
+
+  description <- tags$span(title = class_row$Description, "---->Description")
+  sources <- tags$span(title = class_row$Sources, "---->Sources")
+  examples <- tags$span(title = class_row$Examples, "---->Examples")
+  strategies <- tags$span(title = class_row$Strategies, "---->Strategies")
+
+  return(paste0(classIf, '<br>', description, '<br>', sources, '<br>', examples, '<br>', strategies))
+}
+
+# Apply the function to create tooltips
+oneResultInvertClassified$Classification <- sapply(oneResultInvertClassified$Classification, create_tooltip)
+
+#Print the table with tooltips
 pandoc.table(oneResultInvertClassified,
-             caption="Classification Report on your Wristband",
-             justify=c("left","center")
-              ,split.table = Inf
-             ,emphasis.rownames=TRUE)
+             caption = "Classification Report on your Wristband",
+             justify = c("left", "center"),
+             split.table = Inf,
+             emphasis.rownames = TRUE)
+
+# knitr::kable(oneResultInvertClassified, format = "html", escape = FALSE) %>%
+#  kable_styling(full_width = F)
 
 
 ```

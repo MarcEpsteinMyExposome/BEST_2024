@@ -399,7 +399,7 @@ OutputBigComparisonStatTable <- FALSE
 makeIntoDemoData <- TRUE
 if (makeIntoDemoData) {
   testDoneFor <- "MyExposome participants"
-  howManyDemoResults <- 50 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
+  howManyDemoResults <- 10 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
 }
 
 #

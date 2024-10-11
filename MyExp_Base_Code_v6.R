@@ -138,6 +138,17 @@
 # BEST PRACTICES!!!!!!
 # https://thinklab.com/discussion/r-best-practices/83
 #
+
+
+# HOW TO PUT IN A HOT LINK:
+#   To see an explanation of **Classifications** :  [Click Here](#class_link_id)
+#     ## Compound Classification {#class_link_id}
+#
+#     HOW TO PUT IN A TOOL TIP
+#     [standard deviation](## "Standard deviation is blah blah.")
+
+
+
 ##################
 
 
@@ -603,7 +614,6 @@ rm(load.IARCRisk)
 rm(
   list = c(
     "masterParamTableName",
-    "classificationTableName",
     "riskCalifProp65TableName",
     "epaIrisTableName",
     "IARCRiskTableName",
