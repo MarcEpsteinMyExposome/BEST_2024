@@ -541,6 +541,8 @@ VOC_2024_MasterParamTableName <- "./data/MasterParamenter_Using_April2024_VOC_fi
 PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv" # New from Michael Barton with better parameter IDs
 
 
+class_conversion_table_name <- "data/ReivsedClassificationMapping.csv"
+class_explain_table_name <- "data/RevisedClassificationTextDescription.csv"
 
 
 

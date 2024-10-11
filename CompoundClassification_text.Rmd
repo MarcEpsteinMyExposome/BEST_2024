@@ -1,21 +1,32 @@
 ## Compound Classification {#class_link_id}
 
-Our `r testName` process tests for **`r howManyChemicalsTested`** chemicals. We have classified these chemicals into a few categories to make these results easier to understand.
+
+
+Our `r testName`  tests for **`r howManyChemicalsTested`** chemicals. We have classified these chemicals into a few categories to make these results easier to understand.
 
 Every chemical in the testing is classified into one **or more** of the following categories:
 
-| Classification | Classification Description |
-|------------------|------------------------------------------------------|
-| Chemicals in Commerce | Chemicals found in consumer, industrial, or commercial products or product streams |
-| Consumer Products | Chemicals found in foodstuffs or other consumable goods such as cigarettes, coffee, and spices or other products intended for household or personal use |
-| Dioxins and Furans | Most dioxins and furans are not man-made or produced intentionally but are created when other chemicals or products (such as herbicides, pulp, paper) are made. In addition, they can be produced when products are burned. |
-| Flame Retardant | Flame retardants used in consumer and commercial products such as polybrominated diphenyl ethers (PBDEs), polybrominated biphenyls (PBBs), and organic phosphate flame retardants (OPFRs) and others |
-| Polycyclic Aromatic Hydrocarbons (PAHs) | Polycyclic Aromatic Hydrocarbon (PAHs/OPAHs/NPAHs): found in petroleum, fuels and combustion of organic matter |
-| Personal Care | Found in many personal care products (shampoos, perfumes, other cosmetics...) |
-| Pesticides | Herbicides, fungicides, insecticides, rodenticides, etc. or degradation products of pesticides |
-| Pharmacological | Used in making or as components of manufactured drugs |
-| Polychlorinated Biphenyl | Manufactured chlorinated chemicals that are found in electrical, lighting, gas and construction industries |
-| Volatile Organic Compounds (VOCs) | VOCs are a large chemical classification made up of alkanes, benzenes, and other volatile (i.e. easily airborne) compounds that are found in burning fuels and released from many consumer products like solvents, paints, adhesives, preservatives, cleaners and building materials. |
+
+```{r classInfoLoadPrep, echo=FALSE, results='asis'}
+
+
+
+
+classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
+
+pandoc.table(classExplainTable,
+             justify=c("right","left","left","left","left"),  #ADD "left" as needed for number of "ncol" above
+             emphasis.co.names=TRUE,
+             caption=""
+             ,split.table = Inf
+             ,split.cells=70
+             #,style = 'grid'
+             #,style = 'rmarkdown'
+             )
+
+```
+
+
 
 ```{r ClassificationListing, results='asis', echo=FALSE, message=FALSE, eval=FALSE}
 ## TO EDIT TABLE ABOVE SWITCH TO VISUAL MODE Editing
@@ -49,18 +60,5 @@ pandoc.table(ChemClassInfo.m,
              #,style = 'grid'
              #,style = 'rmarkdown'
              )
-
-```
-
-```{r classFrame, echo=FALSE, results='asis'}
-# NOTE that the "classification" table has the form of the first column being the parameter ID
-#     and the other columns are the names of the classifications we're breaking all the chemicals into
-#     and the other columns all being a YES/NO regarding if that chemical received that classification
-
-### NOTE i used to pull the column names here but instead replaced w/ hard-coded table above
-#classFrame <- data.frame(colnames(classification)[2:ncol(classification)])
-#names(classFrame)<- c("Chemical Classification Category")
-#knitr::kable(classFrame,row.names=FALSE,format="markdown", caption="Classification List", align=c("c"))
-#knitr::kable(colnames(classification)[2:ncol(classification)],row.names=FALSE,format="markdown",booktabs=TRUE)
 
 ```

@@ -2,7 +2,7 @@
 
 ### Statistics on Chemicals Found
 
-One important way to look at the data is, for each chemical, what was the minimum/maximum/mean/median value found, how many wristbands was it found on, and the standard deviation of all the values found.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average. and middle value found, how many wristbands was it found on, and the [standard deviation](## "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.") .
 
 ```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=Not_weight_or_time_adjusted}
 cat("The data is the raw nanograms found in each wristband. ", sep = "")
@@ -76,7 +76,7 @@ if (HideIndividualization) {
   panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
 
   pandoc.table(as.data.frame(oneResultStatSummary),
-    caption = paste("Statistical Report on all Chemicals on just", subject, "wristband", sep = " "),
+    caption = paste("Statistical Report on all Chemicals on ", subject, " wristband", sep = " "),
     justify = c("right", "right", "right", "right", "right", "right", "right", "right"),
     emphasis.rownames = TRUE,
     split.table = Inf

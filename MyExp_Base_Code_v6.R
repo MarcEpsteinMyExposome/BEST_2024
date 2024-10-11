@@ -203,10 +203,14 @@ masterParam <-
   load.masterParam(masterParamTableName)
 # rm(load.masterParam)
 
+
+###################  READ IN CLASSIFICATION
+
 classification <-
   load.classification(classificationTableName)
 # rm(load.classification)
 # rm(classificationTableName)
+
 
 # Create the LONG version of "classification" (which is WIDE)
 class_L <- classification %>%
@@ -220,6 +224,10 @@ class_L <- classification %>%
   select(ParameterID, classification) %>% # Drop the VALUE column
   mutate(ParameterID = as.character(ParameterID)) %>% # Make the ParameterID column character instead of num
   semi_join(masterParam, by = "ParameterID") # ONLY select the rows from classification that are in masterParam
+
+rm(load.classification)
+rm(classificationTableName)
+rm(classification)
 
 
 
@@ -238,18 +246,23 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecific
 }
 
 ### NOW call that function to update class_L with all the values from the other tests
-class_L <- updateWithClassSpecificMasterParam(VOC_text_string, vocMasterParamTableName, class_L)
+
 class_L <- updateWithClassSpecificMasterParam(PAH_text_string, pahMasterParameterTable, class_L)
 
-class_L <- updateWithClassSpecificMasterParam(VOPAH_text_string, vopahMasterParamTableName, class_L) # NOTE THAT CALLING THIS IS CONSISTENT W OTHER IDEAS BUT BUT BUT used to (before VOPAH because just VOC) adds a whole new "cassification" which is WRONG
+## P:D class_L <- updateWithClassSpecificMasterParam(VOC_text_string, vocMasterParamTableName, class_L)
+## OLD class_L <- updateWithClassSpecificMasterParam(VOPAH_text_string, vopahMasterParamTableName, class_L) # NOTE THAT CALLING THIS IS CONSISTENT W OTHER IDEAS BUT BUT BUT used to (before VOPAH because just VOC) adds a whole new "cassification" which is WRONG
+class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, VOC_2024_MasterParamTableName, class_L)  # Revise VOC list for 3rd time... get rid of VOPAH
 
 class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParameterTable, class_L)
 class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L)
+
+class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L)   #  Add the Phthalate list to the table... this is new test from 2024
+
+### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
+
+
 rm(load.masterParam) # NOTE This is weirdly USED INSIDE FUNCTION ABOVE so ...
 rm(updateWithClassSpecificMasterParam)
-
-
-
 
 #### THIS IS WHERE I SHOULD CHECK TO SEES IF THINGS STILL MARKED WRONG AND ADDDD the things I might have manually changed
 # STUFF immediately below is for TESTING and should be commented out.
@@ -306,9 +319,74 @@ class_L <- class_L %>%
   filter(!(ParameterID == 300639 & classification == VOC_text_string))
 
 
-# NOW get rid of the wide table completely!
-# rm(classification)
 
+
+convert_to_new_reduced_classifications <- function(class_L) {
+
+  # Read in the new classification mapping file to adjust the classifications down
+  class_conversion_table <- read.csv(class_conversion_table_name) %>%
+    select(Classification,CurrentClassifications)
+
+  # Create a long format of the class_conversion_table
+  class_conversion_long <- class_conversion_table %>%
+    mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
+    unnest(CurrentClassifications) %>%
+    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', '')))
+
+  # Function to find the appropriate classification
+  find_classification <- function(class_OLD) {
+    match <- class_conversion_long %>%
+      filter(CurrentClassifications == class_OLD) %>%
+      pull(Classification)
+
+    if (length(match) > 0) {
+      return(match[1])
+    } else {
+      print(paste("No match for:", class_OLD))
+      return(NA)
+    }
+  }
+
+  # Update class_L
+  class_L_new <- class_L %>%
+    rename(classification_OLD = classification) %>%
+    rowwise() %>%
+    mutate(classification = find_classification(str_trim(classification_OLD))) %>%
+    ungroup()
+
+  # Select the desired columns
+  class_L_new <- class_L_new %>%
+    #select(ParameterID, classification_OLD, classification)
+    select(ParameterID,  classification)
+
+
+  # test_class_L_new <- class_L_new %>%
+  #   select(classification_OLD,classification)
+  #
+  # test_class_L_new2 <- class_L_new %>%
+  #   select(classification_OLD,classification) %>%
+  #   unique()
+
+
+  # for each classification that exists in class_L replace it with one of the new classifications
+
+  # If that creates identical rows, ddrop the identical rows
+
+  # Return the new class_L
+
+  # test_class_L_new3 <- class_L_new %>%
+  #   select(ParameterID,classification_OLD,classification) %>%
+  #   unique()
+  # test_class_L_new4 <- class_L_new %>%
+  #   select(ParameterID,classification_OLD,classification) %>%
+  #   unique()
+
+
+  class_L_new
+  }
+
+#  I reduced from many do 11 or 12 classifications to 6 so I need to just change class_L to be those new classifications
+class_L <- unique(convert_to_new_reduced_classifications(class_L))
 
 ### COMMENT TO MARC:   Control-Shift-Home will select everything above this line
 
@@ -1138,3 +1216,4 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
 
 #######  NOW I"M GOING TO BUILD a VIOLIN CHART (Eventually move this to its own R code... maybe?)j  OR move into RMD file...
 ### PROBABLY make this its own R file and then load it somewhere and then USE it in RMD code????
+
