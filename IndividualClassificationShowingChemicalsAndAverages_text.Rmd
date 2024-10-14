@@ -1,8 +1,7 @@
 
 ### Classifications showing Chemicals
 
-While the above table shows all the chemicals, and every classification for each chemical, this information can sometimes more easily be understood by seeing that same data organized by classification.  This allows you to see all the chemicals of a particular "type" grouped together (remembering that some chemical compounds are repeated in multiple categories).  The following list of classifications, along with their chemicals, were found in your wristband:
-
+While the table above shows chemicals with their classifications, it may be easier to understand when the data is grouped by classification intead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the classifications and chemicals found on your wristband.
 
 <!-- 
 [standard deviation](## "Standard deviation is blah blah.") 
@@ -63,7 +62,7 @@ pandoc.table(oneResultInvertClassified,
 
 ### Classifications vs Averages
 
-If we look at this same data, broken down by chemical classification, and remembering that some chemical compounds are repeated in multiple categories, we see the following.  The first numeric column is your wristband results and the second is the average of all the wristbands in this project.
+When we break down the data by chemical classification (keeping in mind that some chemicals appear in more than one category), the results are as follows. The first column shows your wristband results, and the second column shows the average for all wristbands in this project.
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 

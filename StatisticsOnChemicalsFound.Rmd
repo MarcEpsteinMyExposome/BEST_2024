@@ -2,6 +2,13 @@
 
 ### Statistics on Chemicals Found
 
+One key way to view the data is by looking at the smallest, largest, average, and middle values for each chemical, how many wristbands it was found on, and the [standard deviation](## "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.").
+
+The data shows the amount of each chemical in nanograms per gram of wristband, adjusted for the time worn to make results comparable. Values below detection limits are listed as zero and not included in the analysis.
+
+The information is displayed below.
+
+
 One important way to look at the data is, for each chemical, what was the smallest, largest, average. and middle value found, how many wristbands was it found on, and the [standard deviation](## "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.") .
 
 ```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=Not_weight_or_time_adjusted}
@@ -17,11 +24,7 @@ cat("The data is the raw nanograms found normalized to time-adjust the values as
 ```
 
 ```{r print_loreal_4x3, results="asis", echo=FALSE, eval=wristbands_week_and_weight_adjusted}
-cat("The data is the raw nanograms found in each gram of wristband normalized ",
-  "to time-adjust the values as though the wristband were worn for exactly one week. ",
-  "In other words, the raw data was adjusted by the time worn and the size ",
-  "of the wristbands between participants to make data as comparable as ",
-  "possible before general statistics were performed on each chemical.",
+cat("The data shows the amount of each chemical in nanograms per gram of wristband, adjusted for the time worn to make results comparable.",
   sep = ""
 )
 ```
@@ -30,9 +33,7 @@ cat("The data is the raw nanograms found in each gram of wristband normalized ",
 cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one day. ")
 ```
 
-Values below the limit of detection, or values that could not be quantified, are not included in the statistical analyses and are listed as zeros.
-
-That information is displayed below:  
+Values below the limit of detection are not included in the statistical analyses and are listed as zeros.
 
 ```{r StatSummary, results='asis', echo=FALSE, eval=TRUE, message=FALSE}
 ### Had error where i was renaming columns for 2nd time so it didn't work.

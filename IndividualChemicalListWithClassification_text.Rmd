@@ -1,8 +1,5 @@
 
-
-The following list of chemicals, along with their classifications, were found in your wristband:
-
-To see an explanation of **Classifications** and a discussion of likely sources of any exposure and ways to minimize exposure :  [Click Here](#class_link_id)
+The following chemicals were found on your wristband.  We show how each chemical is classified.  To see more information on the classifications, possible sources of any exposure, and ways to minimize exposure :  [Click Here](#class_link_id)
 
 ### Chemicals showing Classifications
 ```{r  ListChemFound, results='asis', echo=FALSE, message=FALSE}

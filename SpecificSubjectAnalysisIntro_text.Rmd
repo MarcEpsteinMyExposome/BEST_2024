@@ -1,12 +1,11 @@
 
 
-You have taken part in a MyExposome demonstration project to identify the chemical compounds 
-which were detected in your environment
-over a period of approximately one week.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
+You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment
+over about a week.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
 
 **`r testExplanation`** 
 
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Unique identifiers were assigned to each wristband. Your unique participant identifier for the purposes of this analysis is:   **`r subject`**.
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Each wristband got a unique ID. Your unique ID is:   **`r subject`**.
 
 
 [comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)

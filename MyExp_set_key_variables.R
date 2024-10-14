@@ -588,7 +588,7 @@ if (RMD_type == "PHTH") { #
   rmd_code <- "MyExposome_1527_v6 - SBIR.Rmd" # Set up name of DRS/1528 R Markdown File
   URL_of_Chemicals_Tested <- "SBIR NEEDS TO BE UPDATED -- I DELETED THIS SECTION FROM SBIR REPORT" # USED in printing report   THIS IS WRONG WRONG WRONG
   testName <- "Chemical Analysis of Personal Environmental Exposures "
-  testExplanation <- "This project provides a broad screen to identify compounds across many chemical groups with a focus on Pesticides, Chemicals in Commerce, Polychlorinated Biphenyls (PCBs), Flame Retardants and other chemicals of interest."
+  testExplanation <- "This project detects chemicals from different groups with a focus on Pesticides, Chemicals in Commerce, PCBs (a type of industrial chemical), Flame Retardants and other chemicals of interest."
   HideClassificationInformation <- FALSE # Set to TRUE for every report EXCEPT DRS and maybe ???
   allowDifferentParameterCounts <- TRUE # DRS is the only method where the masterParameterTable and the resultsTable will always have different parameter counts cause DRS doesn't list all the zero parameters
   masterParamTableName <- SBIR_p1_MasterParamTableName

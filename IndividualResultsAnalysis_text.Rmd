@@ -99,11 +99,11 @@ cat("The chemicals found on the wristband are classified by the International Ag
 
 ```{r   IARCprintx2a, results='asis',echo=FALSE, eval=FALSE}
 "[^1]: * **IARC classifies risks into four groups:**"
-cat("+ Group 1: The agent is carcinogenic to humans:  This category is used when there is sufficient evidence of carcinogenicity in humans.")
-cat("+ Group 2A: The agent is probably carcinogenic to humans:  This category is used when there is limited evidence of carcinogenicity in humans and sufficient evidence of carcinogenicity in experimental animals. ")
-cat("+ Group 2B: The agent is possibly carcinogenic to humans:  This category is used for agents for which there is limited evidence of carcinogenicity in humans and less than sufficient evidence of carcinogenicity in experimental animals. ")
-cat("+ Group 3: The agent is not classifiable as to its carcinogenicity to humans: This category is used most commonly for agents for which the evidence of carcinogenicity is inadequate in humans and inadequate or limited in experimental animals.  An evaluation in Group 3 is not a determination of non-carcinogenicity or overall safety. ")
-cat("+ Group 4: The agent is probably not carcinogenic to humans: This category is used for agents for which there is evidence suggesting lack of carcinogenicity in humans and in experimental animals. ")
+cat("+ Group 1: The agent is Cancer-causing to humans:  This category is used when there is sufficient evidence of cancer causing in humans.")
+cat("+ Group 2A: The agent is probably Cancer-causing to humans:  This category is used when there is limited evidence of Cancer-causing in humans and sufficient evidence of Cancer-causing in experimental animals. ")
+cat("+ Group 2B: The agent is possibly Cancer-causing to humans:  This category is used for agents for which there is limited evidence of Cancer-causing in humans and less than sufficient evidence of Cancer-causing in experimental animals. ")
+cat("+ Group 3: The agent is not classifiable as to its Cancer-causing to humans: This category is used most commonly for agents for which the evidence of Cancer-causing is inadequate in humans and inadequate or limited in experimental animals.  An evaluation in Group 3 is not a determination of non-carcinogenicity or overall safety. ")
+cat("+ Group 4: The agent is probably not Cancer-causing to humans: This category is used for agents for which there is evidence suggesting lack of Cancer-causing in humans and in experimental animals. ")
 
 
 ```

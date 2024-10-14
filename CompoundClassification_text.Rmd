@@ -1,8 +1,11 @@
 ## Compound Classification {#class_link_id}
 
+We tested for **`r howManyChemicalsTested`** chemicals and grouped them into categories to make the results easier to understand.
 
 
-Our `r testName`  tests for **`r howManyChemicalsTested`** chemicals. We have classified these chemicals into a few categories to make these results easier to understand.
+<!-- Our `r testName`  tests for **`r howManyChemicalsTested`** chemicals. 
+We have classified these chemicals into a few categories to make these results easier to understand.
+-->
 
 Every chemical in the testing is classified into one **or more** of the following categories:
 

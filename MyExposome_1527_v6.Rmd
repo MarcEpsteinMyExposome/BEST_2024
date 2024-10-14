@@ -19,6 +19,58 @@ output:
     chunk_output_type: console
   chunk_output_type: console
 ---
+
+
+<!-- THE CSS below sets the TOOLTIPS i used to be a bigger font and changes background color and border... to be more readable    
+
+# THIS DID NOT WORK but... so what for now..
+#bs.tooltip
+#a.fn.tooltip
+    
+<style>
+.custom-tooltip {
+    font-size: 14px; 
+    background-color: #f0f0f0;
+    color: #000;
+    font-size: em4;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+</style> 
+
+-->
+
+<!--
+<style>
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip:hover::after {
+    content: attr(title); /* Display the title attribute */
+    position: absolute;
+    background-color: #f0f0f0; /* Tooltip background */
+    color: #000; /* Tooltip text color */
+    padding: 8px; /* Tooltip padding */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 4px; /* Rounded corners */
+    z-index: 1;
+    white-space: pre-wrap; /* Preserve line breaks */
+    bottom: 100%; /* Position above the text */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px; /* Font size */
+    display: block; /* Show tooltip */
+}
+
+</style> 
+-->
+
+
+
 <!-- 
 OLD HTML DOC:
   html_document:
@@ -144,7 +196,9 @@ ALSO GOOD I THINK:
 -->
 
 
- 
+
+
+
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 
 # THIS FILE requires that an R source file be run first to
@@ -176,18 +230,15 @@ is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
 ```
 
-
-
-
 ```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap=""}
 
 # {r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=2, fig.align="center"}
 
-img <- readPNG("images/myExposomeLogo.png")
+#img <- readPNG("images/myExposomeLogo.png")
+img <- readPNG("images/myExposomeLogo50smaller.png")
 grid.raster(img, name = NULL)
 rm(img)
 ```
-
 
 ```{r loadUCSFPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="", eval = FALSE}
 # note CAN change eval=FAlSE to eval=UCSF2020Fixup
@@ -197,7 +248,6 @@ img <- readPNG("images/UCSF_LOGO_bigger_2.png")
 grid.raster(img, name = NULL)
 rm(img)
 ```
-
 
 ---
 title: "`r testName`"
@@ -246,7 +296,6 @@ if (!DoSpecificSubjectAnalysis) { # IF WE do NOT want to do ANY subject SPECIFIC
   subject <- "Never-Going-to-Match"
 }
 ```
-
 
 ```{r UseSetupSubject, echo=FALSE, message=FALSE, include=FALSE, eval = DoSpecificSubjectAnalysis}
 
@@ -302,8 +351,6 @@ ClassCompareSubject <- left_join(
   replace_na(list(Participant = 0))
 ```
 
-
-
 ```{r separateNoteToSelf, echo=FALSE, message=FALSE, include=FALSE}
 
 ## NOTES ON FUTURE "DO TO" with this RMD file
@@ -314,29 +361,27 @@ ClassCompareSubject <- left_join(
 
 # Introduction and Summary
 
-
 <!-- PRINT MESSAGE ABOUT WHAT COMPANY THIS TEST WAS DONE "FOR" -->
+
 `r if(testDoneFor != ""){ paste("**This test was done for    ",testDoneFor, "**.")   }`
 
-
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL REPORT -->
+
 ```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=(DoSpecificSubjectAnalysis && !DoGroupAnalysis) }
 
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
+
 ```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
 
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE  INDIVIDUAL REPORT and GROUP MESSAGE -->
+
 ```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval = (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
 
 ```
-
-
-
-
 
 ```{r  IRiS_Prop65_IARC_Group_Results, results='asis', echo=FALSE, message=FALSE}
 
@@ -405,8 +450,6 @@ IARCHits <- testResults.big %>%
 countIARCHits <- nrow(IARCHits)
 ```
 
-
-
 ```{r IRiS_Prop65_IARC_Individual_Results, results='asis', echo=FALSE, message=FALSE, eval=DoSpecificSubjectAnalysis}
 
 
@@ -458,25 +501,20 @@ names(oneResultIARCRisk) <- c("Chemical Name", "Risk Type Per IARC")
 numIARCRiskFound <- nrow(oneResultIARCRisk)
 ```
 
-
-
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
+
 ```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = DoSpecificSubjectAnalysis}
 
 ```
 
-
-
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
+
 ```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = DoSpecificSubjectAnalysis}
 
 ```
 
-
-
-
-
 ## Observations
+
 ```{r BuildMessageString, results='asis', echo=FALSE, message=FALSE}
 
 # COMMENTS BY MARC:  We are building a MESSAGE STRING = "mesg.v"
@@ -533,22 +571,7 @@ if (DoSpecificSubjectAnalysis) {
 # rm(buildMesgV) # can't really remove this cause I'm using this as a flag to see if need to reload
 ```
 
-
-`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){
-                            paste("**IMPORTANT NOTE:     ",length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$ParameterName)),
-                            "of the tested compounds impacting ",
-                            length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$SampleNumber)),
-                            "wristbands could not be fully quantified.**")
-                            }`
-`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){
-                            paste("\n Due instrument challenges some chemicals were present but could not be quantified.",
-                              "For reporting below, where numbers are needed, these specific results are counted as though",
-                              "they detected zero because we don't have an actual number to use in this report",
-                              "but we can report that these compounds were definitely detected on these wristbands")
-                            }`
-                            
-
-
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){                             paste("**IMPORTANT NOTE:     ",length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$ParameterName)),                             "of the tested compounds impacting ",                             length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$SampleNumber)),                             "wristbands could not be fully quantified.**")                             }` `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){                             paste("\n Due instrument challenges some chemicals were present but could not be quantified.",                               "For reporting below, where numbers are needed, these specific results are counted as though",                               "they detected zero because we don't have an actual number to use in this report",                               "but we can report that these compounds were definitely detected on these wristbands")                             }`
 
 ```{r BuildCaveatMessageString, results='asis', echo=FALSE, message=FALSE}
 
@@ -580,33 +603,32 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <br>
 
-
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED DELETING THIS DELETE THIS DELETE THIS EVENTUALLY when we have violin charts working-->
+
 ```{r IndividualResultsAnalysis_DELETING_EVENTUALLY, child='IndividualResultsAnalysis_text.Rmd', eval = FALSE}
 ```
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
+
 ```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval = DoSpecificSubjectAnalysis}
 
 ```
 
-
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
+
 ```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = NotHideClassificationInformation}
 
 ```
 
-
 <!-- SHOW RESULTS FOR FULL GROUP -->
+
 ```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = DoGroupAnalysis}
 
 ```
 
-
 ```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval = (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
 
 ```
-
 
 ```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }
 

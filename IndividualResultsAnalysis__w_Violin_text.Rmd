@@ -66,12 +66,7 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 
 ```
 
-We looked up all the chemicals to which you were exposed in a series of databases that flag chemicals of concern.  Please note both that (1) just because the chemical is concerning does not mean that the level at which you are exposed is an explicit health concern and also, importantly (2) that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe.  We are comparing YOUR value on this chemical to OTHER people who also have this compound.  Others did not have this compound at all. 
-
-Please click on each chemical name to see where your level of exposure compares to others in this study.
-
-
-
+We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety, so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
 
 ```{r PlotChemsOfConcern_Part2, results='asis',echo=FALSE,eval=TRUE}
 
@@ -224,9 +219,7 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 ```
 
 
-In addition to the chemicals specifically mentioned by the information above, there were other chemicals found on your wristband.  Please note both that  that many chemicals are not tested for toxicity and so just because a chemical is not listed in a particular database does not imply it is safe and it doesn't mean that it is of concern either. 
-
-Please click on each chemical name to see where your level of exposure compares to others in this study.
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety, so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. **Click** on each chemical name to compare your exposure to others in the study.
 
 
 
@@ -329,12 +322,12 @@ if (length(chemsNOTinConcernGroup >= 1)) {
 ### Individual Percentage vs Maximum 
 
 
-Another way to look at this is to wonder what percentage of a chemical a particular individual had compared to the maximum found for that chemical in any wristband in this project.   In other words, if wristband-A had 100 nano-grams per gram of wristband, and the maximum found in any individual was 1,000 nano-grams per gram wristband, then wristband-A had 10% of the maximum value found. The chart below shows the percentage of maximum found for this participant for each chemical.
+Another way to view the data is by comparing how much of a chemical you had compared to the maximum found in any wristband. For example, if wristband-A had 100 nanograms and the maximum was 1,000 nanograms, wristband-A had 10% of the maximum. The chart below shows the percentage of the maximum for each chemical found on your wristband.
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 
 
-```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=6,fig.cap="",dpi=150}
+```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
 ################BEGIN x5 Perc
 
 perc_values <- testResults.big %>%   # NOTE using TR instead of testResults just cause then it has ParameterName
@@ -368,7 +361,8 @@ c<- c+theme(axis.line=element_blank(),
 
 #c <- c + scale_y_continuous(labels=percent, limits=c(0,1))
 c <- c + scale_y_continuous(labels=percent)
-c
+c + coord_flip() 
+
 
 rm(c,perc_values)
 
