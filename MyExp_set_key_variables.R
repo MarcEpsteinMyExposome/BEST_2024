@@ -399,7 +399,7 @@ OutputBigComparisonStatTable <- FALSE
 makeIntoDemoData <- TRUE
 if (makeIntoDemoData) {
   testDoneFor <- "MyExposome participants"
-  howManyDemoResults <- 10 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
+  howManyDemoResults <- 3 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
 }
 
 #
@@ -560,6 +560,8 @@ pahMasterParameterTable <- "./data/MasterParameterTable_PAH_April2024.csv" #####
 vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.csv" #####  New March 2019 version see email from Michael Barton
 
 
+#### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
+ChemSourcesHealthMitigationInfoTable <- "ChemLookupHealth.csv"
 
 
 #  SET name of RMD file

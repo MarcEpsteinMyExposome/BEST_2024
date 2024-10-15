@@ -125,11 +125,17 @@ if (length(chemsOfConcern >= 1)) {
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInPROP65) > 0) {
         PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
+      
+        
+        Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
+        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>")  ## This should make the link open in new tab
+
+        
         newMessage <- paste (
           newMessage,
           " ",
           " This chemical is classified per California Proposition 65 (",
-          " http://www.oehha.ca.gov/prop65.html ",
+          Prop65_Link,
           " ) ",
           " with the risk type noted as: ",
           PROP65_info,
@@ -151,6 +157,7 @@ if (length(chemsOfConcern >= 1)) {
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInIRIS) > 0) {
         IRIS_info <- testInIRIS$`IRIS Summary Web Link`
+        IRIS_info <- paste0("<a href='", IRIS_info, "' target='_blank'>", IRIS_info, "</a>")  ## This should make the link open in new tab
         newMessage <- paste(
           newMessage,
           " ",
@@ -159,9 +166,15 @@ if (length(chemsOfConcern >= 1)) {
           IRIS_info,
           " . "
         )
+
+
+
       }
       
       cat(newMessage)
+      
+      # HERE i can add some stuff about sources of exposure, health impacts, mitigation strategies
+      #Learn about actions that could help reduce your exposure
       
       cat(' \n \n')
     }
@@ -330,14 +343,16 @@ Another way to view the data is by comparing how much of a chemical you had comp
 ```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
 ################BEGIN x5 Perc
 
-perc_values <- testResults.big %>%   # NOTE using TR instead of testResults just cause then it has ParameterName
+##
+perc_values <- testResults.big %>%   # 
   filter(SampleNumber==subject) %>%
+  filter(Result>0) %>%
   select(ParameterName,norm_Result) 
 
  c<-ggplot(perc_values, aes(y=norm_Result ,factor(ParameterName))) +
     #geom_bar(stat="identity")+
     geom_bar(stat="identity", fill="blue", colour="black")+
-    labs(x="All Chemicals Found for Anyone",
+    labs(x="All Chemicals Found on Your Wristband",
          y="Percent of Max value Found",
          title=paste("Your Percentage of Max Exposure\n",
                      "Found per Chemical\n",

@@ -1,6 +1,27 @@
 ---
 output:
   rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  word_document:
+    reference_docx: MyExposomeFormat_1527_v6.docx
+  editor_options: 
+    chunk_output_type: console
+  chunk_output_type: console
+---
+<!--
+### THIS IS THE OUTPUT SECTION on 10/15/2024 @ 11:18am works fine...
+
+output:
+  rmdformats::readthedown:
     fig_height: 14
     fig_width: 10
     self_contained: true
@@ -18,8 +39,8 @@ output:
   editor_options: 
     chunk_output_type: console
   chunk_output_type: console
----
 
+-->
 
 <!-- THE CSS below sets the TOOLTIPS i used to be a bigger font and changes background color and border... to be more readable    
 
@@ -196,7 +217,13 @@ ALSO GOOD I THINK:
 -->
 
 
+<!--
 
+TO do a tool tip and set a class so you can use CSS to format things
+tags$span(class = "my-class", title = "Tooltip text", "Hover over me")
+
+
+-->
 
 
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}

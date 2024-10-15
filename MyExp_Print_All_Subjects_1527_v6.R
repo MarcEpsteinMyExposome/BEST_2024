@@ -8,6 +8,8 @@
 #   BUT that was not really the right way... better to use the RENDER package directly not KNIT then PANDOC but just RENDER
 #   see BOOK for more info (Dynamic DOcuments with R, 2nd Edition)
 
+## SEE THIS INFO:  https://pkgs.rstudio.com/rmarkdown/reference/render.html     for more on RENDER
+
 # FIRST clean up environment a little and set some local variables
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre7')
 rm(list=ls())  # clear things out  ADD A COMMENT
@@ -37,7 +39,7 @@ if (!exists("masterParam")) {
 
 #EDFoutputFile <- "Pah_fakeOutputFile.csv"
 # Where to put OUTPUT FILES
-output_directory <- "results_output"
+output_directory <- "results_output\\SBIR_Results_Output"
 
 #Setup data directory
 if (!file.exists(output_directory)) {
@@ -71,9 +73,10 @@ outputFileType<-"html"
 #TRY RENDER
 for (subject in allSubjects) {
   # set name of output file.  Change it for each subject
-  outputFileName<-paste0(subject,".",outputFileType)
+  outputFileName<-paste0("MyExposome_Report_",subject,".",outputFileType)
   # NOTE could wrap rmarkdown::render call in try() to handle ERROR condition better?
   rmarkdown::render(rmd_code,docType,output_file=outputFileName,output_dir=output_directory)
+  rmarkdown::render(rmd_code,output_file=outputFileName,output_dir=output_directory)
 }
 
 
