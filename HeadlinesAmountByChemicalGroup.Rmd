@@ -32,8 +32,11 @@ testResults.bigWithClass  <- testResults.big %>%
 #str(testResults.bigWithClass)
 
 
+
 # Define the function
 generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE) {
+  #sampleNumber <- subject
+  #testResults <-testResults.bigWithClass 
   #debug=TRUE
 
   calculate_percentile <- function(x, percentile) {
@@ -43,16 +46,18 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
   individual_data <- testResults %>% filter(SampleNumber == sampleNumber)
   classifications <- unique(testResults$classification)
   messages <- c()
+  message<-NULL
 
   #class<-"Flame Retardant"
   #class<-"Pesticides"
   for (class in classifications) {
+    #class <- "Agricultural & Pharmaceutical Chemicals"   # USING THIS to step trace and debug if message is correct
 
     if(debug){cat("in classification loop, classification = ",class, "   messages= ",messages, " message = ",message,"\n")}
 
 
-    class_data <- testResults %>% filter(classification == class)
-    sample_count <- length(unique(testResults$SampleNumber))
+    class_data <- testResults %>% filter(classification == class)  # This is all the testResults that have any rows with this specific class
+    sample_count <- length(unique(testResults$SampleNumber))   # this is total # of samples since includes ZERO is that correct??
     compounds_meeting_criteria1 <- c()
     compounds_meeting_criteria2 <- c()
     compounds_meeting_criteria3 <- c()
@@ -72,11 +77,12 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 
 
     #compound <- "Fipronil" #is a Pesticide
-    for (compound in unique(class_data$ParameterName)) {
+    for (compound in unique(class_data$ParameterName)) {   # Loop thru all the compounds that are in this class anywhere in the data (not just this subject)
+      compound <- "Trans-Nonachlor"
 
       if(debug){cat("in compound loop, compound = ",compound, "  class = ",class,  "messages= ", messages, "\n")}
 
-      compound_data <- class_data %>% filter(ParameterName == compound)
+      compound_data <- class_data %>% filter(ParameterName == compound)  # Here are all the results for all the wristbands that have any score (including ZERO) for this compound
       pct_95 <- calculate_percentile(compound_data$Result, 95)
       pct_75 <- calculate_percentile(compound_data$Result, 75)
       pct_50 <- calculate_percentile(compound_data$Result, 50)
@@ -88,13 +94,15 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 
 
       # Criteria 1: Result >= 95th percentile and found in <= 10% of samples
-      if (any(individual_data$ParameterName == compound &
+      if (any(individual_data$Result > 0 & 
+              individual_data$ParameterName == compound &
               individual_data$Result >= pct_95) &&
           (sum(compound_data$Result > 0) / sample_count) <= 0.10) {
         compounds_meeting_criteria1 <- c(compounds_meeting_criteria1, compound)
       }
       # Criteria 2: Result >= 95th percentile and > 10 times the median
       if (any(
+        individual_data$Result > 0 & 
         individual_data$ParameterName == compound &
         individual_data$Result >= pct_95 &
         individual_data$Result >= (10 * median_result)
@@ -102,13 +110,16 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
         compounds_meeting_criteria2 <- c(compounds_meeting_criteria2, compound)
       }
       # Criteria 3: Result >= 95th percentile and >10 of individuals HAD this compound
-      if (any(individual_data$ParameterName == compound &
-              individual_data$Result >= pct_95) &&
+      if (any(
+        individual_data$Result > 0 & 
+        individual_data$ParameterName == compound &
+        individual_data$Result >= pct_95) &&
           (sum(compound_data$Result > 0) / sample_count) >= 0.10)      {
         compounds_meeting_criteria3 <- c(compounds_meeting_criteria3, compound)
       }
       # # Criteria 4: Result >= 75th percentile and 10x median
       if (any(
+        individual_data$Result > 0 & 
         individual_data$ParameterName == compound &
         individual_data$Result >= pct_75 &
         (individual_data$Result > 10 * median_result)
@@ -118,8 +129,10 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 
 
       # Criteria 5: Result > 75th percentile and 25% measurements are detects
-      if (any(individual_data$ParameterName == compound &
-              individual_data$Result >= pct_75) &&
+      if (any(
+        individual_data$Result > 0 & 
+        individual_data$ParameterName == compound &
+        individual_data$Result >= pct_75) &&
           (sum(compound_data$Result > 0) / sample_count) >= 0.25)      {
         compounds_meeting_criteria5 <- c(compounds_meeting_criteria5, compound)
       }
@@ -130,15 +143,17 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
       }
 
       # Criteria 7: Result < 50th percentile for all compounds in group
-      if (all(individual_data$ParameterName == compound &
-              individual_data$Result <= pct_50)) {
+      if (all(
+        individual_data$Result > 0 & 
+        individual_data$ParameterName == compound &
+        individual_data$Result <= pct_50)) {
         compounds_meeting_criteria7 <- c(compounds_meeting_criteria7, compound)
       }
 
 
       # Criteria 8: Not detected for a chemical and ≤10% of all measurements are non-detects
       if (all(individual_data$ParameterName == compound &
-              individual_data$Result <= pct_50) &&
+              individual_data$Result == 0) &&
           (sum(compound_data$Result > 0) / sample_count) <= 0.10)   {
         compounds_meeting_criteria8 <- c(compounds_meeting_criteria8, compound)
       }
@@ -242,6 +257,8 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 
 # Call the function
 report_messages <- generate_report(subject, testResults.bigWithClass)
+#report_messages <- generate_report(subject, testResults.bigWithClass,TRUE,TRUE)
+
 
 # Print the messages
 #cat(paste0("* ", report_messages, collapse = "\n* "), "\n")
