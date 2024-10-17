@@ -29,8 +29,8 @@ For all the chemicals found on ANY wristband during this project we will look th
 ```
 
 
-
-```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+<!-- I MADE THIS FALSE FOR DEBUGGING -->
+```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = FALSE}
 ```
 
 

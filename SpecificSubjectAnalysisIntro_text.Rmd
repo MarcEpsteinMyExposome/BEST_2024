@@ -1,17 +1,15 @@
 
 
-You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment
-over about a week.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
+You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment while you wore a Silicone Wristband.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
 
 **`r testExplanation`** 
 
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Each wristband got a unique ID. Your unique ID is:   **`r subject`**.
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:   **`r PureSampleName`**.
 
-
+<!--
 [comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)
-
-[comment2]: # (You were originally assigned, by MyExposome, the unique subject identifier of **`r pureSubjectName`**.)
-
+[comment2]: # (You were originally assigned, by MyExposome, the unique subject identifier of **   r PureSampleName   **.)
+-->
 
 
 

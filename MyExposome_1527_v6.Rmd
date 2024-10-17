@@ -598,7 +598,25 @@ if (DoSpecificSubjectAnalysis) {
 # rm(buildMesgV) # can't really remove this cause I'm using this as a flag to see if need to reload
 ```
 
-`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){                             paste("**IMPORTANT NOTE:     ",length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$ParameterName)),                             "of the tested compounds impacting ",                             length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$SampleNumber)),                             "wristbands could not be fully quantified.**")                             }` `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) >0){                             paste("\n Due instrument challenges some chemicals were present but could not be quantified.",                               "For reporting below, where numbers are needed, these specific results are counted as though",                               "they detected zero because we don't have an actual number to use in this report",                               "but we can report that these compounds were definitely detected on these wristbands")                             }`
+`r if (nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) > 0)
+  
+{
+  paste(
+    "**NOTE:     ",
+    length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$ParameterName)),
+    "of the tested compounds impacting ",
+    length(unique(testResults.big[testResults.big[, "Flag"] == "Y", ]$SampleNumber)),
+    "wristbands could not be fully quantified.**"
+  )
+}` `r if (nrow(testResults.big[testResults.big[, "Flag"] == "Y", ]) > 0)
+{
+  paste(
+    "\n Due instrument challenges some chemicals were present but could not be quantified.",
+    "For reporting below, where numbers are needed, these specific results are counted as though",
+    "they detected zero because we don't have an actual number to use in this report",
+    "but we can report that these compounds were definitely detected on these wristbands"
+  )
+}`
 
 ```{r BuildCaveatMessageString, results='asis', echo=FALSE, message=FALSE}
 

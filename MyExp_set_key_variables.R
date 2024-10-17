@@ -77,13 +77,13 @@ wristbands_time_adjusted_not_weight <- FALSE
 #         or we should have ONE variable called "CustomerCustomization" and it should be Dartmouth OR L'Oreal OR...
 #       BUT FOR NOW we have "FixupForAnyone" to say if there is ANY fixup... and then specifc values set
 FixupForAnyone <- any(
-  DartmouthFixup <- FALSE, # is to to force weird division and fix up
-  WisconsinFixup <- FALSE,
-  LorealFixup <- FALSE,
-  BuffaloFixup <- FALSE,
+  DartmouthFixup <-    FALSE, # is to to force weird division and fix up
+  WisconsinFixup <-    FALSE,
+  LorealFixup <-       FALSE,
+  BuffaloFixup <-      FALSE,
   UCSFplusRandom10Fixup <- FALSE,
-  UCSF2020Fixup <- FALSE,
-  UMTFixup <- FALSE, # NEVER IMPLEMENTED THIS>.. BE CAREFUL...
+  UCSF2020Fixup <-     FALSE,
+  UMTFixup <-          FALSE, # NEVER IMPLEMENTED THIS>.. BE CAREFUL...
   UNMFixup <- FALSE, # adding University New Mexico 1/14/2022  NEVER IMPLEMENTED THIS BE CAREFUL (MUST BE IMPLEMENTED NOW I THINK???)  HUH?  I think this is OK now?
   # NOTE that UNM has an old version from 2022 and a new version with 20 wb from 2023    Using same FLAG but different fixup and resultstable settings
   COLORADOFixUp <- FALSE,
@@ -94,10 +94,11 @@ FixupForAnyone <- any(
   SBIR_P1_May2022Fixup <- FALSE,
   UC_DAVISFixup <- FALSE,
   UniVisionFixup <- FALSE,
-  CombinedTestData <- TRUE,
+  CombinedTestData <- FALSE,
   BostonFixup <- FALSE,
   LouisvilleFixup <- FALSE,
-  UFL_FloridaFixup <- FALSE
+  UFL_FloridaFixup <- FALSE,
+  SBIR_P2_Part1_71_FixUp <- TRUE   # ALWAYS MAKE LAST ONE TRUE, REST FALSE
 )
 
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...
@@ -142,8 +143,16 @@ allowDifferentParameterCounts <- FALSE
 ###
 # FLAG to tell us if we should do TEST of PRE-POST comparison (before and after)
 testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set this in WISCONSIN to TRUE
-
-if (UniVisionFixup) {
+if (SBIR_P2_Part1_71_FixUp) {
+  FixupFile <- "./data/SBIR_NIH_Part1_71_SampleKey.csv"
+  wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
+  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+  wristbands_time_and_weight_adjusted <- TRUE
+  wristbands_week_and_weight_adjusted <- FALSE
+  wristbands_day_and_weight_adjusted <- TRUE   # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  testDoneFor <- "MyExposome Wristband and Necklace Study"
+  ExpectedUnits <- "ng/WB"
+} else if (UniVisionFixup) {
   FixupFile <- "./data/Sample Key_Univision_lookup_table.csv"
   testDoneFor <- "TelevisaUnivision "
   if (RMD_type == "PEST") {
@@ -396,7 +405,7 @@ OutputBigComparisonStatTable <- FALSE
 # set all parameters above as for REAL dataset but then set these two flags below:
 #
 
-makeIntoDemoData <- TRUE
+makeIntoDemoData <- FALSE
 if (makeIntoDemoData) {
   testDoneFor <- "MyExposome participants"
   howManyDemoResults <- 3 #  I use 682 to generate the big CombinedTestData set of data.   I used 350 for Silent Spring
@@ -441,6 +450,12 @@ if (subsetBasedOnBatchNumber) {
 DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
 DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
 HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+
+
+## do SPECIFIC SUBJECT Analysis AND GROUP ANALYSIS
+#DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+#DoGroupAnalysis <- TRUE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+#HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
 
 
 
@@ -561,8 +576,7 @@ vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.
 
 
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
-ChemSourcesHealthMitigationInfoTable <- "ChemLookupHealth.csv"
-
+chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
 
 #  SET name of RMD file
 rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of DRS/1528 R Markdown File
@@ -760,7 +774,9 @@ if (RMD_type == "PHTH") { #
   URL_of_Chemicals_Tested <- "https://www.myexposome.com/fullscreen" # USED in printing report
   # testingTypeText<- "our broadest spectrum of compounds"
   testName <- "Full Screen Quantitative Analysis"
-  testExplanation <- "This project provides a broad screen to identify compounds across many chemical groups with a focus on Pesticides, Chemicals in Commerce, Polychlorinated Biphenyls (PCBs), Flame Retardants and other chemicals of interest."
+
+  testExplanation <- "This project provides a broad screen to identify compounds across many chemical groups with a focus on Personal Care Products, Pesticides, Chemicals in Commerce, Flame Retardants and other chemicals of interest."
+  ###  WE COULD LIST THESE HERE:    Consumer & Personal Care Products,  Industrial & Commercial Chemicals (Including VOCs), Agricultural & Pharmaceutical Chemicals, Persistent Organic Pollutants (POPs), Flame Retardants, Polycyclic Aromatic Hydrocarbons (PAHs)
 
   HideClassificationInformation <- FALSE # Set to TRUE for every report EXCEPT DRS and maybe ???
 
@@ -778,29 +794,9 @@ if (RMD_type == "PHTH") { #
   # subject<-"A161423" # This is EDF Parking Valet
   ######### subject<-"A150201"  # This is random one from EDF
 
-  # resultsTableName<-"./data/Dartmouth_1_analysis_CSV.csv"  #THIS LINE is for First delivery of Dartmouth Data With "P" probl and Duplicat Lines
-  # resultsTableName<-"./data/Dartmouth 1 analysis_CSV_Client report_Fix164798.csv"  #THIS LINE is for First delivery of Dartmouth Data with "P" but no duplicate lines "fixed"
   # resultsTableName<-"./data/F18-09_F18-14_OSU_MyE_Report_LOREAL.csv"
-  # resultsTableName<-"./data/Dartmouth 1 and 2.csv"   # 2nd group of Dartmouth (25)
   # resultsTableName<-"./data/Fake_Data_78.csv"  #dartmouth modified version...
   # resultsTableName<-"./data/Rocio-Canada as delivered.csv"  #Rocio Canada Data As Deliver (3 WB)
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3.csv"   # 3nd group of Dartmouth (48+25+38)
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_with_Fixup_Franesol_and_Citral.csv"   # 3nd group of Dartmouth (48+25+38) + fixup citral/farnesol
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_with_Fixup_Franesol_and_Citral_ADDED_MinutesDeployed._the_add_4_for_147_total.csv"   # 4th group of Dartmouth (48+25+38+36) + fixup citral/farnesol
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_with_Fixups_then_added_4_and_5_for_167_total.csv"   # 5th group of dartmouth <see above> where added 20 more to 147 above
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_4_5_for_167_then_6_with_38_for_205.csv"   # 6th group of dartmouth 38 more to 167=205
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_4_5_6_7_8_for_299.csv"   # 8th group of dartmouth add to 299
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_4_5_6_7_8_9_for_359.csv"   # 9th group of dartmouth
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1 and 2 and 3_4_5_6_7_8_9_fix_1_Units_for_359.csv"   # 9th group of dartmouth   #FIX one missing UNITS value that changed NOTHING
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_3_4_5_6_7_8_9_fix_1_Units_for_459.csv"   # 10th group of dartmouth   #maybe has 2 other fixes that we missed once... unclear
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_3_4_5_6_7_8_9_10_11_for_499.csv"   # 11th group of dartmouth   #NOTE:  is NOW the 10th BATCH not sure why previous version says 10th group???
-
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_for_519.csv"   # group of dartmouth   #NOTE:  is NOW the  12th BATCH
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_13_for_559.csv"   # group of dartmouth   #NOTE:  is NOW the 13
-  # resultsTableName<-"./data/Dartmouth/Dartmouth 1_2_etc_11_12_13_14_for_600.csv"   # group of dartmouth   #NOTE:  is NOW the 14
-  # resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_14_15_16_17_for_680.csv" # group of dartmouth   #NOTE:  is NOW the 17
-  # resultsTableName <- "./data/Dartmouth/Dartmouth 1_2_etc_13_etc_17_18_19_20_21_for_878.csv" # group of dartmouth   #NOTE:  is NOW the 21 lab submission number
-  # subject <- "A200961" # THIS is random one in DARTMOUTH BATCh 13
 
   # resultsTableName<-"./data/F21-07_MyExposome_P.0.#230_CoA_RYAN.csv"   # group of dartmouth   #NOTE:  is NOW the 13
 
@@ -822,7 +818,6 @@ if (RMD_type == "PHTH") { #
   # I"M GOING TO Do 2nd batch from UNM Univ New Mexico but NOT MERGE WITH FIRST BATCH.... just do this additional 20
   # resultsTableName<-"./data/F23-09_03_P.O#244_MyExpo_CoA_UNM.csv" # University of NEW MEXICO 20 wristbands
   # subject<-"A230400"  # RANDOM choice from UNM  NEW MEXICO 2nd batch
-
 
   # resultsTableName<-"./data/F21-31_MyExpo_P.O#236_CoA_Colorado.csv" # Colorado FIRST BATCH
   # subject<-"A211668" #Randome one from Colorado
@@ -852,7 +847,7 @@ if (RMD_type == "PHTH") { #
 
   # subject <- "A170186-DC" # This is My15 from Senator A170186 (DC)
 
-  subject <- "A211668" # Randome one from CombinedTEstData
+  #  subject <- "A211668" # Randome one from CombinedTEstData
 
   # resultsTableName<-"./data/F23-10_MyExpoP.O#245_MASV15_CoA_UnivisionFIX.csv" # Univision (first try had wrong units this try sould work?)
   # subject<-"A230476" #Randome one from Univision
@@ -869,7 +864,12 @@ if (RMD_type == "PHTH") { #
 
   # resultsTableName<-"./data/F24-05_MyExposomeP.O.#250_CoA_Louisville.csv" #
   # subject<-"A240020" #Random one from Louisville
-}
+
+  resultsTableName<-"./data/F24-22_MyExpoP.O.#259_CoA-WBdata.csv" #  NOW DOING SBIR Phase 2 first group of 71
+  subject<-"A241133" #Random one from SBIR P2 Group 1 of 71
+
+
+  }
 
 #### THESE PARAMETERS are CONSISTENT across to each TEST TYPE and EACH specific RESULT within that test
 #                                       BUT may vary as tests and lists are upgraded with new info

@@ -8,7 +8,6 @@ editor_options:
 
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
-
 ## The function to build a violin plot is now in a separate R file
 source("BuildViolinPlot.R")
 
@@ -17,17 +16,15 @@ source("BuildViolinPlot.R")
 ##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
 #
 
-#chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
+# chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
 #      oneResultIARCRisk$`Chemical Name`))
 #
 ### ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
-chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`)
+chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
 
 
 ## Make a list of all chemicals that our one user had that did NOT show up in any of the databases
-chemsNOTinConcernGroup <-oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
-
-
+chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
 ```
 
 
@@ -36,7 +33,7 @@ chemsNOTinConcernGroup <-oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_
 
 ```{r PlotChemsOfConcern_Part1, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-fig <- ggplot(cars) + 
+fig <- ggplot(cars) +
   geom_point(aes(speed, dist))
 htmltools::tagList(ggplotly(fig))
 
@@ -45,7 +42,7 @@ htmltools::tagList(ggplotly(fig))
 howManyHaveParameterName <- testResults.big %>%
   group_by(ParameterName) %>%
   summarise(non_zero_count = sum(Result != 0))
- 
+
 
 # Function to look up non_zero_count for a specific ParameterName
 lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
@@ -56,50 +53,43 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 }
 
 # Example usage
-#parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
-#non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
-#print(non_zero_count_value)
-
-
-
-
-
+# parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
+# non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
+# print(non_zero_count_value)
 ```
 
 We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety, so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
 
 ```{r PlotChemsOfConcern_Part2, results='asis',echo=FALSE,eval=TRUE}
-
-
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-if (length(chemsOfConcern >= 1)) {
+if (length(chemsOfConcern) >= 1) {
   for (i in 1:length(chemsOfConcern)) {
     chemOfConcern <- chemsOfConcern[i]
-    #chemOfConcern <- chemsOfConcern[9]
-    #chemOfConcern <- chemsOfConcern[1]
-    
-    
-    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
+    # chemOfConcern <- chemsOfConcern[2]
+    # chemOfConcern <- chemsOfConcern[1]
+
+
+    # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
     testResults_ChemOfConcern <- testResults.big %>%
       filter(ParameterName == chemOfConcern) %>%
       select(SampleNumber, Result, ParameterName)
-    
-    
+
+
     if (nrow(testResults_ChemOfConcern) > 1) {
-      cat("###", chemOfConcern, '{-}', '\n\n')
-      
+      cat("###", chemOfConcern, "{-}", "\n\n")
+
       print(htmltools::tagList(
         buildPlotlyViolin(chemOfConcern, testResults_ChemOfConcern)
       ))
-      
+
       newMessage <- NULL
-      
-      newMessage <- paste (
+
+      newMessage <- paste(
         newMessage,
         " ",
         chemOfConcern,
@@ -109,29 +99,29 @@ if (length(chemsOfConcern >= 1)) {
         howManyWristbandsTested,
         "wristbands."
       )
-      
-      
-      
+
+
+
       # newMessage <- paste(
       #   newMessage,
       #   chemOfConcern,
       #   ' was found in one or more online databases as being of some concern. '
       # )
-      
-      
-      
-      
+
+
+
+
       testInPROP65 <- oneResultCalifProp65Risk %>%
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInPROP65) > 0) {
         PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
-      
-        
-        Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
-        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>")  ## This should make the link open in new tab
 
-        
-        newMessage <- paste (
+
+        Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
+        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
+
+
+        newMessage <- paste(
           newMessage,
           " ",
           " This chemical is classified per California Proposition 65 (",
@@ -142,7 +132,7 @@ if (length(chemsOfConcern >= 1)) {
           "."
         )
       }
-      
+
       ##### DELETED IARC cause Silent Spring suggested gettign rid
       # testInIARC <- oneResultIARCRisk %>%
       #   filter(`Chemical Name` == chemOfConcern)
@@ -152,12 +142,12 @@ if (length(chemsOfConcern >= 1)) {
       #                         " This chemical is classified by the International Agency for the Research on Cancer ",
       #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
       #  }
-      
+
       testInIRIS <- oneResultEpaIris %>%
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInIRIS) > 0) {
         IRIS_info <- testInIRIS$`IRIS Summary Web Link`
-        IRIS_info <- paste0("<a href='", IRIS_info, "' target='_blank'>", IRIS_info, "</a>")  ## This should make the link open in new tab
+        IRIS_info <- paste0("<a href='", IRIS_info, "' target='_blank'>", IRIS_info, "</a>") ## This should make the link open in new tab
         newMessage <- paste(
           newMessage,
           " ",
@@ -166,17 +156,35 @@ if (length(chemsOfConcern >= 1)) {
           IRIS_info,
           " . "
         )
-
-
-
       }
-      
+
+      testInChemSourceMitigation <- chemSourceMitigation %>%
+        filter(Chemical_Name == chemOfConcern)
+      if (nrow(testInChemSourceMitigation) > 0) {
+        chemSourceMitigationMessage <- paste0(
+          "\n\nThis compound is known to have the following health effects: **", testInChemSourceMitigation$Summary_of_Health_Effects, "**. ",
+          "This compound is known to be found in the following commercial products:  **", testInChemSourceMitigation$Commercial_Products, "**. ",
+          "Possible ways to avoid exposure to this compound include: **", testInChemSourceMitigation$Mitigation_Strategies, "**."
+        )
+        newMessage <- paste(
+          newMessage,
+          " ",
+          chemSourceMitigationMessage,
+          " . "
+        )
+      }
+
+
+
+
       cat(newMessage)
-      
+
       # HERE i can add some stuff about sources of exposure, health impacts, mitigation strategies
-      #Learn about actions that could help reduce your exposure
-      
-      cat(' \n \n')
+      # Learn about actions that could help reduce your exposure
+
+
+
+      cat(" \n \n")
     }
   }
 } else {
@@ -184,19 +192,29 @@ if (length(chemsOfConcern >= 1)) {
     filter(ParameterName == "NEVER MATCH") %>%
     select(SampleNumber, Result, ParameterName)
 }
-
-
 ```
 
 
 
 
-
-
-
-
-
-
+<!-- NOW let's loop through all the classifications FOUND ON THIS subject wristband
+    and let's for each classification say  
+    "You have X chemicals with the classification Y"
+    These chemicals are:  LIST. 
+    Below you will see any specific recommendations, per chemical, followed by generic recommendations on routes of possible exposure and ways to reduce your exposure.
+    SO WE WANT OUTPUT LIKE
+          Classification:  Personal Care
+          Your Personal Care Chemicals: A B C
+          Ways to address these, if any:
+          A -:> 
+          B- >
+          General  Advice regarding this class of compounds
+          
+          WE COULD DO THIS or we could put the information directly after the chemical information?
+    
+-->
+```{r ListAllCompoundsInClassWithInfo , results='asis',echo=FALSE,eval=TRUE}
+```
 
 
 ## Plot Remaining Chemicals {.tabset  .tabset-pills}
@@ -204,7 +222,7 @@ if (length(chemsOfConcern >= 1)) {
 
 ```{r PlotOtherChems_Part1, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-fig <- ggplot(cars) + 
+fig <- ggplot(cars) +
   geom_point(aes(speed, dist))
 htmltools::tagList(ggplotly(fig))
 
@@ -213,7 +231,7 @@ htmltools::tagList(ggplotly(fig))
 howManyHaveParameterName <- testResults.big %>%
   group_by(ParameterName) %>%
   summarise(non_zero_count = sum(Result != 0))
- 
+
 
 # Function to look up non_zero_count for a specific ParameterName
 lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
@@ -224,11 +242,9 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 }
 
 # Example usage
-#parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
-#non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
-#print(non_zero_count_value)
-
-
+# parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
+# non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
+# print(non_zero_count_value)
 ```
 
 
@@ -237,8 +253,6 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 
 
 ```{r PlotOtherChems_Part2, results='asis',echo=FALSE,eval=TRUE}
-
-
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
@@ -248,26 +262,26 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 if (length(chemsNOTinConcernGroup >= 1)) {
   for (i in 1:length(chemsNOTinConcernGroup)) {
     chemNOTinConcernGroup <- chemsNOTinConcernGroup[i]
-    #chemOfConcern <- chemsOfConcern[9]
-    #chemOfConcern <- chemsOfConcern[1]
-    
-    
-    #NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
+    # chemOfConcern <- chemsOfConcern[9]
+    # chemOfConcern <- chemsOfConcern[1]
+
+
+    # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
     testResults_ChemNOTinConcern <- testResults.big %>%
       filter(ParameterName == chemNOTinConcernGroup) %>%
       select(SampleNumber, Result, ParameterName)
-    
-    
+
+
     if (nrow(testResults_ChemNOTinConcern) > 1) {
-      cat("###", chemNOTinConcernGroup, '{-}', '\n\n')
-      
+      cat("###", chemNOTinConcernGroup, "{-}", "\n\n")
+
       print(htmltools::tagList(
         buildPlotlyViolin(chemNOTinConcernGroup, testResults_ChemNOTinConcern)
       ))
-      
+
       newMessage <- NULL
-      
-      newMessage <- paste (
+
+      newMessage <- paste(
         newMessage,
         " ",
         chemNOTinConcernGroup,
@@ -275,31 +289,39 @@ if (length(chemsNOTinConcernGroup >= 1)) {
         lookup_non_zero_count(chemNOTinConcernGroup, howManyHaveParameterName),
         "out of the ",
         howManyWristbandsTested,
-        "wristbands."
+        "wristbands. "
       )
-      
-      
-      
-      # newMessage <- paste(
-      #   newMessage,
-      #   chemOfConcern,
-      #   ' was found in one or more online databases as being of some concern. '
-      # )
-      
-      
-      
+
+
+      testInChemSourceMitigation <- chemSourceMitigation %>%
+        filter(Chemical_Name == chemNOTinConcernGroup)
+      if (nrow(testInChemSourceMitigation) > 0) {
+        chemSourceMitigationMessage <- "\n\n Although this chemical was not listed in any searched database it may still have harmful effects at certain levels but we do NOT know how your levels compare to that. "
+        chemSourceMitigationMessage <- paste0(
+          chemSourceMitigationMessage,
+          "This compound is known to have the following health effects: **",
+          testInChemSourceMitigation$Summary_of_Health_Effects,
+          "**. ",
+          "This compound is known to be found in the following commercial products:  **",
+          testInChemSourceMitigation$Commercial_Products,
+          "**. ",
+          "Possible ways to avoid exposure to this compound include: **",
+          testInChemSourceMitigation$Mitigation_Strategies,
+          "**."
+        )
+        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage, " . ")
+      }
+
       cat(newMessage)
-      
-      cat(' \n \n')
+
+      cat(" \n \n")
     }
   }
 } else {
-  testResults_ChemNOTinConcern <- testResults.big %>%
+  testResults_ChemNOTinConcern <- testResults.big %>%   # NOT SURE WHY WE ARE DOING THIS ELSE TEST...Perhaps to catch error?
     filter(ParameterName == "NEVER MATCH") %>%
     select(SampleNumber, Result, ParameterName)
 }
-
-
 ```
 
 
@@ -341,48 +363,52 @@ Another way to view the data is by comparing how much of a chemical you had comp
 
 
 ```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
-################BEGIN x5 Perc
+################ BEGIN x5 Perc
 
 ##
-perc_values <- testResults.big %>%   # 
-  filter(SampleNumber==subject) %>%
-  filter(Result>0) %>%
-  select(ParameterName,norm_Result) 
+perc_values <- testResults.big %>% #
+  filter(SampleNumber == subject) %>%
+  filter(Result > 0) %>%
+  select(ParameterName, norm_Result)
 
- c<-ggplot(perc_values, aes(y=norm_Result ,factor(ParameterName))) +
-    #geom_bar(stat="identity")+
-    geom_bar(stat="identity", fill="blue", colour="black")+
-    labs(x="All Chemicals Found on Your Wristband",
-         y="Percent of Max value Found",
-         title=paste("Your Percentage of Max Exposure\n",
-                     "Found per Chemical\n",
-                     "Subject = ",subject))
-#c
+c <- ggplot(perc_values, aes(y = norm_Result, factor(ParameterName))) +
+  # geom_bar(stat="identity")+
+  geom_bar(stat = "identity", fill = "blue", colour = "black") +
+  labs(
+    x = "All Chemicals Found on Your Wristband",
+    y = "Percent of Max value Found",
+    title = paste(
+      "Your Percentage of Max Exposure\n",
+      "Found per Chemical\n",
+      "Subject = ", subject
+    )
+  )
+# c
 
-axis.text.x.size <-6  # JUST changed to be a variable
-if (howManyUniqueChemFoundAcrossAllWristbands < 60 ) axis.text.x.size <-10
-c<- c+theme(axis.line=element_blank(),
-            axis.ticks=element_blank(),
-            axis.title.x=element_blank(),
-           axis.text.x = element_text(angle = 90, vjust=.1,hjust=1,size=axis.text.x.size ),
-#           axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=6 ),
+axis.text.x.size <- 6 # JUST changed to be a variable
+if (howManyUniqueChemFoundAcrossAllWristbands < 60) axis.text.x.size <- 10
+c <- c + theme(
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  axis.title.x = element_blank(),
+  axis.text.x = element_text(angle = 90, vjust = .1, hjust = 1, size = axis.text.x.size),
+  #           axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=6 ),
 
-            legend.position="none",
-            panel.background=element_blank(),
-            panel.border=element_blank(),
-            panel.grid.major=element_blank(),
-            panel.grid.minor=element_blank(),
-            plot.background=element_blank())
+  legend.position = "none",
+  panel.background = element_blank(),
+  panel.border = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  plot.background = element_blank()
+)
 
-#c <- c + scale_y_continuous(labels=percent, limits=c(0,1))
-c <- c + scale_y_continuous(labels=percent)
-c + coord_flip() 
+# c <- c + scale_y_continuous(labels=percent, limits=c(0,1))
+c <- c + scale_y_continuous(labels = percent)
+c + coord_flip()
 
 
-rm(c,perc_values)
-
+rm(c, perc_values)
 ```
 
 <br>
 <br>
-

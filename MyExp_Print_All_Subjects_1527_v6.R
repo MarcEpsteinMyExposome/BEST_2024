@@ -23,10 +23,6 @@ if (!exists("subject")) {
   source("MyExp_set_key_variables.R") # source() actually RUNS IT not just loads it
 }
 
-
-
-
-
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 ### THIS if test is SILLY cause we JUST above did rm(list=ls()) and then just loaded the key variables
 ###   so there is no way masterParam exists
@@ -49,7 +45,14 @@ if (!file.exists(output_directory)) {
 
 #now loop through all the subjects who have any results in testResults
 # that list of subjects can be found with
-allSubjects<- unique(testResults.big[testResults.big$Result>0,]$SampleNumber)
+#allSubjects<- unique(testResults.big[testResults.big$Result>0,]$SampleNumber)
+
+wideAllSubjects <- testResults.big %>%
+  filter(Result > 0) %>%
+  select(PureSampleName,SampleNumber) %>%
+  unique()
+
+allSubjects<- unique(testResults.big[testResults.big$Result>0,]$PureSampleName)  # On 10/17/2024 I switched to using PureSampleName instead of FSESID
 
 #  UNCOMMENT Line below to BYPASS long loop
 #COULD override setting subject and then just one-line-at-a-time Run the FOR loop for testing
@@ -69,13 +72,21 @@ outputFileType<-"html"
 ###THESE SETTINGS for producing PDF document do NOT handle tables properly and FAIL probably on table width.
 #docType<-"pdf_document"
 #outputFileType<-"pdf"
-
+#i=2
 #TRY RENDER
-for (subject in allSubjects) {
+#for (WideSubject in wideAllSubjects) {
+#for (i in nrow(wideAllSubjects) {
+for (i in 1:nrow(wideAllSubjects)) {
+  # Access PureSampleName for the current row
+  pure_sample_name <- wideAllSubjects$PureSampleName[i]
+    # Access SampleNumber for the current row
+  subject <- wideAllSubjects$SampleNumber[i]
+  #WideSubject<-wideAllSubjects[1,]
   # set name of output file.  Change it for each subject
-  outputFileName<-paste0("MyExposome_Report_",subject,".",outputFileType)
+
+  outputFileName<-paste0("MyExposome_Report_",pure_sample_name,".",outputFileType)
   # NOTE could wrap rmarkdown::render call in try() to handle ERROR condition better?
-  rmarkdown::render(rmd_code,docType,output_file=outputFileName,output_dir=output_directory)
+  #rmarkdown::render(rmd_code,docType,output_file=outputFileName,output_dir=output_directory)
   rmarkdown::render(rmd_code,output_file=outputFileName,output_dir=output_directory)
 }
 

@@ -399,6 +399,13 @@ convert_to_new_reduced_classifications <- function(class_L) {
 #  I reduced from many do 11 or 12 classifications to 6 so I need to just change class_L to be those new classifications
 class_L <- unique(convert_to_new_reduced_classifications(class_L))
 
+
+##### TESTING having a source and mitigation strategy table to read in
+chemSourceMitigation <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
+
+
+
+
 ### COMMENT TO MARC:   Control-Shift-Home will select everything above this line
 
 # Originally I just read in and processed the testResults table at one time.  To experiment with double checking count between masterParameterTable and testResults table I split reading table into two parts
@@ -1099,7 +1106,7 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
   replace(is.na(.), 0)
 
 
-
+###
 
 # rm(csSummary,csSummary1,csSummary2   )
 # write.csv(csSummary, file = "data/CombinedTestData/csSummary682.csv", row.names=FALSE)

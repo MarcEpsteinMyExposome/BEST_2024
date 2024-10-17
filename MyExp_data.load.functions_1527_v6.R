@@ -529,11 +529,96 @@ fixUpTestResults <- function(testResults) {
     )
   }
 
+  if (SBIR_P2_Part1_71_FixUp) {
+    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)  # NOT using this for SBIR P2
+    fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)   ### USE DaysWORN as same as "days_factor"
+    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
+
+        # Suppress warnings during numeric conversion
+    fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
+        # Replace NA values with 24
+    fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
+
+
+    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #
+    if (min(fixUpResults$week_factor) < 0.05) {
+      stop(
+        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
+        min(fixUpResults$week_factor)
+      )
+    }
+
+    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #
+    if (min(fixUpResults$size_factor) < 3.00) {
+      stop(
+        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
+        min(fixUpResults$size_factor)
+      )
+    }
+
+
+    testResults2 <-
+      merge(fixUpResults,
+            testResults,
+            by.x = "FSES_ID",
+            by.y = "SampleNumber")
+
+    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
+    #   WHICH could be ng/g or ng/WB depending.... that is confusing
+    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
+    #     if it were ng/WB
+    #   set RESULT
+    #
+    testResults2$ResultOriginal <- testResults2$Result
+
+    testResults2$Result <-
+      testResults2$Result / testResults2$Days_worn
+    testResults2$Result <-
+      signif(testResults2$Result / testResults2$size_factor, 3)
+    testResults2 <- testResults2 %>%
+      rename(SampleNumber = FSES_ID) %>%
+      rename(Customer_Batch_Number = Batch_Num) %>%
+      rename(PureSampleName=PureSampleName.x) %>%
+      rename(Lab_Submission_Batch = Customer_Batch_Number )
+    testResults2 <- testResults2 %>%
+      #rename(Start_Wearing = Start, End_Wearing = End) %>%   # Don't have start and end dates for DAY fixup
+      #rename(Wristband_Size = size) %>%   # Don't have wristband_Size
+      select(
+        SampleNumber,
+        PureSampleName,
+        Days_worn,
+        ParameterID,
+        Result,
+        ResultOriginal,
+        ParameterName,
+        CASNumber,
+        Flag,
+        MyE_Received,
+        size_factor,
+        week_factor,
+        Lab_Submission_Batch
+      )
+
+
+    #### NOW because marc is confused on 2/2/2020 about PureSampleName becuase sometimes (Dartmouth) it is not Uniqe...I'll append Customer_WB_id to PureSampleName just to be totally safe...
+    # But I don't think i ever really use PureSmpleName in any meaningful way so...
+    #### MaRC commented this out since not needed for SBIR P2 I believe
+    # testResults2$PureSampleName <-
+    #   paste(testResults2$PureSampleName,
+    #         testResults2$Customer_WB_id,
+    #         sep = "_")
+
+
+    testResults <- testResults2
+
+    rm(testResults2, fixUpResults)
+    testResults
 
 
 
-
-  if (DartmouthFixup ||
+  } else if (DartmouthFixup ||
       UCSF2020Fixup ||
       CombinedTestData) {
     # added UCSF2020 fixup to this... hopefully that works?  Uses same fixupfile format as dartmouth now
@@ -1323,4 +1408,33 @@ load.IARCRisk <- function(IARCRiskTableName) {
 # testResults + classifications gives me the basic groups and is sorta the master results
 # IARCRisk, epaIris, riskCalifProp65 are the RISK databases
 # masterParam is maps ParameterID to ParameterName and CASNumber
+
+
+#### NOW START MESSING WITH DETAILED INFO ON CHEMICALS
+#
+#
+#
+chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
+load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
+  chemSourceMitigation <- read.table(
+    chemSourceMitigationInfoTableName,
+    sep = ",",
+    header = TRUE,
+    colClasses = "character" # Import all as character
+    ,
+    comment.char = "" # Don't allow use of "#" as comment in input
+    ,
+    quote = "\"",
+    fileEncoding = "UTF-8-BOM"
+  )
+  chemSourceMitigation <- chemSourceMitigation %>%
+    select(Chemical_Name,Summary_of_Health_Effects,Commercial_Products,Mitigation_Strategies)
+
+  chemSourceMitigation
+}
+
+# READ in classificaiton of chemicals by RISK per IARC
+# Read in IARC risk database
+# IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
+# IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
 
