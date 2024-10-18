@@ -3,7 +3,7 @@
 You have worked with MyExposome on a demonstration project to identify the chemical compounds 
 which were detected using wristbands which were worn for a period of time by members of your study group. We are using these wristband to report any detectable level of each of  **`r howManyChemicalsTested`** compounds.  
 
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:    **`r PureSampleName`**.
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:    **`r pureSubjectName`**.
 
 
 **`r testExplanation`** 

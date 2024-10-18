@@ -532,7 +532,8 @@ PHTH_text_string <- "Phthalates"
 SBIR_p1_MasterParamTableName <- "./data/MASV_sbir_parameter_list_based_on_DRS_plus_Missing.csv" # added ParameterID 1,000,000 for one extra. NOTE casnum NOT unique
 
 # drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed.csv" # UPdated this on 3/12/2019  Hopefully it works.  Also fixed wrong-date-format
-drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed.csv" # UPdated this on 9/22/2022
+#drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed.csv" # UPdated this on 9/22/2022
+drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed_weirdSpace_add_Musk.csv" # TWEAKED the master Paramter to have a different COMPOUND NAME for two chemicals.  Need to match what comes in result if possible
 
 flameMasterParamTableName <- "./data/MasterParameterTable_FlameR.csv"
 # pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_2-18-19.csv" # NEW UPDATED VERSION is the SAME except for unused columns
@@ -556,8 +557,9 @@ VOC_2024_MasterParamTableName <- "./data/MasterParamenter_Using_April2024_VOC_fi
 PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv" # New from Michael Barton with better parameter IDs
 
 
-class_conversion_table_name <- "data/ReivsedClassificationMapping.csv"
-class_explain_table_name <- "data/RevisedClassificationTextDescription.csv"
+class_conversion_table_name <- "data/ReivsedClassificationMapping2.csv"
+class_explain_table_name <- "data/RevisedClassificationTextDescription2.csv"
+
 
 
 
@@ -576,7 +578,15 @@ vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.
 
 
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
-chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
+### THIS TABLE is baswed on ALL 270 COMPOUNDS
+#chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
+
+
+### tRING DIFFERENT LOOKUP TABLE WITHJUST gemini  on 10/18/2024 USING XLSX intead of cSV with more info some hand-crafted
+#### THIS TABLE IS BASED ON JUST the 88 compounds in the group of 71 WBs
+chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_2024_10_18_v3.xlsx"   # added a V2 to see if that fixes
+chemSourceSheetName2<-"STEVEN_New71_ChatGPT-Try2"
+
 
 #  SET name of RMD file
 rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of DRS/1528 R Markdown File

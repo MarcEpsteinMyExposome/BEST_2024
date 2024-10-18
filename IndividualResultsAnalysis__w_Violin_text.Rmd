@@ -160,18 +160,22 @@ if (length(chemsOfConcern) >= 1) {
 
       testInChemSourceMitigation <- chemSourceMitigation %>%
         filter(Chemical_Name == chemOfConcern)
+      chemSourceMitigationMessage<-"\n\n"
       if (nrow(testInChemSourceMitigation) > 0) {
         chemSourceMitigationMessage <- paste0(
-          "\n\nThis compound is known to have the following health effects: **", testInChemSourceMitigation$Summary_of_Health_Effects, "**. ",
-          "This compound is known to be found in the following commercial products:  **", testInChemSourceMitigation$Commercial_Products, "**. ",
-          "Possible ways to avoid exposure to this compound include: **", testInChemSourceMitigation$Mitigation_Strategies, "**."
-        )
-        newMessage <- paste(
-          newMessage,
-          " ",
           chemSourceMitigationMessage,
-          " . "
+          "This compound is suspected of having the following health effects: **",
+          testInChemSourceMitigation$Summary_of_Health_Effects,
+          "**. ",
+          " Sources of Exposure to this compound are frequently due to:  **",
+          testInChemSourceMitigation$Sources_of_Exposure,
+          #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
+          "**. ",
+          " Possible ways to avoid exposure to this compound include: **",
+          testInChemSourceMitigation$Mitigation_Strategies,
+          "**."
         )
+        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
 
 
@@ -299,17 +303,18 @@ if (length(chemsNOTinConcernGroup >= 1)) {
         chemSourceMitigationMessage <- "\n\n Although this chemical was not listed in any searched database it may still have harmful effects at certain levels but we do NOT know how your levels compare to that. "
         chemSourceMitigationMessage <- paste0(
           chemSourceMitigationMessage,
-          "This compound is known to have the following health effects: **",
+          "This compound is suspected of having the following health effects: **",
           testInChemSourceMitigation$Summary_of_Health_Effects,
           "**. ",
-          "This compound is known to be found in the following commercial products:  **",
-          testInChemSourceMitigation$Commercial_Products,
+          " Sources of Exposure to this compound are frequently due to:  **",
+          testInChemSourceMitigation$Sources_of_Exposure,
+          #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
           "**. ",
-          "Possible ways to avoid exposure to this compound include: **",
+          " Possible ways to avoid exposure to this compound include: **",
           testInChemSourceMitigation$Mitigation_Strategies,
           "**."
         )
-        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage, " . ")
+        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
 
       cat(newMessage)

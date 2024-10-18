@@ -4,7 +4,7 @@ You have taken part in a MyExposome demonstration project to identify the chemic
 
 **`r testExplanation`** 
 
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:   **`r PureSampleName`**.
+You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:   **`r pureSubjectName`**.
 
 <!--
 [comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)

@@ -22,6 +22,26 @@ output:
 
 output:
   rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  distill::distill_article:
+    toc: true
+    toc_depth: 4
+  word_document:
+    reference_docx: MyExposomeFormat_1527_v6.docx
+  editor_options: 
+    chunk_output_type: console
+  chunk_output_type: console
+
+
+
+output:
+  rmdformats::readthedown:
     fig_height: 14
     fig_width: 10
     self_contained: true
@@ -335,11 +355,12 @@ if (nrow(oneResult) > 0) { # SO if we actually have anything in ONE RESULT THEN 
   # Sort Test Results by ParameterName
   oneResult <- arrange(oneResult, ParameterName)
   # Find PureSampleName of this sample
-  pureSubjectName <- oneResult[1, "PureSampleName"]
+  pureSubjectName <- oneResult[1, "PureSampleName"]$PureSampleName
 } else {
   oneResult_with_Y_flag <- oneResult
-  pureSubjectName <- oneResult
+  pureSubjectName <- "NO VALUES FOUND FOR THIS WRISTBAND"
 }
+
 
 
 # howManyChemsFoundThisWristband <- nrow(testResults[testResults$SampleNumber==subject,])
@@ -647,11 +668,6 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 ```
 
 <br>
-
-<!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED DELETING THIS DELETE THIS DELETE THIS EVENTUALLY when we have violin charts working-->
-
-```{r IndividualResultsAnalysis_DELETING_EVENTUALLY, child='IndividualResultsAnalysis_text.Rmd', eval = FALSE}
-```
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 

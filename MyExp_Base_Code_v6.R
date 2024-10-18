@@ -169,7 +169,7 @@ load_package <- function(packages) {
 # Added HTMLTOOLS because it allows better generation of html files and separate items in report (first used in violin)
 required_packages <- c(
   "png", "ggplot2", "ggtext", "plotly", "htmltools", "rlang",
-  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid", "styler"
+  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid", "styler","readxl"
 )
 
 other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless needed,  move then to required packages
@@ -401,7 +401,10 @@ class_L <- unique(convert_to_new_reduced_classifications(class_L))
 
 
 ##### TESTING having a source and mitigation strategy table to read in
-chemSourceMitigation <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
+#chemSourceMitigationOLD <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
+#chemSourceMitigationNEW <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information
+chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
+
 
 
 

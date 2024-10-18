@@ -279,6 +279,19 @@ load.testResults_justReadTable <- function(resultsTableName) {
   testResults <- testResults %>%
     filter(!ParameterID %in% DropSpecificChemicals)
 
+
+  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+  # So we define a FUNCTION which takes any string and uppercases the first letter
+  uppercaseFirst <- function(txt) {
+    pos <- regexpr("[A-z]", txt)
+    char1 <- substr(txt, pos, pos)
+    uC <- toupper(char1)
+    sub("[A-z]", uC, txt)
+  }
+  # THEN we apply taht new function to the ParameterName mcolumn
+  testResults[, "ParameterName"] <-
+    sapply(testResults[, "ParameterName"], uppercaseFirst)
+
   testResults # Return the exact table read
 }
 
@@ -1412,9 +1425,9 @@ load.IARCRisk <- function(IARCRiskTableName) {
 
 #### NOW START MESSING WITH DETAILED INFO ON CHEMICALS
 #
+#  THIS IS OLDER WORKING ATTEMPT>.. about to make new attempt as well.
 #
-#
-chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
+
 load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
   chemSourceMitigation <- read.table(
     chemSourceMitigationInfoTableName,
@@ -1430,11 +1443,58 @@ load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
   chemSourceMitigation <- chemSourceMitigation %>%
     select(Chemical_Name,Summary_of_Health_Effects,Commercial_Products,Mitigation_Strategies)
 
+  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+  # So we define a FUNCTION which takes any string and uppercases the first letter
+  uppercaseFirst <- function(txt) {
+    pos <- regexpr("[A-z]", txt)
+    char1 <- substr(txt, pos, pos)
+    uC <- toupper(char1)
+    sub("[A-z]", uC, txt)
+  }
+  # THEN we apply taht new function to the ParameterName mcolumn
+  chemSourceMitigation[, "Chemical_Name"] <-
+    sapply(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
+
   chemSourceMitigation
 }
+
+
+
+#### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
+#library(readxl)
+
+load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName) {
+  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName2,
+                                      sheet=chemSourceSheetName2)
+
+   chemSourceMitigation <- chemSourceMitigation %>%
+    select(Chemical_Name,Summary_of_Health_Effects,Sources_of_Exposure,Mitigation_Strategies)
+
+
+  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+  # So we define a FUNCTION which takes any string and uppercases the first letter
+  uppercaseFirst <- function(txt) {
+    pos <- regexpr("[A-z]", txt)
+    char1 <- substr(txt, pos, pos)
+    uC <- toupper(char1)
+    sub("[A-z]", uC, txt)
+  }
+  # THEN we apply taht new function to the ParameterName mcolumn
+  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <-     sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+
+  chemSourceMitigation
+}
+
+
+
 
 # READ in classificaiton of chemicals by RISK per IARC
 # Read in IARC risk database
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
+
+
+
+
+
 
