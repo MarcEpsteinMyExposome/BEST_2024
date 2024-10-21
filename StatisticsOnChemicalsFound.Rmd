@@ -15,15 +15,12 @@ bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body 
 
 ### Statistics on Chemicals Found
 
-TWO TRIES TO DEFINE STD DEV:  TRY 1
-
-One important way to look at the data is, for each chemical, what was the smallest, largest, average. and middle value found, how many wristbands was it found on, and the [standard deviation](## "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.").
-
-TWO TRIES TO DEFINE STD DEV:  TRY 2
 
 One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")`.
 
-The data shows the amount of each chemical in nanograms per gram of wristband, adjusted for the time worn to make results comparable. Values below detection limits are listed as zero and not included in the analysis.
+
+
+The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out.
 
 The information is displayed below.
 
@@ -46,7 +43,9 @@ cat("The data shows the amount of each chemical in nanograms per gram of wristba
 )
 ```
 
-```{r print_loreal_4x2, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_day}
+```{r print_loreal_4x2, results="asis", echo=FALSE, eval=(wristbands_time_adjusted_one_day & FALSE) }
+# NOTE:  I think i suppressed this message from ever showing BECAUSE i don't think it is necessary and adds complications to understanding
+
 cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one day. ")
 ```
 

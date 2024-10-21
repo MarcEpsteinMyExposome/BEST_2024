@@ -1,0 +1,98 @@
+---
+title: "New R Markdown Project"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+This is the introduction section of your new R Markdown project. Describe the purpose and goals of this project here.
+
+## Bootstrap Examples Using bsplus
+
+### Modal Dialog Example
+```{r modal_example, echo=FALSE}
+library(bsplus)
+library(htmltools)
+
+# Creating a modal dialog with a button to open it
+bs_modal(id = "exampleModal", title = "Modal Example", body = "This is a simple modal pop-up to display information.")
+
+# Adding a button to trigger the modal
+tags$button("Click Me", class = "btn btn-primary", `data-toggle` = "modal", `data-target` = "#exampleModal")
+```
+
+### Accordion Example
+```{r accordion_example, echo=FALSE}
+bs_accordion(id = "accordionExample") %>%
+  bs_append(title = "Section 1", content = "This is the first section.") %>%
+  bs_append(title = "Section 2", content = "This is the second section.")
+```
+
+### Tooltip Example
+```{r tooltip_example, echo=FALSE}
+# Adding a tooltip to a span element
+tag_list <- tags$span("Hover over me", class = "tooltip-element", title = "This is a tooltip")
+tag_list
+```
+
+### Popover Example
+```{r popover_example, echo=FALSE}
+# Adding a popover to a button
+tags$button("More Info", class = "btn btn-info", `data-toggle` = "popover", `data-content` = "More detailed information in this popover.", title = "Popover Title")
+```
+
+### Collapsible Panel Example
+```{r collapse_example, echo=FALSE}
+# Creating a collapsible panel
+tags$div(
+  class = "card",
+  tags$div(class = "card-header", "Show More"),
+  tags$div(class = "collapse", id = "collapseExample", "This content is hidden until expanded.")
+)
+```
+
+### Tabs Example
+```{r tabs_example, echo=FALSE}
+# Creating tabbed content
+tags$div(
+  class = "tab-content",
+  tags$ul(
+    class = "nav nav-tabs",
+    tags$li(class = "nav-item", tags$a(class = "nav-link active", href = "#tab1", `data-toggle` = "tab", "Tab 1")),
+    tags$li(class = "nav-item", tags$a(class = "nav-link", href = "#tab2", `data-toggle` = "tab", "Tab 2"))
+  ),
+  tags$div(class = "tab-pane active", id = "tab1", "Content for Tab 1"),
+  tags$div(class = "tab-pane", id = "tab2", "Content for Tab 2")
+)
+```
+
+## Data Preparation
+```{r}
+# Load necessary libraries
+library(dplyr)
+
+# Placeholder for data preparation code
+```
+
+## Analysis
+```{r}
+# Placeholder for analysis code
+```
+
+## Results
+```{r}
+# Placeholder for results
+```
+
+## Conclusion
+Summarize your findings and future directions here.

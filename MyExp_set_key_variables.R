@@ -150,7 +150,7 @@ if (SBIR_P2_Part1_71_FixUp) {
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- FALSE
   wristbands_day_and_weight_adjusted <- TRUE   # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
-  testDoneFor <- "MyExposome Wristband and Necklace Study"
+  testDoneFor <- "a MyExposome Wristband Study"
   ExpectedUnits <- "ng/WB"
 } else if (UniVisionFixup) {
   FixupFile <- "./data/Sample Key_Univision_lookup_table.csv"

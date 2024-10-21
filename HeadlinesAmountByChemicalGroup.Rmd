@@ -36,7 +36,10 @@ report_messages <- generate_report(subject, testResults.bigWithClass)
 #source("HeadlinesAmountByChemicalGroup_R_Code.R", local = knitr::knit_global())
 
 if (!is.null(report_messages)) {
-  cat("## Key Messages By Chemical Classification\n")
+  cat("## Key Messages By Chemical Group\n")
+    cat(paste0("Chemicals are often grouped based on how we’re exposed to them—through breathing, skin contact, or what we eat—and how we can avoid them, ",
+    "like washing hands, improving ventilation, or restricting certain products. Here are some key points from your results. ",
+    "Keep in mind that a chemical might show up in more than one group since chemicals can come from different sources.\n\n"  ) )
   # Print the messages
   for (message in report_messages) {
     cat("* ", message, "\n")
@@ -51,7 +54,7 @@ if (!is.null(report_messages)) {
 #generate_report("AAG0CAE", testResults.bigWithClass)
 
 
-cat("\n\n **This is not yet tested FULLY.  This is to print HEADLINE RULES by CHEM GROUP if we decide to do that** \n")
+#cat("\n\n **This is not yet tested FULLY.  This is to print HEADLINE RULES by CHEM GROUP if we decide to do that** \n")
 
 
 # 

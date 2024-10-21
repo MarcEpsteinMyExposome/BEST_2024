@@ -1,4 +1,4 @@
-## Compound Classification {#class_link_id}
+## Chemical Group {#class_link_id}
 
 We tested for **`r howManyChemicalsTested`** chemicals and grouped them into categories to make the results easier to understand.
 
@@ -15,7 +15,8 @@ Every chemical in the testing is classified into one **or more** of the followin
 
 
 
-classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
+classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   ) %>%
+  dplyr::rename("Chemical Group"=Classification)
 
 pandoc.table(classExplainTable,
              justify=c("right","left","left","left","left"),  #ADD "left" as needed for number of "ncol" above

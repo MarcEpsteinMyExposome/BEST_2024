@@ -1,7 +1,7 @@
 
-### Classifications showing Chemicals
+### Chemical Groups showing Chemicals
 
-While the table above shows chemicals with their classifications, it may be easier to understand when the data is grouped by classification instead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the classifications and chemicals found on your wristband.
+While the table above shows chemicals with their groups, it may be easier to understand when the data is shown in groups instead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the groups and chemicals found on your wristband.
 
 <!-- 
 [standard deviation](## "Standard deviation is blah blah.") 
@@ -19,7 +19,7 @@ oneResultInvertClassified<- as.data.frame(
     mutate_if(is.factor, as.character) %>%  #Eliminate classification as a FACTOR so it sorts correctly
     arrange(classification))
 
-names(oneResultInvertClassified)<-c("Classification", "Chemical Name(s)" )
+names(oneResultInvertClassified)<-c("Chemical Group", "Chemical Name(s)" )
 
 
 
@@ -45,11 +45,11 @@ create_tooltip <- function(classIf) {
 }
 
 # Apply the function to create tooltips
-oneResultInvertClassified$Classification <- sapply(oneResultInvertClassified$Classification, create_tooltip)
+oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_tooltip)
 
 #Print the table with tooltips
 pandoc.table(oneResultInvertClassified,
-             caption = "Classification Report on your Wristband",
+             caption = "Chemical Group Report on your Wristband",
              justify = c("left", "center"),
              split.table = Inf,
              emphasis.rownames = TRUE)
@@ -60,9 +60,9 @@ pandoc.table(oneResultInvertClassified,
 
 ```
 
-### Classifications vs Averages
+### Chemical Group: You vs Averages
 
-When we break down the data by chemical classification (keeping in mind that some chemicals appear in more than one category), the results are as follows. The first column shows your wristband results, and the second column shows the average for all wristbands in this project.
+When we break down the data by chemical groups (keeping in mind that some chemicals appear in more than one group), the results are as follows. The first column shows your wristband results, and the second column shows the average for all wristbands in this project.
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 
@@ -77,7 +77,7 @@ When we break down the data by chemical classification (keeping in mind that som
 
 ClassCompareSubject2 <- ClassCompareSubject %>%
     select(classification,Participant,Average) %>%
-    dplyr::rename(You=Participant)
+    dplyr::rename(You=Participant,"Chemical Group"=classification)
 
 
 pandoc.table(ClassCompareSubject2,

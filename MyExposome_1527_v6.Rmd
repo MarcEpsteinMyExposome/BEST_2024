@@ -15,7 +15,7 @@ output:
     reference_docx: MyExposomeFormat_1527_v6.docx
   editor_options: 
     chunk_output_type: console
-  chunk_output_type: console
+  
 ---
 <!--
 ### THIS IS THE OUTPUT SECTION on 10/15/2024 @ 11:18am works fine...
@@ -576,7 +576,7 @@ mesg.v <- NULL # and use a vector
 ####### add line to indicate start of INDIVIDUAL results
 
 if (DoSpecificSubjectAnalysis) {
-  mesg.v <- addMesg(mesg.v, 1, " ", "**INDIVIDUAL RESULTS**")
+  if (DoGroupAnalysis){   mesg.v <- addMesg(mesg.v, 1, " ", "**INDIVIDUAL RESULTS**") }
   # Add things to mesg vector using a function call to support functions
   mesg.v <- buildMesgVIndividual(
     testResults.big,

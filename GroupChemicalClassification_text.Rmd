@@ -1,8 +1,8 @@
 
 
-## Chemical Classifications: Number of Unique Chemicals Found
+## Chemical Groups: Number of Unique Chemicals Found
 
-If we look at this data broken down by chemical classification we can also examine how many distinct chemical compounds of each classification were found across all the wristbands.  
+If we look at this data broken down by chemical groups we can also examine how many distinct chemical compounds of each classification were found across all the wristbands.  
 
 
 ```{r UniqueClassificationsFound , results='asis', echo=FALSE, message=FALSE }

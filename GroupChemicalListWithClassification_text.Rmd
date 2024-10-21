@@ -7,7 +7,7 @@ output:
 
 ### Chemicals on ANY Wristband
 
-The following list of chemicals, along with their classification(s), were found on at least one of the wristbands in this study.
+The following list of chemicals, along with their Chemical Group(s), were found on at least one of the wristbands in this study.
 
 
 ```{r  ListChemFoundAcrossAll, results='asis', echo=FALSE, message=FALSE}
@@ -34,7 +34,7 @@ AllResultClassified <- testResultsWithClass %>%
 
 
 
-names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Classification(s)")
+names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Chemical Group(s)")
 
 
 # THIS REPORT got TOO WIDE so was made to fit onto multiple pages and so the basic table point was LOST

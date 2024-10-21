@@ -1,0 +1,61 @@
+---
+title: "Expandable Sections Example"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Section 1: Introduction
+
+<details open>
+  <summary>Click to expand</summary>
+  
+  This section provides an introduction to the document. It contains background information and context.
+
+</details>
+
+# Section 2: Data Analysis
+
+<details>
+  <summary>Click to expand</summary>
+  
+  This section covers the data analysis performed, including methods, tools, and results.
+
+  ```{r analysis}
+  # Sample R code for data analysis
+  summary(cars)
+  ```
+
+</details>
+
+# Section 3: Results
+
+<details>
+  <summary>Click to expand</summary>
+  
+  This section presents the results of the analysis. It includes tables, charts, and key findings.
+
+  ```{r results}
+  # Sample plot
+  plot(cars)
+  ```
+
+</details>
+
+# Section 4: Conclusion
+
+<details>
+  <summary>Click to expand</summary>
+  
+  This section summarizes the conclusions drawn from the analysis and suggests future work.
+
+</details>

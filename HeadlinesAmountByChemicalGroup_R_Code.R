@@ -136,7 +136,7 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
       # Criteria 8: Not detected for a chemical and ≤10% of all measurements are non-detects
       if (all(individual_data$ParameterName == compound &
               individual_data$Result == 0) &&
-          (sum(compound_data$Result > 0) / sample_count) <= 0.10)   {
+          (sum(compound_data$Result == 0) / sample_count) <= 0.10)   {
         compounds_meeting_criteria8 <- c(compounds_meeting_criteria8, compound)
       }
 
@@ -160,66 +160,66 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
 
 
     if (length(compounds_meeting_criteria1) > 1) {
-      message <- paste(
-        "You had some",
+      message <- paste0(
+        "You had some **",
         class,
-        " detected that were not found in most others."
+        "** detected that were not found in most others."
       )
     } else if (length(compounds_meeting_criteria1) == 1) {
       ###compound <- individual_data$ParameterName[individual_data$Result >= pct_95 & (sum(class_data$Result > 0) / sample_count) <= 0.10]   ### WHAT is this doing
-      message <- paste(
-        "You had exactly one",
+      message <- paste0(
+        "You had exactly one **",
         class,
-        "compound,",
+        "** compound, **",
         compound,
-        ". It was not found in most others."
+        "**. It was not found in most others."
       )
     } else if (length(compounds_meeting_criteria2) > 1) {
-      message <- paste(
-        "You had higher levels of",
+      message <- paste0(
+        "You had higher levels of **",
         class,
-        "compared to 95% of the other people."
+        "** compared to 95% of the other people."
       )
     } else if (length(compounds_meeting_criteria2) == 1) {
       ###compound <- unique(individual_data$ParameterName[individual_data$Result >= pct_95 & individual_data$Result > 10 * median_result]  ## WHAT is this doing here?)
-      message <- paste(
-        "You had exactly exactly one",
+      message <- paste0(
+        "You had exactly exactly one **",
         class,
-        "compound,",
+        "** compound, **",
         compounds_meeting_criteria2,
-        ", that was higher than 95% of the other people."
+        "**, that was higher than 95% of the other people."
       )
     } else if (length(compounds_meeting_criteria3) > 0) {
-      message <- paste(
-        "You had higher levels of",
+      message <- paste0(
+        "You had higher levels of **",
         class,
-        "compared to 95% of the other people."
+        "** compared to 95% of the other people."
       )
     } else if (length(compounds_meeting_criteria4) > 0) {
-      message <- paste(
-        "You had higher levels of",
+      message <- paste0(
+        "You had higher levels of **",
         class,
-        "compared to 75% of the other people. Some of your numbers are much higher than most others"
+        "** compared to 75% of the other people. Some of your numbers are much higher than most others"
       )
     } else if (length(compounds_meeting_criteria5) > 0) {
-      message <- paste(
-        "You had higher levels of",
+      message <- paste0(
+        "You had higher levels of **",
         class,
-        "compared to 75% of the other people."
+        "** compared to 75% of the other people."
       )
     } else if (length(compounds_meeting_criteria6) > 0) {
-      message <- paste("YYou had no ",
+      message <- paste0("You had no **",
                        class,
-                       " {group name} detected.")
+                       "**  detected in our wristband.")
     } else if (length(compounds_meeting_criteria7) > 0) {
-      message <- paste("You had lower levels of",
+      message <- paste0("You had lower levels of **",
                        class,
-                       "than most others.")
+                       "** than most others.")
     } else if (length(compounds_meeting_criteria8) > 0) {
-      message <- paste(
-        "You did not have some ",
+      message <- paste0(
+        "You did not have some **",
         class,
-        "detected. It was found in most others."
+        "** detected in your wristband that were found in most others."
       )
     }
 

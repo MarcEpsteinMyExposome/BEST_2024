@@ -1,6 +1,6 @@
 
 
-You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment while you wore a Silicone Wristband.  We are reporting any detectable level of  **`r howManyChemicalsTested`** compounds.  
+You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment while you wore a Silicone Wristband.  We are reporting about  **`r howManyChemicalsTested`** compounds.  Even though we carefully check each result, it's possible that you were exposed to a chemical we didn't test for, or that the amount was too small for us to detect.
 
 **`r testExplanation`** 
 
