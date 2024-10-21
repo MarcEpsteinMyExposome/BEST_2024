@@ -172,7 +172,7 @@ generate_report <- function(sampleNumber, testResults,debug=FALSE, debug2=FALSE)
         class,
         "** compound, **",
         compound,
-        "**. It was not found in most others."
+        "**. It was not found in most other wristbands."
       )
     } else if (length(compounds_meeting_criteria2) > 1) {
       message <- paste0(
