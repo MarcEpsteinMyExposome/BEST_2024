@@ -1,7 +1,7 @@
 
 ### Classifications showing Chemicals
 
-While the table above shows chemicals with their classifications, it may be easier to understand when the data is grouped by classification intead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the classifications and chemicals found on your wristband.
+While the table above shows chemicals with their classifications, it may be easier to understand when the data is grouped by classification instead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the classifications and chemicals found on your wristband.
 
 <!-- 
 [standard deviation](## "Standard deviation is blah blah.") 

@@ -169,7 +169,10 @@ load_package <- function(packages) {
 # Added HTMLTOOLS because it allows better generation of html files and separate items in report (first used in violin)
 required_packages <- c(
   "png", "ggplot2", "ggtext", "plotly", "htmltools", "rlang",
-  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid", "styler","readxl"
+  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid",
+  "styler",   # Added styler to allow manual styling of code using the "addins" menu item
+  "readxl",
+  "bsplus"    # Added BSPLUS to allow popup bottons
 )
 
 other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless needed,  move then to required packages
