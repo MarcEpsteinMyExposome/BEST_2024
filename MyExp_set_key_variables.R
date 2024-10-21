@@ -852,7 +852,7 @@ if (RMD_type == "PHTH") { #
 
   # resultsTableName<-"./data/F21-32_MyExpo_P.O.#237_CoA_Georgetown.csv" # Georgetown
 
-  resultsTableName <- "./data/CombinedTestData/Dart_Chic_Col_George.csv" # Georgetown
+  #resultsTableName <- "./data/CombinedTestData/Dart_Chic_Col_George.csv" # Georgetown
   # subject<-"A211733" #Randome one from Georgetown
 
   # subject <- "A170186-DC" # This is My15 from Senator A170186 (DC)
@@ -903,7 +903,8 @@ if (RMD_type == "SBIR_P1_DRS_plus") {
 }
 
 # riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk.csv"   # I edited to change NAMING
-riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk_Marc_Tweak.csv"
+#riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk_Marc_Tweak.csv"
+riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk_Marc_Tweak2.csv"
 
 epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
 IARCRiskTableName <- "./data/MASV15_who_iarc_risk.csv"
