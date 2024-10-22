@@ -1,10 +1,49 @@
-#THIS CODE IS TO UPDATE THE riskCalifProp65 Database
-#  Prop65 California Prop65 Fix
+#THIS CODE IS TO UPDATE THE EPA IRIS Database
+#
 
-# First download the file from california website... getting : p65chemicalslist.xlsx
-# THEN edit the file to remove the big header
-#  THEN edit the file to remove stupid lines at the bottom
-# THEN RUn th rough th is code MANUALLY STEP BY STEP
+# First download the file from https://iris.epa.gov/ or somewhere
+### MAY NEED TO EXTRACT URLS:  https://trumpexcel.com/extract-url-from-hyperlinks-excel/
+# Sub ExtractURLs()
+#
+# ' Declares a variable for the Hyperlink object
+#     Dim HypLnk As Hyperlink
+#
+#     ' Loops through each hyperlink and extract URL in adjacent cell
+# For Each HypLnk In Selection.Hyperlinks
+# HypLnk.Range.Offset(0, 1).Value = HypLnk.Address
+# Next HypLnk
+#
+#To remove a URL from an Excel range, you can use the Remove Hyperlinks option:
+#Select the cells that contain hyperlinks
+#Right-click on any cell
+#Select Remove Hyperlinks from the pop-up menu
+#
+# End Sub
+
+
+# Trying to see how download info maps... NOTICE that at least for PCBs the URL is repeated multiple times for multiple compounds (code=294)  and also Toxaphene Parlar 346
+#                 This seems true for only 1 or two other compounds
+# > length(masterParamWithIRIS$IRIS_Summary)
+# [1] 1530
+# > length(unique(masterParamWithIRIS$IRIS_Summary))
+# [1] 166
+
+# Assuming your data frame is named masterParamWithIRIS
+duplicate_IRIS <- masterParamWithIRIS %>%
+  group_by(IRIS_Summary) %>%          # Group by IRIS_Summary
+  summarise(count = n()) %>%           # Count occurrences of each IRIS_Summary
+  filter(count > 1) %>%                # Filter for those that occur more than once
+  arrange(desc(count))                 # Arrange in descending order of count
+
+# View the result
+print(duplicate_IRIS)
+
+# THIS SHOWS that only 2 compounds are repeated more than once.  Is that true?                                                                   <int>
+#   1 NA                                                                       1157
+# 2 https://cfpub.epa.gov/ncea/iris2/chemicalLanding.cfm?substance_nmbr=294   207
+# 3 https://cfpub.epa.gov/ncea/iris2/chemicalLanding.cfm?substance_nmbr=346     3
+
+
 
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
@@ -17,10 +56,15 @@ if (!exists("masterParam")) {
 }
 
 # Clean up environment a little
-rm(list=ls()[!ls() %in% c("masterParam","riskCalifProp65")])
+rm(list=ls()[!ls() %in% c("masterParam","epaIris","testResults.big")])
 
-masterParamWith65<- masterParam %>%
-  left_join(riskCalifProp65,by="ParameterID")
+masterParamWithIRIS<- masterParam %>%
+  left_join(epaIris,by="ParameterID")
+
+
+
+
+#### STIFF BELOW needs to change from 65 to IRIS
 
 newProp65tableName<- "./data/p65chemicalslist_cleaned_marc.csv"
 newProp65 <- read.table(

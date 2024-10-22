@@ -58,7 +58,7 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 # print(non_zero_count_value)
 ```
 
-We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety, so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
+We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
 
 ```{r PlotChemsOfConcern_Part2, results='asis',echo=FALSE,eval=TRUE}
 ###
@@ -175,8 +175,19 @@ if (length(chemsOfConcern) >= 1) {
           testInChemSourceMitigation$Mitigation_Strategies,
           "**."
         )
+        if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
+          wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
+          wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+          wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
+          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
+        }
+
+        
+        
+        
         newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
+      
 
 
 
@@ -252,7 +263,7 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 ```
 
 
-Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety, so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. **Click** on each chemical name to compare your exposure to others in the study.
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. **Click** on each chemical name to compare your exposure to others in the study.
 
 
 
@@ -266,6 +277,7 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 if (length(chemsNOTinConcernGroup >= 1)) {
   for (i in 1:length(chemsNOTinConcernGroup)) {
     chemNOTinConcernGroup <- chemsNOTinConcernGroup[i]
+    #chemNOTinConcernGroup <- chemsNOTinConcernGroup[1]
     # chemOfConcern <- chemsOfConcern[9]
     # chemOfConcern <- chemsOfConcern[1]
 
@@ -312,8 +324,17 @@ if (length(chemsNOTinConcernGroup >= 1)) {
           "**. ",
           " Possible ways to avoid exposure to this compound include: **",
           testInChemSourceMitigation$Mitigation_Strategies,
-          "**."
+          "** "
         )
+#       Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
+#        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
+
+        if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
+          wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
+          wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+          wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
+          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
+        }
         newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
 

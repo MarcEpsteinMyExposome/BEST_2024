@@ -585,6 +585,7 @@ vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.
 ### tRING DIFFERENT LOOKUP TABLE WITHJUST gemini  on 10/18/2024 USING XLSX intead of cSV with more info some hand-crafted
 #### THIS TABLE IS BASED ON JUST the 88 compounds in the group of 71 WBs
 chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_2024_10_18_v3.xlsx"   # added a V2 to see if that fixes
+chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_10-22-2024-v1.xlsx"   # added a WIKI column to the data
 chemSourceSheetName2<-"STEVEN_New71_ChatGPT-Try2"
 
 

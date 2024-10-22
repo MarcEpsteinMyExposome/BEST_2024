@@ -1317,7 +1317,7 @@ load.riskCalifProp65 <-
 #
 # READ in EPA IRIS chemical classification
 # epaIrisTableName<-"./data/EDF_Phase1_EPA_Iris.csv"
-epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
+#epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
 load.epaIris <- function(epaIrisTableName) {
   epaIris <- read.table(
     epaIrisTableName,
@@ -1463,12 +1463,12 @@ load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
 #### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
 #library(readxl)
 
-load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName) {
-  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName2,
-                                      sheet=chemSourceSheetName2)
+load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,chemSourceSheetName) {
+  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName,
+                                      sheet=chemSourceSheetName)
 
    chemSourceMitigation <- chemSourceMitigation %>%
-    select(Chemical_Name,Summary_of_Health_Effects,Sources_of_Exposure,Mitigation_Strategies)
+    select(Chemical_Name,Summary_of_Health_Effects,Sources_of_Exposure,Mitigation_Strategies,WIKIPEDIA_ARTICLE_URL)
 
 
   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)

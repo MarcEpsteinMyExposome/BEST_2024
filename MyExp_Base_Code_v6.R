@@ -406,7 +406,8 @@ class_L <- unique(convert_to_new_reduced_classifications(class_L))
 ##### TESTING having a source and mitigation strategy table to read in
 #chemSourceMitigationOLD <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
 #chemSourceMitigationNEW <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information
-chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
+### GO TO Google doc and find tab and download the whole thing make sure right SHEET NAME
+chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2,chemSourceSheetName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
 
 
 
