@@ -538,6 +538,35 @@ addMesg <- function(mesgVector, foundOrNot, numFound, newMesg) {
   mesgVector
 }
 
+#####
+#####
+
+### I'm going to put/move misc support functions that don't belong other places into this R script and then call this R script somewhere
+###
+
+### To print various messages with URLs and having those URLs open in a new window
+makeClickableURL <- function(URL, clickableText) {
+  # This function takes in a URL and a clickableText as inputs and returns an HTML anchor tag
+  # that creates a clickable link that opens in a new browser tab.
+  paste0(
+    # The first part of the anchor tag: opening <a> and setting href attribute with the URL
+    '<a href="',
+    # Inserting the URL provided as the function argument
+    URL,
+    # Closing the href attribute and starting the target attribute to open in a new tab
+    '" target=',
+    # Escaping the double quotes around "_blank" so that it can be correctly formatted within the string
+    "\"_blank\"",
+    # Closing the target attribute and finishing the opening <a> tag
+    ">",
+    # Inserting the text that will appear clickable on the page (provided as function argument)
+    clickableText,
+    # Closing the anchor tag with </a> to complete the HTML link
+    "</a>"
+    # Adding two newlines to ensure some spacing in the output (optional)
+  )
+}
+
 
 
 

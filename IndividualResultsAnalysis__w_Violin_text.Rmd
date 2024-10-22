@@ -118,15 +118,16 @@ if (length(chemsOfConcern) >= 1) {
 
 
         Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
-        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
-
+       # Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
+        Prop65_Link <- makeClickableURL(Prop65_Link,"California Proposition 65")
+  
 
         newMessage <- paste(
           newMessage,
           " ",
-          " This chemical is classified per California Proposition 65 (",
+          " This chemical is classified per ",
           Prop65_Link,
-          " ) ",
+          #" ) ",
           " with the risk type noted as: ",
           PROP65_info,
           "."
@@ -147,14 +148,14 @@ if (length(chemsOfConcern) >= 1) {
         filter(`Chemical Name` == chemOfConcern)
       if (nrow(testInIRIS) > 0) {
         IRIS_info <- testInIRIS$`IRIS Summary Web Link`
-        IRIS_info <- paste0("<a href='", IRIS_info, "' target='_blank'>", IRIS_info, "</a>") ## This should make the link open in new tab
+        IRIS_info<-makeClickableURL(IRIS_info, "chemical of interest")
+        
         newMessage <- paste(
           newMessage,
           " ",
-          "The Environmental Protection Agency has classified this chemical ",
-          " as a chemical of concern.  You can find more information here: ",
+          "The Environmental Protection Agency has classified this chemical as a ",
           IRIS_info,
-          " . "
+          ". "
         )
       }
 
@@ -177,20 +178,14 @@ if (length(chemsOfConcern) >= 1) {
         )
         if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
           wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-          wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
-          wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
+          #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+          wikiURL <- makeClickableURL(wikiURL,"Wiki")
+          wikiMessage <-paste0( "\n Additional information: ",wikiURL)
           chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
         }
 
-        
-        
-        
         newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
-      
-
-
-
 
       cat(newMessage)
 
@@ -312,7 +307,7 @@ if (length(chemsNOTinConcernGroup >= 1)) {
       testInChemSourceMitigation <- chemSourceMitigation %>%
         filter(Chemical_Name == chemNOTinConcernGroup)
       if (nrow(testInChemSourceMitigation) > 0) {
-        chemSourceMitigationMessage <- "\n\n Although this chemical was not listed in any searched database it may still have harmful effects at certain levels but we do NOT know how your levels compare to that. "
+        chemSourceMitigationMessage <- "\n\n Although this chemical was not listed in any searched database it may still have harmful effects at certain levels but we do not know how your levels compare to that. "
         chemSourceMitigationMessage <- paste0(
           chemSourceMitigationMessage,
           #"This compound is suspected of having the following health effects: **",
@@ -324,17 +319,32 @@ if (length(chemsNOTinConcernGroup >= 1)) {
           "**. ",
           " Possible ways to avoid exposure to this compound include: **",
           testInChemSourceMitigation$Mitigation_Strategies,
-          "** "
+          "**. "
         )
 #       Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
 #        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
 
+        # if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
+        #   wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
+        #   wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+        #   wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
+        #   chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
+        # }
+        
+        
         if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
           wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-          wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
-          wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
-          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
+          #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+          wikiURL <- makeClickableURL(wikiURL, "Wiki")
+          wikiMessage <- paste0(" Additional information: ", wikiURL)
+          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " ", wikiMessage, "\n")
         }
+        
+        
+        
+        
+        
+        
         newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
 
