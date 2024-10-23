@@ -447,15 +447,15 @@ if (subsetBasedOnBatchNumber) {
 
 
 ## JUST do SPECIFIC SUBJECT Analysis
-DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
-DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+#DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+#DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+#HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
 
 
 ## do SPECIFIC SUBJECT Analysis AND GROUP ANALYSIS
-#DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
-#DoGroupAnalysis <- TRUE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-#HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+DoGroupAnalysis <- TRUE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
 
 
 

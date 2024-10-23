@@ -8,6 +8,7 @@ editor_options:
 
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
+
 ## The function to build a violin plot is now in a separate R file
 source("BuildViolinPlot.R")
 
@@ -33,9 +34,11 @@ chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y
 
 ```{r PlotChemsOfConcern_Part1, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-fig <- ggplot(cars) +
-  geom_point(aes(speed, dist))
-htmltools::tagList(ggplotly(fig))
+#fig <- ggplot(cars) +
+  #geom_point(aes(speed, dist))
+#htmltools::tagList(ggplotly(fig))
+# Initialize Plotly without rendering a dummy plot
+plotly::config(plot_ly(), displayModeBar = FALSE)
 
 
 ### This next section is to figure how HOW MANY people HAD this compound and how many didn't
@@ -189,11 +192,6 @@ if (length(chemsOfConcern) >= 1) {
 
       cat(newMessage)
 
-      # HERE i can add some stuff about sources of exposure, health impacts, mitigation strategies
-      # Learn about actions that could help reduce your exposure
-
-
-
       cat(" \n \n")
     }
   }
@@ -207,22 +205,6 @@ if (length(chemsOfConcern) >= 1) {
 
 
 
-<!-- NOW let's loop through all the classifications FOUND ON THIS subject wristband
-    and let's for each classification say  
-    "You have X chemicals with the classification Y"
-    These chemicals are:  LIST. 
-    Below you will see any specific recommendations, per chemical, followed by generic recommendations on routes of possible exposure and ways to reduce your exposure.
-    SO WE WANT OUTPUT LIKE
-          Classification:  Personal Care
-          Your Personal Care Chemicals: A B C
-          Ways to address these, if any:
-          A -:> 
-          B- >
-          General  Advice regarding this class of compounds
-          
-          WE COULD DO THIS or we could put the information directly after the chemical information?
-    
--->
 ```{r ListAllCompoundsInClassWithInfo , results='asis',echo=FALSE,eval=TRUE}
 ```
 
@@ -231,11 +213,8 @@ if (length(chemsOfConcern) >= 1) {
 
 
 ```{r PlotOtherChems_Part1, include=FALSE}
-# THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-fig <- ggplot(cars) +
-  geom_point(aes(speed, dist))
-htmltools::tagList(ggplotly(fig))
-
+# Initialize Plotly without rendering a dummy plot
+plotly::config(plot_ly(), displayModeBar = FALSE)
 
 ### This next section is to figure how HOW MANY people HAD this compound and how many didn't
 howManyHaveParameterName <- testResults.big %>%
@@ -261,7 +240,6 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. **Click** on each chemical name to compare your exposure to others in the study.
 
 
-
 ```{r PlotOtherChems_Part2, results='asis',echo=FALSE,eval=TRUE}
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
@@ -272,10 +250,7 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 if (length(chemsNOTinConcernGroup >= 1)) {
   for (i in 1:length(chemsNOTinConcernGroup)) {
     chemNOTinConcernGroup <- chemsNOTinConcernGroup[i]
-    #chemNOTinConcernGroup <- chemsNOTinConcernGroup[1]
-    # chemOfConcern <- chemsOfConcern[9]
     # chemOfConcern <- chemsOfConcern[1]
-
 
     # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
     testResults_ChemNOTinConcern <- testResults.big %>%
@@ -321,30 +296,14 @@ if (length(chemsNOTinConcernGroup >= 1)) {
           testInChemSourceMitigation$Mitigation_Strategies,
           "**. "
         )
-#       Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
-#        Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
 
-        # if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
-        #   wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-        #   wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
-        #   wikiMessage <-paste0( "\n Additional information about this compound can be found on this wikipedia article: ",wikiURL)
-        #   chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
-        # }
-        
-        
         if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
           wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-          #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
           wikiURL <- makeClickableURL(wikiURL, "Wiki")
           wikiMessage <- paste0(" Additional information: ", wikiURL)
           chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " ", wikiMessage, "\n")
         }
-        
-        
-        
-        
-        
-        
+
         newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
       }
 

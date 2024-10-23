@@ -5,6 +5,9 @@ output:
     number_sections: true
     toc_depth: 3
     df_print: "paged"
+    lightbox: true   # Enables the lightbox for clickable images
+    gallery: true    # Groups images into a gallery with navigation between images
+    thumbnails: false # Images will appear at their original size
   pdf_document:
     toc: yes
     toc_depth: '3'
@@ -17,6 +20,58 @@ output:
     chunk_output_type: console
   
 ---
+<!--
+ 
+ #GREAT EXplanation:  https://www.ichaoran.com/posts/2020-10-25-tips-of-drafting-r-markdown-document/ 
+ IT SAYS:     <style>
+              #content {
+                max-width: 1400px;
+              }
+              #sidebar h2 {
+                background-color: #008B8B;
+              }
+              h1, h2 {
+                color: #008B8B;
+              }
+            </style>
+ 
+# Locate the directory where the rmarkdown package is installed
+ system.file(package = "rmarkdown")
+[1] "C:/Users/marce/AppData/Local/R/win-library/4.4/rmarkdown"
+ 
+ > system.file(package = "rmdformats")
+[1] "C:/Users/marce/AppData/Local/R/win-library/4.4/rmdformats"
+
+
+ ADD STYLE SECTION to change default width from like 900 to 1400px
+ Default is max-width:900px;
+ THHESE LINKS SAY MORE:
+ modify rmdformat a little:  https://stackoverflow.com/questions/63110500/modifying-readthedown-markdown
+ BIG mods to rmdformat... unclear:  https://stackoverflow.com/questions/62716433/rmarkdown-sidebar-can-float-to-the-left-of-centered-main-content-for-rmdformat
+ GREAT example of modifying DOWNCUTE package, not relevenat but good code exaplain: https://stackoverflow.com/questions/69784938/how-to-modify-downcute-css-from-rmdformats-to-have-author-as-in-readthedown
+ Good tips on writing good reports w/ readthedown:  https://github.com/6chaoran/data-story/blob/master/r-markdown/r-markdown-report-tips.Rmd
+ 
+ 
+ 
+ <style>
+  #content {
+    max-width: 1400px;
+  }
+</style>
+
+ 
+ 
+-->
+
+<style>
+  #content {
+    max-width: 1400px;
+  }
+</style>
+
+
+
+
 <!--
 ### THIS IS THE OUTPUT SECTION on 10/15/2024 @ 11:18am works fine...
 
@@ -241,6 +296,21 @@ ALSO GOOD I THINK:
 
 TO do a tool tip and set a class so you can use CSS to format things
 tags$span(class = "my-class", title = "Tooltip text", "Hover over me")
+
+
+-->
+
+
+<!--
+# todo a better job than str() function to understand a table....  dfSummary will analyze a data table for you
+require(summarytools)
+mtcars %>%
+  dfSummary(style = 'grid',
+            graph.magnif = 0.75,
+            plain.ascii = F,
+            valid.col = FALSE,
+            tmp.img.dir = "/tmp") %>%
+  print()
 
 
 -->
