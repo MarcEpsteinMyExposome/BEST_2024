@@ -89,12 +89,12 @@ if (HideIndividualization) {
     #right_join(statSummary, by = "Chemical Name") %>% ## THIS RIGHT JOIN makes it for EVERY chemical found anywhere...
     left_join(statSummary, by = "Chemical Name") %>% ## THIS left JOIN makes it for ONLY chemical found on this wristband
     replace_na(list(Result = 0)) %>%
-    rename(!!paste(subject, "Result", sep = " ") := Result)
+    rename(!!paste(pureSubjectName, "Result", sep = " ") := Result)
 
   panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
 
   pandoc.table(as.data.frame(oneResultStatSummary),
-    caption = paste("Statistical Report on all Chemicals on ", subject, " wristband", sep = " "),
+    caption = paste("Statistical Report on all Chemicals on ", pureSubjectName, " wristband", sep = " "),
     justify = c("right", "right", "right", "right", "right", "right", "right", "right"),
     emphasis.rownames = TRUE,
     split.table = Inf

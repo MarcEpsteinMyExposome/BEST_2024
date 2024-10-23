@@ -26,13 +26,11 @@ chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIr
 
 ## Make a list of all chemicals that our one user had that did NOT show up in any of the databases
 chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
+
 ```
 
 
-## Plot each Chemical of Concern {.tabset  .tabset-pills}
-
-
-```{r PlotChemsOfConcern_Part1, include=FALSE}
+```{r setupViolinVariablesAndFunctions, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
 #fig <- ggplot(cars) +
   #geom_point(aes(speed, dist))
@@ -59,264 +57,177 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 # parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
 # non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
 # print(non_zero_count_value)
+
+
+
+### Extracted function below as generic way to do tabset PLOTLY of interact plots 
+###     NOTE that we do with set that IS listed in certain DB and set that ISN"T but ...that is an artifical split we could just collapse them
+###     NOTE that in both cases we have the CODE to print the listing in those database... BUT.... it never gets hit if it's not there!
+plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk,chemSourceMitigation) {
+  if (length(chemsList) >= 1) {
+    for (i in 1:length(chemsList)) {
+      chemItem <- chemsList[i]
+      # chemOfConcern <- chemsList[2]
+      # chemOfConcern <- chemsList[1]
+      
+      
+      # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
+      testResults_ChemItem <- testResults.big %>%
+        filter(ParameterName == chemItem) %>%
+        select(SampleNumber, Result, ParameterName)
+      
+      
+      if (nrow(testResults_ChemItem) > 1) {
+        cat("###", chemItem, "{-}", "\n\n")
+        
+        print(htmltools::tagList(
+          buildPlotlyViolin(chemItem, testResults_ChemItem)
+        ))
+        
+        newMessage <- NULL
+        
+        newMessage <- paste(
+          newMessage,
+          " ",
+          chemItem,
+          " was found on ",
+          lookup_non_zero_count(chemItem, howManyHaveParameterName),
+          "out of the ",
+          howManyWristbandsTested,
+          "wristbands."
+        )
+
+        testInPROP65 <- oneResultCalifProp65Risk %>%
+          filter(`Chemical Name` == chemItem)
+        if (nrow(testInPROP65) > 0) {
+          PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
+          
+          
+          Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
+          Prop65_Link <- makeClickableURL(Prop65_Link, "California Proposition 65")
+          
+          
+          newMessage <- paste(
+            newMessage,
+            " ",
+            " This chemical is classified per ",
+            Prop65_Link,
+            #" ) ",
+            " with the risk type noted as: ",
+            PROP65_info,
+            "."
+          )
+        }
+        
+        ##### DELETED IARC cause Silent Spring suggested gettign rid
+        # testInIARC <- oneResultIARCRisk %>%
+        #   filter(`Chemical Name` == chemItem)
+        #  if (nrow(testInIARC) > 0) {
+        #    IARC_info <- testInIARC$`Risk Type Per IARC`
+        #    newMessage <- paste (newMessage,  " ",
+        #                         " This chemical is classified by the International Agency for the Research on Cancer ",
+        #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
+        #  }
+        
+        testInIRIS <- oneResultEpaIris %>%
+          filter(`Chemical Name` == chemItem)
+        if (nrow(testInIRIS) > 0) {
+          IRIS_info <- testInIRIS$`IRIS Summary Web Link`
+          IRIS_info <- makeClickableURL(IRIS_info, "chemical of interest")
+          
+          newMessage <- paste(
+            newMessage,
+            " ",
+            "The Environmental Protection Agency has classified this chemical as a ",
+            IRIS_info,
+            ". "
+          )
+        }
+        
+        testInChemSourceMitigation <- chemSourceMitigation %>%
+          filter(Chemical_Name == chemItem)
+        chemSourceMitigationMessage <- "\n\n"
+        if (nrow(testInChemSourceMitigation) > 0) {
+          chemSourceMitigationMessage <- paste0(
+            chemSourceMitigationMessage,
+            # "This compound is suspected of having the following health effects: **",         ### WE DELETED MENTION OF HEALTH EFFECTS BUT CODE STILL HERE TO PRINT IF WE UNCOMMENT THIS
+            #          testInChemSourceMitigation$Summary_of_Health_Effects,
+            #          "**. ",
+            " Sources of Exposure to this compound are frequently due to:  **",
+            testInChemSourceMitigation$Sources_of_Exposure,
+            #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
+            "**. ",
+            " Possible ways to avoid exposure to this compound include: **",
+            testInChemSourceMitigation$Mitigation_Strategies,
+            "**."
+          )
+          if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
+            wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
+            #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+            wikiURL <- makeClickableURL(wikiURL, "Wiki")
+            wikiMessage <- paste0("\n Additional information: ", wikiURL)
+            chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " ", wikiMessage, "\n")
+          }
+          
+          newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
+        }
+        
+        cat(newMessage)
+        
+        cat(" \n \n")
+      }
+    }
+  } else {
+    testResults_ChemItem <- testResults.big %>%
+      filter(ParameterName == "NEVER MATCH") %>%
+      select(SampleNumber, Result, ParameterName)
+  }
+}
+
+
+
+
 ```
+
+
+## Plot each Chemical of Concern {.tabset  .tabset-pills}
+
+
 
 We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
 
-```{r PlotChemsOfConcern_Part2, results='asis',echo=FALSE,eval=TRUE}
+```{r PlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-if (length(chemsOfConcern) >= 1) {
-  for (i in 1:length(chemsOfConcern)) {
-    chemOfConcern <- chemsOfConcern[i]
-    # chemOfConcern <- chemsOfConcern[2]
-    # chemOfConcern <- chemsOfConcern[1]
+
+## Now call the function to print interactive plotly in TABS of all chemicals listed in certain DB of concern
+
+plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) 
 
 
-    # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
-    testResults_ChemOfConcern <- testResults.big %>%
-      filter(ParameterName == chemOfConcern) %>%
-      select(SampleNumber, Result, ParameterName)
-
-
-    if (nrow(testResults_ChemOfConcern) > 1) {
-      cat("###", chemOfConcern, "{-}", "\n\n")
-
-      print(htmltools::tagList(
-        buildPlotlyViolin(chemOfConcern, testResults_ChemOfConcern)
-      ))
-
-      newMessage <- NULL
-
-      newMessage <- paste(
-        newMessage,
-        " ",
-        chemOfConcern,
-        " was found on ",
-        lookup_non_zero_count(chemOfConcern, howManyHaveParameterName),
-        "out of the ",
-        howManyWristbandsTested,
-        "wristbands."
-      )
-
-
-
-      # newMessage <- paste(
-      #   newMessage,
-      #   chemOfConcern,
-      #   ' was found in one or more online databases as being of some concern. '
-      # )
-
-
-
-
-      testInPROP65 <- oneResultCalifProp65Risk %>%
-        filter(`Chemical Name` == chemOfConcern)
-      if (nrow(testInPROP65) > 0) {
-        PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
-
-
-        Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
-       # Prop65_Link <- paste0("<a href='", Prop65_Link, "' target='_blank'>", Prop65_Link, "</a>") ## This should make the link open in new tab
-        Prop65_Link <- makeClickableURL(Prop65_Link,"California Proposition 65")
-  
-
-        newMessage <- paste(
-          newMessage,
-          " ",
-          " This chemical is classified per ",
-          Prop65_Link,
-          #" ) ",
-          " with the risk type noted as: ",
-          PROP65_info,
-          "."
-        )
-      }
-
-      ##### DELETED IARC cause Silent Spring suggested gettign rid
-      # testInIARC <- oneResultIARCRisk %>%
-      #   filter(`Chemical Name` == chemOfConcern)
-      #  if (nrow(testInIARC) > 0) {
-      #    IARC_info <- testInIARC$`Risk Type Per IARC`
-      #    newMessage <- paste (newMessage,  " ",
-      #                         " This chemical is classified by the International Agency for the Research on Cancer ",
-      #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
-      #  }
-
-      testInIRIS <- oneResultEpaIris %>%
-        filter(`Chemical Name` == chemOfConcern)
-      if (nrow(testInIRIS) > 0) {
-        IRIS_info <- testInIRIS$`IRIS Summary Web Link`
-        IRIS_info<-makeClickableURL(IRIS_info, "chemical of interest")
-        
-        newMessage <- paste(
-          newMessage,
-          " ",
-          "The Environmental Protection Agency has classified this chemical as a ",
-          IRIS_info,
-          ". "
-        )
-      }
-
-      testInChemSourceMitigation <- chemSourceMitigation %>%
-        filter(Chemical_Name == chemOfConcern)
-      chemSourceMitigationMessage<-"\n\n"
-      if (nrow(testInChemSourceMitigation) > 0) {
-        chemSourceMitigationMessage <- paste0(
-          chemSourceMitigationMessage,
-         # "This compound is suspected of having the following health effects: **",
-#          testInChemSourceMitigation$Summary_of_Health_Effects,
-#          "**. ",
-          " Sources of Exposure to this compound are frequently due to:  **",
-          testInChemSourceMitigation$Sources_of_Exposure,
-          #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
-          "**. ",
-          " Possible ways to avoid exposure to this compound include: **",
-          testInChemSourceMitigation$Mitigation_Strategies,
-          "**."
-        )
-        if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
-          wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-          #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
-          wikiURL <- makeClickableURL(wikiURL,"Wiki")
-          wikiMessage <-paste0( "\n Additional information: ",wikiURL)
-          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage," ",wikiMessage,"\n")
-        }
-
-        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
-      }
-
-      cat(newMessage)
-
-      cat(" \n \n")
-    }
-  }
-} else {
-  testResults_ChemOfConcern <- testResults.big %>%
-    filter(ParameterName == "NEVER MATCH") %>%
-    select(SampleNumber, Result, ParameterName)
-}
-```
-
-
-
-
-```{r ListAllCompoundsInClassWithInfo , results='asis',echo=FALSE,eval=TRUE}
 ```
 
 
 ## Plot Remaining Chemicals {.tabset  .tabset-pills}
 
 
-```{r PlotOtherChems_Part1, include=FALSE}
-# Initialize Plotly without rendering a dummy plot
-plotly::config(plot_ly(), displayModeBar = FALSE)
-
-### This next section is to figure how HOW MANY people HAD this compound and how many didn't
-howManyHaveParameterName <- testResults.big %>%
-  group_by(ParameterName) %>%
-  summarise(non_zero_count = sum(Result != 0))
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. Click on each chemical name to compare your exposure to others in the study.
 
 
-# Function to look up non_zero_count for a specific ParameterName
-lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
-  result <- howManyHaveParameterName %>%
-    filter(ParameterName == parameter_name) %>%
-    pull(non_zero_count)
-  return(result)
-}
-
-# Example usage
-# parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
-# non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
-# print(non_zero_count_value)
-```
-
-
-Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. **Click** on each chemical name to compare your exposure to others in the study.
-
-
-```{r PlotOtherChems_Part2, results='asis',echo=FALSE,eval=TRUE}
+```{r PlotOtherChems, results='asis',echo=FALSE,eval=TRUE}
 ###
 ### using variou web links to figure out...this is supposed to work... ineed to check this again...
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-if (length(chemsNOTinConcernGroup >= 1)) {
-  for (i in 1:length(chemsNOTinConcernGroup)) {
-    chemNOTinConcernGroup <- chemsNOTinConcernGroup[i]
-    # chemOfConcern <- chemsOfConcern[1]
-
-    # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
-    testResults_ChemNOTinConcern <- testResults.big %>%
-      filter(ParameterName == chemNOTinConcernGroup) %>%
-      select(SampleNumber, Result, ParameterName)
+plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) 
 
 
-    if (nrow(testResults_ChemNOTinConcern) > 1) {
-      cat("###", chemNOTinConcernGroup, "{-}", "\n\n")
-
-      print(htmltools::tagList(
-        buildPlotlyViolin(chemNOTinConcernGroup, testResults_ChemNOTinConcern)
-      ))
-
-      newMessage <- NULL
-
-      newMessage <- paste(
-        newMessage,
-        " ",
-        chemNOTinConcernGroup,
-        " was found on ",
-        lookup_non_zero_count(chemNOTinConcernGroup, howManyHaveParameterName),
-        "out of the ",
-        howManyWristbandsTested,
-        "wristbands. "
-      )
-
-
-      testInChemSourceMitigation <- chemSourceMitigation %>%
-        filter(Chemical_Name == chemNOTinConcernGroup)
-      if (nrow(testInChemSourceMitigation) > 0) {
-        chemSourceMitigationMessage <- "\n\n Although this chemical was not listed in any searched database it may still have harmful effects at certain levels but we do not know how your levels compare to that. "
-        chemSourceMitigationMessage <- paste0(
-          chemSourceMitigationMessage,
-          #"This compound is suspected of having the following health effects: **",
-          #testInChemSourceMitigation$Summary_of_Health_Effects,
-          #"**. ",
-          " Sources of Exposure to this compound are frequently due to:  **",
-          testInChemSourceMitigation$Sources_of_Exposure,
-          #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
-          "**. ",
-          " Possible ways to avoid exposure to this compound include: **",
-          testInChemSourceMitigation$Mitigation_Strategies,
-          "**. "
-        )
-
-        if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
-          wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-          wikiURL <- makeClickableURL(wikiURL, "Wiki")
-          wikiMessage <- paste0(" Additional information: ", wikiURL)
-          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " ", wikiMessage, "\n")
-        }
-
-        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
-      }
-
-      cat(newMessage)
-
-      cat(" \n \n")
-    }
-  }
-} else {
-  testResults_ChemNOTinConcern <- testResults.big %>%   # NOT SURE WHY WE ARE DOING THIS ELSE TEST...Perhaps to catch error?
-    filter(ParameterName == "NEVER MATCH") %>%
-    select(SampleNumber, Result, ParameterName)
-}
 ```
 
 

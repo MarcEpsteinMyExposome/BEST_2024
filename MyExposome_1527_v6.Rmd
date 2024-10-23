@@ -41,26 +41,12 @@ output:
  
  > system.file(package = "rmdformats")
 [1] "C:/Users/marce/AppData/Local/R/win-library/4.4/rmdformats"
-
-
- ADD STYLE SECTION to change default width from like 900 to 1400px
- Default is max-width:900px;
  THHESE LINKS SAY MORE:
  modify rmdformat a little:  https://stackoverflow.com/questions/63110500/modifying-readthedown-markdown
  BIG mods to rmdformat... unclear:  https://stackoverflow.com/questions/62716433/rmarkdown-sidebar-can-float-to-the-left-of-centered-main-content-for-rmdformat
  GREAT example of modifying DOWNCUTE package, not relevenat but good code exaplain: https://stackoverflow.com/questions/69784938/how-to-modify-downcute-css-from-rmdformats-to-have-author-as-in-readthedown
  Good tips on writing good reports w/ readthedown:  https://github.com/6chaoran/data-story/blob/master/r-markdown/r-markdown-report-tips.Rmd
- 
- 
- 
- <style>
-  #content {
-    max-width: 1400px;
-  }
-</style>
 
- 
- 
 -->
 
 <style>
@@ -68,8 +54,6 @@ output:
     max-width: 1400px;
   }
 </style>
-
-
 
 
 <!--
@@ -93,8 +77,6 @@ output:
     chunk_output_type: console
   chunk_output_type: console
 
-
-
 output:
   rmdformats::readthedown:
     fig_height: 14
@@ -113,7 +95,6 @@ output:
     reference_docx: MyExposomeFormat_1527_v6.docx
   editor_options: 
     chunk_output_type: console
-  chunk_output_type: console
 
 -->
 
@@ -293,16 +274,10 @@ ALSO GOOD I THINK:
 
 
 <!--
-
 TO do a tool tip and set a class so you can use CSS to format things
 tags$span(class = "my-class", title = "Tooltip text", "Hover over me")
 
-
--->
-
-
-<!--
-# todo a better job than str() function to understand a table....  dfSummary will analyze a data table for you
+# todo a better job than str() function to understand a table....  dfSummary will analyze a data table for
 require(summarytools)
 mtcars %>%
   dfSummary(style = 'grid',
