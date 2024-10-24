@@ -44,8 +44,32 @@ create_tooltip <- function(classIf) {
   return(paste0(classIf, '<br>', description, '<br>', sources, '<br>', examples, '<br>', strategies))
 }
 
+
+create_Modal_tooltip <- function(classIf) {
+  class_row <- classExplainTable %>% filter(Classification == classIf)
+  if (nrow(class_row) == 0) {
+    return(classIf)
+  }
+
+  #bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
+  #stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")
+
+  bs_modal(id = "descriptionButtonID", title = paste("Description of",classif, "chemicals"), body = class_row$Description)
+  descriptionButton<-bs_button("Description", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "descriptionButtonID")
+
+  #description <- tags$span(title = class_row$Description, "---->Description")
+  sources <- tags$span(title = class_row$Sources, "---->Sources")
+  examples <- tags$span(title = class_row$Examples, "---->Examples")
+  strategies <- tags$span(title = class_row$Strategies, "---->Strategies")
+
+  return(paste0(classIf, '<br>', descriptionButton, '<br>', sources, '<br>', examples, '<br>', strategies))
+}
+
+
+
 # Apply the function to create tooltips
 oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_tooltip)
+#oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_Modal_tooltip)    ### TRIED TO PUT BUTTON IN but that didn't work at all for some reason.... cause i'm paste0 in weird buttons???
 
 #Print the table with tooltips
 pandoc.table(oneResultInvertClassified,

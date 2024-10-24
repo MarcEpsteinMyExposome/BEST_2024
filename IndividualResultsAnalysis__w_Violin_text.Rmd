@@ -8,7 +8,6 @@ editor_options:
 
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
-
 ## The function to build a violin plot is now in a separate R file
 source("BuildViolinPlot.R")
 
@@ -26,15 +25,14 @@ chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIr
 
 ## Make a list of all chemicals that our one user had that did NOT show up in any of the databases
 chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
-
 ```
 
 
 ```{r setupViolinVariablesAndFunctions, include=FALSE}
 # THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-#fig <- ggplot(cars) +
-  #geom_point(aes(speed, dist))
-#htmltools::tagList(ggplotly(fig))
+# fig <- ggplot(cars) +
+# geom_point(aes(speed, dist))
+# htmltools::tagList(ggplotly(fig))
 # Initialize Plotly without rendering a dummy plot
 plotly::config(plot_ly(), displayModeBar = FALSE)
 
@@ -58,34 +56,36 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 # non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
 # print(non_zero_count_value)
 
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
-
-### Extracted function below as generic way to do tabset PLOTLY of interact plots 
+### Extracted function below as generic way to do tabset PLOTLY of interact plots
 ###     NOTE that we do with set that IS listed in certain DB and set that ISN"T but ...that is an artifical split we could just collapse them
 ###     NOTE that in both cases we have the CODE to print the listing in those database... BUT.... it never gets hit if it's not there!
-plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk,chemSourceMitigation) {
+
+plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) {
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
       # chemOfConcern <- chemsList[2]
       # chemOfConcern <- chemsList[1]
-      
-      
+
+
       # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
       testResults_ChemItem <- testResults.big %>%
         filter(ParameterName == chemItem) %>%
         select(SampleNumber, Result, ParameterName)
-      
-      
+
+
       if (nrow(testResults_ChemItem) > 1) {
         cat("###", chemItem, "{-}", "\n\n")
-        
+
         print(htmltools::tagList(
           buildPlotlyViolin(chemItem, testResults_ChemItem)
         ))
-        
+
         newMessage <- NULL
-        
+
         newMessage <- paste(
           newMessage,
           " ",
@@ -101,24 +101,24 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
           filter(`Chemical Name` == chemItem)
         if (nrow(testInPROP65) > 0) {
           PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
-          
-          
+
+
           Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
           Prop65_Link <- makeClickableURL(Prop65_Link, "California Proposition 65")
-          
-          
+
+
           newMessage <- paste(
             newMessage,
             " ",
             " This chemical is classified per ",
             Prop65_Link,
-            #" ) ",
+            # " ) ",
             " with the risk type noted as: ",
             PROP65_info,
             "."
           )
         }
-        
+
         ##### DELETED IARC cause Silent Spring suggested gettign rid
         # testInIARC <- oneResultIARCRisk %>%
         #   filter(`Chemical Name` == chemItem)
@@ -128,13 +128,13 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
         #                         " This chemical is classified by the International Agency for the Research on Cancer ",
         #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
         #  }
-        
+
         testInIRIS <- oneResultEpaIris %>%
           filter(`Chemical Name` == chemItem)
         if (nrow(testInIRIS) > 0) {
           IRIS_info <- testInIRIS$`IRIS Summary Web Link`
           IRIS_info <- makeClickableURL(IRIS_info, "chemical of interest")
-          
+
           newMessage <- paste(
             newMessage,
             " ",
@@ -143,7 +143,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
             ". "
           )
         }
-        
+
         testInChemSourceMitigation <- chemSourceMitigation %>%
           filter(Chemical_Name == chemItem)
         chemSourceMitigationMessage <- "\n\n"
@@ -155,7 +155,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
             #          "**. ",
             " Sources of Exposure to this compound are frequently due to:  **",
             testInChemSourceMitigation$Sources_of_Exposure,
-            #testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
+            # testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
             "**. ",
             " Possible ways to avoid exposure to this compound include: **",
             testInChemSourceMitigation$Mitigation_Strategies,
@@ -163,17 +163,17 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
           )
           if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
             wikiURL <- testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL
-            #wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
+            # wikiURL <- paste0("<a href='", wikiURL, "' target='_blank'>", wikiURL, "</a>") ## This should make the link open in new tab
             wikiURL <- makeClickableURL(wikiURL, "Wiki")
             wikiMessage <- paste0("\n Additional information: ", wikiURL)
             chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " ", wikiMessage, "\n")
           }
-          
+
           newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
         }
-        
+
         cat(newMessage)
-        
+
         cat(" \n \n")
       }
     }
@@ -183,31 +183,20 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk,  o
       select(SampleNumber, Result, ParameterName)
   }
 }
-
-
-
-
 ```
 
 
 ## Plot each Chemical of Concern {.tabset  .tabset-pills}
 
-
-
-We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  **Click** each chemical name to see how your exposure compares.
+We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  Click each chemical name to see how your exposure compares.
 
 ```{r PlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
 ###
-### using variou web links to figure out...this is supposed to work... ineed to check this again...
-###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
-######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
-
 
 
 ## Now call the function to print interactive plotly in TABS of all chemicals listed in certain DB of concern
 
-plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) 
-
+plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
 
 ```
 
@@ -215,7 +204,7 @@ plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk,  oneResul
 ## Plot Remaining Chemicals {.tabset  .tabset-pills}
 
 
-Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful. Click on each chemical name to compare your exposure to others in the study.
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. Click on each chemical name to compare your exposure to others in the study.
 
 
 ```{r PlotOtherChems, results='asis',echo=FALSE,eval=TRUE}
@@ -225,9 +214,7 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk,  oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) 
-
-
+plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
 ```
 
 
@@ -260,10 +247,13 @@ plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk,  
 
 
 
-### Individual Percentage vs Maximum 
+### Your Percentage vs Maximum Amount Found
 
-
+<!--  THIS IS OLD LANGUAGE... improved it somewhat
 Another way to view the data is by comparing how much of a chemical you had compared to the maximum found in any wristband. For example, if wristband-A had 100 nanograms and the maximum was 1,000 nanograms, wristband-A had 10% of the maximum. The chart below shows the percentage of the maximum for each chemical found on your wristband.
+-->
+
+Next we looking at the amount of each chemical you have compared to the highest amount found on anyone's wristband.  So, if the maximum amount of a certain chemical found was 1,000, and your wristband had 100, you'd have 10% of that maximum. This chart shows you that percentage for all the chemicals found on your wristband, giving you a sense of how your results stack up against the highest levels detected.
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 
@@ -285,8 +275,8 @@ c <- ggplot(perc_values, aes(y = norm_Result, factor(ParameterName))) +
     y = "Percent of Max value Found",
     title = paste(
       "Your Percentage of Max Exposure\n",
-      "Found per Chemical\n",
-      "Subject = ", subject
+      "Found per Chemical\n" # ,
+      # "Subject = ", subject
     )
   )
 # c

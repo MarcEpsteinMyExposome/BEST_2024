@@ -6,9 +6,15 @@
 
 bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
 
+stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")
+
+
 # REMEMBER here is how to use a button
 # bs_button("Standard Devation", button_type = "primary", class = "btn-xs btn-outline-info") %>%
 #  bs_attach_modal(id_modal = "StandardDevation")
+
+#One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")`.
+
   
 ```
 
@@ -16,7 +22,7 @@ bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body 
 ### Statistics on Chemicals Found
 
 
-One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")`.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r stdDevButton`.
 
 
 

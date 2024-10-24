@@ -8,17 +8,16 @@ output:
     lightbox: true   # Enables the lightbox for clickable images
     gallery: true    # Groups images into a gallery with navigation between images
     thumbnails: false # Images will appear at their original size
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
   distill::distill_article:
     toc: true
     toc_depth: 4
   word_document:
     reference_docx: MyExposomeFormat_1527_v6.docx
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
   editor_options: 
     chunk_output_type: console
-  
 ---
 <!--
  
@@ -49,102 +48,13 @@ output:
 
 -->
 
+
 <style>
   #content {
     max-width: 1400px;
   }
 </style>
 
-
-<!--
-### THIS IS THE OUTPUT SECTION on 10/15/2024 @ 11:18am works fine...
-
-output:
-  rmdformats::readthedown:
-    self_contained: true
-    number_sections: true
-    toc_depth: 3
-    df_print: "paged"
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-  distill::distill_article:
-    toc: true
-    toc_depth: 4
-  word_document:
-    reference_docx: MyExposomeFormat_1527_v6.docx
-  editor_options: 
-    chunk_output_type: console
-  chunk_output_type: console
-
-output:
-  rmdformats::readthedown:
-    fig_height: 14
-    fig_width: 10
-    self_contained: true
-    number_sections: true
-    toc_depth: 3
-    df_print: "paged"
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-  distill::distill_article:
-    toc: true
-    toc_depth: 4
-  word_document:
-    reference_docx: MyExposomeFormat_1527_v6.docx
-  editor_options: 
-    chunk_output_type: console
-
--->
-
-<!-- THE CSS below sets the TOOLTIPS i used to be a bigger font and changes background color and border... to be more readable    
-
-# THIS DID NOT WORK but... so what for now..
-#bs.tooltip
-#a.fn.tooltip
-    
-<style>
-.custom-tooltip {
-    font-size: 14px; 
-    background-color: #f0f0f0;
-    color: #000;
-    font-size: em4;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-}
-
-</style> 
-
--->
-
-<!--
-<style>
-.tooltip {
-    position: relative;
-    cursor: pointer;
-}
-
-.tooltip:hover::after {
-    content: attr(title); /* Display the title attribute */
-    position: absolute;
-    background-color: #f0f0f0; /* Tooltip background */
-    color: #000; /* Tooltip text color */
-    padding: 8px; /* Tooltip padding */
-    border: 1px solid #ccc; /* Border */
-    border-radius: 4px; /* Rounded corners */
-    z-index: 1;
-    white-space: pre-wrap; /* Preserve line breaks */
-    bottom: 100%; /* Position above the text */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px; /* Font size */
-    display: block; /* Show tooltip */
-}
-
-</style> 
--->
 
 
 
@@ -165,38 +75,9 @@ OLD HTML DOC:
     df_print: "paged"
     keep_md: true
 
-OR DID THIS 
-ALSO GOOD:  THIS IS MY CURRENT FAVORITE
-  rmdformats::readthedown:
-    fig_height: 14
-    fig_width: 10
-    self_contained: true
-    number_sections: true
-    toc_depth: 3
-    df_print: "paged"
-ALSO GOOD I THINK:
-  rmdformats::material:
-    fig_height: 14
-    fig_width: 10
-    self_contained: true
-    number_sections: true
-    df_print: "paged"
-
-  Other things to fix:
-    we use "week worn or time adjusted or weight adjusted as flags for printing MESSAGES but mostly we 
-    do NOT use those same flags for deciding FIXUP... we set fixup flags based on what test done 
-      THIS IS INCONSISTENT and easy to break and should be fixed
-      
-    
-
 -->
-<!-- 
-  Themes:
-  - cerulean is the BEST so far
-  - theme: cerulean
-  - theme: sandstone
-  - highlight: tango
--->
+
+
 <!-- 
   NEW IDEA FOR BIG IMPROVEMENT:
   - Read in dataset of ALL DATA COLLECTED PRIOR TO THIS NEW DATASET and then do some analysis
@@ -209,29 +90,14 @@ ALSO GOOD I THINK:
   D:\Users\Marc\Documents\Kevin Oregon Wristband\DATA\R_analysis\BEST_JULY_2018_DRS_MORE\data\CombinedTestData
 -->
 <!-- 
-  Another idea: new way to do HEAT MAP
-  https://themockup.blog/posts/2020-08-28-heatmaps-in-ggplot2/
--->
-<!-- 
   LINKS FOR IMPROVING HTML REPORTS:
   - https://holtzy.github.io/Pimp-my-rmd/#github-link (Many ideas for better HTML reports)
   - https://epirhandbook.com/en/heat-plots.html (Great resource)
   - https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html (3D plots)
 -->
 <!-- 
-  NEW IDEA: Techniques to prevent label overlap in GGPLOT2
-  https://www.andrewheiss.com/blog/2022/06/23/long-labels-ggplot/
--->
-<!-- 
   SEE WORD DOCUMENT:
   Outline of all RMD files and sections.DOCX which has the basic outline
--->
-<!-- 
-  FUTURE IDEAS TO-DO list:
-  - TO MAKE FLOATING HTML TABLE OF CONTENTS
-    toc_float: yes
-    toc_collapsed: yes
-  - #number_sections: yes (Adds section #'s which take up a lot of space)
 -->
 <!-- 
   GREAT YOUTUBE intro and examples:
@@ -244,10 +110,6 @@ ALSO GOOD I THINK:
   - HIDE X axis labels where they will be too scrunched
   - HIDE Y axis labels where they will be too scrunched
   - ADD MESSAGE saying X axis or Y axis is scrunched compressed and contact us for info
--->
-<!-- 
-  FIGURE OUT SHINY: Seems to be for "live" docs with a server component
-  - https://shiny.rstudio.com/tutorial/
 -->
 <!-- 
   REMEMBER TO USE "addins" "styler" to format code and RMD

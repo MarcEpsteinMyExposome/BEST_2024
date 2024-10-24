@@ -3,7 +3,7 @@
 
 ### List of all chemicals
 
-The full list of all chemicals tested can be found online at: `r URL_of_Chemicals_Tested`
+The full list of all chemicals tested can be found online at: `r makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List") `
 
 ```{r FullChemList, eval=FALSE, results='asis', echo=FALSE, message=FALSE}
 ####I'm SUPPRESSING the full list, for now, because it is LONG.  Taking first 10 rows only.

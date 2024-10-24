@@ -366,7 +366,7 @@ The following chart shows how your wristband compares to each other wristband in
 
 `r if(DoSpecificSubjectAnalysis){"Your wristband name is highlighted in green on the bottom row of the chart."}`
 
-NOTE: It is important to understand this chart properly. A more highly saturated red color means MORE of the chemical compound was found while a lighter color means relatively less was found. A white, or blank, means that none of that compound was detected in your wristband. Having said that, please do not try to compare BETWEEN ROWS. Mathematically speaking the colors have no meaning when compared between rows due to different rates of uptake of each chemical into a wristband. In other words, just compare the colors across a given row, not between rows.
+NOTE: It is important to understand this chart properly. A darker red color means MORE of the chemical compound was found while a lighter color means relatively less was found. A white, or blank, means that none of that compound was detected in your wristband. Having said that, please do not try to compare BETWEEN ROWS. Mathematically speaking the colors have no meaning when compared between rows due to different rates of uptake of each chemical into a wristband. In other words, just compare the colors across a given row, not between rows.
 
 To create this chart, we normalized within each row based on the maximum value for that chemical in any wristband. We then separate the values into 5 groups and color coding all items within each group. It is useful to remember that the groups are relative to each row separately and independently. The five groups are:
 
