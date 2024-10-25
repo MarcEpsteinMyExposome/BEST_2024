@@ -226,26 +226,66 @@ load.classification <- function(classificationTableName) {
 }
 
 
-# load.classMap<-function(classMapTableName){   # THIS FUNCTION NEVER USED
-#   #classMapTableName<-"./data/classificationTopPick.csv"
-#   classMap<- read.table(classMapTableName,
-#                               sep=","
-#                               ,header=TRUE
-#                               ,colClasses="character" # Import all as character
-#                               ,comment.char = ""      # Don't allow use of "#" as comment in input
-#                               , quote = "\""
-#                               ,fileEncoding="UTF-8-BOM"
-#   )
-#   # Convert Numbers to Numeric
-#   # classMap <- data.frame(sapply(classMap, function(x) as.numeric(as.character(x))))
-#
-#   # Name the ROWS of the classification matrix
-#   #row.names(classMap) <- classMap$ParameterID
-#   classMap <- merge(masterParam[,c("ParameterID","ParameterName")],classMap,by="ParameterID")
-#   row.names(classMap) <- classMap$ParameterName
-#
-#   classMap
-# }
+### CONTINUE TO FIX UP CLASSIFICATIONS:  This builds on the data load of classifications and collapses set further.  could merge the two later
+convert_to_new_reduced_classifications <- function(class_L) {
+
+  # Read in the new classification mapping file to adjust the classifications down
+  class_conversion_table <- read.csv(class_conversion_table_name) %>%
+    select(Classification,CurrentClassifications)
+
+  # Create a long format of the class_conversion_table
+  class_conversion_long <- class_conversion_table %>%
+    mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
+    unnest(CurrentClassifications) %>%
+    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', '')))
+
+  # Function to find the appropriate classification
+  find_classification <- function(class_OLD) {
+    match <- class_conversion_long %>%
+      filter(CurrentClassifications == class_OLD) %>%
+      pull(Classification)
+
+    if (length(match) > 0) {
+      return(match[1])
+    } else {
+      print(paste("No match for:", class_OLD))
+      return(NA)
+    }
+  }
+
+  # Update class_L
+  class_L_new <- class_L %>%
+    rename(classification_OLD = classification) %>%
+    rowwise() %>%
+    mutate(classification = find_classification(str_trim(classification_OLD))) %>%
+    ungroup()
+
+  # Select the desired columns
+  class_L_new <- class_L_new %>%
+    select(ParameterID,  classification)
+
+  class_L_new
+}
+
+
+# Fix class_L by adding all VOC data using VOC MasterParameterTable
+#  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
+### FIRST create a FUNCTION which updates the class_L information with new unique rows
+updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L) {
+  classSpecifcMasterParam <-
+    load.masterParam(classSpecificMasterParamTable) # Read in new parameter Table
+  classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
+  class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
+  classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
+  class_L <- union(classSpecifcMasterParam, class_L) # MERGE existing class_L with new masterParam
+  class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
+  class_L
+}
+
+
+
+
+
 
 
 ###  NOW READ IN THE RESULTS TABLE...
@@ -999,7 +1039,7 @@ fixUpTestResults <- function(testResults) {
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
-addAirCalculationInformation <- function(tr) {
+addAirCalculationInformation <- function(tr,airConcentrationTable) {
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-
@@ -1015,7 +1055,6 @@ addAirCalculationInformation <- function(tr) {
       quote = "\"",
       fileEncoding = "UTF-8-BOM" # THIS gets rid of the weird characters near the beginning of the first line.
     )
-
   ### Then calculate each column of STevens spreadsheet
   # tr<-testResults
   ### THen JOIN the looku table to testResults
@@ -1176,7 +1215,7 @@ addAirCalculationInformation <- function(tr) {
 ##### WE NOW want to READ IN the NIOSH/OSHA limits using ParameterID to join
 ### this is in BETA
 ###
-addAirNioshOsha <- function(testResults) {
+addAirNioshOsha <- function(testResults,airNioshOshaTable) {
   ###  NEXT read in the LOOKUP table for air concentration with NIOSH OSHA info...
   # airNioshOshaLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airNioshOshaLookup <-
@@ -1428,35 +1467,35 @@ load.IARCRisk <- function(IARCRiskTableName) {
 #  THIS IS OLDER WORKING ATTEMPT>.. about to make new attempt as well.
 #
 
-load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
-  chemSourceMitigation <- read.table(
-    chemSourceMitigationInfoTableName,
-    sep = ",",
-    header = TRUE,
-    colClasses = "character" # Import all as character
-    ,
-    comment.char = "" # Don't allow use of "#" as comment in input
-    ,
-    quote = "\"",
-    fileEncoding = "UTF-8-BOM"
-  )
-  chemSourceMitigation <- chemSourceMitigation %>%
-    select(Chemical_Name,Summary_of_Health_Effects,Commercial_Products,Mitigation_Strategies)
-
-  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-  # So we define a FUNCTION which takes any string and uppercases the first letter
-  uppercaseFirst <- function(txt) {
-    pos <- regexpr("[A-z]", txt)
-    char1 <- substr(txt, pos, pos)
-    uC <- toupper(char1)
-    sub("[A-z]", uC, txt)
-  }
-  # THEN we apply taht new function to the ParameterName mcolumn
-  chemSourceMitigation[, "Chemical_Name"] <-
-    sapply(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
-
-  chemSourceMitigation
-}
+# load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
+#   chemSourceMitigation <- read.table(
+#     chemSourceMitigationInfoTableName,
+#     sep = ",",
+#     header = TRUE,
+#     colClasses = "character" # Import all as character
+#     ,
+#     comment.char = "" # Don't allow use of "#" as comment in input
+#     ,
+#     quote = "\"",
+#     fileEncoding = "UTF-8-BOM"
+#   )
+#   chemSourceMitigation <- chemSourceMitigation %>%
+#     select(Chemical_Name,Summary_of_Health_Effects,Commercial_Products,Mitigation_Strategies)
+#
+#   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+#   # So we define a FUNCTION which takes any string and uppercases the first letter
+#   uppercaseFirst <- function(txt) {
+#     pos <- regexpr("[A-z]", txt)
+#     char1 <- substr(txt, pos, pos)
+#     uC <- toupper(char1)
+#     sub("[A-z]", uC, txt)
+#   }
+#   # THEN we apply taht new function to the ParameterName mcolumn
+#   chemSourceMitigation[, "Chemical_Name"] <-
+#     sapply(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
+#
+#   chemSourceMitigation
+# }
 
 
 

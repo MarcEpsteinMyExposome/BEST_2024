@@ -157,7 +157,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
             testInChemSourceMitigation$Sources_of_Exposure,
             # testInChemSourceMitigation$Commercial_Products  This was from the first try, SOURCES of exposure seems like better data
             "**. ",
-            " Possible ways to avoid exposure to this compound include: **",
+            "\n Possible ways to avoid exposure to this compound include: **",
             testInChemSourceMitigation$Mitigation_Strategies,
             "**."
           )
@@ -246,6 +246,10 @@ plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, o
 
 
 
+```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150, eval=FALSE}
+
+
+
 
 ### Your Percentage vs Maximum Amount Found
 
@@ -258,7 +262,11 @@ Next we looking at the amount of each chemical you have compared to the highest 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
 
 
-```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
+
+
+
+
+
 ################ BEGIN x5 Perc
 
 ##

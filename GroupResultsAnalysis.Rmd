@@ -718,7 +718,7 @@ rm(c)
 
 ```
 
-```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=show_loreal_venn_text}
+```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=FAlSE}
 ```
 
 ### Numerical Matrixes of all Data

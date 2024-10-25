@@ -6,7 +6,6 @@
 #         MyExp_data.load.functions_1527_v6.R       group print all users a separate PDF or HTML one at a time
 #         MyExp_support_functions_1527_v6.R       Separate helper functions to build MESSAGES regarding summary information analyzing data
 
-#             OLD OLD OLD:  MyExposome_PAH<or_whatever_TYPE>.Rmd             The R Markdown text to produce report
 #        MyExposome_1527_v6.RMD is now used for EVERY tet and that is kinda wrong cause it SAYS 1527 but it really is GENERIC for all QUANTitative tests
 #         NOTE:  THere are LOTS of different nested RMD files now... that go off that main file... one set for GROUP vs INDIVIDUAL reports, one for CLASSIFICATION of chemicals (or NOT) etc...
 #           HERE are SOME of the example RMDs that we're using to load alternate text
@@ -65,89 +64,8 @@
 # NOTE THINGS TO WORK ON:
 #
 # CRITICAL PROBLEMS:
-#     NONE at this time
-
-#     WORD and PDF printing dont' work correctly due probably to not-wrapping-tables
-#
-#     MAYBE NEVER:  Can use YAML parameters to change how things are passed to versions (in other words, instead of "set_key_variables" could configure ALL this w/ YAML)
-#             http://rmarkdown.rstudio.com/developer_parameterized_reports.html
-#
-#
-#     CONSIDER updating PANDER version.  I'm at version 0.6.0 and apparently version 0.7.0 is avail
-#         maybe this will stop me needing to convert to dataframe before using pander on DPLYR output
-#       https://github.com/Rapporter/pander/blob/master/R/pandoc.R#L780 that this is what's happening inside the code.
-#           devtools::install_github('Rapporter/pander')
-#
-#   consider CONDITIONALLY using what the OUTPUT FORMAT (html/docx/pdf) is
-#         to format output of tables DIFFERENTLY or other things like that
-#         SEE:  MyExposome_PAH_v2.Rmd for a sample that knows how to TEST this
-#
-#     consider using:   df_print: paged to print tables... BUT this is HTML only and weird.  Prob bad idea
-##
 #   LATER need to address the "J" flag differently and call it out more explicitly
 #   ALSO:  Should set error trap for FLAG not = U or J or BLANK cause that is only valid #'s
-#
-#   consider using this    suppressWarnings(suppressPackageStartupMessages(()) around  all LIBRARY callsin the RMARKDOWN script and any scripts IT loads
-#         http://www.reed.edu/data-at-reed/software/R/markdown_multiple_reports.html
-#         http://nagraj.net/notes/multiple-rmarkdown-reports/         ### GREAT example of how to LOOP and call render/rmarkdown
-#         http://nagraj.net/notes/multiple-rmarkdown-reports/         ### GREAT example of how to LOOP and call render/rmarkdown
-#         http://nagraj.net/notes/multiple-rmarkdown-reports/         ### GREAT example of how to LOOP and call render/rmarkdown
-#
-# WATCH THIS: https://vimeo.com/110804387   for WORD DOCUMENT template info
-#
-# COULD change way TABLE's printed in HTML from using PANDOC.TABLE to
-#   using what is described here in nice-paged-html-output-section: http://rmarkdown.rstudio.com/html_document_format.html
-
-#   Add FUNCTIONS to better structure the code
-#   Add "stop()" or better "stopifnot()" to test various cases of bad-data
-#     SOMETIMES variants have ROW NAMES set as #'s or as NAMES.  and ColNames set differently
-
-#   AutoPrinting of multiple WORD documents uses wrong fonts or something.  Looks different than stand-alone run
-#       I THINK this is "fixed" by moving to YAML headings which standardize things. tested for HTML not WORD
-
-#
-# COMMENT OUT the "rm" below since this is called from elsewhere for loop
-# rm(list=ls()); #rm(list=c("mie3")) ; rm(mie3);
-#  also CONTROL-L will clear the console
-#
-# Cheat Sheet, # ?rm, # help.search("rm"), # args("rm"), #summary(classification), #str(classification), #sapply(classification, class)
-# class(A)          # "data.frame"
-# sapply(A, class)  # show classes of all columns
-# typeof(A)         # "list"
-# names(A)          # show list components
-# dim(A)            # dimensions of object, if any
-# head(A)           # extract first few (default 6) parts
-# tail(A, 1)        # extract last row
-# head(1:10, -1)    # extract everything except the last element
-# sessionInfo()
-# glimpse()         # gives good summary of a data object
-
-## MORE  WEB SITE LINKS
-
-# ### TOP 2 are best
-# https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
-# https://rpubs.com/bradleyboehmke/data_wrangling
-# https://barryrowlingson.github.io/hadleyverse/#12
-#
-# also:  %>%   http://r4ds.had.co.nz/pipes.html
-#
-# https://www.r-bloggers.com/dplyr-example-1/
-#   https://blog.exploratory.io/selecting-columns-809bdd1ef615
-# https://stackoverflow.com/questions/21502465/replacement-for-rename-in-dplyr
-#
-# BEST PRACTICES!!!!!!
-# https://thinklab.com/discussion/r-best-practices/83
-#
-
-
-# HOW TO PUT IN A HOT LINK:
-#   To see an explanation of **Classifications** :  [Click Here](#class_link_id)
-#     ## Compound Classification {#class_link_id}
-#
-#     HOW TO PUT IN A TOOL TIP
-#     [standard deviation](## "Standard deviation is blah blah.")
-
-
 
 ##################
 
@@ -179,6 +97,9 @@ other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless nee
 
 # Load all required packages
 load_package(required_packages)
+
+
+rm(load_package,other_packages,required_packages)
 
 # Additional setup
 options(warn = -1) # Turn off all warning messages
@@ -215,20 +136,17 @@ options(warn = 0) # Turn warning messages back on
 # Read in data files
 masterParam <-
   load.masterParam(masterParamTableName)
-# rm(load.masterParam)
+#rm(load.masterParam,masterParamTableName)  # CAN NOT RM this here... cause use it again loading other param tables
 
 
-###################  READ IN CLASSIFICATION
+###################  READ IN CLASSIFICATION and convert from wide to LONG
 
 classification <-
   load.classification(classificationTableName)
-# rm(load.classification)
-# rm(classificationTableName)
-
+rm(load.classification,classificationTableName)
 
 # Create the LONG version of "classification" (which is WIDE)
 class_L <- classification %>%
-  # gather(classification,
   tidyr::gather(classification,
     value,
     colnames(classification[2:ncol(classification)]),
@@ -239,63 +157,24 @@ class_L <- classification %>%
   mutate(ParameterID = as.character(ParameterID)) %>% # Make the ParameterID column character instead of num
   semi_join(masterParam, by = "ParameterID") # ONLY select the rows from classification that are in masterParam
 
-rm(load.classification)
-rm(classificationTableName)
 rm(classification)
-
-
-
-# Fix class_L by adding all VOC data using VOC MasterParameterTable
-#  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
-### FIRST create a FUNCTION which updates the class_L information with new unique rows
-updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L) {
-  classSpecifcMasterParam <-
-    load.masterParam(classSpecificMasterParamTable) # Read in new parameter Table
-  classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
-  class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
-  classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
-  class_L <- union(classSpecifcMasterParam, class_L) # MERGE existing class_L with new masterParam
-  class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
-  class_L
-}
 
 ### NOW call that function to update class_L with all the values from the other tests
 
 class_L <- updateWithClassSpecificMasterParam(PAH_text_string, pahMasterParameterTable, class_L)
-
-## P:D class_L <- updateWithClassSpecificMasterParam(VOC_text_string, vocMasterParamTableName, class_L)
-## OLD class_L <- updateWithClassSpecificMasterParam(VOPAH_text_string, vopahMasterParamTableName, class_L) # NOTE THAT CALLING THIS IS CONSISTENT W OTHER IDEAS BUT BUT BUT used to (before VOPAH because just VOC) adds a whole new "cassification" which is WRONG
 class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, VOC_2024_MasterParamTableName, class_L)  # Revise VOC list for 3rd time... get rid of VOPAH
-
 class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParameterTable, class_L)
 class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L)
-
 class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L)   #  Add the Phthalate list to the table... this is new test from 2024
 
-### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
+### HERE:  REMOVE ALL REMAINING MASTERPARAMETER TABLESS
 
+
+### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
 
 rm(load.masterParam) # NOTE This is weirdly USED INSIDE FUNCTION ABOVE so ...
 rm(updateWithClassSpecificMasterParam)
 
-#### THIS IS WHERE I SHOULD CHECK TO SEES IF THINGS STILL MARKED WRONG AND ADDDD the things I might have manually changed
-# STUFF immediately below is for TESTING and should be commented out.
-# class_L %>%
-#   filter((ParameterID==301449 & classification==PAH_text_string)) #Cashmeran
-# class_L %>%
-#   filter((ParameterID==301478 & classification==PAH_text_string))
-# class_L %>%
-#   filter((ParameterID==301449 )) #Cashmeran
-# class_L %>%
-#   filter((ParameterID==301478 ))
-# class_L %>%
-#     filter((ParameterID==301478 & classification==PAH_text_string))
-# class_L %>%
-#   filter((ParameterID==481 & classification==pharmacological__text_string))
-# class_L %>%
-#   filter((ParameterID==957 ))
-# class_L %>%
-#   filter((ParameterID==301467 ))
 
 ### FIX UP to add back Celestolide as Personal Care and Consumer Product
 ### ALSO ADD 301765 1,3-dimethylnaphthalene AS A PAH  (it is in the VOC screen)
@@ -334,80 +213,16 @@ class_L <- class_L %>%
 
 
 
-
-convert_to_new_reduced_classifications <- function(class_L) {
-
-  # Read in the new classification mapping file to adjust the classifications down
-  class_conversion_table <- read.csv(class_conversion_table_name) %>%
-    select(Classification,CurrentClassifications)
-
-  # Create a long format of the class_conversion_table
-  class_conversion_long <- class_conversion_table %>%
-    mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
-    unnest(CurrentClassifications) %>%
-    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', '')))
-
-  # Function to find the appropriate classification
-  find_classification <- function(class_OLD) {
-    match <- class_conversion_long %>%
-      filter(CurrentClassifications == class_OLD) %>%
-      pull(Classification)
-
-    if (length(match) > 0) {
-      return(match[1])
-    } else {
-      print(paste("No match for:", class_OLD))
-      return(NA)
-    }
-  }
-
-  # Update class_L
-  class_L_new <- class_L %>%
-    rename(classification_OLD = classification) %>%
-    rowwise() %>%
-    mutate(classification = find_classification(str_trim(classification_OLD))) %>%
-    ungroup()
-
-  # Select the desired columns
-  class_L_new <- class_L_new %>%
-    #select(ParameterID, classification_OLD, classification)
-    select(ParameterID,  classification)
-
-
-  # test_class_L_new <- class_L_new %>%
-  #   select(classification_OLD,classification)
-  #
-  # test_class_L_new2 <- class_L_new %>%
-  #   select(classification_OLD,classification) %>%
-  #   unique()
-
-
-  # for each classification that exists in class_L replace it with one of the new classifications
-
-  # If that creates identical rows, ddrop the identical rows
-
-  # Return the new class_L
-
-  # test_class_L_new3 <- class_L_new %>%
-  #   select(ParameterID,classification_OLD,classification) %>%
-  #   unique()
-  # test_class_L_new4 <- class_L_new %>%
-  #   select(ParameterID,classification_OLD,classification) %>%
-  #   unique()
-
-
-  class_L_new
-  }
-
 #  I reduced from many do 11 or 12 classifications to 6 so I need to just change class_L to be those new classifications
 class_L <- unique(convert_to_new_reduced_classifications(class_L))
-
+rm(convert_to_new_reduced_classifications)
 
 ##### TESTING having a source and mitigation strategy table to read in
 #chemSourceMitigationOLD <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
 #chemSourceMitigationNEW <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information
 ### GO TO Google doc and find tab and download the whole thing make sure right SHEET NAME
 chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2,chemSourceSheetName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
+rm(load.chemSourceMitigation2,chemSourceSheetName2)
 
 
 
@@ -418,7 +233,7 @@ chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTable
 # Originally I just read in and processed the testResults table at one time.  To experiment with double checking count between masterParameterTable and testResults table I split reading table into two parts
 #     SO now I just read in RAW table here... and then in a few lines pass in that exact raw table and process it
 testResultsRawTable <- load.testResults_justReadTable(resultsTableName)
-
+rm(load.testResults_justReadTable)
 
 # IN THEORY the number of compounds in the PaRAMETER FILE (what we are testing FOR) should equal the # of compounds we got resuls for
 #     BECAUSE OSU LAB always includes all results, even zeros, for every compound
@@ -500,18 +315,9 @@ if (!(WisconsinFixup == TRUE && RMD_type == "PAH") && !(WisconsinFixup == TRUE &
 
 testResults <- load.testResults(testResultsRawTable, masterParam)
 
+rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults)
+
 ### AT THIS POINT, testResults for DRS might have some ZERO values but always numeric results... the ZEROs are cause DRS has some weird values in it that get converted
-
-
-# rm(testResultsRawTable)
-
-
-
-#
-# rm(load.testResults)
-
-
-
 
 # IF we're doing any FIXUP (time / weight normalization of wristband results, call FIXUP routine)
 # NOTE that this fixup also ENHANCES the testResult dataframe with time_worn and weight and ResultOriginal which are NEEDED to do calculation
@@ -522,10 +328,24 @@ if (FixupForAnyone) {
 }
 
 
+# now that I've done FIXUP I want to delete all the fixup global variables just to  make things cleaner
+#all_objects <- ls()
+#fixup_objects <- grep("Fixup", all_objects, value = TRUE,ignore.case=TRUE)
+#dput(fixup_objects)
+rm(list=c("Big_Mas15_List_Fixup", "BostonFixup", "BuffaloFixup", "CHICAGOFixUp",
+          "COLORADOFixUp", "FixupFile",                            #  "DartmouthFixup",   I DELETED DARMOUTH FIXUP cause that has special handling rules so keep it around
+          "FixupForAnyone", "fixUpTestResults", "GEORGETOWNFixUp", "LorealFixup",
+          "LouisvilleFixup", "SBIR_P1_May2022Fixup", "SBIR_P2_Part1_71_FixUp",
+          "UC_DAVISFixup", "UCONNFixUp", "UCSF2020Fixup", "UCSFplusRandom10Fixup",
+          "UFL_FloridaFixup", "ULILLEFRANCEFixup", "UMTFixup", "UniVisionFixup",
+          "UNMFixup", "WisconsinFixup"))
+
+
 
 # Here we're converting some REAL customer data into a DEMO dataset picking only a certain # of WBs
 if (makeIntoDemoData) {
   testResults <- makeIntoDemoDataResults(testResults, howManyDemoResults) # Select only howManyDemoResults of unique SampleNumbers
+  rm(howManyDemoResults,pickSubsetOfResults)
 
   # Now change SampleNumbers to other Strings
   testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
@@ -535,7 +355,6 @@ if (makeIntoDemoData) {
   # KEY POINT is that when making it into demo data there might be some compounds which WERE found in the bigger set, NOT found in the demo set,
   #     but MIGHT have zero values listed for them??? is that true?
 }
-
 
 #### NOW we have testResults which, for every test EXCEPT DRS it has the # of rows = to # of ParameterIDs in masterParameter times # of Wristbands (SampleNumber)
 ### but for DRS only it has # of combinations of ParameterID and SampleNumber that were positive  NOPE.. i see some zeros... let's stry again
@@ -547,9 +366,6 @@ if (makeIntoDemoData) {
 ### THIS just eliminates all ZERO result ROWS for now.... LaTER we will add them back
 testResults <- testResults %>%
   filter(Result > 0)
-
-
-
 
 
 if (testing_PRE_POST) { # THIS IS MARC JUST PLaYING AROUND with PREPOST data to see how we might chart it
@@ -584,7 +400,7 @@ if (testing_PRE_POST) { # THIS IS MARC JUST PLaYING AROUND with PREPOST data to 
 ### NOW I should enhance the testResult data with the AIR CALCULATION date when/if we have it.
 # CAUTION I'm allowing NAs to be introduced by COERCION in this code and... that is OK but... is a question if I want to handle differently
 if (doAIRplusNioshOSHAreporting) {
-  testResults <- addAirCalculationInformation(testResults) # This should read-in another lookup table, enhance testResults with new columns
+  testResults <- addAirCalculationInformation(testResults,airConcentrationTable) # This should read-in another lookup table, enhance testResults with new columns
   ### NOW i'm going to add info on NIOSH and OSHA limits to testResults
   if (FALSE) { # THIS BELOW is manual code executed by hand to write out the air concentration values
     testR_to_print <- testResults %>%
@@ -592,17 +408,16 @@ if (doAIRplusNioshOSHAreporting) {
     write.csv(testR_to_print, file = "testReslts_AirConcen_Info3.csv", row.names = FALSE)
     rm(testR_to_print)
   }
-  testResults <- addAirNioshOsha(testResults) # This should read-in another lookup table, enhance testResults with new columns
+  testResults <- addAirNioshOsha(testResults,airNioshOshaTable) # This should read-in another lookup table, enhance testResults with new columns
   testResults$MaxNioshOsha <- pmax(testResults$NIOSH, testResults$OSHA, na.rm = TRUE)
 }
-
-
+rm(addAirCalculationInformation,airConcentrationTable,airNioshOshaTable,addAirNioshOsha)
 
 # IF we only want to take a SUBSET of the testResults we can do that here by picking only one specific batch number
 if (subsetBasedOnBatchNumber) {
   testResults <- onlyPickSomeBatchesFromBiggerData(testResults, batchNumbers)
 }
-
+rm(subsetBasedOnBatchNumber,onlyPickSomeBatchesFromBiggerData)
 
 # Save test results with Y Flag set in a separate place... test if Flag CONTAINS a Y
 # FIrst try to was to see if EXACTLY was Y which is same-same but still not tech correct
@@ -619,22 +434,20 @@ if (subsetBasedOnBatchNumber) {
 
 riskCalifProp65 <-
   load.riskCalifProp65(riskCalifProp65TableName, masterParam)
-rm(load.riskCalifProp65)
+rm(load.riskCalifProp65,riskCalifProp65TableName)
+
 epaIris <- load.epaIris(epaIrisTableName)
-rm(load.epaIris)
+rm(load.epaIris,epaIrisTableName)
+
 IARCRisk <- load.IARCRisk(IARCRiskTableName)
-rm(load.IARCRisk)
+rm(load.IARCRisk,IARCRiskTableName)
+
 # Delete the things I'm sure I won't need
 rm(
   list = c(
     "masterParamTableName",
-    "riskCalifProp65TableName",
-    "epaIrisTableName",
-    "IARCRiskTableName",
     "data.load.R.filename",
     "r_code"
-    # ,
-    # "resultsTableName"
   )
 )
 
@@ -665,57 +478,17 @@ rm(
 ## To WRITE OUT masterParam file as a CSV which I needed once:
 # write.csv2(masterParam[,2:3], file = "results_output\\masterParam1528.csv", row.names=FALSE)
 
-####
-# Classify chemicals to reduce 1299 or 1418 or 1529 or 62 different chemicals to 16 (or ???) classifications
-#
-################################################################### NEW WORK 7/2015
-# IF i want to know how many chemicals have at LEAST ONE classification (should be all of them)
-# nrow(classification[(rowSums((classification[,-1]))>=1),])
-# IF i want to know how many chemicals have MORE THAN ONE classification
-# nrow(classification[(rowSums((classification[,-1]))>1),]) #=114
-# IF i want to know how many chemicals have TWO classifications
-# nrow(classification[(rowSums((classification[,-1]))==2),]) #=102
-# IF i want to know how many chemicals have THREE classifications
-# nrow(classification[(rowSums((classification[,-1]))==3),]) #=11
-# IF i want to know how many chemicals have FOUR classifications
-# nrow(classification[(rowSums((classification[,-1]))==4),]) #=0
-# IF i want to know how many chemicals have FOUR classifications
-# nrow(classification[(rowSums((classification[,-1]))==5),]) #=1
-# set Class to be the rows with more than one classification
-### DID THIS EXERCISE to write out all the chems with duplicate classifications
-# class<-classification[(rowSums((classification[,-1]))>1),]
-##### set masterclass to be the rows THIS IS NOT NEEDD
-##### masterParam[masterParam$ParameterID %in% class$ParameterID,]
-#
-# class<-merge(x = class, y = masterParam, by = "ParameterID", all.x = TRUE)
-# write.csv(class, file = "classify_more_than_one.csv", row.names=FALSE)
-
-# Find the total number of possible chemicals feeding into each classification
-
-# class_L_maxC <- class_L %>%
-# group_by(classification) %>%
-# summarise(maxCount = dplyr::n() )
-
-# search()
 
 # Get Scores for each subject (without using sqldf)
 # contains how may of each classification each subject got
 SubClassScores <- testResults %>%
   filter(Result > 0) %>% # choose only hits
   left_join(class_L, by = "ParameterID", relationship = "many-to-many") %>% # add "classification" value
-  ### DURING ETSTING i changed from INNER  JOIN to LEFT JOIN
-  # inner_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% # add "classification" value
   select(classification, SampleNumber) %>% # pick columns needed
   count(classification, SampleNumber) %>% # how many of each classification for each wristband
   arrange(SampleNumber) %>%
   dplyr::rename(aggScore = n)
 
-# testResults <- testResults.big
-# results_W is needed columns from testResult turned into a WIDE version
-
-# Error in `spread()`:
-#  ! Each row of output must be identified by a unique combination of keys.
-#  ℹ Keys are shared for 471 rows
 
 results_W <- testResults %>%
   select(SampleNumber, ParameterName, Result) %>%
@@ -741,6 +514,7 @@ if (!exists("result_file_output_done")) {
 if (!result_file_output_done) {
   result_file_output_done <- TRUE
   customer_Output(testResults, class_L, masterParam, DataFile_and_OutputFile_Prepend, DartmouthFixup)
+  rm(customer_Output)
 } # end Customer printing section
 
 
@@ -767,25 +541,8 @@ if (!result_file_output_done) {
 ## NOW i notice that testResults has columns that duplicate-data in the sense that they always are the same with respect to each other
 ##      so they should be lookup tables  NOT duplicated in testResults.  I should look them up!
 #
-# SO i'll create lookup tables
-# NOT CLEAR I ever USE these tables
-# testResultsParamLookup <- testResults %>% select(ParameterID,ParameterName,CASNumber) %>% unique()
-# testResultsNameLookup <- testResults %>% select(PureSampleName,SampleNumber) %>% unique()
-
-## Now (later than above) I think maybe creating lookup tables for testResults is STUPID
-#   I should just leave those extra columns around and use them as I need them and SELECT() them away when I don't
-#   SO probably I should be using testResults.hold which I later renamed to testResults.big
-
-
 
 #### NOTE that maybe I'll need to later delete the zero-result-values from testResult ???
-
-
-# NEXT let's delete those duplicated column relationships AND add back any ZERO values for results that should be here
-# testResults <-testResults %>%
-#  select(ParameterID,SampleNumber,Result) %>%
-#  complete(ParameterID,SampleNumber,fill=list(Result=0))
-
 
 
 ### Lets get a small lookkup table to convert SampleNumber to PureSampleName
@@ -812,29 +569,6 @@ testResults <- testResults %>% left_join(masterParam, by = "ParameterID")
 ###  I will fix that now just by setting them using sampleLookup
 testResults$PureSampleName <- NULL
 testResults <- testResults %>% left_join(sampleLookup, by = "SampleNumber")
-
-
-
-#### TESTING TESTING
-#### TESTING TESTING
-#### TESTING TESTING
-#### TESTING TESTING BELOW
-
-### THIS SHOWS ME that some ParameterIDs have crept in that never were found... HOW?  I don't know.
-# twoRol<-testResults %>%
-#   select(ParameterID,SampleNumber,Result) %>%
-#   #unique() %>%
-#   group_by(ParameterID) %>%
-#   summarize(rTotal=sum(Result))
-#
-# testResults.bigX <- testResults %>%
-#   group_by(ParameterID) %>%
-#   mutate(norm_Result = Result / max(Result)) %>%
-#   filter(sum(Result) == 0)
-
-#### TESTING TESTING  ABOVE
-#### TESTING TESTING
-#### TESTING TESTING
 
 
 # NEXT we add new columnst to testResults for later use
@@ -884,8 +618,6 @@ testResults.big <- testResults.big %>%
 #   left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
 #   select(ParameterID,SampleNumber,Result, classification)
 
-
-
 # TRYING BELOW TO JUST ELIMINATE TESTRESULTS variable completely... will it work?
 rm(testResults)
 
@@ -894,12 +626,6 @@ rm(testResults)
 # How many wristbands were tested is the number of unique SampleNumbers in testResults
 howManyWristbandsTested <- length(unique(testResults.big$SampleNumber))
 # howManyWristbandsTested <- length(unique(testResults$SampleNumber))
-
-### PLAY AREA
-
-### END PLAY AREA
-
-
 
 # How man WB had at-least-one of the classifications?
 SubClassAtleastOne <- testResults.big %>%
@@ -927,37 +653,6 @@ SubClassAtleastOne <- testResults.big %>%
 # ??See total # of reported chemicals found on ANY wristband in this set
 howManyUniqueChemFoundAcrossAllWristbands <- length(unique(testResults.big$ParameterID))
 
-# What is Maxiumum chemicals found on ANY wristband in this set
-# length(unique(testResults$ParameterID))
-# count(testResults,c("SampleNumber","ParamaterID"))
-
-# testResults.big2 <- testResults.big[testResults.big$Result>0,]
-
-# minMaxTR2<- testResults.big2[testResults.big$Result>0,] %>%
-#  select(SampleNumber, ParameterID) %>%
-#  group_by(SampleNumber) %>%
-#  summarise(Count =dplyr::n() ) %>%
-#  arrange(desc(Count))
-
-
-### THE PROBLEM is that minMaxTR doesn't account for all-zero-results at ALL and doesn't bring "RESULT"
-#     along with it so there is no way to use this formulation to get MIN
-#   Fixed maybe 2/21/2019
-
-# OLD VERSION COMMENTED OUT 2/21/2019
-# minMaxTR<- testResults.big[testResults.big$Result>0,] %>%
-#   select(SampleNumber, ParameterID) %>%
-#   group_by(SampleNumber) %>%
-#   summarise(Count = dplyr::n() ) %>%
-#   arrange(desc(Count))
-
-## old version (3/6/2019) didn't account for FLAG=Y
-# minMaxTR<- testResults.big  %>%
-#   select(SampleNumber, ParameterID,Result) %>%
-#   group_by(SampleNumber) %>%
-#   summarise(Count=sum(Result > 0)) %>%
-#   arrange(desc(Count))
-
 # New version 3/7/2019
 minMaxTR <- testResults.big %>%
   mutate(Result = case_when(
@@ -971,12 +666,12 @@ minMaxTR <- testResults.big %>%
 
 if (makeIntoDemoData) { #   Use this to set SUBJECT to min max middle as way of testing the various messages... if i want...
   #subject <- minMaxTR$SampleNumber[2] ## HaRD CODE TO one less than MAX SUBJECT for DEMO DATA
-  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
   # subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
   # subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
   #subject <- "AA90GCC"  ### Hardcoded to make into the one person with highest of a compound in agricultural and pharm products...Bis(2-ethylhexyl)phthalate   AA90GCC   856000   Agricultural & Pharmaceutical Chemicals
+  subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)*.2,0)]   ## Hard code to 80% of # of compounds
 }
-
+rm(makeIntoDemoData)
 
 maxChemFoundOnAnyOneWristband <- max(minMaxTR$Count)
 
@@ -989,11 +684,10 @@ minChemFoundOnAnyOneWristband <- min(minMaxTR$Count)
 #     stop ("MyExp DEBUG:  FOUND NO CHEMICALS on a WRISTBAND... is that right See BASE_CODE for STOP statement???", "Current file name is = ",current_filename())
 # }
 
-
 stdDevChemFoundOnAnyOneWristband <- signif(sd(minMaxTR$Count), 3)
 
 # Remove minMaxTR because it SHOULDN'T be needed any more
-# rm(minMaxTR)
+rm(minMaxTR)
 
 ## Calculate statistics of min/max/etc of occurences of chemicans across wristbands
 #   Use only >0 values
@@ -1049,39 +743,6 @@ if (CombinedTestData) {
 }
 
 
-#
-#
-# # begin test... seeing if values right  THIS TIME ONLY GET PAH's
-# ## Create table summarizing average # of chemicals of each classification found in wristbands
-# csSummary<-as.data.frame(
-#   left_join(testResults.big,class_L,by="ParameterID") %>%
-#     mutate(Result = case_when (Flag=="Y" ~ 100,  # COUNT as having value when Y is FLAG
-#                                TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
-#     select(classification,SampleNumber,Result)  %>%
-#     filter(classification=="Polycyclic Aromatic Hydrocarbons (PAHs)" )   %>%
-#     unique() %>%
-#     group_by(classification,SampleNumber) %>%
-#     summarise(countResult=sum(Result > 0),sumResult=mean(Result))
-#
-#   )
-#
-#
-# %>%
-#     #filter(Result>0) %>%
-#     group_by(classification,SampleNumber)  %>%
-#     summarise(countResult=sum(Result > 0),sumResult=mean(Result)) %>%
-#     group_by(classification) %>%
-#     summarise(countMeanResult=
-#                 signif(mean(countResult),2),
-#               meanSumResult=
-#                 signif(mean(sumResult),2)
-#     )
-# )
-#
-# # END test... seeing if values right
-#
-#
-
 
 ## Create table summarizing average # of chemicals of each classification found in wristbands
 csSummary <- as.data.frame(
@@ -1121,109 +782,6 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
 #   replace(is.na(.), "Undefined")
 #
 
-## TESTING NEW THING BELOW
-## THIS NEW THING ADDS to the statSummary table a column for our selected SUBJECT so if we're doing a selected subject then use THIS version
-## when we print the stats
-###
-### NOTE this is similar or identical the "one result" variable we define in the RMD.  Should really collapse them to same thing
-#####
-##### NOTE i deleted this... put it inline in the RMD file it was sorta already there.
-
-# statSummary2<-testResults.big[testResults.big$Result>0,] %>%
-#   select(ParameterName,ParameterID,Result)%>%
-#   group_by(ParameterName,ParameterID) %>%
-#   summarise(ParameterID=ParameterID,
-#             MinResult=signif(min(Result),3),
-#             MaxResult=signif(max(Result),3),
-#             MeanResult=signif(mean(Result),3),
-#             MedianResult=signif(median(Result,3)),
-#             Count=dplyr::n(),
-#             Standard_Deviation=toString(signif(sd(Result),3))) %>%
-#   replace(is.na(.), "Undefined") %>%
-#   dplyr::rename(Chemical_Name=ParameterName) %>%
-#   unique()
-#
-# SubjectResult<-testResults.big[testResults.big$SampleNumber==subject,] %>%
-#   select(ParameterID,Result) %>%
-#   rename(!!subject:=Result)  %>%
-#   unique()
-#
-# statSummaryWithSubject <- statSummary2 %>% left_join(SubjectResult,by = "ParameterID")
-#
-# rm(statSummary2,SubjectResult)
-
-
-## Testing end  here
-
-
-
-
-
-
-
-
-## TESTING NEW THING BELOW
-## THIS NEW THING ADDS to the statSummary table a column for our selected SUBJECT so if we're doing a selected subject then use THIS version
-## when we print the stats
-###
-### NOTE this is similar or identical the "one result" variable we define in the RMD.  Should really collapse them to same thing
-#####
-##### NOTE i deleted this... put it inline in the RMD file it was sorta already there.
-
-# statSummary2<-testResults.big[testResults.big$Result>0,] %>%
-#   select(ParameterName,ParameterID,Result)%>%
-#   group_by(ParameterName,ParameterID) %>%
-#   summarise(ParameterID=ParameterID,
-#             MinResult=signif(min(Result),3),
-#             MaxResult=signif(max(Result),3),
-#             MeanResult=signif(mean(Result),3),
-#             MedianResult=signif(median(Result,3)),
-#             Count=dplyr::n(),
-#             Standard_Deviation=toString(signif(sd(Result),3))) %>%
-#   replace(is.na(.), "Undefined") %>%
-#   dplyr::rename(Chemical_Name=ParameterName) %>%
-#   unique()
-#
-# SubjectResult<-testResults.big[testResults.big$SampleNumber==subject,] %>%
-#   select(ParameterID,Result) %>%
-#   rename(!!subject:=Result)  %>%
-#   unique()
-#
-# statSummaryWithSubject <- statSummary2 %>% left_join(SubjectResult,by = "ParameterID")
-#
-# rm(statSummary2,SubjectResult)
-
-
-## Testing end  here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# statSummary2<-testResults.big %>%
-#   select(ParameterName,Result)%>%
-#   group_by(ParameterName) %>%
-#   summarise(MinResult=signif(min(Result),3),
-#             MaxResult=signif(max(Result),3),
-#             MeanResult=signif(mean(Result),3),
-#             MedianResult=signif(median(Result,3)),
-#             Count=n(),
-#             Standard_Deviation=signif(sd(Result),3)) %>%
-#   replace(is.na(.), "Undefined") %>%
-#   rename(Chemical_Name=ParameterName)
-#
-
-
 ##############################################
 
 ###
@@ -1237,8 +795,3 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
 # hold <- testResults %>% group_by(CASNumber)  %>% top_n(1,Result) %>%  filter(Result> 0) %>% arrange(CASNumber)
 # hold <- hold %>% select(SampleNumber, ParameterID, CASNumber, Days_worn,Wristband_Size, Result )
 # write.csv(hold, file = "testReslts_maxResult_Dartmouth_all459_v2.csv", row.names=FALSE)
-
-
-#######  NOW I"M GOING TO BUILD a VIOLIN CHART (Eventually move this to its own R code... maybe?)j  OR move into RMD file...
-### PROBABLY make this its own R file and then load it somewhere and then USE it in RMD code????
-

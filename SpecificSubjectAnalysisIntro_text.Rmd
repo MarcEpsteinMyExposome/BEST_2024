@@ -1,10 +1,7 @@
 
+You have taken part in a MyExposome Wristband Study to identify the chemicals detected in your environment.  We tested for **`r howManyChemicalsTested`** compounds.  `r testExplanation` 
 
-You have taken part in a MyExposome demonstration project to identify the chemicals detected in your environment while you wore a Silicone Wristband.  We are reporting about  **`r howManyChemicalsTested`** compounds.  Even though we carefully check each result, it's possible that you were exposed to a chemical we tested for but we don't report it because the amount was too small for us to detect.
-
-**`r testExplanation`** 
-
-You were one of  **`r howManyWristbandsTested`** participants in this demonstration project. Your unique ID is:   **`r pureSubjectName`**.
+You were one of  **`r howManyWristbandsTested`** participants in this phase. To protect privacy we used this:   **`r pureSubjectName`** as your ID.
 
 <!--
 [comment1]: # (The line below, taken out of comment, will identify the MyExposome subject name (not show in output).)

@@ -46,7 +46,7 @@
 #### FOR HTML output if you want to have some things in TABS in the output, set this
 ## THIS is BUGGY and doesn't interact will with TOC so not going to use TABS for now...
 tabsetting <- ""
-# tabsetting <-"{.tabset }"
+#tabsetting <-"{.tabset }"       #  RETESTED THIS on 10/25/2024.  WORKED GREAT but does mess with table of contents.  ONE IDEA is drop table of contents completely?
 
 
 ################ FOR SPECIFIC CUSTOMERS SET FLAGS HERE and include/not-include RMD files
@@ -67,15 +67,8 @@ wristbands_time_adjusted_one_week_not_weight <- FALSE
 wristbands_time_adjusted_not_weight <- FALSE
 
 
-
-
-
-
-
-# CUSTOMER SPECIFIC FIX UP
-#       Note that "DartmouthFixup" could be named "DartmouthCustomWork" or maybe..!!!
-#         or we should have ONE variable called "CustomerCustomization" and it should be Dartmouth OR L'Oreal OR...
-#       BUT FOR NOW we have "FixupForAnyone" to say if there is ANY fixup... and then specifc values set
+# CUSTOMER SPECIFIC FIX UP (really just means for-which-customer-is-this)
+#  NOW we have "FixupForAnyone" to say if there is ANY fixup... and then specifc values set
 FixupForAnyone <- any(
   DartmouthFixup <-    FALSE, # is to to force weird division and fix up
   WisconsinFixup <-    FALSE,
@@ -108,9 +101,6 @@ FixupForAnyone <- any(
 #
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...
 #     NOTE:  Try to set to "nothing" unless sure so you remember to set it!
-#
-#   ONLY ONE OF THE FOLLOWING RMD_type can be selected at one time
-#
 # OLD OLD OLD RMD_type <- 'VOC'  # This WAS original VOC Thermal Desorption Test now discontinued DO NOT MIX UP WITH VOPAH
 # RMD_type <- 'PAH'
 # OLD OLD OLD  RMD_type <- 'VOPAH' ## although called VOPAH it is actually solvent VOC only with SPE clean.  It WAS VOC+PAH for a while but not successfully
@@ -127,7 +117,10 @@ show_loreal_venn_text <- FALSE # Include L'Oreal-specific RMD files and text
 Big_Mas15_List_Fixup <- FALSE # IDea is to do the UCSF individual wristband we will keep a running set of ALL data
 Miami_Firefighters_2017 <- FALSE
 
-#
+#rm(Miami_Firefighters_2017,Big_Mas15_List_Fixup,show_loreal_venn_text)
+
+
+# SET THINGS TO BLANK that are used globally... probably bad idea
 testDoneFor <- ""
 DataFile_and_OutputFile_Prepend <- ""
 
@@ -139,10 +132,10 @@ ExpectedUnits <- "ng/WB" ### PROBABLY do NOT change this value... change it ELSE
 allowDifferentParameterCounts <- FALSE
 
 
-
 ###
 # FLAG to tell us if we should do TEST of PRE-POST comparison (before and after)
-testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set this in WISCONSIN to TRUE
+testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set this in WISCONSIN to TRUE sometimes
+
 if (SBIR_P2_Part1_71_FixUp) {
   FixupFile <- "./data/SBIR_NIH_Part1_71_SampleKey.csv"
   wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
@@ -150,7 +143,8 @@ if (SBIR_P2_Part1_71_FixUp) {
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- FALSE
   wristbands_day_and_weight_adjusted <- TRUE   # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
-  testDoneFor <- "a MyExposome Wristband Study"
+  #testDoneFor <- "a MyExposome Wristband Study"
+  testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
 } else if (UniVisionFixup) {
   FixupFile <- "./data/Sample Key_Univision_lookup_table.csv"
@@ -394,6 +388,8 @@ if (SBIR_P2_Part1_71_FixUp) {
   ExpectedUnits <- "ng/WB"
 }
 
+rm(Miami_Firefighters_2017,Big_Mas15_List_Fixup,show_loreal_venn_text)
+
 
 # IF you are wanting to ALSO output a big stat-summary comparing this data to the 682 unit dataset I created in a separate subdirectory
 # OutputBigComparisonStatTable <-TRUE
@@ -465,10 +461,10 @@ HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the ch
 if (exists("In_Print_All_Subjects")) {
   if (In_Print_All_Subjects == TRUE) {
     HideIndividualization <- FALSE # idea is to hide, on the charts, the things that colorize charts for a specific individual
-    DoSpecificSubjectAnalysis <- TRUE # idea is to do BOTH group analysis and specific-subject-analysis output
+    DoSpecificSubjectAnalysis <- TRUE # idea is to do BOTH group analysis and specific-subject-analysis output << THIS CHANGED, i think print-all-subjects doesn't always do group>>
   }
 }
-DoGroupAnalysisOnly <- !DoSpecificSubjectAnalysis # If NOT doing specific subject analysis then need new INTRO
+#DoGroupAnalysisOnly <- !DoSpecificSubjectAnalysis # If NOT doing specific subject analysis then need new INTRO
 
 
 # FOR many reports we do NOT yet have classification info so for those we should HIDE this for now
@@ -481,7 +477,7 @@ HideClassificationInformation <- TRUE #    Set to TRUE for every report EXCEPT D
 # This flag blocks/adds 3 sections to the GROUP part of report regarding findings in looking up chemicals in databases
 #  EVENTUALLY will set this to TRUE all the time but.... starting as FALSE cause haven't tested it yet.
 #   IT WORKS.... leave as TRUE
-DoGroupDatabaseLookupReporting <- TRUE # NOW setting this to tRue all the time I think
+DoGroupDatabaseLookupReporting <- TRUE # NOW setting this to tRue all the time I think But we sometimes do NOT do group reporting but this is tested only in the GROUP section so is fine
 
 #
 # Flag to determine if we IGNORE any wristband that had NO RESULTS AT ALL (should NORMALLY BE SET TO FALSE)
@@ -494,7 +490,7 @@ DropAllZeroSampleNumbers <- FALSE
 
 #
 # IF IN a specific data set to be read in, there are one or more specific samples to IGNORE COMPLETELY then use this flag to ignore them.
-DropSpecificWristbands <- c("")
+DropSpecificWristbands <- c("")    # THIS REALLY SHOULD BE IN A SPECIFIC SECTION and not a global variable like this probably
 # DropSpecificWristbands <- c("A170241")  #  THIS IS FOR FIREFIGHTER ONLY
 #
 
@@ -557,16 +553,16 @@ VOC_2024_MasterParamTableName <- "./data/MasterParamenter_Using_April2024_VOC_fi
 PHTHmasterParameterTable <- "./data/MasterParameterTable_PHTH_fix_ParamaterID.csv" # New from Michael Barton with better parameter IDs
 
 
+## THIS is to allow us to read in a file that helps collapse all the classifications down further.
+## there are TWO ways classifications are collapse... first is inline code when read in...
+##       SECOND is later we collapse using a file we read-in that tells us how the resulting classifications should collapse.
+##        eventually this should be standardized
 class_conversion_table_name <- "data/ReivsedClassificationMapping2.csv"
 class_explain_table_name <- "data/RevisedClassificationTextDescription2.csv"
-
-
-
 
 if (RMD_type == "SBIR_P1_DRS_plus") { ## IF WE are doing the SBIR data I have updated the VOPAH dataset to include the classification of compounds that are VOC from Steven input
   vopahMasterParamTableName <- vopahMasterParamTableName_SBIR
 }
-
 
 # pahMasterParameterTable <- "./data/MasterParameterTable_PAH_2-15-19.csv" #####  New February 2019 version see email from Michael Barton
 pahMasterParameterTable <- "./data/MasterParameterTable_PAH_April2024.csv" #####  New April 2024 Derived from DATA in Wisconsin resultstable cause all other sources bad
@@ -580,19 +576,15 @@ vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
 ### THIS TABLE is baswed on ALL 270 COMPOUNDS
 #chemSourceMitigationInfoTableName <- "./data/All270_Chems_Marc_Try2.csv"
-
-
 ### tRING DIFFERENT LOOKUP TABLE WITHJUST gemini  on 10/18/2024 USING XLSX intead of cSV with more info some hand-crafted
 #### THIS TABLE IS BASED ON JUST the 88 compounds in the group of 71 WBs
-chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_2024_10_18_v3.xlsx"   # added a V2 to see if that fixes
+#chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_2024_10_18_v3.xlsx"   # added a V2 to see if that fixes
 chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_10-22-2024-v1.xlsx"   # added a WIKI column to the data
 chemSourceSheetName2<-"STEVEN_New71_ChatGPT-Try2"
 
 
 #  SET name of RMD file
-rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of DRS/1528 R Markdown File
-#                                     (maybe someday make RMD unique to each type of test but using this is base generic)
-
+rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of make markdown file for all tests
 
 #### THESE PARAMETERS are UNIQUE to each TEST TYPE and EACH specific RESULT within that test
 #

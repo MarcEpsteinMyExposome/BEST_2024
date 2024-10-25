@@ -1,4 +1,4 @@
-## Chemical Group {#class_link_id}
+## Chemical Group Information {#class_link_id}
 
 We tested for **`r howManyChemicalsTested`** chemicals and grouped them into categories to make the results easier to understand.
 
