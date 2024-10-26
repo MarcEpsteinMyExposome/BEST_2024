@@ -19,19 +19,13 @@ stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "
 ```
 
 
-### Statistics on Chemicals Found
+## Statistics on Chemicals Found
 
 
-One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r stdDevButton`.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r stdDevButton`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.
 
 
-
-The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out.
-
-The information is displayed below.
-
-
-```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=Not_weight_or_time_adjusted}
+```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=!(wristbands_weight_adjusted || wristbands_time_adjusted)}
 cat("The data is the raw nanograms found in each wristband. ", sep = "")
 ```
 
@@ -82,13 +76,6 @@ if (HideIndividualization) {
   )
 } else {
   #
-  # THIS stuff below had conflict in GIT so i left it IN but then commented out the conflicted stuff
-  #<<<<<<< HEAD
-  #  #
-  #
-  #
-  ### IF I WANTED TO DO statSummaryand include e ONE user's chemical results in a list showing all chemicals found
-  # Then:  make the oneResultStatSummary and other pandoc table below...
   oneResultStatSummary <- oneResult %>%
     select(ParameterName, Result) %>%
     rename("Chemical Name" = ParameterName) %>%
@@ -105,6 +92,10 @@ if (HideIndividualization) {
     emphasis.rownames = TRUE,
     split.table = Inf
   )
+  
+  
+  
+  
 }
 
 

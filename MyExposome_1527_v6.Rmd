@@ -48,13 +48,11 @@ output:
 
 -->
 
-
 <style>
   #content {
     max-width: 1400px;
   }
 </style>
-
 
 
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
@@ -82,9 +80,10 @@ if (!exists("buildMesgV")) {
 
 ## THE weird "r include problem Where if I optionally include a RMD file the EVAL value must be an actual value and not a compound value with lots of parts?
 ##  requires me to calculate this here to use in this RMD instead of using the compound expression
-Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
-NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
-is_RMD_type_equal_DRS <- RMD_type == "DRS"
+##   THIS GOT FIXED SOMEWHERE so ... i 'm commenting all these out for now!
+#Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
+#NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
+#is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
 ```
 
@@ -488,7 +487,7 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
 
-```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = NotHideClassificationInformation}
+```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = !HideClassificationInformation}
 
 ```
 

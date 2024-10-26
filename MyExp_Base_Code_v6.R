@@ -90,7 +90,9 @@ required_packages <- c(
   "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid",
   "styler",   # Added styler to allow manual styling of code using the "addins" menu item
   "readxl",
-  "bsplus"    # Added BSPLUS to allow popup bottons
+  "bsplus",    # Added BSPLUS to allow popup bottons
+  "patchwork"  # added to do side-by-side graphi layout
+  #"reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )
 
 other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless needed,  move then to required packages
@@ -145,6 +147,8 @@ classification <-
   load.classification(classificationTableName)
 rm(load.classification,classificationTableName)
 
+class_TEMP_hold<-classification   ## DELETE AFTER TESTING
+
 # Create the LONG version of "classification" (which is WIDE)
 class_L <- classification %>%
   tidyr::gather(classification,
@@ -167,12 +171,15 @@ class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParame
 class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L)
 class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L)   #  Add the Phthalate list to the table... this is new test from 2024
 
-### HERE:  REMOVE ALL REMAINING MASTERPARAMETER TABLESS
-
 
 ### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
 
 rm(load.masterParam) # NOTE This is weirdly USED INSIDE FUNCTION ABOVE so ...
+### HERE:  REMOVE ALL REMAINING MASTERPARAMETER TABLESS
+rm(pahMasterParameterTable,VOC_2024_MasterParamTableName,pestMasterParameterTable,
+   flameMasterParamTableName,PHTHmasterParameterTable,SBIR_p1_MasterParamTableName,
+   vocMasterParamTableName,vopahMasterParamTableName,drsMasterParamTableName) # rem() all masterParammeter Tables other than MAIN version
+
 rm(updateWithClassSpecificMasterParam)
 
 
@@ -214,8 +221,17 @@ class_L <- class_L %>%
 
 
 #  I reduced from many do 11 or 12 classifications to 6 so I need to just change class_L to be those new classifications
-class_L <- unique(convert_to_new_reduced_classifications(class_L))
+class_L <- unique(convert_to_new_reduced_classifications(class_L,class_conversion_table_name))
 rm(convert_to_new_reduced_classifications)
+
+### NOW i am NOT USING any of the "PAH_text_string" , Flame_Text_string, etc etc cause we've changed classifications and that is what these were so let's delete ALL OF THEM
+## WHOOOPS... this was needed by GROUP PROCESSING for some reason
+# rm(list = c("consumerProduct_text_string", "dioxinsAndFurans_text_string",
+#             "flameRetardant_text_string", "industrial_text_string", "PAH_text_string",
+#             "PCB_text_string", "personalCare_text_string", "pest_text_string",
+#             "pharmacological__text_string", "PHTH_text_string", "VOC_2024_text_string",
+#             "VOC_text_string", "VOPAH_text_string"))
+
 
 ##### TESTING having a source and mitigation strategy table to read in
 #chemSourceMitigationOLD <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
@@ -309,6 +325,7 @@ if (!(WisconsinFixup == TRUE && RMD_type == "PAH") && !(WisconsinFixup == TRUE &
     }
   }
 }
+rm(mismatchPrompt)
 # rm(chemicalsTestedFromMasterParam,uniqueChemicalsInTestResults)
 # setdiff(testResultsRawTable$ParameterID, masterParam$ParameterID)
 # setdiff(masterParam$ParameterID,testResultsRawTable$ParameterID )
@@ -345,9 +362,9 @@ rm(list=c("Big_Mas15_List_Fixup", "BostonFixup", "BuffaloFixup", "CHICAGOFixUp",
 # Here we're converting some REAL customer data into a DEMO dataset picking only a certain # of WBs
 if (makeIntoDemoData) {
   testResults <- makeIntoDemoDataResults(testResults, howManyDemoResults) # Select only howManyDemoResults of unique SampleNumbers
-  rm(howManyDemoResults,pickSubsetOfResults)
+  rm(howManyDemoResults)
 
-  # Now change SampleNumbers to other Strings
+    # Now change SampleNumbers to other Strings
   testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
   subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
   #
@@ -355,6 +372,7 @@ if (makeIntoDemoData) {
   # KEY POINT is that when making it into demo data there might be some compounds which WERE found in the bigger set, NOT found in the demo set,
   #     but MIGHT have zero values listed for them??? is that true?
 }
+rm(makeIntoDemoDataResults)
 
 #### NOW we have testResults which, for every test EXCEPT DRS it has the # of rows = to # of ParameterIDs in masterParameter times # of Wristbands (SampleNumber)
 ### but for DRS only it has # of combinations of ParameterID and SampleNumber that were positive  NOPE.. i see some zeros... let's stry again
@@ -366,7 +384,6 @@ if (makeIntoDemoData) {
 ### THIS just eliminates all ZERO result ROWS for now.... LaTER we will add them back
 testResults <- testResults %>%
   filter(Result > 0)
-
 
 if (testing_PRE_POST) { # THIS IS MARC JUST PLaYING AROUND with PREPOST data to see how we might chart it
   # Create a subset that is only the rows that have BOTH either pre or POST and FORCE DATA manually to have both pre and post examples

@@ -388,7 +388,7 @@ if (SBIR_P2_Part1_71_FixUp) {
   ExpectedUnits <- "ng/WB"
 }
 
-rm(Miami_Firefighters_2017,Big_Mas15_List_Fixup,show_loreal_venn_text)
+rm(Miami_Firefighters_2017,show_loreal_venn_text)
 
 
 # IF you are wanting to ALSO output a big stat-summary comparing this data to the 682 unit dataset I created in a separate subdirectory
@@ -894,6 +894,8 @@ classificationTableName_SBIR <- "./data/masv_classifications_3-7-19_MOD_FOR_SBIR
 if (RMD_type == "SBIR_P1_DRS_plus") {
   classificationTableName <- classificationTableName_SBIR
 }
+rm(classificationTableName_SBIR)
+
 
 # riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk.csv"   # I edited to change NAMING
 #riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk_Marc_Tweak.csv"

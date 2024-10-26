@@ -1,11 +1,7 @@
 
-### Chemical Groups showing Chemicals
+## Chemical Groups showing Chemicals
 
 While the table above shows chemicals with their groups, it may be easier to understand when the data is shown in groups instead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the groups and chemicals found on your wristband.
-
-<!-- 
-[standard deviation](## "Standard deviation is blah blah.") 
--->
 
 
 ```{r  ListClassFound, results='asis', echo=FALSE, message=FALSE}
@@ -26,50 +22,83 @@ names(oneResultInvertClassified)<-c("Chemical Group", "Chemical Name(s)" )
 classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
 
 ### NOTE INFO:---  Making this tooltip was TRICKY... if we want to change it just get rid of it... not worth the time
-### NOTE INFO:---  Making this tooltip was TRICKY... if we want to change it just get rid of it... not worth the time
+### NOTE INFO:---  Making this tooltip was TRICKY.but now the INDENT is right but still tooltip is long
 
-
-# Create tooltips for each word
-create_tooltip <- function(classIf) {
-  class_row <- classExplainTable %>% filter(Classification == classIf)
-  if (nrow(class_row) == 0) {
-    return(classIf)
-  }
-
-  description <- tags$span(title = class_row$Description, "---->Description")
-  sources <- tags$span(title = class_row$Sources, "---->Sources")
-  examples <- tags$span(title = class_row$Examples, "---->Examples")
-  strategies <- tags$span(title = class_row$Strategies, "---->Strategies")
-
-  return(paste0(classIf, '<br>', description, '<br>', sources, '<br>', examples, '<br>', strategies))
-}
-
-
-create_Modal_tooltip <- function(classIf) {
-  class_row <- classExplainTable %>% filter(Classification == classIf)
-  if (nrow(class_row) == 0) {
-    return(classIf)
-  }
-
-  #bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
-  #stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")
-
-  bs_modal(id = "descriptionButtonID", title = paste("Description of",classif, "chemicals"), body = class_row$Description)
-  descriptionButton<-bs_button("Description", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "descriptionButtonID")
-
-  #description <- tags$span(title = class_row$Description, "---->Description")
-  sources <- tags$span(title = class_row$Sources, "---->Sources")
-  examples <- tags$span(title = class_row$Examples, "---->Examples")
-  strategies <- tags$span(title = class_row$Strategies, "---->Strategies")
-
-  return(paste0(classIf, '<br>', descriptionButton, '<br>', sources, '<br>', examples, '<br>', strategies))
-}
+# Create tooltips for each word with improved formatting and indentation
+# create_tooltipNew <- function(classIf) {
+#   # Filter for the classification row
+#   class_row <- classExplainTable %>% filter(Classification == classIf)
+#   
+#   # If no match, return the classification name as-is
+#   if (nrow(class_row) == 0) {
+#     return(classIf)
+#   }
+#   
+#   # Generate each line of the tooltip with indents and HTML spans
+#   description <- tags$span(style = "margin-left: 20px;", title = class_row$Description, "Description")
+#   sources <- tags$span(style = "margin-left: 20px;", title = class_row$Sources, "Sources")
+#   examples <- tags$span(style = "margin-left: 20px;", title = class_row$Examples, "Examples")
+#   strategies <- tags$span(style = "margin-left: 20px;", title = class_row$Strategies, "Strategies")
+#   
+#   # Assemble the formatted tooltip content
+#   tooltip_content <- paste0(
+#     classIf, '<br>',
+#     as.character(description), '<br>',
+#     as.character(sources), '<br>',
+#     as.character(examples), '<br>',
+#     as.character(strategies)
+#   )
+#   
+#   return(tooltip_content)
+# }
+# 
+# 
+# # Create tooltips with visual styling for interactivity
+# create_tooltip <- function(classIf) {
+#   # Filter for the classification row
+#   class_row <- classExplainTable %>% filter(Classification == classIf)
+#   
+#   # If no match, return the classification name as-is
+#   if (nrow(class_row) == 0) {
+#     return(classIf)
+#   }
+#   
+#   # Define each tooltip section with inline styling for hover effect
+#   description <- tags$span(
+#     style = "margin-left: 20px; color: blue; text-decoration: underline; cursor: pointer;",
+#     title = class_row$Description, "Description"
+#   )
+#   sources <- tags$span(
+#     style = "margin-left: 20px; color: blue; text-decoration: underline; cursor: pointer;",
+#     title = class_row$Sources, "Sources"
+#   )
+#   examples <- tags$span(
+#     style = "margin-left: 20px; color: blue; text-decoration: underline; cursor: pointer;",
+#     title = class_row$Examples, "Examples"
+#   )
+#   strategies <- tags$span(
+#     style = "margin-left: 20px; color: blue; text-decoration: underline; cursor: pointer;",
+#     title = class_row$Strategies, "Strategies"
+#   )
+#   
+#   # Assemble the formatted tooltip content
+#   tooltip_content <- paste0(
+#     classIf, '<br>',
+#     as.character(description), '<br>',
+#     as.character(sources), '<br>',
+#     as.character(examples), '<br>',
+#     as.character(strategies)
+#   )
+#   
+#   return(tooltip_content)
+# }
 
 
 
 # Apply the function to create tooltips
-oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_tooltip)
-#oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_Modal_tooltip)    ### TRIED TO PUT BUTTON IN but that didn't work at all for some reason.... cause i'm paste0 in weird buttons???
+#oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_tooltipNew)  # THIS WORKS
+#oneResultInvertClassified$"Chemical Group" <- sapply(oneResultInvertClassified$"Chemical Group", create_tooltip)  # attempt 114
+## GET RID OF TOOLTIP COMPLETELY... It didn't look or work perfectly
 
 #Print the table with tooltips
 pandoc.table(oneResultInvertClassified,
@@ -83,35 +112,3 @@ pandoc.table(oneResultInvertClassified,
 
 
 ```
-
-### Chemical Group: You vs Averages
-
-When we break down the data by chemical groups (keeping in mind that some chemicals appear in more than one group), the results are as follows. The first column shows your wristband results, and the second column shows the average for all wristbands in this project.
-
-`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
-
-```{r CompareWhatClassificationsFound , results='asis', echo=FALSE, message=FALSE }
-
-#knitr::kable(ClassCompare[,2:ncol(ClassCompare)],format="markdown")
-#FIRST change column names so Partcipant becomes the actual name of the subject
-# names(ClassCompareSubject)<-c("Classification",subject,"Average","maxFoundAnyOneBand")
-# ClassCompareSubject<-ClassCompareSubject %>%
-#     mutate_if(is.factor, as.character) %>%   #Eliminate classification as a FACTOR so it sorts correctly
-#     ClassCompareSubject(Classification) 
-
-ClassCompareSubject2 <- ClassCompareSubject %>%
-    select(classification,Participant,Average) %>%
-    dplyr::rename(You=Participant,"Chemical Group"=classification)
-
-
-pandoc.table(ClassCompareSubject2,
-              justify=c("left","center","center")
-              ,split.table = Inf)
-
-rm(ClassCompareSubject2)
-
-```
-
-<br>
-<br>
-

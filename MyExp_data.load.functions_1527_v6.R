@@ -227,7 +227,7 @@ load.classification <- function(classificationTableName) {
 
 
 ### CONTINUE TO FIX UP CLASSIFICATIONS:  This builds on the data load of classifications and collapses set further.  could merge the two later
-convert_to_new_reduced_classifications <- function(class_L) {
+convert_to_new_reduced_classifications <- function(class_L,class_conversion_table_name) {
 
   # Read in the new classification mapping file to adjust the classifications down
   class_conversion_table <- read.csv(class_conversion_table_name) %>%
@@ -238,6 +238,8 @@ convert_to_new_reduced_classifications <- function(class_L) {
     mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
     unnest(CurrentClassifications) %>%
     mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', '')))
+
+  rm(class_conversion_table)
 
   # Function to find the appropriate classification
   find_classification <- function(class_OLD) {

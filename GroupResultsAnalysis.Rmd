@@ -16,7 +16,7 @@ For all the chemicals found on ANY wristband during this project we will look th
 
 ## Group: Chemical Info
 
-```{r GroupChemicalListWithClassification, child='GroupChemicalListWithClassification_text.Rmd', eval = NotHideClassificationInformation}
+```{r GroupChemicalListWithClassification, child='GroupChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
 ```
 
 ```{r GroupChemicalListWithOutClassification, child='GroupChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
@@ -25,7 +25,7 @@ For all the chemicals found on ANY wristband during this project we will look th
 ```{r AirConcentrationNioshOsha, child='airConcentrationOutput.Rmd', eval = doAIRplusNioshOSHAreporting}
 ```
 
-```{r GroupClassificationAnyWristband, child='GroupClassificationAnyWristband_text.Rmd', eval = NotHideClassificationInformation}
+```{r GroupClassificationAnyWristband, child='GroupClassificationAnyWristband_text.Rmd', eval = !HideClassificationInformation}
 ```
 
 
@@ -121,10 +121,10 @@ rm(c)
 
 ```
 
-```{r GroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = NotHideClassificationInformation}
+```{r GroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = !HideClassificationInformation}
 ```
 
-```{r GroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = NotHideClassificationInformation}
+```{r GroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = !HideClassificationInformation}
 ```
 
 ### Chart of All Tested-for Chemicals
@@ -659,7 +659,7 @@ cat("The data is the raw nanograms found in each gram of wristband. " ,sep="")
 
 ```
 
-```{r print_chem_response_factor_info, results="asis", echo=FALSE, eval=is_RMD_type_equal_DRS}
+```{r print_chem_response_factor_info, results="asis", echo=FALSE, eval=RMD_type == "DRS"}
 
 cat("Additionally, the underlying chemical responses are within a factor of 2.5 with respect to accuracy based on the publication ",
       "(https://link.springer.com/article/10.1007/s00216-018-0997-7).",
@@ -718,7 +718,7 @@ rm(c)
 
 ```
 
-```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=FAlSE}
+```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=FALSE}
 ```
 
 ### Numerical Matrixes of all Data
@@ -741,7 +741,7 @@ cat("The number is expressed as the number of **nanograms per gram of wristband*
 
 ```
 
-```{r print_DRS_detection_limit2, results="asis" , echo=FALSE, eval =  is_RMD_type_equal_DRS}
+```{r print_DRS_detection_limit2, results="asis" , echo=FALSE, eval =  RMD_type == "DRS"}
 
 cat("The median value for detection limits across all compounds ",
       "is approximately 200 ng/Wristband or 50ng/gram silicone. ",sep="")
@@ -857,7 +857,7 @@ cat("More exactly, it is the raw nanograms found in each gram of wristband mater
 
 ```
 
-```{r print_DRS_detection_limit, results="asis" , echo=FALSE, eval =is_RMD_type_equal_DRS}
+```{r print_DRS_detection_limit, results="asis" , echo=FALSE, eval =RMD_type == "DRS"}
 
 cat("The median value for detection limits across all compounds ",
       "is approximately 200 ng/Wristband or 50ng/gram silicone. ",sep="")

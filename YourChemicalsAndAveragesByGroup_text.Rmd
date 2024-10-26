@@ -1,0 +1,75 @@
+## Chemical Groups: Averages and Percentages
+
+When can look at the findings by chemical groups (keeping in mind that some chemicals appear in more than one group).   Here we see the counts of chemicals in each chemical group and we can also see how your individual count of chemicals in a group compares to the average number of chemicals found in that group.
+
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
+
+```{r CompareWhatClassificationsFound , results='asis', echo=FALSE, message=FALSE, ,fig.width=12, fig.height=4 }
+
+#knitr::kable(ClassCompare[,2:ncol(ClassCompare)],format="markdown")
+#FIRST change column names so Partcipant becomes the actual name of the subject
+# names(ClassCompareSubject)<-c("Classification",subject,"Average","maxFoundAnyOneBand")
+# ClassCompareSubject<-ClassCompareSubject %>%
+#     mutate_if(is.factor, as.character) %>%   #Eliminate classification as a FACTOR so it sorts correctly
+#     ClassCompareSubject(Classification) 
+
+ClassCompareSubject2 <- ClassCompareSubject %>%
+    select(classification,Participant,Average) %>%
+    dplyr::rename("Your Chemical Count"=Participant,"Chemical Group"=classification)
+
+
+# pandoc.table(ClassCompareSubject2,
+#               justify=c("left","center","center")
+#               ,split.table = Inf)
+# 
+# # Bar chart comparing participant count vs. average per chemical group
+# ggplot(ClassCompareSubject2, aes(x = `Chemical Group`, fill = `Chemical Group`)) +
+#   geom_bar(aes(y = `Your Chemical Count`), stat = "identity", color = "skyblue", width = 0.5) +
+#   geom_point(aes(y = Average), color = "darkred", size = 3) +
+#   labs(title = "Comparison of Chemical Counts by Group", 
+#        y = "Count", x = NULL) +
+#   theme_minimal() +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Prepare data for side-by-side comparison chart
+ClassCompareSubject_long <- ClassCompareSubject2 %>%
+  pivot_longer(cols = c(`Your Chemical Count`, Average), 
+               names_to = "Metric", values_to = "Count")
+
+# Pie chart with count labels
+pie_chart <- ClassCompareSubject2 %>%
+  ggplot(aes(x = "", y = `Your Chemical Count`, fill = `Chemical Group`)) +
+  geom_col(width = 1) +
+  coord_polar("y") +
+  labs(title = "Chemical Counts by Group") +
+  geom_text(aes(label = `Your Chemical Count`), 
+            position = position_stack(vjust = 0.5)) + # Position labels in the middle of slices
+  theme_void() +
+  theme(legend.position = "right")
+
+# Side-by-side bar chart
+bar_chart <- ggplot(ClassCompareSubject_long, aes(x = `Chemical Group`, y = Count, fill = Metric)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Your Chemical Count vs Average", 
+       y = "Count", x = NULL) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Combine with patchwork
+#combined_plot <- pie_chart + bar_chart + plot_layout(ncol = 2)
+
+
+combined_plot <-pie_chart + plot_spacer() + bar_chart  +
+  plot_layout(widths = c(1, 0.1, 1))
+
+
+combined_plot
+
+rm(combined_plot,ClassCompareSubject_long,ClassCompareSubject2)
+
+```
+
+<br>
+<br>
+

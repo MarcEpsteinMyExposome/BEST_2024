@@ -1,7 +1,10 @@
 
+
+## Chemicals with their Chemical Groups
+
 The following chemicals were found on your wristband.  We show how each chemical is grouped  To see more information on the groups, possible sources of any exposure, and ways to minimize exposure :  [Click Here](#class_link_id)
 
-### Chemicals with their Chemical Groups
+
 ```{r  ListChemFound, results='asis', echo=FALSE, message=FALSE}
 # Pull out the results for our ONE SUBJECT
 ###  We doing as INNER cause we REQUIRE all internal data MUST map every tested chem to a classification

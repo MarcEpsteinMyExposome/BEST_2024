@@ -221,9 +221,18 @@ plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, o
 
 
 
+```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```
 
-## Individual: Chemical Info
 
+
+
+# Chemical Group Information
+
+
+
+```{r IndividualClassificationVsAverages, child='YourChemicalsAndAveragesByGroup_text.Rmd', eval = !HideClassificationInformation}
+```
 
 
 ```{r IndividualChemicalListWithClassification, child='IndividualChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
@@ -241,17 +250,12 @@ plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, o
 
 
 
-```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
-```
-
-
-
 ```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150, eval=FALSE}
 
 
 
 
-### Your Percentage vs Maximum Amount Found
+## Your Percentage vs Maximum Amount Found
 
 <!--  THIS IS OLD LANGUAGE... improved it somewhat
 Another way to view the data is by comparing how much of a chemical you had compared to the maximum found in any wristband. For example, if wristband-A had 100 nanograms and the maximum was 1,000 nanograms, wristband-A had 10% of the maximum. The chart below shows the percentage of the maximum for each chemical found on your wristband.
