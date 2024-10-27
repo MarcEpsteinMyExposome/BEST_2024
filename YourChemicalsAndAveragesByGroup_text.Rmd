@@ -1,6 +1,6 @@
 ## Chemical Groups: Averages and Percentages
 
-When can look at the findings by chemical groups (keeping in mind that some chemicals appear in more than one group).   Here we see the counts of chemicals in each chemical group and we can also see how your individual count of chemicals in a group compares to the average number of chemicals found in that group.
+We can look at the findings by chemical groups (keeping in mind that some chemicals appear in more than one group).   Here we see the counts of chemicals in each chemical group and we can also see how your individual count of chemicals in a group compares to the average number of chemicals found in that group.
 
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`

@@ -221,12 +221,8 @@ print(plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65R
 
 
 
-
-
 ```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
 ```
-
-
 
 
 # Chemical Group Information
