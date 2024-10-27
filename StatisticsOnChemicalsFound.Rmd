@@ -2,11 +2,13 @@
 
 
 ```{r setupbs_modal_std_dev, echo=FALSE}
+library("htmltools")
+#install.packages("bsplus")
+library("bsplus")
 
+#bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
 
-bs_modal(id = "StandardDevation", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
-
-stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")
+#stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")
 
 
 # REMEMBER here is how to use a button
@@ -15,14 +17,18 @@ stdDevButton<-bs_button("standard deviation", button_type = "primary", class = "
 
 #One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDevation")`.
 
-  
+
+
+
+
+
 ```
 
 
 ## Statistics on Chemicals Found
 
 
-One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r stdDevButton`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the standard deviation.  The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.
 
 
 ```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=!(wristbands_weight_adjusted || wristbands_time_adjusted)}
@@ -92,6 +98,25 @@ if (HideIndividualization) {
     emphasis.rownames = TRUE,
     split.table = Inf
   )
+  
+#   # Convert data to long format for heatmap plotting
+# heatmap_data <- oneResultStatSummary %>%
+#   pivot_longer(cols = c(`Smallest Value Found`, `Largest Value Found`, `Average Value Found`,
+#                         `Middle Value Found`, `Standard Deviation`),
+#                names_to = "Statistic", values_to = "Value") %>%
+#   filter(`Chemical Name` %in% top_chemicals$`Chemical Name`)
+# 
+# # # Plot heatmap
+# ggplot(heatmap_data, aes(x = Statistic, y = `Chemical Name`, fill = Value)) +
+#   geom_tile() +
+#   scale_fill_gradient(low = "white", high = "darkred") +
+#   labs(title = "Heatmap of Chemical Statistics",
+#        x = "Statistic",
+#        y = "Chemical Name") +
+#   theme_minimal()
+
+  
+  
   
   
   
