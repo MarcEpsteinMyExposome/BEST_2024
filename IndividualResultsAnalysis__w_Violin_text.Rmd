@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Individual Results `r tabsetting`
+# Individual Results
 
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}

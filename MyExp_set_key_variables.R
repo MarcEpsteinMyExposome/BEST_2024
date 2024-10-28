@@ -45,7 +45,7 @@
 
 #### FOR HTML output if you want to have some things in TABS in the output, set this
 ## THIS is BUGGY and doesn't interact will with TOC so not going to use TABS for now...
-tabsetting <- ""
+#tabsetting <- ""
 #tabsetting <-"{.tabset }"       #  RETESTED THIS on 10/25/2024.  WORKED GREAT but does mess with table of contents.  ONE IDEA is drop table of contents completely?
 
 

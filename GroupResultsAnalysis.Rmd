@@ -3,7 +3,7 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-# Group Comparison Results `r tabsetting`
+# Group Comparison Results
 
 As previously stated, the average number of chemicals found was **`r round(averageNumberChemsFound,1)`**. All wristbands were tested for **`r howManyChemicalsTested`** chemicals.
 

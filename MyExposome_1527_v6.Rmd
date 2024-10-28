@@ -48,7 +48,25 @@ output:
 
 -->
 
-<style>
+<!-- JavaScript to insert the logo after the TOC --> 
+<script> 
+document.addEventListener("DOMContentLoaded", function() 
+{ var toc = document.querySelector("#sidebar #toc"); 
+if (toc) { var logo = document.createElement("img"); 
+logo.src = "images/myExposomeLogo_with_transparent_padding25.png"; 
+// Adjust path if needed 
+logo.alt = "Logo"; logo.style.width = "100%"; 
+// Adjust size as needed 
+logo.style.margin = "15px 0"; 
+// Add spacing 
+toc.insertAdjacentElement("afterend", logo); } }); 
+</script> 
+
+<style> /* Additional styling for sidebar logo */ /* plus make content max width wider for bigger monitors   */
+  #sidebar img {
+    display: block; margin: auto; max-width: 100%; 
+    } 
+
   #content {
     max-width: 1400px;
   }
@@ -87,7 +105,9 @@ if (!exists("buildMesgV")) {
 
 ```
 
-```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap=""}
+```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="" , eval=FALSE}
+
+#stop putting image at top of big content cause i'm styling onto the sisdebar
 
 # {r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=2, fig.align="center"}
 
