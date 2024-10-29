@@ -91,7 +91,9 @@ required_packages <- c(
   "styler",   # Added styler to allow manual styling of code using the "addins" menu item
   "readxl",
   "bsplus",    # Added BSPLUS to allow popup bottons
-  "patchwork"  # added to do side-by-side graphi layout
+  "patchwork",  # added to do side-by-side graphi layout
+  "here",
+  "base64enc"
   #"reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )
 

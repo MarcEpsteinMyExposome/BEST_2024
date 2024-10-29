@@ -1,0 +1,34 @@
+
+### Each Group, showing all Chemicals Found
+
+While the table above shows chemicals with their groups, it may be easier to understand when the data is shown in groups instead of individual chemicals. Some chemicals may appear in more than one category.  The list below shows the groups and chemicals found on your wristband.
+
+
+```{r  ListClassFound, results='asis', echo=FALSE, message=FALSE}
+
+oneResultInvertClassified<- as.data.frame(
+  inner_join(oneResult_with_Y_flag,class_L,by="ParameterID") %>% 
+    select(classification,ParameterName) %>%
+    group_by(classification) %>%
+    dplyr::summarise(ParameterNames=paste(ParameterName,collapse=", ")) %>%
+    ungroup %>%
+    mutate_if(is.factor, as.character) %>%  #Eliminate classification as a FACTOR so it sorts correctly
+    arrange(classification))
+
+names(oneResultInvertClassified)<-c("Chemical Group", "Chemical Name(s)" )
+
+
+
+classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
+
+
+#Print the table 
+pandoc.table(oneResultInvertClassified,
+             caption = "Chemical Group Report on your Wristband",
+             justify = c("left", "center"),
+             split.table = Inf,
+             emphasis.rownames = TRUE)
+
+
+
+```

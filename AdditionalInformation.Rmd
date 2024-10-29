@@ -3,7 +3,7 @@
 
 ### List of all chemicals
 
-The full list of all chemicals tested can be found online at: `r makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List") `
+The full list of all chemicals tested can be found online at: `r makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List")`
 
 ```{r FullChemList, eval=FALSE, results='asis', echo=FALSE, message=FALSE}
 ####I'm SUPPRESSING the full list, for now, because it is LONG.  Taking first 10 rows only.
@@ -33,14 +33,12 @@ info <- sessionInfo()
 r_ver <- paste(info$R.version$major, info$R.version$minor, sep=".")
 today <- Sys.Date()
 
+#Make a URL to insert in the text
+MyExpo_URL <- makeClickableURL("http://www.myexposome.com","MyExposome, Inc.")
+
 ```
 
 
-All analyses were performed using R (ver. `r r_ver`)[R Core Team, 2013]  and knitr (ver `r info$otherPkgs$knitr$Version`) [Xie, 2013] for reproducible research.  &nbsp;
+Report contents, structure, and results copyright(c) MyExposome, Inc.  All rights reserved.  Report produced on `r format(today,"%m/%d/%y")` 
 <br>
-
-Report run on `r format(today,"%m/%d/%y")`.  
-
-This information is made available to you by MyExposome, Inc.  Refer to www.MyExposome.com for our standard terms and conditions.  We do not provide medical advice. The Information provided is for research, informational, entertainment and educational use only as a result of the current research-based state of our approach. The Services are not intended to be used by the customer for any diagnostic purpose and are not a substitute for medical advice. 
-
-Report contents, structure, and results copyright(c) MyExposome, Inc.  All rights reserved.
+This information is made available to you by `r MyExpo_URL` The Information provided is for research, informational, entertainment and educational use only. The services are not intended to be used for any diagnostic purpose and are not a substitute for medical advice. 

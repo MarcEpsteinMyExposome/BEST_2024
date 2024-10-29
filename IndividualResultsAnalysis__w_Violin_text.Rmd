@@ -242,7 +242,7 @@ print(plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65R
 
 
 
-```{r IndividualClassificationShowingChemicalsAndAverages, child='IndividualClassificationShowingChemicalsAndAverages_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualClassificationShowingChemicals, child='IndividualClassificationShowingChemicals_text.Rmd', eval = !HideClassificationInformation}
 ```
 
 

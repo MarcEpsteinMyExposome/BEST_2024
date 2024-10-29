@@ -1,4 +1,6 @@
 ---
+params:
+  logo_path: "images/myExposomeLogo_with_transparent_padding25.png"
 output:
   rmdformats::readthedown:
     self_contained: true
@@ -48,30 +50,6 @@ output:
 
 -->
 
-<!-- JavaScript to insert the logo after the TOC --> 
-<script> 
-document.addEventListener("DOMContentLoaded", function() 
-{ var toc = document.querySelector("#sidebar #toc"); 
-if (toc) { var logo = document.createElement("img"); 
-logo.src = "images/myExposomeLogo_with_transparent_padding25.png"; 
-// Adjust path if needed 
-logo.alt = "Logo"; logo.style.width = "100%"; 
-// Adjust size as needed 
-logo.style.margin = "15px 0"; 
-// Add spacing 
-toc.insertAdjacentElement("afterend", logo); } }); 
-</script> 
-
-<style> /* Additional styling for sidebar logo */ /* plus make content max width wider for bigger monitors   */
-  #sidebar img {
-    display: block; margin: auto; max-width: 100%; 
-    } 
-
-  #content {
-    max-width: 1400px;
-  }
-</style>
-
 
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 
@@ -103,6 +81,15 @@ if (!exists("buildMesgV")) {
 #NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
 #is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
+
+logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png")
+image_base64 <- dataURI(file = logo_path, mime = "image/png")
+
+
+
+
+
+
 ```
 
 ```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="" , eval=FALSE}
@@ -130,6 +117,47 @@ rm(img)
 title: "`r testName`"
 author: "MyExposome, Inc."
 ---
+
+<script>
+  var logoPath = "`r image_base64`";  // Set to Base64 Data URI
+</script>
+
+
+<!-- JavaScript to insert the logo after the TOC --> 
+<script> 
+document.addEventListener("DOMContentLoaded", function() 
+{ var toc = document.querySelector("#sidebar #toc"); 
+if (toc) { var logo = document.createElement("img"); 
+      logo.src = logoPath;  // Use the Base64 Data URI
+// Adjust path if needed 
+logo.alt = "Logo"; logo.style.width = "100%"; 
+// Adjust size as needed 
+logo.style.margin = "15px 0"; 
+// Add spacing 
+toc.insertAdjacentElement("afterend", logo); } }); 
+</script> 
+
+<style> /* Additional styling for sidebar logo */ /* plus make content max width wider for bigger monitors   */
+  #sidebar img {
+    display: block; margin: auto; max-width: 100%; 
+    } 
+
+  #content {
+    max-width: 1400px;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
 
