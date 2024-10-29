@@ -92,7 +92,7 @@ required_packages <- c(
   "readxl",
   "bsplus",    # Added BSPLUS to allow popup bottons
   "patchwork",  # added to do side-by-side graphi layout
-  "here",
+  "here",  # USE the HERE package to locate the LOGO and provide an absolute path instead of a relative path cause relative path messes up print-all-subjects
   "base64enc"
   #"reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )
