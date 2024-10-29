@@ -21,43 +21,14 @@ output:
   editor_options: 
     chunk_output_type: console
 ---
-<!--
- 
- #GREAT EXplanation:  https://www.ichaoran.com/posts/2020-10-25-tips-of-drafting-r-markdown-document/ 
- IT SAYS:     <style>
-              #content {
-                max-width: 1400px;
-              }
-              #sidebar h2 {
-                background-color: #008B8B;
-              }
-              h1, h2 {
-                color: #008B8B;
-              }
-            </style>
- 
-# Locate the directory where the rmarkdown package is installed
- system.file(package = "rmarkdown")
-[1] "C:/Users/marce/AppData/Local/R/win-library/4.4/rmarkdown"
- 
- > system.file(package = "rmdformats")
-[1] "C:/Users/marce/AppData/Local/R/win-library/4.4/rmdformats"
- THHESE LINKS SAY MORE:
- modify rmdformat a little:  https://stackoverflow.com/questions/63110500/modifying-readthedown-markdown
- BIG mods to rmdformat... unclear:  https://stackoverflow.com/questions/62716433/rmarkdown-sidebar-can-float-to-the-left-of-centered-main-content-for-rmdformat
- GREAT example of modifying DOWNCUTE package, not relevenat but good code exaplain: https://stackoverflow.com/questions/69784938/how-to-modify-downcute-css-from-rmdformats-to-have-author-as-in-readthedown
- Good tips on writing good reports w/ readthedown:  https://github.com/6chaoran/data-story/blob/master/r-markdown/r-markdown-report-tips.Rmd
-
--->
 
 
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
-
 # THIS FILE requires that an R source file be run first to
 #     populate the environment.
 #     CAN BE DONE HERE or done before knit'ing this file
-   
-#test
+
+# test
 
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
@@ -77,28 +48,21 @@ if (!exists("buildMesgV")) {
 ## THE weird "r include problem Where if I optionally include a RMD file the EVAL value must be an actual value and not a compound value with lots of parts?
 ##  requires me to calculate this here to use in this RMD instead of using the compound expression
 ##   THIS GOT FIXED SOMEWHERE so ... i 'm commenting all these out for now!
-#Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
-#NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
-#is_RMD_type_equal_DRS <- RMD_type == "DRS"
+# Not_weight_or_time_adjusted <- !(wristbands_weight_adjusted || wristbands_time_adjusted)
+# NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
+# is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
-
+## This logo stuff is to include the MyExposome logo in the report.  I had trouble so converted logo to base64 cause path kept getting messed up for print-all-subjects
 logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png")
 image_base64 <- dataURI(file = logo_path, mime = "image/png")
-
-
-
-
-
-
 ```
 
 ```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="" , eval=FALSE}
-
-#stop putting image at top of big content cause i'm styling onto the sisdebar
+# stop putting image at top of big content cause i'm styling onto the sisdebar
 
 # {r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=2, fig.align="center"}
 
-#img <- readPNG("images/myExposomeLogo.png")
+# img <- readPNG("images/myExposomeLogo.png")
 img <- readPNG("images/myExposomeLogo50smaller.png")
 grid.raster(img, name = NULL)
 rm(img)
@@ -160,7 +124,6 @@ toc.insertAdjacentElement("afterend", logo); } });
 
 
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
-
 # !diagnostics suppress=masterParam,testResults.big,class_L,SubClassScores,ParameterID,classification
 
 # Create text string with comma in it for the # of chemicals tested
@@ -203,7 +166,6 @@ if (!DoSpecificSubjectAnalysis) { # IF WE do NOT want to do ANY subject SPECIFIC
 ```
 
 ```{r UseSetupSubject, echo=FALSE, message=FALSE, include=FALSE, eval = DoSpecificSubjectAnalysis}
-
 ############### REMEMBER TO SET DATA FILE and SUBJECT TO MATCH
 
 # Grab NON-zero rows which match our one subject
@@ -258,7 +220,6 @@ ClassCompareSubject <- left_join(
 ```
 
 ```{r separateNoteToSelf, echo=FALSE, message=FALSE, include=FALSE}
-
 ## NOTES ON FUTURE "DO TO" with this RMD file
 ####  DONE SOMEWHAT  Add copyright and LIMITS OF LIABILITY to end of report.
 #
@@ -274,23 +235,19 @@ ClassCompareSubject <- left_join(
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL REPORT -->
 
 ```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=(DoSpecificSubjectAnalysis && !DoGroupAnalysis) }
-
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
 
 ```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
-
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE  INDIVIDUAL REPORT and GROUP MESSAGE -->
 
 ```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval = (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
-
 ```
 
 ```{r  IRiS_Prop65_IARC_Group_Results, results='asis', echo=FALSE, message=FALSE}
-
 # Calculate epa IRIS results but display it later
 
 # FOR ALL CHEMICALS FOUND on ANY wristband
@@ -357,8 +314,6 @@ countIARCHits <- nrow(IARCHits)
 ```
 
 ```{r IRiS_Prop65_IARC_Individual_Results, results='asis', echo=FALSE, message=FALSE, eval=DoSpecificSubjectAnalysis}
-
-
 # Calculate epa IRIS results but display it later
 
 #  Join our results on one subject with classification table to get classification(s) of each chem
@@ -410,19 +365,16 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
 
 ```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = DoSpecificSubjectAnalysis}
-
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
 
 ```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = DoSpecificSubjectAnalysis}
-
 ```
 
 ## Observations
 
 ```{r BuildMessageString, results='asis', echo=FALSE, message=FALSE}
-
 # COMMENTS BY MARC:  We are building a MESSAGE STRING = "mesg.v"
 # and we will keep concatenating onto "mesg.v" with whatever new information we can
 #
@@ -434,7 +386,9 @@ mesg.v <- NULL # and use a vector
 ####### add line to indicate start of INDIVIDUAL results
 
 if (DoSpecificSubjectAnalysis) {
-  if (DoGroupAnalysis){   mesg.v <- addMesg(mesg.v, 1, " ", "**INDIVIDUAL RESULTS**") }
+  if (DoGroupAnalysis) {
+    mesg.v <- addMesg(mesg.v, 1, " ", "**INDIVIDUAL RESULTS**")
+  }
   # Add things to mesg vector using a function call to support functions
   mesg.v <- buildMesgVIndividual(
     testResults.big,
@@ -498,7 +452,6 @@ if (DoSpecificSubjectAnalysis) {
 }`
 
 ```{r BuildCaveatMessageString, results='asis', echo=FALSE, message=FALSE}
-
 ### IMPORTANT CAVEATS That MUST be added
 ### NOTE:  at the moment, the only caveat is the "Y" caveat
 
@@ -530,25 +483,20 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 
 ```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval = DoSpecificSubjectAnalysis}
-
 ```
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
 
 ```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = !HideClassificationInformation}
-
 ```
 
 <!-- SHOW RESULTS FOR FULL GROUP -->
 
 ```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = DoGroupAnalysis}
-
 ```
 
 ```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval = (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
-
 ```
 
 ```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }
-
 ```
