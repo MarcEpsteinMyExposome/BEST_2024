@@ -32,6 +32,7 @@ output:
 #cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 library(here)
+setwd(here::here())  
 ##source(here("R", ""))
 #cat("333 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 

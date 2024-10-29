@@ -114,6 +114,9 @@ options(warn = -1) # Turn off all warning messages
 ### SO the line below STOPS the new error messages BUT to understand group / ungroup /summarize see this: https://stackoverflow.com/questions/62140483/how-to-interpret-dplyr-message-summarise-regrouping-output-by-x-override
 options(dplyr.summarise.inform = FALSE)
 
+setwd(here::here())  # If you’re using the here package for relative paths
+
+
 # Additional code for setting up environment, key variables, etc.
 if (!exists("subject")) {
   source(here("R","MyExp_set_key_variables.R"))
@@ -150,7 +153,7 @@ classification <-
   load.classification(here(classificationTableName))
 rm(load.classification,classificationTableName)
 
-cat("333 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+#cat("333 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 class_TEMP_hold<-classification   ## DELETE AFTER TESTING
 
 # Create the LONG version of "classification" (which is WIDE)

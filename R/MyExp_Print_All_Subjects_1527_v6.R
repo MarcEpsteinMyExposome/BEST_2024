@@ -12,6 +12,8 @@
 
 # FIRST clean up environment a little and set some local variables
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre7')
+setwd(here::here())
+
 rm(list=ls())  # clear things out  ADD A COMMENT
 
 # SUBJECT SHOULD NEVER EXIST on runing this since we JUST deleted everything with the "rm" command

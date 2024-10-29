@@ -15,7 +15,7 @@ customer_Output <-
 
 
     if (!exists("output_directory")) {
-      output_directory <- here("results_output/")
+      output_directory <- here("results_output")
     }
 
     #cat("112 in customer_output...\n", file = "debug_log.txt", append = TRUE)
@@ -35,7 +35,7 @@ customer_Output <-
 
       if (!exists("result_OutputFile")) {
         result_OutputFile <-
-          paste0(output_directory,
+          paste0(output_directory,"\\",
                  DataFile_and_OutputFile_Prepend,
                  "ResultsOutputFile.csv")
       }
@@ -53,7 +53,7 @@ customer_Output <-
       if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
         results_Raw_and_Modified_full_and_long <-
           paste0(
-            output_directory,
+            output_directory,"\\",
             DataFile_and_OutputFile_Prepend,
             "results_Raw_and_Modified_full_and_long.csv"
           )
@@ -84,7 +84,7 @@ customer_Output <-
       write.csv(
         lookupTable,
         file = paste0(
-          output_directory,
+          output_directory,"\\",
           DataFile_and_OutputFile_Prepend,
           "CustomerLookupTable.csv"
         ),
@@ -108,7 +108,7 @@ customer_Output <-
       write.csv(
         class_W,
         file = paste0(
-          output_directory,
+          output_directory,"\\",
           DataFile_and_OutputFile_Prepend,
           "ChemicalClassifications.csv"
         ),
@@ -140,7 +140,7 @@ customer_Output <-
       if (!exists("result_OutputFileSampleNumber")) {
         result_OutputFileSampleNumber <-
           paste0(
-            output_directory,
+            output_directory,"\\",
             DataFile_and_OutputFile_Prepend,
             "ResultsOutputFileSampleNumber.csv"
           )
@@ -156,7 +156,7 @@ customer_Output <-
       if (!exists("results_OutputFileSampleNumber_Transposed")) {
         results_OutputFileSampleNumber_Transposed <-
           paste0(
-            output_directory,
+            output_directory,"\\",
             DataFile_and_OutputFile_Prepend,
             "ResultsOutputFileSampleNumber_Transposed.csv"
           )
@@ -177,7 +177,7 @@ customer_Output <-
       if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
         results_Raw_and_Modified_full_and_long <-
           paste0(
-            output_directory,
+            output_directory,"\\",
             DataFile_and_OutputFile_Prepend,
             "results_Raw_and_Modified_full_and_long.csv"
           )
@@ -217,7 +217,7 @@ customer_Output <-
       write.csv(
         lookupTable,
         file = paste0(
-          output_directory,
+          output_directory,"\\",
           DataFile_and_OutputFile_Prepend,
           "Dartmouth_CustomerLookupTable.csv"
         ),
@@ -244,7 +244,7 @@ customer_Output <-
       write.csv(
         class_W_Dartmouth,
         file = paste0(
-          output_directory,
+          output_directory,"\\",
           DataFile_and_OutputFile_Prepend,
           "Dartmouth_Classification_Table.csv"
         ),
