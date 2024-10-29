@@ -29,21 +29,34 @@ output:
 #     CAN BE DONE HERE or done before knit'ing this file
 
 # test
+#cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+
+library(here)
+##source(here("R", ""))
+#cat("333 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+
 
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 if (!exists("subject")) {
-  source("MyExp_set_key_variables.R")
+  #source("MyExp_set_key_variables.R")
+  source(here("R", "MyExp_set_key_variables.R"))
 }
+#cat("444 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+
+
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("masterParam")) {
-  source(r_code)
-}
-# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
-if (!exists("buildMesgV")) {
-  source(support.functions.filename)
+  source(here("R",r_code))
 }
 
+#cat("555 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+if (!exists("buildMesgV")) {
+  source(here("R",support.functions.filename))
+}
+#cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 ## THE weird "r include problem Where if I optionally include a RMD file the EVAL value must be an actual value and not a compound value with lots of parts?
 ##  requires me to calculate this here to use in this RMD instead of using the compound expression
@@ -219,13 +232,7 @@ ClassCompareSubject <- left_join(
   replace_na(list(Participant = 0))
 ```
 
-```{r separateNoteToSelf, echo=FALSE, message=FALSE, include=FALSE}
-## NOTES ON FUTURE "DO TO" with this RMD file
-####  DONE SOMEWHAT  Add copyright and LIMITS OF LIABILITY to end of report.
-#
-# and SEE OTHER COMMENTS up at top of this doc
-```
-
+ 
 # Introduction and Summary
 
 <!-- PRINT MESSAGE ABOUT WHAT COMPANY THIS TEST WAS DONE "FOR" -->

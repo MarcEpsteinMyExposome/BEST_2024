@@ -11,9 +11,14 @@ customer_Output <-
 
         # SETUP text string(s) to point to correct place to put output directory
 
+    #cat("111 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+
+
     if (!exists("output_directory")) {
-      output_directory <- "results_output/"
+      output_directory <- here("results_output/")
     }
+
+    #cat("112 in customer_output...\n", file = "debug_log.txt", append = TRUE)
 
     if (!DartmouthFixup) {
       ## NOT doing dartmouth special format
@@ -25,6 +30,9 @@ customer_Output <-
         filter(rsum > 0) %>%
         select(-rsum)
       # Write CSV in R of _ouput in their format
+
+      #cat("113 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+
       if (!exists("result_OutputFile")) {
         result_OutputFile <-
           paste0(output_directory,
@@ -34,6 +42,7 @@ customer_Output <-
       write.csv(results_W_CustName,
                 file = result_OutputFile,
                 row.names = FALSE)
+      #cat("114 in customer_output...\n", file = "debug_log.txt", append = TRUE)
       ###############################################################################################
       # NOW WRITE OUT LONG FORM OF THIS OUTPUT: With Raw and Modified versions of data
       #Write CSV of full testResults including RAW and not-raw data
@@ -61,7 +70,7 @@ customer_Output <-
 
 
 
-
+      #cat("210 in customer_output...\n", file = "debug_log.txt", append = TRUE)
 
 
       # Create, then write out, Lookup table converting one set of names to MyExposome names
@@ -106,7 +115,7 @@ customer_Output <-
         row.names = FALSE
       )
     }
-
+    #cat("211 in customer_output...\n", file = "debug_log.txt", append = TRUE)
     if (DartmouthFixup) {
       ## DOING dartmouth
       #
@@ -136,6 +145,9 @@ customer_Output <-
             "ResultsOutputFileSampleNumber.csv"
           )
       }
+
+      #cat("222 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+
       write.csv(results_W_CustNameSampleNumber,
                 file = result_OutputFileSampleNumber,
                 row.names = FALSE)
@@ -149,6 +161,8 @@ customer_Output <-
             "ResultsOutputFileSampleNumber_Transposed.csv"
           )
       }
+
+      #cat("333 in customer_output...\n", file = "debug_log.txt", append = TRUE)
       write.csv(
         results_W_CustNameSampleNumber_Transposed,
         file = results_OutputFileSampleNumber_Transposed,
@@ -176,6 +190,7 @@ customer_Output <-
       rm(testResults_with_Raw)
       #
 
+      #cat("444 in customer_output...\n", file = "debug_log.txt", append = TRUE)
 
       #
       #
@@ -236,6 +251,7 @@ customer_Output <-
         row.names = FALSE
       )
       #rm(output_directory)
+      #cat("999 leaving customer_output...\n", file = "debug_log.txt", append = TRUE)
 
     }
 

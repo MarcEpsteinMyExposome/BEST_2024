@@ -535,7 +535,7 @@ load.testResults <- function(testResultsRawTable, masterParam) {
 
 
 
-fixUpTestResults <- function(testResults) {
+fixUpTestResults <- function(testResults,FixupFile) {
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
   fixUpResults <-
@@ -1046,7 +1046,7 @@ addAirCalculationInformation <- function(tr,airConcentrationTable) {
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-
     read.table(
-      airConcentrationTable,
+      here(airConcentrationTable),
       # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
@@ -1222,7 +1222,7 @@ addAirNioshOsha <- function(testResults,airNioshOshaTable) {
   # airNioshOshaLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airNioshOshaLookup <-
     read.table(
-      airNioshOshaTable,
+      here(airNioshOshaTable),
       # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
@@ -1391,7 +1391,8 @@ load.epaIris <- function(epaIrisTableName) {
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
 
-load.IARCRisk <- function(IARCRiskTableName) {
+load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
+  #cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
   IARCRisk <- read.table(
     IARCRiskTableName,
     sep = ",",
@@ -1403,6 +1404,7 @@ load.IARCRisk <- function(IARCRiskTableName) {
     quote = "\"",
     fileEncoding = "UTF-8-BOM"
   )
+  #cat("001 in data load...\n", file = "debug_log.txt", append = TRUE)
 
   # NOTE that we see some DUPLICATION
   # length(IARCRisk$masterParameterID)
@@ -1418,8 +1420,11 @@ load.IARCRisk <- function(IARCRiskTableName) {
   # Eliminate any that are NULL but there are none at moment
   IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL",]
 
+  #cat("111 in data load...\n", file = "debug_log.txt", append = TRUE)
+
+
   riskIARCdecode <- read.table(
-    "./data/RiskIARCdecode.csv",
+    riskIARCdecodeTableName,
     sep = ",",
     header = TRUE,
     colClasses = "character" # Import all as character

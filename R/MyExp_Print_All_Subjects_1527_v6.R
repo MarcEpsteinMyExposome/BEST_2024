@@ -20,16 +20,14 @@ rm(list=ls())  # clear things out  ADD A COMMENT
 In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALWAYS set  customiization-per-user to be ON
 
 if (!exists("subject")) {
-  #source("MyExp_set_key_variables.R") # source() actually RUNS IT not just loads it
-  source(here("R", "MyExp_set_key_variables.R"))
-
+  source(here("R","MyExp_set_key_variables.R")) # source() actually RUNS IT not just loads it
 }
 
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 ### THIS if test is SILLY cause we JUST above did rm(list=ls()) and then just loaded the key variables
 ###   so there is no way masterParam exists
 if (!exists("masterParam")) {
-  source(here("R",r_code))  # source() actually RUNS IT not just loads it r_code=MyExp_Base_Code_v?.R
+  source(here("R", r_code))  # source() actually RUNS IT not just loads it r_code=MyExp_Base_Code_v?.R
 }
 
 ###WE need to define any LOCAL TO THIS file variables NOW because

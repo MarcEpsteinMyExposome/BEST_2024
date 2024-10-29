@@ -529,7 +529,7 @@ SBIR_p1_MasterParamTableName <- "./data/MASV_sbir_parameter_list_based_on_DRS_pl
 
 # drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed.csv" # UPdated this on 3/12/2019  Hopefully it works.  Also fixed wrong-date-format
 #drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed.csv" # UPdated this on 9/22/2022
-drsMasterParamTableName <- "./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed_weirdSpace_add_Musk.csv" # TWEAKED the master Paramter to have a different COMPOUND NAME for two chemicals.  Need to match what comes in result if possible
+drsMasterParamTableName <- here("./data/MASV_drs_parameter_list_3-8-19_Date_Fixed_BadCharacter_at_303234_fixed_more_dates_fixed_weirdSpace_add_Musk.csv") # TWEAKED the master Paramter to have a different COMPOUND NAME for two chemicals.  Need to match what comes in result if possible
 
 flameMasterParamTableName <- "./data/MasterParameterTable_FlameR.csv"
 # pestMasterParameterTable <- "./data/MasterParameterTable_Pesticide_2-18-19.csv" # NEW UPDATED VERSION is the SAME except for unused columns
@@ -903,6 +903,7 @@ riskCalifProp65TableName <- "./data/MASV15_ca_prop65_risk_Marc_Tweak2.csv"
 
 epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
 IARCRiskTableName <- "./data/MASV15_who_iarc_risk.csv"
+riskIARCdecodeTableName <- "./data/RiskIARCdecode.csv"
 
 # Air concentration Table Name and NIOSH Air concentration
 # cm3VolumeSiliconeOfOneGram<-1.12  # VOLUMNE of one gram of SILICONE is 1.12cm3 (actually that is more exactly 1.1191 but who cares)

@@ -116,15 +116,15 @@ options(dplyr.summarise.inform = FALSE)
 
 # Additional code for setting up environment, key variables, etc.
 if (!exists("subject")) {
-  source("MyExp_set_key_variables.R")
+  source(here("R","MyExp_set_key_variables.R"))
 }
 
 if (!exists("customer_Output")) {
-  source("customer_Output.R")
+  source(here("R","customer_Output.R"))
 }
 
 if (!exists("load.masterParam")) {
-  source(data.load.R.filename)
+  source(here("R",data.load.R.filename))
 }
 
 
@@ -136,19 +136,21 @@ options(warn = 0) # Turn warning messages back on
 
 
 ###################
+#cat("111 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 # Read in data files
 masterParam <-
   load.masterParam(masterParamTableName)
 #rm(load.masterParam,masterParamTableName)  # CAN NOT RM this here... cause use it again loading other param tables
 
-
+#cat("222 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 ###################  READ IN CLASSIFICATION and convert from wide to LONG
 
 classification <-
-  load.classification(classificationTableName)
+  load.classification(here(classificationTableName))
 rm(load.classification,classificationTableName)
 
+cat("333 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 class_TEMP_hold<-classification   ## DELETE AFTER TESTING
 
 # Create the LONG version of "classification" (which is WIDE)
@@ -167,12 +169,13 @@ rm(classification)
 
 ### NOW call that function to update class_L with all the values from the other tests
 
-class_L <- updateWithClassSpecificMasterParam(PAH_text_string, pahMasterParameterTable, class_L)
-class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, VOC_2024_MasterParamTableName, class_L)  # Revise VOC list for 3rd time... get rid of VOPAH
-class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParameterTable, class_L)
-class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L)
-class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L)   #  Add the Phthalate list to the table... this is new test from 2024
+class_L <- updateWithClassSpecificMasterParam(PAH_text_string, here(pahMasterParameterTable), class_L)
+class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, here(VOC_2024_MasterParamTableName), class_L)  # Revise VOC list for 3rd time... get rid of VOPAH
+class_L <- updateWithClassSpecificMasterParam(pest_text_string, here(pestMasterParameterTable), class_L)
+class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, here(flameMasterParamTableName), class_L)
+class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, here(PHTHmasterParameterTable), class_L)   #  Add the Phthalate list to the table... this is new test from 2024
 
+#cat("444 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 ### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
 
@@ -223,7 +226,9 @@ class_L <- class_L %>%
 
 
 #  I reduced from many do 11 or 12 classifications to 6 so I need to just change class_L to be those new classifications
-class_L <- unique(convert_to_new_reduced_classifications(class_L,class_conversion_table_name))
+class_L <- unique(convert_to_new_reduced_classifications(class_L,
+                                                         here(class_conversion_table_name))
+                  )
 rm(convert_to_new_reduced_classifications)
 
 ### NOW i am NOT USING any of the "PAH_text_string" , Flame_Text_string, etc etc cause we've changed classifications and that is what these were so let's delete ALL OF THEM
@@ -239,9 +244,10 @@ rm(convert_to_new_reduced_classifications)
 #chemSourceMitigationOLD <- load.chemSourceMitigation(chemSourceMitigationInfoTableName)
 #chemSourceMitigationNEW <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2)  # HERE I'm loading an XLSX file with improved information
 ### GO TO Google doc and find tab and download the whole thing make sure right SHEET NAME
-chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2,chemSourceSheetName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
+chemSourceMitigation <- load.chemSourceMitigation2(here(chemSourceMitigationInfoTableName2),chemSourceSheetName2)  # HERE I'm loading an XLSX file with improved information but info ONLY for 88 compounds
 rm(load.chemSourceMitigation2,chemSourceSheetName2)
 
+#cat("542 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 
 
@@ -250,8 +256,10 @@ rm(load.chemSourceMitigation2,chemSourceSheetName2)
 
 # Originally I just read in and processed the testResults table at one time.  To experiment with double checking count between masterParameterTable and testResults table I split reading table into two parts
 #     SO now I just read in RAW table here... and then in a few lines pass in that exact raw table and process it
-testResultsRawTable <- load.testResults_justReadTable(resultsTableName)
+testResultsRawTable <- load.testResults_justReadTable(here(resultsTableName))
 rm(load.testResults_justReadTable)
+
+#cat("666 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 # IN THEORY the number of compounds in the PaRAMETER FILE (what we are testing FOR) should equal the # of compounds we got resuls for
 #     BECAUSE OSU LAB always includes all results, even zeros, for every compound
@@ -334,6 +342,9 @@ rm(mismatchPrompt)
 
 testResults <- load.testResults(testResultsRawTable, masterParam)
 
+
+#cat("777 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults)
 
 ### AT THIS POINT, testResults for DRS might have some ZERO values but always numeric results... the ZEROs are cause DRS has some weird values in it that get converted
@@ -341,7 +352,7 @@ rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults)
 # IF we're doing any FIXUP (time / weight normalization of wristband results, call FIXUP routine)
 # NOTE that this fixup also ENHANCES the testResult dataframe with time_worn and weight and ResultOriginal which are NEEDED to do calculation
 if (FixupForAnyone) {
-  testResults <- fixUpTestResults(testResults)
+  testResults <- fixUpTestResults(testResults,here(FixupFile))
 } else if (doAIRplusNioshOSHAreporting) {
   stop("MyExp DEBUG: NOT doing ANY fixup so air calc won't work and maybe other problems---RESEARCH if hit this error")
 }
@@ -432,6 +443,8 @@ if (doAIRplusNioshOSHAreporting) {
 }
 rm(addAirCalculationInformation,airConcentrationTable,airNioshOshaTable,addAirNioshOsha)
 
+#cat("888 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 # IF we only want to take a SUBSET of the testResults we can do that here by picking only one specific batch number
 if (subsetBasedOnBatchNumber) {
   testResults <- onlyPickSomeBatchesFromBiggerData(testResults, batchNumbers)
@@ -451,15 +464,31 @@ rm(subsetBasedOnBatchNumber,onlyPickSomeBatchesFromBiggerData)
 # IF I WANT TO TEST if there were any Y flags in the data, i can use this: nrow(testResultsWith_Y_Flag) >0
 # foundAny_Y_values_meaning_non_Quant <- nrow(testResultsWith_Y_Flag) >0
 
+
+#cat("911 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
+
 riskCalifProp65 <-
-  load.riskCalifProp65(riskCalifProp65TableName, masterParam)
+  load.riskCalifProp65(here(riskCalifProp65TableName), masterParam)
 rm(load.riskCalifProp65,riskCalifProp65TableName)
 
-epaIris <- load.epaIris(epaIrisTableName)
+#cat("912 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
+
+epaIris <- load.epaIris(here(epaIrisTableName))
 rm(load.epaIris,epaIrisTableName)
 
-IARCRisk <- load.IARCRisk(IARCRiskTableName)
-rm(load.IARCRisk,IARCRiskTableName)
+#cat("913 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
+IARCRisk <- load.IARCRisk(
+  here(IARCRiskTableName),
+  here(riskIARCdecodeTableName)
+  )
+
+rm(load.IARCRisk,IARCRiskTableName,riskIARCdecodeTableName)
+
+#cat("922 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 
 # Delete the things I'm sure I won't need
 rm(
@@ -469,6 +498,10 @@ rm(
     "r_code"
   )
 )
+
+
+#cat("999 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 
 #### NOW I have loaded all the results and classifications.
 # testResults + classifications gives me the basic groups and is sorta the master results
@@ -522,6 +555,10 @@ results_W$ParameterName <- NULL # DROP column
 #     stop ("MyExp DEBUG:  Wrong # of rows in masterParam or in results_W: STOP --> not valid", "Current file name is = ",current_filename())
 # }
 
+#cat("999AAA in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
+
+
 #   THIS AVOIDS ERRORS on runs done before setting flag: Did I write output CSVs yet?
 if (!exists("result_file_output_done")) {
   result_file_output_done <- FALSE
@@ -535,6 +572,8 @@ if (!result_file_output_done) {
   customer_Output(testResults, class_L, masterParam, DataFile_and_OutputFile_Prepend, DartmouthFixup)
   rm(customer_Output)
 } # end Customer printing section
+
+#cat("A 111 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 
 # FIND any wristbands with ZERO values
@@ -640,6 +679,9 @@ testResults.big <- testResults.big %>%
 # TRYING BELOW TO JUST ELIMINATE TESTRESULTS variable completely... will it work?
 rm(testResults)
 
+
+#cat("A 222 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 ############################################## Calculate some general statistics useful in charts
 
 # How many wristbands were tested is the number of unique SampleNumbers in testResults
@@ -692,6 +734,9 @@ if (makeIntoDemoData) { #   Use this to set SUBJECT to min max middle as way of 
 }
 rm(makeIntoDemoData)
 
+
+#cat("A 333 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
+
 maxChemFoundOnAnyOneWristband <- max(minMaxTR$Count)
 
 # What is Minimum chemicals found on ANY wristband in this set
@@ -741,10 +786,13 @@ statSummary_with_ParameterID$CASNumber <- NULL
 ### could add a comparison of that chart to other chart with same data for BIG dataset.
 
 # READ IN the file I OUTPUT of (682 but may change) statistical data
-CombinedTestDataStatSummary <- read.csv("data/CombinedTestData/StatSummary682.csv") %>%
+CombinedTestDataStatSummary <- read.csv(here("data/CombinedTestData/StatSummary682.csv")) %>%
   replace(is.na(.), "Undefined")
 # Add ParameterID to table
 ### NOTE that all BATCH # < 100 are dartmoutnh... and then we have 200 and 300 and 400 and then are CHICAGO, COLORADO, and GEORGETOWN probalby in taht order.
+
+
+#cat("A 444 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 # write.csv(statSummary, file = "data/CombinedTestData/StatSummary682.csv", row.names=FALSE)
 
@@ -761,7 +809,7 @@ if (CombinedTestData) {
   bigStatSummaryJustTheseChemicals[is.na(bigStatSummaryJustTheseChemicals)] <- ""
 }
 
-
+#cat("933 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 ## Create table summarizing average # of chemicals of each classification found in wristbands
 csSummary <- as.data.frame(
@@ -785,14 +833,14 @@ csSummary <- as.data.frame(
 #
 ## Read in Table that is the big combined dataset to compare with the smaller dataset
 #
-CombinedTestDataClass_StatSummary <- read.csv("data/CombinedTestData/csSummary682.csv") %>%
+CombinedTestDataClass_StatSummary <- read.csv(here("data/CombinedTestData/csSummary682.csv")) %>%
   rename(combinedTestDataCountMeanResult = countMeanResult, combinedTestDataMeanSumResult = meanSumResult)
 
 csSummary <- CombinedTestDataClass_StatSummary %>%
   left_join(csSummary, by = "classification") %>%
   replace(is.na(.), 0)
 
-
+#cat("944 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 ###
 
 # rm(csSummary,csSummary1,csSummary2   )
@@ -814,3 +862,4 @@ csSummary <- CombinedTestDataClass_StatSummary %>%
 # hold <- testResults %>% group_by(CASNumber)  %>% top_n(1,Result) %>%  filter(Result> 0) %>% arrange(CASNumber)
 # hold <- hold %>% select(SampleNumber, ParameterID, CASNumber, Days_worn,Wristband_Size, Result )
 # write.csv(hold, file = "testReslts_maxResult_Dartmouth_all459_v2.csv", row.names=FALSE)
+

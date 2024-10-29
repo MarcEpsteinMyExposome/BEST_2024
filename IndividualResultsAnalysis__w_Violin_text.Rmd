@@ -9,7 +9,8 @@ editor_options:
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
 ## The function to build a violin plot is now in a separate R file
-source("BuildViolinPlot.R")
+#source("BuildViolinPlot.R")
+source(here("R", "BuildViolinPlot.R"))
 
 
 # Make list of all chemicals that our ONE user had that showed up in "any" of the databases

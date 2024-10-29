@@ -19,7 +19,7 @@ THIS IS COMPLICATED and unclear what I really want to display... TBD.
 
 ### Load the R code to fill in the value of report_messages
 
-source("HeadlinesAmountByChemicalGroup_R_Code.R", local = knitr::knit_global())
+source(here("R","HeadlinesAmountByChemicalGroup_R_Code.R"), local = knitr::knit_global())
 
 ## Call the function
 report_messages <- generate_report(subject, testResults.bigWithClass)
