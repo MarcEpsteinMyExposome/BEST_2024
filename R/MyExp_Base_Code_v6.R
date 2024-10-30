@@ -1,5 +1,5 @@
 #
-#   Basic IDEA is that only need to change contents of
+#  f Basic IDEA is that only need to change contents of
 #        MyExp_set_key_variables.R     The definition of key variables
 #     OTHER R FILES loaded and used include
 #         MyExp_data.load.functions_1527_v6.R      LOAD all the data files and set them up for use (clean/prep data)
@@ -143,8 +143,9 @@ options(warn = 0) # Turn warning messages back on
 
 # Read in data files
 masterParam <-
-  load.masterParam(masterParamTableName)
+  load.masterParam(masterParamTableName,DropSpecificChemicals)
 #rm(load.masterParam,masterParamTableName)  # CAN NOT RM this here... cause use it again loading other param tables
+#rm(DropSpecificChemicals)  # i can get rid of this one variable here, not used elsewhere
 
 #cat("222 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 ###################  READ IN CLASSIFICATION and convert from wide to LONG
@@ -172,11 +173,11 @@ rm(classification)
 
 ### NOW call that function to update class_L with all the values from the other tests
 
-class_L <- updateWithClassSpecificMasterParam(PAH_text_string, here(pahMasterParameterTable), class_L)
-class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, here(VOC_2024_MasterParamTableName), class_L)  # Revise VOC list for 3rd time... get rid of VOPAH
-class_L <- updateWithClassSpecificMasterParam(pest_text_string, here(pestMasterParameterTable), class_L)
-class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, here(flameMasterParamTableName), class_L)
-class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, here(PHTHmasterParameterTable), class_L)   #  Add the Phthalate list to the table... this is new test from 2024
+class_L <- updateWithClassSpecificMasterParam(PAH_text_string, here(pahMasterParameterTable), class_L,DropSpecificChemicals)
+class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, here(VOC_2024_MasterParamTableName), class_L,DropSpecificChemicals)  # Revise VOC list for 3rd time... get rid of VOPAH
+class_L <- updateWithClassSpecificMasterParam(pest_text_string, here(pestMasterParameterTable), class_L,DropSpecificChemicals)
+class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, here(flameMasterParamTableName), class_L,DropSpecificChemicals)
+class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, here(PHTHmasterParameterTable), class_L, DropSpecificChemicals)   #  Add the Phthalate list to the table... this is new test from 2024
 
 #cat("444 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
@@ -259,7 +260,7 @@ rm(load.chemSourceMitigation2,chemSourceSheetName2)
 
 # Originally I just read in and processed the testResults table at one time.  To experiment with double checking count between masterParameterTable and testResults table I split reading table into two parts
 #     SO now I just read in RAW table here... and then in a few lines pass in that exact raw table and process it
-testResultsRawTable <- load.testResults_justReadTable(here(resultsTableName))
+testResultsRawTable <- load.testResults_justReadTable(here(resultsTableName),DropSpecificChemicals)
 rm(load.testResults_justReadTable)
 
 #cat("666 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
@@ -343,12 +344,13 @@ rm(mismatchPrompt)
 # setdiff(testResultsRawTable$ParameterID, masterParam$ParameterID)
 # setdiff(masterParam$ParameterID,testResultsRawTable$ParameterID )
 
-testResults <- load.testResults(testResultsRawTable, masterParam)
+testResults <- load.testResults(testResultsRawTable, masterParam,ExpectedUnits,DropAllZeroSampleNumbers,DropSpecificChemicals)
 
 
 #cat("777 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
-rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults)
+#rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults,ExpectedUnits,DropAllZeroSampleNumbers,DropSpecificChemicals)
+rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults,ExpectedUnits,DropAllZeroSampleNumbers)
 
 ### AT THIS POINT, testResults for DRS might have some ZERO values but always numeric results... the ZEROs are cause DRS has some weird values in it that get converted
 
@@ -572,7 +574,12 @@ if (!exists("result_file_output_done")) {
 # if (FALSE) {
 if (!result_file_output_done) {
   result_file_output_done <- TRUE
-  customer_Output(testResults, class_L, masterParam, DataFile_and_OutputFile_Prepend, DartmouthFixup)
+  customer_Output(testResults,
+                  class_L,
+                  masterParam,
+                  DataFile_and_OutputFile_Prepend,
+                  DartmouthFixup
+                  )
   rm(customer_Output)
 } # end Customer printing section
 

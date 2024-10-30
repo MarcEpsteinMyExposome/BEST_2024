@@ -518,7 +518,7 @@ industrial_text_string <- "Chemicals in Commerce"
 pest_text_string <- "Pesticides"
 consumerProduct_text_string <- "Consumer Products"
 dioxinsAndFurans_text_string <- "Dioxins and Furans"
-PHTH_text_string <- "Phthalates"
+PHTH_text_string <- "Phthalates"   ##############NOTE NOTE NOTE... i'm not using PHTH properly somewhere I think...
 
 #  HERE we set the parameter Table Names for all the available tests
 # drsMasterParamTableName <- "./data/MASV_parameters_7-18-17_fix1.csv"

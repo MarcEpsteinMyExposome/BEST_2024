@@ -2,12 +2,16 @@
 ## The customer output function uses the data in testResults, class_L, and masterParam to write out
 ##    various CSV files which have the results of the data run.
 ##
+##    NOTE this relys on various global variables that talk about file and path names
+##      file path stuff is messy code, i switched to using "here/here" a bit but not fully.... fix someday
+##
 customer_Output <-
   function(testResults ,
            class_L,
            masterParam,
            DataFile_and_OutputFile_Prepend,
-           DartmouthFixup) {
+           DartmouthFixup
+           ) {
 
         # SETUP text string(s) to point to correct place to put output directory
 

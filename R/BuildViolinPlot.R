@@ -26,7 +26,7 @@
 ###   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern) {
+buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) {
   # chemical_to_chart<-chemsOfConcern[7]
   # nrow()
 

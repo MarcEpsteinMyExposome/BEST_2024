@@ -406,7 +406,9 @@ if (DoSpecificSubjectAnalysis) {
     results_W,
     numEPAirisFound,
     numCalProp65Found,
-    numIARCRiskFound
+    numIARCRiskFound,
+    howManyWristbandsTested,
+    HideClassificationInformation
   )
 }
 
@@ -423,7 +425,8 @@ if (DoGroupAnalysis) {
     results_W,
     countEPAiristHits,
     countCalifProp65Hits,
-    countIARCHits
+    countIARCHits,
+    HideClassificationInformation
   )
 }
 

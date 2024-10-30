@@ -17,7 +17,9 @@ buildMesgVIndividual <-
             results_W,
             numEPAirisFound,
             numCalProp65Found,
-            numIARCRiskFound) {
+            numIARCRiskFound,
+            howManyWristbandsTested,
+            HideClassificationInformation) {
 
 
       testResultsNonZero <- testResults[testResults$Result > 0,]
@@ -260,7 +262,8 @@ buildMesgVGroup <-
             results_W,
             countEPAiristHits,
             countCalifProp65Hits,
-            countIARCHits) {
+            countIARCHits,
+            HideClassificationInformation) {
 
     testResultsNonZero <- testResults[testResults$Result > 0,]
 

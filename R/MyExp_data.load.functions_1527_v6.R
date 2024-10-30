@@ -24,7 +24,7 @@
 # masterParamTableName <-"./data/MASVtest2.csv"
 
 # READ IN the data
-load.masterParam <- function(masterParamTableName) {
+load.masterParam <- function(masterParamTableName,DropSpecificChemicals) {
   masterParam <- read.table(
     masterParamTableName,
     sep = ",",
@@ -273,9 +273,9 @@ convert_to_new_reduced_classifications <- function(class_L,class_conversion_tabl
 # Fix class_L by adding all VOC data using VOC MasterParameterTable
 #  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
-updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L) {
+updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L,DropSpecificChemicals) {
   classSpecifcMasterParam <-
-    load.masterParam(classSpecificMasterParamTable) # Read in new parameter Table
+    load.masterParam(classSpecificMasterParamTable,DropSpecificChemicals) # Read in new parameter Table
   classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
   class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
   classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
@@ -301,7 +301,7 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecific
 #### this is NOT a problem cause the results table is skinny and hence new columns in classification don't hurt it
 #### BUT there is no results that will hit some of the new features... so need to add more results!
 
-load.testResults_justReadTable <- function(resultsTableName) {
+load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals) {
   testResults <-
     read.table(
       resultsTableName,
@@ -337,7 +337,7 @@ load.testResults_justReadTable <- function(resultsTableName) {
   testResults # Return the exact table read
 }
 
-load.testResults <- function(testResultsRawTable, masterParam) {
+load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,DropAllZeroSampleNumbers,DropSpecificChemicals) {
   # We read in the raw table elsewhere, now we're going to clean-it-up
   testResults <- testResultsRawTable
 
@@ -536,6 +536,30 @@ load.testResults <- function(testResultsRawTable, masterParam) {
 
 
 fixUpTestResults <- function(testResults,FixupFile) {
+# THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
+# Use a Strategy Pattern for Customer-Specific Fixups
+# If the main reason for so many variables is the different customer-specific fixes (like DartmouthFixup, UCSF2020Fixup, etc.),
+# consider refactoring to use a strategy pattern.
+# Create a set of "fixup" functions, each implementing the adjustments for a specific customer or for generic customer
+# Then, fixUpTestResults would simply select the appropriate function based on the customer:
+        #   dartmouthFixup <- function(testResults, FixupFile) {
+        #     # Dartmouth-specific fixup code here
+        #   }
+        #
+        # ucsfFixup <- function(testResults, FixupFile) {
+        #   # UCSF-specific fixup code here
+        # }
+        #
+        # fixUpTestResults <- function(testResults, FixupFile, customer) {
+        #   fixupFunction <- switch(customer,
+        #                           "Dartmouth" = dartmouthFixup,
+        #                           "UCSF" = ucsfFixup,
+        #                           # Add other customers as needed
+        #                           stop("Unknown customer"))
+        #   fixupFunction(testResults, FixupFile)
+        # }
+  ## ALSO i'm overloading concept of FIXUP.  really i just need to declare which CUSTOMER, which TEST, and which Date-or-version-or-RUN and then follow that logic thru
+
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
   fixUpResults <-
@@ -1041,7 +1065,7 @@ fixUpTestResults <- function(testResults,FixupFile) {
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
-addAirCalculationInformation <- function(tr,airConcentrationTable) {
+addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSiliconeOfOneGram,ExpectedUnits) {
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-

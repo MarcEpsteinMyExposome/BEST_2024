@@ -82,7 +82,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         cat("###", chemItem, "{-}", "\n\n")
 
         print(htmltools::tagList(
-          buildPlotlyViolin(chemItem, testResults_ChemItem)
+          buildPlotlyViolin(chemItem, testResults_ChemItem,subject)
         ))
 
         newMessage <- NULL
