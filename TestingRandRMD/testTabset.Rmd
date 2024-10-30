@@ -1,0 +1,50 @@
+---
+title: "Tabset Testing"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: FALSE
+    toc_depth: 3
+    df_print: "paged"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+howManyTabs <- 4
+```
+
+# Interactive Tabs
+
+  The number of tabs will be dynamically generated based on the howManyTabs variable.
+
+## Tabs Example {.tabset}
+
+```{r tabset1, results='asis', echo=FALSE}
+for (i in 1:howManyTabs) {
+  cat("### Tab ", i, "\n\n")
+  cat("This is content for Tab ", i, "\n\n")
+  print(
+    ggplot(cars) +
+    geom_point(aes(speed, dist))
+  )
+}
+```
+
+
+```{r tabset2, results='asis', echo=FALSE}
+for (i in 1:2) {
+  # Create a new heading for each tab
+  cat("### Tab ", i, "\n\n")
+  
+  # Insert plot in a separate chunk for each tab
+  cat("```{r, echo=FALSE}\n")
+  cat("ggplot(cars, aes(x = speed, y = dist)) +\n")
+  cat("  geom_point() +\n")
+  cat(paste("  ggtitle('Plot for Tab ", i, "')\n", sep = ""))
+  cat("```\n\n")
+}
+
+```

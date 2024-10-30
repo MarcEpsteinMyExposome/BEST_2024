@@ -1,0 +1,96 @@
+---
+title: "TestPopups and Popovers and buttons"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+date: "2024-10-21"
+---
+
+
+
+
+```{r loadPackages, echo=FALSE}
+library("htmltools")
+library("bsplus")
+```
+
+
+
+<!-- JavaScript to insert the logo after the TOC --> 
+<script> 
+document.addEventListener("DOMContentLoaded", function() 
+{ var toc = document.querySelector("#sidebar #toc"); 
+if (toc) { var logo = document.createElement("img"); 
+logo.src = "images/myExposomeLogo50smaller.png"; 
+// Adjust path if needed 
+logo.alt = "Logo"; logo.style.width = "100%"; 
+// Adjust size as needed 
+logo.style.margin = "15px 0"; 
+// Add spacing 
+toc.insertAdjacentElement("afterend", logo); } }); 
+</script> 
+
+<style> /* Additional styling for sidebar logo */ 
+#sidebar img { display: block; margin: auto; max-width: 100%; } 
+</style>
+
+
+
+###<style>
+
+#sidebar  
+
+  
+  
+  
+
+###</style>
+
+
+```{r setupbs_modal_std_dev, echo=FALSE}
+bs_modal(id = "StandardDeviation3", title = "Standard Deviation Definition3", body = "Standard deviation3 is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
+
+# REMEMBER here is how to use a button
+# bs_button("Standard Devation", button_type = "primary", class = "btn-xs btn-outline-info") %>%
+#  bs_attach_modal(id_modal = "StandardDevation")
+```
+
+
+
+<!--
+.Sidebar {
+  background-image: url('images/myExposomeLogo50smaller.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  height: 220px; /* Ensure height to make it visible */
+  width: 100%; /* Adjust width as necessary */
+  margin-bottom: 1em;
+}
+
+.authors {
+  background-image: url('images/myExposomeLogo50smaller.png');
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  height: 220px;
+}
+-->
+
+
+
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation3", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDeviation3")`.
+
+# first group
+asd;lfkajsdf;lkasjdf;
+asdf
+asdf
+asd
+fasdf
+
+
+# second group
+a;sdklja;sdk
+##
+indented group

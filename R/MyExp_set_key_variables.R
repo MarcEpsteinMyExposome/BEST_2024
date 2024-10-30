@@ -433,26 +433,21 @@ if (subsetBasedOnBatchNumber) {
 ######   SET THIS TO make ONLY into stand-alone report of all data, NOT report on specific individual
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
-#### THIS FIRST SET is to DO the individualization
 
-
-## JUST do GROUp Analysis
-# DoSpecificSubjectAnalysis<-FALSE  #idea is to do specific-subject-analysis output with or without GROUP analysis
-# DoGroupAnalysis <- TRUE  # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-# HideIndividualization<-!DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
-
-
-## JUST do SPECIFIC SUBJECT Analysis
-DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
-DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
-
-
-## do SPECIFIC SUBJECT Analysis AND GROUP ANALYSIS
-#DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
-#DoGroupAnalysis <- TRUE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
-#HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
-
+# ONLY DO ONE OF THESE THREE THINGS
+if (FALSE) { ## JUST do GROUp Analysis
+  DoSpecificSubjectAnalysis<-FALSE  #idea is to do specific-subject-analysis output with or without GROUP analysis
+  DoGroupAnalysis <- TRUE  # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+  HideIndividualization<-!DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+} else if (TRUE) {  ## JUST do SPECIFIC SUBJECT Analysis
+  DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+  DoGroupAnalysis <- FALSE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+  HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+} else if (FALSE) {   # do SPECIFIC SUBJECT Analysis AND GROUP ANALYSIS
+  DoSpecificSubjectAnalysis <- TRUE # idea is to do specific-subject-analysis output with or without GROUP analysis
+  DoGroupAnalysis <- TRUE # The idea is to be able to turn on or off doing the GROUP analysis with or without INDIVIDUAL analysis
+  HideIndividualization <- !DoSpecificSubjectAnalysis # idea is to hide, on the charts, the things that colorize charts for a specific individual
+}
 
 
 ### NOW OVERRIDE above 2 settings IF you are calling this from PRINT_ALL_SUBJECTS
@@ -579,7 +574,10 @@ vocMasterParamTableName <- "./data/MyExposome_VOC_MasterParameter_List_3_6_2019.
 ### tRING DIFFERENT LOOKUP TABLE WITHJUST gemini  on 10/18/2024 USING XLSX intead of cSV with more info some hand-crafted
 #### THIS TABLE IS BASED ON JUST the 88 compounds in the group of 71 WBs
 #chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_2024_10_18_v3.xlsx"   # added a V2 to see if that fixes
-chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_10-22-2024-v1.xlsx"   # added a WIKI column to the data
+#chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_10-22-2024-v1.xlsx"   # added a WIKI column to the data
+chemSourceMitigationInfoTableName2 <- "data/Test_figure_out_chemical_exposure_Copilot_ChatGPT_10_30_2024.xlsx"   # Steven/Kelsie updated the sources and mitigation information
+
+
 chemSourceSheetName2<-"STEVEN_New71_ChatGPT-Try2"
 
 

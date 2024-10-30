@@ -1,0 +1,39 @@
+---
+title: "Tabset Testing"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: FALSE
+    toc_depth: 3
+    df_print: "paged"
+    
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+howManyTabs <- 4
+```
+
+# Interactive Tabs
+
+The number of tabs will be dynamically generated based on the `howManyTabs` variable.
+
+## Tabs Example {.tabset}
+
+```{r, results='asis', echo=FALSE}
+for (i in 1:howManyTabs) {
+  # Dynamically generate tab headers using `cat()`
+  cat(paste0("### Tab ", i, "\n\n"))
+  
+  # Output extra content such as text or plots inside each tab
+  knitr::asis_output("This is additional content inside the tab.\n")
+  
+  # Directly render a plot inside each tab
+  print(ggplot(cars, aes(x = speed, y = dist)) + 
+        geom_point() + 
+        ggtitle(paste('Plot for Tab', i)))
+}
+```

@@ -1,0 +1,35 @@
+---
+title: "Inline Modal Button Example"
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+    lightbox: true
+    gallery: true
+    thumbnails: false
+---
+
+
+```{r defineStdDeviation, echo=FALSE, results='asis'}
+htmltools::HTML('
+<p>One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the  
+  <button onclick="document.getElementById(\'modalContainer\').style.display=\'block\'" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">
+    Standard Deviation
+  </button>.
+</p>
+
+<!-- Modal Container -->
+<div id="modalContainer" style="display:none; position:fixed; z-index:1050; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5);">
+  <div style="margin:10% auto; width:80%; background-color:white; padding:20px; border:1px solid #888;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h2>Definition of Standard Deviation</h2>
+      <button onclick="document.getElementById(\'modalContainer\').style.display=\'none\'" style="font-size:20px; background:none; border:none;">&times;</button>
+    </div>
+    <p>Standard deviation is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they are closer to the average.</p>
+    <button onclick="document.getElementById(\'modalContainer\').style.display=\'none\'" class="btn btn-secondary">Close</button>
+  </div>
+</div>
+')
+```

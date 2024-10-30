@@ -1,0 +1,61 @@
+---
+title: "New R Markdown Project"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(bsplus)
+library(htmltools)
+library(plotly)
+
+```
+
+## Introduction
+This is the introduction section of your new R Markdown project. Describe the purpose and goals of this project here.
+
+## Bootstrap Examples Using bsplus
+
+### Accordion Example
+```{r accordion_example, echo=FALSE}
+bs_accordion(id = "accordionExample") %>%
+  bs_append(title = "Section 1", content = "This is the first section.") %>%
+  bs_append(title = "Section 2", content = "This is the second section.")
+```
+
+```{r stuff  , echo=FALSE}
+
+# Example Data
+howManyPlots <- 3
+
+# Create a content for accordion with dynamic generation
+content <- tagList()
+
+# Dynamically generate multiple sections with loops/plots
+for (i in 1:howManyPlots) {
+  p <- plot_ly(data = mtcars, x = ~mpg, y = ~wt, type = 'scatter', mode = 'markers')
+  
+  # Create the content for each accordion section
+  content[[i]] <- tagList(
+    p, # Add the plot
+    tags$p(paste("This is a dynamically generated section for plot", i))
+  )
+}
+
+# Create the accordion with dynamic content
+bs_accordion(id = "accordionExample") %>%
+  bs_append(title = "Section 1", content = content[[1]]) %>%
+  bs_append(title = "Section 2", content = content[[2]]) %>%
+  bs_append(title = "Section 3", content = content[[3]])
+
+
+
+
+```
