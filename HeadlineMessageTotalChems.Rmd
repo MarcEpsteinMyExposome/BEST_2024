@@ -111,5 +111,5 @@ p
 #
 ```
 
-The total number of chemicals found in your wristband was **`r howManyChemicalsFoundThisWristband`**. The average number of chemicals found across all tested wristbands in this project was **`r round(averageNumberChemsFound,1) `**.  The maximum number of chemicals found on any one wristband was **`r maxChemFoundOnAnyOneWristband`**.  The minimum number of chemicals found on any one wristband was **`r minChemFoundOnAnyOneWristband`**.  Even though we carefully check each result, it's possible that you were exposed to a chemical we tested for but we don't report it because the amount was too small for us to detect.
+The total number of chemicals found in your wristband was **`r howManyChemicalsFoundThisWristband`**. The average number of chemicals found across all tested wristbands in this project was **`r round(averageNumberChemsFound,1) `**.  The maximum number of chemicals found on any one wristband was **`r maxChemFoundOnAnyOneWristband`**.  The minimum number of chemicals found on any one wristband was **`r minChemFoundOnAnyOneWristband`**.  It's possible that you were exposed to a chemical we tested for but we don't report that exposure because our testing could not detect that low amount.
 

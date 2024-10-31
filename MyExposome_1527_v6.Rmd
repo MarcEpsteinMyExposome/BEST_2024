@@ -22,6 +22,35 @@ output:
     chunk_output_type: console
 ---
 
+<!--
+•	1  Project Root                                                    
+•	2   °--MyExposome_1527_v6.Rmd                                      
+•	3       ¦--SpecificSubjectAnalysisIntro_text.Rmd                   
+•	4       ¦--GroupAnalysisIntro_text.Rmd                             
+•	5       ¦--GroupAndIndividualAnalysisIntro_text.Rmd                
+•	6       ¦--HeadlineMessageTotalChems.Rmd                           
+•	7       ¦--HeadlinesAmountByChemicalGroup.Rmd                      
+•	8       ¦--IndividualResultsAnalysis__w_Violin_text.Rmd            
+•	9       ¦   ¦--StatisticsOnChemicalsFound.Rmd                      
+•	10      ¦   ¦--YourChemicalsAndAveragesByGroup_text.Rmd            
+•	11      ¦   ¦--IndividualChemicalListWithClassification_text.Rmd   
+•	12      ¦   ¦--IndividualChemicalListWithOutClassification_text.Rmd
+•	13      ¦   °--IndividualClassificationShowingChemicals_text.Rmd   
+•	14      ¦--CompoundClassification_text.Rmd                         
+•	15      ¦--GroupResultsAnalysis.Rmd                                
+•	16      ¦   ¦--GroupDatabaseLookupIARC_Prop65_IRIS.Rmd             
+•	17      ¦   ¦--GroupChemicalListWithClassification_text.Rmd        
+•	18      ¦   ¦--GroupChemicalListWithOutClassification_text.Rmd     
+•	19      ¦   ¦--airConcentrationOutput.Rmd                          
+•	20      ¦   ¦--GroupClassificationAnyWristband_text.Rmd            
+•	21      ¦   ¦--StatisticsOnChemicalsFound.Rmd                      
+•	22      ¦   ¦--GroupClassificationAtLeastOne_text.Rmd              
+•	23      ¦   ¦--GroupClassificationEveryWristband_text.Rmd          
+•	24      ¦   °--loreal_venn_text.Rmd                                
+•	25      ¦--testPrePostProcessing.Rmd                               
+•	26      °--AdditionalInformation.Rmd   
+
+-->
 
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 # THIS FILE requires that an R source file be run first to
@@ -82,7 +111,7 @@ grid.raster(img, name = NULL)
 rm(img)
 ```
 
-```{r loadUCSFPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="", eval = FALSE}
+```{r loadUCSFPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="", eval= FALSE}
 # note CAN change eval=FAlSE to eval=UCSF2020Fixup
 
 # TEST loading UCSF logo
@@ -179,7 +208,7 @@ if (!DoSpecificSubjectAnalysis) { # IF WE do NOT want to do ANY subject SPECIFIC
 }
 ```
 
-```{r UseSetupSubject, echo=FALSE, message=FALSE, include=FALSE, eval = DoSpecificSubjectAnalysis}
+```{r UseSetupSubject, echo=FALSE, message=FALSE, include=FALSE, eval= DoSpecificSubjectAnalysis}
 ############### REMEMBER TO SET DATA FILE and SUBJECT TO MATCH
 
 # Grab NON-zero rows which match our one subject
@@ -247,12 +276,12 @@ ClassCompareSubject <- left_join(
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
 
-```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval = (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
+```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval= (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE  INDIVIDUAL REPORT and GROUP MESSAGE -->
 
-```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval = (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
+```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval= (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
 ```
 
 ```{r  IRiS_Prop65_IARC_Group_Results, results='asis', echo=FALSE, message=FALSE}
@@ -372,12 +401,12 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
 
-```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval = DoSpecificSubjectAnalysis}
+```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
 
-```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval = DoSpecificSubjectAnalysis}
+```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 ## Observations
@@ -493,20 +522,20 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 
-```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval = DoSpecificSubjectAnalysis}
+```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
 
-```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval = !HideClassificationInformation}
+```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval= !HideClassificationInformation}
 ```
 
 <!-- SHOW RESULTS FOR FULL GROUP -->
 
-```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval = DoGroupAnalysis}
+```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval= DoGroupAnalysis}
 ```
 
-```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval = (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
+```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval= (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
 ```
 
 ```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }

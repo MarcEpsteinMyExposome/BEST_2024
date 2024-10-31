@@ -1,5 +1,5 @@
 
-You have taken part in a MyExposome Wristband Study to identify the chemicals detected in your environment.  We tested for **`r howManyChemicalsTested`** compounds.  `r testExplanation` 
+You have taken part in a MyExposome Wristband Study to identify the chemicals detected in your environment.  We checked to see if you were exposed to any of  **`r howManyChemicalsTested`** compounds.  `r testExplanation` 
 
 You were one of  **`r howManyWristbandsTested`** participants in this phase. To protect privacy we used this:   **`r pureSubjectName`** as your ID.
 

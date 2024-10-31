@@ -101,7 +101,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         testInPROP65 <- oneResultCalifProp65Risk %>%
           filter(`Chemical Name` == chemItem)
         if (nrow(testInPROP65) > 0) {
-          PROP65_info <- testInPROP65$`Risk Type Per California Prop 65`
+          PROP65_info <- str_trim(testInPROP65$`Risk Type Per California Prop 65`)
 
 
           Prop65_Link <- "http://www.oehha.ca.gov/prop65.html"
@@ -172,13 +172,15 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
 
           newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
         }
-
-        cat(newMessage)
-
+        #cat("\n\n about to print   if( !is.null(newMessage)) {cat(newMessage)} ")
+        if( !is.null(newMessage)) {cat(newMessage)}
+        #cat("\n\n just   print   if( !is.null(newMessage)) {cat(newMessage)} ")
         cat(" \n \n")
       }
     }
   } else {
+    #cat("\n\n about to NEVERY MATC ")
+
     testResults_ChemItem <- testResults.big %>%
       filter(ParameterName == "NEVER MATCH") %>%
       select(SampleNumber, Result, ParameterName)
@@ -194,10 +196,13 @@ We checked all the chemicals you were exposed to in databases that flag harmful 
 ```{r PlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
 ###
 
+plotlyC <- print(plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation))
 
 ## Now call the function to print interactive plotly in TABS of all chemicals listed in certain DB of concern
-
-print(plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation))
+#cat("about print ploty")
+if (!is.null(plotlyC)) {
+  print(plotlyC)
+}#cat("Just print ploty")
 
 ```
 
@@ -214,9 +219,12 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
-
-print(plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation))
-
+plotlyC <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
+#cat("about print ploty")
+if (!is.null(plotlyC)) {
+  print(plotlyC)
+}
+#cat("Just print ploty")
 
 ```
 
