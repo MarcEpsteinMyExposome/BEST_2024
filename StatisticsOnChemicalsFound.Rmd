@@ -23,7 +23,12 @@ library("bsplus")
 ```{r setupbs_modal_std_dev3, echo=FALSE}
 
 
-bs_modal(id = "StandardDeviation3", title = "Standard Deviation Definition", body = "Standard deviation is a measure of how spread out all the results are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
+bs_modal(id = "StandardDeviation3", title = "Definition of Standard Deviation", body = "Standard deviation is a measure of how spread out all the results are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
+
+#MAYBE add MEAN and MEDIAN definitions sometime
+#bs_modal(id = "Mean3", title = "Definition of MEAN", body = "The mean, or average, is the total of all the numbers divided by how many numbers there are. It’s a way to find the 'typical' value of a set of numbers.")
+
+#bs_modal(id = "Median3", title = "Definition of MEDIAN", body = "The median is the middle value in a list of numbers sorted from smallest to largest. It’s the one right in the middle. It shows the 'center' of the data without being affected by very high or very low numbers.")
 
 
   
@@ -31,7 +36,7 @@ bs_modal(id = "StandardDeviation3", title = "Standard Deviation Definition", bod
 
 
 
-One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDeviation3")`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDeviation3")`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.  The table lists all the chemicals found in your wristband.  Your chemicals are in the first column. The remaining columns describe mathmatical characteristics of these chemicals across the entire group of people.
 
 
 <!--
@@ -74,7 +79,7 @@ if ("Chemical_Name" %in% colnames(statSummary)) {
                                                "Largest Value Found" = MaxResult,
                                                "Average Value Found" = MeanResult,
                                                "Middle Value Found" = MedianResult,
-                                               "How Many Wristband Had this" = Count)
+                                               "How Many Wristbands Had this" = Count)
 }
 
 

@@ -5,6 +5,7 @@ output:
   rmdformats::readthedown:
     self_contained: true
     number_sections: true
+    css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black
     toc_depth: 3
     df_print: "paged"
     lightbox: true   # Enables the lightbox for clickable images

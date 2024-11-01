@@ -1,0 +1,115 @@
+#main .nav-pills > li.active > a,
+#main .nav-pills > li.active > a:hover,
+#main .nav-pills > li.active > a:focus {
+    background-color: #60248f;  /*PURPLE, why?  Just a test */  /* GREEN?  #22983B; */
+}
+
+#main .nav-pills > li > a:hover {
+    background-color: #60248f; /* that's purpple */    /* this is green #22983B; */
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+    font-weight: 700;
+    color: #1a3edd;   /* NICE dark blue */
+}
+
+#nav-top span.glyphicon {
+    color: #22983B;
+}
+
+
+
+#main a {
+    background-image: linear-gradient(180deg,#d64a70,#d64a70);
+    color:   #381cb1; /* #1c0761 really dark blue */ /* KINDA RED DEEP COLOR  #c7254e; */
+}
+
+a:hover {
+    color: #381cb1;  /* dark'ish blue */ /*darkish red  #3d1308;*/
+}
+
+
+
+
+
+/* Change the hover color of the tabs to blue */
+a[role="tab"][data-toggle="tab"]:hover {
+    color: blue !important;          /* Text color on hover */
+    background-color: blue !important; /* Background color on hover */
+    /* text-decoration: underline;*/      /* Optional: Underline on hover */
+}
+
+
+
+/* Adjust hover styles for tabs with .header-section-number */
+a[role="tab"][data-toggle="tab"]:hover .header-section-number {
+    color: white !important; /* Sets the text color specifically for .header-section-number on hover */
+}
+
+/* Adjust hover styles for the entire tab if it contains .header-section-number */
+a[role="tab"][data-toggle="tab"]:hover {
+    color: white !important;           /* Text color on hover */
+    background-color: blue !important; /* Background color on hover */
+}
+
+
+
+/* Specific styling for tabs containing .header-section-number when selected */
+a[role="tab"][data-toggle="tab"].active .header-section-number {
+    color: white !important;               /* Text color for selected tab */
+}
+
+a[role="tab"][data-toggle="tab"].active {
+    background-color: #381cb1 !important;  /* #1c0761 really dark blue Custom blue for the selected state */  /*  #381cb1   2d5de9 */
+    color: white !important;               /* Ensures text on selected tab is white */
+}
+
+
+#main .nav-tabs li.active a {
+    color: white !important;                /* White text for active tab */
+    background-color: #1a3edd !important;   /* Blue background for active tab */
+    border-bottom: 1px solid #1a3edd !important; /* Blue border to match the background */
+}
+
+
+a:visited {
+    color: #3d1308; /* Super Deep Red,*/
+}
+
+/* Styling for the hover state of tabs */
+a[role="tab"]:hover {
+    background-color: #dcdcdc; /* Your desired hover background color */  /
+    color: #381cb1;               /* Your desired hover text color */
+    border-radius: 5px;        /* Optional: adds a slight rounded corner effect */
+    cursor: pointer;           /* Shows a pointer on hover */
+    text-decoration: none;     /* Removes underline on hover, if any */
+}
+
+#main .nav-pills > li.active > a, #main .nav-pills > li.active > a:hover, #main .nav-pills > li.active > a:focus {
+    color: #FFFFFF !important;
+    background-color: #381cb1;
+}
+
+#main :not(.leaflet-control) > a {
+    background-image: linear-gradient(180deg, #d64a70, #d64a70);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 2em;
+    color: #1a3edd ;  /* changed b utton color */
+    font-weight: 300;
+    padding: .125em 1px 0 1px;
+    transition: background-position .15s, color .15s;
+}
+
+
+#sidebar h2 {
+    background-color:  #1a3edd;   /* also a light blue:  #1a3edd */ /* SUPER DARK BLUE #1c0761;*/ /* Deep Red  #9F2042;*/
+}
+
+
+
+/* Add underline to all hyperlinks */
+a {
+    text-decoration: underline;
+}
