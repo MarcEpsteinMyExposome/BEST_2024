@@ -59,7 +59,17 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
       fill = factor(ParameterName)
     )
   ) +
-    geom_violin(trim = FALSE) +
+    geom_violin(trim = FALSE ) +
+    #geom_violin(trim = FALSE, fill = 'lightblue' ) +  # CHANGED THIS TO MAKE BLUE
+    # geom_jitter(      The geom_jitter puts some black dots on top of the nice chart...  note this does show the zero values ###
+    #   aes(x = factor(ParameterName), y = Result),
+    #   width = 0.15,
+    #   size = 2,
+    #   shape = 21,
+    #   color = "black",
+    #   fill = NA,
+    #   alpha = 0.5
+    # ) +
     # geom_boxplot(width=0.1, position=position_dodge(0.9)) +    # DELETE BOX PLOT as just confusing
     geom_point(
       data = summary_stats,

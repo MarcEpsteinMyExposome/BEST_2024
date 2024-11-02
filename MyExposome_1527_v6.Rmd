@@ -2,11 +2,12 @@
 params:
   logo_path: "images/myExposomeLogo_with_transparent_padding25.png"
 output:
-  rmdformats::readthedown:
+  rmdformats::readthedown:       #rmdformats::readthedown:
     self_contained: true
     number_sections: true
-    css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black
-    toc_depth: 3
+    css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
+              # base_url: ""   ###  This is not needed, did it because if right click download was converting links from relative to absolute
+    toc_depth: 3   # DELETE/COMMENT this line for some rmdformats      toc_depth: 3
     df_print: "paged"
     lightbox: true   # Enables the lightbox for clickable images
     gallery: true    # Groups images into a gallery with navigation between images
