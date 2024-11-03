@@ -275,7 +275,10 @@ convert_to_new_reduced_classifications <- function(class_L,class_conversion_tabl
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
 updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L,DropSpecificChemicals) {
   classSpecifcMasterParam <-
-    load.masterParam(classSpecificMasterParamTable,DropSpecificChemicals) # Read in new parameter Table
+    load.masterParam(
+      setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
+      DropSpecificChemicals
+      ) # Read in new parameter Table
   classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
   class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
   classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
@@ -1070,7 +1073,7 @@ addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSilic
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-
     read.table(
-      here(airConcentrationTable),
+      airConcentrationTable,
       # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
@@ -1246,7 +1249,7 @@ addAirNioshOsha <- function(testResults,airNioshOshaTable) {
   # airNioshOshaLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airNioshOshaLookup <-
     read.table(
-      here(airNioshOshaTable),
+      airNioshOshaTable,
       # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,

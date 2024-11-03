@@ -40,31 +40,40 @@ render_reports <- function(wideAllSubjects, outputFileType, output_directory, do
   }
 }
 
-
-
 if (!exists("subject")) {
   #source("MyExp_set_key_variables.R") # source() actually RUNS IT not just loads it
+  ### Here we need to hardcode "R" cause function not set yet
   source(here("R", "MyExp_set_key_variables.R"))
-}
-
-# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
-### THIS if test is SILLY cause we JUST above did rm(list=ls()) and then just loaded the key variables
-###   so there is no way masterParam exists
-if (!exists("masterParam")) {
-  source(here("R",r_code))  # source() actually RUNS IT not just loads it r_code=MyExp_Base_Code_v?.R
 }
 
 ###WE need to define any LOCAL TO THIS file variables NOW because
 ### They get overwritten by the loading of the source somehow.
 
 #EDFoutputFile <- "Pah_fakeOutputFile.csv"
-# Where to put OUTPUT FILES
-output_directory <- "results_output\\SBIR_Results_Output"
-
-#Setup data directory
-if (!file.exists(output_directory)) {
-  dir.create(output_directory)
+# Where to put OUTPUT FILES   ### REALLY i should do this using the prepend variable for consistency BUT i didn't
+if (exists("SBIR_P2_Part1_71_FixUp")){
+  if (SBIR_P2_Part1_71_FixUp){
+    output_directory <- here("results_output","SBIR_Results_Output")
+  } else {
+    output_directory <- here("results_output")
+  }
+} else {
+  output_directory <- here("results_output")
 }
+
+### Call the SOURCE
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+### THIS if test is SILLY cause we JUST above did rm(list=ls()) and then just loaded the key variables
+###   so there is no way masterParam exists
+if (!exists("masterParam")) {
+  source(r_code)  # source() actually RUNS IT not just loads it r_code=MyExp_Base_Code_v?.R
+}
+
+
+# #Setup data directory
+# if (!file.exists(output_directory)) {
+#   dir.create(output_directory)
+# }
 
 #now loop through all the subjects who have any results in testResults
 # that list of subjects can be found with
@@ -90,9 +99,6 @@ logo_path <- here("images", "myExposomeLogo_with_transparent_padding25.png")
 #outputFileType<-"pdf"
 
 
-
-
-
 # Call the function to render all the reports
 # THIS does all the work here
 # everything below is commented out and old
@@ -105,46 +111,8 @@ render_reports(
   logo_path = logo_path
 )
 
-
 #Delete anything we created
 rm(list=ls())
-
-
-
-
-#i=2
-#TRY RENDER
-#for (WideSubject in wideAllSubjects) {
-#for (i in nrow(wideAllSubjects) {
-# for (i in 1:nrow(wideAllSubjects)) {
-#   #i<-10  # JUST FOR TESTING
-#   # Access PureSampleName for the current row
-#   pure_sample_name <- wideAllSubjects$PureSampleName[i]
-#     # Access SampleNumber for the current row
-#   subject <- wideAllSubjects$SampleNumber[i]
-#   #WideSubject<-wideAllSubjects[1,]
-#   # set name of output file.  Change it for each subject
-#
-#   # Define the image path using here::here()
-#   logo_path <- here("images", "myExposomeLogo_with_transparent_padding25.png")
-#   outputFileName<-paste0("MyExposome_Report_",pure_sample_name,".",outputFileType)
-#   # NOTE could wrap rmarkdown::render call in try() to handle ERROR condition better?
-#   #rmarkdown::render(rmd_code,docType,output_file=outputFileName,output_dir=output_directory)
-#   #rmarkdown::render(rmd_code,output_file=outputFileName,output_dir=output_directory)
-#
-#   # Render the Rmd file with specified parameters
-#   # USE the logo_path param into the javascript to pass the base64 encoding we create here using the absolute path
-#   rmarkdown::render(
-#     input = rmd_code,                # Path to your Rmd file
-#     output_file = outputFileName,     # Name of the output HTML file
-#     output_dir = output_directory,    # Directory for the output file
-#     params = list(logo_path = logo_path)  # Pass logo_path as a parameter
-#   )
-#
-# }
-
-
-
 
 
 

@@ -72,21 +72,26 @@ setwd(here::here())
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 if (!exists("subject")) {
   #source("MyExp_set_key_variables.R")
-  source(here("R", "MyExp_set_key_variables.R"))
+  if (exists("setRdirectory")){
+    source(setRdirectory("MyExp_set_key_variables.R"))
+  } else {  # IF we don't have a function yet to set R directory, set it manually here
+    source(here("R","MyExp_set_key_variables.R"))
+  }
 }
 #cat("444 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+## ALSO:  FROM HERE ON all paths should be handled already by functions, just use file names unless something hard-coded inline
 if (!exists("masterParam")) {
-  source(here("R",r_code))
+  source(r_code)
 }
 
 #cat("555 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("buildMesgV")) {
-  source(here("R",support.functions.filename))
+  source(support.functions.filename)
 }
 #cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
@@ -97,7 +102,9 @@ if (!exists("buildMesgV")) {
 # NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
 # is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
-## This logo stuff is to include the MyExposome logo in the report.  I had trouble so converted logo to base64 cause path kept getting messed up for print-all-subjects
+## This logo stuff is to include the MyExposome logo in the report.  I had trouble so converted logo to base64 
+###            cause path kept getting messed up for print-all-subjects
+###  NORMALLY i wanted to put all paths in to initiation area and not say "images"here but leaving this alone cause tempermental code
 logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png")
 image_base64 <- dataURI(file = logo_path, mime = "image/png")
 ```

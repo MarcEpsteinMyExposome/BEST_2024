@@ -1,7 +1,7 @@
 library(tidyr)
 
 braun <- read.table(
-  "data/BraunChems.csv",
+  setRdirectory("BraunChems.csv"),
   sep = ",",
   header = TRUE,
   colClasses = "character" # Import all as character

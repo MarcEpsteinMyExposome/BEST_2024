@@ -9,16 +9,7 @@ library("bsplus")
 ```
 
 
-
-
-
-
-
-
 ## Statistics on Chemicals Found
-
-
-
 
 ```{r setupbs_modal_std_dev3, echo=FALSE}
 
