@@ -358,7 +358,9 @@ rm(testResultsRawTable,allowDifferentParameterCounts,load.testResults,ExpectedUn
 # IF we're doing any FIXUP (time / weight normalization of wristband results, call FIXUP routine)
 # NOTE that this fixup also ENHANCES the testResult dataframe with time_worn and weight and ResultOriginal which are NEEDED to do calculation
 if (FixupForAnyone) {
-  testResults <- fixUpTestResults(testResults,FixupFile)
+  if (!is.null(FixupFile)) {
+    testResults <- fixUpTestResults(testResults,FixupFile)
+  }
 } else if (doAIRplusNioshOSHAreporting) {
   stop("MyExp DEBUG: NOT doing ANY fixup so air calc won't work and maybe other problems---RESEARCH if hit this error")
 }

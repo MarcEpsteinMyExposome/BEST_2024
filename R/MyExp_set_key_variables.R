@@ -128,6 +128,7 @@ FixupForAnyone <- any(
   LouisvilleFixup <- FALSE,
   UFL_FloridaFixup <- FALSE,
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
+  CombinedDRS_November6_2024 <- FALSE,
   SBIR_P2_Part1_71_FixUp <- TRUE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
 )
 
@@ -177,11 +178,29 @@ testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set th
 ### HERE we should be putting all the customer-specific stuff.  IF there are multiple analysis per one customer then we if (?) else (?) it here
 ## CAUTION:  Now putting resultsTableName and FixupFile and "subject" all in custoemr specific area along with all other info about the DATA or CUSTOMER
 ###       the TEST ONLY SPECIFIC info goes with the test
+if (CombinedDRS_November6_2024) {
+  resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #  NOW DOING SBIR Phase 2 first group of 71
+  FixupFile <- NULL
+  subject <- "Subject7" # Random one from Combined Data Set
 
-if (SBIR_P2_Part1_71_FixUp) {
+  wristbands_time_adjusted_one_day <- FALSE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
+  wristbands_time_adjusted <- FALSE
+  wristbands_time_and_weight_adjusted <- FALSE
+  wristbands_week_and_weight_adjusted <- FALSE
+  wristbands_day_and_weight_adjusted <- FALSE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
+  #testDoneFor <- ""
+  ExpectedUnits <- "ng/g"
+
+} else if (SBIR_P2_Part1_71_FixUp) {
   resultsTableName <- "F24-22_MyExpoP.O.#259_CoA-WBdata.csv" #  NOW DOING SBIR Phase 2 first group of 71
   FixupFile <- "SBIR_NIH_Part1_71_SampleKey.csv"
-  subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
+  #subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
+  #subject <- "A241137" # Random another  from SBIR P2 Group 1 of 71
+  #subject <- "A241139" # Random another  from SBIR P2 Group 1 of 71
+  subject <- "A241149"  # this is 40-WB which is MARC
+
+
 
   wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week

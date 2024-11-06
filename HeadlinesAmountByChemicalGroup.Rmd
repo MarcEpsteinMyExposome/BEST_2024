@@ -19,7 +19,8 @@ THIS IS COMPLICATED and unclear what I really want to display... TBD.
 
 ### Load the R code to fill in the value of report_messages
 
-source(setRdirectory("HeadlinesAmountByChemicalGroup_R_Code.R"), local = knitr::knit_global())
+source(setRdirectory("HeadlinesAmountByChemicalGroup_R_Code.R"), 
+       local = knitr::knit_global())
 
 
 ### HERE WE DEFINE testResults.bigWithClass and this gets done when this file is first SOURCED and then it is passed-in as value

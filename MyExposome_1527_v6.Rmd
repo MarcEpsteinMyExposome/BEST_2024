@@ -166,15 +166,6 @@ toc.insertAdjacentElement("afterend", logo); } });
 
 
 
-
-
-
-
-
-
-
-
-
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
 # !diagnostics suppress=masterParam,testResults.big,class_L,SubClassScores,ParameterID,classification
 
@@ -409,11 +400,13 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
+<!-- r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval= DoSpecificSubjectAnalysis -->
 
 ```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
+<!-- r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval= DoSpecificSubjectAnalysis -->
 
 ```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval= DoSpecificSubjectAnalysis}
 ```

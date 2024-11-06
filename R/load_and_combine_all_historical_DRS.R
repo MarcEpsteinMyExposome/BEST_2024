@@ -1,5 +1,17 @@
 #
 # R code to load HISTORICAL DRS INFORMATION and COMBINE into one big file
+
+
+### CAUTION:  THIS WAS WORKING... then i rolled back to an earlier state so i lost some changes... THIS VERSION MAY HAVE BUGS:
+### CAUTION:  THIS WAS WORKING... then i rolled back to an earlier state so i lost some changes... THIS VERSION MAY HAVE BUGS:
+### CAUTION:  THIS WAS WORKING... then i rolled back to an earlier state so i lost some changes... THIS VERSION MAY HAVE BUGS:
+
+###THIS VERSION NO LONGER LOOKS IN CORRECT DIRECTORY OR GENERATES CORRECT FILE NAME
+### THIS ONE NO LONGER preserves the WB info in the wristband data... which was unnecessary anyway
+
+#  I NEED TO LOAD PARAMETER ID
+
+
 #
 # This only gets run ONCE each time there is new data to hadd to the historica dataset
 #
@@ -7,6 +19,9 @@
 if (!require("tidyverse")) {
   install.packages("tidyverse", dependencies = TRUE)
 }
+library(here)
+setwd(here::here())
+
 #
 suppressMessages(library("tidyverse"))
 options(dplyr.summarise.inform = F)
@@ -19,7 +34,7 @@ options(dplyr.summarise.inform = F)
 #
 # LOAD each CSV File One at a time, append to other file
 # Point to Subdirectory where i put all the files I could find
-path <- "./ALL_DRS_CHEMICALS/"
+path <- here("ALL_DRS_CHEMICALS_November2024","input")
 
 # Build list of files to read
 fileList <- list.files(path, pattern = "*.csv", full.names = T)
@@ -36,6 +51,18 @@ for (fileName in fileList) {
     filter(Result > 0)
   fileAll <- bind_rows(fileAll, fileLong)
 }
-write_csv(fileAll, paste0(path, "output/", "full_list_of_all_DRS_results.csv"))
+
+fileAll <- fileAll %>%
+  rename(ParameterName=Chemical)
+write_csv(fileAll, here("ALL_DRS_CHEMICALS_November2024", "output", "full_list_of_all_DRS_resultsNOV6.csv"))
+
+### NOW i wrote it without Parameter ID  but let's add it
+
+fileAllwithParameterID <- fileAll %>%
+  left_join(masterParam,by="ParameterName") %>%
+  mutate(PureSampleName=SampleNumber) %>%
+  mutate(ResultOriginal=Result) %>%
+  mutate(Units="ng/g")
+
 
 rm(file, fileAll, fileLong, fileList, fileName, path)

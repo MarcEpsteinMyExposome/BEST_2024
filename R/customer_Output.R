@@ -53,6 +53,9 @@ customer_Output <-
       #Write CSV of full testResults including RAW and not-raw data
       ## this writes out too much info and it is in LONG non-matrix format
       # THIS was to write out the RAW info for dartmouth
+      if (!("ResultOriginal" %in% colnames(testResults))){   # PRobably i fixed this elsewhere and this line is unnedded but it doesn't hurt
+        testResults$ResultOriginal <- testResults$Result
+      }
       testResults_with_Raw <- testResults %>%
         select(PureSampleName,ResultOriginal,Result,ParameterName,CASNumber,SampleNumber)
       if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into

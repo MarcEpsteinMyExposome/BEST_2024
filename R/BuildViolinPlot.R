@@ -26,8 +26,13 @@
 ###   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
 
-buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) {
+buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
+  showZeroValues=FALSE
+  logScale=TRUE
+
   # chemical_to_chart<-chemsOfConcern[7]
+
+
   # nrow()
 
 
@@ -36,9 +41,14 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
   #   filter(ParameterName == chemOfConcern) %>%
   #   select(SampleNumber, Result, ParameterName)
 
+  if (!showZeroValues) {
+    testResults_ChemOfConcern<- testResults_ChemOfConcern %>%
+      filter(Result > 0)
+  }
+
   # PICK the highlight point which is OUR ONE USERS result for this one chemical
   highlight_point <- testResults_ChemOfConcern[testResults_ChemOfConcern$SampleNumber ==
-    subject, ]
+                                                 subject, ]
 
 
   # Calculate mean and median for each group
@@ -51,6 +61,9 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
 
   # Create the base ggplot with hover text which took lots of playing around to get it to work
   ### NOTE:  I'm was surpressing   "Ignoring unknown aesthetics: text" which for some reason shows up but i fixed maybe
+
+
+  # Create the base ggplot
   chemPlot <- ggplot(
     testResults_ChemOfConcern,
     aes(
@@ -59,18 +72,8 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
       fill = factor(ParameterName)
     )
   ) +
-    geom_violin(trim = FALSE ) +
-    #geom_violin(trim = FALSE, fill = 'lightblue' ) +  # CHANGED THIS TO MAKE BLUE
-    # geom_jitter(      The geom_jitter puts some black dots on top of the nice chart...  note this does show the zero values ###
-    #   aes(x = factor(ParameterName), y = Result),
-    #   width = 0.15,
-    #   size = 2,
-    #   shape = 21,
-    #   color = "black",
-    #   fill = NA,
-    #   alpha = 0.5
-    # ) +
-    # geom_boxplot(width=0.1, position=position_dodge(0.9)) +    # DELETE BOX PLOT as just confusing
+    #geom_violin(trim = FALSE) +
+    geom_violin(trim = FALSE, fill = 'lightblue' ) +  # CHANGED THIS TO MAKE BLUE
     geom_point(
       data = summary_stats,
       aes(x = factor(ParameterName), y = mean_Result),
@@ -82,7 +85,6 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
     geom_point(
       data = summary_stats,
       aes(x = factor(ParameterName), y = median_Result),
-      # color = "green",
       color = "#008000",
       size = 3,
       shape = 21,
@@ -96,27 +98,48 @@ buildPlotlyViolin <- function(chemOfConcern, testResults_ChemOfConcern,subject) 
       shape = 21,
       fill = NA
     ) +
-    labs(
-      # title = "Mean, Median, and Your exposure", y = "Nanograms per Gram Silicone", x = ""
-      title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",
-      y = "Nanograms per Gram Silicone",
-      x = ""
-    ) +
     theme_minimal() +
     theme(
       plot.title = element_markdown(size = 14, face = "bold")
     ) +
     scale_fill_brewer(palette = "Pastel1") +
     theme_minimal(base_size = 15) +
-    theme(legend.position = "none") +
-    coord_flip()
+    theme(legend.position = "none")
+
+  # NOTE that we are applying LOGSCALE if set true every time.  COULD apply it only if values > 100 with somethng like
+  #     testing max(testResults_ChemOfConcern$Result, na.rm = TRUE) > 100) and then setting logscale back to false?
+  # Apply log transformation to the y-axis before flipping if needed
+  if (logScale) {
+    chemPlot <- chemPlot + scale_y_log10(labels = scales::comma_format(big.mark = ","))+  # Apply log transformation to Result values
+      labs(
+        title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",
+        y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' ",
+        x = ""
+      )
+  } else {
+    chemPlot <- chemPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ",")) +
+      labs(
+        title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",
+        y = "Nanograms per Gram Silicone",
+        x = ""
+      )
+  }
+
+  # Flip coordinates
+  chemPlot <- chemPlot + coord_flip()
+
+  # Set the scale for the new y-axis (previously x-axis)
+  #chemPlot <- chemPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ","))
+
+
+
 
   # Display the interactive plot but try to style just ONE POINT
   text_MEDIAN_label <- paste("Median Result:", round(summary_stats$median_Result, 2))
   text_MEAN_label <- paste("Mean Result:", round(summary_stats$mean_Result, 2))
   text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2))
 
-  chemPlot <- chemPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ","))
+
 
   # plotly_json(chemPlot)   # this is the command to run to figure out what "traces" to set to which info
 

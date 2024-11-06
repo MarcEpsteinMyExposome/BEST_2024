@@ -65,12 +65,12 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 ###     NOTE that in both cases we have the CODE to print the listing in those database... BUT.... it never gets hit if it's not there!
 
 plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) {
+  # chemsList<- chemsOfConcern
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
-      # chemOfConcern <- chemsList[2]
-      # chemOfConcern <- chemsList[1]
-
+      # chemItem <- chemsList[2]
+  
 
       # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
       testResults_ChemItem <- testResults.big %>%
@@ -78,12 +78,13 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         select(SampleNumber, Result, ParameterName)
 
 
-      if (nrow(testResults_ChemItem) > 1) {
+      if(nrow(testResults_ChemItem[testResults_ChemItem$Result >0,])>1)
+        {                     # THIS is hopefully skipping tring to plot any chems where only 1 ahs values
+        #if (nrow(testResults_ChemItem) > 1) {
         cat("###", chemItem, "{-}", "\n\n")
-        
         htmlTagList<- htmltools::tagList(
           buildPlotlyViolin(chemItem, testResults_ChemItem,subject)
-          )
+        )
 
         
         if (!is.null(htmlTagList)) { 

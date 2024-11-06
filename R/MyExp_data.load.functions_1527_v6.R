@@ -565,6 +565,10 @@ fixUpTestResults <- function(testResults,FixupFile) {
 
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
+  if(is.null(FixupFile)){
+    testResults$ResultOriginal <- testResults$Result
+    return(testResults)
+  }
   fixUpResults <-
     read.table(
       FixupFile,

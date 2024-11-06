@@ -14,6 +14,7 @@
 # FIRST clean up environment a little and set some local variables
 rm(list=ls())  # clear things out
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre7')
+library("here")
 setwd(here::here())
 
 
@@ -84,7 +85,12 @@ wideAllSubjects <- testResults.big %>%
   select(PureSampleName,SampleNumber) %>%
   unique()
 
-allSubjects<- unique(testResults.big[testResults.big$Result>0,]$PureSampleName)  # On 10/17/2024 I switched to using PureSampleName instead of FSESID
+### AS FAR AS I SEEE, allSubjects is NEVER USED??
+#allSubjects<- unique(testResults.big[testResults.big$Result>0,]$PureSampleName)  # On 10/17/2024 I switched to using PureSampleName instead of FSESID
+
+### LET"S PICK just 10 from this list:
+#random10 <- sample_n(wideAllSubjects, 10)
+#wideAllSubjects<-random10
 
 docType<-"html_document"
 outputFileType<-"html"
