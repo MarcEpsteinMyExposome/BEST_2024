@@ -392,7 +392,7 @@ oneResultIARCRisk <- inner_join(oneResult_with_Y_flag, IARCRisk, by = "Parameter
   select(ParameterName, IARC_Classification) %>%
   arrange(ParameterName)
 
-# Rename the two columns
+# Rename the two columns  
 names(oneResultIARCRisk) <- c("Chemical Name", "Risk Type Per IARC")
 
 # How many were found
