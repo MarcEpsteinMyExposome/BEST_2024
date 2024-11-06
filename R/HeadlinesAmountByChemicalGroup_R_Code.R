@@ -29,6 +29,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
   # Iterate through each classification to generate report messages
   for (class in classifications) {
     # class <- "Consumer & Personal Care Products"   # USING THIS to step trace and debug if message is correct
+    # class <- "Agricultural & Pharmaceutical Chemicals"
 
     if (debug) {
       cat("in classification loop, classification = ", class, "   messages= ", messages, " message = ", message, "\n")
@@ -53,6 +54,11 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
     # compound <-"Tricresylphosphate, meta-"
     # compound <-"TCPP"
 
+    # compound <-"1,6-Dimethylnaphthalene"    #Pollutants from crude oil, fuel, and fires
+
+    # compound <-"4,4'-DDE"    #Agricultural & Pharmaceutical Chemicals
+
+
 
 
     # compound <- "Fipronil" #is a Pesticide
@@ -63,6 +69,8 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
       # compound <- "Bis(2-ethylhexyl)phthalate"    # This is ""Consumer & Personal Care Products"
       # compound <- "Dimethyl phthalate"    # This is ""Consumer & Personal Care Products"
       # compound <- "Carvone"    # This is ""Consumer & Personal Care Products"
+
+      # compound <-"4,4'-DDE"    #Agricultural & Pharmaceutical Chemicals
 
 
 
@@ -133,8 +141,8 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
         compounds_meeting_criteria5 <- c(compounds_meeting_criteria5, compound)
       }
 
-      # Criteria 6: No detected compounds from this group
-      if (!any(individual_data$ParameterName == compound)) {
+      # Criteria 6: No detected compounds from this group-- Capture ALL matches and IF NO MATCHES then "no detected compounds from this group"
+      if (any(individual_data$ParameterName == compound)) {
         compounds_meeting_criteria6 <- c(compounds_meeting_criteria6, compound)
       }
 
@@ -174,7 +182,8 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
     }
 
 
-
+    ### THESE ARE THE RULES from Silient spring BUT i slightly reworded AND skipped a few just to get something done.
+    ###   Can add more clarity, particularly "how much higher"
     if (length(compounds_meeting_criteria1) > 1) {
       message <- paste0(
         "You had some **",
@@ -184,7 +193,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
     } else if (length(compounds_meeting_criteria1) == 1) {
       ### compound <- individual_data$ParameterName[individual_data$Result >= pct_95 & (sum(class_data$Result > 0) / sample_count) <= 0.10]   ### WHAT is this doing
       message <- paste0(
-        "You had one **",
+        "You had **",
         class,
         "** compound, **",
         #compound,
@@ -200,11 +209,11 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
     } else if (length(compounds_meeting_criteria2) == 1) {
       ### compound <- unique(individual_data$ParameterName[individual_data$Result >= pct_95 & individual_data$Result > 10 * median_result]  ## WHAT is this doing here?)
       message <- paste0(
-        "You had exactly exactly one **",
+        "You had a higher level of **",
         class,
         "** compound, **",
         compounds_meeting_criteria2,
-        "**, that was higher than 95% of the other people."
+        "**, compared to 95% of other people in the study."
       )
     } else if (length(compounds_meeting_criteria3) > 0) {
       message <- paste0(
@@ -224,11 +233,11 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
         class,
         "** compared to 75% of the other people."
       )
-    } else if (length(compounds_meeting_criteria6) > 0) {
+    } else if (length(compounds_meeting_criteria6) == 0) {
       message <- paste0(
         "You had no **",
         class,
-        "**  detected in our wristband."
+        "**  detected in your wristband."
       )
     } else if (length(compounds_meeting_criteria7) > 0) {
       message <- paste0(
