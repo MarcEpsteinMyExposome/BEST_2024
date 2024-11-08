@@ -42,7 +42,7 @@ Here are all the chemicals found on any wristband. If every participants wristba
 
 `r if(DoSpecificSubjectAnalysis){"If the chemical was found on your wristband then that bar is colored blue.  If the chemical was found on at least one other participant, but not on your wristband, the bar is colored grey.  For example, if you see a high percentage of blue bars up near 100% then your sample has a high overlap with the rest of the study group.  If most of the blue bars are down below 50% then your sample does not overlap as much with the rest of the group."}`
 
-```{r Chart_bar_Percentages, echo=FALSE, message=FALSE,fig.height=6, fig.cap="", dpi=300}
+```{r Chart_bar_Percentages, echo=FALSE, message=FALSE,fig.height=12, fig.cap="", dpi=300}
 ###THIS IS a better version of above, eliminating SQLDF
 #     it gives us a table with 2 columns, ALL FOUND CHEMS and % wb w/ chem
 #### but now I'm adding a 3rd column, subHas, which will be true if OUR subject has THAT value
@@ -60,63 +60,151 @@ Here are all the chemicals found on any wristband. If every participants wristba
 #   group_by(ParameterName) %>%                                  # Group by one column
 #   summarise(PercentSubjects=round(n()/howManyWristbandsTested,2),             # COUNT how many values, and make %
 #             subjectHasChem=as.numeric(any(SampleNumber==subject)))     # Add 1 if our subject has, 0 otherwise
+# # 
 # 
+# ## NEWER 3/7/2019 version that make sure to count any FLAG=Y as having a value
+# z<-testResults.big %>%                      # Pipe all non zero results
+#   mutate(Result = case_when (Flag=="Y" ~ 100,
+#                              TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
+#   filter(Result>0) %>%
+#   select(ParameterName,SampleNumber)%>%                        # select only 2 columns
+#   group_by(ParameterName) %>%                                  # Group by one column
+#   summarise(PercentSubjects=round(dplyr::n()/howManyWristbandsTested,2),             # COUNT how many values, and make %
+#             subjectHasChem=as.numeric(any(SampleNumber==subject))) 
+# 
+# ## I COULD LOOP THROUGH if   length(z$ParameterName)  > 50 or whatever we'll group them by Chemical Group BUT THEN we need to keep testResults.Big (WITH CLASS)
+# #length(z$ParameterName)
+# ### ADD HERE a loop that does versions of C but need to set approriate title (all chemical found .. becomes... "All GROUP1 Chemical Found")
+# 
+# c <- ggplot(z, aes(y=PercentSubjects,
+#                    factor(ParameterName),
+#                    fill=factor(subjectHasChem)))
+# c <- c+ geom_bar(stat="identity")
+# 
+# #CLEANUP some extra things
+# rm(z)
+# 
+#  #SET FONT SIZE for X axis Labels
+#  if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
+#    x_axis_font_size = 12
+#  } else if (howManyWristbandsTested <= 120) {
+#    x_axis_font_size = 6
+#  } else {
+#    x_axis_font_size = 4
+# }
+# 
+# c<- c+theme(axis.line=element_blank(),
+#            axis.ticks=element_blank(),
+#            axis.title.x=element_blank(),
+#            #axis.text.x = element_text(angle = 70,hjust = 1,size=4 ),
+#            axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size),
+#            legend.position="none",
+#            panel.background=element_blank(),
+#            panel.border=element_blank(),
+#            panel.grid.major=element_blank(),
+#            panel.grid.minor=element_blank(),
+#            plot.background=element_blank())
+# if (HideIndividualization) {
+#   c <- c + scale_fill_manual(values = c("blue","blue"))
+# } else {
+#   c <- c + scale_fill_manual(values = c("grey","blue"))
+# }
+# 
+# c <- c  +labs(x="All Chemicals Found", y="Percentage of Participants with Chemical",
+#                title="All Chemicals Found")
+# 
+# c <- c + geom_hline(yintercept=.50, linetype="dashed", color = "red")  # ADD horizontal red line at 50% 
+# 
+# c <- c + scale_y_continuous(labels=percent) 
 
-## NEWER 3/7/2019 version that make sure to count any FLAG=Y as having a value
-z<-testResults.big %>%                      # Pipe all non zero results
-  mutate(Result = case_when (Flag=="Y" ~ 100,
-                             TRUE ~ Result)) %>%  # IF we have a Y flag on an item set the ZERO value to 100
-  filter(Result>0) %>%
-  select(ParameterName,SampleNumber)%>%                        # select only 2 columns
-  group_by(ParameterName) %>%                                  # Group by one column
-  summarise(PercentSubjects=round(dplyr::n()/howManyWristbandsTested,2),             # COUNT how many values, and make %
-            subjectHasChem=as.numeric(any(SampleNumber==subject))) 
 
-
-
-
-c <- ggplot(z, aes(y=PercentSubjects,
-                   factor(ParameterName),
-                   fill=factor(subjectHasChem)))
-c <- c+ geom_bar(stat="identity")
-
-#CLEANUP some extra things
-rm(z)
-
- #SET FONT SIZE for X axis Labels
- if (howManyUniqueChemFoundAcrossAllWristbands<=60) {
-   x_axis_font_size = 12
- } else if (howManyWristbandsTested <= 120) {
-   x_axis_font_size = 6
- } else {
-   x_axis_font_size = 4
+# Data transformation pipeline
+transform_data <- function(data, subject, threshold = 0) {
+  data %>%
+    mutate(Result = ifelse(Flag == "Y", 100, Result)) %>%  # Set Result to 100 if Flag is "Y"
+    filter(Result > threshold) %>%
+    select(ParameterName, SampleNumber) %>%
+    group_by(ParameterName) %>%
+    summarise(
+      PercentSubjects = round(n() / howManyWristbandsTested, 2),
+      subjectHasChem = as.numeric(any(SampleNumber == subject))
+    )
 }
 
-c<- c+theme(axis.line=element_blank(),
-           axis.ticks=element_blank(),
-           axis.title.x=element_blank(),
-           #axis.text.x = element_text(angle = 70,hjust = 1,size=4 ),
-           axis.text.x = element_text(angle = 70,hjust = 1,size=x_axis_font_size),
-           legend.position="none",
-           panel.background=element_blank(),
-           panel.border=element_blank(),
-           panel.grid.major=element_blank(),
-           panel.grid.minor=element_blank(),
-           plot.background=element_blank())
-if (HideIndividualization) {
-  c <- c + scale_fill_manual(values = c("blue","blue"))
+plot_chemicals <- function(data_subset, font_size, title_suffix, hide_individualization = FALSE, flipCord) {
+  returnPlot<-ggplot(data_subset, aes(y = PercentSubjects, x = factor(ParameterName), fill = factor(subjectHasChem))) +
+    geom_bar(stat = "identity") +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.title.x = element_blank(),
+      axis.text.x = element_text(angle = 70, hjust = 1, size = font_size),
+      legend.position = "none",
+      panel.background = element_blank(),
+      panel.border = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      plot.background = element_blank()
+    ) +
+    scale_fill_manual(values = if (hide_individualization) c("blue", "blue") else c("grey", "blue")) +
+    labs(
+      x = "All Chemicals Found",
+      y = "Percentage of Participants with Chemical",
+      title = paste("All Chemicals Found", title_suffix)
+    ) +
+    geom_hline(yintercept = 0.50, linetype = "dashed", color = "red") +  # 50% line
+    scale_y_continuous(labels = percent)
+  if (flipCord){
+    returnPlot+coord_flip()
+  } else {
+    returnPlot
+  }
+}
+# Function to create and display multiple plots
+generate_multiple_plots <- function(data, subject, font_size = 6, batch_size = 50, hide_individualization = FALSE,flipCord) {
+  # Transform data
+  transformed_data <- transform_data(data, subject)
+  
+  # Split data into batches
+  parameter_batches <- split(transformed_data, (seq_len(nrow(transformed_data)) - 1) %/% batch_size)
+  
+  # Loop over batches to generate and display plots
+  plot_list <- list()
+  for (i in seq_along(parameter_batches)) {
+    batch_data <- parameter_batches[[i]]
+    title_suffix <- paste("Section", i)
+    
+    # Generate plot for each batch and add it to the list
+    plot <- plot_chemicals(batch_data, font_size, title_suffix, hide_individualization,flipCord)
+    #print(plot)  # Print each plot to display in RMarkdown
+    plot_list[[i]] <- plot  # Store each plot in a list (optional)
+  }
+  invisible(plot_list)  # Return list of plots invisibly
+}
+
+setFontSize <- function(howManyItemsPlotted) {
+  if (howManyItemsPlotted<=60) {
+  x_axis_font_size = 12
+} else if (howManyItemsPlotted <= 120) {
+  x_axis_font_size = 6
 } else {
-  c <- c + scale_fill_manual(values = c("grey","blue"))
+  x_axis_font_size = 4
+}
+  
 }
 
-c <- c  +labs(x="All Chemicals Found", y="Percentage of Participants with Chemical",
-               title="All Chemicals Found")
+#many_plots <- generate_multiple_plots(testResults.big, subject = subject, font_size = x_axis_font_size, batch_size = 50, hide_individualization = HideIndividualization)
+batch_size <- 50
+font_size <- setFontSize(batch_size)
+many_plots <- generate_multiple_plots(testResults.big, subject = subject, font_size = font_size, batch_size, hide_individualization = HideIndividualization,flipCord=TRUE)
 
-c <- c + geom_hline(yintercept=.50, linetype="dashed", color = "red")  # ADD horizontal red line at 50% 
-
-c <- c + scale_y_continuous(labels=percent) 
-c 
-
+for (i in seq_len(length(many_plots))) {
+  print(many_plots[[i]])
+  #print(many_plots[[1]])
+  #print(many_plots[[2]])
+}
+# c 
+#  c+coord_flip()
 rm(c)
 
 ```
