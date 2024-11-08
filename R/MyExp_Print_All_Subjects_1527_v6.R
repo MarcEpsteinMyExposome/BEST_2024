@@ -92,10 +92,6 @@ wideAllSubjects <- testResults.big %>%
 ### make sure they are "WB" samples:
 #wideAllSubjects <- wideAllSubjects %>%  filter(str_ends(SampleNumber, "-WB")) %>%  sample_n(10)
 
-
-#random10 <- sample_n(wideAllSubjects, 10)
-#wideAllSubjects<-random10
-
 docType<-"html_document"
 outputFileType<-"html"
 logo_path <- here("images", "myExposomeLogo_with_transparent_padding25.png")

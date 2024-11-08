@@ -373,7 +373,7 @@ if (FixupForAnyone) {
 rm(list=c("Big_Mas15_List_Fixup", "BostonFixup", "BuffaloFixup", "CHICAGOFixUp",
           "COLORADOFixUp", "FixupFile",                            #  "DartmouthFixup",   I DELETED DARMOUTH FIXUP cause that has special handling rules so keep it around
           "FixupForAnyone", "fixUpTestResults", "GEORGETOWNFixUp", "LorealFixup",
-          "LouisvilleFixup", "SBIR_P1_May2022Fixup", "SBIR_P2_Part1_71_FixUp",
+          "LouisvilleFixup", "SBIR_P1_May2022Fixup",                                   ###  I leave this around so I can test in PRINT ALL SUBJECTS  "SBIR_P2_Part1_71_FixUp",
           "UC_DAVISFixup", "UCONNFixUp", "UCSF2020Fixup", "UCSFplusRandom10Fixup",
           "UFL_FloridaFixup", "ULILLEFRANCEFixup", "UMTFixup", "UniVisionFixup",
           "UNMFixup", "WisconsinFixup"))

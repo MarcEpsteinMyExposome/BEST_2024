@@ -194,7 +194,7 @@ setFontSize <- function(howManyItemsPlotted) {
 }
 
 #many_plots <- generate_multiple_plots(testResults.big, subject = subject, font_size = x_axis_font_size, batch_size = 50, hide_individualization = HideIndividualization)
-batch_size <- 50
+batch_size <- 500
 font_size <- setFontSize(batch_size)
 many_plots <- generate_multiple_plots(testResults.big, subject = subject, font_size = font_size, batch_size, hide_individualization = HideIndividualization,flipCord=TRUE)
 
