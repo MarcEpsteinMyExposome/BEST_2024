@@ -88,7 +88,11 @@ wideAllSubjects <- testResults.big %>%
 ### AS FAR AS I SEEE, allSubjects is NEVER USED??
 #allSubjects<- unique(testResults.big[testResults.big$Result>0,]$PureSampleName)  # On 10/17/2024 I switched to using PureSampleName instead of FSESID
 
-### LET"S PICK just 10 from this list:
+### LET"S PICK just 10 from this list
+### make sure they are "WB" samples:
+#wideAllSubjects <- wideAllSubjects %>%  filter(str_ends(SampleNumber, "-WB")) %>%  sample_n(10)
+
+
 #random10 <- sample_n(wideAllSubjects, 10)
 #wideAllSubjects<-random10
 
