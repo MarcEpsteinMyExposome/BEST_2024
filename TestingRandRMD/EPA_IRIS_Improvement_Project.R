@@ -48,11 +48,11 @@ print(duplicate_IRIS)
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 if (!exists("subject")) {
-  source(here("R","MyExp_set_key_variables.R"))
+  source(here::here("R","MyExp_set_key_variables.R"))
 }
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("masterParam")) {
-  source(here("R",r_code))
+  source(here::here("R",r_code))
 }
 
 # Clean up environment a little

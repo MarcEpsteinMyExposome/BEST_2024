@@ -52,39 +52,39 @@ setwd(here::here())
 
 # SETUP key environment stuff:
 #      Setup data directory
-if (!file.exists(here("data"))) {
-  dir.create(here("data"))
+if (!file.exists(here::here("data"))) {
+  dir.create(here::here("data"))
 }
 
 #########  The following functions tell the code about the directory structure.  Where are the different kinds of files.
 # Set up name of R CODE files
 setRdirectory <- function(fileName){
-  here("R",fileName)
+  here::here("R",fileName)
 }
 # Set up location of AIR concentration files
 setAIRdirectory <- function(fileName){
-  here("AirConcentration",fileName)
+  here::here("AirConcentration",fileName)
 }
 
 # Set up location of Fixup  files
 setFIXUPdirectory <- function(fileName){
-  here("data","data_FixupSampleKey",fileName)
+  here::here("data","data_FixupSampleKey",fileName)
 }
 
 # Set up location of CUSTOMER DATA  files
 setCUSTOMERdirectory <- function(fileName){
-  here("data","data_Customers",fileName)
+  here::here("data","data_Customers",fileName)
 }
 
 # Set up location of CUSTOMER DATA  files
 setMASTERPARAM_CLASS_RISKSdirectory <- function(fileName){
-  here("data","data_MasterParams_Class_Risks",fileName)
+  here::here("data","data_MasterParams_Class_Risks",fileName)
 }
 
 
 # Set up location of COMBINED ALL DRS  DATA  files
 setCOMBINED_DRSdirectory <- function(fileName){
-  here("data","CombinedTestData",fileName)
+  here::here("data","CombinedTestData",fileName)
 }
 
 ################ FOR SPECIFIC CUSTOMERS SET FLAGS HERE and include/not-include RMD files
@@ -128,8 +128,8 @@ FixupForAnyone <- any(
   LouisvilleFixup <- FALSE,
   UFL_FloridaFixup <- FALSE,
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
-  CombinedDRS_November6_2024 <- TRUE,
-  SBIR_P2_Part1_71_FixUp <- FALSE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
+  CombinedDRS_November6_2024 <- FALSE,
+  SBIR_P2_Part1_71_FixUp <- TRUE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
 )
 
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...
@@ -262,7 +262,7 @@ if (CombinedDRS_November6_2024) {
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
   testDoneFor <- "Dartmouth"
-  DataFile_and_OutputFile_Prepend <- "Dartmouth" # ALWAYS USE THE SLASH at end, NO:  GET RID OF SLASH as moving to HERE() system
+  DataFile_and_OutputFile_Prepend <- "Dartmouth" # ALWAYS USE THE SLASH at end, NO:  GET RID OF SLASH as moving to here::here() system
   ExpectedUnits <- "ng/WB"
 } else if (UCSF2020Fixup) {
   FixupFile <- "Fixup_UCSF_1_plus_27_plus_1_Sample login info - 052419_fixed_BY_MARC_ADD_FSES_REPAIR_PARTICIPANT_NAME.csv"

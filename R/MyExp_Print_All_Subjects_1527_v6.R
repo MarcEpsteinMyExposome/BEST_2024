@@ -44,7 +44,7 @@ render_reports <- function(wideAllSubjects, outputFileType, output_directory, do
 if (!exists("subject")) {
   #source("MyExp_set_key_variables.R") # source() actually RUNS IT not just loads it
   ### Here we need to hardcode "R" cause function not set yet
-  source(here("R", "MyExp_set_key_variables.R"))
+  source(here::here("R", "MyExp_set_key_variables.R"))
 }
 
 ###WE need to define any LOCAL TO THIS file variables NOW because
@@ -54,12 +54,12 @@ if (!exists("subject")) {
 # Where to put OUTPUT FILES   ### REALLY i should do this using the prepend variable for consistency BUT i didn't
 if (exists("SBIR_P2_Part1_71_FixUp")){
   if (SBIR_P2_Part1_71_FixUp){
-    output_directory <- here("results_output","SBIR_Results_Output")
+    output_directory <- here::here("results_output","SBIR_Results_Output")
   } else {
-    output_directory <- here("results_output")
+    output_directory <- here::here("results_output")
   }
 } else {
-  output_directory <- here("results_output")
+  output_directory <- here::here("results_output")
 }
 
 ### Call the SOURCE
@@ -94,7 +94,7 @@ wideAllSubjects <- testResults.big %>%
 
 docType<-"html_document"
 outputFileType<-"html"
-logo_path <- here("images", "myExposomeLogo_with_transparent_padding25.png")
+logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png")
 
 #THESE SETTINGS FOR WORD DOC do NOT HANDLE BIG TABLES WELL YET.
 #docType<-"word_document"

@@ -10,7 +10,11 @@ editor_options:
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
 ## The function to build a violin plot is now in a separate R file
 #source("BuildViolinPlot.R")
-source(setRdirectory("BuildViolinPlot.R"))
+#source(setRdirectory("BuildViolinPlot.R"))
+#source(setRdirectory("BuildViolinSina.R"))
+
+source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
+
 
 
 # Make list of all chemicals that our ONE user had that showed up in "any" of the databases
@@ -69,7 +73,8 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
-      # chemItem <- chemsList[2]
+      # chemItem <- chemsList[1]
+      # chemItem <- chemsList[5]
   
 
       # NOW make a table of all the users that had the one chemical of concern that we selected which our one user had
@@ -83,15 +88,18 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         #if (nrow(testResults_ChemItem) > 1) {
         cat("###", chemItem, "{-}", "\n\n")
         htmlTagList<- htmltools::tagList(
-          buildPlotlyViolin(chemItem, testResults_ChemItem,subject)
+          buildPlotlySina(chemItem, testResults_ChemItem,subject)
         )
+
+#          buildPlotlySina(chemItem, testResults_ChemItem,subject)
+#          buildPlotlyViolin(chemItem, testResults_ChemItem,subject)
 
         
         if (!is.null(htmlTagList)) { 
           print(htmlTagList)
           }
 
-        newMessage <- NULL
+        newMessage <- "\n"  ## Leave one blank line below any text messages
 
         newMessage <- paste(
           newMessage,

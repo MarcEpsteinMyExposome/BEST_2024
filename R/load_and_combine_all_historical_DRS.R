@@ -27,7 +27,7 @@ options(dplyr.summarise.inform = F)
 #
 # LOAD each CSV File One at a time, append to other file
 # Point to Subdirectory where i put all the files I could find
-path <- here("ALL_DRS_CHEMICALS_November2024","input")
+path <- here::here("ALL_DRS_CHEMICALS_November2024","input")
 
 # Build list of files to read
 fileList <- list.files(path, pattern = "*.csv", full.names = T)
@@ -98,7 +98,7 @@ fileAll <- fileLong %>%
   select(ParameterID,PureSampleName,SampleNumber,ParameterName,Result,ResultOriginal,Units)
 
 
-write_csv(fileAll, here("ALL_DRS_CHEMICALS_November2024", "output", "full_list_of_all_DRS_resultsNOV8.csv"))
+write_csv(fileAll, here::here("ALL_DRS_CHEMICALS_November2024", "output", "full_list_of_all_DRS_resultsNOV8.csv"))
 
 
 rm( fileAll, fileLong, fileList, path,subject_id_mapping,doNotChangeNamePattern,unique_samples)

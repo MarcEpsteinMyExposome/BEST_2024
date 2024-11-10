@@ -68,6 +68,12 @@
 #   ALSO:  Should set error trap for FLAG not = U or J or BLANK cause that is only valid #'s
 
 ##################
+#install.packages("plyr")
+#install.packages("sinaplot")
+
+#library("plyr")
+#library("sinaplot")
+#library("dplr)
 
 
 # Function to check, install, and load packages
@@ -86,18 +92,29 @@ load_package <- function(packages) {
 # PLOTLY is used to create interactive plots,   Added to help w/ VIOLIN charts
 # Added HTMLTOOLS because it allows better generation of html files and separate items in report (first used in violin)
 required_packages <- c(
+  #"plyr",
+  #"dplyr",  # Explicitly loading plyr before dplyr and plyr is needed for sinaplot
+  #"sinaplot",
+  "ggforce", ## UNCLEAR
   "png", "ggplot2", "ggtext", "plotly", "htmltools", "rlang",
   "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid",
   "styler",   # Added styler to allow manual styling of code using the "addins" menu item
   "readxl",
   "bsplus",    # Added BSPLUS to allow popup bottons
   "patchwork",  # added to do side-by-side graphi layout
-  "here",  # USE the HERE package to locate the LOGO and provide an absolute path instead of a relative path cause relative path messes up print-all-subjects
+  "here",     # USE the HERE package to locate the LOGO and provide an absolute path instead of a relative path cause relative path messes up print-all-subjects
   "base64enc"
+
   #"reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )
 
 other_packages <- c("sqldf", "RSQLite", "gplots") # DO NOT LOAD THESE unless needed,  move then to required packages
+
+
+#unloadNamespace("sinaplot")
+#unloadNamespace("plyr")
+#unloadNamespace("dplyr")
+
 
 # Load all required packages
 load_package(required_packages)
@@ -119,7 +136,7 @@ setwd(here::here())  # If you’re using the here package for relative paths
 
 # Additional code for setting up environment, key variables, etc.
 if (!exists("subject")) {   ##  NEED TO HARD CODE  R Directory Location
-  source(here("R","MyExp_set_key_variables.R"))
+  source(here:here("R","MyExp_set_key_variables.R"))
 }
 
 if (!exists("customer_Output")) {
@@ -373,7 +390,7 @@ if (FixupForAnyone) {
 rm(list=c("Big_Mas15_List_Fixup", "BostonFixup", "BuffaloFixup", "CHICAGOFixUp",
           "COLORADOFixUp", "FixupFile",                            #  "DartmouthFixup",   I DELETED DARMOUTH FIXUP cause that has special handling rules so keep it around
           "FixupForAnyone", "fixUpTestResults", "GEORGETOWNFixUp", "LorealFixup",
-          "LouisvilleFixup", "SBIR_P1_May2022Fixup",                                   ###  I leave this around so I can test in PRINT ALL SUBJECTS  "SBIR_P2_Part1_71_FixUp",
+          "LouisvilleFixup", "SBIR_P1_May2022Fixup",                                   ###  I leave this around so I can test in PRINT ALL SUBJECTS "SBIR_P2_Part1_71_FixUp",
           "UC_DAVISFixup", "UCONNFixUp", "UCSF2020Fixup", "UCSFplusRandom10Fixup",
           "UFL_FloridaFixup", "ULILLEFRANCEFixup", "UMTFixup", "UniVisionFixup",
           "UNMFixup", "WisconsinFixup"))

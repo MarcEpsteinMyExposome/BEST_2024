@@ -64,7 +64,7 @@ output:
 
 library(here)
 setwd(here::here())  
-##source(here("R", ""))
+##source(here::here("R", ""))
 #cat("333 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 
@@ -75,7 +75,7 @@ if (!exists("subject")) {
   if (exists("setRdirectory")){
     source(setRdirectory("MyExp_set_key_variables.R"))
   } else {  # IF we don't have a function yet to set R directory, set it manually here
-    source(here("R","MyExp_set_key_variables.R"))
+    source(here::here("R","MyExp_set_key_variables.R"))
   }
 }
 #cat("444 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)

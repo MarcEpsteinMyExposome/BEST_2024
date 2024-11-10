@@ -19,8 +19,8 @@ customer_Output <-
 
 
     if (!exists("output_directory")) {
-      #output_directory <- here("results_output")
-      output_directory <- here("results_output",DataFile_and_OutputFile_Prepend)
+      #output_directory <- here::here("results_output")
+      output_directory <- here::here("results_output",DataFile_and_OutputFile_Prepend)
     }
 
 
@@ -41,7 +41,7 @@ customer_Output <-
 
       if (!exists("result_OutputFile")) {
         result_OutputFile <-
-          here(output_directory,  ###  NEED TO CHANGE THIS to use here() logic -- DONE!
+          here::here(output_directory,  ###  NEED TO CHANGE THIS to use here() logic -- DONE!
                  "ResultsOutputFile.csv")
       }
       write.csv(results_W_CustName,
@@ -60,7 +60,7 @@ customer_Output <-
         select(PureSampleName,ResultOriginal,Result,ParameterName,CASNumber,SampleNumber)
       if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
         results_Raw_and_Modified_full_and_long <-
-          here( output_directory, "results_Raw_and_Modified_full_and_long.csv")
+          here::here( output_directory, "results_Raw_and_Modified_full_and_long.csv")
       }
       write.csv(
         testResults_with_Raw,   ###  NEED TO CHANGE THIS to use here() logic
@@ -87,7 +87,7 @@ customer_Output <-
       #Write that table out
       write.csv(
         lookupTable,              ###  NEED TO CHANGE THIS to use here() logic  -- DONE
-        file = here(output_directory, "CustomerLookupTable.csv" ),
+        file = here::here(output_directory, "CustomerLookupTable.csv" ),
         row.names = FALSE
       )
       rm(lookupTable, result_OutputFile)
@@ -107,7 +107,7 @@ customer_Output <-
       #Write that table out
       write.csv(
         class_W,
-        file = here(output_directory, "ChemicalClassifications.csv"),   ###  NEED TO CHANGE THIS to use here() logic -- DONE
+        file = here::here(output_directory, "ChemicalClassifications.csv"),   ###  NEED TO CHANGE THIS to use here() logic -- DONE
         row.names = FALSE
       )
     }
@@ -135,7 +135,7 @@ customer_Output <-
       # Write CSV in R of _ouput in their format
       if (!exists("result_OutputFileSampleNumber")) {
         result_OutputFileSampleNumber <-
-          here( output_directory, "ResultsOutputFileSampleNumber.csv" )
+          here::here( output_directory, "ResultsOutputFileSampleNumber.csv" )
       }
 
       #cat("222 in customer_output...\n", file = "debug_log.txt", append = TRUE)
@@ -147,7 +147,7 @@ customer_Output <-
       # Write CSV in R of _ouput in their format
       if (!exists("results_OutputFileSampleNumber_Transposed")) {
         results_OutputFileSampleNumber_Transposed <-
-          here( output_directory,"ResultsOutputFileSampleNumber_Transposed.csv" )
+          here::here( output_directory,"ResultsOutputFileSampleNumber_Transposed.csv" )
       }
 
       #cat("333 in customer_output...\n", file = "debug_log.txt", append = TRUE)
@@ -164,7 +164,7 @@ customer_Output <-
         select(PureSampleName,ResultOriginal,Result,ParameterName,CASNumber,Customer_WB_id,SampleNumber,Start_Wearing,End_Wearing,Wristband_Size,Days_worn,size_factor,week_factor,Lab_Submission_Batch,Customer_Batch_Number)
       if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
         results_Raw_and_Modified_full_and_long <-
-          here(output_directory,"results_Raw_and_Modified_full_and_long.csv")
+          here::here(output_directory,"results_Raw_and_Modified_full_and_long.csv")
       }
       write.csv(
         testResults_with_Raw,
@@ -200,7 +200,7 @@ customer_Output <-
       #Write that table out
       write.csv(
         lookupTable,###  NEED TO CHANGE THIS to use here() logic -- DONE
-        file = here(output_directory, "Dartmouth_CustomerLookupTable.csv"   ),
+        file = here::here(output_directory, "Dartmouth_CustomerLookupTable.csv"   ),
         row.names = FALSE
       )
       class_W_Dartmouth <-
@@ -222,8 +222,8 @@ customer_Output <-
 
       #Write that table out
       write.csv(
-        class_W_Dartmouth,###  NEED TO CHANGE THIS to use here() logic  -- DONE
-        file = here(output_directory,"Dartmouth_Classification_Table.csv" ),
+        class_W_Dartmouth,###  NEED TO CHANGE THIS to use here::here() logic  -- DONE
+        file = here::here(output_directory,"Dartmouth_Classification_Table.csv" ),
         row.names = FALSE
       )
       #rm(output_directory)

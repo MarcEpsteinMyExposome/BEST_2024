@@ -9,7 +9,7 @@ library(here)
 library(knitr)
 
 # Set base directory and main RMD file
-base_directory <- here()
+base_directory <- here::here()
 main_rmd_file <- "MyExposome_1527_v6.Rmd"
 
 # Function to parse an RMD file and find its children and conditions
