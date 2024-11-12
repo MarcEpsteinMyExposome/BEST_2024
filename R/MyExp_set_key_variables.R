@@ -181,8 +181,9 @@ testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set th
 if (CombinedDRS_November6_2024) {
   resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #  NOW DOING SBIR Phase 2 first group of 71
   FixupFile <- NULL
-  #subject <- "40-WB" # MARC Random one from Combined Data Set
-  subject <- "25-WB"  # Judy LaKind
+  subject <- "40-WB" # MARC Random one from Combined Data Set
+  #subject <- "25-WB"  # Judy LaKind
+  #subject <- "26-WB"  # Eric Epstein
 
   wristbands_time_adjusted_one_day <- FALSE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
   wristbands_time_adjusted <- FALSE
