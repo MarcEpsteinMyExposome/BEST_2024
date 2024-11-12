@@ -41,8 +41,8 @@ chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y
 # Initialize Plotly without rendering a dummy plot
 #plotly::config(plot_ly(), displayModeBar = FALSE)
 #plotly::config(plot_ly())
-#plotly::config(plot_ly())
 plotly::config(plot_ly())
+#plotly::config(plot_ly())
 # suppressMessages( plotly::config(
 #     displayModeBar = TRUE,    
 #     displaylogo = FALSE,

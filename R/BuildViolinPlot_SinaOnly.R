@@ -141,26 +141,6 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       )                              # %>% # Add hover text for subject point
     # config(displayModeBar = FALSE) # Remove mode bar for non-zero plot
 
-    nonZeroPlot_interactive <- suppressMessages (
-      nonZeroPlot_interactive %>%
-        config(
-          displayModeBar = TRUE,
-          displaylogo = FALSE,
-          modeBarButtonsToRemove = list(
-            "zoom2d",
-            "pan2d",
-            "select2d",
-            "lasso2d",
-            "zoomIn2d",
-            "zoomOut2d",
-            "autoScale2d",
-            "resetScale2d",
-            "hoverClosestCartesian",
-            "hoverCompareCartesian"
-          ),
-          toImageButtonOptions = list(format = "png")
-        )
-    )
 
 
   # Combine the two interactive plots using subplot with adjusted widths
@@ -169,6 +149,28 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
   } else {
     subplot(nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(1)) # If no zero values, use only non-zero plot
   }
+
+
+  # Apply config only to the combined plot
+  chemPlot_interactive <- chemPlot_interactive %>%
+    config(
+      displayModeBar = TRUE,
+      displaylogo = FALSE,
+      modeBarButtonsToRemove = list(
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian"
+      ),
+      toImageButtonOptions = list(format = "png")
+    )
+
 
   return(chemPlot_interactive) # Return the combined interactive plot
 }
