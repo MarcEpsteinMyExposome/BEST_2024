@@ -67,7 +67,7 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 ###     NOTE that we do with set that IS listed in certain DB and set that ISN"T but ...that is an artifical split we could just collapse them
 ###     NOTE that in both cases we have the CODE to print the listing in those database... BUT.... it never gets hit if it's not there!
 
-plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation) {
+plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested  ) {
   # chemsList<- chemsOfConcern
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
@@ -215,7 +215,7 @@ We checked all the chemicals you were exposed to in databases that flag harmful 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
-plotlyC <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
+plotlyC <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation  , subject, howManyHaveParameterName, howManyWristbandsTested)
 #cat(" \n about print ploty \n")
 
 if (!is.null(plotlyC)) {
