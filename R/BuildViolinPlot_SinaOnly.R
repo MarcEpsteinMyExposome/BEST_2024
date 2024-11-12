@@ -70,25 +70,28 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       data = summary_stats,
       aes(x = factor(ParameterName), y = mean_Result),
       color = "blue", # Highlight mean with blue color
+      stroke = 1.25,          # Thickness of the outline (adjust as desired)
       size = 2,
       shape = 21,
-      fill = NA # Hollow point for mean
+      fill = "lightblue" # was NA for Hollow point for mean
     ) +
     geom_point(
       data = summary_stats,
       aes(x = factor(ParameterName), y = median_Result),
       color = "#008000", # Highlight median with green color
+      stroke = 1.25,          # Thickness of the outline (adjust as desired)
       size = 3,
       shape = 21,
-      fill = NA # Hollow point for median
+      fill = "lightgreen" # was NA Hollow point for median
     ) +
     geom_point(
       data = highlight_point,
       aes(x = factor(ParameterName), y = Result),
       color = "red", # Highlight the specific subject with red color
+      stroke = 1.25,          # Thickness of the outline (adjust as desired)
       size = 4,
       shape = 21,
-      fill = NA # Hollow point for the highlighted subject
+      fill = "#ff6969" # now set to RED to fill circle, was NA for Hollow point for the highlighted subject
     ) +
     theme_minimal() + # Set minimal theme for the plot
     theme(
