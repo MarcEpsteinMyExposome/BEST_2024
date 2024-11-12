@@ -126,12 +126,11 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
     text_MEAN_label <- paste("Mean Result:", round(summary_stats$mean_Result, 2)) # Prepare label for mean hover text
     text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2)) # Prepare label for subject hover text
 
-    nonZeroPlot_interactive <- suppressMessages (ggplotly(nonZeroPlot) %>%
+    nonZeroPlot_interactive <- ggplotly(nonZeroPlot) %>%
       style(hoverinfo = "none", traces = c(1, 2)) %>% # Remove hover tooltips for the violin and sina plots
       style(text = text_MEAN_label, traces = 3) %>% # Add hover text for mean points
       style(text = text_MEDIAN_label, traces = 4) %>% # Add hover text for median points
-      style(text = text_YOURDATA_label, traces = 5)
-      )                               # Add hover text for subject point
+      style(text = text_YOURDATA_label, traces = 5)      # Add hover text for subject point
 
   # Combine the two interactive plots using subplot with adjusted widths
   chemPlot_interactive <- if (nrow(zero_values) > 0) {

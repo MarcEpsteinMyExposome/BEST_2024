@@ -215,7 +215,7 @@ We checked all the chemicals you were exposed to in databases that flag harmful 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
-plotlyC <- suppressMessages( plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation))
+plotlyC <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
 #cat(" \n about print ploty \n")
 
 if (!is.null(plotlyC)) {
