@@ -24,6 +24,13 @@ output:
     chunk_output_type: console
 ---
 
+<!--  THIS WAS AN R CHUNK to elimintae messages and warnings but it didn't even work so i'm commenting out.  i added to get rid  of plotly dup config error but found other way
+{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+-->
+
+
+
 <!--
 •	1  Project Root                                                    
 •	2   °--MyExposome_1527_v6.Rmd                                      

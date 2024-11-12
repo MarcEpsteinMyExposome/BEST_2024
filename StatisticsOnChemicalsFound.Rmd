@@ -63,6 +63,29 @@ cat("The data is the raw nanograms found normalized to time-adjust the values as
 ```{r StatSummary, results='asis', echo=FALSE, eval=TRUE, message=FALSE}
 ### Had error where i was renaming columns for 2nd time so it didn't work.
 ### Need to test if column names wrong and rename only if wrong:
+
+
+# Function to create gt table for summary data
+generate_gt_table <- function(data, title) {
+  data %>%
+    gt() %>%
+    tab_options(row.striping.include_table_body = TRUE) %>%
+    fmt(columns = "Standard Deviation", fns = function(x) {
+      suppressWarnings(
+        ifelse(is.na(as.numeric(x)), x, formatC(as.numeric(x), format = "f", big.mark = ",", digits = 0))
+      )
+    }) %>%
+    cols_align(align = "right", columns = "Standard Deviation") %>% # Right-align Standard Deviation column
+    tab_header(title = title) %>%
+    fmt_number(columns = c("Smallest Value Found", "Largest Value Found", "Average Value Found", "Middle Value Found"),
+               sep_mark = ",",
+               decimals = 1) %>% # Format numeric values with commas
+    tab_style(
+      style = cell_text(weight = "bold"),
+      locations = cells_column_labels(everything()) # Make column labels bold
+    )
+}
+
 if ("Chemical_Name" %in% colnames(statSummary)) {
   statSummary <- statSummary %>% dplyr::rename("Chemical Name" = Chemical_Name, 
                                                "Standard Deviation" = Standard_Deviation,
@@ -75,59 +98,61 @@ if ("Chemical_Name" %in% colnames(statSummary)) {
 
 
 if (HideIndividualization) {
-  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+  # Generate gt table for statSummary
+  statSummaryTable <- generate_gt_table(statSummary, "Statistical Report on all Chemicals on all Wristbands")
 
-  pandoc.table(as.data.frame(statSummary),
-    caption = "Statistical Report on all Chemicals on all Wristbands",
-    justify = c("right", "right", "right", "right", "right", "right", "right"),
-    emphasis.rownames = TRUE,
-    split.table = Inf
-  )
+  # Render the gt table
+  statSummaryTable
+
 } else {
-  #
+  # Prepare individual result summary
   oneResultStatSummary <- oneResult %>%
     select(ParameterName, Result) %>%
     rename("Chemical Name" = ParameterName) %>%
-    #right_join(statSummary, by = "Chemical Name") %>% ## THIS RIGHT JOIN makes it for EVERY chemical found anywhere...
     left_join(statSummary, by = "Chemical Name") %>% ## THIS left JOIN makes it for ONLY chemical found on this wristband
     replace_na(list(Result = 0)) %>%
-    rename(!!paste(pureSubjectName, "Result", sep = " ") := Result)
+    rename(!!paste(pureSubjectName, "Result", sep = " ") := Result)  # This is a special dplyr approach to rename a column dynamically
 
-  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
+  # Generate gt table for oneResultStatSummary
+  oneResultStatSummaryTable <- generate_gt_table(oneResultStatSummary, paste("Statistical Report on all Chemicals on", pureSubjectName, "wristband")) %>%
+    tab_style(
+      style = cell_fill(color = "#e3f2fd"), # Highlight in light blue
+      locations = cells_body(columns = c(!!paste(pureSubjectName, "Result", sep = " "))) # Highlight column with pureSubjectName
+    )
 
-  pandoc.table(as.data.frame(oneResultStatSummary),
-    caption = paste("Statistical Report on all Chemicals on ", pureSubjectName, " wristband", sep = " "),
-    justify = c("right", "right", "right", "right", "right", "right", "right", "right"),
-    emphasis.rownames = TRUE,
-    split.table = Inf
-  )
-  
-#   # Convert data to long format for heatmap plotting
-# heatmap_data <- oneResultStatSummary %>%
-#   pivot_longer(cols = c(`Smallest Value Found`, `Largest Value Found`, `Average Value Found`,
-#                         `Middle Value Found`, `Standard Deviation`),
-#                names_to = "Statistic", values_to = "Value") %>%
-#   filter(`Chemical Name` %in% top_chemicals$`Chemical Name`)
-# 
-# # # Plot heatmap
-# ggplot(heatmap_data, aes(x = Statistic, y = `Chemical Name`, fill = Value)) +
-#   geom_tile() +
-#   scale_fill_gradient(low = "white", high = "darkred") +
-#   labs(title = "Heatmap of Chemical Statistics",
-#        x = "Statistic",
-#        y = "Chemical Name") +
-#   theme_minimal()
 
-  
-  
-  
-  
-  
-  
+  # Render the gt table
+  oneResultStatSummaryTable
+  }
+
+# Add a download button for either general results or one results stat summary
+if (HideIndividualization) {
+  statSummary %>%
+  download_this(
+    output_name = "Statistic_Summary",
+    output_extension = ".xlsx",
+    button_label = "Download as xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa-solid fa-download",  # Set icon to download arrow 
+    style = "color: white; background-color: #1a3edd; border-radius: 8px;"  # Additional styling  BLUE from CSS
+    )
+} else {
+  oneResultStatSummary %>%
+  download_this(
+    output_name = "Statistic_Summary",
+    output_extension = ".xlsx",
+    button_label = "Download as xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa-solid fa-download",  # Set icon to download arrow 
+    style = "color: white; background-color: #1a3edd; border-radius: 8px;"  # Additional styling  BLUE from CSS
+    )
 }
-
-
-
+  
+  
+  
+  
 if (FALSE) { # THIS IS THE BIG DATA
 
   panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
@@ -153,31 +178,6 @@ if (OutputBigComparisonStatTable) {
 }
 
 
-
-
-
-# =======
-###
-### THIS STUFF BELOW is the area that had some kinda conflict not sure what happened in GIT so i comment this out and leave stuff ABOVE for NOW
-###
-### IF I WANTED TO DO statSummaryand include e ONE user's chemical results in a list showing all chemicals found
-# Then:  make the oneResultStatSummary and other pandoc table below...
-#  oneResultStatSummary<- oneResult %>%
-#    select(ParameterName,Result) %>%
-#    rename(!!paste(subject,"Result",sep=" "):= Result) %>%
-#    rename("Chemical Name"=ParameterName) %>%
-#    right_join(statSummary,by="Chemical Name")
-#
-#  panderOptions("big.mark", ",") # THIS line ADDS a COMMA in MOST of the numbers (not all... )
-#
-#  pandoc.table(as.data.frame(oneResultStatSummary)
-#               ,caption=paste("Statistical Report on all Chemicals on just",subject,"wristband",sep=" ")
-#               ,justify=c("right","right","right","right","right","right","right","right")
-#               ,emphasis.rownames=TRUE
-#               ,split.table = Inf
-#               )
-# }
-#>>>>>>> 88bf3a8b0c245ea66eeb8eddcecef7284980b12c
 ```
 
 <br> <br>

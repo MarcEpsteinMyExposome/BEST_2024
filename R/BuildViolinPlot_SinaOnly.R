@@ -3,152 +3,172 @@
 # Updated version to handle zero values with two distinct panels using patchwork
 
 # Function to build an interactive Sina plot with separate panels for zero and non-zero values
-buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
-  logScale = TRUE  # Set the log scale option to TRUE for plotting
+buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) { ### NOTE that chemOfConcern NEVER IS USED?
+  logScale <- TRUE # Set the log scale option to TRUE for plotting
 
   # Separate zero and non-zero values
-  zero_values <- testResults_ChemOfConcern %>% filter(Result == 0)  # Filter out rows with zero values for separate handling
-  non_zero_values <- testResults_ChemOfConcern %>% filter(Result > 0)  # Filter out rows with non-zero values for plotting
+  zero_values <- testResults_ChemOfConcern %>% filter(Result == 0) # Filter out rows with zero values for separate handling
+  non_zero_values <- testResults_ChemOfConcern %>% filter(Result > 0) # Filter out rows with non-zero values for plotting
 
   # Add a column to represent the x-axis as "Zero" if zero values exist
   if (nrow(zero_values) > 0) {
     zero_values <- zero_values %>%
-      mutate(ZeroLabel = "Zero")  # Create a new column to represent zero values on the x-axis
+      mutate(ZeroLabel = "Zero") # Create a new column to represent zero values on the x-axis
   }
 
   # Highlight the specific point for non-zero values (the subject's value)
-  highlight_point <- non_zero_values[non_zero_values$SampleNumber == subject, ]  # Extract the specific point to highlight based on the subject identifier
+  highlight_point <- non_zero_values[non_zero_values$SampleNumber == subject, ] # Extract the specific point to highlight based on the subject identifier
 
   # Summary statistics for non-zero values
   summary_stats <- non_zero_values %>%
-    group_by(ParameterName) %>%  # Group data by ParameterName to calculate statistics per group
+    group_by(ParameterName) %>% # Group data by ParameterName to calculate statistics per group
     summarise(
-      mean_Result = mean(Result),  # Calculate the mean of non-zero values for each ParameterName
-      median_Result = median(Result)  # Calculate the median of non-zero values for each ParameterName
+      mean_Result = mean(Result), # Calculate the mean of non-zero values for each ParameterName
+      median_Result = median(Result) # Calculate the median of non-zero values for each ParameterName
     )
 
   # Create the left-hand plot for zero values if they exist
   if (nrow(zero_values) > 0) {
     zeroPlot <- ggplot(zero_values, aes(x = ZeroLabel, y = 0)) +
-      geom_jitter(color = "#696969", alpha = 0.4, width = 0.2, height = 0.01, shape = 21, fill = NA) +  # Plot zero values with slight jitter for visibility
-      scale_y_continuous(breaks = c(0)) +  # Only show '0' on the y-axis
+      geom_jitter(color = "#696969", alpha = 0.4, width = 0.2, height = 0.01, shape = 21, fill = NA) + # Plot zero values with slight jitter for visibility
+      scale_y_continuous(breaks = c(0)) + # Only show '0' on the y-axis
       labs(
-        x = "",  # Remove x-axis label
-        y = "not detected"  # Label for zero values
+        x = "", # Remove x-axis label
+        y = "not detected" # Label for zero values
       ) +
-      theme_minimal(base_size = 10) +  # Set minimal theme with base font size
+      theme_minimal(base_size = 10) + # Set minimal theme with base font size
       theme(
-        axis.title.y = element_text(size = 10, color = "#A9A9A9"),  # Set y-axis title styling to smaller and lighter grey
-        axis.text.y = element_blank(),  # Remove y-axis text labels
-        axis.ticks.y = element_blank(),  # Remove y-axis ticks
-        plot.title = element_text(size = 14, face = "bold"),  # Set plot title styling
-        legend.position = "none"  # Remove legend
+        axis.title.y = element_text(size = 10, color = "#A9A9A9"), # Set y-axis title styling to smaller and lighter grey
+        axis.text.y = element_blank(), # Remove y-axis text labels
+        axis.ticks.y = element_blank(), # Remove y-axis ticks
+        plot.title = element_text(size = 14, face = "bold"), # Set plot title styling
+        legend.position = "none" # Remove legend
       ) +
-      coord_flip()  # Flip coordinates to switch x and y axes
+      coord_flip() # Flip coordinates to switch x and y axes
   } else {
     # Create an empty plot if there are no zero values
     zeroPlot <- ggplot() +
-      theme_void() +  # Set an empty theme
-      labs(title = "No Zero Values Available")  # Indicate that there are no zero values available
+      theme_void() + # Set an empty theme
+      labs(title = "No Zero Values Available") # Indicate that there are no zero values available
   }
 
-  # Create the right-hand plot for non-zero values if they exist
-  if (nrow(non_zero_values) > 0) {
-    nonZeroPlot <- ggplot(
-      non_zero_values,
-      aes(
-        x = factor(ParameterName),  # Use ParameterName as the x-axis
-        y = Result,  # Use Result as the y-axis
-        fill = factor(ParameterName)  # Fill color based on ParameterName
-      )
+  # Create the right-hand plot
+  nonZeroPlot <- ggplot(
+    non_zero_values,
+    aes(
+      x = factor(ParameterName), # Use ParameterName as the x-axis
+      y = Result, # Use Result as the y-axis
+      fill = factor(ParameterName) # Fill color based on ParameterName
+    )
+  ) +
+    geom_violin(trim = FALSE, fill = "#e3ebfa", color = "#a9c5f5") + # Create violin plot with light blue fill and border color
+    geom_sina(alpha = 0.6, shape = 21, fill = NA) + # Add sina plot for non-zero values with some transparency
+    geom_point(
+      data = summary_stats,
+      aes(x = factor(ParameterName), y = mean_Result),
+      color = "blue", # Highlight mean with blue color
+      size = 2,
+      shape = 21,
+      fill = NA # Hollow point for mean
     ) +
-      geom_violin(trim = FALSE, fill = '#e3ebfa', color = '#a9c5f5') +  # Create violin plot with light blue fill and border color
-      geom_sina(alpha = 0.6, shape = 21, fill = NA) +  # Add sina plot for non-zero values with some transparency
-      geom_point(
-        data = summary_stats,
-        aes(x = factor(ParameterName), y = mean_Result),
-        color = "blue",  # Highlight mean with blue color
-        size = 2,
-        shape = 21,
-        fill = NA  # Hollow point for mean
-      ) +
-      geom_point(
-        data = summary_stats,
-        aes(x = factor(ParameterName), y = median_Result),
-        color = "#008000",  # Highlight median with green color
-        size = 3,
-        shape = 21,
-        fill = NA  # Hollow point for median
-      ) +
-      geom_point(
-        data = highlight_point,
-        aes(x = factor(ParameterName), y = Result),
-        color = "red",  # Highlight the specific subject with red color
-        size = 4,
-        shape = 21,
-        fill = NA  # Hollow point for the highlighted subject
-      ) +
-      theme_minimal() +  # Set minimal theme for the plot
-      theme(
-        plot.title = element_markdown(size = 14, face = "bold")  # Set plot title styling with markdown support for rich text
-      ) +
-      scale_fill_brewer(palette = "Pastel1") +  # Use a pastel color palette for the violin plot fill
-      theme_minimal(base_size = 15) +  # Set minimal theme with base font size
-      theme(legend.position = "none")  # Remove legend from the plot
+    geom_point(
+      data = summary_stats,
+      aes(x = factor(ParameterName), y = median_Result),
+      color = "#008000", # Highlight median with green color
+      size = 3,
+      shape = 21,
+      fill = NA # Hollow point for median
+    ) +
+    geom_point(
+      data = highlight_point,
+      aes(x = factor(ParameterName), y = Result),
+      color = "red", # Highlight the specific subject with red color
+      size = 4,
+      shape = 21,
+      fill = NA # Hollow point for the highlighted subject
+    ) +
+    theme_minimal() + # Set minimal theme for the plot
+    theme(
+      plot.title = element_markdown(size = 14, face = "bold") # Set plot title styling with markdown support for rich text
+    ) +
+    scale_fill_brewer(palette = "Pastel1") + # Use a pastel color palette for the violin plot fill
+    theme_minimal(base_size = 15) + # Set minimal theme with base font size
+    theme(legend.position = "none") # Remove legend from the plot
 
-    # Add log scale if required
-    if (logScale) {
-      nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
-        labs(
-          title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",  # Add color-coded title for mean, median, and subject
-          y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n",  # Add y-axis label with explanation
-          x = ""  # Remove x-axis label
-        )
-    } else {
-      nonZeroPlot <- nonZeroPlot + scale_y_continuous(labels = scales::comma_format(big.mark = ",")) +
-        labs(
-          title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",  # Add color-coded title for mean, median, and subject
-          y = "Nanograms per Gram Silicone",  # Add y-axis label
-          x = ""  # Remove x-axis label
-        )
-    }
+  # Add log scale if required
+  if (logScale) {
+    nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
+      labs(
+        # title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",  # Add color-coded title for mean, median, and subject
+        title = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure to ", chemOfConcern), # Add color-coded title for mean, median, and subject, including chemOfConcern
 
-    nonZeroPlot <- nonZeroPlot + coord_flip()  # Flip coordinates to switch x and y axes
+        y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n", # Add y-axis label with explanation
+        x = "" # Remove x-axis label
+      )
+
+
+    nonZeroPlot <- nonZeroPlot + coord_flip() # Flip coordinates to switch x and y axes
   } else {
     # Create an empty plot if there are no non-zero values
     nonZeroPlot <- ggplot() +
-      theme_void() +  # Set an empty theme
-      labs(title = "No Non-Zero Values Available")  # Indicate that there are no non-zero values available
+      theme_void() + # Set an empty theme
+      labs(title = "No Non-Zero Values Available") # Indicate that there are no non-zero values available
   }
 
   # Convert each plot to an interactive plotly plot
   zeroPlot_interactive <- ggplotly(zeroPlot) %>%
-    style(hoverinfo = "none") %>%  # Remove hover tooltips for zero plot
-    config(displayModeBar = FALSE)  # Remove mode bar for zero plot
+    style(hoverinfo = "none") #%>% # Remove hover tooltips for zero plot
+    #config(displayModeBar = FALSE) # Remove mode bar for zero plot
+  # config(
+  #   displayModeBar = TRUE,                   # Enable the mode bar
+  #   modeBarButtonsToRemove = list("zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d",
+  #                                 "autoScale2d", "resetScale2d", "hoverClosestCartesian",
+  #                                 "hoverCompareCartesian"), # Remove all other buttons
+  #   toImageButtonOptions = list(format = "png") # Set the format for the download button
+  # )
+
 
   # Convert non-zero plot to an interactive plotly plot if non-zero values exist
-  if (nrow(non_zero_values) > 0) {
-    text_MEDIAN_label <- paste("Median Result:", round(summary_stats$median_Result, 2))  # Prepare label for median hover text
-    text_MEAN_label <- paste("Mean Result:", round(summary_stats$mean_Result, 2))  # Prepare label for mean hover text
-    text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2))  # Prepare label for subject hover text
+    text_MEDIAN_label <- paste("Median Result:", round(summary_stats$median_Result, 2)) # Prepare label for median hover text
+    text_MEAN_label <- paste("Mean Result:", round(summary_stats$mean_Result, 2)) # Prepare label for mean hover text
+    text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2)) # Prepare label for subject hover text
 
-    nonZeroPlot_interactive <- ggplotly(nonZeroPlot) %>%
-      style(hoverinfo = "none", traces = c(1, 2)) %>%  # Remove hover tooltips for the violin and sina plots
-      style(text = text_MEAN_label, traces = 3) %>%  # Add hover text for mean points
-      style(text = text_MEDIAN_label, traces = 4) %>%  # Add hover text for median points
-      style(text = text_YOURDATA_label, traces = 5) %>%  # Add hover text for subject point
-      config(displayModeBar = FALSE)  # Remove mode bar for non-zero plot
-  } else {
-    nonZeroPlot_interactive <- ggplotly(nonZeroPlot) %>%
-      config(displayModeBar = FALSE)  # Remove mode bar for empty non-zero plot
-  }
+    nonZeroPlot_interactive <- suppressMessages (ggplotly(nonZeroPlot) %>%
+      style(hoverinfo = "none", traces = c(1, 2)) %>% # Remove hover tooltips for the violin and sina plots
+      style(text = text_MEAN_label, traces = 3) %>% # Add hover text for mean points
+      style(text = text_MEDIAN_label, traces = 4) %>% # Add hover text for median points
+      style(text = text_YOURDATA_label, traces = 5)
+      )                              # %>% # Add hover text for subject point
+    # config(displayModeBar = FALSE) # Remove mode bar for non-zero plot
+
+    nonZeroPlot_interactive <- suppressMessages (
+      nonZeroPlot_interactive %>%
+        config(
+          displayModeBar = TRUE,
+          displaylogo = FALSE,
+          modeBarButtonsToRemove = list(
+            "zoom2d",
+            "pan2d",
+            "select2d",
+            "lasso2d",
+            "zoomIn2d",
+            "zoomOut2d",
+            "autoScale2d",
+            "resetScale2d",
+            "hoverClosestCartesian",
+            "hoverCompareCartesian"
+          ),
+          toImageButtonOptions = list(format = "png")
+        )
+    )
+
 
   # Combine the two interactive plots using subplot with adjusted widths
   chemPlot_interactive <- if (nrow(zero_values) > 0) {
-    subplot(zeroPlot_interactive, nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(0.1, 0.9))  # Combine zero and non-zero plots, giving more space to non-zero plot
+    subplot(zeroPlot_interactive, nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(0.1, 0.9)) # Combine zero and non-zero plots, giving more space to non-zero plot
   } else {
-    subplot(nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(1))  # If no zero values, use only non-zero plot
+    subplot(nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(1)) # If no zero values, use only non-zero plot
   }
 
-  return(chemPlot_interactive)  # Return the combined interactive plot
+  return(chemPlot_interactive) # Return the combined interactive plot
 }

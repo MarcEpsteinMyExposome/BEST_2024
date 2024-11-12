@@ -103,7 +103,9 @@ required_packages <- c(
   "bsplus",    # Added BSPLUS to allow popup bottons
   "patchwork",  # added to do side-by-side graphi layout
   "here",     # USE the HERE package to locate the LOGO and provide an absolute path instead of a relative path cause relative path messes up print-all-subjects
-  "base64enc"
+  "base64enc",
+  "gt",           # for printing fancier tables
+  "downloadthis"
 
   #"reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )
@@ -136,7 +138,7 @@ setwd(here::here())  # If you’re using the here package for relative paths
 
 # Additional code for setting up environment, key variables, etc.
 if (!exists("subject")) {   ##  NEED TO HARD CODE  R Directory Location
-  source(here:here("R","MyExp_set_key_variables.R"))
+  source(here::here("R","MyExp_set_key_variables.R"))
 }
 
 if (!exists("customer_Output")) {

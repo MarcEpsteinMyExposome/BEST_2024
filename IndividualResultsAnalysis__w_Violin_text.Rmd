@@ -28,7 +28,7 @@ source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
 
 
-## Make a list of all chemicals that our one user had that did NOT show up in any of the databases
+## Make a list of all chemicals that our one user had that did NOT show up in any of the databases x
 chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
 ```
 
@@ -39,7 +39,18 @@ chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y
 # geom_point(aes(speed, dist))
 # htmltools::tagList(ggplotly(fig))
 # Initialize Plotly without rendering a dummy plot
-plotly::config(plot_ly(), displayModeBar = FALSE)
+#plotly::config(plot_ly(), displayModeBar = FALSE)
+#plotly::config(plot_ly())
+#plotly::config(plot_ly())
+plotly::config(plot_ly())
+# suppressMessages( plotly::config(
+#     displayModeBar = TRUE,    
+#     displaylogo = FALSE,
+#     modeBarButtonsToRemove = list("zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d",
+#                                   "autoScale2d", "resetScale2d", "hoverClosestCartesian",
+#                                   "hoverCompareCartesian"),
+#     toImageButtonOptions = list(format = "png") 
+#   ))
 
 
 ### This next section is to figure how HOW MANY people HAD this compound and how many didn't
@@ -99,7 +110,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
           print(htmlTagList)
           }
 
-        newMessage <- "\n"  ## Leave one blank line below any text messages
+        newMessage <- "<br>"  ## Leave one blank line below any text messages
 
         newMessage <- paste(
           newMessage,
@@ -216,7 +227,7 @@ We checked all the chemicals you were exposed to in databases that flag harmful 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 
-plotlyC <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation)
+plotlyC <- suppressMessages( plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation))
 #cat(" \n about print ploty \n")
 
 if (!is.null(plotlyC)) {
