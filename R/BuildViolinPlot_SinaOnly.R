@@ -18,6 +18,9 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 
   # Highlight the specific point for non-zero values (the subject's value)
   highlight_point <- non_zero_values[non_zero_values$SampleNumber == subject, ] # Extract the specific point to highlight based on the subject identifier
+  if (nrow(highlight_point) == 0) {
+    warning("Subject SampleNumber not found in non-zero values.")
+  }
 
   # Summary statistics for non-zero values
   summary_stats <- non_zero_values %>%
