@@ -39,19 +39,7 @@ chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y
 # geom_point(aes(speed, dist))
 # htmltools::tagList(ggplotly(fig))
 # Initialize Plotly without rendering a dummy plot
-#plotly::config(plot_ly(), displayModeBar = FALSE)
-#plotly::config(plot_ly())
 plotly::config(plot_ly())
-#plotly::config(plot_ly())
-# suppressMessages( plotly::config(
-#     displayModeBar = TRUE,    
-#     displaylogo = FALSE,
-#     modeBarButtonsToRemove = list("zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d",
-#                                   "autoScale2d", "resetScale2d", "hoverClosestCartesian",
-#                                   "hoverCompareCartesian"),
-#     toImageButtonOptions = list(format = "png") 
-#   ))
-
 
 ### This next section is to figure how HOW MANY people HAD this compound and how many didn't
 howManyHaveParameterName <- testResults.big %>%

@@ -99,7 +99,6 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
   if (logScale) {
     nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
       labs(
-        # title = "<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure",  # Add color-coded title for mean, median, and subject
         title = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure to ", chemOfConcern), # Add color-coded title for mean, median, and subject, including chemOfConcern
 
         y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n", # Add y-axis label with explanation
@@ -117,16 +116,7 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 
   # Convert each plot to an interactive plotly plot
   zeroPlot_interactive <- ggplotly(zeroPlot) %>%
-    style(hoverinfo = "none") #%>% # Remove hover tooltips for zero plot
-    #config(displayModeBar = FALSE) # Remove mode bar for zero plot
-  # config(
-  #   displayModeBar = TRUE,                   # Enable the mode bar
-  #   modeBarButtonsToRemove = list("zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d",
-  #                                 "autoScale2d", "resetScale2d", "hoverClosestCartesian",
-  #                                 "hoverCompareCartesian"), # Remove all other buttons
-  #   toImageButtonOptions = list(format = "png") # Set the format for the download button
-  # )
-
+    style(hoverinfo = "none") # # Remove hover tooltips for zero plot
 
   # Convert non-zero plot to an interactive plotly plot if non-zero values exist
     text_MEDIAN_label <- paste("Median Result:", round(summary_stats$median_Result, 2)) # Prepare label for median hover text
@@ -138,10 +128,7 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       style(text = text_MEAN_label, traces = 3) %>% # Add hover text for mean points
       style(text = text_MEDIAN_label, traces = 4) %>% # Add hover text for median points
       style(text = text_YOURDATA_label, traces = 5)
-      )                              # %>% # Add hover text for subject point
-    # config(displayModeBar = FALSE) # Remove mode bar for non-zero plot
-
-
+      )                               # Add hover text for subject point
 
   # Combine the two interactive plots using subplot with adjusted widths
   chemPlot_interactive <- if (nrow(zero_values) > 0) {
@@ -149,7 +136,6 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
   } else {
     subplot(nonZeroPlot_interactive, nrows = 1, shareY = TRUE, titleX = TRUE, widths = c(1)) # If no zero values, use only non-zero plot
   }
-
 
   # Apply config only to the combined plot
   chemPlot_interactive <- chemPlot_interactive %>%
@@ -170,7 +156,6 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       ),
       toImageButtonOptions = list(format = "png")
     )
-
 
   return(chemPlot_interactive) # Return the combined interactive plot
 }
