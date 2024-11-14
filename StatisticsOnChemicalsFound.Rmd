@@ -95,7 +95,7 @@ if ("Chemical_Name" %in% colnames(statSummary)) {
                                                "Middle Value Found" = MedianResult,
                                                "How Many Wristbands Had this" = Count)
 }
-
+# And here is how i call this function:
 
 if (HideIndividualization) {
   # Generate gt table for statSummary
@@ -106,24 +106,28 @@ if (HideIndividualization) {
 
 } else {
   # Prepare individual result summary
+  new_column_name <- paste(pureSubjectName, "Result", sep = " ")
+
   oneResultStatSummary <- oneResult %>%
     select(ParameterName, Result) %>%
     rename("Chemical Name" = ParameterName) %>%
     left_join(statSummary, by = "Chemical Name") %>% ## THIS left JOIN makes it for ONLY chemical found on this wristband
     replace_na(list(Result = 0)) %>%
-    rename(!!paste(pureSubjectName, "Result", sep = " ") := Result)  # This is a special dplyr approach to rename a column dynamically
+    rename(!!new_column_name := Result)  # Use the variable for renaming
 
   # Generate gt table for oneResultStatSummary
   oneResultStatSummaryTable <- generate_gt_table(oneResultStatSummary, paste("Statistical Report on all Chemicals on", pureSubjectName, "wristband")) %>%
+    fmt_number(columns = c(!!new_column_name),
+               sep_mark = ",",
+               decimals = 1) %>% # Format the dynamically named column with commas
     tab_style(
       style = cell_fill(color = "#e3f2fd"), # Highlight in light blue
-      locations = cells_body(columns = c(!!paste(pureSubjectName, "Result", sep = " "))) # Highlight column with pureSubjectName
+      locations = cells_body(columns = c(!!new_column_name)) # Highlight column with pureSubjectName
     )
-
 
   # Render the gt table
   oneResultStatSummaryTable
-  }
+}
 
 # Add a download button for either general results or one results stat summary
 if (HideIndividualization) {

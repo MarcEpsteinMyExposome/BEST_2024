@@ -30,7 +30,7 @@ For all the chemicals found on ANY wristband during this project we will look th
 
 
 <!-- I MADE THIS FALSE FOR DEBUGGING -->
-```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = FALSE}
+```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
 ```
 
 
@@ -172,7 +172,11 @@ generate_multiple_plots <- function(data, subject, font_size = 6, batch_size = 5
   plot_list <- list()
   for (i in seq_along(parameter_batches)) {
     batch_data <- parameter_batches[[i]]
-    title_suffix <- paste("Section", i)
+    if (length(parameter_batches) == 1) {    # IF there is only one batch, don't number the batches
+      title_suffix <- ""
+    } else {
+      title_suffix <- paste("Section", i)
+    }
     
     # Generate plot for each batch and add it to the list
     plot <- plot_chemicals(batch_data, font_size, title_suffix, hide_individualization,flipCord)
@@ -205,7 +209,7 @@ for (i in seq_len(length(many_plots))) {
 }
 # c 
 #  c+coord_flip()
-rm(c)
+#rm(c)
 
 ```
 
@@ -749,15 +753,17 @@ cat("The data is the raw nanograms found in each gram of wristband. " ,sep="")
 
 ```{r print_chem_response_factor_info, results="asis", echo=FALSE, eval=RMD_type == "DRS"}
 
-cat("Additionally, the underlying chemical responses are within a factor of 2.5 with respect to accuracy based on the publication ",
-      "(https://link.springer.com/article/10.1007/s00216-018-0997-7).",
-      sep=" ")
+
+Article1500_URL <- makeClickableURL("https://link.springer.com/article/10.1007/s00216-018-0997-7","Development of quantitative screen")
+
+#cat("Additionally, the underlying chemical responses are within a factor of 2.5 with respect to accuracy based on the publication ","(https://link.springer.com/article/10.1007/s00216-018-0997-7).",  sep=" ")
+cat("Additionally, the underlying chemical responses are within a factor of 2.5 with respect to accuracy based on the publication ",Article1500_URL,  sep=" ")
 
 ```
 
 `r if(DoSpecificSubjectAnalysis){"Your wristband is in GREEN."}`
 
-```{r chart_total_ng_found, echo=FALSE, message=FALSE, fig.height=6,fig.cap="",dpi=150}
+```{r chart_total_ng_found, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
 ################BEGIN x5 Perc
 # IDEA is to get total RESULTS for each WB then graph that  in bar-chart
 ng_per_sample <-testResults.big %>%
@@ -775,9 +781,9 @@ ng_per_sample <-testResults.big %>%
  if (howManyWristbandsTested<=60) {
    x_axis_font_size = 10
  } else if (howManyWristbandsTested <= 120) {
-   x_axis_font_size = 6
+   x_axis_font_size = 8
  } else {
-   x_axis_font_size = 4
+   x_axis_font_size = 6
  }
  
 c<- c+theme(axis.line=element_blank(),
@@ -785,6 +791,7 @@ c<- c+theme(axis.line=element_blank(),
             axis.title.x=element_blank(),
 #            axis.text.x = element_text(angle = 90,vjust=.9,hjust=.5,size=8 ),
             axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=x_axis_font_size ),
+            axis.text.y = element_text(size=12 ),
 #            axis.text.x = element_text(angle = 90,size=8 ),
             legend.position="none",
             panel.background=element_blank(),
@@ -800,7 +807,7 @@ if (HideIndividualization) {
 }
 
 
-c
+c + coord_flip()
 
 rm(c)
 

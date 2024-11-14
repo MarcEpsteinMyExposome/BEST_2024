@@ -128,8 +128,8 @@ FixupForAnyone <- any(
   LouisvilleFixup <- FALSE,
   UFL_FloridaFixup <- FALSE,
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
-  CombinedDRS_November6_2024 <- TRUE,
-  SBIR_P2_Part1_71_FixUp <- FALSE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
+  CombinedDRS_November6_2024 <- FALSE,
+  SBIR_P2_Part1_71_FixUp <- TRUE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
 )
 
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...

@@ -11,13 +11,34 @@ A related question is how many study participants had at least one of any given 
 # NOTE:  I took away ONE from "ncol(cs)" when converting from SQLdf to dplyr/tidyr NOT SURE WHY
 #   cause this seems to work perfectly...maybe previous extra col was duplicated classifications?
 
-pandoc.table(SubClassAtleastOne,
-             split.cells=20,  #30 the default
-             justify=c("left","right","right"),  #
-             caption = "Tested Wristbands with **at least one** of a given classification"
-            # ,split.tables=110  #80 the default
-            ,split.table = Inf
-)
+# pandoc.table(SubClassAtleastOne,
+#              split.cells=20,  #30 the default
+#              justify=c("left","right","right"),  #
+#              caption = "Tested Wristbands with **at least one** of a given classification"
+#             # ,split.tables=110  #80 the default
+#             ,split.table = Inf
+# )
+
+
+ SubClassAtleastOne %>%
+   gt() %>%
+   tab_header(
+     title = md("**Tested Wristbands with at least one of a given classification**")
+     )  %>%
+   cols_align(
+    align = "left",
+    columns = 1
+  ) %>%
+  cols_align(
+    align = "right",
+    columns = 2:3 # Adjust for actual number of columns
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold", size = px(12)),
+    locations = cells_column_labels(everything())
+  )
+
+
 
 
 ```
