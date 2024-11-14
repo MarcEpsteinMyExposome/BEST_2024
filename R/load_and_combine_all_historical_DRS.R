@@ -4,6 +4,7 @@
 ## NOTE if I've just run base_code to create masterParam delete everything else:
 # Clean up environment a little
 rm(list=ls()[!ls() %in% c("masterParam")])
+#rm(list=ls()[!ls() %in% c("testResults.bigWithClass")])
 
 #
 # This only gets run ONCE each time there is new data to hadd to the historica dataset
