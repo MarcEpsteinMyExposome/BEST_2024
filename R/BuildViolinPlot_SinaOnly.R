@@ -3,7 +3,7 @@
 # Updated version to handle zero values with two distinct panels using patchwork
 
 # Function to build an interactive Sina plot with separate panels for zero and non-zero values
-buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) { ### NOTE that chemOfConcern NEVER IS USED?
+buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) { ###
   logScale <- TRUE # Set the log scale option to TRUE for plotting
 
   # Separate zero and non-zero values

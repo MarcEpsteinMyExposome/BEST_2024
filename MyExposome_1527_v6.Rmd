@@ -7,6 +7,7 @@ output:
     number_sections: true
     css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
               # base_url: ""   ###  This is not needed, did it because if right click download was converting links from relative to absolute
+              # and the CSS does lots of stuff to control how it prints
     toc_depth: 3   # DELETE/COMMENT this line for some rmdformats      toc_depth: 3
     df_print: "paged"
     lightbox: true   # Enables the lightbox for clickable images
@@ -129,6 +130,15 @@ grid.raster(img, name = NULL)
 rm(img)
 ```
 
+
+
+<!-- DIV in html to insert the logo but only do this when PRINTING --> 
+
+<div id="print-logo">
+  <img src="`r image_base64`" alt="Company Logo" style="width: 800px;">
+</div>
+
+
 ---
 title: "`r testName`"
 author: "MyExposome, Inc."
@@ -137,7 +147,6 @@ author: "MyExposome, Inc."
 <script>
   var logoPath = "`r image_base64`";  // Set to Base64 Data URI
 </script>
-
 
 <!-- JavaScript to insert the logo after the TOC --> 
 <script> 
@@ -152,17 +161,6 @@ logo.style.margin = "15px 0";
 // Add spacing 
 toc.insertAdjacentElement("afterend", logo); } }); 
 </script> 
-
-<style> /* Additional styling for sidebar logo */ /* plus make content max width wider for bigger monitors   */
-  #sidebar img {
-    display: block; margin: auto; max-width: 100%; 
-    } 
-
-  #content {
-    max-width: 1400px;
-  }
-</style>
-
 
 
 

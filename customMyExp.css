@@ -113,3 +113,46 @@ a[role="tab"]:hover {
 a {
     text-decoration: underline;
 }
+
+
+/* Additional styling for sidebar logo and content width adjustment */
+#sidebar img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+#content {
+  max-width: 1400px;
+}
+
+
+/* Print-specific styles to make all tab contents visible and hide the sidebar */
+@media print {
+  .nav-tabs, .tab-content {
+    display: block !important;
+  }
+  .tab-pane {
+    display: block !important;
+    visibility: visible !important;
+  }
+  #sidebar {
+    display: none !important;  /* Hide the sidebar during printing */
+  }
+  #print-logo {
+    display: block !important;  /* Show the logo only when printing */
+    margin-bottom: 20px;  /* Add spacing below the logo */
+  }
+  .plotly, .plot-container {
+    page-break-inside: avoid !important; /* Prevent breaking Plotly plots between pages */
+    break-inside: avoid !important; /* Newer syntax for modern browsers */
+  }
+}
+
+/* Default to hide the print logo in the normal HTML view */
+#print-logo {
+  display: none;
+}
+
+
+
