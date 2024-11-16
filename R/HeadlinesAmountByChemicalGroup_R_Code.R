@@ -4,7 +4,6 @@
 # those of a broader dataset.
 
 
-
 # Here we implement the headline rules defined by silent spring
 # Define the function
 generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALSE, debug2 = FALSE) {
@@ -197,7 +196,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
         class,
         "** compound, **",
         #compound,
-        compounds_meeting_criteria1[1],
+        generateTabLink(compounds_meeting_criteria1[1]),
         "** detected at a high level that was not found in most other wristbands."
       )
     } else if (length(compounds_meeting_criteria2) > 1) {
@@ -212,7 +211,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
         "You had a higher level of **",
         class,
         "** compound, **",
-        compounds_meeting_criteria2,
+        generateTabLink(compounds_meeting_criteria2[1]),
         "**, compared to 95% of other people in the study."
       )
     } else if (length(compounds_meeting_criteria3) > 0) {

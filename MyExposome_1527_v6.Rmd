@@ -162,6 +162,78 @@ logo.style.margin = "15px 0";
 toc.insertAdjacentElement("afterend", logo); } }); 
 </script> 
 
+<!-- Script to open a tab if you click on a LINK to that tab .  USED to make tab links dynamically generated with LINK IDs 
+Bootstrap Tab Activation:  The $(tabHeader).tab("show") ensures the correct tab is activated.
+Smooth Scrolling:  scrollIntoView scrolls to the content once it is loaded and visible.
+Delay for Loading Content:  The setTimeout ensures the tab content is available in the DOM before scrolling.
+-->
+
+<script>
+  function openTab(tabId) {
+    // Locate the tab header
+    const tabHeader = document.querySelector(`a[href="#${tabId}"][role="tab"]`);
+    if (tabHeader) {
+      // Activate the correct tab
+      const tabLi = tabHeader.closest("li[role='presentation']");
+      const tabList = tabHeader.closest("ul[role='tablist']");
+
+      if (tabList) {
+        // Remove "active" class from all tabs
+        const allTabs = tabList.querySelectorAll("li[role='presentation']");
+        allTabs.forEach((tab) => tab.classList.remove("active"));
+
+        // Add "active" class to the selected tab
+        if (tabLi) {
+          tabLi.classList.add("active");
+        }
+
+        // Activate the corresponding tab content
+        const allTabContents = document.querySelectorAll(".tab-pane");
+        allTabContents.forEach((content) => {
+          content.classList.remove("show", "active"); // Clear "show" and "active" from all content
+        });
+
+        const tabContent = document.getElementById(tabId);
+        if (tabContent) {
+          tabContent.classList.add("show", "active"); // Activate the selected tab content
+        }
+
+        // Scroll to the nearest H2 heading above the tab list
+        setTimeout(() => {
+          // Find the nearest H2 above the tab list
+          let currentElement = tabList.previousElementSibling;
+          let headingToScrollTo = null;
+
+          while (currentElement) {
+            if (currentElement.tagName === "H2") {
+              headingToScrollTo = currentElement;
+              break;
+            }
+            currentElement = currentElement.previousElementSibling; // Traverse upwards in the DOM
+          }
+
+          if (headingToScrollTo) {
+            // Scroll to the H2 heading
+            headingToScrollTo.scrollIntoView({ behavior: "smooth" });
+          } else if (tabContent) {
+            // Fallback: Scroll to the tab content with slight offset
+            tabContent.scrollIntoView({ behavior: "smooth" });
+            window.scrollBy(0, -100);
+          }
+        }, 300); // Adjust the delay if necessary
+      }
+    } else {
+      console.error("Tab header not found for ID:", tabId);
+    }
+  }
+</script>
+
+
+
+
+
+
+
 
 
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}

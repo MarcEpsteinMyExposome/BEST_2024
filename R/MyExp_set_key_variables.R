@@ -200,7 +200,9 @@ if (CombinedDRS_November6_2024) {
   #subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
   #subject <- "A241137" # Random another  from SBIR P2 Group 1 of 71
   #subject <- "A241139" # Random another  from SBIR P2 Group 1 of 71
-  subject <- "A241149"  # this is 40-WB which is MARC
+  subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
+
+  #subject <- "A241149"  # this is 40-WB which is MARC
 
 
 

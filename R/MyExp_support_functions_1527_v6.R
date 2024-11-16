@@ -200,7 +200,7 @@ buildMesgVIndividual <-
                   "Your wristband had",
                   row$subjectDividedByMaxWitoutSubject,
                   "times more" ,
-                  rname,
+                  generateTabLink(rname),
                   "than any other tested wristband.",
                   sep = " "
                 )
@@ -375,7 +375,7 @@ buildMesgVGroup <-
       # Loop through all chems and assemble message
       for (chem in chems) {
         txt <-
-          paste(chem, "was detected on every wristband.")
+          paste(generateTabLink(chem), "was detected on every wristband.")
         #    txt<-paste(bullet,txt)
 
         mesg.v <- cbind(mesg.v, txt)
@@ -586,6 +586,24 @@ makeClickableURL <- function(URL, clickableText) {
 }
 
 
+## THIS generates a TAB_ID following the rules needed by rmarkdown and tabs
+##    it makes everything lower and strips out paraenthasis and replaces space with dash
+##      CAUTION:  Maybe there are other special characters we'll need to address also if we find them???
+##
+# I'm putting generateTabID() into multiple spots for now... obviously move it to support functions later
+generateTabID <- function(chem_name) {
+  tolower(gsub("[,()]", "", gsub(" ", "-", chem_name)))
+}
 
+# I'm putting generateTabLink() into multiple spots for now... obviously move it to support functions later
+generateTabLink <- function(chem_name) {
+  htmltools::HTML(
+    paste0(
+      '<a href="#', generateTabID(chem_name), '" onclick="openTab(\'', generateTabID(chem_name), '\')">',
+      chem_name,
+      '</a>'
+    )
+  )
+}
 
 
