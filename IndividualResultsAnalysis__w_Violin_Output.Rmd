@@ -1,0 +1,174 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Individual Results
+
+
+## Plot each Chemical of Concern {.tabset  .tabset-pills}
+
+We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider pink area represents how common different amounts are, with wider parts showing levels found in more people. Click each chemical name to see how your exposure compares.
+
+```{r PlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+
+#plotlyC_concern <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation  , subject, howManyHaveParameterName, howManyWristbandsTested)
+#cat(" \n about print ploty no concern\n")
+
+if (!is.null(plotlyC_concern)) {
+  for (chemItem in chemsOfConcern) {
+
+    # Print the `cat` message (tab header)
+    cat(plotlyC_concern[[paste0(chemItem, "_cat_message")]], "\n")
+    
+    # Print the tab content
+    print(plotlyC_concern[[chemItem]])
+    
+    # Print the explanatory message
+    cat(plotlyC_concern[[paste0(chemItem, "_message")]], "\n \n")
+  }
+  
+}
+
+
+
+```
+
+
+## Plot Remaining Chemicals {.tabset  .tabset-pills}
+
+
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider pink area represents how common different amounts are, with wider parts showing levels found in more people. Click on each chemical name to compare your exposure to others in the study.
+
+
+```{r PlotOtherChems, results='asis', echo=FALSE, eval=TRUE}
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+
+#plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
+#cat(" \n about print ploty \n")
+
+if (!is.null(plotlyC_remaining)) {
+  for (chemItem in chemsNOTinConcernGroup) {
+    # Print the `cat` message (tab header)
+    cat(plotlyC_remaining[[paste0(chemItem, "_cat_message")]], "\n")
+    
+    # Print the tab content
+    print(plotlyC_remaining[[chemItem]])
+    
+    # Print the explanatory message
+    cat(plotlyC_remaining[[paste0(chemItem, "_message")]], "\n \n")
+  }
+  
+  
+}
+#cat(" \n Just print ploty \n")
+
+```
+
+
+
+```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```
+
+
+# Chemical Group Information
+
+
+
+```{r IndividualClassificationVsAverages, child='YourChemicalsAndAveragesByGroup_text.Rmd', eval = !HideClassificationInformation}
+```
+
+
+```{r IndividualChemicalListWithClassification, child='IndividualChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
+```
+
+
+```{r IndividualChemicalListWithOutClassification, child='IndividualChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```
+
+
+
+```{r IndividualClassificationShowingChemicals, child='IndividualClassificationShowingChemicals_text.Rmd', eval = !HideClassificationInformation}
+```
+
+
+
+
+```{r chart_x5_perc_values, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150, eval=FALSE}
+
+
+
+
+## Your Percentage vs Maximum Amount Found
+
+<!--  THIS IS OLD LANGUAGE... improved it somewhat
+Another way to view the data is by comparing how much of a chemical you had compared to the maximum found in any wristband. For example, if wristband-A had 100 nanograms and the maximum was 1,000 nanograms, wristband-A had 10% of the maximum. The chart below shows the percentage of the maximum for each chemical found on your wristband.
+-->
+
+Next we looking at the amount of each chemical you have compared to the highest amount found on anyone's wristband.  So, if the maximum amount of a certain chemical found was 1,000, and your wristband had 100, you'd have 10% of that maximum. This chart shows you that percentage for all the chemicals found on your wristband, giving you a sense of how your results stack up against the highest levels detected.
+
+`r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below"}`
+
+
+
+
+
+
+
+################ BEGIN x5 Perc
+
+##
+perc_values <- testResults.big %>% #
+  filter(SampleNumber == subject) %>%
+  filter(Result > 0) %>%
+  select(ParameterName, norm_Result)
+
+c <- ggplot(perc_values, aes(y = norm_Result, factor(ParameterName))) +
+  # geom_bar(stat="identity")+
+  geom_bar(stat = "identity", fill = "blue", colour = "black") +
+  labs(
+    x = "All Chemicals Found on Your Wristband",
+    y = "Percent of Max value Found",
+    title = paste(
+      "Your Percentage of Max Exposure\n",
+      "Found per Chemical\n" # ,
+      # "Subject = ", subject
+    )
+  )
+# c
+
+axis.text.x.size <- 6 # JUST changed to be a variable
+if (howManyUniqueChemFoundAcrossAllWristbands < 60) axis.text.x.size <- 10
+c <- c + theme(
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  axis.title.x = element_blank(),
+  axis.text.x = element_text(angle = 90, vjust = .1, hjust = 1, size = axis.text.x.size),
+  #           axis.text.x = element_text(angle = 45,vjust=1,hjust=1,size=6 ),
+
+  legend.position = "none",
+  panel.background = element_blank(),
+  panel.border = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  plot.background = element_blank()
+)
+
+# c <- c + scale_y_continuous(labels=percent, limits=c(0,1))
+c <- c + scale_y_continuous(labels = percent)
+c + coord_flip()
+
+
+rm(c, perc_values)
+```
+
+<br>
+<br>

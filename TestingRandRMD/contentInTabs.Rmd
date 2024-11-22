@@ -1,0 +1,31 @@
+---
+title: Use tabs to organize content
+output:
+  rmdformats::readthedown:       #rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+---
+
+You can turn parallel sections to tabs in `html_document` output.
+
+## Results {.tabset}
+
+
+### <span id="custom-plots">Plots</span>
+
+We show a scatter plot in this section.
+
+```{r, fig.dim=c(5, 3)}
+par(mar = c(4, 4, .5, .1))
+plot(mpg ~ hp, data = mtcars, pch = 19)
+```
+
+### <span id="custom-plots2">Plots2</span>
+
+now in plots2
+
+### <span id="custom-3plots">3Plots</span>
+Now in 3plots.
+
+
+

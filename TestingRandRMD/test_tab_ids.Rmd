@@ -1,0 +1,53 @@
+---
+title: "Dynamic Tabset Test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(htmltools)
+
+```
+
+```{r testTabs}
+# Example data: chemical names
+chemicals <- c("Chlorophenol", "Benzene", "Toluene", "Phenol")
+
+# Function to dynamically create tabs
+createTabset <- function(chemicals) {
+  tabs <- list()  # Store tab contents
+  nav_items <- list()  # Store tab navigation items
+
+  for (chem in chemicals) {
+    # Generate a clean ID for the tab
+    tab_id <- paste0("tab-", tolower(gsub("[^a-zA-Z0-9]", "-", chem)))
+
+    # Tab navigation item
+    nav_items[[chem]] <- tags$li(
+      tags$a(href = paste0("#", tab_id), chem)
+    )
+
+    # Tab content
+    tabs[[chem]] <- tags$div(
+      id = tab_id,
+      class = "tab-pane",
+      paste("This is the content for", chem)
+    )
+  }
+
+  # Create the complete tabset
+  tagList(
+    tags$ul(class = "nav nav-tabs", nav_items),  # Navigation bar
+    tags$div(class = "tab-content", tabs)       # Tab content
+  )
+}
+
+# Generate and render the tabset
+dynamic_tabs <- createTabset(chemicals)
+rendered_html <- renderTags(dynamic_tabs)
+
+# Print the HTML for the R Markdown output
+cat(rendered_html$html)
+
+
+
+```

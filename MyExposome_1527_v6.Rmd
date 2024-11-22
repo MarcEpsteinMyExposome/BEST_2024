@@ -33,7 +33,7 @@ output:
 •	5       ¦--GroupAndIndividualAnalysisIntro_text.Rmd                
 •	6       ¦--HeadlineMessageTotalChems.Rmd                           
 •	7       ¦--HeadlinesAmountByChemicalGroup.Rmd                      
-•	8       ¦--IndividualResultsAnalysis__w_Violin_text.Rmd            
+•	8       ¦--IndividualResultsAnalysis__w_Violin_text.Rmd    -- THIS GOT TWEAKED INTO TWO PARTS          
 •	9       ¦   ¦--StatisticsOnChemicalsFound.Rmd                      
 •	10      ¦   ¦--YourChemicalsAndAveragesByGroup_text.Rmd            
 •	11      ¦   ¦--IndividualChemicalListWithClassification_text.Rmd   
@@ -167,73 +167,58 @@ Bootstrap Tab Activation:  The $(tabHeader).tab("show") ensures the correct tab 
 Smooth Scrolling:  scrollIntoView scrolls to the content once it is loaded and visible.
 Delay for Loading Content:  The setTimeout ensures the tab content is available in the DOM before scrolling.
 -->
-
 <script>
-  function openTab(tabId) {
-    // Locate the tab header
-    const tabHeader = document.querySelector(`a[href="#${tabId}"][role="tab"]`);
-    if (tabHeader) {
-      // Activate the correct tab
-      const tabLi = tabHeader.closest("li[role='presentation']");
-      const tabList = tabHeader.closest("ul[role='tablist']");
+function openTab(tabId) {
+  //console.log(`Opening tab: ${tabId}`);
 
-      if (tabList) {
-        // Remove "active" class from all tabs
-        const allTabs = tabList.querySelectorAll("li[role='presentation']");
-        allTabs.forEach((tab) => tab.classList.remove("active"));
+  // Find the tab header
+  const tabHeader = document.querySelector(`a[href="#${tabId}"][role="tab"]`);
+  if (tabHeader) {
+    // Simulate a user click on the tab header
+    tabHeader.click();
 
-        // Add "active" class to the selected tab
-        if (tabLi) {
-          tabLi.classList.add("active");
-        }
+    // Use a short delay to ensure the content becomes active
+    setTimeout(() => {
+      const tabContent = document.getElementById(tabId);
+      if (tabContent) {
+        // Ensure the tab content is active
+        tabContent.scrollIntoView({ behavior: "smooth" });
+        //console.log(`Activated and scrolled to tab-pane: ${tabId}`);
 
-        // Activate the corresponding tab content
-        const allTabContents = document.querySelectorAll(".tab-pane");
-        allTabContents.forEach((content) => {
-          content.classList.remove("show", "active"); // Clear "show" and "active" from all content
-        });
-
-        const tabContent = document.getElementById(tabId);
-        if (tabContent) {
-          tabContent.classList.add("show", "active"); // Activate the selected tab content
-        }
-
-        // Scroll to the nearest H2 heading above the tab list
+        // Scroll to the nearest `##` heading above the tab list
         setTimeout(() => {
-          // Find the nearest H2 above the tab list
-          let currentElement = tabList.previousElementSibling;
-          let headingToScrollTo = null;
+          const tabList = tabHeader.closest("ul[role='tablist']");
+          if (tabList) {
+            let currentElement = tabList.previousElementSibling;
+            let headingToScrollTo = null;
 
-          while (currentElement) {
-            if (currentElement.tagName === "H2") {
-              headingToScrollTo = currentElement;
-              break;
+            while (currentElement) {
+              if (currentElement.tagName === "H2") {
+                headingToScrollTo = currentElement;
+                break;
+              }
+              currentElement = currentElement.previousElementSibling;
             }
-            currentElement = currentElement.previousElementSibling; // Traverse upwards in the DOM
-          }
 
-          if (headingToScrollTo) {
-            // Scroll to the H2 heading
-            headingToScrollTo.scrollIntoView({ behavior: "smooth" });
-          } else if (tabContent) {
-            // Fallback: Scroll to the tab content with slight offset
-            tabContent.scrollIntoView({ behavior: "smooth" });
-            window.scrollBy(0, -100);
+            if (headingToScrollTo) {
+              headingToScrollTo.scrollIntoView({ behavior: "smooth" });
+              //console.log(`Scrolled to heading: ${headingToScrollTo.innerText}`);
+            } else {
+              //console.log("No heading found above the tab list.");
+              // Fallback: Scroll back slightly for better view
+              window.scrollBy(0, -100);
+            }
           }
-        }, 300); // Adjust the delay if necessary
+        }, 200); // Adjust this delay as necessary
+      } else {
+        //console.error(`Tab content not found for ID: ${tabId}`);
       }
-    } else {
-      console.error("Tab header not found for ID:", tabId);
-    }
+    }, 100); // Adjust delay if necessary
+  } else {
+    //console.error(`Tab header not found for ID: ${tabId}`);
   }
+}
 </script>
-
-
-
-
-
-
-
 
 
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
@@ -469,6 +454,10 @@ names(oneResultIARCRisk) <- c("Chemical Name", "Risk Type Per IARC")
 numIARCRiskFound <- nrow(oneResultIARCRisk)
 ```
 
+
+```{r preCalc_plotlyC, child='IndividualResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoSpecificSubjectAnalysis}
+```
+
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
 <!-- r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval= DoSpecificSubjectAnalysis -->
 
@@ -594,7 +583,7 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 
-```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_text.Rmd', eval= DoSpecificSubjectAnalysis}
+```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_Output.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
@@ -619,4 +608,36 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
     <i class="fa fa-print"></i> Print Report
   </button>
 </div>
+
+
+<!-- add javascript to remove x_ from the beginning of visible chemical names 
+had to add the x_ to work around weird link-creation-by-rmarkdown problem but wanted them HIDDEN and not on tab-->
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    //console.log("Script running: Removing 'x_' from visible chemical tab names...");
+
+    // Locate the correct tab list (nav-pills) and target its tabs
+    const chemicalTabLinks = document.querySelectorAll('ul.nav.nav-pills a[role="tab"][href^="#x_"]');
+
+    if (chemicalTabLinks.length === 0) {
+      //console.warn("No chemical tabs found in the document.");
+      return;
+    }
+
+    chemicalTabLinks.forEach((tab) => {
+      console.log(`Processing chemical tab: ${tab.outerHTML}`);
+      const visibleText = tab.innerText || tab.textContent;
+      if (visibleText.startsWith("x_")) {
+        tab.textContent = visibleText.replace(/^x_/, ""); // Remove the "x_" prefix from visible text
+        //console.log(`Updated: ${tab.textContent}`);
+      }
+    });
+
+    //console.log("All chemical tabs updated.");
+  }, 100); // Add delay to ensure DOM is fully loaded
+});
+
+</script>
+
 
