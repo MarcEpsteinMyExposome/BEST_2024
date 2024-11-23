@@ -1,0 +1,33 @@
+---
+title: "reportOnPatchVsMasterParam"
+output: html_document
+date: "2024-11-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source(here::here("TestingRandRMD","patchTestAnalysisVSotherTests.R"))
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r printResults1}
+
+
+findMatchingRows(masterParam,getPatchData("AC-1000")) %>% gt()
+
+findMatchingRows(masterParam,getPatchData("B-1000")) %>% gt()
+
+findMatchingRows(masterParam,getPatchData("C-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("F-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("MN-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("PG-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("PL-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("R-1000")) %>% gt()
+findMatchingRows(masterParam,getPatchData("SH-1000")) %>% gt()
+```
