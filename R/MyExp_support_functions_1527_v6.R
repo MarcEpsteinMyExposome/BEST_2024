@@ -661,3 +661,14 @@ generateTabLink <- function(chem_name) {
     )
   )
 }
+
+
+
+# Function to look up non_zero_count for a specific ParameterName
+## WHY am i putting this here... Don't know
+lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
+  result <- howManyHaveParameterName %>%
+    filter(ParameterName == parameter_name) %>%
+    pull(non_zero_count)
+  return(result)
+}

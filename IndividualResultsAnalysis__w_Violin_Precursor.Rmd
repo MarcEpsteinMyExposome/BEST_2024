@@ -45,13 +45,13 @@ howManyHaveParameterName <- testResults.big %>%
   summarise(non_zero_count = sum(Result != 0))
 
 
-# Function to look up non_zero_count for a specific ParameterName
-lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
-  result <- howManyHaveParameterName %>%
-    filter(ParameterName == parameter_name) %>%
-    pull(non_zero_count)
-  return(result)
-}
+# # Function to look up non_zero_count for a specific ParameterName
+# lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
+#   result <- howManyHaveParameterName %>%
+#     filter(ParameterName == parameter_name) %>%
+#     pull(non_zero_count)
+#   return(result)
+# }
 
 # Example usage
 # parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
@@ -60,136 +60,6 @@ lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
-
-
-
-
-
-### Extracted function below as generic way to do tabset PLOTLY of interact plots
-###     NOTE that we do with set that IS listed in certain DB and set that ISN"T but ...that is an artifical split we could just collapse them
-###     NOTE that in both cases we have the CODE to print the listing in those database... BUT.... it never gets hit if it's not there!
-
-plotlyChemsOLD <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested) {
-  if (length(chemsList) >= 1) {
-    for (i in 1:length(chemsList)) {
-      chemItem <- chemsList[i]
-
-      # Filter data for the current chemical
-      testResults_ChemItem <- testResults.big %>%
-        filter(ParameterName == chemItem) %>%
-        select(SampleNumber, Result, ParameterName)
-
-      # Create a tab for this chemical, regardless of the number of datapoints
-      cat("###", chemItem, "{-}", "\n\n")
-      
-      if (nrow(testResults_ChemItem[testResults_ChemItem$Result > 0, ]) > 1) {
-        # Create a tab with the Plotly Sina plot if there are sufficient data points
-        htmlTagList <- htmltools::tagList(
-          htmltools::tags$div(
-            id = generateTabID(chemItem), # Standardized ID format
-            buildPlotlySina(chemItem, testResults_ChemItem, subject)
-          )
-        )
-      } else {
-        # Create a placeholder tab if there are insufficient data points
-        htmlTagList <- htmltools::tagList(
-          htmltools::tags$div(
-            id = generateTabID(chemItem),
-            style = "display: flex; justify-content: center; align-items: center; height: 100%; padding: 50px; text-align: center;",
-            htmltools::tags$p(
-              "Insufficient data to display meaningful chart.",
-              style = "font-size: 36px; font-weight: bold; color:blue; margin: 50px 0;"
-            )
-          )
-        )
-      }
-
-      # Print the tab
-      if (!is.null(htmlTagList)) {
-        print(htmlTagList)
-      }
-
-      # Construct the message, always including a link since a tab will always exist
-      newMessage <- paste(
-        "<br>",
-        chemItem, 
-        " was found on ",
-        lookup_non_zero_count(chemItem, howManyHaveParameterName),
-        " out of the ",
-        howManyWristbandsTested,
-        " wristbands."
-      )
-
-      # Add additional information if available
-      testInPROP65 <- oneResultCalifProp65Risk %>%
-        filter(`Chemical Name` == chemItem)
-      if (nrow(testInPROP65) > 0) {
-        PROP65_info <- str_trim(testInPROP65$`Risk Type Per California Prop 65`)
-        Prop65_Link <- makeClickableURL("http://www.oehha.ca.gov/prop65.html", "California Proposition 65")
-
-        newMessage <- paste(
-          newMessage,
-          " ",
-          " This chemical is classified per ",
-          Prop65_Link,
-          " with the risk type noted as: ",
-          PROP65_info,
-          "."
-        )
-      }
-
-      testInIRIS <- oneResultEpaIris %>%
-        filter(`Chemical Name` == chemItem)
-      if (nrow(testInIRIS) > 0) {
-        IRIS_info <- makeClickableURL(testInIRIS$`IRIS Summary Web Link`, "chemical of interest")
-        newMessage <- paste(
-          newMessage,
-          " ",
-          "The Environmental Protection Agency has classified this chemical as a ",
-          IRIS_info,
-          ". "
-        )
-      }
-
-      testInChemSourceMitigation <- chemSourceMitigation %>%
-        filter(Chemical_Name == chemItem)
-      chemSourceMitigationMessage <- "\n\n"
-      if (nrow(testInChemSourceMitigation) > 0) {
-        chemSourceMitigationMessage <- paste0(
-          chemSourceMitigationMessage,
-          " Sources of Exposure to this compound:  **",
-          testInChemSourceMitigation$Sources_of_Exposure,
-          "**. ",
-          "\n Possible ways to avoid exposure to this compound include: **",
-          testInChemSourceMitigation$Mitigation_Strategies,
-          "**."
-        )
-        if (!is.na(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL)) {
-          wikiURL <- makeClickableURL(testInChemSourceMitigation$WIKIPEDIA_ARTICLE_URL, "Wiki")
-          chemSourceMitigationMessage <- paste0(chemSourceMitigationMessage, " Additional information: ", wikiURL)
-        }
-
-        ##### DELETED IARC cause Silent Spring suggested gettign rid
-        # testInIARC <- oneResultIARCRisk %>%
-        #   filter(`Chemical Name` == chemItem)
-        #  if (nrow(testInIARC) > 0) {
-        #    IARC_info <- testInIARC$`Risk Type Per IARC`
-        #    newMessage <- paste (newMessage,  " ",
-        #                         " This chemical is classified by the International Agency for the Research on Cancer ",
-        #                         " as a chemical of concern.  It is classified as: ",  IARC_info,".")
-        #  }
-        newMessage <- paste(newMessage, " ", chemSourceMitigationMessage)
-      }
-
-      # Print the message
-      if (!is.null(newMessage)) {
-        cat(newMessage, "\n\n")
-      }
-    }
-  }
-}
-
-
 
 
 ```
