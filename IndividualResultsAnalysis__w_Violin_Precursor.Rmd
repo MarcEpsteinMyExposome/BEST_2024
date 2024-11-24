@@ -7,9 +7,7 @@ editor_options:
 
 ```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
 ## The function to build a violin plot is now in a separate R file
-#source("BuildViolinPlot.R")
-#source(setRdirectory("BuildViolinPlot.R"))
-#source(setRdirectory("BuildViolinSina.R"))
+
 
 source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 
@@ -18,11 +16,7 @@ source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 # Make list of all chemicals that our ONE user had that showed up in "any" of the databases
 ##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
 #
-
-# chemsOfConcern <- (union(union(oneResultCalifProp65Risk$`Chemical Name`,oneResultEpaIris$`Chemical Name`),
-#      oneResultIARCRisk$`Chemical Name`))
-#
-### ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
+## ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
 chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
 
 
@@ -32,11 +26,7 @@ chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y
 
 
 ```{r setupViolinVariablesAndFunctions, include=FALSE,eval=DoSpecificSubjectAnalysis}
-# THIS weird few LINES is not really important except somehow by ploting, but not including (include=FALSE) this enables the rest to work?
-# fig <- ggplot(cars) +
-# geom_point(aes(speed, dist))
-# htmltools::tagList(ggplotly(fig))
-# Initialize Plotly without rendering a dummy plot
+# THIS weird few LINES is not really important except somehow by ploting, but not including # Initialize Plotly without rendering a dummy plot
 plotly::config(plot_ly())
 
 ### This next section is to figure how HOW MANY people HAD this compound and how many didn't
@@ -45,18 +35,6 @@ howManyHaveParameterName <- testResults.big %>%
   summarise(non_zero_count = sum(Result != 0))
 
 
-# # Function to look up non_zero_count for a specific ParameterName
-# lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
-#   result <- howManyHaveParameterName %>%
-#     filter(ParameterName == parameter_name) %>%
-#     pull(non_zero_count)
-#   return(result)
-# }
-
-# Example usage
-# parameter_name_to_lookup <- "Trans-Nonachlor"  # Replace with your ParameterID
-# non_zero_count_value <- lookup_non_zero_count(parameter_name_to_lookup, howManyHaveParameterName)
-# print(non_zero_count_value)
 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops

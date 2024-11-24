@@ -55,6 +55,46 @@ output:
 
 -->
 
+<!--
+
+MyExposome_1527_v6.Rmd
+  - Sourced R Files:
+    - MyExp_set_key_variables.R
+    - here::here(R, ...)
+    - support.functions.filename
+  - Child RMD Files:
+    - SpecificSubjectAnalysisIntro_text.Rmd
+    - GroupAnalysisIntro_text.Rmd
+    - GroupAndIndividualAnalysisIntro_text.Rmd
+    - IndividualResultsAnalysis__w_Violin_Precursor.Rmd
+      - Sourced R Files:
+        - BuildViolinPlot_SinaOnly.R
+    - HeadlineMessageTotalChems.Rmd
+    - HeadlinesAmountByChemicalGroup.Rmd
+      - Sourced R Files:
+        - HeadlinesAmountByChemicalGroup_R_Code.R
+    - IndividualResultsAnalysis__w_Violin_Output.Rmd
+      - Child RMD Files:
+        - StatisticsOnChemicalsFound.Rmd
+        - YourChemicalsAndAveragesByGroup_text.Rmd
+        - IndividualChemicalListWithClassification_text.Rmd
+        - IndividualChemicalListWithOutClassification_text.Rmd
+        - IndividualClassificationShowingChemicals_text.Rmd
+    - CompoundClassification_text.Rmd
+    - GroupResultsAnalysis.Rmd
+      - Child RMD Files:
+        - GroupDatabaseLookupIARC_Prop65_IRIS.Rmd
+        - GroupChemicalListWithClassification_text.Rmd
+        - GroupChemicalListWithOutClassification_text.Rmd
+        - airConcentrationOutput.Rmd
+        - GroupClassificationAnyWristband_text.Rmd
+        - GroupClassificationAtLeastOne_text.Rmd
+        - GroupClassificationEveryWristband_text.Rmd
+    - testPrePostProcessing.Rmd
+    - AdditionalInformation.Rmd
+
+-->
+
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 # THIS FILE requires that an R source file be run first to
 #     populate the environment.
@@ -65,10 +105,6 @@ output:
 
 library(here)
 setwd(here::here())  
-##source(here::here("R", ""))
-#cat("333 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
-
-
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 if (!exists("subject")) {
@@ -110,16 +146,6 @@ logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png
 image_base64 <- dataURI(file = logo_path, mime = "image/png")
 ```
 
-```{r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="" , eval=FALSE}
-# stop putting image at top of big content cause i'm styling onto the sisdebar
-
-# {r loadPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=2, fig.align="center"}
-
-# img <- readPNG("images/myExposomeLogo.png")
-img <- readPNG("images/myExposomeLogo50smaller.png")
-grid.raster(img, name = NULL)
-rm(img)
-```
 
 ```{r loadUCSFPNG2, echo=FALSE, message=FALSE , fig.width=3, fig.height=1,fig.cap="", eval= FALSE}
 # note CAN change eval=FAlSE to eval=UCSF2020Fixup

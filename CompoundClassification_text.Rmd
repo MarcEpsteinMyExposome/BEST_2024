@@ -30,39 +30,3 @@ pandoc.table(classExplainTable,
 
 ```
 
-
-
-```{r ClassificationListing, results='asis', echo=FALSE, message=FALSE, eval=FALSE}
-## TO EDIT TABLE ABOVE SWITCH TO VISUAL MODE Editing
-#
-#THIS USED TO PRINT THE MATRIX in Kludgy way.  Then i cut/pasted from the OUTPUT of the below and then moved this into VISUAL mode temporarily which made editing it much easier
-#   SO i set this to eval=false
-#
-ChemClassInfo.m<-matrix(
-c(
-industrial_text_string, "Chemicals found in consumer, industrial, or commercial products or product streams",
-consumerProduct_text_string,"Chemicals found in foodstuffs or other consumable goods such as cigarettes, coffee, and spices  or other products intended for household or personal use", 
-dioxinsAndFurans_text_string,"Most dioxins and furans are not man-made or produced intentionally but are created when other chemicals or products (such as herbicides, pulp, paper) are made.  In addition, they can be produced when products are burned.",
-flameRetardant_text_string,"Flame retardants used in consumer and commercial products such as polybrominated diphenyl ethers (PBDEs), polybrominated biphenyls (PBBs), and organic phosphate flame retardants (OPFRs) and others",
-####OPAH_text_string,"Oxygenated Polycyclic Aromatic Hydrocarbons (OPAHs): Found in fossil-fuel/combustion-based sources or weathered PAHs",
-PAH_text_string,"Polycyclic Aromatic Hydrocarbon (PAHs/OPAHs/NPAHs): found in petroleum, fuels and combustion of organic matter",
-personalCare_text_string,"Found in many personal care products (shampoos, perfumes, other cosmetics...)",
-pest_text_string,"Herbicides, fungicides, insecticides, rodenticides, etc. or degradation products of pesticides",
-pharmacological__text_string,"Used in making or as components of manufactured drugs",
-PCB_text_string,"Manufactured chlorinated chemicals that are found in electrical, lighting, gas and construction industries",
-VOC_text_string, "VOCs are a large chemical classification made up of alkanes, benzenes, and other   volatile (i.e. easily airborne) compounds that are found in burning fuels and released from many   consumer products like solvents, paints, adhesives, preservatives, cleaners and building materials."
-)
-,ncol=2,byrow=TRUE)
-colnames(ChemClassInfo.m)<-c("Classification","Classification Description")
-
-pandoc.table(ChemClassInfo.m,
-             justify=c("left","left"),  #ADD "left" as needed for number of "ncol" above
-             emphasis.co.names=TRUE,
-             caption=""
-             ,split.table = Inf
-             ,split.cells=70
-             #,style = 'grid'
-             #,style = 'rmarkdown'
-             )
-
-```
