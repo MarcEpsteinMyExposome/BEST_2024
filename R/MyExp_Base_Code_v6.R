@@ -177,16 +177,32 @@ rm(load.classification, classificationTableName)
 class_TEMP_hold <- classification ## DELETE AFTER TESTING
 
 # Create the LONG version of "classification" (which is WIDE)
+# THIS IS OLD VERSION... used clues to rewrite since gather is deprecated
+# class_L <- classification %>%
+#   tidyr::gather(classification,
+#     value,
+#     colnames(classification[2:ncol(classification)]),
+#     factor_key = TRUE
+#   ) %>% # convert wide to long
+#   filter(value == 1) %>% # ONLY choose the HITS
+#   select(ParameterID, classification) %>% # Drop the VALUE column
+#   mutate(ParameterID = as.character(ParameterID)) %>% # Make the ParameterID column character instead of num
+#   semi_join(masterParam, by = "ParameterID") # ONLY select the rows from classification that are in masterParam
+
+# Create the LONG version of "classification" (which is WIDE)
 class_L <- classification %>%
-  tidyr::gather(classification,
-    value,
-    colnames(classification[2:ncol(classification)]),
-    factor_key = TRUE
-  ) %>% # convert wide to long
+  pivot_longer(
+    cols = -ParameterID, # All columns except "ParameterID" are pivoted
+    names_to = "classification", # New column name for column headers
+    values_to = "value", # New column name for values
+    values_drop_na = TRUE # Drop rows with NA values (optional, if needed)
+  ) %>%
   filter(value == 1) %>% # ONLY choose the HITS
   select(ParameterID, classification) %>% # Drop the VALUE column
-  mutate(ParameterID = as.character(ParameterID)) %>% # Make the ParameterID column character instead of num
-  semi_join(masterParam, by = "ParameterID") # ONLY select the rows from classification that are in masterParam
+  mutate(ParameterID = as.character(ParameterID)) %>% # Ensure ParameterID is character
+  semi_join(masterParam, by = "ParameterID") # ONLY select rows that are in masterParam
+
+
 
 rm(classification)
 
@@ -345,7 +361,17 @@ if (WisconsinFixup == TRUE && (RMD_type == "VOPAH" || RMD_type == "PAH" || RMD_t
 
 
 chemicalsTestedFromMasterParam <- nrow(masterParam)
-uniqueChemicalsInTestResults <- length(unique(testResultsRawTable[, "ParameterName"]))
+
+#  OLD WAY uses direct indexing and is confusing and not tidyvers
+#uniqueChemicalsInTestResults <- length(unique(testResultsRawTable[, "ParameterName"]))
+
+uniqueChemicalsInTestResults <- testResultsRawTable %>%
+  distinct(ParameterName) %>%
+  count() %>%
+  pull(n)
+
+
+
 mismatchPrompt <- paste("chemicalsTestedFromMasterParam = ", chemicalsTestedFromMasterParam, " ", "uniqueChemicalsInTestResults = ", uniqueChemicalsInTestResults, " ")
 
 if (!(WisconsinFixup == TRUE && RMD_type == "PAH") && !(WisconsinFixup == TRUE && RMD_type == "PEST")) {
@@ -411,7 +437,14 @@ if (makeIntoDemoData) {
 
   # Now change SampleNumbers to other Strings
   testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
-  subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
+
+  # OLD WAY with direct reference to things... this is old-school
+  #subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
+
+  subject <- testResults %>%
+    slice(1) %>% # Select the first row
+    pull(SampleNumber) # Extract the value of the "SampleNumber" column
+
   #
   #
   # KEY POINT is that when making it into demo data there might be some compounds which WERE found in the bigger set, NOT found in the demo set,
@@ -768,7 +801,14 @@ if (makeIntoDemoData) { #   Use this to set SUBJECT to min max middle as way of 
   # subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR)/2,0)]   ## Hard code to average # of compounds
   # subject <- minMaxTR$SampleNumber[nrow(minMaxTR)-1]  ## ## Hard code to one less than MIN # of compounds
   # subject <- "AA90GCC"  ### Hardcoded to make into the one person with highest of a compound in agricultural and pharm products...Bis(2-ethylhexyl)phthalate   AA90GCC   856000   Agricultural & Pharmaceutical Chemicals
-  subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR) * .2, 0)] ## Hard code to 80% of # of compounds
+
+  # OLD WAY TO DO THIS
+  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR) * .2, 0)] ## Hard code to 80% of # of compounds
+
+  subject <- minMaxTR %>%
+    slice(round(n() * 0.2)) %>% # Select the 80th percentile row dynamically
+    pull(SampleNumber) # Extract the SampleNumber column
+
 }
 rm(makeIntoDemoData)
 
@@ -793,7 +833,9 @@ rm(minMaxTR)
 
 ## Calculate statistics of min/max/etc of occurences of chemicans across wristbands
 #   Use only >0 values
-statSummary <- testResults.big[testResults.big$Result > 0, ] %>%
+## OLD CODE:   replaced with 2 lines below   statSummary <- testResults.big[testResults.big$Result > 0, ]
+statSummary <- testResults.big %>%
+  filter(Result > 0) %>%
   select(ParameterName, Result) %>%
   group_by(ParameterName) %>%
   summarise(
