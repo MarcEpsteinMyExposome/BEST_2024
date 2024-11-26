@@ -599,23 +599,7 @@ makeClickableURL <- function(URL, clickableText) {
 # }
 
 
-# Function to generate a clean, HTML-compatible tab ID from a string
-generateTabID_OLD <- function(chem_name) {
-  # Use gsub() to perform transformations:
-  # 1. Replace spaces with dashes ("-")
-  # 2. Remove disallowed characters (e.g., punctuation, brackets, special symbols)
-  # 3. Convert the resulting string to lowercase
-  #
-  # The regex `[,()\\[\\]{}!@#$%^&*+=~`<>?/|\\\\\"';:]` matches:
-  # - Punctuation: commas, parentheses, brackets, braces
-  # - Special symbols: `!@#$%^&*+=~`<>?/|\;"':`
-  # - Note: `\\[` and `\\]` are escaped because `[` and `]` are special in regex.
-  # - Note: `\\{` and `\\}` are escaped for literal curly braces.
-  #
-  # The `perl = TRUE` argument is required because curly braces `{}` are not supported
-  # in character classes by R's default TRE regex engine.
-  tolower(gsub("[,()\\[\\]{}!@#$%^&*+=~`<>?/|\\\\\"';:]", "", gsub(" ", "-", chem_name), perl = TRUE))
-}
+
 
 # PREPEND an x_ in front of title cause i need it to get around weird problems with rmarkdown forcing LINK ID to be changed
 #   in this case, just add the x_ for the tab title, i later use javascript to remove it.
@@ -631,6 +615,7 @@ prepareTabTitle <- function(tab_name) {
 }
 
 
+# Function to generate a clean, HTML-compatible tab ID from a string
 # PREPEND an x_ in front of title cause i need it to get around weird problems with rmarkdown forcing LINK ID to be changed
 #   in this case, i both prepend an x_ if the label begins with a numbe or other weird charcater aND also do some of the tricks rmarkdown does to text
 #     i probably could use this "change text later" logic in some more complete way but this works
