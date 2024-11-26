@@ -189,7 +189,7 @@ if (CombinedDRS_November6_2024) {
   wristbands_time_adjusted <- FALSE
   wristbands_time_and_weight_adjusted <- FALSE
   wristbands_week_and_weight_adjusted <- FALSE
-  wristbands_day_and_weight_adjusted <- FALSE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+ # wristbands_day_and_weight_adjusted <- FALSE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
   testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   #testDoneFor <- ""
   ExpectedUnits <- "ng/g"
@@ -210,7 +210,7 @@ if (CombinedDRS_November6_2024) {
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- FALSE
-  wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  #wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
   # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
