@@ -229,7 +229,7 @@ suppressWarnings (
   workingTibble %>%
     select(`myexpo client?`,n,Title) %>%
     distinct() %>%
-    #filter(n != "NA") %>%
+    #filter(!is.na(n) %>%
     mutate(n=as.numeric(n)) %>%
     replace(is.na(.), 0) %>%
     group_by(`myexpo client?`)%>%

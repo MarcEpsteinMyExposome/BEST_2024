@@ -14,9 +14,6 @@ if (!exists("masterParam")) {
 # Clean up environment a little
 rm(list=ls()[!ls() %in% c("masterParam")])
 
-
-
-
 getPatchData<-function(patchTestType) {
   patchFileName <- paste0(patchTestType,".xlsx")
   # Now read in one of the patchtest files
@@ -35,15 +32,3 @@ findMatchingRows<-function(myExposomeTable,patchTable){
   intersectRows <- patchTable[patchTable$CASNumber %in% intersectingCAS,]
   return(intersectRows)
 }
-
-#
-#
-# findMatchingRows(masterParam,getPatchData("AC-1000"))
-# findMatchingRows(masterParam,getPatchData("B-1000"))
-# findMatchingRows(masterParam,getPatchData("C-1000"))
-# findMatchingRows(masterParam,getPatchData("F-1000"))
-# findMatchingRows(masterParam,getPatchData("MN-1000"))
-# findMatchingRows(masterParam,getPatchData("PG-1000"))
-# findMatchingRows(masterParam,getPatchData("PL-1000"))
-# findMatchingRows(masterParam,getPatchData("R-1000"))
-#gt(findMatchingRows(masterParam,getPatchData("SH-1000")))

@@ -18,7 +18,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r printResults1}
 
-
+findMatchingRows(getPatchData("AC-1000"),masterParam) %>% gt()
 findMatchingRows(masterParam,getPatchData("AC-1000")) %>% gt()
 
 findMatchingRows(masterParam,getPatchData("B-1000")) %>% gt()
@@ -30,4 +30,26 @@ findMatchingRows(masterParam,getPatchData("PG-1000")) %>% gt()
 findMatchingRows(masterParam,getPatchData("PL-1000")) %>% gt()
 findMatchingRows(masterParam,getPatchData("R-1000")) %>% gt()
 findMatchingRows(masterParam,getPatchData("SH-1000")) %>% gt()
+
+# IF we do AC and F, what value do other tests add
+
+# intersect(
+# findMatchingRows(getPatchData("AC-1000"),masterParam),
+# findMatchingRows(masterParam,getPatchData("AC-1000")),
+# 
+# findMatchingRows(masterParam,getPatchData("B-1000")),
+# 
+# findMatchingRows(masterParam,getPatchData("C-1000")),
+# findMatchingRows(masterParam,getPatchData("F-1000")),
+# findMatchingRows(masterParam,getPatchData("MN-1000")), 
+# findMatchingRows(masterParam,getPatchData("PG-1000")) ,
+# findMatchingRows(masterParam,getPatchData("PL-1000")) ,
+# findMatchingRows(masterParam,getPatchData("R-1000")) ,
+# findMatchingRows(masterParam,getPatchData("SH-1000"))) %>% gt()
+
+
+
+
+
+
 ```
