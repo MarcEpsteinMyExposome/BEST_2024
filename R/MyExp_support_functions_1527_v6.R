@@ -10,26 +10,24 @@
 
 ## USES:  testResults, subject, SubClassScores, results_W
 buildMesgVIndividual <-
-  function (testResults,
-            mesg.v,
-            subject,
-            SubClassScores,
-            results_W,
-            numEPAirisFound,
-            numCalProp65Found,
-            numIARCRiskFound,
-            howManyWristbandsTested,
-            HideClassificationInformation) {
-
-
-      testResultsNonZero <- testResults[testResults$Result > 0,]
+  function(testResults,
+           mesg.v,
+           subject,
+           SubClassScores,
+           results_W,
+           numEPAirisFound,
+           numCalProp65Found,
+           numIARCRiskFound,
+           howManyWristbandsTested,
+           HideClassificationInformation) {
+    testResultsNonZero <- testResults[testResults$Result > 0, ]
 
     #    length(unique(testResults$SampleNumber))<>length(unique(testResultsNonZero$SampleNumber))
 
 
-    #bullet<-"\x95"
+    # bullet<-"\x95"
 
-    #Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
+    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
     # countTestResults <- sqldf(
     #   "select t.SampleNumber,
     #   count(*) as CountChem
@@ -38,13 +36,13 @@ buildMesgVIndividual <-
     #   "
     # )
 
-    #Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
+    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
     # NEW way without SQLDF using dplyr
     countTestResults <- testResultsNonZero %>%
-      select(SampleNumber,ParameterID) %>%
+      select(SampleNumber, ParameterID) %>%
       group_by(SampleNumber) %>%
-      mutate(CountChem=n()) %>%
-      select(SampleNumber,CountChem)%>%
+      mutate(CountChem = n()) %>%
+      select(SampleNumber, CountChem) %>%
       distinct()
 
     # # add message for number found in various databases.  Do NOT report if none-found
@@ -107,11 +105,11 @@ buildMesgVIndividual <-
 
 
     #  ADD TO MESG if this subject had the maximum # of chemical detected AND there were 2 or more wristbands tested
-    if ( (howManyWristbandsTested>1) &&  (nrow(testResultsNonZero[testResultsNonZero$SampleNumber == subject,])  ==  max(countTestResults$CountChem))) {
+    if ((howManyWristbandsTested > 1) && (nrow(testResultsNonZero[testResultsNonZero$SampleNumber == subject, ]) == max(countTestResults$CountChem))) {
       txt <-
         "Your wristband had the maximum number of compounds detected in any of the wristbands."
       # txt<-paste(bullet,txt)
-      #txt
+      # txt
       mesg.v <- cbind(mesg.v, txt)
     }
 
@@ -127,45 +125,49 @@ buildMesgVIndividual <-
     #  DIFFERENT HEATMAP FOR DIFF CATEGORIES OF CHEMICALS
     #  FOCUS just by CATEGORY.and do
 
-    #LIST every chemical that was ONLY detected on THIS ONE wristband
+    # LIST every chemical that was ONLY detected on THIS ONE wristband
     # Get names of all chems found on JUST the SUBJECT wristband
     # What I want to do is... find all the chems ONLY on "subject" wristband
-    #SO i  find all the rows where the SUBJECT value equals total value and subject value not zero
+    # SO i  find all the rows where the SUBJECT value equals total value and subject value not zero
 
-    if (howManyWristbandsTested>1) {
-      #place holder
+    if (howManyWristbandsTested > 1) {
+      # place holder
       rw5 <- results_W
-      #r_wide<-results_W[,2:ncol(rw5)]
+      # r_wide<-results_W[,2:ncol(rw5)]
       # change everything > 0 to 1  for every column
-      rw5[rw5 > 0] = 1
-      rw5[is.na(rw5)] <- 0   ### In some scenario we get NA
+      rw5[rw5 > 0] <- 1
+      rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
 
       # Only those chemicals whos ROW SUMS = 1 have exactly one wristband with some value
       #   and of those, the ones which OUR subject has "1"
       chems <-
-        rownames(rw5[rowSums(rw5) == 1 & rw5[, subject] == 1,])
+        rownames(rw5[rowSums(rw5) == 1 & rw5[, subject] == 1, ])
 
       # Loop through all chems and assemble message
       for (chem in chems) {
         txt <-
-          paste(chem,
-                "was detected only on your wristband.")
+          paste(
+            chem,
+            "was detected only on your wristband."
+          )
         # txt<-paste(bullet,txt)
         mesg.v <- cbind(mesg.v, txt)
       }
-      rm(chems)#Clean Up
+      rm(chems) # Clean Up
     }
 
 
     ### NOW let's see if YOUR BAND had the MAXIUM amount of a chemical which 2 or more people also had
     # and then let's see if that MAXIMUM is 5x greater or more than anyone else
     PrintMesgAboutSignificantlyGreaterAmountFound <-
-      TRUE  ## or FALSE to suppress
-    if(howManyWristbandsTested<3) {PrintMesgAboutSignificantlyGreaterAmountFound <-FALSE} # IF 2 or 1 wristband supress message
+      TRUE ## or FALSE to suppress
+    if (howManyWristbandsTested < 3) {
+      PrintMesgAboutSignificantlyGreaterAmountFound <- FALSE
+    } # IF 2 or 1 wristband supress message
     if (PrintMesgAboutSignificantlyGreaterAmountFound) {
       # Could also change to "how many times greater" reporting
       multiplierGreater <-
-        5  #  ONLY flag people whose value is 5 times greater than the next largest #
+        5 #  ONLY flag people whose value is 5 times greater than the next largest #
 
       # So... we need to find out WHAT rows as 2 or more values, where our subject was the MAX value
       #   AND where our subject's MAX value is "5 times" (or whatever we set) or more greater than next largest
@@ -173,33 +175,33 @@ buildMesgVIndividual <-
 
       # Let's find the rows of r_wide with 2 or more values>0: (thats all rows where 2 or more people had values )
       h1 <-
-        results_W[rowSums(results_W > 0) > 1,] # all rows with 2 or more values
+        results_W[rowSums(results_W > 0) > 1, ] # all rows with 2 or more values
       h2 <-
-        h1[h1[, subject] == apply(h1, 1, max),] # all the rows where "subject" has the max value of that ROW
+        h1[h1[, subject] == apply(h1, 1, max), ] # all the rows where "subject" has the max value of that ROW
       if (nrow(h2) > 0) {
         h3 <-
           h2[, !names(h2) %in% c(subject), drop = FALSE] # dataframe WITHOUT the column SUBJECT (drop says keey as dataframe)
         maxWithoutSubject <-
           apply(h3, 1, max) # This is the max value in the dataframe WITHOUT our main subject
 
-        #GET rid of H4, don't need that variable.
-        #h4<-h1[multiplierGreater*maxWithoutSubject < h2[,subject],] #These are all the rows where our subject is max, and is "5" times greater than next largeset
-        #h4<-h2[multiplierGreater*maxWithoutSubject < h2[,subject],] #These are all the rows where our subject is max, and is "5" times greater than next largeset
+        # GET rid of H4, don't need that variable.
+        # h4<-h1[multiplierGreater*maxWithoutSubject < h2[,subject],] #These are all the rows where our subject is max, and is "5" times greater than next largeset
+        # h4<-h2[multiplierGreater*maxWithoutSubject < h2[,subject],] #These are all the rows where our subject is max, and is "5" times greater than next largeset
         h2$subjectDividedByMaxWitoutSubject <-
           round(h2[, subject] / maxWithoutSubject)
         # NOW we can LOOP through all the rows of H4 or H2 and add to mesg.v
-        #if (nrow(h4)>0) {
+        # if (nrow(h4)>0) {
         if (nrow(h2) > 0) {
           for (i in 1:nrow(h2)) {
             ## FOR EVERY ROW that meets our criteria of being MAX for our subject, 2 or more readings, max is 5x next
-            row <- h2[i,] #GRAB the i'th ROW
+            row <- h2[i, ] # GRAB the i'th ROW
             if (row$subjectDividedByMaxWitoutSubject >= multiplierGreater) {
               rname <- rownames(row)
               txt <-
                 paste(
                   "Your wristband had",
                   row$subjectDividedByMaxWitoutSubject,
-                  "times more" ,
+                  "times more",
                   generateTabLink(rname),
                   "than any other tested wristband.",
                   sep = " "
@@ -211,63 +213,62 @@ buildMesgVIndividual <-
         }
       }
     }
-    if (!HideClassificationInformation && (howManyWristbandsTested>1)){
-        # LOOP through every row and build the message string for all UNIQUE classifications
-        # sub_classif <-
-        #   as.data.frame(SubClassScores[SubClassScores$SampleNumber == subject &
-        #                                  SubClassScores$aggScore == 1, ])
+    if (!HideClassificationInformation && (howManyWristbandsTested > 1)) {
+      # LOOP through every row and build the message string for all UNIQUE classifications
+      # sub_classif <-
+      #   as.data.frame(SubClassScores[SubClassScores$SampleNumber == subject &
+      #                                  SubClassScores$aggScore == 1, ])
 
-        # FIND all unique classifications...
-        #FIRST find all the classifications that ONLY ONE SUBJECT (any sub) found
+      # FIND all unique classifications...
+      # FIRST find all the classifications that ONLY ONE SUBJECT (any sub) found
       # BUT ignore this if there is ONLY ONE WRISTBAND IN SET
-        uniqueClass <- as.data.frame(
-          SubClassScores %>%
-            group_by(classification) %>%
-            summarise(n = dplyr::n())  %>%
-            filter(n == 1) %>%
-            select(classification)
-        )
+      uniqueClass <- as.data.frame(
+        SubClassScores %>%
+          group_by(classification) %>%
+          summarise(n = dplyr::n()) %>%
+          filter(n == 1) %>%
+          select(classification)
+      )
 
-        uniqueClassOurSubject <- as.data.frame(
-          SubClassScores %>%
-            filter(classification %in% uniqueClass$classification) %>%
-            filter(SampleNumber == subject)
-        )
+      uniqueClassOurSubject <- as.data.frame(
+        SubClassScores %>%
+          filter(classification %in% uniqueClass$classification) %>%
+          filter(SampleNumber == subject)
+      )
 
-        if (nrow(uniqueClassOurSubject) > 0) {
-          for (i in 1:nrow(uniqueClassOurSubject)) {
-            ## FOR EVERY ROW in the list of all CLASSIFICATIONS
-            #i<- 1
-            row <- uniqueClassOurSubject[i, ] #GRAB the i'th ROW
+      if (nrow(uniqueClassOurSubject) > 0) {
+        for (i in 1:nrow(uniqueClassOurSubject)) {
+          ## FOR EVERY ROW in the list of all CLASSIFICATIONS
+          # i<- 1
+          row <- uniqueClassOurSubject[i, ] # GRAB the i'th ROW
 
-            txt <-
-              paste(
-                "Your Wristband was the only wristband to have any",
-                as.character(row[1, 1]),
-                "compounds detected.",
-                sep = " "
-              )
-            mesg.v <- cbind(mesg.v, txt)
-          }
+          txt <-
+            paste(
+              "Your Wristband was the only wristband to have any",
+              as.character(row[1, 1]),
+              "compounds detected.",
+              sep = " "
+            )
+          mesg.v <- cbind(mesg.v, txt)
         }
-     }
+      }
+    }
     mesg.v
   }
 
 ## USES:  testResults, subject, SubClassScores, results_W
 buildMesgVGroup <-
-  function (testResults,
-            mesg.v,
-            SubClassScores,
-            results_W,
-            countEPAiristHits,
-            countCalifProp65Hits,
-            countIARCHits,
-            HideClassificationInformation) {
+  function(testResults,
+           mesg.v,
+           SubClassScores,
+           results_W,
+           countEPAiristHits,
+           countCalifProp65Hits,
+           countIARCHits,
+           HideClassificationInformation) {
+    testResultsNonZero <- testResults[testResults$Result > 0, ]
 
-    testResultsNonZero <- testResults[testResults$Result > 0,]
-
-    #Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
+    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
     # OLD way with sqldf
     # countTestResults <- sqldf(
     #   "select t.SampleNumber,
@@ -277,23 +278,23 @@ buildMesgVGroup <-
     #   "
     # )
 
-    #Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
+    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
     # NEW way without SQLDF using dplyr
     countTestResults <- testResultsNonZero %>%
-      select(SampleNumber,ParameterID) %>%
+      select(SampleNumber, ParameterID) %>%
       group_by(SampleNumber) %>%
-      mutate(CountChem=n()) %>%
-      select(SampleNumber,CountChem)%>%
+      mutate(CountChem = n()) %>%
+      select(SampleNumber, CountChem) %>%
       distinct()
 
 
 
-    #place holder
+    # place holder
     rw5 <- results_W
-    #r_wide<-results_W[,2:ncol(rw5)]
+    # r_wide<-results_W[,2:ncol(rw5)]
     # change everything > 0 to 1  for every column
-    rw5[rw5 > 0] = 1
-    rw5[is.na(rw5)] <- 0   ### In some scenario we get NA
+    rw5[rw5 > 0] <- 1
+    rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
 
     ## THE NEXT THREE "IF's" add messages indicating the TOTAL found elements across all the wristbands
     #     in the relevent databases
@@ -356,21 +357,21 @@ buildMesgVGroup <-
 
     ### PRINT message for every chemical detected on EVERY wristband...
 
-    #How many total subjects can be calculated as the # of columns in r_wide
+    # How many total subjects can be calculated as the # of columns in r_wide
     howManySubjects <- ncol(results_W) ####
-    if (howManySubjects>2) { #only add these messages if 3 or more subjecs
+    if (howManySubjects > 2) { # only add these messages if 3 or more subjecs
       # LIST every chemical that was in EVERY wristband
       # Get names of all chems found on every wristband
       # Only those chemicals whos ROW SUMS = total number of subject have every wristband with some value
       if (howManySubjects == 1) {
-        chems = rownames(rw5)   #NOTE:  I added this HACK for a case of ONE wristband but it is stupid hack cause is meaningless data
+        chems <- rownames(rw5) # NOTE:  I added this HACK for a case of ONE wristband but it is stupid hack cause is meaningless data
       } else {
         chems <-
-          rownames(as.data.frame(rw5[rowSums(rw5) == howManySubjects,]))
+          rownames(as.data.frame(rw5[rowSums(rw5) == howManySubjects, ]))
       }
       # THIS below does the same thing as line above WITHOUT using "rw5"
-      #rownames(r_wide[apply(r_wide>0,1,all),])
-      rm(rw5)#Clean Up
+      # rownames(r_wide[apply(r_wide>0,1,all),])
+      rm(rw5) # Clean Up
 
       # Loop through all chems and assemble message
       for (chem in chems) {
@@ -380,31 +381,33 @@ buildMesgVGroup <-
 
         mesg.v <- cbind(mesg.v, txt)
       }
-      rm(chems)#Clean Up
+      rm(chems) # Clean Up
     }
 
-    if (!HideClassificationInformation){
+    if (!HideClassificationInformation) {
       #
       # STOP if one of the wristbands had NO data associated with it
       # HUH!!! THIS IS WRONG.  Do NOT need to catch this case Marc worried about nothing.. is OK if none have
       # in which case if every OTHER wristband DID have data you woudl INCORRECTLY print the "every wristband had..." message
-      #if (length(unique(testResults$SampleNumber)) != length(unique(testResultsNonZero$SampleNumber))) {
+      # if (length(unique(testResults$SampleNumber)) != length(unique(testResultsNonZero$SampleNumber))) {
       ### IF we are sure there were no wristbands with ZERO chemicals
       ## ADD XX% of wristbands detected at least one Flame Retardant
       howManyFlame <-
         sum(SubClassScores$classification == flameRetardant_text_string)
       if (howManyFlame > 0) {
-        howManyFlame <-  percent(round(howManyFlame / howManySubjects, 2))
+        howManyFlame <- percent(round(howManyFlame / howManySubjects, 2))
         txt <-
-          paste(howManyFlame,
-                "of all wristbands had at least one Flame Retardant.")
-        #txt<-paste(bullet,txt)
+          paste(
+            howManyFlame,
+            "of all wristbands had at least one Flame Retardant."
+          )
+        # txt<-paste(bullet,txt)
         mesg.v <- cbind(mesg.v, txt)
       }
       ## ADD SX% of wristbands detected at least one pesticide
       howManyPest <- sum(SubClassScores$classification == pest_text_string)
       if (howManyPest > 0) {
-        howManyPest <-  percent(round(howManyPest / howManySubjects, 2))
+        howManyPest <- percent(round(howManyPest / howManySubjects, 2))
         txt <-
           paste(howManyPest, "of all wristbands had at least one Pesticide.")
         # txt<-paste(bullet,txt)
@@ -415,7 +418,7 @@ buildMesgVGroup <-
       howManyPAH <-
         sum(SubClassScores$classification == PAH_text_string)
       if (howManyPAH > 0) {
-        howManyPAH <-  percent(round(howManyPAH / howManySubjects, 2))
+        howManyPAH <- percent(round(howManyPAH / howManySubjects, 2))
         txt <-
           paste(
             howManyPAH,
@@ -429,7 +432,7 @@ buildMesgVGroup <-
       howManyVOC <-
         sum(SubClassScores$classification == VOC_text_string)
       if (howManyVOC > 0) {
-        howManyVOC <-  percent(round(howManyVOC / howManySubjects, 2))
+        howManyVOC <- percent(round(howManyVOC / howManySubjects, 2))
         txt <-
           paste(
             howManyVOC,
@@ -444,7 +447,7 @@ buildMesgVGroup <-
       howManyPCB <-
         sum(SubClassScores$classification == PCB_text_string)
       if (howManyPCB > 0) {
-        howManyPCB <-  percent(round(howManyPCB / howManySubjects, 2))
+        howManyPCB <- percent(round(howManyPCB / howManySubjects, 2))
         txt <-
           paste(
             howManyPCB,
@@ -458,7 +461,7 @@ buildMesgVGroup <-
       howManyPHARMA <-
         sum(SubClassScores$classification == pharmacological__text_string)
       if (howManyPHARMA > 0) {
-        howManyPHARMA <-  percent(round(howManyPHARMA / howManySubjects, 2))
+        howManyPHARMA <- percent(round(howManyPHARMA / howManySubjects, 2))
         txt <-
           paste(
             howManyPHARMA,
@@ -472,7 +475,7 @@ buildMesgVGroup <-
       howManyPERSONAL <-
         sum(SubClassScores$classification == personalCare_text_string)
       if (howManyPERSONAL > 0) {
-        howManyPERSONAL <-  percent(round(howManyPERSONAL / howManySubjects, 2))
+        howManyPERSONAL <- percent(round(howManyPERSONAL / howManySubjects, 2))
         txt <-
           paste(
             howManyPERSONAL,
@@ -486,7 +489,7 @@ buildMesgVGroup <-
       howManyCOMMERCE <-
         sum(SubClassScores$classification == industrial_text_string)
       if (howManyCOMMERCE > 0) {
-        howManyCOMMERCE <-  percent(round(howManyCOMMERCE / howManySubjects, 2))
+        howManyCOMMERCE <- percent(round(howManyCOMMERCE / howManySubjects, 2))
         txt <-
           paste(
             howManyCOMMERCE,
@@ -500,7 +503,7 @@ buildMesgVGroup <-
       howManyCONSUMER <-
         sum(SubClassScores$classification == consumerProduct_text_string)
       if (howManyCONSUMER > 0) {
-        howManyCONSUMER <-  percent(round(howManyCONSUMER / howManySubjects, 2))
+        howManyCONSUMER <- percent(round(howManyCONSUMER / howManySubjects, 2))
         txt <-
           paste(
             howManyCONSUMER,
@@ -514,7 +517,7 @@ buildMesgVGroup <-
       howManyDIOXIN <-
         sum(SubClassScores$classification == dioxinsAndFurans_text_string)
       if (howManyDIOXIN > 0) {
-        howManyDIOXIN <-  percent(round(howManyDIOXIN / howManySubjects, 2))
+        howManyDIOXIN <- percent(round(howManyDIOXIN / howManySubjects, 2))
         txt <-
           paste(
             howManyDIOXIN,
@@ -523,8 +526,6 @@ buildMesgVGroup <-
         # txt<-paste(bullet,txt)
         mesg.v <- cbind(mesg.v, txt)
       }
-
-
     }
 
 
@@ -547,28 +548,7 @@ addMesg <- function(mesgVector, foundOrNot, numFound, newMesg) {
 ### I'm going to put/move misc support functions that don't belong other places into this R script and then call this R script somewhere
 ###
 
-### To print various messages with URLs and having those URLs open in a new window
-# makeClickableUR_OLDL <- function(URL, clickableText) {
-#   # This function takes in a URL and a clickableText as inputs and returns an HTML anchor tag
-#   # that creates a clickable link that opens in a new browser tab.
-#   paste0(
-#     # The first part of the anchor tag: opening <a> and setting href attribute with the URL
-#     '<a href="',
-#     # Inserting the URL provided as the function argument
-#     URL,
-#     # Closing the href attribute and starting the target attribute to open in a new tab
-#     '" target=',
-#     # Escaping the double quotes around "_blank" so that it can be correctly formatted within the string
-#     "\"_blank\"",
-#     # Closing the target attribute and finishing the opening <a> tag
-#     ">",
-#     # Inserting the text that will appear clickable on the page (provided as function argument)
-#     clickableText,
-#     # Closing the anchor tag with </a> to complete the HTML link
-#     "</a>"
-#     # Adding two newlines to ensure some spacing in the output (optional)
-#   )
-# }
+
 ### To print various messages with URLs and having those URLs open in a new window
 # This function takes in a URL and a clickableText as inputs and returns an HTML anchor tag
 # that creates a clickable link that opens in a new browser tab.
@@ -577,7 +557,7 @@ makeClickableURL <- function(URL, clickableText) {
   if (knitr::is_html_output()) {
     # Generate HTML anchor tag for HTML output
     paste0(
-      '<a href="', URL, '" target="_blank">', clickableText, '</a>'
+      '<a href="', URL, '" target="_blank">', clickableText, "</a>"
     )
   } else {
     # Plain text format for non-HTML outputs
@@ -626,7 +606,7 @@ generateTabID <- function(chem_name) {
   # Step 2: Check if the first character will be stripped
   if (!grepl("^[a-zA-Z_]", clean_name)) {
     # If the first character isn't a letter or underscore, prepend an underscore
-    #clean_name <- paste0("Chemical_", clean_name)
+    # clean_name <- paste0("Chemical_", clean_name)
     clean_name <- paste0("x_", clean_name)
   }
 
@@ -642,7 +622,7 @@ generateTabLink <- function(chem_name) {
     paste0(
       '<a href="#', generateTabID(chem_name), '" onclick="openTab(\'', generateTabID(chem_name), '\')">',
       chem_name,
-      '</a>'
+      "</a>"
     )
   )
 }
