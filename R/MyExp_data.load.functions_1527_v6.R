@@ -24,7 +24,7 @@
 # masterParamTableName <-"./data/MASVtest2.csv"
 
 # READ IN the data
-load.masterParam <- function(masterParamTableName,DropSpecificChemicals) {
+load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
   masterParam <- read.table(
     masterParamTableName,
     sep = ",",
@@ -50,7 +50,7 @@ load.masterParam <- function(masterParamTableName,DropSpecificChemicals) {
 
   ## SOMETIMES the MasterParam data file comes with CASNumber instead of CasNumber and if so rename the column to fix
   if (is.null(masterParam$CasNumber) &
-      !is.null(masterParam$CASNumber)) {
+    !is.null(masterParam$CASNumber)) {
     masterParam <- masterParam %>% dplyr::rename(CasNumber = CASNumber)
   }
 
@@ -80,7 +80,7 @@ load.masterParam <- function(masterParamTableName,DropSpecificChemicals) {
   }
   # JUSTIN CASE we're deleting them somehow.....
   masterParam <-
-    masterParam[!duplicated(masterParam$ParameterID, incomparables = FALSE),]
+    masterParam[!duplicated(masterParam$ParameterID, incomparables = FALSE), ]
 
   # Select ONLY those columns we want and RENAME the columns as we wish
   masterParam <-
@@ -152,7 +152,7 @@ load.classification <- function(classificationTableName) {
   )
   # ELIMINATE all the columns beginning with "pest" (except exactly "pest")
   classification <-
-    classification[,-grep("pest[A-z]+", names(classification))]
+    classification[, -grep("pest[A-z]+", names(classification))]
   ### NOW also eliminate the "deuterated" and "uncatergorized" and "natural" column
   classification$deuterated <- NULL # THIS IS Always ZERO
   classification$uncategorized <- NULL # THIS IS Always ZERO
@@ -181,8 +181,10 @@ load.classification <- function(classificationTableName) {
   ### NOW collapse PAH and OPAH into PAH column
   ## on 6/19/2019 added this collapse
   classification$PAH <-
-    pmax(classification$PAH,
-         classification$OPAH)
+    pmax(
+      classification$PAH,
+      classification$OPAH
+    )
   classification$OPAH <- NULL
 
 
@@ -227,17 +229,16 @@ load.classification <- function(classificationTableName) {
 
 
 ### CONTINUE TO FIX UP CLASSIFICATIONS:  This builds on the data load of classifications and collapses set further.  could merge the two later
-convert_to_new_reduced_classifications <- function(class_L,class_conversion_table_name) {
-
+convert_to_new_reduced_classifications <- function(class_L, class_conversion_table_name) {
   # Read in the new classification mapping file to adjust the classifications down
   class_conversion_table <- read.csv(class_conversion_table_name) %>%
-    select(Classification,CurrentClassifications)
+    select(Classification, CurrentClassifications)
 
   # Create a long format of the class_conversion_table
   class_conversion_long <- class_conversion_table %>%
     mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
     unnest(CurrentClassifications) %>%
-    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', '')))
+    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', "")))
 
   rm(class_conversion_table)
 
@@ -264,7 +265,7 @@ convert_to_new_reduced_classifications <- function(class_L,class_conversion_tabl
 
   # Select the desired columns
   class_L_new <- class_L_new %>%
-    select(ParameterID,  classification)
+    select(ParameterID, classification)
 
   class_L_new
 }
@@ -273,12 +274,12 @@ convert_to_new_reduced_classifications <- function(class_L,class_conversion_tabl
 # Fix class_L by adding all VOC data using VOC MasterParameterTable
 #  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
-updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L,DropSpecificChemicals) {
+updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L, DropSpecificChemicals) {
   classSpecifcMasterParam <-
     load.masterParam(
       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
       DropSpecificChemicals
-      ) # Read in new parameter Table
+    ) # Read in new parameter Table
   classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
   class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
   classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
@@ -340,7 +341,7 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
   testResults # Return the exact table read
 }
 
-load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,DropAllZeroSampleNumbers,DropSpecificChemicals) {
+load.testResults <- function(testResultsRawTable, masterParam, ExpectedUnits, DropAllZeroSampleNumbers, DropSpecificChemicals) {
   # We read in the raw table elsewhere, now we're going to clean-it-up
   testResults <- testResultsRawTable
 
@@ -358,7 +359,7 @@ load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,Drop
   #     --- NOTE that I did this PASTE stuff to append the Y to whatever other flag found just in CASE but... always so far by itself anyway
   #### was doing THIS: testResults[testResults[, "Result"] == "Y", ]$Flag<- paste(testResults[testResults[, "Result"] == "Y","Flag" ],"Y",sep="")
   #### but NO... i'm just going to OVERWRITE any other flags with the Y flag for sure.
-  if (nrow(testResults[testResults[, "Result"] == "Y",]) > 0) {
+  if (nrow(testResults[testResults[, "Result"] == "Y", ]) > 0) {
     # testResults[testResults[, "Result"] == "Y", ]$Flag<- "Y"
     testResults[testResults[, "Result"] == "Y", "Flag"] <- "Y"
     # Set Test results so that anywhere it says Y in the result field we now use ZERO  THIS is moved, above, into the FLAG field where it belows
@@ -376,7 +377,7 @@ load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,Drop
 
   # Set Test results so that anywhere it says "N.A." we DROP the line completely.  NOT SURE why "N.A." is now used but... there it goes...
   # Mac is just DROPPING "N.A." cause we can't use it but... not sure how "P" is different from ZERO
-    testResults[testResults[, "Result"] == "N.A.", "Result"] <- 0
+  testResults[testResults[, "Result"] == "N.A.", "Result"] <- 0
 
 
 
@@ -426,7 +427,7 @@ load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,Drop
 
   # IN SOME DATA we get a blank field (NOT exactly a NULL, but rather a "") as a value... so if we get THAT we set any "" to ZERO
   # Saw this problem in Dartmouth 2nd group (25 bands)
-  if ((nrow(testResults[testResults$Result == "",]) > 0)) {
+  if ((nrow(testResults[testResults$Result == "", ]) > 0)) {
     testResults[testResults$Result == "", "Result"] <- 0
   }
 
@@ -486,17 +487,20 @@ load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,Drop
   # SELECT the columns we actually WANT
 
   testResults <-
-    testResults[, c("ParameterID",
-                    "PureSampleName",
-                    "SampleNumber",
-                    "Result",
-                    "Flag")]
+    testResults[, c(
+      "ParameterID",
+      "PureSampleName",
+      "SampleNumber",
+      "Result",
+      "Flag"
+    )]
 
   # Add the ParameterName and the CASNumber to the results table
   testResults <-
     merge(testResults, masterParam[, c("ParameterID", "ParameterName", "CASNumber")],
-          by =
-            "ParameterID")
+      by =
+        "ParameterID"
+    )
 
   # Clean up unneeded variable
   # rm(list=c("resultsTable"))
@@ -538,34 +542,34 @@ load.testResults <- function(testResultsRawTable, masterParam,ExpectedUnits,Drop
 
 
 
-fixUpTestResults <- function(testResults,FixupFile) {
-# THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
-# Use a Strategy Pattern for Customer-Specific Fixups
-# If the main reason for so many variables is the different customer-specific fixes (like DartmouthFixup, UCSF2020Fixup, etc.),
-# consider refactoring to use a strategy pattern.
-# Create a set of "fixup" functions, each implementing the adjustments for a specific customer or for generic customer
-# Then, fixUpTestResults would simply select the appropriate function based on the customer:
-        #   dartmouthFixup <- function(testResults, FixupFile) {
-        #     # Dartmouth-specific fixup code here
-        #   }
-        #
-        # ucsfFixup <- function(testResults, FixupFile) {
-        #   # UCSF-specific fixup code here
-        # }
-        #
-        # fixUpTestResults <- function(testResults, FixupFile, customer) {
-        #   fixupFunction <- switch(customer,
-        #                           "Dartmouth" = dartmouthFixup,
-        #                           "UCSF" = ucsfFixup,
-        #                           # Add other customers as needed
-        #                           stop("Unknown customer"))
-        #   fixupFunction(testResults, FixupFile)
-        # }
+fixUpTestResults <- function(testResults, FixupFile) {
+  # THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
+  # Use a Strategy Pattern for Customer-Specific Fixups
+  # If the main reason for so many variables is the different customer-specific fixes (like DartmouthFixup, UCSF2020Fixup, etc.),
+  # consider refactoring to use a strategy pattern.
+  # Create a set of "fixup" functions, each implementing the adjustments for a specific customer or for generic customer
+  # Then, fixUpTestResults would simply select the appropriate function based on the customer:
+  #   dartmouthFixup <- function(testResults, FixupFile) {
+  #     # Dartmouth-specific fixup code here
+  #   }
+  #
+  # ucsfFixup <- function(testResults, FixupFile) {
+  #   # UCSF-specific fixup code here
+  # }
+  #
+  # fixUpTestResults <- function(testResults, FixupFile, customer) {
+  #   fixupFunction <- switch(customer,
+  #                           "Dartmouth" = dartmouthFixup,
+  #                           "UCSF" = ucsfFixup,
+  #                           # Add other customers as needed
+  #                           stop("Unknown customer"))
+  #   fixupFunction(testResults, FixupFile)
+  # }
   ## ALSO i'm overloading concept of FIXUP.  really i just need to declare which CUSTOMER, which TEST, and which Date-or-version-or-RUN and then follow that logic thru
 
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
-  if(is.null(FixupFile)){
+  if (is.null(FixupFile)) {
     testResults$ResultOriginal <- testResults$Result
     return(testResults)
   }
@@ -616,13 +620,13 @@ fixUpTestResults <- function(testResults,FixupFile) {
   }
 
   if (SBIR_P2_Part1_71_FixUp) {
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)  # NOT using this for SBIR P2
-    fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)   ### USE DaysWORN as same as "days_factor"
+    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
+    fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
     fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
 
-        # Suppress warnings during numeric conversion
+    # Suppress warnings during numeric conversion
     fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
-        # Replace NA values with 24
+    # Replace NA values with 24
     fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
 
 
@@ -647,9 +651,10 @@ fixUpTestResults <- function(testResults,FixupFile) {
 
     testResults2 <-
       merge(fixUpResults,
-            testResults,
-            by.x = "FSES_ID",
-            by.y = "SampleNumber")
+        testResults,
+        by.x = "FSES_ID",
+        by.y = "SampleNumber"
+      )
 
     #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
     #   WHICH could be ng/g or ng/WB depending.... that is confusing
@@ -666,11 +671,11 @@ fixUpTestResults <- function(testResults,FixupFile) {
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
       rename(Customer_Batch_Number = Batch_Num) %>%
-      rename(PureSampleName=PureSampleName.x) %>%
-      rename(Lab_Submission_Batch = Customer_Batch_Number )
+      rename(PureSampleName = PureSampleName.x) %>%
+      rename(Lab_Submission_Batch = Customer_Batch_Number)
     testResults2 <- testResults2 %>%
-      #rename(Start_Wearing = Start, End_Wearing = End) %>%   # Don't have start and end dates for DAY fixup
-      #rename(Wristband_Size = size) %>%   # Don't have wristband_Size
+      # rename(Start_Wearing = Start, End_Wearing = End) %>%   # Don't have start and end dates for DAY fixup
+      # rename(Wristband_Size = size) %>%   # Don't have wristband_Size
       select(
         SampleNumber,
         PureSampleName,
@@ -701,12 +706,9 @@ fixUpTestResults <- function(testResults,FixupFile) {
 
     rm(testResults2, fixUpResults)
     testResults
-
-
-
   } else if (DartmouthFixup ||
-      UCSF2020Fixup ||
-      CombinedTestData) {
+    UCSF2020Fixup ||
+    CombinedTestData) {
     # added UCSF2020 fixup to this... hopefully that works?  Uses same fixupfile format as dartmouth now
     ### this weird section is JUST for the    SET TO TRUE FOR DARTMOUTH FIXUP  (was also wisconsin but now separating to deal w/ new lookup tables)
     #           to nanograms per gram of wristband normalized for one week.
@@ -742,9 +744,10 @@ fixUpTestResults <- function(testResults,FixupFile) {
 
     testResults2 <-
       merge(fixUpResults,
-            testResults,
-            by.x = "FSES_ID",
-            by.y = "SampleNumber")
+        testResults,
+        by.x = "FSES_ID",
+        by.y = "SampleNumber"
+      )
 
     #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
     #   WHICH could be ng/g or ng/WB depending.... that is confusing
@@ -789,8 +792,9 @@ fixUpTestResults <- function(testResults,FixupFile) {
     # But I don't think i ever really use PureSmpleName in any meaningful way so...
     testResults2$PureSampleName <-
       paste(testResults2$PureSampleName,
-            testResults2$Customer_WB_id,
-            sep = "_")
+        testResults2$Customer_WB_id,
+        sep = "_"
+      )
 
 
     testResults <- testResults2
@@ -809,9 +813,10 @@ fixUpTestResults <- function(testResults,FixupFile) {
     #      select(SampleNumber,week.factor,size.factor)
     testResults2 <-
       merge(fixUpResults,
-            testResults,
-            by.x = "SampleNumber",
-            by.y = "SampleNumber")
+        testResults,
+        by.x = "SampleNumber",
+        by.y = "SampleNumber"
+      )
 
     #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
     #   WHICH could be ng/g or ng/WB depending.... that is confusing
@@ -916,12 +921,14 @@ fixUpTestResults <- function(testResults,FixupFile) {
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
 
     fixUpResults <- fixUpResults %>%
-      select(FSES_ID,
-             week_factor,
-             size_factor,
-             PartName,
-             PrePost,
-             Days_worn) %>%
+      select(
+        FSES_ID,
+        week_factor,
+        size_factor,
+        PartName,
+        PrePost,
+        Days_worn
+      ) %>%
       rename(SampleNumber = FSES_ID)
 
     fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
@@ -970,7 +977,7 @@ fixUpTestResults <- function(testResults,FixupFile) {
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     testResults
-  } else if (UniVisionFixup && (RMD_type == "PEST") && wristbands_time_adjusted_one_week_not_weight )     {  ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
+  } else if (UniVisionFixup && (RMD_type == "PEST") && wristbands_time_adjusted_one_week_not_weight) { ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
     #### Worked for THIS IS to ONLY adjust for TIME and NOT for WEIGHT/SIzE of wristband
     fixUpResults <- fixUpResults %>%
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
@@ -999,26 +1006,26 @@ fixUpTestResults <- function(testResults,FixupFile) {
     testResults2$Result <-
       testResults2$Result / testResults2$week_factor
     testResults2$Result <-
-      #signif(testResults2$Result / testResults2$size_factor, 3)  ### THIS LINE is to adjust for SIZE FACTOR
-      signif(testResults2$Result, 3)  ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
+      # signif(testResults2$Result / testResults2$size_factor, 3)  ### THIS LINE is to adjust for SIZE FACTOR
+      signif(testResults2$Result, 3) ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     testResults
   } else if (UNMFixup |
-             COLORADOFixUp |
-             ULILLEFRANCEFixup |
-             UCONNFixUp |
-             (CHICAGOFixUp &&
-              RMD_type == "DRS") |
-             ( GEORGETOWNFixUp &&
-               RMD_type == "DRS") |
-             SBIR_P1_May2022Fixup |
-             UC_DAVISFixup |
-             BostonFixup |
-             UFL_FloridaFixup |
-             LouisvilleFixup |
-             (UniVisionFixup &&
-              RMD_type == "DRS")) {
+    COLORADOFixUp |
+    ULILLEFRANCEFixup |
+    UCONNFixUp |
+    (CHICAGOFixUp &&
+      RMD_type == "DRS") |
+    (GEORGETOWNFixUp &&
+      RMD_type == "DRS") |
+    SBIR_P1_May2022Fixup |
+    UC_DAVISFixup |
+    BostonFixup |
+    UFL_FloridaFixup |
+    LouisvilleFixup |
+    (UniVisionFixup &&
+      RMD_type == "DRS")) {
     #### Worked for UNMFixup...trying to make it generic?
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
@@ -1072,7 +1079,7 @@ fixUpTestResults <- function(testResults,FixupFile) {
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
-addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSiliconeOfOneGram,ExpectedUnits) {
+addAirCalculationInformation <- function(tr, airConcentrationTable, cm3VolumeSiliconeOfOneGram, ExpectedUnits) {
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-
@@ -1196,7 +1203,7 @@ addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSilic
 
   # and AA is therefore   #  =(M5/1000)*(10^U5)*(10^Z5)
   tr$Rs_in_L_per_Day <-
-    (tr$volume_factor / 1000) * (10 ^ tr$Mixed_log_Ksa_BP) * (10 ^ tr$log_Ke_BP) #   AA5   ---   (M5/1000)*(10^U5)*(10^Z5)
+    (tr$volume_factor / 1000) * (10^tr$Mixed_log_Ksa_BP) * (10^tr$log_Ke_BP) #   AA5   ---   (M5/1000)*(10^U5)*(10^Z5)
 
 
   # AE1 = $O5*1000
@@ -1219,9 +1226,9 @@ addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSilic
   # holdValue<- (1-exp(-(tr$Rs_in_L_per_Day*1000*tr$Days_worn)/(tr$volume_factor*(10^tr$Mixed_log_Ksa_BP))   ))
 
 
-  tr$Ca_for_Customer <- tr$ResultOriginal / (tr$volume_factor * (10 ^ tr$Mixed_log_Ksa_BP) * (1 - exp(
+  tr$Ca_for_Customer <- tr$ResultOriginal / (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP) * (1 - exp(
     -(tr$Rs_in_L_per_Day * 1000 * tr$Days_worn) /
-      (tr$volume_factor * (10 ^ tr$Mixed_log_Ksa_BP))
+      (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP))
   ))) * 1000
   # BELOW is same as above, i just tried differnt parenthes () to see if that changed anything
   # tr$Ca_for_Customer2 <- (tr$ResultOriginal / (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP) * (1-exp(-((tr$Rs_in_L_per_Day*1000)*tr$Days_worn)/  ( tr$volume_factor*(10^tr$Mixed_log_Ksa_BP))   ))))*1000
@@ -1248,7 +1255,7 @@ addAirCalculationInformation <- function(tr,airConcentrationTable,cm3VolumeSilic
 ##### WE NOW want to READ IN the NIOSH/OSHA limits using ParameterID to join
 ### this is in BETA
 ###
-addAirNioshOsha <- function(testResults,airNioshOshaTable) {
+addAirNioshOsha <- function(testResults, airNioshOshaTable) {
   ###  NEXT read in the LOOKUP table for air concentration with NIOSH OSHA info...
   # airNioshOshaLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airNioshOshaLookup <-
@@ -1366,15 +1373,16 @@ load.riskCalifProp65 <-
     riskCxx <- riskCxx[, c("ParameterID", "toxicityType")]
 
     # Eliminate all rows where NO RISK
-    riskCxx <- riskCxx[!riskCxx$toxicityType == "NULL",]
+    riskCxx <- riskCxx[!riskCxx$toxicityType == "NULL", ]
 
     # Collapse all values of Toxicity type so only one row for each parameterID
-    if (nrow(riskCxx)>0) {
+    if (nrow(riskCxx) > 0) {
       riskCxx <-
         aggregate(toxicityType ~ ParameterID,
-                  data = riskCxx,
-                  paste,
-                  collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
+          data = riskCxx,
+          paste,
+          collapse = " & "
+        ) #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
 
       # Eliminate all rows where NO RISK
       # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
@@ -1389,7 +1397,7 @@ load.riskCalifProp65 <-
 #
 # READ in EPA IRIS chemical classification
 # epaIrisTableName<-"./data/EDF_Phase1_EPA_Iris.csv"
-#epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
+# epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
 load.epaIris <- function(epaIrisTableName) {
   epaIris <- read.table(
     epaIrisTableName,
@@ -1422,8 +1430,8 @@ load.epaIris <- function(epaIrisTableName) {
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
 
-load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
-  #cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
+load.IARCRisk <- function(IARCRiskTableName, riskIARCdecodeTableName) {
+  # cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
   IARCRisk <- read.table(
     IARCRiskTableName,
     sep = ",",
@@ -1435,7 +1443,7 @@ load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
     quote = "\"",
     fileEncoding = "UTF-8-BOM"
   )
-  #cat("001 in data load...\n", file = "debug_log.txt", append = TRUE)
+  # cat("001 in data load...\n", file = "debug_log.txt", append = TRUE)
 
   # NOTE that we see some DUPLICATION
   # length(IARCRisk$masterParameterID)
@@ -1449,9 +1457,9 @@ load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
 
   IARCRisk <- merge(IARCRisk, masterParam, by = "ParameterID")
   # Eliminate any that are NULL but there are none at moment
-  IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL",]
+  IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL", ]
 
-  #cat("111 in data load...\n", file = "debug_log.txt", append = TRUE)
+  # cat("111 in data load...\n", file = "debug_log.txt", append = TRUE)
 
 
   riskIARCdecode <- read.table(
@@ -1468,7 +1476,7 @@ load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
   # Clean up unneeded variable
   rm(IARCRiskTableName)
 
-  IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL",]
+  IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL", ]
 
   # New way to do this and eliminate SQLDF
   IARCRisk <-
@@ -1538,14 +1546,15 @@ load.IARCRisk <- function(IARCRiskTableName,riskIARCdecodeTableName) {
 
 
 #### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
-#library(readxl)
+# library(readxl)
 
-load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,chemSourceSheetName) {
+load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSourceSheetName) {
   chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName,
-                                      sheet=chemSourceSheetName)
+    sheet = chemSourceSheetName
+  )
 
-   chemSourceMitigation <- chemSourceMitigation %>%
-    select(Chemical_Name,Summary_of_Health_Effects,Sources_of_Exposure,Mitigation_Strategies,WIKIPEDIA_ARTICLE_URL)
+  chemSourceMitigation <- chemSourceMitigation %>%
+    select(Chemical_Name, Summary_of_Health_Effects, Sources_of_Exposure, Mitigation_Strategies, WIKIPEDIA_ARTICLE_URL)
 
 
   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
@@ -1557,7 +1566,7 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,chemSou
     sub("[A-z]", uC, txt)
   }
   # THEN we apply taht new function to the ParameterName mcolumn
-  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <-     sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
 
   chemSourceMitigation
 }
@@ -1569,9 +1578,3 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,chemSou
 # Read in IARC risk database
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
-
-
-
-
-
-

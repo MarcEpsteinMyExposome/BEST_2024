@@ -58,33 +58,33 @@ if (!file.exists(here::here("data"))) {
 
 #########  The following functions tell the code about the directory structure.  Where are the different kinds of files.
 # Set up name of R CODE files
-setRdirectory <- function(fileName){
-  here::here("R",fileName)
+setRdirectory <- function(fileName) {
+  here::here("R", fileName)
 }
 # Set up location of AIR concentration files
-setAIRdirectory <- function(fileName){
-  here::here("AirConcentration",fileName)
+setAIRdirectory <- function(fileName) {
+  here::here("AirConcentration", fileName)
 }
 
 # Set up location of Fixup  files
-setFIXUPdirectory <- function(fileName){
-  here::here("data","data_FixupSampleKey",fileName)
+setFIXUPdirectory <- function(fileName) {
+  here::here("data", "data_FixupSampleKey", fileName)
 }
 
 # Set up location of CUSTOMER DATA  files
-setCUSTOMERdirectory <- function(fileName){
-  here::here("data","data_Customers",fileName)
+setCUSTOMERdirectory <- function(fileName) {
+  here::here("data", "data_Customers", fileName)
 }
 
 # Set up location of CUSTOMER DATA  files
-setMASTERPARAM_CLASS_RISKSdirectory <- function(fileName){
-  here::here("data","data_MasterParams_Class_Risks",fileName)
+setMASTERPARAM_CLASS_RISKSdirectory <- function(fileName) {
+  here::here("data", "data_MasterParams_Class_Risks", fileName)
 }
 
 
 # Set up location of COMBINED ALL DRS  DATA  files
-setCOMBINED_DRSdirectory <- function(fileName){
-  here::here("data","CombinedTestData",fileName)
+setCOMBINED_DRSdirectory <- function(fileName) {
+  here::here("data", "CombinedTestData", fileName)
 }
 
 ################ FOR SPECIFIC CUSTOMERS SET FLAGS HERE and include/not-include RMD files
@@ -182,27 +182,26 @@ if (CombinedDRS_November6_2024) {
   resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #  NOW DOING SBIR Phase 2 first group of 71
   FixupFile <- NULL
   subject <- "40-WB" # MARC Random one from Combined Data Set
-  #subject <- "25-WB"  # Judy LaKind
-  #subject <- "26-WB"  # Eric Epstein
+  # subject <- "25-WB"  # Judy LaKind
+  # subject <- "26-WB"  # Eric Epstein
 
   wristbands_time_adjusted_one_day <- FALSE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
   wristbands_time_adjusted <- FALSE
   wristbands_time_and_weight_adjusted <- FALSE
   wristbands_week_and_weight_adjusted <- FALSE
- # wristbands_day_and_weight_adjusted <- FALSE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
-  testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
-  #testDoneFor <- ""
+  # wristbands_day_and_weight_adjusted <- FALSE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  testDoneFor <- "a MyExposome Wristband Study" ### COMMENT THIS OUT TO REMOVE FROM REPORT
+  # testDoneFor <- ""
   ExpectedUnits <- "ng/g"
-
 } else if (SBIR_P2_Part1_71_FixUp) {
   resultsTableName <- "F24-22_MyExpoP.O.#259_CoA-WBdata.csv" #  NOW DOING SBIR Phase 2 first group of 71
   FixupFile <- "SBIR_NIH_Part1_71_SampleKey.csv"
-  #subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
-  #subject <- "A241137" # Random another  from SBIR P2 Group 1 of 71
-  #subject <- "A241139" # Random another  from SBIR P2 Group 1 of 71
-  #subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
-  #subject <- "A241149"  # this is 40-WB which is MARC
-  subject <- "A241198"  # this is 33-WB which is someone with a chompound beinning with 4
+  # subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
+  # subject <- "A241137" # Random another  from SBIR P2 Group 1 of 71
+  # subject <- "A241139" # Random another  from SBIR P2 Group 1 of 71
+  # subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
+  # subject <- "A241149"  # this is 40-WB which is MARC
+  subject <- "A241198" # this is 33-WB which is someone with a chompound beinning with 4
 
 
 
@@ -210,7 +209,7 @@ if (CombinedDRS_November6_2024) {
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- FALSE
-  #wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  # wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
   # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
@@ -258,7 +257,7 @@ if (CombinedDRS_November6_2024) {
 } else if (DartmouthFixup) {
   #  THIS IS FOR FIRST 48:  "First48_to_normalize_data.csv",    ### NEXT is for next 25
   FixupFile <- "Dartmouth/Dartmouth All IDs_2024_04_25.csv" # Batch # 15, 16, 17...21 22 23 24 25 26
-  resultsTableName<-"Dartmouth/Dartmouth 1_2_etc_13_etc_20_21_22_23_24_25_26_for_1166_FixPO246units.csv" # Probably FINAL Dartmouth
+  resultsTableName <- "Dartmouth/Dartmouth 1_2_etc_13_etc_20_21_22_23_24_25_26_for_1166_FixPO246units.csv" # Probably FINAL Dartmouth
   subject <- "A200961" # THIS is random one in DARTMOUTH BATCh 13
 
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
@@ -485,7 +484,7 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
 
-whatKindReportToDo <- "SpecificSubject"    # Either "Group" or "SpecificSubject" or "GroupAndSubject"
+whatKindReportToDo <- "SpecificSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
 # ONLY DO ONE OF THESE THREE THINGS
 if (whatKindReportToDo == "Group") { ## JUST do GROUp Analysis
   DoSpecificSubjectAnalysis <- FALSE # idea is to do specific-subject-analysis output with or without GROUP analysis
@@ -632,10 +631,10 @@ source(setRdirectory("testParameterSetup.R"))
 
 #### The resultsTableName and the MasterParameterTableName are now just the string of the file name, need to make them the PATH
 ####
-if (!is.null(resultsTableName)){
+if (!is.null(resultsTableName)) {
   resultsTableName <- setCUSTOMERdirectory(resultsTableName)
 }
-if (!is.null(masterParamTableName)){
+if (!is.null(masterParamTableName)) {
   masterParamTableName <- setMASTERPARAM_CLASS_RISKSdirectory(masterParamTableName)
 }
 
@@ -663,7 +662,7 @@ if (RMD_type == "SBIR_P1_DRS_plus") {
 rm(classificationTableName_SBIR)
 
 ### NOTE that classificationTableName used to have a prepended path and such... now above i just set it without prepending anything and HERE is set it to be correct path
-if (!is.null(classificationTableName)){
+if (!is.null(classificationTableName)) {
   classificationTableName <- setMASTERPARAM_CLASS_RISKSdirectory(classificationTableName)
 }
 
@@ -702,4 +701,3 @@ support.functions.filename <- setRdirectory("MyExp_support_functions_1527_v6.R")
 # The Reference Document defines an MSWORD "template" file to use for styling headers/footers/etc
 # IF YOU CHANGE THIS also change it in ALL THE RMD file headers
 refDoc <- "MyExposomeFormat_1527_v6.docx"
-
