@@ -101,21 +101,21 @@ MyExposome_1527_v6.Rmd
 #     CAN BE DONE HERE or done before knit'ing this file
 
 # test
-#cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+# cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 library(here)
-setwd(here::here())  
+setwd(here::here())
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 if (!exists("subject")) {
-  #source("MyExp_set_key_variables.R")
-  if (exists("setRdirectory")){
+  # source("MyExp_set_key_variables.R")
+  if (exists("setRdirectory")) {
     source(setRdirectory("MyExp_set_key_variables.R"))
-  } else {  # IF we don't have a function yet to set R directory, set it manually here
-    source(here::here("R","MyExp_set_key_variables.R"))
+  } else { # IF we don't have a function yet to set R directory, set it manually here
+    source(here::here("R", "MyExp_set_key_variables.R"))
   }
 }
-#cat("444 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+# cat("444 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
@@ -124,13 +124,13 @@ if (!exists("masterParam")) {
   source(r_code)
 }
 
-#cat("555 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+# cat("555 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("buildMesgV")) {
   source(support.functions.filename)
 }
-#cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
+# cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 ## THE weird "r include problem Where if I optionally include a RMD file the EVAL value must be an actual value and not a compound value with lots of parts?
 ##  requires me to calculate this here to use in this RMD instead of using the compound expression
@@ -139,7 +139,7 @@ if (!exists("buildMesgV")) {
 # NotHideClassificationInformation <- !HideClassificationInformation # WEIRD negation always do to addres RMD call out "eval" function weirdness
 # is_RMD_type_equal_DRS <- RMD_type == "DRS"
 
-## This logo stuff is to include the MyExposome logo in the report.  I had trouble so converted logo to base64 
+## This logo stuff is to include the MyExposome logo in the report.  I had trouble so converted logo to base64
 ###            cause path kept getting messed up for print-all-subjects
 ###  NORMALLY i wanted to put all paths in to initiation area and not say "images"here but leaving this alone cause tempermental code
 logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png")
@@ -473,7 +473,7 @@ oneResultIARCRisk <- inner_join(oneResult_with_Y_flag, IARCRisk, by = "Parameter
   select(ParameterName, IARC_Classification) %>%
   arrange(ParameterName)
 
-# Rename the two columns  
+# Rename the two columns
 names(oneResultIARCRisk) <- c("Chemical Name", "Risk Type Per IARC")
 
 # How many were found
@@ -665,5 +665,3 @@ window.addEventListener("load", () => {
 });
 
 </script>
-
-

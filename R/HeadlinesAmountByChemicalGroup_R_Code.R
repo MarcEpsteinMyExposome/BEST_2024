@@ -80,7 +80,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
       compound_data <- class_data %>% filter(ParameterName == compound) # Here are all the results for all the wristbands that have any score (including ZERO) for this compound
       compound_data_non_zero <- compound_data %>% filter(Result > 0)
 
-      pct_95 <- calculate_percentile(compound_data_non_zero$Result, 95)   # CHANGE THIS TO ONLY OF THE PEOPLE WHO HAVE, so 95% is only for positive results!
+      pct_95 <- calculate_percentile(compound_data_non_zero$Result, 95) # CHANGE THIS TO ONLY OF THE PEOPLE WHO HAVE, so 95% is only for positive results!
       pct_75 <- calculate_percentile(compound_data_non_zero$Result, 75)
       pct_50 <- calculate_percentile(compound_data_non_zero$Result, 50)
       pct_25 <- calculate_percentile(compound_data_non_zero$Result, 25)
@@ -96,35 +96,35 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
 
       # Criteria 1: Result >= 95th percentile and found in <= 10% of samples
       if (any(individual_data$Result > 0 &
-              individual_data$ParameterName == compound &
-              individual_data$Result >= pct_95) &&
-          (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
+        individual_data$ParameterName == compound &
+        individual_data$Result >= pct_95) &&
+        (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
         compounds_meeting_criteria1 <- c(compounds_meeting_criteria1, compound)
       }
       # Criteria 2: Result >= 95th percentile and > 10 times the median
       if (any(
         individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_95 &
-        individual_data$Result >= (10 * median_result)
+          individual_data$ParameterName == compound &
+          individual_data$Result >= pct_95 &
+          individual_data$Result >= (10 * median_result)
       )) {
         compounds_meeting_criteria2 <- c(compounds_meeting_criteria2, compound)
       }
       # Criteria 3: Result >= 95th percentile and >10 of individuals HAD this compound
       if (any(
         individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_95
+          individual_data$ParameterName == compound &
+          individual_data$Result >= pct_95
       ) &&
-      (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
+        (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
         compounds_meeting_criteria3 <- c(compounds_meeting_criteria3, compound)
       }
       # # Criteria 4: Result >= 75th percentile and 10x median
       if (any(
         individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_75 &
-        (individual_data$Result > 10 * median_result)
+          individual_data$ParameterName == compound &
+          individual_data$Result >= pct_75 &
+          (individual_data$Result > 10 * median_result)
       )) {
         compounds_meeting_criteria4 <- c(compounds_meeting_criteria4, compound)
       }
@@ -133,10 +133,10 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
       # Criteria 5: Result > 75th percentile and 25% measurements are detects
       if (any(
         individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_75
+          individual_data$ParameterName == compound &
+          individual_data$Result >= pct_75
       ) &&
-      (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
+        (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
         compounds_meeting_criteria5 <- c(compounds_meeting_criteria5, compound)
       }
 
@@ -148,8 +148,8 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
       # Criteria 7: Result < 50th percentile for all compounds in group
       if (all(
         individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result <= pct_50
+          individual_data$ParameterName == compound &
+          individual_data$Result <= pct_50
       )) {
         compounds_meeting_criteria7 <- c(compounds_meeting_criteria7, compound)
       }
@@ -157,8 +157,8 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
 
       # Criteria 8: Not detected for a chemical and ≤10% of all measurements are non-detects
       if (all(individual_data$ParameterName == compound &
-              individual_data$Result == 0) &&
-          (sum(compound_data$Result == 0) / sample_count) <= 0.10) {
+        individual_data$Result == 0) &&
+        (sum(compound_data$Result == 0) / sample_count) <= 0.10) {
         compounds_meeting_criteria8 <- c(compounds_meeting_criteria8, compound)
       }
     }
@@ -195,7 +195,7 @@ generate_report <- function(sampleNumber, testResults.bigWithClass, debug = FALS
         "You had **",
         class,
         "** compound, **",
-        #compound,
+        # compound,
         generateTabLink(compounds_meeting_criteria1[1]),
         "** detected at a high level that was not found in most other wristbands."
       )
