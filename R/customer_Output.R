@@ -28,13 +28,29 @@ customer_Output <-
 
     if (!DartmouthFixup) {
       ## NOT doing dartmouth special format
+
+      # THIS IS OLD VERSION... using older R stuff with specific column references instad of "is.numeric)
+      # results_W_CustName <- testResults %>%
+      #   select(ParameterName, CASNumber, PureSampleName, Result) %>%
+      #   spread(PureSampleName, Result, fill = 0) %>%   #Convert LONG table to WIDE for printing/analysis
+      #   dplyr::rename(Chemical = ParameterName, CASRN = CASNumber) %>%
+      #   mutate(rsum = rowSums(.[3:ncol(.)])) %>%  #Create temp sum to allow Delete rows (chemicals) where no WB had that chem
+      #   filter(rsum > 0) %>%
+      #   select(-rsum)
+
       results_W_CustName <- testResults %>%
         select(ParameterName, CASNumber, PureSampleName, Result) %>%
-        spread(PureSampleName, Result, fill = 0) %>%   #Convert LONG table to WIDE for printing/analysis
+        spread(PureSampleName, Result, fill = 0) %>%  # Convert LONG table to WIDE for printing/analysis
         dplyr::rename(Chemical = ParameterName, CASRN = CASNumber) %>%
-        mutate(rsum = rowSums(.[3:ncol(.)])) %>%  #Create temp sum to allow Delete rows (chemicals) where no WB had that chem
+        mutate(rsum = rowSums(across(where(is.numeric)))) %>%  # Dynamically select all numeric columns
         filter(rsum > 0) %>%
-        select(-rsum)
+        select(-rsum)  # Drop the temporary column
+
+
+      identical(results_W_CustName, results_W_CustName_NEW)
+
+
+
       # Write CSV in R of _ouput in their format
 
       #cat("113 in customer_output...\n", file = "debug_log.txt", append = TRUE)
