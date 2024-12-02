@@ -47,7 +47,7 @@ customer_Output <-
         select(-rsum)  # Drop the temporary column
 
 
-      identical(results_W_CustName, results_W_CustName_NEW)
+      #identical(results_W_CustName, results_W_CustName_NEW)
 
 
 
