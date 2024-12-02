@@ -10,11 +10,29 @@ source(here::here("TestingRandRMD","patchTestAnalysisVSotherTests.R"))
 
 ```
 
-## R Markdown
+```{r set_variables, include=FALSE}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+ac1000_compounds <-howManyCompoundsInTest("AC-1000")
+f1000_compounds <- howManyCompoundsInTest("F-1000")
+ac1000_and_f1000_compounds <- howManyCompoundsIn2Tests("AC-1000","F-1000")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+ac1000_match <- howManyCompoundsMatchTest("AC-1000")
+f1000_match <- howManyCompoundsMatchTest("F-1000")
+
+ac1000_and_f1000_match <- howManyCompoundsMatch2Tests("AC-1000","F-1000")
+
+
+```
+## Patch Test Quicky Peek
+
+Doing a quick analysis shows that there are `r ac1000_compounds` compounds in the "AC-1000" test.  There are `r f1000_compounds` compounds in the "F-1000" test.    
+There are a total of `r ac1000_and_f1000_compounds` unique compounds between those two patch tests.
+
+Our standard DRS MAS15 test captures `r ac1000_match` of the "AC-1000" compounds and captures `r f1000_match` of the "F-1000" compounds and 
+`r ac1000_and_f1000_match` in total of the combined compounds.
+
+The percentage coverage of the combined AC-1000 and F-1000 tests with our one MAS15 test is `r percent(ac1000_and_f1000_match/ac1000_and_f1000_compounds,0.1)`
+
 
 ```{r printResults1}
 
