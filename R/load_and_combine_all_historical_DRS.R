@@ -1,6 +1,20 @@
 #
 # R code to load HISTORICAL DRS INFORMATION and COMBINE into one big file
 
+
+#
+# Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
+if (!exists("subject")) {
+  source(here::here("R","MyExp_set_key_variables.R"))
+}
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+if (!exists("masterParam")) {
+  source(r_code)
+}
+
+
+
+
 ## NOTE if I've just run base_code to create masterParam delete everything else:
 # Clean up environment a little
 rm(list=ls()[!ls() %in% c("masterParam")])
@@ -17,8 +31,8 @@ library(here)
 setwd(here::here())
 
 #
-suppressMessages(library("tidyverse"))
-options(dplyr.summarise.inform = F)
+#suppressMessages(library("tidyverse"))
+#options(dplyr.summarise.inform = F)
 #
 # FIRST I'm choosing to load WIDE data.  Cause that is what I can find at the moment.
 #
@@ -68,6 +82,65 @@ fileLong <- bind_rows(lapply(fileList, function(fileName) {
   ) %>%
     mutate(Source_File = gsub('.csv$', '', gsub('^ResultsOutputFile_', '', basename(fileName)))) # Remove 'ResultsOutputFile_' prefix if it exists
 }))
+
+############# AT THIS STAGE we have FILELONG and it is perfect... i don't need to change to do the ANALYSIS OF THE DATA...
+##############################    but... if i want to CHANGE ID's and mess around to output this list and uuse then down below I tweak things and join thins
+
+write_out_all_DRS_found_with_note_if_found_in_first_processed_SBIR_71<-FALSE
+
+if (write_out_all_DRS_found_with_note_if_found_in_first_processed_SBIR_71) {
+  # First lets only get non-zero rows
+  fileLongNonZero <- fileLong %>%
+    filter(Result > 0)
+
+
+  # Read all 88 compounds found in first 71 wristbands for NIEHS
+  file71name <- here::here("ALL_DRS_CHEMICALS_November2024",
+                           "CAS_Numbers_From_First_71.csv")
+
+  file71 <- read.csv(file71name)
+
+  #str(file71)
+  # str(file71)
+  # 'data.frame':	88 obs. of  1 variable:
+  #   $ CASRN: chr  "2772-45-4" "96-76-4" "120-12-7" "119-61-9" .
+
+
+  summary_data_all_compounds_ever_MyExposome_orig   <- fileLongNonZero %>%
+    group_by(CASRN) %>%
+    summarise(Count = n(),
+              Percentage = (n() / n_distinct(fileLongNonZero$SampleNumber)) * 100) %>%
+    arrange(desc(Count))
+
+  # Summarize the data
+  # Summarize the data and include the Chemical name
+  # Summarize the data and include the Chemical name and percentage based on unique SampleNumbers
+  summary_data_all_compounds_ever_MyExposome <- fileLongNonZero %>%
+    group_by(CASRN, Chemical) %>%
+    summarise(
+      Count = n(),
+      UniqueSampleCount = n_distinct(SampleNumber),
+      Percentage = round((
+        n_distinct(SampleNumber) / n_distinct(fileLongNonZero$SampleNumber)
+      ) * 100, 1)
+    ) %>%
+    arrange(desc(Count)) %>%
+    ungroup() %>%
+    mutate(InFile71 = ifelse(CASRN %in% file71$CAS, TRUE, FALSE))  # Ensure CASRN column in file71 is used correctly
+
+
+
+  fileSummaryName <- here::here(
+    "ALL_DRS_CHEMICALS_November2024",
+    "All_DRS_results_flagged_if_in_71_first_WBs_TEST.csv"
+  )
+  write.csv(summary_data_all_compounds_ever_MyExposome,
+            fileSummaryName)
+
+
+}
+
+#########################################  NOW i'm going to obfuscate things and mess around.. and write... this is the stuff BELOW output to file to USE LaTER
 
 # Pattern to NOT change the names for is:
 doNotChangeNamePattern <- '-WB$'
