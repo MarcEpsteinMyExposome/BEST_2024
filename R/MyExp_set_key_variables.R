@@ -609,7 +609,9 @@ vocMasterParamTableName <- "MyExposome_VOC_MasterParameter_List_3_6_2019.csv" ##
 ##       SECOND is later we collapse using a file we read-in that tells us how the resulting classifications should collapse.
 ##        eventually this should be standardized
 class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping2.csv")
-class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
+
+#class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
+class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv")   # Steven Edited tiny bit more
 
 
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
