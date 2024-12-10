@@ -1,0 +1,117 @@
+---
+title: "TestHealthTablePopup"
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    number_sections: true
+    toc_depth: 3
+    df_print: "paged"
+date: "2024-10-21"
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library("here")
+library("gt")
+library("dplyr")
+library("htmltools")
+library("bsplus")
+
+```
+
+```{r setup_risk_table_popup, echo=FALSE}
+
+# Define a Bootstrap modal for detailed health concern explanations
+bs_modal(
+  id = "info_modal",
+  title = "Health Concern Information",
+  body = div(
+    HTML("
+      <p>In the table below, ***(FAKE INFO FOR NOW NEEDS TO BE FIXED WHEN WE DECIDE WHAT HEALTH CONCERNS TO FLAG)*** a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
+      <ul>
+        <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
+        <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
+        <li><strong>Increased cancer risk:</strong> Chemicals that increase the risk of certain cancers.</li>
+        <li><strong>Hormone disruption:</strong> Chemicals that interfere with your body’s natural hormones. Hormones are important for regulating nearly all your body’s systems.</li>
+        <li><strong>Development:</strong> Chemicals that affect how a baby grows and develops in childhood.</li>
+        <li><strong>PBT:</strong> Chemicals that are Persistent, Bioaccumulative, and Toxic. This means that they are difficult to break down and eliminate from your body and the environment.</li>
+        <li><strong>Harms DNA:</strong> Chemicals that damage DNA. DNA contains all the instructions for making your body run.</li>
+        <li><strong>Respiratory:</strong> Chemicals that irritate people's lungs and make asthma worse.</li>
+      </ul>
+    ")
+  )
+)
+
+```
+
+```{r define_risk_table, echo=FALSE}
+
+# Example: Define labels and states for the risk table.
+# These labels and states should reflect actual use-case data.
+labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
+checkbox_states <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+
+# Add description with an information icon linked to the modal pop-up
+description <- "Possible health effects depending on length and size of exposure"
+info_icon <- "<span style='display: inline-block; width: 25px; height: 25px; background-color: blue; color: white; font-size: 16px; font-weight: bold; line-height: 25px; text-align: center; border-radius: 50%; cursor: pointer; vertical-align: middle;' data-toggle='modal' data-target='#info_modal' title='Click for more information'>i</span>"
+
+description_with_modal <- paste0(description, " ", info_icon)
+
+# Function to create a checkbox table styled with 'gt'
+# This function dynamically generates a table with headers, styles, and optional modal links.
+# TODO:  Consider putting function in separate file
+create_checkbox_table <- function(labels, checkbox_states, description) {
+  # Map logical states to symbols for checkboxes
+  values <- ifelse(checkbox_states, "☑", "")
+
+  # Create a data frame for the table
+  table_data <- as.data.frame(t(values)) # Transpose to make rows columns
+  colnames(table_data) <- labels # Assign labels to columns
+
+  # Format the table using 'gt'
+  formatted_table <- table_data %>%
+    gt() %>%
+    tab_header(
+      title = md(description) # Add description and info icon to header
+    ) %>%
+    # Apply styles to title, column labels, and body
+    tab_style(
+      style = list(
+        cell_fill(color = "lightblue"),
+        cell_text(weight = "bold", align = "center")
+      ),
+      locations = list(
+        cells_column_labels(),
+        cells_title(groups = "title")
+      )
+    ) %>%
+    tab_style(
+      style = list(
+        cell_fill(color = "lightblue"),
+        cell_text(align = "center")
+      ),
+      locations = cells_body(rows = 1)
+    ) %>%
+    # Add consistent border styling to the table
+    tab_style(
+      style = list(
+        cell_borders(sides = "bottom", color = "black", weight = px(2))
+      ),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_options(
+      table.border.top.color = "black",
+      table.border.bottom.color = "black",
+      heading.border.bottom.color = "black",
+      column_labels.border.bottom.color = "black"
+    )
+  
+  return(formatted_table)
+}
+
+# Generate and render the risk table
+risk_table <- create_checkbox_table(labels, checkbox_states, description_with_modal)
+risk_table
+```
+
