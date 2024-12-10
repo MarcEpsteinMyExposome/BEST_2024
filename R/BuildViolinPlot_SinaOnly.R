@@ -166,12 +166,64 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 }
 
 
+# Function to create a checkbox table styled with 'gt'
+# This function dynamically generates a table with headers, styles, and optional modal links.
+# TODO:  Consider putting function in separate file
+create_checkbox_table <- function(labels, checkbox_states, description) {
+  # Map logical states to symbols for checkboxes
+  values <- ifelse(checkbox_states, "☑", "")
+
+  # Create a data frame for the table
+  table_data <- as.data.frame(t(values)) # Transpose to make rows columns
+  colnames(table_data) <- labels # Assign labels to columns
+
+  # Format the table using 'gt'
+  formatted_table <- table_data %>%
+    gt() %>%
+    tab_header(
+      title = md(description) # Add description and info icon to header
+    ) %>%
+    # Apply styles to title, column labels, and body
+    tab_style(
+      style = list(
+        cell_fill(color = "lightblue"),
+        cell_text(weight = "bold", align = "center")
+      ),
+      locations = list(
+        cells_column_labels(),
+        cells_title(groups = "title")
+      )
+    ) %>%
+    tab_style(
+      style = list(
+        cell_fill(color = "lightblue"),
+        cell_text(align = "center")
+      ),
+      locations = cells_body(rows = 1)
+    ) %>%
+    # Add consistent border styling to the table
+    tab_style(
+      style = list(
+        cell_borders(sides = "bottom", color = "black", weight = px(2))
+      ),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_options(
+      table.border.top.color = "black",
+      table.border.bottom.color = "black",
+      heading.border.bottom.color = "black",
+      column_labels.border.bottom.color = "black"
+    )
+  return(formatted_table)
+}
+
+
 
 ## NEW VERSION generating an output list
 # Enhanced Output List:
 #
 # The output_list now includes:
-#    _cat_message: The cat-style message.
+#    _cat_message: The cat-style message which is the TAB HEADER INFORMATION
 #    chemItem: The tab content (HTML).
 #    _message: The explanatory text.
 #    _id: The auto-generated ID for the tab.
@@ -182,7 +234,7 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 #chemItem <- chemsList[2]
 #chemItem <- chemsList[3]
 
-
+#chemsList<-chemsOfConcern
 plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested) {
   # Initialize a list to collect all generated content
   output_list <- list()
@@ -190,6 +242,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
+      #chemItem <- chemsList[1]
 
       # Filter data for the current chemical
       testResults_ChemItem <- testResults.big %>%
@@ -259,6 +312,48 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # Add the explanatory message to the output list
       output_list[[paste0(chemItem, "_message")]] <- newMessage
 
+      ### SETUP STUFF FOR RISK TABLE... NOT YET CUSTOMIZED TO EACH CHEM... JUST HARD CODED FOR NOW
+      # Example: Define labels and states for the risk table.
+      # These labels and states should reflect actual use-case data.
+      # Define labels, states, and description
+      labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
+      checkbox_states <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+      description <- "Possible health effects depending on length and size of exposure"
+
+      ##  Use table WITHOUT the icon and check box
+      risk_table <- create_checkbox_table(labels, checkbox_states, description)
+      risk_table <- risk_table %>%
+        tab_style(
+          style = list(
+            cell_borders(
+              sides = "all",        # Apply to all sides of the cells
+              color = "black",      # Use black for the border color
+              weight = px(1)        # Border weight in pixels
+            )
+          ),
+          locations = cells_body()  # Apply to all body cells
+        )
+      risk_table <- risk_table %>%
+        tab_style(
+          style = list(
+            cell_borders(
+              sides = "all",
+              color = "black",
+              weight = px(1)
+            )
+          ),
+          locations = cells_column_labels()  # Apply to column labels
+        )
+
+      risk_table_html <- htmltools::tagList(
+        # Modal for the current chemical
+        # The table
+        gt::as_raw_html(risk_table)
+      )
+      # Add to output list
+      output_list[[paste0(chemItem, "_health_risk_table")]] <- risk_table_html
+
+
       # Create tab content (Plotly Sina plot or placeholder)
       if (nrow(testResults_ChemItem[testResults_ChemItem$Result > 0, ]) > 1) {
         # Plotly Sina plot content
@@ -308,7 +403,4 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
   # Return the output list containing all generated tabs, messages, and IDs
   return(output_list)
 }
-
-
-
 

@@ -20,11 +20,66 @@ We checked all the chemicals you were exposed to in databases that flag harmful 
 #plotlyC_concern <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation  , subject, howManyHaveParameterName, howManyWristbandsTested)
 #cat(" \n about print ploty no concern\n")
 
+# Define a Bootstrap modal POPUP for detailed health concern explanations
+info_modal <- bs_modal(
+  id = "info_modal",
+  title = "Health Concern Information",
+  body = div(
+    HTML("
+      <p>In the table below, <b>(FAKE INFO FOR NOW NEEDS TO BE FIXED WHEN WE DECIDE WHAT HEALTH CONCERNS TO FLAG)</b> a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
+      <ul>
+        <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
+        <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
+        <li><strong>Increased cancer risk:</strong> Chemicals that increase the risk of certain cancers.</li>
+        <li><strong>Hormone disruption:</strong> Chemicals that interfere with your body’s natural hormones. Hormones are important for regulating nearly all your body’s systems.</li>
+        <li><strong>Development:</strong> Chemicals that affect how a baby grows and develops in childhood.</li>
+        <li><strong>PBT:</strong> Chemicals that are Persistent, Bioaccumulative, and Toxic. This means that they are difficult to break down and eliminate from your body and the environment.</li>
+        <li><strong>Harms DNA:</strong> Chemicals that damage DNA. DNA contains all the instructions for making your body run.</li>
+        <li><strong>Respiratory:</strong> Chemicals that irritate people's lungs and make asthma worse.</li>
+      </ul>
+    ")
+  )
+)
+
+
+modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information <b>Health Effects</b> in the table below</a>")
+#showHealthEffectsTable <- TRUE
+showHealthEffectsTable <- FALSE
+
+if(showHealthEffectsTable){
+  htmltools::tagList(
+  modal_trigger,
+  info_modal
+) %>% htmltools::browsable()
+  
+}
+
+
+#plotlyC_concern is a list of multiple items and for each chemical it has the TAB HEADER formatted with correct "level" so it becomes a TAB ,
+#   PLUS it has the actual content of the plotly plot
+#   PLUS it has the "message" that follows the plotly plot
+# TODO:  Need to add something ELSE into the tab... the check-box of health concerns... and it should be printed AFTER the tab header but before the PLOT
+#       so we need to create a new entry in the list for each chem that is "chemItem_healthCheckBox" or something like that
+#       So when we create plotlyC... we need to add that... 
 if (!is.null(plotlyC_concern)) {
+  
   for (chemItem in chemsOfConcern) {
+    #chemItem<-chemsOfConcern[1]
 
     # Print the `cat` message (tab header)
     cat(plotlyC_concern[[paste0(chemItem, "_cat_message")]], "\n")
+    
+    #TEST WITH:   cat(as.character(risk_table_html), "\n")
+    #htmltools::browsable(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]])
+    #cat(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+    
+    #cat(gt::as_raw_html(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+
+    #htmltools::HTML(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]))
+
+    if(showHealthEffectsTable){
+      cat(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+    }
     
     # Print the tab content
     print(plotlyC_concern[[chemItem]])
@@ -55,10 +110,33 @@ Besides the chemicals already mentioned, other chemicals were also found on your
 #plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
 #cat(" \n about print ploty \n")
 
+#THIS VERSION BELOW WORKED EXCEPT FOR THE HEALTH RISK TABLE
+# if (!is.null(plotlyC_remaining)) {
+#   for (chemItem in chemsNOTinConcernGroup) {
+#     # Print the `cat` message (tab header)
+#     cat(plotlyC_remaining[[paste0(chemItem, "_cat_message")]], "\n")
+#     
+#     # Print the `healthRiskTable`
+#     #print(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]], "\n")
+#     plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]
+#     
+#     
+#     # Print the tab content
+#     print(plotlyC_remaining[[chemItem]])
+#     
+#     # Print the explanatory message
+#     cat(plotlyC_remaining[[paste0(chemItem, "_message")]], "\n \n")
+#   }
+#   
+#   
+# }
+
 if (!is.null(plotlyC_remaining)) {
   for (chemItem in chemsNOTinConcernGroup) {
     # Print the `cat` message (tab header)
     cat(plotlyC_remaining[[paste0(chemItem, "_cat_message")]], "\n")
+    
+ 
     
     # Print the tab content
     print(plotlyC_remaining[[chemItem]])
@@ -66,10 +144,15 @@ if (!is.null(plotlyC_remaining)) {
     # Print the explanatory message
     cat(plotlyC_remaining[[paste0(chemItem, "_message")]], "\n \n")
   }
-  
-  
 }
-#cat(" \n Just print ploty \n")
+
+
+
+
+
+
+
+
 
 ```
 
