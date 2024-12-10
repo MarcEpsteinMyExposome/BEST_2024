@@ -43,21 +43,6 @@ bs_modal(
   )
 )
 
-```
-
-```{r define_risk_table, echo=FALSE}
-
-# Example: Define labels and states for the risk table.
-# These labels and states should reflect actual use-case data.
-labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
-checkbox_states <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
-
-# Add description with an information icon linked to the modal pop-up
-description <- "Possible health effects depending on length and size of exposure"
-info_icon <- "<span style='display: inline-block; width: 25px; height: 25px; background-color: blue; color: white; font-size: 16px; font-weight: bold; line-height: 25px; text-align: center; border-radius: 50%; cursor: pointer; vertical-align: middle;' data-toggle='modal' data-target='#info_modal' title='Click for more information'>i</span>"
-
-description_with_modal <- paste0(description, " ", info_icon)
-
 # Function to create a checkbox table styled with 'gt'
 # This function dynamically generates a table with headers, styles, and optional modal links.
 # TODO:  Consider putting function in separate file
@@ -110,8 +95,53 @@ create_checkbox_table <- function(labels, checkbox_states, description) {
   return(formatted_table)
 }
 
+
+
+```
+
+```{r define_risk_table, echo=FALSE}
+
+# Example: Define labels and states for the risk table.
+# These labels and states should reflect actual use-case data.
+labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
+checkbox_states <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+
+# Add description with an information icon linked to the modal pop-up
+description <- "Possible health effects depending on length and size of exposure"
+info_icon <- "<span style='display: inline-block; width: 25px; height: 25px; background-color: blue; color: white; font-size: 16px; font-weight: bold; line-height: 25px; text-align: center; border-radius: 50%; cursor: pointer; vertical-align: middle;' data-toggle='modal' data-target='#info_modal' title='Click for more information'>i</span>"
+
+description_with_modal <- paste0(description, " ", info_icon)
+
+
 # Generate and render the risk table
 risk_table <- create_checkbox_table(labels, checkbox_states, description_with_modal)
+risk_table <- risk_table %>%
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "all",        # Apply to all sides of the cells
+        color = "black",      # Use black for the border color
+        weight = px(1)        # Border weight in pixels
+      )
+    ),
+    locations = cells_body()  # Apply to all body cells
+  )
+risk_table <- risk_table %>%
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "all", 
+        color = "black",
+        weight = px(1)
+      )
+    ),
+    locations = cells_column_labels()  # Apply to column labels
+  )
+
+
+
+
+
 risk_table
 ```
 
