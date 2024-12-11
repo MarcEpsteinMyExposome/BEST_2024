@@ -317,7 +317,16 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # These labels and states should reflect actual use-case data.
       # Define labels, states, and description
       labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
-      checkbox_states <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+
+      #Pick Random Values for now... eventually we'll use the chemItem to look up the values
+      repro_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      brain_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      cancer_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
+      hormone_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      develop_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      respir_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
+
+      checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse, respir_TrueFalse)
       description <- "Possible health effects depending on length and size of exposure"
 
       ##  Use table WITHOUT the icon and check box

@@ -43,8 +43,8 @@ info_modal <- bs_modal(
 
 
 modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information <b>Health Effects</b> in the table below</a>")
-#showHealthEffectsTable <- TRUE
-showHealthEffectsTable <- FALSE
+showHealthEffectsTable <- TRUE
+#showHealthEffectsTable <- FALSE
 
 if(showHealthEffectsTable){
   htmltools::tagList(
