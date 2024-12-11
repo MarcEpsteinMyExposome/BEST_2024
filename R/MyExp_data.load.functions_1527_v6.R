@@ -95,8 +95,11 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
     sub("[A-z]", uC, txt)
   }
   # THEN we apply taht new function to the ParameterName mcolumn
+  # masterParam[, "ParameterName"] <-
+  #   sapply(masterParam[, "ParameterName"], uppercaseFirst)
   masterParam[, "ParameterName"] <-
-    sapply(masterParam[, "ParameterName"], uppercaseFirst)
+    purrr::map_chr(masterParam[, "ParameterName"], uppercaseFirst)
+
 
   # IF any chemicals are set to be IGNORED by being put into "DropSpecificChemicals"
   # THEN drop those chemicals from the masterParam dataset
@@ -129,10 +132,15 @@ load.classification <- function(classificationTableName) {
   # names(classification)[names(classification)=="masterParameterID"] <- "ParameterID"
 
   # Convert Numbers to Numeric
+  # classification <-
+  #   data.frame(sapply(classification, function(x) {
+  #     as.numeric(as.character(x))
+  #   }))
+
+  # Convert Numbers to Numeric
   classification <-
-    data.frame(sapply(classification, function(x) {
-      as.numeric(as.character(x))
-    }))
+    purrr::map_df(classification, ~ as.numeric(as.character(.x)))
+
 
   # Name the ROWS of the classification matrix
   row.names(classification) <- classification$ParameterID
@@ -334,9 +342,19 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
     uC <- toupper(char1)
     sub("[A-z]", uC, txt)
   }
-  # THEN we apply taht new function to the ParameterName mcolumn
+  # # THEN we apply taht new function to the ParameterName mcolumn
+  # testResults[, "ParameterName"] <-
+  #   sapply(testResults[, "ParameterName"], uppercaseFirst)
+
   testResults[, "ParameterName"] <-
-    sapply(testResults[, "ParameterName"], uppercaseFirst)
+    map_chr(testResults[, "ParameterName"], uppercaseFirst)
+
+  # original_result <- sapply(testResults[, "ParameterName"], uppercaseFirst)
+  #   # Updated using purrr::map_chr
+  # updated_result <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
+  #   # Compare
+  # identical(original_result, updated_result) # Should return TRUE
+
 
   testResults # Return the exact table read
 }
@@ -1566,7 +1584,11 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSo
     sub("[A-z]", uC, txt)
   }
   # THEN we apply taht new function to the ParameterName mcolumn
-  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+  #NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
+  #     chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+  chemSourceMitigation[, "Chemical_Name"] <-
+    purrr::map_chr(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
+
 
   chemSourceMitigation
 }

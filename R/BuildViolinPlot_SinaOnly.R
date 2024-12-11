@@ -327,7 +327,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       respir_TrueFalse<-sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
 
       checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse, respir_TrueFalse)
-      description <- "Possible health effects depending on length and size of exposure"
+      description <- "Possible health effects depending on length of time and size of exposure"
 
       ##  Use table WITHOUT the icon and check box
       risk_table <- create_checkbox_table(labels, checkbox_states, description)
