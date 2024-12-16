@@ -133,7 +133,13 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       style(hoverinfo = "none", traces = c(1, 2)) %>% # Remove hover tooltips for the violin and sina plots
       style(text = text_MEAN_label, traces = 3) %>% # Add hover text for mean points
       style(text = text_MEDIAN_label, traces = 4) %>% # Add hover text for median points
-      style(text = text_YOURDATA_label, traces = 5)      # Add hover text for subject point
+      style(text = text_YOURDATA_label, traces = 5) %>%     # Add hover text for subject point
+      layout(
+        autosize = TRUE,       # Automatically adjust size
+        width = NULL,          # Remove fixed width
+        height = NULL,          # Remove fixed height
+        margin = list(l = 50, r = 50, t = 50, b = 50)  # Customize chart margins
+      )
 
   # Combine the two interactive plots using subplot with adjusted widths
   chemPlot_interactive <- if (nrow(zero_values) > 0) {
@@ -160,6 +166,16 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
         "hoverCompareCartesian"
       ),
       toImageButtonOptions = list(format = "png")
+    )
+
+  ## Having problem with chart going off the page on right side
+  #   tried to use layout on previous ggplotly calls but that didn't work
+  #     but maybe doing it here AFTER combining the charts will work better?
+  chemPlot_interactive <- chemPlot_interactive %>%
+    layout(
+      autosize = TRUE,
+      width = NULL,
+      height = NULL
     )
 
   return(chemPlot_interactive) # Return the combined interactive plot
@@ -363,14 +379,18 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       output_list[[paste0(chemItem, "_health_risk_table")]] <- risk_table_html
 
 
+
+      # Generate interactive Plotly plot
+      interactivePlot <- buildPlotlySina(chemItem, testResults_ChemItem, subject)
+
       # Create tab content (Plotly Sina plot or placeholder)
       if (nrow(testResults_ChemItem[testResults_ChemItem$Result > 0, ]) > 1) {
-        # Plotly Sina plot content
-        htmlTagList <- htmltools::tagList(
+         htmlTagList <- htmltools::tagList(
           htmltools::tags$div(
-            buildPlotlySina(chemItem, testResults_ChemItem, subject)
+            interactivePlot
           )
         )
+
       } else {
         # Placeholder content for insufficient data
         htmlTagList <- htmltools::tagList(

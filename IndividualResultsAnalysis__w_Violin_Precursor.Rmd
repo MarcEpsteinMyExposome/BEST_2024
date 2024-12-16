@@ -5,8 +5,9 @@ editor_options:
 ---
 
 
-```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.width=6, fig.height=8,fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
+```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
 ## The function to build a violin plot is now in a separate R file
+##  (just deleted this:  fig.width=6, fig.height=8,)
 
 
 source(setRdirectory("BuildViolinPlot_SinaOnly.R"))

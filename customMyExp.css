@@ -122,10 +122,6 @@ a {
   max-width: 100%;
 }
 
-#content {
-  max-width: 1400px;
-}
-
 
 /* Print-specific styles to make all tab contents visible and hide the sidebar */
 @media print {
@@ -152,6 +148,27 @@ a {
 /* Default to hide the print logo in the normal HTML view */
 #print-logo {
   display: none;
+}
+
+/* Default for regular screen viewing */
+#content {
+  max-width: 1400px; /* Keep the preferred screen size */
+}
+
+
+/* new try 11:48am 12/16 */
+/* the images for plotly were appearing off the right side... and truncated there*/
+/*    so i tried MANY THINGS to stop them from being off print and eventually t his worked */
+/*    cause it says IF in PRINT mode then for certain HTML CLASSes set various settings  */
+@media print {
+  .plotly, .js-plotly-plot {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: scale(0.9); /* Adjust as needed to ensure it fits */
+    transform-origin: top left;
+  }
 }
 
 
