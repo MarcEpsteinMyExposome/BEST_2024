@@ -1585,9 +1585,11 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSo
   }
   # THEN we apply taht new function to the ParameterName mcolumn
   #NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
-  #     chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
-  chemSourceMitigation[, "Chemical_Name"] <-
-    purrr::map_chr(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
+  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+
+  ## FAILED PURRR replacement
+    # chemSourceMitigation[, "Chemical_Name"] <-
+  #   purrr::map_chr(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
 
 
   chemSourceMitigation
