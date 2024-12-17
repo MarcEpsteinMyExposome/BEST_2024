@@ -363,7 +363,7 @@ if (WisconsinFixup == TRUE && (RMD_type == "VOPAH" || RMD_type == "PAH" || RMD_t
 chemicalsTestedFromMasterParam <- nrow(masterParam)
 
 #  OLD WAY uses direct indexing and is confusing and not tidyvers
-#uniqueChemicalsInTestResults <- length(unique(testResultsRawTable[, "ParameterName"]))
+# uniqueChemicalsInTestResults <- length(unique(testResultsRawTable[, "ParameterName"]))
 
 uniqueChemicalsInTestResults <- testResultsRawTable %>%
   distinct(ParameterName) %>%
@@ -439,7 +439,7 @@ if (makeIntoDemoData) {
   testResults$SampleNumber <- testResults$SampleNumber %>% str_replace_all(c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", "6" = "F", "7" = "G", "8" = "H"))
 
   # OLD WAY with direct reference to things... this is old-school
-  #subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
+  # subject <- testResults[1, "SampleNumber"] # CHoose a random person (first row) as our new Subject
 
   subject <- testResults %>%
     slice(1) %>% # Select the first row
@@ -803,12 +803,11 @@ if (makeIntoDemoData) { #   Use this to set SUBJECT to min max middle as way of 
   # subject <- "AA90GCC"  ### Hardcoded to make into the one person with highest of a compound in agricultural and pharm products...Bis(2-ethylhexyl)phthalate   AA90GCC   856000   Agricultural & Pharmaceutical Chemicals
 
   # OLD WAY TO DO THIS
-  #subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR) * .2, 0)] ## Hard code to 80% of # of compounds
+  # subject <- minMaxTR$SampleNumber[round(nrow(minMaxTR) * .2, 0)] ## Hard code to 80% of # of compounds
 
   subject <- minMaxTR %>%
     slice(round(n() * 0.2)) %>% # Select the 80th percentile row dynamically
     pull(SampleNumber) # Extract the SampleNumber column
-
 }
 rm(makeIntoDemoData)
 

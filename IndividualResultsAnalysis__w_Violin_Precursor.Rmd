@@ -39,29 +39,23 @@ howManyHaveParameterName <- testResults.big %>%
 
 ###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
 ######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
-
-
 ```
 
 
 ```{r createHTMLplotlyInAdvance, results='asis', echo=FALSE, eval=DoSpecificSubjectAnalysis} 
+# id_lookup <- list() # Create emtpty list to store values
 
-#id_lookup <- list() # Create emtpty list to store values
-
-#cat(" \n Just about to call PlotlyC_concern\n")
+# cat(" \n Just about to call PlotlyC_concern\n")
 
 # THESE calls create lists.
 
-plotlyC_concern <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation  , subject, howManyHaveParameterName, howManyWristbandsTested)
+plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
 
 plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
 
 # add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
-#chemListWithLinks <- plotlyC_concern + plotlyC_remaining
+# chemListWithLinks <- plotlyC_concern + plotlyC_remaining
 
 # Combine the IDs from both lists
-#all_ids <- combineIDs(plotlyC_concern, plotlyC_remaining)
-
-
+# all_ids <- combineIDs(plotlyC_concern, plotlyC_remaining)
 ```
-
