@@ -201,8 +201,8 @@ if (CombinedDRS_November6_2024) {
   # subject <- "A241139" # Random another  from SBIR P2 Group 1 of 71
   # subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
   # subject <- "A241149"  # this is 40-WB which is MARC
-  #subject <- "A241198" # this is 33-WB which is someone with a chompound beinning with 4
-  subject <-"A241259"  # this is 154-WB	WB which is someone who is great example
+  # subject <- "A241198" # this is 33-WB which is someone with a chompound beinning with 4
+  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
 
 
 
@@ -611,8 +611,8 @@ vocMasterParamTableName <- "MyExposome_VOC_MasterParameter_List_3_6_2019.csv" ##
 ##        eventually this should be standardized
 class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping2.csv")
 
-#class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
-class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv")   # Steven Edited tiny bit more
+# class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
+class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv") # Steven Edited tiny bit more
 
 
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...
