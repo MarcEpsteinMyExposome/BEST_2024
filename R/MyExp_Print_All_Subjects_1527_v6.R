@@ -24,10 +24,10 @@ setwd(here::here())
 ### THIS is  a global variable... probably not great idea but it works
 In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALWAYS set  customiization-per-user to be ON
 
-
 ### THIS is a  function to actually render the reports.  Define it here to make things clear what variables it depends on
 render_reports <- function(wideAllSubjects, outputFileType, output_directory, docType, rmd_code, logo_path) {
   for (i in 1:nrow(wideAllSubjects)) {
+    #  i<-1
     pure_sample_name <- wideAllSubjects$PureSampleName[i]
     subject <- wideAllSubjects$SampleNumber[i]
     outputFileName <- paste0("MyExposome_Report_", pure_sample_name, ".", outputFileType)
@@ -103,6 +103,8 @@ logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png
 ###THESE SETTINGS for producing PDF document do NOT handle tables properly and FAIL probably on table width.
 #docType<-"pdf_document"
 #outputFileType<-"pdf"
+
+
 
 
 # Call the function to render all the reports

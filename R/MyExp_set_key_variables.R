@@ -203,7 +203,9 @@ if (CombinedDRS_November6_2024) {
   # subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
   # subject <- "A241149"  # this is 40-WB which is MARC
   # subject <- "A241198" # this is 33-WB which is someone with a chompound beinning with 4
-  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  subject <- "A241264" # this is one that has MAYBE ERROR on print loop
+
 
 
 
