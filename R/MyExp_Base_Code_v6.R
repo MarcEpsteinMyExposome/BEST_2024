@@ -750,6 +750,20 @@ testResults.big <- testResults.big %>%
 # TRYING BELOW TO JUST ELIMINATE TESTRESULTS variable completely... will it work?
 rm(testResults)
 
+### Silent Spring SILENT SPRING health effects
+# load.healthEffects*********
+healthEffects <- load.healthEffects(healthEffectsTableName)
+healthEffects <- healthEffects %>%
+  rename(CASNumber = cas_rn) %>%
+  distinct()
+
+# Add a column that has "anyConcern" set to a 1 if an of the other values are = 1
+# there is already a "tot_haz"column that is > 0 if there is any concern... use that!
+
+
+testResults.big <- testResults.big %>%
+  left_join(healthEffects,  by="CASNumber")
+
 
 # cat("A 222 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 

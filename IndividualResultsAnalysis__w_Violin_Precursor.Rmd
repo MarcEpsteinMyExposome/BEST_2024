@@ -18,7 +18,12 @@ source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 ##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
 #
 ## ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
-chemsOfConcern <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
+#chemsOfConcernOLD <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
+
+# NOW using the silient spring approach of looking data up in calSAFER
+chemsOfConcern <- oneResult %>%
+  filter(tot_haz > 0) %>%
+  pull(ParameterName)
 
 
 ## Make a list of all chemicals that our one user had that did NOT show up in any of the databases x

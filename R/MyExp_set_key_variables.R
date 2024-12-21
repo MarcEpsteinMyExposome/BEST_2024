@@ -203,9 +203,8 @@ if (CombinedDRS_November6_2024) {
   # subject <- "A241264" # Random another  from SBIR P2 Group 1 of 71          105-WB	A241264
   # subject <- "A241149"  # this is 40-WB which is MARC
   # subject <- "A241198" # this is 33-WB which is someone with a chompound beinning with 4
-  #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
-  subject <- "A241264" # this is one that has MAYBE ERROR on print loop
-
+  #subject <- "A241264" # this is one that has MAYBE ERROR on print loop
+  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
 
 
 
@@ -680,6 +679,12 @@ riskCalifProp65TableName <- setMASTERPARAM_CLASS_RISKSdirectory("MASV15_ca_prop6
 epaIrisTableName <- setMASTERPARAM_CLASS_RISKSdirectory("MASV15_epa_iris_risk.csv")
 IARCRiskTableName <- setMASTERPARAM_CLASS_RISKSdirectory("MASV15_who_iarc_risk.csv")
 riskIARCdecodeTableName <- setMASTERPARAM_CLASS_RISKSdirectory("RiskIARCdecode.csv")
+
+
+### SilentSpring Silent Spring Health Effects Database Read
+#healthEffectsTableName <- setMASTERPARAM_CLASS_RISKSdirectory("myexp_hazardscreenMP5_2024-12-20.csv")
+healthEffectsTableName <- setMASTERPARAM_CLASS_RISKSdirectory("myexp_hazardscreenMP6_2024-12-21.csv")
+
 
 # Air concentration Table Name and NIOSH Air concentration
 # cm3VolumeSiliconeOfOneGram<-1.12  # VOLUMNE of one gram of SILICONE is 1.12cm3 (actually that is more exactly 1.1191 but who cares)

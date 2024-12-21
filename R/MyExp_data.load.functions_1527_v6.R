@@ -1595,6 +1595,10 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSo
   chemSourceMitigation
 }
 
+load.healthEffects <- function(healthEffectsTableName){
+  healthEffects <- read_csv(healthEffectsTableName,show_col_types = FALSE)
+  return(healthEffects)
+}
 
 
 

@@ -264,11 +264,21 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
       # chemItem <- chemsList[1]
+      # chemItem <- chemsList[2]
+      # chemItem <- chemsList[3]
+      # chemItem <- chemsList[4]
+      # chemItem <- chemsList[5]
 
       # Filter data for the current chemical
       testResults_ChemItem <- testResults.big %>%
         filter(ParameterName == chemItem) %>%
-        select(SampleNumber, Result, ParameterName)
+        #select(SampleNumber, Result, ParameterName)
+        select(SampleNumber, Result, ParameterName,endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt,calSaferURL)
+
+      # Get the one row which is ths subject and this chem
+      testResults_ChemItem_Subject<-testResults_ChemItem %>%
+        filter(SampleNumber==subject)
+
 
       # Add the "cat" message (e.g., the tab header)
       output_list[[paste0(chemItem, "_cat_message")]] <- paste0("### ", prepareTabTitle(chemItem), " {-}\n\n")
@@ -282,6 +292,21 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         howManyWristbandsTested,
         "wristbands."
       )
+
+
+
+      #calSaferURL
+      if( ! is.na(testResults_ChemItem_Subject$calSaferURL)){
+        calSafer_Link <- makeClickableURL(testResults_ChemItem_Subject$calSaferURL, "calSAFER Chemical Link")
+        newMessage <- paste(
+          newMessage,
+          "This chemical is classified per the California Department of Toxic Substances Control here: ",
+          calSafer_Link,
+          "."
+        )
+      }
+
+
 
       # Add additional information if available
       testInPROP65 <- oneResultCalifProp65Risk %>%
@@ -337,17 +362,33 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # Example: Define labels and states for the risk table.
       # These labels and states should reflect actual use-case data.
       # Define labels, states, and description
-      labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development", "Respiratory")
+      labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development","PBT", "Harms DNA","Respiratory")
 
       # Pick Random Values for now... eventually we'll use the chemItem to look up the values
-      repro_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      brain_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      cancer_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
-      hormone_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      develop_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      respir_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
+      # repro_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # brain_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # cancer_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
+      # hormone_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # develop_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # pbt_TrueFalse <-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # dna_TrueFalse <-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
+      # respir_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
 
-      checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse, respir_TrueFalse)
+      # REPLACE WITH REAL VALUES
+      #endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt
+      repro_TrueFalse <-  testResults_ChemItem_Subject$reproductive_toxicity
+      brain_TrueFalse <-  testResults_ChemItem_Subject$neurotoxicity
+      cancer_TrueFalse <-  testResults_ChemItem_Subject$carcinogenicity
+      hormone_TrueFalse <-  testResults_ChemItem_Subject$endocrine_toxicity
+      develop_TrueFalse <-  testResults_ChemItem_Subject$developmental_toxicity
+      pbt_TrueFalse <- testResults_ChemItem_Subject$pbt
+      dna_TrueFalse <- testResults_ChemItem_Subject$genotoxicity
+      respir_TrueFalse <-  testResults_ChemItem_Subject$respiratory_toxicity
+
+
+
+
+      checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse,pbt_TrueFalse, dna_TrueFalse,respir_TrueFalse)
       description <- "Possible health effects depending on length of time and size of exposure"
 
       ##  Use table WITHOUT the icon and check box

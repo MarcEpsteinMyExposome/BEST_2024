@@ -26,13 +26,15 @@ info_modal <- bs_modal(
   title = "Health Concern Information",
   body = div(
     HTML("
-      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link  , <b>(INFO NEEDS TO BE UPDATED)</b>.</p>
+      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
       <ul>
         <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
         <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
         <li><strong>Increased cancer risk:</strong> Chemicals that increase the risk of certain cancers.</li>
         <li><strong>Hormone disruption:</strong> Chemicals that interfere with your body’s natural hormones. Hormones are important for regulating nearly all your body’s systems.</li>
         <li><strong>Development:</strong> Chemicals that affect how a baby grows and develops in childhood.</li>
+        <li><strong>PBT:</strong> Chemicals that are <u>P</u>ersistent, <u>B</u>ioaccumulative, and <u>T</u>oxic. This means that they are difficult to break down and eliminate from your body and the environment.</li>
+        <li><strong>Harms DNA:</strong> Chemicals that damage DNA. DNA contains all the instructions for making your body run.</li>
         <li><strong>Respiratory:</strong> Chemicals that irritate people's lungs and make asthma worse.</li>
       </ul>
     ")
