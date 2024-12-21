@@ -1,0 +1,922 @@
+﻿CASRN,DTXSID,preferred_name,MammaryTumorEvidence,MammaryTumorRefs,E2up_onedose,P4up_onedose,E2up_CR,P4up_CR,HormoneSummary,AUC.Agonist,AUC.Antagonist,ERactivity,EDC,topEDCscore,Genotoxicity
+100-42-5,DTXSID2021284,Styrene,MC,"IARC, ROC15_equivocal, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+101-14-4,DTXSID5020865,"4,4'-Methylenebis(2-chloroaniline)",MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+1010-61-3,-,4-Hydroxyaminoquinoline 1-oxide hydrochloride,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+101200-48-0,DTXSID8024101,Tribenuron-methyl,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,-
+105650-23-5,DTXSID3037628,"2-Amino-1-methyl-6-phenylimidazo [4,5-b]pyridine",MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+10589-74-9,DTXSID4020084,1-Amyl-1-nitrosourea,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+106-50-3,DTXSID9021138,"1,4-Benzenediamine",MC,IARC,positive,negative,high,low,"E2, P4",0.0201,0.0158,borderline_mixed,EDC+,high,positive
+106-91-2,DTXSID0025361,Glycidyl methacrylate,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+106-93-4,DTXSID3020415,"1,2-Dibromoethane",MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,7.37e-05,0,inactive,EDC-,none,positive
+106-99-0,DTXSID3020203,"1,3-Butadiene",MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+107-06-2,DTXSID6020438,"1,2-Dichloroethane",MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+107-13-1,DTXSID5020029,Acrylonitrile,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,0,0,inactive,EDC-,none,positive
+110559-84-7,DTXSID4020610,1-Ethylnitroso-3-(2-oxopropyl)urea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+11097-69-1,DTXSID5020100,Aroclor 1254,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+1120-71-4,DTXSID8021195,"1,3-Propane sultone",MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+113-38-2,DTXSID8023000,Estradiol dipropionate,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+118745-11-2,DTXSID701030249,"N-Formyl-N-hydroxy-4-aminostilbene, (E)-",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+118745-12-3,DTXSID701030251,N-Hydroxy-N-propionyl-trans-4-aminostilbene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+119-90-4,DTXSID3025091,C.I. Disperse Black 6,MC,"IARC, ROC15, Rudel2007",positive,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+119-93-7,DTXSID5024059,"3,3'-Dimethylbenzidine",MC,"IARC, ROC15, Rudel2007",positive,positive,medium,high,"E2, P4",0.139,0,low_agonism,EDC+,high,positive
+121-14-2,DTXSID0020529,"2,4-Dinitrotoluene",MC,"IARC, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+121-66-4,DTXSID6020066,2-Amino-5-nitrothiazole,MC,"IARC, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+121-75-5,DTXSID4020791,Malathion,MC,"IARC, EPA_OPP_dismissed",negative,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+122-34-9,DTXSID4021268,Simazine,MC,"EPA_OPP_dismissed, ToxRefDB, Rudel2007",positive,negative,medium,low,"E2, P4",0,0,inactive,EDC+,medium,positive
+122-66-7,DTXSID7020710,"1,2-Diphenylhydrazine",MC,"IARC, ROC15, NTP, ToxRefDB, LCDB, Rudel2007",negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+123-91-1,DTXSID4020533,"1,4-Dioxane",MC,"IARC, ROC15, EPA_IRIS, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+126-07-8,DTXSID8020674,Griseofulvin,MC,"LCDB, Rudel2007",negative,negative,-,-,negative,-,-,-,EDC-,-,positive
+126-99-8,DTXSID5020316,Chloroprene,MC,"IARC, ROC15, NTP, EPA_IRIS, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+127-18-4,DTXSID2021319,Tetrachloroethylene,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+12789-03-6,DTXSID5023954,Technical chlordane,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+129-73-7,DTXSID7031531,Leucomalachite green,MC,"IARC, NTP_dismissed, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+132832-26-9,DTXSID30157814,"anti-Benzo(a)chrysene-11,12-diol-13,14-epoxide",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+133-07-3,DTXSID0021385,Folpet,MC,EPA_OPP_dismissed,negative,negative,ns effect,ns effect,negative,0,2.33e-07,inactive,EDC-,none,positive
+13345-61-4,DTXSID80158119,"Benz(a)anthracene-7-carboxaldehyde, 12-methyl-",MC,CCRIS,-,-,-,-,-,-,-,-,-,-,-
+13394-86-0,DTXSID50158429,"2',3-Dimethyl[biphenyl]-4-amine",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+13743-07-2,DTXSID1020726,1-(2-Hydroxyethyl)-1-nitrosourea,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+138857-19-9,-,"Anti-4,5-dihydroxy-6,6a-epoxy-4,5,6,6a-tetrahydrobenzo[j]fluoranthene",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+138857-21-3,DTXSID301030835,"(1aR,2R,3S,11dS)-1a,2,3,11d-Tetrahydroacenaphtho[1',2':7,8]naphtho[1,2-b]oxirene-2,3-diol",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+139-40-2,DTXSID3021196,"2,4-Bis(isopropylamino)-6-chloro-1,3,5-triazine",MC,"EPA_OPP_dismissed, ToxRefDB",negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+139-94-6,DTXSID1020936,Nithiazide,MC,"IARC, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+1420-04-8,DTXSID3020338,Clonitralid,MC,"NTP_equivocal, EPA_OPP_equivocal, CCRIS_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+142713-78-8,DTXSID7020506,"Dimethylaminoethylnitrosoethylurea, nitrite salt",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+148-82-3,DTXSID6020804,Melphalan,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+149-17-7,DTXSID3020758,Isonicotinic acid vanillylidenehydrazide,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+14962-28-8,DTXSID7074539,"4-Hydroxy-2',4',6'-trichlorobiphenyl",MC,CCRIS,-,-,-,-,-,-,-,-,-,-,-
+153-78-6,DTXSID1049223,2-Aminofluorene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+153926-04-6,-,"Anti-dibenzo[a,l]pyrene-11,12-dihydrodiol-13,14-epoxide",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+15972-60-8,DTXSID1022265,Alachlor,MC,EPA_OPP_dismissed,negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+16170-75-5,DTXSID40273998,Sodium beta-4-methoxybenzoyl-beta-bromoacrylate,MC,LCDB,-,-,-,-,-,-,-,-,-,-,-
+16301-26-1,DTXSID4020585,"Z-Ethyl-O,N,N-azoxyethane",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+1694-09-3,DTXSID7021441,Benzyl Violet 4B,MC,"IARC, ToxValDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+179101-81-6,DTXSID8034875,Pyridalyl,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,-
+18774-85-1,DTXSID6020698,N-Hexylnitrosourea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+189-55-9,DTXSID9059751,"Dibenzo[a,i]pyrene",MC,"IARC, ROC15",-,-,-,-,-,-,-,-,-,-,positive
+189-64-0,DTXSID4059752,"Dibenzo[a,h]pyrene",MC,"IARC, ROC15",-,-,-,-,-,-,-,-,-,-,positive
+19044-88-3,DTXSID8024238,Oryzalin,MC,"EPA_OPP, ToxRefDB",negative,negative,-,-,negative,0,0,inactive,EDC-,none,-
+191-30-0,DTXSID9059753,"Dibenzo[a,l]pyrene",MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+1912-24-9,DTXSID9020112,Atrazine,MC,"IARC, EPA_OPP_dismissed, ToxRefDB, CCRIS, LCDB, Rudel2007",positive,negative,high,medium,"E2, P4",0,0,inactive,EDC+,high,positive
+1937-37-7,DTXSID7020184,C.I. Direct Black 38,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+20325-40-0,DTXSID1020485,C.I. Disperse Black 6 dihydrochloride,MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB",positive,positive,medium,low,"E2, P4",0,0,inactive,EDC+,medium,positive
+20830-81-3,DTXSID7022883,Daunorubicin,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+2113-61-3,DTXSID0020072,4-Biphenylamine hydrochloride,MC,LCDB,-,-,-,-,-,-,-,-,-,-,positive
+21638-36-8,DTXSID2020848,4-Methyl-1-[(5-nitrofurfurylidene)amino]-2-imidazolidinone,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+21725-46-2,DTXSID1023990,Cyanazine,MC,"EPA_OPP, LCDB",positive,negative,ns effect,ns effect,negative,0,0,inactive,EDC-,none,positive
+21739-91-3,DTXSID5020368,Cytembena,MC,"NTP, CCRIS, Rudel2007",negative,positive,low,medium,"E2, P4",-,-,-,EDC+,medium,positive
+21928-82-5,DTXSID3020883,(N-6)-(Methylnitroso)adenosine,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+22398-80-7,DTXSID3031444,Indium phosphide,MC,"IARC, NTP_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+23214-92-8,DTXSID8021480,Doxorubicin,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+2393-53-5,DTXSID00946752,"17-Oxoestra-1(10),2,4-trien-3-yl benzoate",MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+6/1/2425,DTXSID4020242,Captafol,MC,"ROC15, EPA_OPP, LCDB, Rudel2007",positive,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+2432-99-7,DTXSID5020077,11-Aminoundecanoic acid,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,negative
+24554-26-5,DTXSID4020953,N-(4-(5-Nitro-2-furyl)-2-thiazolyl)formamide,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+25321-14-6,DTXSID5027859,Dinitrotoluene,MC,ToxValDB,-,-,-,-,-,-,-,-,-,-,positive
+2593-15-9,DTXSID3032547,Etridiazole,MC,EPA_OPP,positive,negative,borderline,borderline,"*E2, *P4",0,0,inactive,EDC~,borderline,-
+26049-68-3,DTXSID8020705,2-Hydrazino-4-(5-nitro-2-furyl)thiazole,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+26049-69-4,DTXSID1020518,"2-(2,2-Dimethylhydrazino)-4-(5-nitro-2-furyl)thiazole",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+26049-70-7,DTXSID3020706,2-Hydrazino-4-(4-nitrophenyl)thiazole,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+26049-71-8,DTXSID3020704,2-Hydrazino-4-(4-aminophenyl) thiazole,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+26471-62-5,DTXSID0024341,Toluene diisocyanate,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+28754-68-9,DTXSID1020061,"trans-5-Amino-3[2-(5-nitro-2-furyl)vinyl]-1,2,4-oxadiazole",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+297-76-7,DTXSID4020614,Ethynodiol diacetate,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+298-04-4,DTXSID0022018,Disulfoton,MC,ToxRefDB,negative,negative,-,-,negative,0.025,0,borderline_agonism,EDC~,borderline,positive
+302-01-2,DTXSID3020702,Hydrazine,MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+302-15-8,DTXSID9020875,Methylhydrazine sulfate,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+302-22-7,DTXSID6020274,Chlormadinone acetate,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+303-47-9,DTXSID7021073,Ochratoxin A,MC,"ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3031-51-4,DTXSID4020909,(S)-Furaltadone hydrochloride,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+305-03-3,DTXSID7020263,Chlorambucil,MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3096-50-2,DTXSID6021088,N-(9-Oxo-2-fluorenyl)acetamide,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+320-67-2,DTXSID9020116,5-Azacytidine,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+32852-21-4,DTXSID7020639,Formic acid 2-(4-methyl-2-thiazolyl)hydrazide,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+3296-90-0,DTXSID9020164,Pentaerythritol dibromide,MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+330-54-1,DTXSID0020446,Diuron,MC,"EPA_OPP, ToxRefDB, CCRIS",negative,negative,ns effect,ns effect,negative,0,0,inactive,EDC-,none,positive
+33372-39-3,DTXSID3020176,4-Bis(2-hydroxyethyl)amino-2-(5-nitro-2-thienyl)quinazoline,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+34549-30-9,DTXSID3024609,"2,2-Bis(bromoethyl)-1,3-propanediol",MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,positive
+10/9/3546,DTXSID6021119,Phenesterin,MC,"NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+3570-75-0,DTXSID6020640,Formic acid 2-[4-(5-nitro-2-furyl)-2-thiazolyl]hydrazide,MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3604-87-3,DTXSID2020553,alpha-Ecdysone,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+363-17-7,DTXSID3020629,"N-(2-Fluorenyl)-2,2,2-trifluoroacetamide",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+366-70-1,DTXSID3021190,Procarbazine hydrochloride,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3688-53-7,DTXSID9020033,AF-2,MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3775-55-1,DTXSID2020058,"2-Amino-5-(5-nitro-2-furyl)-1,3,4-oxadiazole",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+3778-73-2,DTXSID7020760,Ifosfamide,MC,"NTP, CCRIS, LCDB_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3795-88-8,DTXSID6043834,Levofuraltadone,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+3825-26-1,DTXSID8037708,Ammonium perfluorooctanoate,MC,ToxRefDB,negative,negative,-,-,negative,0,0,inactive,EDC-,none,-
+39156-41-7,DTXSID7020398,C.I. Oxidation Base 12A,MC,"ROC15, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+4075-79-0,DTXSID8039243,4-Acetylaminobiphenyl,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+42011-48-3,DTXSID9021394,"2,2,2-Trifluoro-N-[4-(5-nitro-2-furyl)-2-thiazolyl]acetamide",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+42397-65-9,DTXSID2073514,"1,8-Dinitropyrene",MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+3/4/4342,DTXSID0020369,Dacarbazine,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+443-48-1,DTXSID2020892,Metronidazole,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+446-72-0,DTXSID5022308,Genistein,MC,"NTP, ToxRefDB, CCRIS",-,-,ns effect,ns effect,negative,0.538,0,medium_agonism,EDC+,medium,positive
+4680-78-8,DTXSID3020671,FD&C Green No. 1,MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,inconclusive
+488-41-5,DTXSID7022918,Dibromomannitol,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+49540-32-1,DTXSID20197820,"1,3-Diethyl-1-nitrosourea",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+50-07-7,DTXSID2020898,Mitomycin C,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+50-18-0,DTXSID5020364,Cyclophosphamide,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+50-27-1,DTXSID9022366,Estriol,MC,"IARC, CCRIS, Rudel2007",_NA,_NA,_NA,_NA,_NA,0.786,0.0122,high_agonism,EDC+,high,positive
+50-28-2,DTXSID0020573,17beta-Estradiol,MC,"IARC, ToxRefDB, ToxValDB, CCRIS, Rudel2007",_NA,_NA,_NA,_NA,_NA,0.935,0.0153,high_agonism,EDC+,high,positive
+50-32-8,DTXSID2020139,Benzo(a)pyrene,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+50-55-5,DTXSID7021237,Reserpine,MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,no data,-,-,negative,0,0,inactive,EDC-,none,positive
+3/3/5036,DTXSID1020724,1-(2-Hydroxyethyl)-3-[(5-nitrofurfurylidene)amino]-2-imidazolidinone,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+51-79-6,DTXSID9021427,Urethane,MC,"ROC15, NTP, ToxRefDB, CCRIS, Rudel2007",negative,negative,-,-,negative,0.00138,0,inactive,EDC-,none,positive
+51-98-9,DTXSID4023381,Norethindrone acetate,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,positive
+51264-14-3,DTXSID4022604,Amsacrine,MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+51325-35-0,DTXSID9020954,"N,N'-[6-(5-Nitro-2-furyl)-S-triazine-2,4-diyl]bisacetamide",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+51630-58-1,DTXSID101017940,Fenvalerate,MC,"IARC, Rudel2007",negative,no data,ns effect,ns effect,negative,0.00468,0,inactive,EDC-,none,positive
+52-24-4,DTXSID0021339,Thiotepa,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+52-76-6,DTXSID4021478,Lynestrenol,MC,"IARC, Rudel2007",negative,negative,ns effect,ns effect,negative,-,-,-,EDC-,none,positive
+53-16-7,DTXSID4022367,Estrone,MC,"IARC, CCRIS, Rudel2007",_NA,_NA,_NA,_NA,_NA,0.807,0.00246,high_agonism,EDC+,high,positive
+53-70-3,DTXSID9020409,"Dibenz(a,h)anthracene",MC,"IARC, ROC15, Rudel2007",-,-,-,-,-,0,0,inactive,EDC-,none,positive
+53-86-1,DTXSID9020740,1-(p-Chlorobenzoyl)-5-methoxy-2-methyl-Indole-3-acetic acid,MC,"LCDB, Rudel2007",negative,negative,ns effect,ns effect,negative,0,0,inactive,EDC-,none,positive
+53-95-2,DTXSID2020719,N-Hydroxy-2-acetylaminofluorene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+53-96-3,DTXSID0039227,2-Acetylaminofluorene,MC,"ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+531-18-0,DTXSID1020693,Hexamethylolmelamine,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+531-76-0,DTXSID9031569,Merphalan,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+531-82-8,DTXSID9020952,N-[4-(5-Nitro-2-furyl)-2-thiazolyl]acetamide,MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+531-85-1,DTXSID7020138,Benzidine dihydrochloride,MC,CCRIS,-,-,-,-,-,-,-,-,-,-,positive
+532-27-4,DTXSID9020293,2-Chloroacetophenone,MC,"NTP_equivocal, ToxRefDB, CCRIS_equivocal, LCDB_equivocal, Rudel2007",negative,negative,-,-,negative,0.0137,0,borderline_agonism,EDC~,borderline,positive
+533-74-4,DTXSID7024902,Dazomet,MC,ToxRefDB,negative,negative,-,-,negative,0,8.83e-05,inactive,EDC-,none,positive
+53757-28-1,DTXSID4020951,4-(5-Nitro-2-furyl)thiazole,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+54-31-9,DTXSID6020648,Furosemide,MC,"IARC, NTP, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,-,-,-,EDC-,-,positive
+54-85-3,DTXSID8020755,Isoniazid,MC,"LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+5405-53-8,DTXSID8075253,"9H-Fluorene, 2,7-dinitro-",MC,CCRIS,-,-,-,-,-,-,-,-,-,-,positive
+542-75-6,DTXSID1022057,"1,3-Dichloropropene",MC,EPA_OPP,-,-,-,-,-,-,-,-,-,-,positive
+55-18-5,DTXSID2021028,N-Nitrosodiethylamine,MC,ROC15,negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+551-92-8,DTXSID5020497,"1,2-Dimethyl-5-nitroimidazole",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+55120-47-3,DTXSID10203641,"N,N'-Dimethylnitrosourea",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+5522-43-0,DTXSID6020983,1-Nitropyrene,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+55283-68-6,DTXSID8032386,Ethalfluralin,MC,"EPA_OPP, ToxRefDB, CCRIS",negative,negative,-,-,negative,0.0346,0,borderline_agonism,EDC~,borderline,positive
+55335-06-3,DTXSID0032497,Triclopyr,MC,EPA_OPP_equivocal,negative,negative,-,-,negative,0,0,inactive,EDC-,none,-
+55406-53-6,DTXSID0028038,3-Iodo-2-propynyl-N-butylcarbamate,MC,EPA_OPP_dismissed,negative,negative,-,-,negative,0,0.0283,borderline_antagonism,EDC-,none,negative
+555-84-0,DTXSID2020973,1-[(5-Nitrofurfurylidene)amino]-2-imidazolidinone,MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+556-52-5,DTXSID4020666,Glycidol,MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+55738-54-0,DTXSID7020502,"trans-2-[(Dimethylamino)methylimino]-5-[2-(5-nitro-2-furyl)vinyl]-1,3,4-oxadiazole",MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+5589-96-8,DTXSID4024642,Bromochloroacetic acid,MC,"ROC15, NTP, CCRIS",-,-,-,-,-,-,-,-,-,-,positive
+56-23-5,DTXSID8020250,Carbon tetrachloride,MC,"IARC, ROC15, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+56-38-2,DTXSID7021100,Parathion,MC,IARC,positive,positive,medium,high,"E2, P4",0,0,inactive,EDC+,high,positive
+56-49-5,DTXSID0020862,3-Methylcholanthrene,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+56-53-1,DTXSID3020465,Diethylstilbestrol,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",negative,negative,low,ns effect,E2,0.943,0.00992,high_agonism,EDC+,high,positive
+56654-52-5,DTXSID8020418,"1,3-Dibutyl-1-nitrosourea",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+569-61-9,DTXSID1021247,C.I. Basic Red 9 monohydrochloride,MC,"ROC15_equivocal, NTP_equivocal, CCRIS, LCDB_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+569-64-2,DTXSID1025512,Malachite green,MC,"IARC, NTP_equivocal, CCRIS_equivocal, Rudel2007",negative,negative,-,-,negative,-,-,-,EDC-,-,positive
+56932-45-7,DTXSID20205479,"N1-(Tris(hydroxymethyl))methyl-4-nitro-1,2-phenylenediamine",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+5694-00-8,DTXSID2031374,Glycidamide,MC,NTP,negative,negative,-,-,negative,-,-,-,EDC-,-,positive
+57-47-6,DTXSID3023471,Physostigmine,MC,CCRIS,-,-,-,-,-,-,-,-,-,-,negative
+57-63-6,DTXSID5020576,17alpha-Ethinylestradiol,MC,"IARC, NTP_equivocal, CCRIS, Rudel2007",_NA,_NA,_NA,_NA,_NA,1,0,high_agonism,EDC+,high,positive
+57-83-0,DTXSID3022370,Progesterone,MC,"IARC, ROC15, CCRIS, Rudel2007",_NA,_NA,_NA,_NA,_NA,0.0507,0.000618,borderline_agonism,EDC+,borderline,positive
+57-97-6,DTXSID1020510,"7,12-Dimethylbenz(a)anthracene",MC,"CCRIS, Rudel2007",positive,negative,high,ns effect,E2,0.000165,0,inactive,EDC+,high,positive
+57117-31-4,DTXSID7030066,"2,3,4,7,8-Pentachlorodibenzofuran",MC,"NTP_dismissed, ToxRefDB",-,-,-,-,-,-,-,-,-,-,-
+57835-92-4,DTXSID5074844,4-Nitropyrene,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+58-22-0,DTXSID8022371,Testosterone,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+5834-17-3,DTXSID9020825,2-Methoxy-3-aminodibenzofuran,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+58917-67-2,DTXSID9036779,Benzo(a)pyrene diolepoxide 1,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+59-35-8,DTXSID0020496,"4,6-Dimethyl-2-(5-nitro-2-furyl) pyrimidine",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+59-87-0,DTXSID5020944,Nitrofurazone,MC,"IARC, NTP, ToxRefDB, ToxValDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+5915-41-3,DTXSID4027608,Terbutylazine,MC,"EPA_OPP_dismissed, ToxRefDB",positive,positive,high,borderline,"E2, *P4",0.057,0,borderline_agonism,EDC+,high,negative
+595-33-5,DTXSID9040683,Megestrol acetate,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+60-57-1,DTXSID9020453,Dieldrin,MC,IARC,negative,negative,-,-,negative,0.0181,0,borderline_agonism,EDC~,borderline,positive
+602-87-9,DTXSID3020960,5-Nitroacenaphthene,MC,"IARC, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+60391-92-6,DTXSID3020251,Carboxymethylnitrosourea,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+607-57-8,DTXSID2020971,2-Nitrofluorene,MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+61-57-4,DTXSID6045244,Niridazole,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+612-82-8,DTXSID6020511,"3,3'-Dimethylbenzidine dihydrochloride",MC,"IARC, ROC15, NTP, CCRIS, LCDB",positive,positive,medium,high,"E2, P4",0.143,0.000299,low_agonism,EDC+,high,positive
+613-13-8,DTXSID2024458,2-Aminoanthracene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+613-35-4,DTXSID9036854,"N,N'-Diacetylbenzidine",MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+62-44-2,DTXSID1021116,Phenacetin,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+62-50-0,DTXSID6025309,Ethyl methanesulfonate,MC,"ROC15, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+62-73-7,DTXSID5020449,Dichlorvos,MC,"IARC, NTP_equivocal, EPA_OPP_dismissed, ToxRefDB, CCRIS, LCDB_equivocal, Rudel2007",negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+62450-07-1,DTXSID5043768,Trp-P-2,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+630-20-6,DTXSID2021317,"1,1,1,2-Tetrachloroethane",MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+630-56-8,DTXSID6043915,"17-((1-Oxohexyl)oxy)pregn-4-ene-3,20-dione",MC,"IARC, Rudel2007",negative,no data,ns effect,ns effect,negative,0.0177,0.0202,borderline_mixed,EDC~,borderline,-
+63019-65-8,DTXSID8020389,N-1-Diacetamidofluorene,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+636-21-5,DTXSID7021364,2-Methylaniline hydrochloride,MC,"NTP, ToxRefDB, CCRIS, LCDB",negative,no data,-,-,negative,0,0,inactive,EDC-,none,positive
+63642-17-1,DTXSID1020851,N-(N-Methyl-N-nitrosocarbamoyl)-l-ornithine,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+64-17-5,DTXSID9020584,Ethanol,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+6459-94-5,DTXSID8021224,C.I. Acid Red 114,MC,"IARC, ROC15_equivocal, NTP_equivocal, LCDB_equivocal, Rudel2007",-,-,-,-,-,0,0.0473,borderline_antagonism,EDC-,none,positive
+66-75-1,DTXSID8026270,Uracil mustard,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+67-20-9,DTXSID7020972,Nitrofurantoin,MC,"IARC, CCRIS, Rudel2007",negative,negative,-,-,negative,1.37e-06,0,inactive,EDC-,none,positive
+67651-34-7,DTXSID5022350,"2,3,4,5-Tetrachloro-4'-biphenylol",MC,"IARC, CCRIS",-,-,-,-,-,-,-,-,-,-,-
+68-22-4,DTXSID9023380,Norethindrone,MC,"IARC, ROC15, Rudel2007",negative,no data,ns effect,ns effect,negative,0.524,0,medium_agonism,EDC+,medium,negative
+68-23-5,DTXSID3021069,Norethynodrel,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+68162-13-0,-,"Trans-7,12-Dimethylbenz(a)anthracene-3,4-dihydrodiol",MC,CCRIS,-,-,-,-,-,-,-,-,-,-,positive
+68359-37-5,DTXSID5035957,Cyfluthrin,MC,"EPA_OPP_dismissed, ToxRefDB",negative,negative,high,ns effect,E2,0,0,inactive,EDC+,high,negative
+684-93-5,DTXSID4021006,N-Nitroso-N-methylurea,MC,"ROC15, CCRIS, Rudel2007",negative,no data,-,-,negative,0.000967,0.00336,inactive,EDC-,none,positive
+69409-94-5,DTXSID7024110,Fluvalinate,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,-
+7008-42-6,DTXSID0020026,Acronycine,MC,"NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+71-43-2,DTXSID3039242,Benzene,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+71-58-9,DTXSID0025527,Medroxyprogesterone acetate,MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+71133-14-7,DTXSID4024644,Bromodichloroacetic acid,MC,"ROC15, NTP",-,-,-,-,-,-,-,-,-,-,positive
+712-68-5,DTXSID7020059,"2-Amino-5-(5-nitro-2-furyl)-1,3,4-thiadiazole",MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+71609-22-8,DTXSID60221855,"N-Hydroxy-N,N'-diacetylbenzidine",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+72-33-3,DTXSID0020814,Mestranol,MC,"IARC, CCRIS, Rudel2007",negative,no data,ns effect,ns effect,negative,0.742,0,high_agonism,EDC+,high,positive
+720-69-4,DTXSID7020396,"4,6-Diamino-2-(5-nitro-2-furyl)-s-triazine",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+72254-58-1,DTXSID5021417,Trp-P-2 acetate,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+72479-23-3,DTXSID50222775,1-Nitroso-1-ethyl-3-methylurea,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+732-11-6,DTXSID5024261,Phosmet,MC,EPA_OPP,negative,negative,ns effect,low,P4,0,0,inactive,EDC+,low,positive
+7336-20-1,DTXSID2020397,"4,4'-Diamino-2,2'-stilbenedisulfonic acid, disodium salt",MC,"NTP_dismissed, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+2/8/7496,DTXSID9075454,6-Nitrochrysene,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-01-4,DTXSID8021434,Vinyl chloride,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-02-5,DTXSID3021435,Vinyl fluoride,MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-07-0,DTXSID5039224,Acetaldehyde,MC,"IARC, ROC15",negative,negative,-,-,negative,-,-,-,EDC-,-,positive
+75-09-2,DTXSID0020868,Dichloromethane,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-21-8,DTXSID0020600,Ethylene oxide,MC,"IARC, ROC15, NTP, EPA_IRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-34-3,DTXSID1020437,"1,1-Dichloroethane",MC,"NTP_equivocal, ToxRefDB, CCRIS_equivocal, LCDB_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-35-4,DTXSID8021438,"1,1-Dichloroethylene",MC,"IARC, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-52-5,DTXSID2020977,Nitromethane,MC,"IARC, ROC15, NTP, ToxValDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-55-8,DTXSID8024286,Propyleneimine,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75-56-9,DTXSID5021207,"1,2-Propylene oxide",MC,"IARC, ROC15, EPA_OPP_dismissed, ToxRefDB, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75198-31-1,DTXSID0020947,"3-(5-Nitro-2-furyl)-imidazo(1,2-alpha) pyridine",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+75321-20-9,DTXSID5074975,"1,3-Dinitropyrene",MC,"IARC, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+75443-72-0,-,"Anti-3,4-Dihydroxy-1,2-epoxy-1,2,3,4-tetrahydrobenzo(c)phenanthrene",MC,CCRIS,-,-,-,-,-,-,-,-,-,-,-
+759-73-9,DTXSID8020593,1-Ethyl-1-nitrosourea,MC,"ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+76-06-2,DTXSID0020315,Trichloronitromethane,MC,"ToxRefDB, CCRIS",-,-,-,-,-,-,-,-,-,-,positive
+760-56-5,DTXSID3020049,1-Allyl-1-nitrosourea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+76180-96-6,DTXSID4020745,"2-Amino-3-methyl-3H-imidazo[4,5-f]quinoline",MC,"IARC, ROC15, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+7632-00-0,DTXSID0020941,Sodium nitrite,MC,IARC,negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+77-46-3,DTXSID1021295,"4,4'-Sulfonylbisacetanilide",MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+77094-11-2,DTXSID6020800,MeIQ,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+77439-76-0,DTXSID6020276,3-Chloro-4-(dichloromethyl)-5-hydroxy-2(5H)-furanone,MC,"IARC, ToxValDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+77500-04-0,DTXSID1020801,MeIQx,MC,CCRIS,-,-,-,-,-,-,-,-,-,-,positive
+78-79-5,DTXSID2020761,Isoprene,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+78-87-5,DTXSID0020448,"1,2-Dichloropropane",MC,"IARC, NTP_equivocal, ToxRefDB, CCRIS_equivocal, LCDB_equivocal, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+78587-05-0,DTXSID7024299,Hexythiazox,MC,CCRIS,negative,negative,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+79-01-6,DTXSID0021383,Trichloroethylene,MC,IARC,-,-,-,-,-,-,-,-,-,-,positive
+79-06-1,DTXSID5020027,Acrylamide,MC,"IARC, ROC15, NTP, ToxRefDB, ToxValDB, CCRIS, LCDB, Rudel2007",negative,negative,ns effect,ns effect,negative,0,0,inactive,EDC-,none,positive
+12/1/8015,DTXSID7021071,Norlestrin,MC,"LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+82097-50-5,DTXSID0024345,Triasulfuron,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,-
+82617-23-0,DTXSID801002821,Oxiran-2-yl hydrogen carbonimidate,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+83349-67-1,-,"Anti-1,2,3,10b-tetrahydrofluoranthene-2,3-diol 1,10b-oxide",MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+834-12-8,DTXSID1023869,Ametryn,MC,"EPA_OPP_dismissed, ToxRefDB",positive,positive,medium,low,"E2, P4",0,0,inactive,EDC+,medium,positive
+834-24-2,DTXSID001019381,4-aminostilbene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+838-88-0,DTXSID5020867,"4,4'-Methylenebis(o-toluidine)",MC,"IARC, LCDB, Rudel2007",negative,positive,ns effect,medium,P4,0.0458,0.0113,borderline_mixed,EDC+,medium,positive
+843-23-2,DTXSID001033709,trans-N-Hydroxy-4-acetylaminostilbene,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+869-01-2,DTXSID2020214,N-Butyl-N-nitrosourea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+87625-62-5,DTXSID20892005,Ptaquiloside,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+88-72-2,DTXSID4025791,2-Nitrotoluene,MC,"ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+88133-11-3,DTXSID7020132,Bemitradine,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,negative
+91-94-1,DTXSID6020432,"3,3'-Dichlorobenzidine",MC,"IARC, ROC15, EPA_IRIS, ToxValDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+92-67-1,DTXSID5020071,4-Biphenylamine,MC,"IARC, ROC15, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+92-87-5,DTXSID2020137,C.I. Azoic Diazo Component 112,MC,"IARC, ROC15, LCDB, Rudel2007",positive,positive,medium,medium,"E2, P4",0.0183,0,borderline_agonism,EDC+,medium,positive
+93-15-2,DTXSID5025607,Methyleugenol,MC,"ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+94125-34-5,DTXSID9034868,Prosulfuron,MC,ToxRefDB,-,-,-,-,-,-,-,-,-,-,-
+95-06-7,DTXSID7021289,Sulfallate,MC,"IARC, ROC15, NTP, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+95-53-4,DTXSID1026164,2-Methylaniline,MC,"IARC, ROC15, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+95-80-7,DTXSID4020402,"2,4-Diaminotoluene",MC,"NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+96-09-3,DTXSID2021286,Styrene oxide,MC,IARC,negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+96-12-8,DTXSID3020413,"1,2-Dibromo-3-chloropropane",MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+96-13-9,DTXSID7021817,"2,3-Dibromopropanol",MC,"IARC, ROC15, NTP, CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+96-18-4,DTXSID9021390,"1,2,3-Trichloropropane",MC,"IARC, ROC15, NTP, ToxRefDB, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+96724-44-6,DTXSID5020609,1-Ethylnitroso-3-(2-hydroxyethyl)urea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+96724-45-7,DTXSID6020725,1-(2-Hydroxyethyl)-nitroso-3-ethylurea,MC,"CCRIS, LCDB, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+97-54-1,DTXSID7022413,Isoeugenol,MC,"NTP_equivocal, ToxRefDB",positive,positive,low,borderline,"E2, *P4",0.0124,0.00199,borderline_agonism,EDC+,low,positive
+97-56-3,DTXSID1020069,o-Aminoazotoluene,MC,"ROC15, Rudel2007",positive,positive,high,high,"E2, P4",0.142,0,low_agonism,EDC+,high,positive
+979-32-8,DTXSID8023004,Estradiol valerate,MC,"CCRIS, Rudel2007",-,-,-,-,-,-,-,-,-,-,-
+98-95-3,DTXSID3020964,Nitrobenzene,MC,"ROC15, CCRIS, LCDB, Rudel2007",negative,negative,-,-,negative,0,0,inactive,EDC-,none,positive
+99-59-2,DTXSID0020943,5-Nitro-o-anisidine,MC,"IARC, ToxRefDB, Rudel2007",negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+NOCAS_24069,DTXSID9024069,"2,4-/2,6-Dinitrotoluene mixture",MC,EPA_IRIS,-,-,-,-,-,-,-,-,-,-,-
+X,-,Ionizing radiation,MC,"IARC, Rudel2007",-,-,-,-,-,-,-,-,-,-,positive
+100-02-7,DTXSID0021834,4-Nitrophenol,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,ns effect,low,P4,0,0,inactive,EDC+,low,positive
+100-43-6,DTXSID0051499,4-Vinylpyridine,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,negative
+100-51-6,DTXSID5020152,Benzyl alcohol,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+1007-28-9,DTXSID0037495,Deisopropylatrazine,-,-,positive,negative,medium,borderline,"E2, *P4",0.00394,0,inactive,EDC+,medium,negative
+10081-67-1,DTXSID0027721,4-(2-Phenylpropan-2-yl)-N-[4-(2-phenylpropan-2-yl)phenyl]aniline,-,-,negative,positive,ns effect,high,P4,0,0,inactive,EDC+,high,negative
+101-02-0,DTXSID0026252,Triphenyl phosphite,-,-,positive,positive,borderline,borderline,"*E2, *P4",0.0021,0,inactive,EDC~,borderline,negative
+101-05-3,DTXSID9020089,Anilazine,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,high,medium,"E2, P4",4.31e-05,0,inactive,EDC+,high,positive
+101-21-3,DTXSID7020764,Chlorpropham,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+101-37-1,DTXSID8037754,"2,4,6-Tris(allyloxy)-1,3,5-triazine",-,-,positive,negative,medium,medium,"E2, P4",0,5.89e-07,inactive,EDC+,medium,negative
+101-54-2,DTXSID7025895,"N-Phenyl-1,4-benzenediamine",Bioassay_noMC,NTP,negative,negative,ns effect,medium,P4,0.000215,0,inactive,EDC+,medium,negative
+101-61-1,DTXSID5020869,"4,4'-Methylenebis(N,N-dimethylaniline)",Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,high,P4,0.0518,0,borderline_agonism,EDC+,high,positive
+101-72-4,DTXSID1025485,N-Isopropyl-N'-phenyl-p-phenylenediamine,-,-,negative,negative,borderline,ns effect,*E2,-,-,-,EDC~,borderline,negative
+101-77-9,DTXSID6022422,"4,4'-Diaminobiphenyl methane",Bioassay_noMC,ToxValDB,negative,positive,high,high,"E2, P4",0.00885,0,inactive,EDC+,high,positive
+101-81-5,DTXSID1041891,Diphenylmethane,-,-,negative,no data,-,-,negative,0.0207,0,borderline_agonism,EDC~,borderline,-
+101-83-7,DTXSID6025018,Dicyclohexylamine,-,-,negative,no data,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+10161-33-8,DTXSID0034192,17beta-Trenbolone,-,-,negative,no data,ns effect,ns effect,negative,0.475,0,medium_agonism,EDC+,medium,negative
+102-76-1,DTXSID3026691,Triacetin,-,-,negative,negative,-,-,negative,0.0182,0,borderline_agonism,EDC~,borderline,negative
+10222-01-2,DTXSID5032361,"2,2-Dibromo-3-nitrilopropionamide",Bioassay_noMC,ToxRefDB,negative,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,-
+102676-31-3,DTXSID4020618,Fadrozole hydrochloride,-,-,-,-,ns effect,borderline,*P4,0.0825,0,borderline_agonism,EDC~,borderline,-
+103-33-3,DTXSID8020123,Azobenzene,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,low,borderline,"E2, *P4",0,0,inactive,EDC+,low,positive
+103-41-3,DTXSID3041663,Benzyl cinnamate,-,-,positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+103-65-1,DTXSID3042219,Propylbenzene,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+103-69-5,DTXSID1025271,N-Ethylaniline,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+1031-07-8,DTXSID3037541,Endosulfan sulfate,-,-,positive,no data,low,ns effect,E2,0,0.00235,inactive,EDC+,low,-
+103361-09-7,DTXSID7032555,Flumioxazin,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+1034-01-1,DTXSID4040713,Octyl gallate,-,-,negative,positive,ns effect,medium,P4,0.0144,0.0768,borderline_mixed,EDC+,medium,-
+104-40-5,DTXSID5033836,4-Nonylphenol,-,-,negative,negative,-,-,negative,0.088,0,borderline_agonism,EDC~,borderline,negative
+104-43-8,DTXSID1022508,4-Dodecylphenol,-,-,negative,negative,-,-,negative,0.41,0,medium_agonism,EDC+,medium,-
+104-54-1,DTXSID9041491,3-Phenyl-2-propen-1-ol,-,-,negative,no data,low,ns effect,E2,0.00786,0,inactive,EDC+,low,positive
+104-66-5,DTXSID5026706,"1,2-Diphenoxyethane",-,-,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+104-67-6,DTXSID4034287,5-Heptyldihydro-2(3H)-furanone,-,-,negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,negative
+105-55-5,DTXSID8020466,"N,N'-Diethylthiourea",Bioassay_noMC,NTP,-,-,-,-,-,0.0196,0,borderline_agonism,EDC~,borderline,negative
+105-67-9,DTXSID2021864,"2,4-Dimethylphenol",-,-,positive,positive,high,low,"E2, P4",0,0,inactive,EDC+,high,positive
+105512-06-9,DTXSID6032354,Clodinafop-propargyl,Bioassay_noMC,ToxRefDB,negative,positive,low,high,"E2, P4",0,0.000117,inactive,EDC+,high,-
+105624-86-0,DTXSID1046970,"2-(2,6-Diisopropylphenyl)-5-hydroxy-1H-isoindole-1,3-dione",-,-,negative,positive,ns effect,ns effect,negative,0.418,0,medium_agonism,EDC+,medium,-
+106-30-9,DTXSID1040112,Ethyl heptanoate,-,-,negative,negative,-,-,negative,0.0173,0,borderline_agonism,EDC~,borderline,negative
+106-44-5,DTXSID7021869,p-Cresol,-,-,positive,positive,medium,low,"E2, P4",0,0,inactive,EDC+,medium,positive
+106-47-8,DTXSID9020295,4-Chloroaniline,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,borderline,low,"*E2, P4",0,1.73e-07,inactive,EDC+,low,positive
+106-48-9,DTXSID1021871,4-Chlorophenol,-,-,-,-,-,-,-,0.0293,0.00838,borderline_agonism,EDC~,borderline,positive
+106-87-6,DTXSID0020604,4-Vinyl-1-cyclohexene dioxide,Bioassay_noMC,NTP,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+1061517-62-1,DTXSID4047337,PharmaGSID_47337,-,-,negative,positive,ns effect,low,P4,0,8.24e-05,inactive,EDC+,low,-
+1068967-96-3,DTXSID8047391,SAR102608,-,-,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+107-30-2,DTXSID6020307,Chloromethyl methyl ether,-,-,-,-,-,-,-,0.0306,0,borderline_agonism,EDC~,borderline,positive
+107-98-2,DTXSID8024284,1-Methoxy-2-propanol,-,-,negative,negative,-,-,negative,0.0156,3.38e-05,borderline_agonism,EDC~,borderline,negative
+1072-15-7,DTXSID7047487,Sodium nonyl sulfate,-,-,negative,negative,-,-,negative,0.093,0,borderline_agonism,EDC~,borderline,-
+108-21-4,DTXSID2025478,Isopropyl acetate,-,-,-,-,-,-,-,0.0152,0.000759,borderline_agonism,EDC~,borderline,negative
+108-39-4,DTXSID6024200,m-Cresol,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+108-44-1,DTXSID1026792,3-Methylaniline,-,-,positive,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,negative
+108-45-2,DTXSID4021137,"1,3-Benzenediamine",-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+108-46-3,DTXSID2021238,Resorcinol,Bioassay_noMC,"NTP, ToxRefDB",-,-,ns effect,low,P4,0.00321,0.0101,borderline_antagonism,EDC+,low,positive
+108-48-5,DTXSID7051557,"2,6-Dimethylpyridine",-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+108-68-9,DTXSID1025148,"3,5-Dimethylphenol",-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+1085-12-7,DTXSID4022523,Heptyl p-hydroxybenzoate,-,-,-,-,-,-,-,0.269,0,low_agonism,EDC+,low,-
+109-46-6,DTXSID8042187,"N,N'-Dibutylthiourea",-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+110-43-0,DTXSID5021916,2-Heptanone,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+110-97-4,DTXSID8020179,Diisopropanolamine,-,-,negative,no data,-,-,negative,0.0651,0,borderline_agonism,EDC~,borderline,negative
+110235-47-7,DTXSID4042121,Mepanipyrim,-,-,negative,negative,medium,ns effect,E2,7.79e-05,0,inactive,EDC+,medium,-
+110488-70-5,DTXSID7034545,Dimethomorph,Bioassay_noMC,ToxRefDB,positive,negative,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+111-34-2,DTXSID5051575,Butyl vinyl ether,-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,negative
+111-71-7,DTXSID0021597,Heptanal,-,-,-,-,-,-,-,0.0319,0,borderline_agonism,EDC~,borderline,negative
+111-77-3,DTXSID3025049,Diethylene glycol monomethyl ether,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+112-00-5,DTXSID1026900,Dodecyltrimethylammonium chloride,-,-,negative,negative,borderline,ns effect,*E2,0.000105,0,inactive,EDC~,borderline,negative
+112-05-0,DTXSID3021641,Nonanoic acid,Bioassay_noMC,ToxRefDB,negative,negative,low,ns effect,E2,0,0,inactive,EDC+,low,negative
+112-38-9,DTXSID8035001,10-Undecenoic acid,-,-,positive,negative,low,borderline,"E2, *P4",0,0,inactive,EDC+,low,negative
+1121-78-4,DTXSID4051580,6-Methyl-3-hydroxypyridine,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,-
+112733-06-9,DTXSID0047296,Zenarestat,-,-,positive,positive,low,borderline,"E2, *P4",0,0,inactive,EDC+,low,-
+1134-23-2,DTXSID6032356,Cycloate,Bioassay_noMC,ToxRefDB,positive,negative,high,ns effect,E2,0,0,inactive,EDC+,high,negative
+114369-43-6,DTXSID8032548,Fenbuconazole,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,high,P4,0.000538,0,inactive,EDC+,high,-
+115-29-7,DTXSID1020560,Endosulfan,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.0295,0,borderline_agonism,EDC~,borderline,positive
+115-86-6,DTXSID1021952,Triphenyl phosphate,-,-,positive,no data,medium,ns effect,E2,0.0641,0.0314,borderline_mixed,EDC+,medium,negative
+116714-46-6,DTXSID5034773,Novaluron,Bioassay_noMC,ToxRefDB,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+117-39-5,DTXSID4021218,Quercetin,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.101,0,low_agonism,EDC+,low,positive
+117-79-3,DTXSID6020068,2-Aminoanthraquinone,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,low,high,"E2, P4",0.0453,0,borderline_agonism,EDC+,high,positive
+117-81-7,DTXSID5020607,Di(2-ethylhexyl) phthalate,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+117-99-7,DTXSID5047879,2-Hydroxybenzophenone,-,-,-,-,-,-,-,0.0157,0,borderline_agonism,EDC~,borderline,-
+117718-60-2,DTXSID1032488,Thiazopyr,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,low,P4,0.00886,0,inactive,EDC+,low,-
+118-55-8,DTXSID6021957,Phenyl salicylate,-,-,positive,no data,-,-,*E2,0,5.79e-06,inactive,EDC~,none,negative
+118-56-9,DTXSID1026241,"3,3,5-Trimethylcyclohexyl salicylate",-,-,positive,no data,medium,ns effect,E2,0.0217,0,borderline_agonism,EDC+,medium,negative
+118-58-1,DTXSID1024598,Benzyl salicylate,-,-,positive,no data,ns effect,ns effect,negative,0.013,0,borderline_agonism,EDC~,borderline,negative
+118-79-6,DTXSID6021959,"2,4,6-Tribromophenol",-,-,positive,negative,medium,low,"E2, P4",0,0,inactive,EDC+,medium,positive
+118-82-1,DTXSID7022411,"4,4'-Methylenebis(2,6-di-t-butylphenol)",-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+118134-30-8,DTXSID1034212,Spiroxamine,Bioassay_noMC,ToxRefDB,positive,no data,low,ns effect,E2,0,0,inactive,EDC+,low,-
+119-61-9,DTXSID0021961,Benzophenone,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0.04,0,borderline_agonism,EDC~,borderline,negative
+1191-50-0,DTXSID4042416,Sodium myristyl sulfate,-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+119446-68-3,DTXSID4032372,Difenoconazole,Bioassay_noMC,ToxRefDB,negative,negative,high,ns effect,E2,0,0.000367,inactive,EDC+,high,-
+120-12-7,DTXSID0023878,Anthracene,-,-,positive,negative,low,ns effect,E2,0.0112,0,borderline_agonism,EDC+,low,positive
+120-14-9,DTXSID7026285,Veratraldehyde,-,-,positive,no data,-,-,*E2,0.0572,0,borderline_agonism,EDC~,borderline,negative
+120-18-3,DTXSID5044788,Naphthalene-2-sulfonic acid,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,-
+120-21-8,DTXSID0021963,4-(Diethylamino)benzaldehyde,-,-,positive,negative,low,borderline,"E2, *P4",-,-,-,EDC+,low,-
+120-32-1,DTXSID5020154,Clorophene,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,borderline,medium,"*E2, P4",0.0353,0.018,borderline_mixed,EDC+,medium,negative
+120-46-7,DTXSID3041247,"1,3-Diphenyl-1,3-propanedione",-,-,positive,negative,-,-,*E2,0.0491,0,borderline_agonism,EDC~,borderline,negative
+120-47-8,DTXSID9022528,Ethylparaben,-,-,positive,positive,low,medium,"E2, P4",0.0864,2.69e-08,borderline_agonism,EDC+,medium,negative
+120-51-4,DTXSID8029153,Benzyl benzoate,-,-,positive,negative,-,-,*E2,0,2.89e-07,inactive,EDC~,none,negative
+120-56-9,DTXSID7029611,Ethylenebis(oxyethylene) dibenzoate,-,-,negative,no data,-,-,negative,0.0732,0,borderline_agonism,EDC~,borderline,-
+120-71-8,DTXSID1020350,2-Methoxy-5-methylaniline,Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+120-80-9,DTXSID3020257,"1,2-Benzenediol",Bioassay_noMC,ToxRefDB,negative,positive,low,medium,"E2, P4",0.0155,0,borderline_agonism,EDC+,medium,positive
+120-83-2,DTXSID1020439,"2,4-Dichlorophenol",Bioassay_noMC,"NTP, ToxRefDB",positive,positive,high,borderline,"E2, *P4",0.00424,2.15e-08,inactive,EDC+,high,positive
+120511-73-1,DTXSID9022607,Anastrozole,-,-,-,-,-,-,-,0.0201,0,borderline_agonism,EDC~,borderline,-
+1207-12-1,DTXSID6052740,"4,6-Dimethyldibenzothiophene",-,-,positive,no data,-,-,*E2,-,-,-,EDC~,-,-
+120983-64-4,DTXSID3044338,"2-(1-Chlorocyclopropyl)-1-(2-chlorophenyl)-3-(1H-1,2,4-triazol-1-yl)-2-propanol",-,-,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,-
+121-00-6,DTXSID7040788,2-tert-Butyl-4-methoxyphenol,-,-,positive,negative,-,-,*E2,0.0139,0,borderline_agonism,EDC~,borderline,negative
+121-33-5,DTXSID0021969,4-Hydroxy-3-methoxybenzaldehyde,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+121-72-2,DTXSID9051618,"N,N,3-Trimethylaniline",-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+121-79-9,DTXSID5021201,Propyl gallate,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.0601,0,borderline_agonism,EDC~,borderline,positive
+1214-39-7,DTXSID7032630,N-Benzyladenine,-,-,negative,positive,medium,low,"E2, P4",0,0,inactive,EDC+,medium,negative
+121552-61-2,DTXSID1032359,Cyprodinil,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0356,0,borderline_agonism,EDC~,borderline,negative
+1219-38-1,DTXSID0047957,Octylparaben,-,-,-,-,-,-,-,0.268,0,low_agonism,EDC+,low,-
+122-14-5,DTXSID4032613,Fenitrothion,Bioassay_noMC,ToxRefDB,negative,positive,medium,high,"E2, P4",5.35e-05,0,inactive,EDC+,high,positive
+122-39-4,DTXSID4021975,Diphenylamine,Bioassay_noMC,ToxRefDB,positive,negative,medium,borderline,"E2, *P4",0.00816,0,inactive,EDC+,medium,positive
+122-42-9,DTXSID7020766,Propham,-,-,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+122453-73-0,DTXSID9032533,Chlorfenapyr,Bioassay_noMC,ToxRefDB,negative,no data,ns effect,borderline,*P4,0,0.0311,borderline_antagonism,EDC~,borderline,-
+122836-35-5,DTXSID6032645,Sulfentrazone,Bioassay_noMC,ToxRefDB,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+122931-48-0,DTXSID1032642,Rimsulfuron,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,-
+123-07-9,DTXSID4021977,4-Ethylphenol,-,-,positive,no data,-,-,*E2,0.00352,0,inactive,EDC~,none,positive
+123-31-9,DTXSID7020716,Hydroquinone,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,positive,medium,high,"E2, P4",0,0,inactive,EDC+,high,positive
+123-51-3,DTXSID3025469,Isopentyl alcohol,-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,negative
+124-22-1,DTXSID3021984,1-Dodecanamine,-,-,-,-,-,-,-,0.149,0,low_agonism,EDC+,low,-
+124-94-7,DTXSID1040742,Triamcinolone,-,-,negative,positive,low,medium,"E2, P4",0.0939,0,borderline_agonism,EDC+,medium,-
+1241-94-7,DTXSID1025300,2-Ethylhexyl diphenyl phosphate,-,-,negative,negative,-,-,negative,0.0117,0,borderline_agonism,EDC~,borderline,negative
+12427-38-2,DTXSID9020794,Maneb,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+125-84-8,DTXSID8022589,Aminoglutethimide,-,-,-,-,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+125116-23-6,DTXSID4034497,Metconazole,-,-,negative,no data,ns effect,ns effect,negative,0.0105,0.0316,borderline_mixed,EDC~,borderline,-
+126-00-1,DTXSID0022436,"4,4-Bis(4-hydroxyphenyl)valeric acid",-,-,negative,no data,-,-,negative,0.174,0,low_agonism,EDC+,low,positive
+1260-17-9,DTXSID9022817,Carminic acid,Bioassay_noMC,ToxRefDB,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+126833-17-8,DTXSID3032549,Fenhexamid,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,borderline,*P4,0.148,0,low_agonism,EDC+,low,-
+127-47-9,DTXSID6021240,Retinol acetate,-,-,negative,no data,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+127-51-5,DTXSID7027047,alpha-Isomethylionone,-,-,negative,negative,-,-,negative,0.0185,0,borderline_agonism,EDC~,borderline,negative
+127308-82-1,DTXSID9047257,Zamifenacin,-,-,negative,negative,-,-,negative,0.0271,0,borderline_agonism,EDC~,borderline,-
+128-04-1,DTXSID6027050,Sodium dimethyldithiocarbamate,-,-,negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+128-95-0,DTXSID2041252,"1,4-Diaminoanthraquinone",-,-,positive,no data,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+128639-02-1,DTXSID4032532,Carfentrazone-ethyl,Bioassay_noMC,ToxRefDB,negative,positive,high,low,"E2, P4",0,0,inactive,EDC+,high,-
+129-00-0,DTXSID3024289,Pyrene,-,-,negative,no data,low,ns effect,E2,0,0,inactive,EDC+,low,positive
+129630-19-9,DTXSID8034871,Pyraflufen-ethyl,Bioassay_noMC,ToxRefDB,positive,negative,medium,low,"E2, P4",0,0,inactive,EDC+,medium,-
+13048-33-4,DTXSID9025401,"1,6-Hexanediol diacrylate",-,-,negative,positive,ns effect,low,P4,-,-,-,EDC+,low,negative
+13071-79-9,DTXSID2022254,Terbufos,-,-,negative,negative,ns effect,ns effect,negative,0.0482,0,borderline_agonism,EDC~,borderline,positive
+131-11-3,DTXSID3022455,Dimethyl phthalate,-,-,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+131-17-9,DTXSID7020392,Diallyl phthalate,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,ns effect,ns effect,negative,0.014,0.00157,borderline_agonism,EDC~,borderline,positive
+131-18-0,DTXSID5031131,Dipentyl phthalate,-,-,negative,negative,ns effect,ns effect,negative,0.0125,0.0376,borderline_mixed,EDC~,borderline,-
+131-55-5,DTXSID5041306,"2,2',4,4'-Tetrahydroxybenzophenone",-,-,negative,positive,-,-,*P4,0.397,8.24e-08,low_agonism,EDC+,low,-
+131-56-6,DTXSID8022406,"2,4-Dihydroxybenzophenone",-,-,-,-,-,-,-,0.266,3.25e-07,low_agonism,EDC+,low,-
+131-57-7,DTXSID3022405,2-Hydroxy-4-methoxybenzophenone,-,-,positive,no data,medium,ns effect,E2,0.0645,0,borderline_agonism,EDC+,medium,positive
+131341-86-1,DTXSID2032398,Fludioxonil,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0521,0,borderline_agonism,EDC~,borderline,-
+1319-77-3,DTXSID3024364,Cresol,Bioassay_noMC,NTP,positive,positive,borderline,borderline,"*E2, *P4",-,-,-,EDC~,borderline,negative
+13194-48-4,DTXSID4032611,Ethoprop,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+131983-72-7,DTXSID0032655,Triticonazole,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+13292-46-1,DTXSID6021244,Rifampicin,-,-,negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+1330-78-5,DTXSID4021391,Tris(methylphenyl) phosphate,Bioassay_noMC,"NTP, ToxRefDB",negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+1335-46-2,DTXSID0029214,Methylionone,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+1338-43-8,DTXSID6027397,"Sorbitan, mono-(9Z)-9-octadecenoate",-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+133855-98-8,DTXSID1040372,Epoxiconazole,-,-,negative,positive,ns effect,low,P4,0,0.0372,borderline_antagonism,EDC+,low,-
+134-85-0,DTXSID2051687,4-Chlorobenzophenone,-,-,positive,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,negative
+135-19-3,DTXSID5027061,2-Naphthalenol,-,-,positive,negative,medium,borderline,"E2, *P4",0.0874,0,borderline_agonism,EDC+,medium,negative
+135-20-6,DTXSID1020352,Cupferron,Bioassay_noMC,NTP,negative,negative,-,-,negative,0.0224,0,borderline_agonism,EDC~,borderline,positive
+135-57-9,DTXSID7041629,"2,2'-Dibenzoylaminodiphenyl disulfide",-,-,positive,positive,medium,medium,"E2, P4",-,-,-,EDC+,medium,negative
+135-88-6,DTXSID4021131,N-Phenyl-2-naphthylamine,Bioassay_noMC,NTP,positive,negative,medium,medium,"E2, P4",-,-,-,EDC+,medium,positive
+135158-54-2,DTXSID1032519,Acibenzolar-S-methyl,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,negative
+135590-91-9,DTXSID6037564,Mefenpyr-diethyl,-,-,negative,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,negative
+136-77-6,DTXSID1020699,4-Hexylresorcinol,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.0687,0.00583,borderline_agonism,EDC~,borderline,positive
+136-85-6,DTXSID1038743,5-Methyl-1H-benzotriazole,-,-,negative,negative,borderline,ns effect,*E2,-,-,-,EDC~,borderline,negative
+136042-19-8,DTXSID1048178,FR130739,-,-,negative,positive,borderline,medium,"*E2, P4",-,-,-,EDC+,medium,-
+13826-35-2,DTXSID7027756,3-Phenoxybenzenemethanol,-,-,positive,no data,medium,ns effect,E2,0.0657,0,borderline_agonism,EDC+,medium,-
+138472-01-2,DTXSID2048167,FR 409,-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,-
+139-02-6,DTXSID4027072,Sodium phenolate,-,-,positive,no data,-,-,*E2,0,3.45e-06,inactive,EDC~,none,-
+139-13-9,DTXSID6020939,Nitrilotriacetic acid,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,high,ns effect,E2,0.0176,0,borderline_agonism,EDC+,high,positive
+139340-56-0,DTXSID0047246,Darbufelone mesylate,-,-,negative,positive,ns effect,high,P4,0,0,inactive,EDC+,high,-
+140-10-3,DTXSID5022489,E-Cinnamic acid,-,-,negative,negative,-,-,negative,0.101,0,low_agonism,EDC+,low,positive
+140-56-7,DTXSID6040371,Fenaminosulf,Bioassay_noMC,NTP,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+140-66-9,DTXSID9022360,"4-(1,1,3,3-Tetramethylbutyl)phenol",-,-,negative,negative,-,-,negative,0.393,0,low_agonism,EDC+,low,positive
+141-79-7,DTXSID1029170,4-Methylpent-3-en-2-one,-,-,-,-,-,-,-,0.14,0.000626,low_agonism,EDC+,low,negative
+142-18-7,DTXSID5041275,1-Monolaurin,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+143-08-8,DTXSID6022008,1-Nonanol,-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+143-50-0,DTXSID1020770,Kepone,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.174,0.0149,low_agonism,EDC+,low,positive
+143-74-8,DTXSID8022408,Phenol red,-,-,-,-,-,-,-,0.0409,0,borderline_agonism,EDC~,borderline,positive
+143390-89-0,DTXSID2032558,Kresoxim-methyl,Bioassay_noMC,ToxRefDB,negative,no data,ns effect,ns effect,negative,0.0154,0.066,borderline_mixed,EDC~,borderline,negative
+14371-10-9,DTXSID6024834,(2E)-3-Phenylprop-2-enal,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.0167,0,borderline_agonism,EDC~,borderline,positive
+145742-28-5,DTXSID9047251,CP-122721,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+1459-93-4,DTXSID8027402,Dimethyl isophthalate,-,-,positive,no data,low,ns effect,E2,0,0,inactive,EDC+,low,negative
+147-24-0,DTXSID4020537,Diphenhydramine hydrochloride,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+1470-94-6,DTXSID0051732,Indan-5-ol,-,-,positive,negative,medium,ns effect,E2,-,-,-,EDC+,medium,-
+1478-61-1,DTXSID7037717,Bisphenol AF,-,-,negative,positive,-,-,*P4,0.552,2.6e-05,medium_agonism,EDC+,medium,negative
+14816-18-3,DTXSID8034324,Phoxim,-,-,positive,positive,ns effect,borderline,*P4,0.156,0,low_agonism,EDC+,low,positive
+148477-71-8,DTXSID6034928,Spirodiclofen,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+149062-75-9,DTXSID9047259,"1,3-Dichloro-6,7,8,9,10,12-hexahydroazepino[2,1-b]quinazoline hydrochloride (1:1)",-,-,negative,negative,high,ns effect,E2,0,0,inactive,EDC+,high,-
+14938-35-3,DTXSID9044164,4-Pentylphenol,-,-,positive,no data,medium,ns effect,E2,-,-,-,EDC+,medium,-
+149979-41-9,DTXSID7034252,Tepraloxydim,Bioassay_noMC,ToxRefDB,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+150-19-6,DTXSID0022012,3-Methoxyphenol,-,-,positive,positive,low,borderline,"E2, *P4",-,-,-,EDC+,low,-
+151506-44-4,DTXSID6048175,Difpas-pyrazole,-,-,positive,negative,high,ns effect,E2,-,-,-,EDC+,high,-
+15299-99-7,DTXSID5024211,Napropamide,-,-,negative,negative,ns effect,low,P4,0,2.68e-07,inactive,EDC+,low,-
+15307-79-6,DTXSID3037208,Diclofenac sodium,-,-,positive,negative,-,-,*E2,0,2.58e-07,inactive,EDC~,none,negative
+15310-01-7,DTXSID7041623,Benodanil,-,-,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+155990-20-8,DTXSID8047347,SR271425,-,-,negative,negative,-,-,negative,0.0558,0,borderline_agonism,EDC~,borderline,-
+156-10-5,DTXSID1021031,4-Nitrosodiphenylamine,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.028,0.0138,borderline_mixed,EDC~,borderline,positive
+15619-48-4,DTXSID8044593,1-Benzylquinolinium chloride,-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+1563-38-8,DTXSID2027414,"2,3-Dihydro-2,2-dimethyl-7-benzofuranol",-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+1563-66-2,DTXSID9020249,Carbofuran,-,-,positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+1570-64-5,DTXSID5022510,4-Chloro-2-methylphenol,-,-,-,-,medium,medium,"E2, P4",0.0109,4.17e-07,borderline_agonism,EDC+,medium,positive
+1582-09-8,DTXSID4021395,Trifluralin,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,ns effect,ns effect,negative,0.0337,0,borderline_agonism,EDC~,borderline,positive
+159138-81-5,DTXSID3047344,Cariporide mesylate,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0124,3.21e-07,borderline_agonism,EDC~,borderline,-
+1596-84-5,DTXSID9020370,Daminozide,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,ns effect,ns effect,negative,0.0318,0.000412,borderline_agonism,EDC~,borderline,positive
+1610-18-0,DTXSID6022341,Prometon,Bioassay_noMC,ToxRefDB,positive,negative,medium,borderline,"E2, *P4",0,0,inactive,EDC+,medium,-
+161326-34-7,DTXSID2034590,(S)-1-Anilino-4-methyl-2-methylthio-4-phenylimidazolin-5-one,Bioassay_noMC,ToxRefDB,-,-,-,-,-,0.0164,2.11e-05,borderline_agonism,EDC~,borderline,positive
+162706-14-1,DTXSID2047309,UK-156819,-,-,negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+1638-22-8,DTXSID3047425,4-Butylphenol,-,-,positive,no data,medium,ns effect,E2,0.111,0,low_agonism,EDC+,medium,-
+16587-71-6,DTXSID4047127,4-(tert-Pentyl)-cyclohexanone,-,-,negative,no data,-,-,negative,0.0437,3.01e-05,borderline_agonism,EDC~,borderline,negative
+16867-04-2,DTXSID0051782,3-Hydroxy-2-pyridone,-,-,negative,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,-
+1698-60-8,DTXSID3034872,Chloridazon,Bioassay_noMC,ToxRefDB,positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+171866-31-2,DTXSID8047264,CP-283097,-,-,positive,negative,medium,ns effect,E2,0.0212,0,borderline_agonism,EDC+,medium,-
+1724-39-6,DTXSID1027429,Cyclododecanol,-,-,-,-,-,-,-,0.0221,0,borderline_agonism,EDC~,borderline,negative
+17354-14-2,DTXSID5044605,"1,4-Bis(butylamino)anthracene-9,10-dione",-,-,positive,positive,ns effect,high,P4,-,-,-,EDC+,high,positive
+1742-14-9,DTXSID9029223,"1,1-Bis(3,4-dimethylphenyl)ethane",-,-,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+1747-60-0,DTXSID9024485,6-Methoxy-2-benzothiazolamine,-,-,positive,positive,medium,high,"E2, P4",-,-,-,EDC+,high,positive
+17557-23-2,DTXSID8025707,Neopentyl glycol diglycidyl ether,-,-,negative,negative,borderline,ns effect,*E2,-,-,-,EDC~,borderline,positive
+17696-62-7,DTXSID4047882,Phenylparaben,-,-,-,-,-,-,-,0.275,5.68e-07,low_agonism,EDC+,low,negative
+178928-70-6,DTXSID4034869,Prothioconazole,-,-,negative,positive,ns effect,low,P4,-,-,-,EDC+,low,-
+17924-92-4,DTXSID0021460,Zearalenone,Bioassay_noMC,"NTP, ToxRefDB",-,-,ns effect,high,P4,0.71,0,high_agonism,EDC+,high,positive
+179465-71-5,DTXSID2047303,CJ-013790,-,-,-,-,medium,ns effect,E2,0.0185,0,borderline_agonism,EDC+,medium,-
+1806-26-4,DTXSID9022312,4-Octylphenol,-,-,negative,negative,-,-,negative,0.118,0,low_agonism,EDC+,low,-
+181640-09-5,DTXSID4047339,SR144190,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+1836-75-5,DTXSID7020970,Nitrofen,Bioassay_noMC,NTP,positive,no data,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+1843-05-6,DTXSID9027441,Octabenzone,-,-,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+1861-32-1,DTXSID0024000,Chlorthal-dimethyl,Bioassay_noMC,ToxRefDB,positive,negative,medium,borderline,"E2, *P4",0,0,inactive,EDC+,medium,-
+1861-40-1,DTXSID3023899,Benfluralin,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,borderline,*P4,0.0398,5.32e-07,borderline_agonism,EDC~,borderline,negative
+1885-14-9,DTXSID9044403,Phenyl carbonochloridate,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,-
+189003-92-7,DTXSID2047355,Trelanserin,-,-,negative,no data,low,ns effect,E2,0,0,inactive,EDC+,low,-
+18979-55-0,DTXSID4048195,4-(Hexyloxy)phenol,-,-,-,-,-,-,-,0.161,3.4e-08,low_agonism,EDC+,low,positive
+1987-50-4,DTXSID2037714,4-Heptylphenol,-,-,negative,negative,-,-,negative,0.113,0,low_agonism,EDC+,low,-
+199171-88-5,DTXSID9047253,CP-401387,-,-,positive,negative,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,-
+20265-97-8,DTXSID3020093,p-Anisidinium chloride,Bioassay_noMC,NTP,-,-,ns effect,medium,P4,0,0.000182,inactive,EDC+,medium,positive
+2032-65-7,DTXSID3032626,Methiocarb,Bioassay_noMC,ToxRefDB,positive,positive,medium,borderline,"E2, *P4",-,-,-,EDC+,medium,-
+205-99-2,DTXSID0023907,Benzo(b)fluoranthene,-,-,negative,no data,ns effect,ns effect,negative,0.012,0,borderline_agonism,EDC~,borderline,positive
+206-44-0,DTXSID3024104,Fluoranthene,-,-,negative,no data,low,ns effect,E2,0.00745,0,inactive,EDC+,low,positive
+208-96-8,DTXSID3023845,Acenaphthylene,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+2104-64-5,DTXSID7022174,EPN,-,-,negative,positive,medium,high,"E2, P4",0.0868,0,borderline_agonism,EDC+,high,-
+210826-40-7,DTXSID2047301,CP-456773,-,-,negative,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,-
+2110-18-1,DTXSID7042356,2-(3-Phenylpropyl)pyridine,-,-,positive,no data,medium,borderline,"E2, *P4",0.0171,0,borderline_agonism,EDC+,medium,-
+21145-77-7,DTXSID7041544,Tonalide,-,-,negative,no data,ns effect,ns effect,negative,0.0388,0,borderline_agonism,EDC~,borderline,negative
+212141-51-0,DTXSID5049073,Vatalanib dihydrochloride,-,-,negative,negative,ns effect,medium,P4,-,-,-,EDC+,medium,-
+2122-70-5,DTXSID3034583,Ethyl 1-naphthaleneacetate,-,-,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+21245-02-3,DTXSID7029320,2-Ethylhexyl 4-(dimethylamino)benzoate,-,-,positive,no data,ns effect,ns effect,negative,0.0114,0,borderline_agonism,EDC~,borderline,negative
+2144-53-8,DTXSID3047558,"3,3,4,4,5,5,6,6,7,7,8,8,8-Tridecafluorooctyl methacrylate",-,-,negative,negative,-,-,negative,0.0134,0,borderline_agonism,EDC~,borderline,negative
+214535-77-0,DTXSID2047278,CP-457677,-,-,positive,negative,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+215297-27-1,DTXSID1047289,UK-343664,-,-,positive,negative,borderline,borderline,"*E2, *P4",0,0,inactive,EDC~,borderline,-
+21662-09-9,DTXSID5041514,(4Z)-4-Decenal,-,-,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+220860-50-4,DTXSID4047254,CP-457920,-,-,negative,no data,low,medium,"E2, P4",0,0,inactive,EDC+,medium,-
+2212-67-1,DTXSID6024206,Molinate,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,negative
+2243-62-1,DTXSID3020916,"1,5-Naphthalenediamine",Bioassay_noMC,NTP,negative,positive,low,high,"E2, P4",0,0,inactive,EDC+,high,positive
+22781-23-3,DTXSID9032327,Bendiocarb,Bioassay_noMC,ToxRefDB,positive,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+23031-36-9,DTXSID0032572,Prallethrin,Bioassay_noMC,ToxRefDB,negative,negative,medium,borderline,"E2, *P4",0,0,inactive,EDC+,medium,-
+2310-17-0,DTXSID1024259,Phosalone,Bioassay_noMC,ToxRefDB,no data,positive,ns effect,high,P4,0.000105,0,inactive,EDC+,high,negative
+23128-74-7,DTXSID5044233,Antioxidant 1098,-,-,negative,positive,ns effect,high,P4,-,-,-,EDC+,high,negative
+23422-53-9,DTXSID4032405,Formetanate hydrochloride,Bioassay_noMC,ToxRefDB,positive,positive,high,high,"E2, P4",0,0,inactive,EDC+,high,-
+23696-85-7,DTXSID6041397,Damascenone,-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+23726-91-2,DTXSID7051890,(E)-beta-Damascone,-,-,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,negative
+2385-85-5,DTXSID7020895,Mirex,Bioassay_noMC,"NTP, ToxRefDB",positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+2390-60-5,DTXSID5038888,Basic Blue 7,-,-,negative,positive,-,-,*P4,0,0.0669,borderline_antagonism,EDC~,none,-
+2392-39-4,DTXSID3047429,Dexamethasone sodium phosphate,-,-,negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+23950-58-5,DTXSID2020420,Propyzamide,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+2396-68-1,DTXSID9048196,4-tert-Butylbenzenethiol,-,-,-,-,-,-,-,0.0234,0.000346,borderline_agonism,EDC~,borderline,-
+2416-94-6,DTXSID6022187,"2,3,6-Trimethylphenol",-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+2433-14-9,DTXSID3040722,4-Cyclohexylcyclohexanol,-,-,negative,negative,borderline,ns effect,*E2,0.0253,0,borderline_agonism,EDC~,borderline,-
+2440-22-4,DTXSID1027479,2-(2H-Benzotriazol-2-yl)-4-methylphenol,-,-,-,-,-,-,-,0.0875,0,borderline_agonism,EDC~,borderline,negative
+1/4/2457,DTXSID8044888,Barium bis(2-ethylhexanoate),-,-,-,-,-,-,-,0.011,0.032,borderline_mixed,EDC~,borderline,-
+24602-86-6,DTXSID3041376,Tridemorph,-,-,negative,no data,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+2479-46-1,DTXSID8051914,"1,3-Phenylenedi(4-aminophenyl ether)",-,-,positive,positive,ns effect,high,P4,-,-,-,EDC+,high,positive
+2481-94-9,DTXSID8041745,C.I. Solvent Yellow 56,-,-,positive,no data,low,ns effect,E2,-,-,-,EDC+,low,negative
+24851-98-7,DTXSID2029325,Methyl dihydrojasmonate,-,-,positive,no data,low,ns effect,E2,0,0,inactive,EDC+,low,negative
+2491-38-5,DTXSID4034576,2-Bromo-4-hydroxyacetophenone,-,-,negative,negative,-,-,negative,0.0164,0,borderline_agonism,EDC~,borderline,-
+2492-26-4,DTXSID1026035,Sodium 2-mercaptobenzothiolate,-,-,negative,no data,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+6/5/2497,DTXSID8041901,Disulfoton sulfone,-,-,negative,positive,borderline,medium,"*E2, P4",-,-,-,EDC+,medium,-
+25311-71-1,DTXSID8032417,Isofenphos,-,-,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,-
+253450-09-8,DTXSID2047270,Besonprodil,-,-,negative,negative,ns effect,low,P4,0,0,inactive,EDC+,low,-
+6/5/2554,DTXSID3038808,"1,3,5,7-Tetramethyl-1,3,5,7-tetravinylcyclotetrasiloxane",-,-,positive,no data,borderline,ns effect,*E2,0.0268,0,borderline_agonism,EDC~,borderline,positive
+26002-80-2,DTXSID7032688,Phenothrin,Bioassay_noMC,ToxRefDB,positive,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+26027-38-3,DTXSID2036588,"Glycols, polyethylene, mono(p-nonylphenyl) ether",-,-,negative,negative,ns effect,ns effect,negative,0.0406,0.0575,borderline_mixed,EDC~,borderline,negative
+26172-55-4,DTXSID9034286,5-Chloro-2-methyl-3(2H)-isothiazolone,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,low,P4,0,0,inactive,EDC+,low,positive
+262376-75-0,DTXSID9047338,HMR1426,-,-,negative,negative,borderline,borderline,"*E2, *P4",0.0176,0,borderline_agonism,EDC~,borderline,-
+2642-71-9,DTXSID5037498,Azinphos-ethyl,-,-,negative,positive,medium,high,"E2, P4",-,-,-,EDC+,high,-
+3/7/2680,DTXSID0051944,"N,N-Dimethylacrylamide",-,-,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,positive
+2687-25-4,DTXSID4027494,"2,3-Diaminotoluene",-,-,positive,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,positive
+27193-86-8,DTXSID1027926,Dodecylphenol,-,-,negative,negative,-,-,negative,0.392,0,low_agonism,EDC+,low,-
+27306-78-1,DTXSID1040611,Silwet L 77,-,-,negative,positive,-,-,*P4,0.000232,0.0464,borderline_antagonism,EDC~,none,-
+27314-13-2,DTXSID8024234,Norflurazon,Bioassay_noMC,ToxRefDB,positive,negative,low,ns effect,E2,0,0,inactive,EDC+,low,-
+27344-41-8,DTXSID6036467,"Disodium 4,4'-bis(2-sulfostyryl)biphenyl",-,-,positive,negative,-,-,*E2,0.00215,0,inactive,EDC~,none,negative
+2772-45-4,DTXSID7029241,"2,4-Bis(1-methyl-1-phenylethyl)phenol",-,-,negative,negative,-,-,negative,0.0274,0,borderline_agonism,EDC~,borderline,-
+2783-94-0,DTXSID6021456,FD&C Yellow 6,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,negative
+27955-94-8,DTXSID2037712,"4,4',4''-Ethane-1,1,1-triyltriphenol",-,-,negative,negative,-,-,negative,0.319,5.19e-07,low_agonism,EDC+,low,negative
+28159-98-0,DTXSID3032416,Cybutryne,-,-,-,-,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+2832-40-8,DTXSID6021450,C.I. Disperse Yellow 3,Bioassay_noMC,NTP,positive,positive,medium,medium,"E2, P4",-,-,-,EDC+,medium,positive
+2835-95-2,DTXSID9024489,5-Amino-2-methylphenol,-,-,positive,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+28804-88-8,DTXSID7025130,Dimethylnaphthalene,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+288104-79-0,DTXSID2047357,Surinabant,-,-,negative,negative,-,-,negative,0.0866,0,borderline_agonism,EDC~,borderline,-
+290352-28-2,DTXSID7047306,CP-634384,-,-,positive,positive,ns effect,medium,P4,0.00739,0,inactive,EDC+,medium,-
+2919-66-6,DTXSID5048184,Melengestrol acetate,-,-,-,-,-,-,-,0.155,0,low_agonism,EDC+,low,-
+2921-88-2,DTXSID4020458,Chlorpyrifos,Bioassay_noMC,ToxRefDB,positive,positive,ns effect,low,P4,0.0125,0,borderline_agonism,EDC+,low,positive
+29232-93-7,DTXSID0024266,Pirimiphos-methyl,Bioassay_noMC,ToxRefDB,positive,positive,high,medium,"E2, P4",0.0176,0,borderline_agonism,EDC+,high,inconclusive
+5/6/2934,DTXSID7042273,"2,4-Diisopropylphenol",-,-,positive,no data,low,ns effect,E2,0.00488,0,inactive,EDC+,low,-
+29385-43-1,DTXSID0026171,Tolyltriazole,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,positive
+2943-75-1,DTXSID2029246,Triethoxyoctylsilane,-,-,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+2971-36-0,DTXSID8022325,"2,2-Bis(4-hydroxyphenyl)-1,1,1-trichloroethane",-,-,-,-,high,borderline,"E2, *P4",0.568,0.0413,medium_agonism,EDC+,high,-
+298-00-0,DTXSID1020855,Methyl parathion,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,low,high,"E2, P4",0,0,inactive,EDC+,high,positive
+298-02-2,DTXSID4032459,Phorate,Bioassay_noMC,ToxRefDB,positive,negative,-,-,*E2,0.0181,0,borderline_agonism,EDC~,borderline,positive
+298198-52-4,DTXSID2047359,SSR180711,-,-,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+302-79-4,DTXSID7021239,all-trans-Retinoic acid,-,-,negative,positive,ns effect,medium,P4,0.000228,0,inactive,EDC+,medium,positive
+3056-17-5,DTXSID1023819,Stavudine,-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+3118-97-6,DTXSID5040706,C.I. Solvent Orange 7,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,positive
+3120-74-9,DTXSID0051996,3-Methyl-4-(methylthio)phenol,-,-,positive,negative,medium,borderline,"E2, *P4",-,-,-,EDC+,medium,negative
+31218-83-4,DTXSID7032470,Propetamphos,Bioassay_noMC,ToxRefDB,positive,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,-
+313994-79-5,DTXSID0047327,MK-578,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+314-40-9,DTXSID4022020,Bromacil,Bioassay_noMC,ToxRefDB,positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+31519-22-9,DTXSID0037730,"1,4-Dihydroxy-2-naphthoic acid",-,-,negative,positive,ns effect,high,P4,0,0.0324,borderline_antagonism,EDC+,high,-
+319-85-7,DTXSID7020685,beta-Hexachlorocyclohexane,-,-,-,-,-,-,-,0.082,0,borderline_agonism,EDC~,borderline,-
+32388-55-9,DTXSID4029353,Acetylcedrene,-,-,negative,no data,ns effect,ns effect,negative,0.0562,0,borderline_agonism,EDC~,borderline,negative
+32809-16-8,DTXSID9033923,Procymidone,-,-,negative,negative,low,ns effect,E2,0,0,inactive,EDC+,low,-
+3319-31-1,DTXSID9026265,Tris(2-ethylhexyl) trimellitate,-,-,negative,negative,-,-,negative,0.115,0,low_agonism,EDC+,low,negative
+33228-44-3,DTXSID0040707,4-Pentylaniline,-,-,negative,positive,ns effect,medium,P4,0.0138,0.00901,borderline_agonism,EDC+,medium,-
+333-41-5,DTXSID9020407,Diazinon,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,high,medium,"E2, P4",0.0237,0,borderline_agonism,EDC+,high,positive
+33629-47-9,DTXSID3032337,Butralin,-,-,positive,positive,ns effect,low,P4,0.0426,0,borderline_agonism,EDC+,low,negative
+33693-04-8,DTXSID1042445,Terbumeton,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,negative
+33820-53-0,DTXSID8024157,Isopropalin,-,-,negative,negative,-,-,negative,0.0122,0.0372,borderline_mixed,EDC~,borderline,-
+349495-42-7,DTXSID3047263,PharmaGSID_47263,-,-,positive,negative,high,medium,"E2, P4",0,0,inactive,EDC+,high,-
+35256-85-0,DTXSID5041691,Butam,-,-,positive,no data,ns effect,ns effect,negative,0.0822,0,borderline_agonism,EDC~,borderline,-
+353280-07-6,DTXSID1047281,CP-612372,-,-,negative,no data,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+35400-43-2,DTXSID8032675,Sulprofos,-,-,positive,no data,ns effect,medium,P4,0.0115,0,borderline_agonism,EDC+,medium,-
+35554-44-0,DTXSID8024151,Imazalil,Bioassay_noMC,ToxRefDB,no data,positive,ns effect,high,P4,8.32e-06,7.36e-06,inactive,EDC+,high,-
+364-76-1,DTXSID5052042,4-Fluoro-3-nitroaniline,-,-,negative,positive,borderline,low,"*E2, P4",-,-,-,EDC+,low,-
+36734-19-7,DTXSID3024154,"3-(3,5-Dichlorophenyl)-N-(1-methylethyl)-2,4-dioxo-1-imidazolidinecarboxamide",Bioassay_noMC,ToxRefDB,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+368832-42-2,DTXSID1047283,CP-728663,-,-,negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+39515-41-8,DTXSID0024002,Fenpropathrin,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0117,0,borderline_agonism,EDC~,borderline,negative
+40487-42-1,DTXSID7024245,Pendimethalin,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0656,0.000214,borderline_agonism,EDC~,borderline,-
+4065-45-6,DTXSID2042436,Sulisobenzone,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+41198-08-7,DTXSID3032464,Profenofos,Bioassay_noMC,ToxRefDB,positive,positive,high,medium,"E2, P4",0.0025,0.00658,inactive,EDC+,high,positive
+41481-66-7,DTXSID9047598,"4,4'-Sulfonylbis[2-(prop-2-en-1-yl)phenol]",-,-,negative,positive,ns effect,high,P4,0.0231,0.0449,borderline_mixed,EDC+,high,-
+42509-80-8,DTXSID7034676,Isazofos,Bioassay_noMC,ToxRefDB,negative,positive,high,high,"E2, P4",6.95e-05,0,inactive,EDC+,high,positive
+427-51-0,DTXSID5020366,Cyproterone acetate,Bioassay_noMC,ToxRefDB,negative,no data,ns effect,borderline,*P4,0.000543,0,inactive,EDC~,borderline,positive
+42874-03-3,DTXSID7024241,Oxyfluorfen,Bioassay_noMC,ToxRefDB,positive,negative,high,ns effect,E2,0,0,inactive,EDC+,high,-
+4291-63-8,DTXSID8022828,Cladribine,-,-,positive,no data,medium,ns effect,E2,0.0207,0,borderline_agonism,EDC+,medium,positive
+42978-66-5,DTXSID7028015,Tripropylene glycol diacrylate,-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,negative
+4376-20-9,DTXSID2025680,MEHP,-,-,negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,negative
+439687-69-1,DTXSID7047358,Nelivaptan,-,-,negative,positive,ns effect,low,P4,0,0,inactive,EDC+,low,-
+4449-51-8,DTXSID6043709,Cyclopamine,-,-,positive,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+445295-04-5,DTXSID6047282,CP-671305,-,-,positive,negative,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,-
+4455-26-9,DTXSID9042209,N-Methyldioctylamine,-,-,negative,negative,borderline,ns effect,*E2,0.000107,0,inactive,EDC~,borderline,-
+446-86-6,DTXSID4020119,Azathioprine,-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,positive
+4468-42-2,DTXSID4041492,3-Phenylhexane,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,-
+451-40-1,DTXSID6044430,"1,2-Diphenylethanone",-,-,positive,no data,ns effect,ns effect,negative,0.0227,0,borderline_agonism,EDC~,borderline,-
+452-58-4,DTXSID0051493,"2,3-Diaminopyridine",-,-,negative,positive,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+460081-99-6,DTXSID9048510,PharmaGSID_48510,-,-,positive,negative,low,medium,"E2, P4",-,-,-,EDC+,medium,-
+4602-84-0,DTXSID3032389,Farnesol,-,-,negative,no data,ns effect,ns effect,negative,0.0162,0,borderline_agonism,EDC~,borderline,negative
+4672-49-5,DTXSID40196931,Ethylene dimethanesulfonate,-,-,-,-,borderline,ns effect,*E2,-,-,-,EDC~,borderline,-
+4707-47-5,DTXSID9041653,Methyl 3-methylorsellinate,-,-,positive,positive,low,borderline,"E2, *P4",0.00793,0,inactive,EDC+,low,positive
+4712-55-4,DTXSID7041889,Diphenyl phosphite,-,-,positive,negative,-,-,*E2,0.142,0,low_agonism,EDC+,low,negative
+474-86-2,DTXSID7047433,Equilin,-,-,_NA,_NA,_NA,_NA,_NA,0.822,0,high_agonism,EDC+,high,negative
+477706-73-3,DTXSID5047374,SSR161421,-,-,positive,positive,low,high,"E2, P4",5.98e-06,3.94e-05,inactive,EDC+,high,-
+480-40-0,DTXSID1022396,Chrysin,-,-,negative,no data,ns effect,high,P4,0.134,0,low_agonism,EDC+,high,-
+486-66-8,DTXSID9022310,"7,4'-Dihydroxyisoflavone",-,-,negative,no data,medium,borderline,"E2, *P4",0.44,0,medium_agonism,EDC+,medium,positive
+487-06-9,DTXSID1041421,"5,7-Dimethoxy-2H-chromen-2-one",-,-,positive,no data,low,ns effect,E2,0,0,inactive,EDC+,low,-
+4904-61-4,DTXSID8027581,"1,5,9-Cyclododecatriene",-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+491-80-5,DTXSID1022394,Biochanin A,-,-,negative,no data,ns effect,borderline,*P4,0.356,0,low_agonism,EDC+,low,positive
+11/8/4940,DTXSID5041516,2-Ethyl-3-hydroxy-4-pyrone,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,positive
+496-46-8,DTXSID6031380,Glycoluril,-,-,negative,no data,-,-,negative,0.0207,0.0618,borderline_mixed,EDC~,borderline,negative
+496-72-0,DTXSID9024930,"3,4-Diaminotoluene",-,-,positive,positive,medium,medium,"E2, P4",5.41e-05,0,inactive,EDC+,medium,positive
+497-39-2,DTXSID1041502,"3-Methyl-4,6-di-tert-butylphenol",-,-,negative,negative,borderline,ns effect,*E2,-,-,-,EDC~,borderline,-
+499-75-2,DTXSID6042074,Isopropyl-o-cresol,-,-,positive,negative,borderline,borderline,"*E2, *P4",0,0,inactive,EDC~,borderline,positive
+50-29-3,DTXSID4020375,DDT,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,no data,-,-,negative,0.19,0,low_agonism,EDC+,low,positive
+50-33-9,DTXSID9021136,"4-Butyl-1,2-diphenyl-3,5-Pyrazolidinedione",Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,low,P4,-,-,-,EDC+,low,positive
+50-78-2,DTXSID5020108,Aspirin,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+500-38-9,DTXSID5022437,Nordihydroguaiaretic acid,-,-,negative,positive,ns effect,medium,P4,0.0998,0.0158,borderline_mixed,EDC+,medium,positive
+501027-49-2,DTXSID2047307,PD-0333941,-,-,negative,no data,high,ns effect,E2,0,0,inactive,EDC+,high,-
+504-63-2,DTXSID8041246,"1,3-Propanediol",-,-,negative,positive,borderline,ns effect,*E2,-,-,-,EDC~,borderline,positive
+50594-66-6,DTXSID0020022,Acifluorfen,-,-,negative,negative,high,low,"E2, P4",0,0,inactive,EDC+,high,-
+51-03-6,DTXSID1021166,Piperonyl butoxide,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,low,ns effect,E2,0.00231,0,inactive,EDC+,low,positive
+51-24-1,DTXSID2045232,Tiratricol,-,-,negative,positive,-,-,*P4,0.179,3.24e-07,low_agonism,EDC+,low,-
+51-52-5,DTXSID5021209,6-Propyl-2-thiouracil,Bioassay_noMC,ToxValDB,negative,negative,-,-,negative,0.144,0,low_agonism,EDC+,low,negative
+51338-27-3,DTXSID0032605,(+-)-Diclofop-methyl,Bioassay_noMC,ToxRefDB,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+5153-25-3,DTXSID4022525,2-Ethylhexyl p-hydroxybenzoate,-,-,negative,negative,-,-,negative,0.37,0.000486,low_agonism,EDC+,low,-
+51632-16-7,DTXSID6028022,1-(Bromomethyl)-3-phenoxybenzene,-,-,positive,no data,medium,ns effect,E2,0.0607,0,borderline_agonism,EDC+,medium,-
+52-01-7,DTXSID6034186,Spironolactone,-,-,negative,positive,ns effect,medium,P4,0.000278,6.82e-06,inactive,EDC+,medium,-
+52-68-6,DTXSID0021389,Trichlorfon,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0405,0.00361,borderline_agonism,EDC~,borderline,positive
+520-18-3,DTXSID7020768,Kaempferol,-,-,-,-,-,-,-,0.252,0,low_agonism,EDC+,low,positive
+520-36-5,DTXSID6022391,Apigenin,-,-,positive,negative,ns effect,low,P4,0.307,0,low_agonism,EDC+,low,positive
+521-18-6,DTXSID9022364,5alpha-Dihydrotestosterone,-,-,_NA,_NA,_NA,_NA,_NA,0.4,0,medium_agonism,EDC+,medium,-
+52315-07-8,DTXSID1023998,Cypermethrin,Bioassay_noMC,ToxRefDB,positive,negative,ns effect,ns effect,negative,0.0138,0,borderline_agonism,EDC~,borderline,positive
+5234-68-4,DTXSID0023951,Carboxin,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,negative
+525-79-1,DTXSID9035175,Kinetin,-,-,-,-,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+525-82-6,DTXSID2022048,Flavone,-,-,-,-,-,-,-,0.0423,0,borderline_agonism,EDC~,borderline,-
+52645-53-1,DTXSID8022292,Permethrin,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+53-03-2,DTXSID4021185,Prednisone,-,-,negative,negative,ns effect,ns effect,negative,0.0991,0,borderline_agonism,EDC~,borderline,positive
+53-19-0,DTXSID9020372,"1-(2-Chlorophenyl)-1-(4-chlorophenyl)-2,2-dichloroethane",-,-,negative,negative,-,-,negative,0.236,0,low_agonism,EDC+,low,positive
+53-43-0,DTXSID4020379,Dehydroepiandrosterone,-,-,_NA,_NA,_NA,_NA,_NA,0.365,3.01e-07,low_agonism,EDC+,low,negative
+5315-79-7,DTXSID1038298,1-Hydroxypyrene,-,-,negative,negative,ns effect,borderline,*P4,0.00941,0,inactive,EDC~,borderline,-
+532-02-5,DTXSID4041442,Sodium 2-naphthalenesulfonate,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+5349-51-9,DTXSID9040716,4-(2-Methylbutan-2-yl)cyclohexanol,-,-,negative,negative,-,-,negative,0.248,0,low_agonism,EDC+,low,-
+53894-23-8,DTXSID5028033,Triisononyl trimellitate,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+53939-28-9,DTXSID1032303,(Z)-11-Hexadecenal,-,-,-,-,-,-,-,0.0879,0,borderline_agonism,EDC~,borderline,-
+54-11-5,DTXSID1020930,Nicotine,-,-,negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+540-38-5,DTXSID4052186,4-Iodophenol,-,-,positive,negative,medium,low,"E2, P4",-,-,-,EDC+,medium,-
+54593-83-8,DTXSID2032344,Chlorethoxyfos,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0203,0,borderline_agonism,EDC~,borderline,-
+548-62-9,DTXSID5020653,Gentian Violet,-,-,negative,positive,-,-,*P4,0,0.000394,inactive,EDC~,none,positive
+55-38-9,DTXSID8020620,Fenthion,Bioassay_noMC,"NTP, ToxRefDB",negative,positive,high,low,"E2, P4",0.00263,0,inactive,EDC+,high,positive
+55219-65-3,DTXSID0032493,Triadimenol,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,ns effect,negative,0.0188,0,borderline_agonism,EDC~,borderline,-
+55285-14-8,DTXSID5023950,Carbosulfan,-,-,negative,negative,-,-,negative,0.0115,0,borderline_agonism,EDC~,borderline,-
+55290-64-7,DTXSID0024052,Dimethipin,-,-,negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+553-26-4,DTXSID2027200,"4,4'-Bipyridine",-,-,positive,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+55512-33-9,DTXSID2032639,Pyridate,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,-
+5598-13-0,DTXSID6032352,Chlorpyrifos-methyl,Bioassay_noMC,ToxRefDB,positive,negative,medium,borderline,"E2, *P4",6.35e-05,0,inactive,EDC+,medium,negative
+56-55-3,DTXSID5023902,Benz(a)anthracene,-,-,positive,negative,high,low,"E2, P4",0.0372,0,borderline_agonism,EDC+,high,positive
+56-72-4,DTXSID2020347,Coumaphos,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,high,high,"E2, P4",0,0,inactive,EDC+,high,positive
+563-04-2,DTXSID4026216,Tri-m-tolyl phosphate,-,-,positive,no data,-,-,*E2,-,-,-,EDC~,-,negative
+563-12-2,DTXSID2024086,Ethion,Bioassay_noMC,ToxRefDB,positive,positive,medium,high,"E2, P4",0.0974,0,borderline_agonism,EDC+,high,positive
+57-11-4,DTXSID8021642,Octadecanoic acid,-,-,negative,negative,-,-,negative,0.248,0,low_agonism,EDC+,low,negative
+57-74-9,DTXSID7020267,Chlordane,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,-,-,negative,0.0191,0,borderline_agonism,EDC~,borderline,positive
+57-85-2,DTXSID9036515,Testosterone propionate,-,-,_NA,_NA,_NA,_NA,_NA,0.392,0,low_agonism,EDC+,low,-
+57-91-0,DTXSID8022377,17alpha-Estradiol,-,-,_NA,_NA,_NA,_NA,_NA,1.06,0,high_agonism,EDC+,high,-
+57837-19-1,DTXSID6024175,Metalaxyl,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+58-18-4,DTXSID1033664,17-Methyltestosterone,Bioassay_noMC,ToxRefDB,_NA,_NA,_NA,_NA,_NA,0.495,0,medium_agonism,EDC+,medium,-
+58-55-9,DTXSID5021336,Theophylline,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+58-72-0,DTXSID3022320,Triphenylethylene,-,-,-,-,-,-,-,0.383,0,low_agonism,EDC+,low,-
+58-93-5,DTXSID2020713,Hydrochlorothiazide,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+580-51-8,DTXSID2022462,3-Phenylphenol,-,-,positive,positive,high,medium,"E2, P4",-,-,-,EDC+,high,-
+583-78-8,DTXSID7025003,"2,5-Dichlorophenol",-,-,-,-,ns effect,low,P4,0,0,inactive,EDC+,low,negative
+585-34-2,DTXSID9044825,3-tert-Butylphenol,-,-,-,-,ns effect,low,P4,0.0248,0,borderline_agonism,EDC+,low,-
+587-85-9,DTXSID3042130,Diphenylmercury(II),-,-,positive,negative,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+5888-33-5,DTXSID5052250,Isobornyl acrylate,-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,negative
+59-30-3,DTXSID0022519,Folic acid,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+59-50-7,DTXSID4021717,4-Chloro-3-methylphenol,Bioassay_noMC,ToxRefDB,positive,negative,borderline,low,"*E2, P4",0.0285,1.91e-07,borderline_agonism,EDC+,low,positive
+59756-60-4,DTXSID8024107,1-Methyl-3-phenyl-5-(3-(trifluoromethyl)phenyl)-4-pyridone,Bioassay_noMC,ToxRefDB,-,-,low,ns effect,E2,0,0,inactive,EDC+,low,-
+599-64-4,DTXSID3022536,4-Cumylphenol,-,-,negative,negative,-,-,negative,0.376,6.62e-08,low_agonism,EDC+,low,negative
+60-09-3,DTXSID6024460,C.I. Solvent Yellow 1,-,-,negative,positive,medium,borderline,"E2, *P4",0.0658,0,borderline_agonism,EDC+,medium,positive
+60168-88-9,DTXSID2032390,Fenarimol,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,ns effect,negative,0.105,0.000907,low_agonism,EDC+,low,positive
+602-01-7,DTXSID4027236,"2,3-Dinitrotoluene",-,-,positive,positive,ns effect,high,P4,6.13e-05,0,inactive,EDC+,high,positive
+603-35-0,DTXSID5026251,Triphenylphosphine,-,-,-,-,-,-,-,0.0652,0.00198,borderline_agonism,EDC~,borderline,negative
+603-36-1,DTXSID4052269,Triphenylstibine,-,-,negative,positive,ns effect,high,P4,-,-,-,EDC+,high,positive
+605-45-8,DTXSID2040731,Diisopropyl phthalate,-,-,negative,no data,borderline,ns effect,*E2,0.00932,0,inactive,EDC~,borderline,-
+6055-19-2,DTXSID6024888,Cyclophosphamide monohydrate,-,-,negative,negative,-,-,negative,0.135,0,low_agonism,EDC+,low,positive
+606-20-2,DTXSID5020528,"2,6-Dinitrotoluene",-,-,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,positive
+608-73-1,DTXSID7020687,"1,2,3,4,5,6-Hexachlorocyclohexane",-,-,negative,no data,borderline,borderline,"*E2, *P4",-,-,-,EDC~,borderline,-
+6088-51-3,DTXSID7025429,6-Hydroxy-2-naphthyl disulfide,-,-,-,-,-,-,-,0.25,0,low_agonism,EDC+,low,negative
+61-73-4,DTXSID0023296,Methylene blue,-,-,negative,positive,ns effect,high,P4,0.00154,0.0591,borderline_antagonism,EDC+,high,positive
+610-39-9,DTXSID8027240,"3,4-Dinitrotoluene",-,-,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,positive
+611-20-1,DTXSID3041661,2-Hydroxybenzonitrile,-,-,-,-,borderline,low,"*E2, P4",0,0,inactive,EDC+,low,negative
+612-83-9,DTXSID1020433,"3,3'-Dichlorobenzidine dihydrochloride",-,-,positive,no data,medium,ns effect,E2,-,-,-,EDC+,medium,positive
+615-13-4,DTXSID7052288,"1,3-Dihydro-2H-inden-2-one",-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,-
+6152-33-6,DTXSID1040794,Sodium 2-phenylphenate tetrahydrate,-,-,positive,negative,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,-
+6153-64-6,DTXSID4023412,Oxytetracycline dihydrate,-,-,negative,positive,-,-,*P4,0,0,inactive,EDC~,none,-
+618-45-1,DTXSID0044571,3-Isopropylphenol,-,-,positive,no data,borderline,low,"*E2, P4",0.00783,0,inactive,EDC+,low,-
+6190-65-4,DTXSID5037494,Deethylatrazine,-,-,positive,no data,low,borderline,"E2, *P4",0,0,inactive,EDC+,low,negative
+61949-76-6,DTXSID0038338,(+/-)-cis-Permethrin,Bioassay_noMC,ToxRefDB,negative,no data,ns effect,medium,P4,-,-,-,EDC+,medium,negative
+62-38-4,DTXSID7021150,Phenylmercuric acetate,-,-,negative,positive,-,-,*P4,0,0.164,low_antagonism,EDC~,none,positive
+620-17-7,DTXSID0022480,3-Ethylphenol,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,positive
+620-92-8,DTXSID9022445,Bis(4-hydroxyphenyl)methane,-,-,-,-,-,-,-,0.0303,0,borderline_agonism,EDC~,borderline,negative
+624-18-0,DTXSID8021141,"1,4-Benzenediamine dihydrochloride",Bioassay_noMC,NTP,positive,negative,-,-,*E2,-,-,-,EDC~,-,positive
+6259-76-3,DTXSID4038924,Hexyl salicylate,-,-,positive,negative,-,-,*E2,0.0173,0,borderline_agonism,EDC~,borderline,negative
+6283-25-6,DTXSID6038827,2-Chloro-5-nitroaniline,-,-,negative,positive,ns effect,borderline,*P4,-,-,-,EDC~,borderline,-
+629-76-5,DTXSID0027270,1-Pentadecanol,-,-,positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+62924-70-3,DTXSID7032553,Flumetralin,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,medium,P4,0.224,0,low_agonism,EDC+,medium,-
+63-05-8,DTXSID8024523,"4-Androstene-3,17-dione",Bioassay_noMC,"NTP, ToxRefDB",_NA,_NA,_NA,_NA,_NA,0.183,0,low_agonism,EDC+,low,negative
+63-25-2,DTXSID9020247,Carbaryl,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0.00877,0,inactive,EDC+,medium,positive
+633-96-5,DTXSID0038881,C.I. Acid Orange 7,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+6344-67-8,DTXSID9047540,3-Hydroxyfluorene,-,-,positive,positive,ns effect,medium,P4,0.0945,0,borderline_agonism,EDC+,medium,-
+63449-41-2,DTXSID1048122,Benzyl-C8-18-alkyldimethylammonium chlorides,-,-,-,-,-,-,-,0.0312,0.029,borderline_mixed,EDC~,borderline,negative
+9/4/6358,DTXSID9043855,2-Amino-6-chloro-4-nitrophenol,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,positive
+6358-53-8,DTXSID6024838,C.I. Solvent Red 80,-,-,positive,positive,medium,medium,"E2, P4",-,-,-,EDC+,medium,positive
+638-07-3,DTXSID4044454,Ethyl 4-chloro-3-oxobutanoate,-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,positive
+64091-91-4,DTXSID3020881,4-(N-Methyl-N-nitrosamino)-1-(3-pyridyl)-1-butanone,Bioassay_noMC,ToxValDB,negative,negative,ns effect,borderline,*P4,-,-,-,EDC~,borderline,positive
+645-56-7,DTXSID9022100,4-Propylphenol,-,-,positive,no data,ns effect,borderline,*P4,0.0275,0,borderline_agonism,EDC~,borderline,-
+645-62-5,DTXSID4025296,2-Ethyl-2-hexenal,-,-,negative,no data,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,negative
+65277-42-1,DTXSID7029879,Ketoconazole,-,-,negative,positive,ns effect,medium,P4,0,0.015,borderline_antagonism,EDC+,medium,-
+654055-01-3,DTXSID3040776,Morin hydrate,-,-,positive,no data,-,-,*E2,0.0898,0,borderline_agonism,EDC~,borderline,-
+66230-04-4,DTXSID4032667,Esfenvalerate,-,-,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+66332-96-5,DTXSID8024109,Flutolanil,Bioassay_noMC,ToxRefDB,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,-
+66441-23-4,DTXSID2032392,Fenoxaprop-ethyl,Bioassay_noMC,ToxRefDB,negative,positive,-,-,*P4,0,2.96e-07,inactive,EDC~,none,-
+66575-29-9,DTXSID8040484,Colforsin,-,-,positive,no data,high,borderline,"E2, *P4",0.0528,0,borderline_agonism,EDC+,high,-
+6683-19-8,DTXSID1027633,Irganox 1010,-,-,-,-,-,-,-,0.149,0,low_agonism,EDC+,low,negative
+668981-02-0,DTXSID0047294,CP-863187,-,-,negative,positive,ns effect,borderline,*P4,0,0.0245,borderline_antagonism,EDC~,borderline,-
+67485-29-4,DTXSID6023868,Hydramethylnon,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.2,0,low_agonism,EDC+,low,-
+676116-04-4,DTXSID7047271,PD 0343701,-,-,negative,negative,ns effect,high,P4,0,0.0799,borderline_antagonism,EDC+,high,-
+67747-09-5,DTXSID4024270,Prochloraz,Bioassay_noMC,ToxRefDB,no data,positive,ns effect,high,P4,0,0,inactive,EDC+,high,-
+678-39-7,DTXSID7029904,"3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,10-Heptadecafluoro-1-decanol",-,-,negative,negative,-,-,negative,0.0146,0,borderline_agonism,EDC~,borderline,negative
+68-26-8,DTXSID3023556,Retinol,-,-,negative,positive,-,-,*P4,0.000138,0,inactive,EDC~,none,positive
+68-96-2,DTXSID6040747,17alpha-Hydroxyprogesterone,-,-,_NA,_NA,_NA,_NA,_NA,0.343,0,low_agonism,EDC+,low,positive
+683-18-1,DTXSID8027292,Dibutyltin dichloride,-,-,negative,negative,borderline,ns effect,*E2,0.000186,0.222,low_antagonism,EDC~,borderline,positive
+6846-50-0,DTXSID1027635,"2,2,4-Trimethyl-1,3-pentanediol diisobutyrate",-,-,negative,negative,-,-,negative,0.0272,0,borderline_agonism,EDC~,borderline,negative
+68515-48-0,DTXSID5028665,DINP branched,-,-,negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,negative
+68555-86-2,DTXSID7044718,C.I. Acid Orange 156,-,-,positive,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,-
+686756-87-6,DTXSID4048519,PharmaGSID_48519,-,-,positive,no data,medium,ns effect,E2,-,-,-,EDC+,medium,-
+68694-11-1,DTXSID2032500,Triflumizole,Bioassay_noMC,ToxRefDB,no data,positive,ns effect,high,P4,0,0,inactive,EDC+,high,-
+2/3/6893,DTXSID8023216,"3,5,3'-Triiodothyronine",-,-,negative,negative,-,-,negative,0.135,0,low_agonism,EDC+,low,-
+68959-20-6,DTXSID5035589,Didecylmethyl(3-(trimethoxysilyl)propyl)ammonium chloride,-,-,negative,negative,-,-,negative,0.0121,0.0019,borderline_agonism,EDC~,borderline,-
+69-74-9,DTXSID5024891,Cytarabine hydrochloride,-,-,negative,no data,ns effect,ns effect,negative,0.0289,0,borderline_agonism,EDC~,borderline,positive
+7011-83-8,DTXSID3041299,Dihydrojasmone lactone,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,negative
+709-98-8,DTXSID8022111,"N-(3,4-Dichlorophenyl)propanamide",Bioassay_noMC,ToxRefDB,negative,negative,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+712-50-5,DTXSID5048182,Cyclohexylphenylketone,-,-,negative,negative,-,-,negative,0.0191,0,borderline_agonism,EDC~,borderline,negative
+71283-80-2,DTXSID2034598,Fenoxaprop-P-ethyl,-,-,negative,positive,ns effect,high,P4,0,0.000153,inactive,EDC+,high,-
+71751-41-2,DTXSID8023892,Abamectin,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,borderline,*P4,0,0.000773,inactive,EDC~,borderline,-
+72-43-5,DTXSID9020827,Methoxychlor,Bioassay_noMC,NTP,negative,negative,-,-,negative,0.254,0,low_agonism,EDC+,low,positive
+72-54-8,DTXSID4020373,"p,p'-DDD",Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,-,-,negative,0.0728,0,borderline_agonism,EDC~,borderline,positive
+72-55-9,DTXSID9020374,"p,p'-DDE",Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,-,-,negative,0.0677,0,borderline_agonism,EDC~,borderline,positive
+7287-19-6,DTXSID4024272,Prometryn,Bioassay_noMC,ToxRefDB,positive,negative,high,ns effect,E2,0,0,inactive,EDC+,high,-
+73-31-4,DTXSID1022421,Melatonin,-,-,negative,no data,ns effect,medium,P4,0,0,inactive,EDC+,medium,negative
+7378-99-6,DTXSID2036299,"N,N-Dimethyloctylamine",-,-,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,negative
+74051-80-2,DTXSID9024304,Sethoxydim,Bioassay_noMC,ToxRefDB,negative,negative,high,ns effect,E2,0,0,inactive,EDC+,high,-
+741-58-2,DTXSID9032329,Bensulide,Bioassay_noMC,ToxRefDB,negative,positive,-,-,*P4,0,0.00571,inactive,EDC~,none,-
+744-45-6,DTXSID8037752,Diphenyl isophthalate,-,-,positive,negative,medium,ns effect,E2,0.035,0,borderline_agonism,EDC+,medium,-
+754-91-6,DTXSID3038939,Perfluorooctanesulfonamide,-,-,negative,no data,ns effect,ns effect,negative,0.024,0.029,borderline_mixed,EDC~,borderline,-
+76-03-9,DTXSID1021378,Trichloroacetic acid,Bioassay_noMC,"ToxValDB, ToxRefDB",positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+76578-14-8,DTXSID9023889,Quizalofop-ethyl,Bioassay_noMC,ToxRefDB,positive,positive,-,-,"*E2, *P4",0,6.1e-05,inactive,EDC~,none,-
+767-00-0,DTXSID9052509,4-Hydroxybenzonitrile,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,-
+76738-62-0,DTXSID2024242,Paclobutrazol,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+77-09-8,DTXSID0021125,Phenolphthalein,Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,high,P4,0.276,2.61e-07,low_agonism,EDC+,high,positive
+77-40-7,DTXSID4022442,Bisphenol B,-,-,negative,positive,-,-,*P4,0.491,0.00196,medium_agonism,EDC+,medium,-
+77501-63-4,DTXSID7024160,Lactofen,Bioassay_noMC,ToxRefDB,negative,negative,medium,borderline,"E2, *P4",0,0,inactive,EDC+,medium,negative
+7758-19-2,DTXSID8021272,Sodium chlorite,-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,positive
+78-30-8,DTXSID6032192,Tri-o-cresyl phosphate,-,-,negative,positive,borderline,medium,"*E2, P4",-,-,-,EDC+,medium,positive
+78-63-7,DTXSID9025110,"2,5-Dimethyl-2,5-di-(tert-butylperoxy)hexane",-,-,negative,negative,-,-,negative,0.0159,0,borderline_agonism,EDC~,borderline,negative
+78473-71-9,DTXSID0048183,Enterolactone,-,-,-,-,-,-,-,0.0866,0,borderline_agonism,EDC~,borderline,negative
+789-02-6,DTXSID6022345,"o,p'-DDT",-,-,negative,negative,ns effect,ns effect,negative,0.385,0,low_agonism,EDC+,low,positive
+79-39-0,DTXSID8029600,Methacrylamide,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,positive
+79-94-7,DTXSID1026081,"3,3',5,5'-Tetrabromobisphenol A",Bioassay_noMC,NTP,negative,positive,medium,medium,"E2, P4",0,3.81e-07,inactive,EDC+,medium,negative
+79-95-8,DTXSID3021770,"2,2',6,6'-Tetrachlorobisphenol A",-,-,-,-,-,-,-,0.19,0,low_agonism,EDC+,low,-
+79-97-0,DTXSID8047890,"3,3'-Dimethylbisphenol A",-,-,negative,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,positive
+79241-46-6,DTXSID0034855,Fluazifop-P-butyl,-,-,negative,positive,borderline,low,"*E2, P4",0.0272,0,borderline_agonism,EDC+,low,-
+79538-32-2,DTXSID5032577,Tefluthrin,Bioassay_noMC,ToxRefDB,positive,negative,medium,ns effect,E2,0,0,inactive,EDC+,medium,-
+797-63-7,DTXSID3036496,Levonorgestrel,-,-,positive,negative,ns effect,borderline,*P4,0.394,0,low_agonism,EDC+,low,negative
+79902-63-9,DTXSID0023581,Simvastatin,-,-,negative,no data,low,ns effect,E2,7.11e-05,0,inactive,EDC+,low,-
+80-05-7,DTXSID7020182,Bisphenol A,Bioassay_noMC,"NTP, ToxRefDB",negative,negative,low,ns effect,E2,0.45,0,medium_agonism,EDC+,medium,positive
+80-08-0,DTXSID4020371,Dapsone,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,borderline,low,"*E2, P4",0.00158,0,inactive,EDC+,low,positive
+80-09-1,DTXSID3022409,"4,4'-Sulfonyldiphenol",-,-,negative,positive,ns effect,medium,P4,0.263,0,low_agonism,EDC+,medium,positive
+80-43-3,DTXSID1025017,Dicumyl peroxide,-,-,negative,no data,-,-,negative,0.216,0,low_agonism,EDC+,low,negative
+80-46-6,DTXSID8021771,4-(2-Methylbutan-2-yl)phenol,-,-,negative,negative,low,ns effect,E2,0.282,0.000192,low_agonism,EDC+,low,negative
+8000-34-8,DTXSID8044175,Clove leaf oil,-,-,positive,negative,high,ns effect,E2,5.49e-05,0,inactive,EDC+,high,negative
+8007-70-3,DTXSID3024528,Anise oil,-,-,-,-,-,-,-,0.0384,0.00206,borderline_agonism,EDC~,borderline,negative
+1/7/8018,DTXSID0034695,Mancozeb,-,-,negative,positive,borderline,low,"*E2, P4",0,0,inactive,EDC+,low,positive
+81-90-3,DTXSID5022439,Phenolphthalin,-,-,positive,positive,ns effect,high,P4,0.0459,0,borderline_agonism,EDC+,high,-
+81741-28-8,DTXSID9034997,Tributyltetradecylphosphonium chloride,-,-,negative,negative,-,-,negative,0.093,0.0244,borderline_mixed,EDC~,borderline,-
+81777-89-1,DTXSID1032355,Clomazone,Bioassay_noMC,ToxRefDB,negative,negative,high,borderline,"E2, *P4",0,0,inactive,EDC+,high,negative
+818-61-1,DTXSID2022123,2-Hydroxyethyl acrylate,-,-,positive,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+82-44-0,DTXSID7052571,1-Chloroanthraquinone,-,-,positive,negative,medium,ns effect,E2,-,-,-,EDC+,medium,-
+82385-42-0,DTXSID7021992,Sodium saccharin hydrate,-,-,negative,negative,-,-,negative,0.0257,0,borderline_agonism,EDC~,borderline,-
+82558-50-7,DTXSID8024159,Isoxaben,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+82657-04-3,DTXSID9020160,Bifenthrin,Bioassay_noMC,ToxRefDB,negative,negative,ns effect,medium,P4,6.93e-05,0,inactive,EDC+,medium,-
+827-21-4,DTXSID1041639,Sodium m-xylene-4-sulfonate,-,-,negative,negative,-,-,negative,0.0123,0.0365,borderline_mixed,EDC~,borderline,-
+832-69-9,DTXSID6025648,1-Methyl phenanthrene,-,-,positive,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,positive
+83657-24-3,DTXSID2040363,Diniconazole,-,-,negative,positive,ns effect,medium,P4,0,0.00761,inactive,EDC+,medium,-
+84-16-2,DTXSID2022381,meso-Hexestrol,-,-,positive,negative,-,-,*E2,0.993,0,high_agonism,EDC+,high,positive
+84-61-7,DTXSID5025021,Dicyclohexyl phthalate,-,-,negative,negative,ns effect,ns effect,negative,0.0199,0.0213,borderline_mixed,EDC~,borderline,negative
+84-66-2,DTXSID7021780,Diethyl phthalate,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+84-69-5,DTXSID9022522,Diisobutyl phthalate,-,-,positive,negative,borderline,ns effect,*E2,0.0283,0.0375,borderline_mixed,EDC~,borderline,negative
+84-74-2,DTXSID2021781,"1,2-Benzenedicarboxylic acid, dibutyl ester",-,-,negative,negative,ns effect,ns effect,negative,0.0265,0.0509,borderline_mixed,EDC~,borderline,positive
+842-07-9,DTXSID4021135,C.I. Solvent Yellow 14,Bioassay_noMC,"NTP, ToxRefDB",positive,positive,high,high,"E2, P4",0.117,0,low_agonism,EDC+,high,positive
+84371-65-3,DTXSID5023322,Mifepristone,-,-,negative,positive,ns effect,high,P4,0.00255,0.308,low_antagonism,EDC+,high,-
+84852-15-3,DTXSID5029055,"4-Nonylphenol, branched",-,-,negative,negative,-,-,negative,0.435,3.92e-07,medium_agonism,EDC+,medium,negative
+85-68-7,DTXSID3020205,Benzyl butyl phthalate,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,ns effect,ns effect,negative,0.179,0,low_agonism,EDC+,low,positive
+85532-75-8,DTXSID7041097,1-(2-Chlorophenyl)-N-methyl-N-(1-methylpropyl)-3-isoquinolinecarboxamide,-,-,positive,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,-
+86-28-2,DTXSID1052585,9-Ethylcarbazole,-,-,positive,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,positive
+86-30-6,DTXSID6021030,N-Nitrosodiphenylamine,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",positive,negative,-,-,*E2,0.0102,0,borderline_agonism,EDC~,borderline,positive
+86-50-0,DTXSID3020122,Azinphos-methyl,Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+86-98-6,DTXSID0052590,"4,7-Dichloroquinoline",-,-,negative,positive,-,-,*P4,-,-,-,EDC~,-,positive
+868-85-9,DTXSID5020493,Dimethyl phosphonate,Bioassay_noMC,"NTP, ToxRefDB",negative,no data,-,-,negative,0.0148,0.0437,borderline_mixed,EDC~,borderline,positive
+87-01-4,DTXSID6041422,7-(Dimethylamino)-4-methylcoumarin,-,-,positive,no data,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,-
+87-18-3,DTXSID9037745,4-tert-Butylphenyl salicylate,-,-,-,-,-,-,-,0.0488,0,borderline_agonism,EDC~,borderline,-
+87-62-7,DTXSID8026307,"2,6-Dimethylaniline",Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",negative,negative,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+87-68-3,DTXSID7020683,"Hexachloro-1,3-butadiene",Bioassay_noMC,ToxValDB,positive,no data,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+87-86-5,DTXSID7021106,Pentachlorophenol,Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",positive,negative,medium,borderline,"E2, *P4",0,0.000165,inactive,EDC+,medium,positive
+87546-18-7,DTXSID2032554,Flumiclorac-pentyl,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,low,P4,0,0,inactive,EDC+,low,-
+87818-31-3,DTXSID3034456,Cinmethylin,Bioassay_noMC,ToxRefDB,positive,negative,high,ns effect,E2,0.0107,0,borderline_agonism,EDC+,high,-
+88-04-0,DTXSID0032316,"4-Chloro-3,5-dimethylphenol",-,-,-,-,borderline,borderline,"*E2, *P4",0.0439,0,borderline_agonism,EDC~,borderline,positive
+88-06-2,DTXSID5021386,"2,4,6-Trichlorophenol",Bioassay_noMC,"NTP, ToxValDB, ToxRefDB",positive,positive,high,low,"E2, P4",0,0,inactive,EDC+,high,positive
+88-60-8,DTXSID2026529,2-Tert-Butyl-5-methylphenol,-,-,positive,negative,-,-,*E2,0.0402,0,borderline_agonism,EDC~,borderline,positive
+88-69-7,DTXSID2044391,2-Isopropylphenol,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+88-74-4,DTXSID1025726,2-Nitroaniline,-,-,positive,no data,-,-,*E2,0,0,inactive,EDC~,none,positive
+89-72-5,DTXSID2022331,2-(Butan-2-yl)phenol,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+89-83-8,DTXSID6034972,Thymol,-,-,positive,negative,-,-,*E2,0.00465,0,inactive,EDC~,none,positive
+89-87-2,DTXSID2025135,"1,3-Dimethyl-4-nitrobenzene",-,-,negative,negative,-,-,negative,0.0121,0,borderline_agonism,EDC~,borderline,positive
+90-02-8,DTXSID1021792,Salicylaldehyde,-,-,-,-,-,-,-,0.0288,0,borderline_agonism,EDC~,borderline,negative
+90-15-3,DTXSID6021793,1-Naphthol,-,-,-,-,-,-,-,0.0232,0,borderline_agonism,EDC~,borderline,positive
+90-30-2,DTXSID2025892,N-Phenyl-1-naphthylamine,-,-,negative,negative,-,-,negative,0.0386,0,borderline_agonism,EDC~,borderline,negative
+90-43-7,DTXSID2021151,2-Phenylphenol,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,low,ns effect,E2,0.00543,0,inactive,EDC+,low,positive
+9016-87-9,DTXSID3047473,Polymethylene polyphenyl polyisocyanate,-,-,negative,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+91-10-1,DTXSID2052607,"2,6-Dimethoxyphenol",-,-,positive,negative,-,-,*E2,-,-,-,EDC~,-,inconclusive
+91-53-2,DTXSID9020582,Ethoxyquin,-,-,positive,positive,ns effect,medium,P4,0.000107,0,inactive,EDC+,medium,positive
+91-59-8,DTXSID2020921,2-Naphthylamine,-,-,negative,positive,medium,medium,"E2, P4",0,0,inactive,EDC+,medium,positive
+919-30-2,DTXSID2027333,3-Aminopropyltriethoxysilane,-,-,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,negative
+92-04-6,DTXSID0022353,2-Chloro-4-phenylphenol,-,-,negative,negative,-,-,negative,0.138,0,low_agonism,EDC+,low,-
+92-44-4,DTXSID2043903,"2,3-Dihydroxynaphthalene",-,-,positive,negative,borderline,ns effect,*E2,-,-,-,EDC~,borderline,-
+92-68-2,DTXSID8040721,4-Cyclohexylcyclohexanone,-,-,negative,negative,ns effect,ns effect,negative,0.0491,0,borderline_agonism,EDC~,borderline,-
+92-69-3,DTXSID7021152,4-Phenylphenol,-,-,positive,positive,ns effect,borderline,*P4,0.219,8.63e-08,low_agonism,EDC+,low,positive
+92-84-2,DTXSID5021126,Phenothiazine,-,-,positive,no data,medium,ns effect,E2,0.0122,0,borderline_agonism,EDC+,medium,positive
+92-91-1,DTXSID6052619,4'-Acetylbiphenyl,-,-,negative,positive,low,borderline,"E2, *P4",-,-,-,EDC+,low,-
+93-16-3,DTXSID0052621,4-Prop-1-enylveratrole,-,-,positive,negative,medium,ns effect,E2,-,-,-,EDC+,medium,-
+94-13-3,DTXSID4022527,Propylparaben,-,-,negative,positive,ns effect,medium,P4,0.205,0,low_agonism,EDC+,medium,negative
+94-18-8,DTXSID9022526,Benzyl 4-hydroxybenzoate,-,-,negative,positive,ns effect,medium,P4,0.234,0.000859,low_agonism,EDC+,medium,-
+94-26-8,DTXSID3020209,4-Hydroxybenzoic acid butyl ester,-,-,negative,negative,ns effect,medium,P4,0.251,5.16e-07,low_agonism,EDC+,medium,negative
+94-47-3,DTXSID9047590,2-Phenylethyl benzoate,-,-,positive,negative,-,-,*E2,0.00552,0,inactive,EDC~,none,negative
+94-60-0,DTXSID3026566,"Dimethyl cyclohexane-1,4-dicarboxylate",-,-,negative,no data,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+94-74-6,DTXSID4024195,MCPA,Bioassay_noMC,ToxRefDB,negative,positive,ns effect,borderline,*P4,0,0,inactive,EDC~,borderline,positive
+94-80-4,DTXSID5020443,"2,4-D Butyl ester",-,-,negative,no data,medium,ns effect,E2,0,0,inactive,EDC+,medium,negative
+94-86-0,DTXSID2047727,2-Ethoxy-5-(1-propenyl)phenol,-,-,positive,negative,medium,low,"E2, P4",-,-,-,EDC+,medium,-
+941-69-5,DTXSID0041274,"1-Phenyl-1H-pyrrole-2,5-dione",-,-,negative,positive,borderline,ns effect,*E2,0,0.0288,borderline_antagonism,EDC~,borderline,positive
+94361-06-5,DTXSID0032601,Cyproconazole,Bioassay_noMC,ToxRefDB,negative,negative,medium,ns effect,E2,0.0268,0,borderline_agonism,EDC+,medium,-
+95-13-6,DTXSID8042052,1H-Indene,-,-,negative,negative,-,-,negative,0.0117,0,borderline_agonism,EDC~,borderline,negative
+95-38-5,DTXSID2036112,2-(8-Heptadecenyl)-2-imidazoline-1-ethanol,-,-,-,-,-,-,-,0.0142,0.0143,borderline_mixed,EDC~,borderline,negative
+95-50-1,DTXSID6020430,"1,2-Dichlorobenzene",Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0.00153,0.00507,inactive,EDC~,none,positive
+95-54-5,DTXSID3025881,"1,2-Phenylenediamine",-,-,negative,positive,low,ns effect,E2,0,0,inactive,EDC+,low,positive
+95-57-8,DTXSID5021544,2-Chlorophenol,-,-,positive,negative,-,-,*E2,0,0,inactive,EDC~,none,negative
+95-65-8,DTXSID4024062,"3,4-Dimethylphenol",-,-,positive,positive,medium,borderline,"E2, *P4",0,0,inactive,EDC+,medium,negative
+95-69-2,DTXSID1041508,4-Chloro-2-methylaniline,-,-,negative,positive,ns effect,medium,P4,-,-,-,EDC+,medium,positive
+95-76-1,DTXSID7021815,"3,4-Dichloroaniline",-,-,positive,positive,borderline,high,"*E2, P4",0,0,inactive,EDC+,high,positive
+95-83-0,DTXSID5020283,"4-Chloro-1,2-diaminobenzene",Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,high,P4,0,0,inactive,EDC+,high,positive
+95-95-4,DTXSID4024359,"2,4,5-Trichlorophenol",-,-,positive,negative,-,-,*E2,0.00613,0,inactive,EDC~,none,positive
+950-37-8,DTXSID5020819,Methidathion,Bioassay_noMC,ToxRefDB,no data,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,negative
+95737-68-1,DTXSID1032640,Pyriproxyfen,Bioassay_noMC,ToxRefDB,negative,negative,low,ns effect,E2,0.0259,0,borderline_agonism,EDC+,low,-
+959-98-8,DTXSID9037539,Endosulfan I,-,-,negative,no data,ns effect,ns effect,negative,0.0619,0,borderline_agonism,EDC~,borderline,negative
+96-70-8,DTXSID4044581,2-tert-Butyl-4-ethylphenol,-,-,negative,negative,-,-,negative,0.0193,0,borderline_agonism,EDC~,borderline,-
+96-83-3,DTXSID6023159,Iopanoic acid,-,-,-,-,-,-,-,0.0454,0,borderline_agonism,EDC~,borderline,inconclusive
+960-71-4,DTXSID6027345,Triphenylborane,-,-,positive,no data,ns effect,ns effect,negative,0.101,0,low_agonism,EDC+,low,-
+96489-71-3,DTXSID5032573,Pyridaben,Bioassay_noMC,ToxRefDB,-,-,-,-,-,0.1,0,low_agonism,EDC+,low,-
+97-23-4,DTXSID6021824,Dichlorophen,-,-,negative,negative,borderline,ns effect,*E2,0.0058,0.0643,borderline_antagonism,EDC~,borderline,positive
+97-52-9,DTXSID0038700,2-Methoxy-4-nitroaniline,-,-,negative,negative,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+97-53-0,DTXSID9020617,Eugenol,Bioassay_noMC,"NTP, ToxRefDB",positive,negative,borderline,ns effect,*E2,0,0,inactive,EDC~,borderline,positive
+97886-45-8,DTXSID9032379,Dithiopyr,Bioassay_noMC,ToxRefDB,negative,negative,-,-,negative,0.0183,0,borderline_agonism,EDC~,borderline,-
+98-29-3,DTXSID5024687,4-tert-Butylcatechol,-,-,negative,positive,borderline,borderline,"*E2, *P4",-,-,-,EDC~,borderline,positive
+98-54-4,DTXSID1020221,"4-(1,1-Dimethylethyl)phenol",-,-,positive,negative,borderline,borderline,"*E2, *P4",0.161,0,low_agonism,EDC+,low,negative
+99-07-0,DTXSID0025101,3-Dimethylaminophenol,-,-,positive,no data,-,-,*E2,0.00715,0,inactive,EDC~,none,positive
+99-55-8,DTXSID4020959,C.I. Azoic Diazo Component 12,Bioassay_noMC,"NTP, ToxRefDB",negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,positive
+99-71-8,DTXSID7022332,4-(Butan-2-yl)phenol,-,-,positive,negative,borderline,low,"*E2, P4",0.163,0,low_agonism,EDC+,low,-
+99-76-3,DTXSID4022529,Methylparaben,-,-,positive,positive,low,medium,"E2, P4",0.00684,1.88e-07,inactive,EDC+,medium,negative
+99-86-5,DTXSID9041237,alpha-Terpinene,-,-,positive,no data,-,-,*E2,0.0161,0.0482,borderline_mixed,EDC~,borderline,negative
+99-89-8,DTXSID5042299,4-Isopropylphenol,-,-,-,-,-,-,-,0.021,0,borderline_agonism,EDC~,borderline,-
+99-97-8,DTXSID0021832,"N,N,4-Trimethylaniline",Bioassay_noMC,"NTP, ToxRefDB",positive,negative,-,-,*E2,0.00737,0,inactive,EDC~,none,positive
+99607-70-2,DTXSID3041794,Cloquintocet-mexyl,Bioassay_noMC,ToxRefDB,positive,no data,ns effect,low,P4,0,0,inactive,EDC+,low,negative
+NOCAS_47248,DTXSID0047248,CI-1018,-,-,positive,negative,low,low,"E2, P4",0,0,inactive,EDC+,low,-
+NOCAS_47267,DTXSID3047267,CP-642931,-,-,negative,negative,ns effect,low,P4,0,0,inactive,EDC+,low,-
+NOCAS_47291,DTXSID5047291,CI-1044,-,-,positive,positive,medium,high,"E2, P4",0,0,inactive,EDC+,high,-
+NOCAS_47299,DTXSID5047299,CP-422935,-,-,negative,positive,borderline,medium,"*E2, P4",0,0,inactive,EDC+,medium,-
+NOCAS_47311,DTXSID6047311,GSK163929B,-,-,positive,no data,high,ns effect,E2,0,6.09e-07,inactive,EDC+,high,-
+NOCAS_47330,DTXSID9047330,PharmaGSID_47330,-,-,positive,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+NOCAS_47334,DTXSID9047334,MK-968,-,-,negative,no data,medium,ns effect,E2,0,0.0119,borderline_antagonism,EDC+,medium,-
+NOCAS_47349,DTXSID8047349,AVE8488,-,-,negative,positive,borderline,medium,"*E2, P4",-,-,-,EDC+,medium,-
+NOCAS_47366,DTXSID1047366,SAR115740,-,-,negative,positive,ns effect,medium,P4,0,0,inactive,EDC+,medium,-
+NOCAS_47377,DTXSID0047377,AVE6324,-,-,negative,negative,-,-,negative,0.0137,0,borderline_agonism,EDC~,borderline,-
+NOCAS_48514,DTXSID9048514,PharmaGSID_48514,-,-,negative,negative,ns effect,medium,P4,-,-,-,EDC+,medium,-
+NOCAS_48516,DTXSID9048516,PharmaGSID_48516,-,-,negative,no data,borderline,ns effect,*E2,-,-,-,EDC~,borderline,-
