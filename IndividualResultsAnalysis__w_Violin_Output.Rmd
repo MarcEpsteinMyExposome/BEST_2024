@@ -26,7 +26,7 @@ info_modal <- bs_modal(
   title = "Health Concern Information",
   body = div(
     HTML("
-      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
+      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available or existing evidence does not support a link.</p>
       <ul>
         <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
         <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
@@ -42,17 +42,15 @@ info_modal <- bs_modal(
 )
 
 
-modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information <b>Health Effects</b> in the table below</a>")
+modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information about the <b>Health Effects</b> in the table below</a>")
+
 showHealthEffectsTable <- TRUE
 #showHealthEffectsTable <- FALSE
 
-if(showHealthEffectsTable){
-  htmltools::tagList(
-  modal_trigger,
-  info_modal
-) %>% htmltools::browsable()
-  
+if(showHealthEffectsTable) {
+  htmltools::tagList(modal_trigger, info_modal) %>% htmltools::browsable()
 }
+
 
 
 #plotlyC_concern is a list of multiple items and for each chemical it has the TAB HEADER formatted with correct "level" so it becomes a TAB ,
@@ -81,6 +79,7 @@ if (!is.null(plotlyC_concern)) {
       cat(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
     }
     
+
     # Print the tab content
     print(plotlyC_concern[[chemItem]])
     

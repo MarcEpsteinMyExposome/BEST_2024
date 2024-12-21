@@ -50,13 +50,15 @@ howManyHaveParameterName <- testResults.big %>%
 ```{r createHTMLplotlyInAdvance, results='asis', echo=FALSE, eval=DoSpecificSubjectAnalysis} 
 # id_lookup <- list() # Create emtpty list to store values
 
-# cat(" \n Just about to call PlotlyC_concern\n")
+
+
+modal_trigger_test2 <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'><span style='color: blue; font-weight: bold;'>More Information</span></a>")
 
 # THESE calls create lists.
 
-plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
+plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
 
-plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
+plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
 
 # add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
 # chemListWithLinks <- plotlyC_concern + plotlyC_remaining

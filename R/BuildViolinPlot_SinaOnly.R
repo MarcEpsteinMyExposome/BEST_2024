@@ -189,7 +189,7 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 # Function to create a checkbox table styled with 'gt'
 # This function dynamically generates a table with headers, styles, and optional modal links.
 # TODO:  Consider putting function in separate file
-create_checkbox_table <- function(labels, checkbox_states, description) {
+create_checkbox_table <- function(labels, checkbox_states, description, modal_trigger) {
   # Map logical states to symbols for checkboxes
   values <- ifelse(checkbox_states, "☑", "")
 
@@ -197,11 +197,14 @@ create_checkbox_table <- function(labels, checkbox_states, description) {
   table_data <- as.data.frame(t(values)) # Transpose to make rows columns
   colnames(table_data) <- labels # Assign labels to columns
 
+  # Include the modal trigger in the description
+  full_description <- paste0(description, " ", as.character(modal_trigger))
+
   # Format the table using 'gt'
   formatted_table <- table_data %>%
     gt() %>%
     tab_header(
-      title = md(description) # Add description and info icon to header
+      title = md(full_description) # Add description and info icon to header
     ) %>%
     # Apply styles to title, column labels, and body
     tab_style(
@@ -238,7 +241,6 @@ create_checkbox_table <- function(labels, checkbox_states, description) {
 }
 
 
-
 ## NEW VERSION generating an output list
 # Enhanced Output List:
 #
@@ -255,7 +257,7 @@ create_checkbox_table <- function(labels, checkbox_states, description) {
 # chemItem <- chemsList[3]
 
 # chemsList<-chemsOfConcern
-plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested) {
+plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2) {
   # Initialize a list to collect all generated content
   # chemsList<-chemsNOTinConcernGroup
   output_list <- list()
@@ -358,21 +360,11 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # Add the explanatory message to the output list
       output_list[[paste0(chemItem, "_message")]] <- newMessage
 
-      ### SETUP STUFF FOR RISK TABLE... NOT YET CUSTOMIZED TO EACH CHEM... JUST HARD CODED FOR NOW
+      ### SETUP STUFF FOR RISK TABLE...
       # Example: Define labels and states for the risk table.
       # These labels and states should reflect actual use-case data.
       # Define labels, states, and description
       labels <- c("Reproduction and fertility", "Brain and behavior", "Increased Cancer Risk", "Hormone disruption", "Development","PBT", "Harms DNA","Respiratory")
-
-      # Pick Random Values for now... eventually we'll use the chemItem to look up the values
-      # repro_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # brain_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # cancer_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
-      # hormone_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # develop_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # pbt_TrueFalse <-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # dna_TrueFalse <-sample(c(TRUE, FALSE), size = 1, prob = c(0.3, 0.7))
-      # respir_TrueFalse <- sample(c(TRUE, FALSE), size = 1, prob = c(0.8, 0.2))
 
       # REPLACE WITH REAL VALUES
       #endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt
@@ -385,14 +377,13 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       dna_TrueFalse <- testResults_ChemItem_Subject$genotoxicity
       respir_TrueFalse <-  testResults_ChemItem_Subject$respiratory_toxicity
 
-
-
-
       checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse,pbt_TrueFalse, dna_TrueFalse,respir_TrueFalse)
       description <- "Possible health effects depending on length of time and size of exposure"
 
       ##  Use table WITHOUT the icon and check box
-      risk_table <- create_checkbox_table(labels, checkbox_states, description)
+
+
+      risk_table <- create_checkbox_table(labels, checkbox_states, description,modal_trigger_test2 )
       risk_table <- risk_table %>%
         tab_style(
           style = list(
