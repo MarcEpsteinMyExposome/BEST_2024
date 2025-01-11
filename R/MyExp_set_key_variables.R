@@ -187,14 +187,13 @@ testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set th
 ###           can change with every run cause either new customer, new data for existing customer, or new test for existing customer
 
 if (GEORGETOWNFixUp) { #  GEORGETOWN
-  FixupFile <- "Sample Key_Georgetown_PHTH.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
-              # THIS is named as _PHTH because that was the FIRST of the two tests but really the same PO for OSU was for PHTH and FRAGRANCE so we'll use the same one
   wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
   testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
   if (RMD_type == "PHTH" ) {
+    FixupFile <- "Sample Key_Georgetown_PHTH_FRAGRANCE.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
     resultsTableName <- "F24-21_MyExpo_P.O.#258_PHTH_CoA II_convert_ug_to_ng.csv" # Firs data had ug instead of ng so i converted by hand.  2nd had wrong ParamterID.
     ExpectedUnits <- "ng/g"
     wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
@@ -204,6 +203,9 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
     wristbands_time_adjusted_one_week_not_weight <- TRUE
     wristbands_time_adjusted_not_weight <- TRUE
   } else  if (RMD_type == "FRAGRANCE") {
+    FixupFile <- "Sample Key_Georgetown_PHTH_FRAGRANCE.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
+    # THIS is named as _PHTH because that was the FIRST of the two tests but really the same PO for OSU was for PHTH and FRAGRANCE so we'll use the same one
+
     resultsTableName <- "F24-21_MyExpo_P.O.#258_Fragrances_CoA_V4.csv" #
     ExpectedUnits <- "ng/g"
     wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
