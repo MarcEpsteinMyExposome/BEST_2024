@@ -637,7 +637,48 @@ fixUpTestResults <- function(testResults, FixupFile) {
     )
   }
 
-  if (SBIR_P2_Part1_71_FixUp) {
+  if (GEORGETOWNFixUp && ( RMD_type == "PHTH" | RMD_type =="FRAGRANCE")) {   # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
+    #### Worked for UNMFixup...trying to make it generic?
+    ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
+    # Select only the columns I want from fixup file
+    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
+    fixUpResults <- fixUpResults %>%
+      # select(FSES_ID,week_factor,size_factor) %>%
+      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
+      rename(SampleNumber = FSES_ID)
+
+    fixUpResults$week_factor <-
+      as.numeric(fixUpResults$week_factor) # Adjust for week
+
+    fixUpResults$size_factor <-  as.numeric(fixUpResults$size_factor) # adjust for size
+
+    if ("Days_worn" %in% colnames(fixUpResults)) {
+      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
+    }
+    testResults2 <-
+      merge(fixUpResults, testResults, by = "SampleNumber")
+
+
+
+    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
+    #   WHICH could be ng/g or ng/WB depending.... that is confusing
+    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
+    #     if it were ng/WB
+    #   set RESULT
+    #
+    testResults2$ResultOriginal <- testResults2$Result
+
+    testResults2$Result <-
+      testResults2$Result / testResults2$week_factor
+
+#    testResults2$Result <-signif(testResults2$Result / testResults2$size_factor, 3)  # Do NOT adjust for size cause ng/g
+
+    # testResults2$TImeNormalFactor <- NULL
+    # testResults2$WrisbandWeight <- NULL
+    testResults <- testResults2
+    rm(testResults2, fixUpResults)
+    testResults
+  } else if (SBIR_P2_Part1_71_FixUp) {
     fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
     fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
     fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)

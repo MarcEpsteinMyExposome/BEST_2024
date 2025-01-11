@@ -105,6 +105,7 @@ wristbands_time_adjusted_not_weight <- FALSE
 
 
 # CUSTOMER SPECIFIC FIX UP (really just means for-which-customer-is-this)
+#     NOTE:  in FIXUP we try to be generic with respect to which TEST(s) are being reported
 #  NOW we have "FixupForAnyone" to say if there is ANY fixup... and then specifc values set
 FixupForAnyone <- any(
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
@@ -120,8 +121,7 @@ FixupForAnyone <- any(
   ULILLEFRANCEFixup <- FALSE,
   UCONNFixUp <- FALSE,
   CHICAGOFixUp <- FALSE,
-  GEORGETOWNFixUp <- FALSE,
-  SBIR_P1_May2022Fixup <- FALSE,
+    SBIR_P1_May2022Fixup <- FALSE,
   UC_DAVISFixup <- FALSE,
   UniVisionFixup <- FALSE,
   CombinedTestData <- FALSE,
@@ -130,7 +130,8 @@ FixupForAnyone <- any(
   UFL_FloridaFixup <- FALSE,
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
   CombinedDRS_November6_2024 <- FALSE,
-  SBIR_P2_Part1_71_FixUp <- TRUE # ALWAYS MAKE LAST ONE TRUE, REST FALSE
+  SBIR_P2_Part1_71_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
+  GEORGETOWNFixUp <- TRUE
 )
 
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...
@@ -146,9 +147,10 @@ FixupForAnyone <- any(
 # RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
 # RMD_type <- 'PEST'
 # RMD_type <- 'FLAME'
-RMD_type <- "DRS"
+#RMD_type <- "DRS"
 # RMD_type<-'SBIR_P1_DRS_plus'
-# RMD_type <- 'PHTH'
+#RMD_type <- 'PHTH'
+RMD_type <- 'FRAGRANCE'
 
 
 
@@ -178,8 +180,40 @@ testing_PRE_POST <- FALSE # RIGHT NOW ONLY WISCONSIN has pre-post info so set th
 
 ### HERE we should be putting all the customer-specific stuff.  IF there are multiple analysis per one customer then we if (?) else (?) it here
 ## CAUTION:  Now putting resultsTableName and FixupFile and "subject" all in custoemr specific area along with all other info about the DATA or CUSTOMER
-###       the TEST ONLY SPECIFIC info goes with the test
-if (CombinedDRS_November6_2024) {
+###         The test only stuff goes in this space:  MyExp_TestParameterSetup.R
+###       the TEST ONLY SPECIFIC info goes with the test BUT if data is Test+Customer Specific it goes HERE
+###
+###     IDEALLY the test-specific stuff never changes unless the test changes and the customer related stuff
+###           can change with every run cause either new customer, new data for existing customer, or new test for existing customer
+
+if (GEORGETOWNFixUp) { #  GEORGETOWN
+  FixupFile <- "Sample Key_Georgetown_PHTH.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
+              # THIS is named as _PHTH because that was the FIRST of the two tests but really the same PO for OSU was for PHTH and FRAGRANCE so we'll use the same one
+  wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
+  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+  wristbands_time_and_weight_adjusted <- TRUE
+  wristbands_week_and_weight_adjusted <- TRUE
+  testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
+  if (RMD_type == "PHTH" ) {
+    resultsTableName <- "F24-21_MyExpo_P.O.#258_PHTH_CoA II_convert_ug_to_ng.csv" # Firs data had ug instead of ng so i converted by hand.  2nd had wrong ParamterID.
+    ExpectedUnits <- "ng/g"
+    wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
+    wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+    wristbands_time_and_weight_adjusted <- FALSE
+    wristbands_week_and_weight_adjusted <- FALSE
+    wristbands_time_adjusted_one_week_not_weight <- TRUE
+    wristbands_time_adjusted_not_weight <- TRUE
+  } else  if (RMD_type == "FRAGRANCE") {
+    resultsTableName <- "F24-21_MyExpo_P.O.#258_Fragrances_CoA_V4.csv" #
+    ExpectedUnits <- "ng/g"
+    wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
+    wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+    wristbands_time_and_weight_adjusted <- FALSE
+    wristbands_week_and_weight_adjusted <- FALSE
+    wristbands_time_adjusted_one_week_not_weight <- TRUE
+    wristbands_time_adjusted_not_weight <- TRUE
+  }
+} else if (CombinedDRS_November6_2024) {
   resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #  NOW DOING SBIR Phase 2 first group of 71
   FixupFile <- NULL
   subject <- "40-WB" # MARC Random one from Combined Data Set
@@ -349,23 +383,6 @@ if (CombinedDRS_November6_2024) {
   wristbands_time_and_weight_adjusted <- TRUE
   wristbands_week_and_weight_adjusted <- TRUE
   testDoneFor <- "University of Illinois Chicago, School of Public Health "
-} else if (GEORGETOWNFixUp) { #  GEORGETOWN
-  # Trying to do NO adjustment on U of New Mexico  (NOT MONTANA do not mix them up)
-  FixupFile <- "Sample Key_Georgetown_PHTH.csv" #
-  wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
-  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
-  wristbands_time_and_weight_adjusted <- TRUE
-  wristbands_week_and_weight_adjusted <- TRUE
-  testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
-  if (RMD_type == "PHTH") {
-    ExpectedUnits <- "ng/g"
-    wristbands_time_adjusted_one_week <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE-WEEK
-    wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
-    wristbands_time_and_weight_adjusted <- FALSE
-    wristbands_week_and_weight_adjusted <- FALSE
-    wristbands_time_adjusted_one_week_not_weight <- TRUE
-    wristbands_time_adjusted_not_weight <- TRUE
-  }
 } else if (WisconsinFixup) {
   # FixupFile <-"Wisconsin ID and sample info_to_normalize.csv"
   # FixupFile <-"Fixup_Sample Key_WI_Client3_LookupTable.csv"
@@ -487,7 +504,7 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
 
-whatKindReportToDo <- "SpecificSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
+whatKindReportToDo <- "Group" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
 # ONLY DO ONE OF THESE THREE THINGS
 if (whatKindReportToDo == "Group") { ## JUST do GROUp Analysis
   DoSpecificSubjectAnalysis <- FALSE # idea is to do specific-subject-analysis output with or without GROUP analysis
@@ -564,6 +581,7 @@ pest_text_string <- "Pesticides"
 consumerProduct_text_string <- "Consumer Products"
 dioxinsAndFurans_text_string <- "Dioxins and Furans"
 PHTH_text_string <- "Phthalates" ############## NOTE NOTE NOTE... i'm not using PHTH properly somewhere I think...
+FRAGRANCE_text_string <- "Fragrances"
 
 #  HERE we set the parameter Table Names for all the available tests
 # drsMasterParamTableName <- "MASV_parameters_7-18-17_fix1.csv"
@@ -596,6 +614,8 @@ VOC_2024_MasterParamTableName <- "MasterParamenter_Using_April2024_VOC_fixedList
 # PHTHmasterParameterTable <- "MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
 # PHTHmasterParameterTable <- "MasterParameterTable_PHTH.csv"        ##  OLD had wrong ParamaterID
 PHTHmasterParameterTable <- "MasterParameterTable_PHTH_fix_ParamaterID.csv" # New from Michael Barton with better parameter IDs
+
+FRAGRANCEmasterParameterTable <- "MasterParameter_Fragrance_v2.csv" # New from Michael Barton with better parameter IDs
 
 if (RMD_type == "SBIR_P1_DRS_plus") { ## IF WE are doing the SBIR Phase 1 data I have updated the VOPAH dataset to include the classification of compounds that are VOC from Steven input
   vopahMasterParamTableName <- vopahMasterParamTableName_SBIR
@@ -632,7 +652,7 @@ rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of make markdown file for all
 ### THIS SOURCE CODE IS JUST CODE< not a function> so it is essentially just more INLINE code
 ###  I just moved it into a separate file so that the logic is separate in terms of which file it is in but
 ###    it is not set up like a separate function... just more code
-source(setRdirectory("testParameterSetup.R"))
+source(setRdirectory("MyExp_TestParameterSetup.R"))
 
 #### The resultsTableName and the MasterParameterTableName are now just the string of the file name, need to make them the PATH
 ####

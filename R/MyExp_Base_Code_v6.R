@@ -214,6 +214,10 @@ class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParame
 class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L, DropSpecificChemicals)
 class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L, DropSpecificChemicals) #  Add the Phthalate list to the table... this is new test from 2024
 
+### EVENTUALLY maybe i update with the fragrances but it is NOT necessary cause in this group of fragrances there are no compounds NOT in the 1530 screen
+
+#class_L <- updateWithClassSpecificMasterParam(FRAGRANCE_text_string, FRAGRANCEmasterParameterTable, class_L, DropSpecificChemicals) #  Add the FRAGRANCE list to the table... this is new test from January 2025
+
 # cat("444 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 
 ### ADD ANY NEW CLaSSIFICATIONS and TESTS HERE:  (like fragrance or new VOC or whatever)...... i just added Phthalates as above...
@@ -224,7 +228,8 @@ rm(load.masterParam) # NOTE This is weirdly USED INSIDE FUNCTION ABOVE so ...
 rm(
   pahMasterParameterTable, VOC_2024_MasterParamTableName, pestMasterParameterTable,
   flameMasterParamTableName, PHTHmasterParameterTable, SBIR_p1_MasterParamTableName,
-  vocMasterParamTableName, vopahMasterParamTableName, drsMasterParamTableName
+  vocMasterParamTableName, vopahMasterParamTableName, drsMasterParamTableName,
+  FRAGRANCEmasterParameterTable
 ) # rem() all masterParammeter Tables other than MAIN version
 
 rm(updateWithClassSpecificMasterParam)

@@ -3,12 +3,23 @@
 # this will set up all the chemical-test-specific parameters but not have any customer-specific stuff
 ### NOTE there are commented out customer specific stuff here ... we need to move that code as needed into the customer-specific area
 ###
+###     IDEALLY the test-specific stuff never changes unless the test changes and the customer related stuff
+###           can change with every run cause either new customer, new data for existing customer, or new test for existing customer
+###  #
 #### THESE PARAMETERS are UNIQUE to each TEST TYPE and  It USED TO BE also EACH specific RESULT within that test
   #####     but all customer-specific stuff MOVED to customer section
 
   # Set all masterParameterTableNames:
   #
-  if (RMD_type == "PHTH") { #
+if (RMD_type=="FRAGRANCE"){
+  rmd_code <- "MyExposome_1527_v6.Rmd"
+  URL_of_Chemicals_Tested <- "Will add FRAGRANCE URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
+  testName <- "Fragrances Quantitative test "
+  testExplanation <- "This project provides a focused screen to identify Fragrances."
+  HideClassificationInformation <- TRUE # Set to TRUE for every report EXCEPT DRS and maybe ???
+  allowDifferentParameterCounts <- FALSE # DRS is the only method where the masterParameterTable and the resultsTable will always have different parameter counts cause DRS doesn't list all the zero parameters
+  masterParamTableName <- FRAGRANCEmasterParameterTable
+} else if (RMD_type == "PHTH") { #
     rmd_code <- "MyExposome_1527_v6.Rmd"
     URL_of_Chemicals_Tested <- "Will add Phtalate URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
     testName <- "Phthalates Quantitative test "
