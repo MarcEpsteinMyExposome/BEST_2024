@@ -9,6 +9,9 @@ editor_options:
 ## The function to build a violin plot is now in a separate R file
 ##  (just deleted this:  fig.width=6, fig.height=8,)
 
+##  I  load the R file that has the plotlyChems() and the buildPlotlySina() and the create_checkbox_table()  routines
+##      to create the data needed to output each chemicals SINA chart
+## BUT this file itself doesn't OUTPUT anything it just creates values in plotlyC_concern, plotlyC_remaining, 
 
 source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 

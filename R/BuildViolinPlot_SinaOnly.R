@@ -257,6 +257,17 @@ create_checkbox_table <- function(labels, checkbox_states, description, modal_tr
 # chemItem <- chemsList[3]
 
 # chemsList<-chemsOfConcern
+# plotlyChems has the following variables passed into it:
+#   chemsList,   :  JUST a list of all chemicals to do report about
+#   testResults.big, :  ALL the collected data
+#   oneResultCalifProp65Risk, : initially this is Prop65 FOR ONE SUBJECT but... can it be all prop65?
+#   oneResultEpaIris, , : initially this is EPAIRIS FOR ONE SUBJECT but... can it be all EPAIRIS?
+#   oneResultIARCRisk, Initially this is IARCrisk FOR ONE SUBJECT but... can it be all IARCrisk?
+#   chemSourceMitigation, : FULL table for mitigation info including silent spring
+#   subject, :          THE SUBJECT NAME (cant it also just be NULL to mean do-for-everyone?)
+#   howManyHaveParameterName,
+#   howManyWristbandsTested,
+#   modal_trigger_test2
 plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2) {
   # Initialize a list to collect all generated content
   # chemsList<-chemsNOTinConcernGroup

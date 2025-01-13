@@ -216,7 +216,7 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
     wristbands_time_adjusted_not_weight <- TRUE
   }
 } else if (CombinedDRS_November6_2024) {
-  resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #  NOW DOING SBIR Phase 2 first group of 71
+  resultsTableName <- "full_list_of_all_DRS_resultsNov2024withParameterID.csv" #
   FixupFile <- NULL
   subject <- "40-WB" # MARC Random one from Combined Data Set
   # subject <- "25-WB"  # Judy LaKind

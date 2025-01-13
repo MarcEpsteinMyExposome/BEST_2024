@@ -7,12 +7,17 @@ editor_options:
 
 As previously stated, the average number of chemicals found was **`r round(averageNumberChemsFound,1)`**. All wristbands were tested for **`r howManyChemicalsTested`** chemicals.
 
+
+
 ## Check against Databases
 
 For all the chemicals found on ANY wristband during this project we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals. Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
 
 ```{r GroupDatabaseLookupReporting, child='GroupDatabaseLookupIARC_Prop65_IRIS.Rmd', eval = DoGroupDatabaseLookupReporting}
 ```
+
+
+
 
 ## Group: Chemical Info
 
