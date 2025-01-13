@@ -1,0 +1,71 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
+## The function to build a violin plot is now in a separate R file
+##  (just deleted this:  fig.width=6, fig.height=8,)
+
+##  I  load the R file that has the plotlyChems() and the buildPlotlySina() and the create_checkbox_table()  routines
+##      to create the data needed to output each chemicals SINA chart
+## BUT this file itself doesn't OUTPUT anything it just creates values in plotlyC_concern, plotlyC_remaining, 
+
+source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
+
+
+
+# Make list of all chemicals that our ONE user had that showed up in "any" of the databases
+##  NOTE: I really should do this with ParameterName but didn't have that  handy... should fix
+#
+## ONLY DOING PROP65 and EPA IRIS... dropping IARC cause not as interseting?
+#chemsOfConcernOLD <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
+
+# NOW using the silient spring approach of looking data up in calSAFER
+chemsOfConcern <- oneResult %>%
+  filter(tot_haz > 0) %>%
+  pull(ParameterName)
+
+
+## Make a list of all chemicals that our one user had that did NOT show up in any of the databases x
+chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
+```
+
+
+```{r setupViolinVariablesAndFunctions, include=FALSE,eval=DoSpecificSubjectAnalysis}
+# THIS weird few LINES is not really important except somehow by ploting, but not including # Initialize Plotly without rendering a dummy plot
+plotly::config(plot_ly())
+
+### This next section is to figure how HOW MANY people HAD this compound and how many didn't
+howManyHaveParameterName <- testResults.big %>%
+  group_by(ParameterName) %>%
+  summarise(non_zero_count = sum(Result != 0))
+
+
+
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+```
+
+
+```{r createHTMLplotlyInAdvance, results='asis', echo=FALSE, eval=DoSpecificSubjectAnalysis} 
+# id_lookup <- list() # Create emtpty list to store values
+
+
+
+modal_trigger_test2 <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'><span style='color: blue; font-weight: bold;'>More Information</span></a>")
+
+# THESE calls create lists.
+
+plotlyC_Group_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+
+plotlyC_Group_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+
+# add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
+# chemListWithLinks <- plotlyC_concern + plotlyC_remaining
+
+# Combine the IDs from both lists
+# all_ids <- combineIDs(plotlyC_concern, plotlyC_remaining)
+```

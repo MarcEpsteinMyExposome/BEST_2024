@@ -481,7 +481,13 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 ```
 
 
-```{r preCalc_plotlyC, child='IndividualResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoSpecificSubjectAnalysis}
+
+
+```{r preCalc_Group_plotlyC, child='GroupResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoGroupAnalysis}
+```
+
+
+```{r preCalc_Individual_plotlyC, child='IndividualResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
