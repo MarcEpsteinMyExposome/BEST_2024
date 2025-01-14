@@ -30,7 +30,9 @@ output:
 •	2   °--MyExposome_1527_v6.Rmd                                      
 •	3       ¦--SpecificSubjectAnalysisIntro_text.Rmd                   
 •	4       ¦--GroupAnalysisIntro_text.Rmd                             
-•	5       ¦--GroupAndIndividualAnalysisIntro_text.Rmd                
+•	5       ¦--GroupAndIndividualAnalysisIntro_text.Rmd     
+             GroupResultsAnalysis__w_Violin_Precursor.Rmd
+             IndividualResultsAnalysis__w_Violin_Precursor.Rmd
 •	6       ¦--HeadlineMessageTotalChems.Rmd                           
 •	7       ¦--HeadlinesAmountByChemicalGroup.Rmd                      
 •	8       ¦--IndividualResultsAnalysis__w_Violin_text.Rmd    -- THIS GOT TWEAKED INTO TWO PARTS          
@@ -615,7 +617,7 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 
-```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis__w_Violin_Output.Rmd', eval= DoSpecificSubjectAnalysis}
+```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis.Rmd', eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
