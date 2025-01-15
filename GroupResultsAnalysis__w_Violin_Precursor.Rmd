@@ -1,11 +1,5 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 
-
-```{r IRiS_Prop65_IARC_Individual_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.cap="",dpi=150,eval=DoSpecificSubjectAnalysis}
+```{r IRiS_Prop65_IARC_GROUP_Results_COMBINED_NEW, results='asis', echo=FALSE, message=FALSE, fig.cap="",dpi=150,eval=DoGroupAnalysis}
 ## The function to build a violin plot is now in a separate R file
 ##  (just deleted this:  fig.width=6, fig.height=8,)
 
@@ -24,17 +18,20 @@ source(setRdirectory("BuildViolinPlot_SinaOnly.R"))
 #chemsOfConcernOLD <- union(oneResultCalifProp65Risk$`Chemical Name`, oneResultEpaIris$`Chemical Name`)
 
 # NOW using the silient spring approach of looking data up in calSAFER
-chemsOfConcern <- oneResult %>%
+chemsOfGroupConcern <- testResults.big[testResults.big$Result > 0 , ] %>%   # All Chems found 
   filter(tot_haz > 0) %>%
-  pull(ParameterName)
+  pull(ParameterName) %>%
+  unique()
 
 
 ## Make a list of all chemicals that our one user had that did NOT show up in any of the databases x
-chemsNOTinConcernGroup <- oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
+chemsGroupNOTinConcernGroup <- unique(testResults.big[testResults.big$Result > 0 , ]$ParameterName[! testResults.big[testResults.big$Result > 0 , ]$ParameterName  %in% chemsOfGroupConcern ])
+            #OLD:  oneResult_with_Y_flag$ParameterName[!(oneResult_with_Y_flag$ParameterName %in% chemsOfConcern)]
+
 ```
 
 
-```{r setupViolinVariablesAndFunctions, include=FALSE,eval=DoSpecificSubjectAnalysis}
+```{r setupGROUPViolinVariablesAndFunctions, include=FALSE,eval=DoGroupAnalysis}
 # THIS weird few LINES is not really important except somehow by ploting, but not including # Initialize Plotly without rendering a dummy plot
 plotly::config(plot_ly())
 
@@ -50,18 +47,20 @@ howManyHaveParameterName <- testResults.big %>%
 ```
 
 
-```{r createHTMLplotlyInAdvance, results='asis', echo=FALSE, eval=DoSpecificSubjectAnalysis} 
+```{r createGroupHTMLplotlyInAdvance, results='asis', echo=FALSE, eval=DoGroupAnalysis} 
 # id_lookup <- list() # Create emtpty list to store values
 
 
 
-modal_trigger_test2 <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'><span style='color: blue; font-weight: bold;'>More Information</span></a>")
+modal_trigger_test3 <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'><span style='color: blue; font-weight: bold;'>More Information</span></a>")
 
 # THESE calls create lists.
 
-plotlyC_Group_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+#plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested, modal_trigger_test3)
+# CHANGE the call to plotyChems to NOT PASS IN a subject (pass NULL) and also pass in the FULL HITS not just oneResult HITS
+plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
 
-plotlyC_Group_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+plotlyC_Group_remaining <- plotlyChems(chemsGroupNOTinConcernGroup, testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
 
 # add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
 # chemListWithLinks <- plotlyC_concern + plotlyC_remaining

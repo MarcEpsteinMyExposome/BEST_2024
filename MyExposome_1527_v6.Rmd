@@ -25,37 +25,6 @@ output:
     chunk_output_type: console
 ---
 
-<!--
-•	1  Project Root                                                    
-•	2   °--MyExposome_1527_v6.Rmd                                      
-•	3       ¦--SpecificSubjectAnalysisIntro_text.Rmd                   
-•	4       ¦--GroupAnalysisIntro_text.Rmd                             
-•	5       ¦--GroupAndIndividualAnalysisIntro_text.Rmd     
-             GroupResultsAnalysis__w_Violin_Precursor.Rmd
-             IndividualResultsAnalysis__w_Violin_Precursor.Rmd
-•	6       ¦--HeadlineMessageTotalChems.Rmd                           
-•	7       ¦--HeadlinesAmountByChemicalGroup.Rmd                      
-•	8       ¦--IndividualResultsAnalysis__w_Violin_text.Rmd    -- THIS GOT TWEAKED INTO TWO PARTS          
-•	9       ¦   ¦--StatisticsOnChemicalsFound.Rmd                      
-•	10      ¦   ¦--YourChemicalsAndAveragesByGroup_text.Rmd            
-•	11      ¦   ¦--IndividualChemicalListWithClassification_text.Rmd   
-•	12      ¦   ¦--IndividualChemicalListWithOutClassification_text.Rmd
-•	13      ¦   °--IndividualClassificationShowingChemicals_text.Rmd   
-•	14      ¦--CompoundClassification_text.Rmd                         
-•	15      ¦--GroupResultsAnalysis.Rmd                                
-•	16      ¦   ¦--GroupDatabaseLookupIARC_Prop65_IRIS.Rmd             
-•	17      ¦   ¦--GroupChemicalListWithClassification_text.Rmd        
-•	18      ¦   ¦--GroupChemicalListWithOutClassification_text.Rmd     
-•	19      ¦   ¦--airConcentrationOutput.Rmd                          
-•	20      ¦   ¦--GroupClassificationAnyWristband_text.Rmd            
-•	21      ¦   ¦--StatisticsOnChemicalsFound.Rmd                      
-•	22      ¦   ¦--GroupClassificationAtLeastOne_text.Rmd              
-•	23      ¦   ¦--GroupClassificationEveryWristband_text.Rmd          
-•	24      ¦   °--loreal_venn_text.Rmd                                
-•	25      ¦--testPrePostProcessing.Rmd                               
-•	26      °--AdditionalInformation.Rmd   
-
--->
 
 <!--
 
@@ -68,6 +37,9 @@ MyExposome_1527_v6.Rmd
     - SpecificSubjectAnalysisIntro_text.Rmd
     - GroupAnalysisIntro_text.Rmd
     - GroupAndIndividualAnalysisIntro_text.Rmd
+    - GroupResultsAnalysis__w_Violin_Precursor.Rmd
+          - Sourced R Files:
+        - BuildViolinPlot_SinaOnly.R
     - IndividualResultsAnalysis__w_Violin_Precursor.Rmd
       - Sourced R Files:
         - BuildViolinPlot_SinaOnly.R
@@ -75,7 +47,7 @@ MyExposome_1527_v6.Rmd
     - HeadlinesAmountByChemicalGroup.Rmd
       - Sourced R Files:
         - HeadlinesAmountByChemicalGroup_R_Code.R
-    - IndividualResultsAnalysis__w_Violin_Output.Rmd
+    - IndividualResultsAnalysis.Rmd
       - Child RMD Files:
         - StatisticsOnChemicalsFound.Rmd
         - YourChemicalsAndAveragesByGroup_text.Rmd
@@ -486,7 +458,9 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 
 ```{r preCalc_Group_plotlyC, child='GroupResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoGroupAnalysis}
+
 ```
+
 
 
 ```{r preCalc_Individual_plotlyC, child='IndividualResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoSpecificSubjectAnalysis}

@@ -3,14 +3,22 @@
 # Updated version to handle zero values with two distinct panels using patchwork
 
 # Function to build an interactive Sina plot with separate panels for zero and non-zero values
+#  buildPlotlySina(chemItem, testResults_ChemItem, subject)
+### NOTE that SUBJECT can be NULL and if is null then need to suppress all the subject specific stuff
+#
 buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) { ###
   # chemOfConcern<- chemItem
   # testResults_ChemOfConcern <-testResults_ChemItem
+  #subject<-"A240956"
   logScale <- TRUE # Set the log scale option to TRUE for plotting
 
   # Separate zero and non-zero values
   zero_values <- testResults_ChemOfConcern %>% filter(Result == 0) # Filter out rows with zero values for separate handling
   non_zero_values <- testResults_ChemOfConcern %>% filter(Result > 0) # Filter out rows with non-zero values for plotting
+
+  ### THIS IS A HACK just showing one particular value as "Your Value" but it is not really your value.
+  #subject <- non_zero_values[1]$SampleNumber
+
 
   # Add a column to represent the x-axis as "Zero" if zero values exist
   if (nrow(zero_values) > 0) {
@@ -18,11 +26,16 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       mutate(ZeroLabel = "Zero") # Create a new column to represent zero values on the x-axis
   }
 
-  # Highlight the specific point for non-zero values (the subject's value)
-  highlight_point <- non_zero_values[non_zero_values$SampleNumber == subject, ] # Extract the specific point to highlight based on the subject identifier
-  if (nrow(highlight_point) == 0) {
-    warning("Subject SampleNumber not found in non-zero values.")
+  if(!is.null(subject)){
+    # Highlight the specific point for non-zero values (the subject's value)
+    highlight_point <- non_zero_values[non_zero_values$SampleNumber == subject, ] # Extract the specific point to highlight based on the subject identifier
+    if (nrow(highlight_point) == 0) {
+      warning("Subject SampleNumber not found in non-zero values.")
+    }
+  } else {  # HERE SUBJECT IS NULL SO WE DO NOT DO ANYTHING
+    # putting this here just to demonstrate we know we are leaving highlight_point undefined
   }
+
 
   # Summary statistics for non-zero values
   summary_stats <- non_zero_values %>%
@@ -66,7 +79,8 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
         y = Result, # Use Result as the y-axis
         fill = factor(ParameterName) # Fill color based on ParameterName
       )
-    ) +
+    )
+    nonZeroPlot <- nonZeroPlot+
       geom_violin(trim = FALSE, fill = "#e3ebfa", color = "#a9c5f5") + # Create violin plot with light blue fill and border color
       geom_sina(alpha = 0.6, shape = 21, fill = NA) + # Add sina plot for non-zero values with some transparency
       geom_point(
@@ -77,7 +91,8 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
         size = 2,
         shape = 21,
         fill = "lightblue" # was NA for Hollow point for mean
-      ) +
+      )
+    nonZeroPlot <- nonZeroPlot+
       geom_point(
         data = summary_stats,
         aes(x = factor(ParameterName), y = median_Result),
@@ -86,16 +101,22 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
         size = 3,
         shape = 21,
         fill = "lightgreen" # was NA Hollow point for median
-      ) +
-      geom_point(
-        data = highlight_point,
-        aes(x = factor(ParameterName), y = Result),
-        color = "red", # Highlight the specific subject with red color
-        stroke = 1.25, # Thickness of the outline (adjust as desired)
-        size = 4,
-        shape = 21,
-        fill = "#ff6969" # now set to RED to fill circle, was NA for Hollow point for the highlighted subject
-      ) +
+      )
+    if (!is.null(subject)) {  # ADD HIGHLIGHT IFF we  have a non-null subject
+      nonZeroPlot <- nonZeroPlot +
+        geom_point(
+          data = highlight_point,
+          aes(x = factor(ParameterName), y = Result),
+          color = "red",
+          # Highlight the specific subject with red color
+          stroke = 1.25,
+          # Thickness of the outline (adjust as desired)
+          size = 4,
+          shape = 21,
+          fill = "#ff6969" # now set to RED to fill circle, was NA for Hollow point for the highlighted subject
+        )
+    }
+    nonZeroPlot <- nonZeroPlot+
       theme_minimal() + # Set minimal theme for the plot
       theme(
         plot.title = element_markdown(size = 14, face = "bold") # Set plot title styling with markdown support for rich text
@@ -106,10 +127,15 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 
     # Add log scale if required
     if (logScale) {
+      if (is.null(subject)){
+        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, , including chemOfConcern
+      } else {
+        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, and subject, including chemOfConcern
+      }
+
       nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
         labs(
-          title = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure to ", chemOfConcern), # Add color-coded title for mean, median, and subject, including chemOfConcern
-
+          title = colorizedTitle, # Add color-coded title for mean, median, and subject, including chemOfConcern.  DO NOT do subject if subject NULL
           y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n", # Add y-axis label with explanation
           x = "" # Remove x-axis label
         )
@@ -131,19 +157,33 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
   # Convert non-zero plot to an interactive plotly plot if non-zero values exist
   text_MEDIAN_label <- paste("Median Result:", round(summary_stats$median_Result, 2)) # Prepare label for median hover text
   text_MEAN_label <- paste("Mean Result:", round(summary_stats$mean_Result, 2)) # Prepare label for mean hover text
-  text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2)) # Prepare label for subject hover text
+  if(!is.null(subject)){
+    text_YOURDATA_label <- paste("Your Result:", round(highlight_point$Result, 2)) # Prepare label for subject hover text
+  }
+
 
   nonZeroPlot_interactive <- ggplotly(nonZeroPlot) %>%
     style(hoverinfo = "none", traces = c(1, 2)) %>% # Remove hover tooltips for the violin and sina plots
     style(text = text_MEAN_label, traces = 3) %>% # Add hover text for mean points
-    style(text = text_MEDIAN_label, traces = 4) %>% # Add hover text for median points
-    style(text = text_YOURDATA_label, traces = 5) %>% # Add hover text for subject point
-    layout(
-      autosize = TRUE, # Automatically adjust size
-      width = NULL, # Remove fixed width
-      height = NULL, # Remove fixed height
-      margin = list(l = 50, r = 50, t = 50, b = 50) # Customize chart margins
-    )
+    style(text = text_MEDIAN_label, traces = 4) # Add hover text for median points
+  if (!is.null(subject)) {
+    nonZeroPlot_interactive <- nonZeroPlot_interactive %>%
+      style(text = text_YOURDATA_label, traces = 5) # Add hover text for subject point
+  }
+  nonZeroPlot_interactive <- nonZeroPlot_interactive %>%  layout(
+    autosize = TRUE,
+    # Automatically adjust size
+    width = NULL,
+    # Remove fixed width
+    height = NULL,
+    # Remove fixed height
+    margin = list(
+      l = 50,
+      r = 50,
+      t = 50,
+      b = 50
+    ) # Customize chart margins
+  )
 
   # Combine the two interactive plots using subplot with adjusted widths
   chemPlot_interactive <- if (nrow(zero_values) > 0) {
@@ -268,9 +308,20 @@ create_checkbox_table <- function(labels, checkbox_states, description, modal_tr
 #   howManyHaveParameterName,
 #   howManyWristbandsTested,
 #   modal_trigger_test2
+
+
+#GROUP CALL:
+#plotlyC_Group_remaining <- plotlyChems(chemsGroupNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested, modal_trigger_test3)
+#plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+#plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
+
 plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2) {
+  # SPECIAL HANDLING:  If "subject" is NULL (is.null(subject)) then we are doing GROUP CHART and not INDIVIDUAL CHART and so must suppress all that individual stuff
   # Initialize a list to collect all generated content
   # chemsList<-chemsNOTinConcernGroup
+  # chemsList<-chemsGroupNOTinConcernGroup
+  # chemsList<- chemsOfConcern
+  # chemsList<- chemsOfGroupConcern
   output_list <- list()
 
   if (length(chemsList) >= 1) {
@@ -281,6 +332,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # chemItem <- chemsList[3]
       # chemItem <- chemsList[4]
       # chemItem <- chemsList[5]
+      # subject<-NULL
 
       # Filter data for the current chemical
       testResults_ChemItem <- testResults.big %>%
@@ -288,9 +340,15 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         #select(SampleNumber, Result, ParameterName)
         select(SampleNumber, Result, ParameterName,endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt,calSaferURL)
 
-      # Get the one row which is ths subject and this chem
-      testResults_ChemItem_Subject<-testResults_ChemItem %>%
-        filter(SampleNumber==subject)
+      # Get the one row which is ths subject and this chem assuming we're working with specific subjectd OTHERWISE just get a representative ROW (first row)
+      #   KEY POINT is that we're not actually using THIS for the SUBJECT information (i don't think) we're using this just to get other values that will be the same on every such row so pick one
+      #### Really we can just pick the first one anyway?  We don't need to actually pick the subject row as far as I can see???
+      if (is.null(subject)) {
+        testResults_ChemItem_AnyRow <- testResults_ChemItem[1,]  # Grab just the first row.  we only need the toxicity values and calSafer URL
+      } else {
+        testResults_ChemItem_AnyRow <- testResults_ChemItem %>%
+          filter(SampleNumber == subject)
+      }
 
 
       # Add the "cat" message (e.g., the tab header)
@@ -309,8 +367,8 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
 
 
       #calSaferURL
-      if( ! is.na(testResults_ChemItem_Subject$calSaferURL)){
-        calSafer_Link <- makeClickableURL(testResults_ChemItem_Subject$calSaferURL, "calSAFER Chemical Link")
+      if( ! is.na(testResults_ChemItem_AnyRow$calSaferURL)){
+        calSafer_Link <- makeClickableURL(testResults_ChemItem_AnyRow$calSaferURL, "calSAFER Chemical Link")
         newMessage <- paste(
           newMessage,
           "This chemical is classified per the California Department of Toxic Substances Control here: ",
@@ -379,21 +437,21 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
 
       # REPLACE WITH REAL VALUES
       #endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt
-      repro_TrueFalse <-  testResults_ChemItem_Subject$reproductive_toxicity
-      brain_TrueFalse <-  testResults_ChemItem_Subject$neurotoxicity
-      cancer_TrueFalse <-  testResults_ChemItem_Subject$carcinogenicity
-      hormone_TrueFalse <-  testResults_ChemItem_Subject$endocrine_toxicity
-      develop_TrueFalse <-  testResults_ChemItem_Subject$developmental_toxicity
-      pbt_TrueFalse <- testResults_ChemItem_Subject$pbt
-      dna_TrueFalse <- testResults_ChemItem_Subject$genotoxicity
-      respir_TrueFalse <-  testResults_ChemItem_Subject$respiratory_toxicity
+      repro_TrueFalse <-  testResults_ChemItem_AnyRow$reproductive_toxicity
+      brain_TrueFalse <-  testResults_ChemItem_AnyRow$neurotoxicity
+      cancer_TrueFalse <-  testResults_ChemItem_AnyRow$carcinogenicity
+      hormone_TrueFalse <-  testResults_ChemItem_AnyRow$endocrine_toxicity
+      develop_TrueFalse <-  testResults_ChemItem_AnyRow$developmental_toxicity
+      pbt_TrueFalse <- testResults_ChemItem_AnyRow$pbt
+      dna_TrueFalse <- testResults_ChemItem_AnyRow$genotoxicity
+      respir_TrueFalse <-  testResults_ChemItem_AnyRow$respiratory_toxicity
 
       checkbox_states <- c(repro_TrueFalse, brain_TrueFalse, cancer_TrueFalse, hormone_TrueFalse, develop_TrueFalse,pbt_TrueFalse, dna_TrueFalse,respir_TrueFalse)
       description <- "Possible health effects depending on length of time and size of exposure"
 
       ##  Use table WITHOUT the icon and check box
 
-
+      #risk_table <- create_checkbox_table(labels, checkbox_states, description,modal_trigger_test3 )
       risk_table <- create_checkbox_table(labels, checkbox_states, description,modal_trigger_test2 )
       risk_table <- risk_table %>%
         tab_style(

@@ -8,6 +8,168 @@ editor_options:
 As previously stated, the average number of chemicals found was **`r round(averageNumberChemsFound,1)`**. All wristbands were tested for **`r howManyChemicalsTested`** chemicals.
 
 
+<!-- r subject<-NULL    -->
+
+
+
+
+## Plot each Chemical of Concern {.tabset  .tabset-pills}
+
+We checked all the chemicals anyone in this study was exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount an individual was exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click each chemical name to see how exposures compares.
+
+```{r GroupPlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+
+#plotlyC_concern <-  plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation  , subject, howManyHaveParameterName, howManyWristbandsTested)
+#cat(" \n about print ploty no concern\n")
+
+# Define a Bootstrap modal POPUP for detailed health concern explanations
+info_modal <- bs_modal(
+  id = "info_modal",
+  title = "Health Concern Information",
+  body = div(
+    HTML("
+      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available or existing evidence does not support a link.</p>
+      <ul>
+        <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
+        <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
+        <li><strong>Increased cancer risk:</strong> Chemicals that increase the risk of certain cancers.</li>
+        <li><strong>Hormone disruption:</strong> Chemicals that interfere with your body’s natural hormones. Hormones are important for regulating nearly all your body’s systems.</li>
+        <li><strong>Development:</strong> Chemicals that affect how a baby grows and develops in childhood.</li>
+        <li><strong>PBT:</strong> Chemicals that are <u>P</u>ersistent, <u>B</u>ioaccumulative, and <u>T</u>oxic. This means that they are difficult to break down and eliminate from your body and the environment.</li>
+        <li><strong>Harms DNA:</strong> Chemicals that damage DNA. DNA contains all the instructions for making your body run.</li>
+        <li><strong>Respiratory:</strong> Chemicals that irritate people's lungs and make asthma worse.</li>
+      </ul>
+    ")
+  )
+)
+
+
+modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information about the <b>Health Effects</b> in the table below</a>")
+
+showHealthEffectsTable <- TRUE
+#showHealthEffectsTable <- FALSE
+
+if(showHealthEffectsTable) {
+  htmltools::tagList(modal_trigger, info_modal) %>% htmltools::browsable()
+}
+
+
+
+#plotlyC_concern is a list of multiple items and for each chemical it has the TAB HEADER formatted with correct "level" so it becomes a TAB ,
+#   PLUS it has the actual content of the plotly plot
+#   PLUS it has the "message" that follows the plotly plot
+# TODO:  Need to add something ELSE into the tab... the check-box of health concerns... and it should be printed AFTER the tab header but before the PLOT
+#       so we need to create a new entry in the list for each chem that is "chemItem_healthCheckBox" or something like that
+#       So when we create plotlyC... we need to add that... 
+if (!is.null(plotlyC_Group_concern)) {
+  
+  for (chemItem in chemsOfGroupConcern) {
+    #chemItem<-chemsOfConcern[1]
+
+    # Print the `cat` message (tab header)
+    cat(plotlyC_Group_concern[[paste0(chemItem, "_cat_message")]], "\n")
+    
+    #TEST WITH:   cat(as.character(risk_table_html), "\n")
+    #htmltools::browsable(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]])
+    #cat(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+    
+    #cat(gt::as_raw_html(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+
+    #htmltools::HTML(as.character(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]))
+
+    if(showHealthEffectsTable){
+      cat(as.character(plotlyC_Group_concern[[paste0(chemItem, "_health_risk_table")]]), "\n")
+    }
+    
+
+    # Print the tab content
+    print(plotlyC_Group_concern[[chemItem]])
+    
+    # Print the explanatory message
+    cat(plotlyC_Group_concern[[paste0(chemItem, "_message")]], "\n \n")
+  }
+  
+}
+
+
+
+```
+
+
+## Plot Remaining Chemicals {.tabset  .tabset-pills}
+
+
+Besides the chemicals already mentioned, other chemicals were also found on wristbands in this study group. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click on each chemical name to compare your exposure to others in the study.
+
+
+```{r GroupPlotOtherChems, results='asis', echo=FALSE, eval=TRUE}
+###
+### using variou web links to figure out...this is supposed to work... ineed to check this again...
+###  THIS LOOKS GOOD:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+######   THIS ONE GAVE ANSWER BELOW:  https://stackoverflow.com/questions/61906480/how-to-display-ggplotly-plots-with-dynamically-created-tabs-and-for-loops
+
+#plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested)
+#cat(" \n about print ploty \n")
+
+#THIS VERSION BELOW WORKED EXCEPT FOR THE HEALTH RISK TABLE
+# if (!is.null(plotlyC_remaining)) {
+#   for (chemItem in chemsNOTinConcernGroup) {
+#     # Print the `cat` message (tab header)
+#     cat(plotlyC_remaining[[paste0(chemItem, "_cat_message")]], "\n")
+#     
+#     # Print the `healthRiskTable`
+#     #print(plotlyC_concern[[paste0(chemItem, "_health_risk_table")]], "\n")
+#     plotlyC_concern[[paste0(chemItem, "_health_risk_table")]]
+#     
+#     
+#     # Print the tab content
+#     print(plotlyC_remaining[[chemItem]])
+#     
+#     # Print the explanatory message
+#     cat(plotlyC_remaining[[paste0(chemItem, "_message")]], "\n \n")
+#   }
+#   
+#   
+# }
+
+if (!is.null(plotlyC_Group_remaining)) {
+  for (chemItem in chemsGroupNOTinConcernGroup) {
+    # Print the `cat` message (tab header)
+    cat(plotlyC_Group_remaining[[paste0(chemItem, "_cat_message")]], "\n")
+    
+ 
+    
+    # Print the tab content
+    print(plotlyC_Group_remaining[[chemItem]])
+    
+    # Print the explanatory message
+    cat(plotlyC_Group_remaining[[paste0(chemItem, "_message")]], "\n \n")
+  }
+}
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
 
 ## Check against Databases
 
@@ -27,7 +189,7 @@ For all the chemicals found on ANY wristband during this project we will look th
 ```{r GroupChemicalListWithOutClassification, child='GroupChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
 ```
 
-```{r AirConcentrationNioshOsha, child='airConcentrationOutput.Rmd', eval = doAIRplusNioshOSHAreporting}
+```{r GroupAirConcentrationNioshOsha, child='airConcentrationOutput.Rmd', eval = doAIRplusNioshOSHAreporting}
 ```
 
 ```{r GroupClassificationAnyWristband, child='GroupClassificationAnyWristband_text.Rmd', eval = !HideClassificationInformation}
@@ -35,7 +197,7 @@ For all the chemicals found on ANY wristband during this project we will look th
 
 
 <!-- I MADE THIS FALSE FOR DEBUGGING -->
-```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```{r StatisticsOnGroupAllChemicalsFound, child='StatisticGroupsOnChemicalsFound.Rmd', eval = TRUE}
 ```
 
 
@@ -47,7 +209,7 @@ Here are all the chemicals found on any wristband. If every participants wristba
 
 `r if(DoSpecificSubjectAnalysis){"If the chemical was found on your wristband then that bar is colored blue.  If the chemical was found on at least one other participant, but not on your wristband, the bar is colored grey.  For example, if you see a high percentage of blue bars up near 100% then your sample has a high overlap with the rest of the study group.  If most of the blue bars are down below 50% then your sample does not overlap as much with the rest of the group."}`
 
-```{r Chart_bar_Percentages, echo=FALSE, message=FALSE,fig.height=12, fig.cap="", dpi=300}
+```{r Chart_bar_PercentagesGroup, echo=FALSE, message=FALSE,fig.height=12, fig.cap="", dpi=300}
 ###THIS IS a better version of above, eliminating SQLDF
 #     it gives us a table with 2 columns, ALL FOUND CHEMS and % wb w/ chem
 #### but now I'm adding a 3rd column, subHas, which will be true if OUR subject has THAT value
@@ -218,17 +380,17 @@ for (i in seq_len(length(many_plots))) {
 
 ```
 
-```{r GroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupGroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = !HideClassificationInformation}
 ```
 
-```{r GroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupGroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = !HideClassificationInformation}
 ```
 
 ### Chart of All Tested-for Chemicals
 
 As a more detailed breakdown, we can get an overview of the test for all the chemicals found in every tested wristband. The chart below has a horizontal line for every tested chemical. The blank space shows that most of the chemicals don't show up in any of the tested wristbands in this participant sample but, once a chemical is found in one of the wristbands it is typically found in others as well. This can be seen below by observing how frequently the horizontal light-blue lines are aligned. The diagram after this one provides more details about the specific chemicals found, the purpose of this diagram is to show an overview.
 
-```{r allChemChart, echo=FALSE, message=FALSE, fig.height=9, fig.cap=""}
+```{r GroupallChemChart, echo=FALSE, message=FALSE, fig.height=9, fig.cap=""}
 
 #Set Up basic all chemical GGPLOT
 
@@ -314,7 +476,7 @@ To allow us to look more carefully at the blue lines, we'll eliminate from the c
 
 `r if(DoSpecificSubjectAnalysis){"Your wristband is differentiated by color."}`
 
-```{r activeChemChart, echo=FALSE, message=FALSE, fig.height=12,fig.cap=""}
+```{r GroupactiveChemChart, echo=FALSE, message=FALSE, fig.height=12,fig.cap=""}
 
 options(height = 8)  #this is redundant with the heading setting I THINK but so what
 
@@ -477,7 +639,7 @@ In the image below the black squares highlight which wristband had the maximum v
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below."}`
 
-```{r chart_heatmap_x5_activeChemChart, echo=FALSE, message=FALSE,fig.cap="",fig.height=10,dpi=150}
+```{r Groupchart_heatmap_x5_activeChemChart, echo=FALSE, message=FALSE,fig.cap="",fig.height=10,dpi=150}
 # IF I SET fig.height=20,fig.width=25,dpi=300}   THEN even dartmouth w/ 300 chems and 600 people it works fine
 # but for normal processing all i need is fig.height=10,dpi=76}
 #
@@ -735,14 +897,14 @@ Each tested wristband picked up different amounts of different chemicals. One si
 
 `r if(nrow(testResults.big[testResults.big[, "Flag"] == "Y", ])>0){"Any wristbands where we detected a chemical, but could not quantify it, are suppressed from this chart below."}`
 
-```{r print_adjust_3b,  results="asis", echo=FALSE,   eval=wristbands_time_adjusted_not_weight}
+```{r print_adjust_3bGroup,  results="asis", echo=FALSE,   eval=wristbands_time_adjusted_not_weight}
 
 cat("The numbers were normalized relative to  the length of time the wristband was worn and ",
   "hence can be relatively reliably compared. ",sep="")
 
 ```
 
-```{r print_adjust_3, results="asis", echo=FALSE, eval=wristbands_time_and_weight_adjusted}
+```{r print_adjust_3Group, results="asis", echo=FALSE, eval=wristbands_time_and_weight_adjusted}
 
 cat("The numbers were normalized relative to both the size of the wristband and the length of time the wristband was worn and ",
       "hence can be relatively reliably compared.  ",
@@ -750,13 +912,13 @@ cat("The numbers were normalized relative to both the size of the wristband and 
 
 ```
 
-```{r print_weight_only_adjust2, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
+```{r print_weight_only_adjust2Group, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
 
 cat("The data is the raw nanograms found in each gram of wristband. " ,sep="")
 
 ```
 
-```{r print_chem_response_factor_info, results="asis", echo=FALSE, eval=RMD_type == "DRS"}
+```{r print_chem_response_factor_infoGroup, results="asis", echo=FALSE, eval=RMD_type == "DRS"}
 
 
 Article1500_URL <- makeClickableURL("https://link.springer.com/article/10.1007/s00216-018-0997-7","Development of quantitative screen")
@@ -768,7 +930,7 @@ cat("Additionally, the underlying chemical responses are within a factor of 2.5 
 
 `r if(DoSpecificSubjectAnalysis){"Your wristband is in GREEN."}`
 
-```{r chart_total_ng_found, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
+```{r chart_total_ng_foundGroup, echo=FALSE, message=FALSE, fig.height=12,fig.cap="",dpi=150}
 ################BEGIN x5 Perc
 # IDEA is to get total RESULTS for each WB then graph that  in bar-chart
 ng_per_sample <-testResults.big %>%
@@ -818,7 +980,7 @@ rm(c)
 
 ```
 
-```{r print_loreal_venn, child='loreal_venn_text.Rmd', eval=FALSE}
+```{r print_loreal_vennGroup, child='loreal_venn_text.Rmd', eval=FALSE}
 ```
 
 ### Numerical Matrixes of all Data

@@ -9,7 +9,7 @@ editor_options:
 
 ## Plot each Chemical of Concern {.tabset  .tabset-pills}
 
-We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider pink area represents how common different amounts are, with wider parts showing levels found in more people. Click each chemical name to see how your exposure compares.
+We checked all the chemicals you were exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount you were exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. We compared your results to others in the study.  The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click each chemical name to see how your exposure compares.
 
 ```{r PlotChemsOfConcern, results='asis',echo=FALSE,eval=TRUE}
 ###
@@ -97,7 +97,7 @@ if (!is.null(plotlyC_concern)) {
 ## Plot Remaining Chemicals {.tabset  .tabset-pills}
 
 
-Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider pink area represents how common different amounts are, with wider parts showing levels found in more people. Click on each chemical name to compare your exposure to others in the study.
+Besides the chemicals already mentioned, other chemicals were also found on your wristband. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value, and the red circle is your result. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click on each chemical name to compare your exposure to others in the study.
 
 
 ```{r PlotOtherChems, results='asis', echo=FALSE, eval=TRUE}
@@ -157,7 +157,7 @@ if (!is.null(plotlyC_remaining)) {
 
 
 
-```{r StatisticsOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```{r StatisticsIndivOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
 ```
 
 
