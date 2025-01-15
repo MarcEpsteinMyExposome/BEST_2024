@@ -3,7 +3,7 @@
 
 ## Statistics on Chemicals Found
 
-```{r setupbsYY_modal_std_dev3, echo=FALSE}
+```{r setupbsYY_modal_std_dev3Group, echo=FALSE}
 
 
 bs_modal(id = "StandardDeviation3", title = "Definition of Standard Deviation", body = "Standard deviation is a measure of how spread out all the results are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
@@ -26,25 +26,25 @@ One important way to look at the data is, for each chemical, what was the smalle
 One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the standard deviation.  The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.
 -->
 
-```{r print_not_time_or_weight_adjust, results="asis", echo=FALSE, eval=!(wristbands_weight_adjusted || wristbands_time_adjusted)}
+```{r print_not_time_or_weight_adjustGroup, results="asis", echo=FALSE, eval=!(wristbands_weight_adjusted || wristbands_time_adjusted)}
 cat("The data is the raw nanograms found in each wristband. ", sep = "")
 ```
 
-```{r print_weight_only_adjust1, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
+```{r print_weight_only_adjust1Group, results="asis", echo=FALSE, eval=wristbands_weight_adjusted}
 cat("The data is the raw nanograms found in each gram of wristband. ", sep = "")
 ```
 
-```{r print_loreal_4x, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_week_not_weight}
+```{r print_loreal_4xGroup, results="asis", echo=FALSE, eval=wristbands_time_adjusted_one_week_not_weight}
 cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one week. ", sep = "")
 ```
 
-```{r print_loreal_4x3, results="asis", echo=FALSE, eval=wristbands_week_and_weight_adjusted}
+```{r print_loreal_4x3Group, results="asis", echo=FALSE, eval=wristbands_week_and_weight_adjusted}
 cat("The data shows the amount of each chemical in nanograms per gram of wristband, adjusted for the time worn to make results comparable.",
   sep = ""
 )
 ```
 
-```{r print_loreal_4x2, results="asis", echo=FALSE, eval=(wristbands_time_adjusted_one_day & FALSE) }
+```{r print_loreal_4x2Group, results="asis", echo=FALSE, eval=(wristbands_time_adjusted_one_day & FALSE) }
 # NOTE:  I think i suppressed this message from ever showing BECAUSE i don't think it is necessary and adds complications to understanding
 
 cat("The data is the raw nanograms found normalized to time-adjust the values as though the wristband were worn for exactly one day. ")
@@ -52,7 +52,7 @@ cat("The data is the raw nanograms found normalized to time-adjust the values as
 
 <!-- Values below the limit of detection are not included in the statistical analyses and are listed as zeros. -->
 
-```{r StatSummary, results='asis', echo=FALSE, eval=TRUE, message=FALSE}
+```{r StatSummaryGroup, results='asis', echo=FALSE, eval=TRUE, message=FALSE}
 ### Had error where i was renaming columns for 2nd time so it didn't work.
 ### Need to test if column names wrong and rename only if wrong:
 
