@@ -27,45 +27,47 @@ output:
 
 
 <!--
+ Project Root       --- INACCURATE regarding R code but rest seems right
+2    °--MyExposome_1527_v6.Rmd                                                                                         
+3        ¦--R/MyExp_set_key_variables.R                                                                                
+4        ¦--setRdirectory("MyExp_set_key_variables.R"                                                                  
+5        ¦--here::here("R", "MyExp_set_key_variables.R"                                                                
+6        ¦--C:/Users/marce/Documents/MyExp/R_Analysis/R_CODE_DATA_OUTPUTS/BEST_2024/R/MyExp_Base_Code_v6.R             
+7        ¦--C:/Users/marce/Documents/MyExp/R_Analysis/R_CODE_DATA_OUTPUTS/BEST_2024/R/MyExp_support_functions_1527_v6.R
+8        ¦--SpecificSubjectAnalysisIntro_text.Rmd                                                                      
+9        ¦--GroupAnalysisIntro_text.Rmd                                                                                
+10       ¦--GroupAndIndividualAnalysisIntro_text.Rmd                                                                   
+11       ¦--GroupResultsAnalysis__w_Violin_Precursor.Rmd                                                               
+12      ¦   °--setRdirectory("BuildViolinPlot_SinaOnly.R"                                                             
+13       ¦--IndividualResultsAnalysis__w_Violin_Precursor.Rmd                                                          
+14      ¦   °--setRdirectory("BuildViolinPlot_SinaOnly.R"                                                             
+15       ¦--HeadlineMessageTotalChems.Rmd                                                                              
+16       ¦--HeadlinesAmountByChemicalGroup.Rmd                                                                         
+17      ¦   ¦--setRdirectory("HeadlinesAmountByChemicalGroup_R_Code.R"                                                
+18      ¦   °--"HeadlinesAmountByChemicalGroup_R_Code.R", local = knitr::knit_global(                                 
+19       ¦--IndividualResultsAnalysis.Rmd                                                                              
+20      ¦   ¦--StatisticsOnChemicalsFound.Rmd                                                                         
+21      ¦   ¦--YourChemicalsAndAveragesByGroup_text.Rmd                                                               
+22      ¦   ¦--IndividualChemicalListWithClassification_text.Rmd                                                      
+23      ¦   ¦--IndividualChemicalListWithOutClassification_text.Rmd                                                   
+24      ¦   °--IndividualClassificationShowingChemicals_text.Rmd                                                      
+25       ¦--CompoundClassification_text.Rmd                                                                            
+26       ¦--GroupResultsAnalysis.Rmd                                                                                   
+27      ¦   ¦--GroupDatabaseLookupIARC_Prop65_IRIS.Rmd                                                                
+28      ¦   ¦--GroupChemicalListWithClassification_text.Rmd                                                           
+29      ¦   ¦--GroupChemicalListWithOutClassification_text.Rmd                                                        
+30      ¦   ¦--airConcentrationOutput.Rmd                                                                             
+31      ¦   ¦--GroupClassificationAnyWristband_text.Rmd                                                               
+32      ¦   ¦--StatisticGroupsOnChemicalsFound.Rmd                                                                    
+33      ¦   ¦--GroupClassificationAtLeastOne_text.Rmd                                                                 
+34      ¦   ¦--GroupClassificationEveryWristband_text.Rmd                                                             
+35      ¦   °--loreal_venn_text.Rmd                                                                                   
+36       ¦--testPrePostProcessing.Rmd                                                                                  
+37       °--AdditionalInformation.Rmd
 
-MyExposome_1527_v6.Rmd
-  - Sourced R Files:
-    - MyExp_set_key_variables.R
-    - here::here(R, ...)
-    - support.functions.filename
-  - Child RMD Files:
-    - SpecificSubjectAnalysisIntro_text.Rmd
-    - GroupAnalysisIntro_text.Rmd
-    - GroupAndIndividualAnalysisIntro_text.Rmd
-    - GroupResultsAnalysis__w_Violin_Precursor.Rmd
-          - Sourced R Files:
-        - BuildViolinPlot_SinaOnly.R
-    - IndividualResultsAnalysis__w_Violin_Precursor.Rmd
-      - Sourced R Files:
-        - BuildViolinPlot_SinaOnly.R
-    - HeadlineMessageTotalChems.Rmd
-    - HeadlinesAmountByChemicalGroup.Rmd
-      - Sourced R Files:
-        - HeadlinesAmountByChemicalGroup_R_Code.R
-    - IndividualResultsAnalysis.Rmd
-      - Child RMD Files:
-        - StatisticsOnChemicalsFound.Rmd
-        - YourChemicalsAndAveragesByGroup_text.Rmd
-        - IndividualChemicalListWithClassification_text.Rmd
-        - IndividualChemicalListWithOutClassification_text.Rmd
-        - IndividualClassificationShowingChemicals_text.Rmd
-    - CompoundClassification_text.Rmd
-    - GroupResultsAnalysis.Rmd
-      - Child RMD Files:
-        - GroupDatabaseLookupIARC_Prop65_IRIS.Rmd
-        - GroupChemicalListWithClassification_text.Rmd
-        - GroupChemicalListWithOutClassification_text.Rmd
-        - airConcentrationOutput.Rmd
-        - GroupClassificationAnyWristband_text.Rmd
-        - GroupClassificationAtLeastOne_text.Rmd
-        - GroupClassificationEveryWristband_text.Rmd
-    - testPrePostProcessing.Rmd
-    - AdditionalInformation.Rmd
+
+
+
 
 -->
 
