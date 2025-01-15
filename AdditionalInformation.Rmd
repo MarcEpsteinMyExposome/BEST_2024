@@ -3,7 +3,20 @@
 
 ### List of all chemicals
 
-The full list of all chemicals tested can be found online at: `r makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List")`
+
+```{r FullChemListSetup, eval=TRUE, results='asis', echo=FALSE, message=FALSE}
+###The full list of all chemicals tested can be found online at: `r makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List")`
+if(!is.null(URL_of_Chemicals_Tested)) {
+  message<-paste0("The full list of all chemicals tested can be found online at: ",makeClickableURL(URL_of_Chemicals_Tested, "MyExposome Chemical List"))
+} else {
+  message <- "See supplied data files for the full list of tested chemicals"
+}
+
+cat(message)
+
+```
+
+
 
 ```{r FullChemList, eval=FALSE, results='asis', echo=FALSE, message=FALSE}
 ####I'm SUPPRESSING the full list, for now, because it is LONG.  Taking first 10 rows only.
