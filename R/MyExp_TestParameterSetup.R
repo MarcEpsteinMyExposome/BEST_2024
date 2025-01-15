@@ -13,7 +13,8 @@
   #
 if (RMD_type=="FRAGRANCE"){
   rmd_code <- "MyExposome_1527_v6.Rmd"
-  URL_of_Chemicals_Tested <- "Will add FRAGRANCE URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
+  URL_of_Chemicals_Tested <-NULL
+  #URL_of_Chemicals_Tested <- "Will add FRAGRANCE URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
   testName <- "Fragrances Quantitative test "
   testExplanation <- "This project provides a focused screen to identify Fragrances."
   HideClassificationInformation <- TRUE # Set to TRUE for every report EXCEPT DRS and maybe ???
@@ -21,7 +22,8 @@ if (RMD_type=="FRAGRANCE"){
   masterParamTableName <- FRAGRANCEmasterParameterTable
 } else if (RMD_type == "PHTH") { #
     rmd_code <- "MyExposome_1527_v6.Rmd"
-    URL_of_Chemicals_Tested <- "Will add Phtalate URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
+    URL_of_Chemicals_Tested <- NULL
+    #URL_of_Chemicals_Tested <- "Will add Phtalate URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
     testName <- "Phthalates Quantitative test "
     testExplanation <- "This project provides a focused screen to identify Phthalates."
     HideClassificationInformation <- TRUE # Set to TRUE for every report EXCEPT DRS and maybe ???

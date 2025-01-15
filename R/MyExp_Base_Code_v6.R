@@ -215,8 +215,8 @@ class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameM
 class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L, DropSpecificChemicals) #  Add the Phthalate list to the table... this is new test from 2024
 
 ### EVENTUALLY maybe i update with the fragrances but it is NOT necessary cause in this group of fragrances there are no compounds NOT in the 1530 screen
-
-#class_L <- updateWithClassSpecificMasterParam(FRAGRANCE_text_string, FRAGRANCEmasterParameterTable, class_L, DropSpecificChemicals) #  Add the FRAGRANCE list to the table... this is new test from January 2025
+## THERE was one compound at least so I'm adding the fragrance text string and THEN i'm using the new "RevisedClassificationMapping CSV" to map fragrance to Consumer & Personal Care Products
+class_L <- updateWithClassSpecificMasterParam(FRAGRANCE_text_string, FRAGRANCEmasterParameterTable, class_L, DropSpecificChemicals) #  Add the FRAGRANCE list to the table... this is new test from January 2025
 
 # cat("444 in BASE CODE...\n", file = "debug_log.txt", append = TRUE)
 

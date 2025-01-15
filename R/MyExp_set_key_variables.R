@@ -193,6 +193,7 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   wristbands_week_and_weight_adjusted <- TRUE
   testDoneFor <- "Georgetown Lombardi Comprehensive Cancer Center "
   if (RMD_type == "PHTH" ) {
+    #subject <- "A240945"   # Do not set subject
     FixupFile <- "Sample Key_Georgetown_PHTH_FRAGRANCE.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
     resultsTableName <- "F24-21_MyExpo_P.O.#258_PHTH_CoA II_convert_ug_to_ng.csv" # Firs data had ug instead of ng so i converted by hand.  2nd had wrong ParamterID.
     ExpectedUnits <- "ng/g"
@@ -204,6 +205,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
     wristbands_time_adjusted_not_weight <- TRUE
   } else  if (RMD_type == "FRAGRANCE") {
     FixupFile <- "Sample Key_Georgetown_PHTH_FRAGRANCE.csv" #  THIS is because resubmitting the GEORGETOW batch as for new testing created new SampleName A123456
+    #subject <- "A240945"   # Do not set subject
+
     # THIS is named as _PHTH because that was the FIRST of the two tests but really the same PO for OSU was for PHTH and FRAGRANCE so we'll use the same one
 
     resultsTableName <- "F24-21_MyExpo_P.O.#258_Fragrances_CoA_V4.csv" #
@@ -633,7 +636,7 @@ vocMasterParamTableName <- "MyExposome_VOC_MasterParameter_List_3_6_2019.csv" ##
 ## there are TWO ways classifications are collapse... first is inline code when read in...
 ##       SECOND is later we collapse using a file we read-in that tells us how the resulting classifications should collapse.
 ##        eventually this should be standardized
-class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping2.csv")
+class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping3.csv")  # Changed from 2 to 3 to add fragrances
 
 # class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
 class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv") # Steven Edited tiny bit more
