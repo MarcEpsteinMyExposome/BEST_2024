@@ -678,7 +678,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     testResults
-  } else if (SBIR_P2_Part1_71_FixUp) {
+  } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) {             ###  ADd the 2nd batch as a separate batch
     fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
     fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
     fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)

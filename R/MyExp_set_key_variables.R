@@ -131,7 +131,10 @@ FixupForAnyone <- any(
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
   CombinedDRS_November6_2024 <- FALSE,
   SBIR_P2_Part1_71_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
-  GEORGETOWNFixUp <- TRUE
+  GEORGETOWNFixUp <- FALSE,
+  SBIR_P2_Part2_35_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
+  SBIR_P2_Part1and2_35and71_FixUp<- TRUE
+
 )
 
 ### USE the flag RMD_type to indicate if FLAME or PAH or DRS_MAS15 etc...
@@ -147,10 +150,10 @@ FixupForAnyone <- any(
 # RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
 # RMD_type <- 'PEST'
 # RMD_type <- 'FLAME'
-#RMD_type <- "DRS"
+RMD_type <- "DRS"
 # RMD_type<-'SBIR_P1_DRS_plus'
 #RMD_type <- 'PHTH'
-RMD_type <- 'FRAGRANCE'
+#RMD_type <- 'FRAGRANCE'
 
 
 
@@ -255,7 +258,35 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
-} else if (UniVisionFixup) {
+} else if (SBIR_P2_Part2_35_FixUp) {
+  resultsTableName <- "F24-27 MyExpo PO262 excel CoA_SBIRP2_Batch2-WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
+  FixupFile <- "SBIR_NIH_Part2_35_SampleKey.csv"
+  subject <- "A241564" # this is RANDOM one
+
+  wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
+  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+  wristbands_time_and_weight_adjusted <- TRUE
+  wristbands_week_and_weight_adjusted <- FALSE
+  # wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
+  testDoneFor <- ""
+  ExpectedUnits <- "ng/WB"
+} else if (SBIR_P2_Part1and2_35and71_FixUp) {
+  resultsTableName <- "F24-27 MyExpo PO262 excel CoA_SBIRP2_Batch1amd2_71_35-WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
+  FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
+  subject <- "A241564" # this is RANDOM one
+
+  wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
+  wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
+  wristbands_time_and_weight_adjusted <- TRUE
+  wristbands_week_and_weight_adjusted <- FALSE
+  # wristbands_day_and_weight_adjusted <- TRUE # I just added this.  Not sure it is ever going to be used but mirrors the one for week and weight so we'll see...
+  # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
+  testDoneFor <- ""
+  ExpectedUnits <- "ng/WB"
+
+
+  } else if (UniVisionFixup) {
   FixupFile <- "Sample Key_Univision_lookup_table.csv"
   testDoneFor <- "TelevisaUnivision "
   if (RMD_type == "PEST") {
