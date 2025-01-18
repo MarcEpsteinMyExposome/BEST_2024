@@ -77,12 +77,19 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       aes(
         x = factor(ParameterName), # Use ParameterName as the x-axis
         y = Result, # Use Result as the y-axis
-        fill = factor(ParameterName) # Fill color based on ParameterName
+        fill = factor(ParameterName)    # Fill color based on ParameterName
       )
-    )
+    ) # + geom_point(size = 3) # Add points with a specific size for visibility
     nonZeroPlot <- nonZeroPlot+
       geom_violin(trim = FALSE, fill = "#e3ebfa", color = "#a9c5f5") + # Create violin plot with light blue fill and border color
-      geom_sina(alpha = 0.6, shape = 21, fill = NA) + # Add sina plot for non-zero values with some transparency
+      geom_sina(alpha = 0.6,    #THIS WORKED previously.  TRIED below to do something else with shape but that didn't work at all
+                shape = 21,
+                fill = NA) + # Add sina plot for non-zero values with some transparency
+      # geom_sina(
+      #   aes(shape = factor(Lab_Submission_Batch)), # Shape based on Lab_Submission_Batch
+      #   alpha = 0.6,
+      #   fill = NA
+      # ) + # Add sina plot with transparency and shape variation
       geom_point(
         data = summary_stats,
         aes(x = factor(ParameterName), y = mean_Result),
@@ -315,6 +322,8 @@ create_checkbox_table <- function(labels, checkbox_states, description, modal_tr
 #plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
 #plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
 
+
+
 plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2) {
   # SPECIAL HANDLING:  If "subject" is NULL (is.null(subject)) then we are doing GROUP CHART and not INDIVIDUAL CHART and so must suppress all that individual stuff
   # Initialize a list to collect all generated content
@@ -322,6 +331,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
   # chemsList<-chemsGroupNOTinConcernGroup
   # chemsList<- chemsOfConcern
   # chemsList<- chemsOfGroupConcern
+  # modal_trigger_test2<-modal_trigger_test3
   output_list <- list()
 
   if (length(chemsList) >= 1) {
@@ -338,13 +348,15 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       testResults_ChemItem <- testResults.big %>%
         filter(ParameterName == chemItem) %>%
         #select(SampleNumber, Result, ParameterName)
-        select(SampleNumber, Result, ParameterName,endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt,calSaferURL)
+        select(SampleNumber, Result, ParameterName,endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt,calSaferURL,Lab_Submission_Batch)
 
       # Get the one row which is ths subject and this chem assuming we're working with specific subjectd OTHERWISE just get a representative ROW (first row)
       #   KEY POINT is that we're not actually using THIS for the SUBJECT information (i don't think) we're using this just to get other values that will be the same on every such row so pick one
       #### Really we can just pick the first one anyway?  We don't need to actually pick the subject row as far as I can see???
-      if (is.null(subject)) {
-        testResults_ChemItem_AnyRow <- testResults_ChemItem[1,]  # Grab just the first row.  we only need the toxicity values and calSafer URL
+      if (is.null(subject) || (subject=="Never-Going-to-Match")) {
+        testResults_ChemItem_AnyRow <- testResults_ChemItem %>%
+          filter(Result>0)  %>%
+          slice(1)# Grab just the first row.  we only need the toxicity values and calSafer URL
       } else {
         testResults_ChemItem_AnyRow <- testResults_ChemItem %>%
           filter(SampleNumber == subject)
@@ -489,6 +501,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
 
 
       # Create tab content (Plotly Sina plot or placeholder)
+      #subject<-"A241134"
       if (nrow(testResults_ChemItem[testResults_ChemItem$Result > 0, ]) > 1) {   ### If there is more than one data point!
         htmlTagList <- htmltools::tagList(
           htmltools::tags$div(
