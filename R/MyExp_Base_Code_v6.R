@@ -75,6 +75,7 @@
 # library("sinaplot")
 # library("dplr)
 
+MyExp_Base_Code_v6_R_Code_was_run <- TRUE  # Use this test if this code was run...
 
 # Function to check, install, and load packages
 load_package <- function(packages) {
@@ -137,7 +138,9 @@ setwd(here::here()) # If you’re using the here package for relative paths
 
 
 # Additional code for setting up environment, key variables, etc.
-if (!exists("subject")) { ##  NEED TO HARD CODE  R Directory Location
+#Used to use "subject" to test if this loaded but now using  this "MyExp_set_key_variables_R_file_is_loaded"
+#if (!exists("subject")) { ##  NEED TO HARD CODE  R Directory Location
+if (!exists("MyExp_set_key_variables_R_file_is_loaded")) { ##  NEED TO HARD CODE  R Directory Location
   source(here::here("R", "MyExp_set_key_variables.R"))
 }
 

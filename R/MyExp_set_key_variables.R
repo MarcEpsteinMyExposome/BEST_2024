@@ -47,6 +47,10 @@
 # MAYBE NEED to set a JAVA_HOME for some things to load/compile
 Sys.setenv(JAVA_HOME = "C:\\Program Files\\Java\\jre7")
 
+# I used to test if this R file was loaded using if "subject" existted, now I'm going to try to change this to a special-purpose variable
+MyExp_set_key_variables_R_file_is_loaded <- TRUE
+
+
 # Set working directory to be at root of project
 library(here)
 setwd(here::here())
@@ -540,7 +544,7 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
 
-whatKindReportToDo <- "Group" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
+whatKindReportToDo <- "SpecificSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
 # ONLY DO ONE OF THESE THREE THINGS
 if (whatKindReportToDo == "Group") { ## JUST do GROUp Analysis
   DoSpecificSubjectAnalysis <- FALSE # idea is to do specific-subject-analysis output with or without GROUP analysis

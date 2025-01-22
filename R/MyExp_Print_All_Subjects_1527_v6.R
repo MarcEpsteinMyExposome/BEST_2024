@@ -25,11 +25,13 @@ setwd(here::here())
 In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALWAYS set  customiization-per-user to be ON
 
 ### THIS is a  function to actually render the reports.  Define it here to make things clear what variables it depends on
-render_reports <- function(wideAllSubjects, outputFileType, output_directory, docType, rmd_code, logo_path) {
-  for (i in 1:nrow(wideAllSubjects)) {
+render_reports <- function(wideAllSubjects, subjectsToProcess, outputFileType, output_directory, docType, rmd_code, logo_path) {
+  ## I replaced using "wideAllSubjects" with "subjecsToProcess" which is slightly confusing cause obviously I'm not needing to use wideAllSubjects at ALL
+  ## So really i should get RID of wide all subjects
+  for (i in 1:nrow(subjectsToProcess)) {
     #  i<-1
-    pure_sample_name <- wideAllSubjects$PureSampleName[i]
-    subject <- wideAllSubjects$SampleNumber[i]
+    pure_sample_name <- subjectsToProcess$PureSampleName[i]
+    subject <- subjectsToProcess$SampleNumber[i]
     outputFileName <- paste0("MyExposome_Report_", pure_sample_name, ".", outputFileType)
 
     rmarkdown::render(
@@ -41,7 +43,8 @@ render_reports <- function(wideAllSubjects, outputFileType, output_directory, do
   }
 }
 
-if (!exists("subject")) {
+#if (!exists("subject")) {   # STOP USING SUBJECT to see if MyExp_set_key_variables.R is loaded
+if (!exists("MyExp_set_key_variables_R_file_is_loaded")) { ##  NEED TO HARD CODE  R Directory Location
   #source("MyExp_set_key_variables.R") # source() actually RUNS IT not just loads it
   ### Here we need to hardcode "R" cause function not set yet
   source(here::here("R", "MyExp_set_key_variables.R"))
@@ -53,7 +56,7 @@ if (!exists("subject")) {
 #EDFoutputFile <- "Pah_fakeOutputFile.csv"
 # Where to put OUTPUT FILES   ### REALLY i should do this using the prepend variable for consistency BUT i didn't
 if (exists("SBIR_P2_Part1_71_FixUp")){
-  if (SBIR_P2_Part1_71_FixUp){
+  if (SBIR_P2_Part1_71_FixUp |SBIR_P2_Part1and2_35and71_FixUp ) {
     output_directory <- here::here("results_output","SBIR_Results_Output")
   } else {
     output_directory <- here::here("results_output")
@@ -66,7 +69,9 @@ if (exists("SBIR_P2_Part1_71_FixUp")){
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 ### THIS if test is SILLY cause we JUST above did rm(list=ls()) and then just loaded the key variables
 ###   so there is no way masterParam exists
-if (!exists("masterParam")) {
+### STOP using masterParam and start using MyExp_Base_Code_v6_R_Code_was_run which is "r_code"
+#if (!exists("masterParam")) {
+if (!exists("MyExp_Base_Code_v6_R_Code_was_run")) {
   source(r_code)  # source() actually RUNS IT not just loads it r_code=MyExp_Base_Code_v?.R
 }
 
@@ -80,10 +85,15 @@ if (!exists("masterParam")) {
 # that list of subjects can be found with
 #allSubjects<- unique(testResults.big[testResults.big$Result>0,]$SampleNumber)
 
+# basically i am just grabbing all the names from testResults BUT i will later be redoing whole loop... just using this as way to do one-by-one reports not for data
 wideAllSubjects <- testResults.big %>%
   filter(Result > 0) %>%
-  select(PureSampleName,SampleNumber) %>%
+  select(PureSampleName,SampleNumber,Lab_Submission_Batch) %>%
   unique()
+
+### for SBIR_P2_Part1and2_35and71_FixUp   I am only going to PRINT from the newest batch even while i process all 71+31 I'm only generating 31
+subjectsToProcess <- wideAllSubjects %>%
+  filter(Lab_Submission_Batch=="PO 262")
 
 ### AS FAR AS I SEEE, allSubjects is NEVER USED??
 #allSubjects<- unique(testResults.big[testResults.big$Result>0,]$PureSampleName)  # On 10/17/2024 I switched to using PureSampleName instead of FSESID
@@ -112,6 +122,7 @@ logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png
 # everything below is commented out and old
 render_reports(
   wideAllSubjects = wideAllSubjects,
+  subjectsToProcess=subjectsToProcess,
   outputFileType = outputFileType,
   output_directory = output_directory,
   docType = docType,

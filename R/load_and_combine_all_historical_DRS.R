@@ -4,8 +4,11 @@
 
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
-if (!exists("subject")) {
-  source(here::here("R","MyExp_set_key_variables.R"))
+#if (!exists("subject")) {   # STOP USING SUBJECT to see if MyExp_set_key_variables.R is loaded
+if (!exists("MyExp_set_key_variables_R_file_is_loaded"))
+  ##  NEED TO HARD CODE  R Directory Location
+{
+  source(here::here("R", "MyExp_set_key_variables.R"))
 }
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("masterParam")) {
