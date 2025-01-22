@@ -50,7 +50,7 @@ toc.insertAdjacentElement("afterend", logo); } });
 ###</style>
 
 
-```{r setupbs_modal_std_dev, echo=FALSE}
+```{r setupbsZZ_modal_std_dev4, echo=FALSE}
 bs_modal(id = "StandardDeviation3", title = "Standard Deviation Definition3", body = "Standard deviation3 is a measure of how spread out the numbers in a set are from the average. A bigger standard deviation means the numbers are more spread out, while a smaller one means they're closer to the average.")
 
 # REMEMBER here is how to use a button
