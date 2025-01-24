@@ -55,6 +55,9 @@ if (!exists("MyExp_set_key_variables_R_file_is_loaded")) { ##  NEED TO HARD CODE
 
 #EDFoutputFile <- "Pah_fakeOutputFile.csv"
 # Where to put OUTPUT FILES   ### REALLY i should do this using the prepend variable for consistency BUT i didn't
+#
+#  IS THERE A LOGIC ERROR BELOW OF ME NOT TESTING IF A VARIABLE EXISTS BEFORE SEEING IF IT IS SET TO TRUE?
+#
 if (exists("SBIR_P2_Part1_71_FixUp")){
   if (SBIR_P2_Part1_71_FixUp |SBIR_P2_Part1and2_35and71_FixUp ) {
     output_directory <- here::here("results_output","SBIR_Results_Output")
