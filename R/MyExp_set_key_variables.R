@@ -278,7 +278,9 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
 } else if (SBIR_P2_Part1and2_35and71_FixUp) {
   resultsTableName <- "F24-27 MyExpo PO262 excel CoA_SBIRP2_Batch1amd2_71_35-WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
-  subject <- "A241564" # this is RANDOM one
+  #subject <- "A241564" # this is RANDOM one
+  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+
 
   wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
