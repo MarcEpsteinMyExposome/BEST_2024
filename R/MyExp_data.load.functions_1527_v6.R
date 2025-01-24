@@ -143,7 +143,8 @@ load.classification <- function(classificationTableName) {
 
 
   # Name the ROWS of the classification matrix
-  row.names(classification) <- classification$ParameterID
+  ## I'm commenting out the rownames since I don't use them and rownames are deprecated
+  #row.names(classification) <- classification$ParameterID
 
   ## ELIMINATE FIRST 1 COLUMN (was an older version)
   #  NEW, eliminate  a column named 'recordID' if it exists, if not do nothing
