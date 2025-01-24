@@ -25,6 +25,17 @@ setwd(here::here())
 In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALWAYS set  customiization-per-user to be ON
 
 ### THIS is a  function to actually render the reports.  Define it here to make things clear what variables it depends on
+#' Render Reports for Multiple Subjects
+#'
+#' This function generates reports for each subject in the `subjectsToProcess` dataframe.
+#'
+#' @param subjectsToProcess A dataframe containing subjects to process.
+#' @param outputFileType The file type for the output (e.g., "html", "docx").
+#' @param output_directory The directory to save the output files.
+#' @param docType The document type for rendering (e.g., "html_document").
+#' @param rmd_code The path to the RMarkdown template.
+#' @param logo_path The path to the logo image.
+#' @return None
 render_reports <- function(subjectsToProcess, outputFileType, output_directory, docType, rmd_code, logo_path) {
   ## I replaced using "wideAllSubjects" with "subjecsToProcess" which is slightly confusing cause obviously I'm not needing to use wideAllSubjects at ALL
   ## So really i should get RID of wide all subjects
@@ -93,8 +104,7 @@ if (!exists("MyExp_Base_Code_v6_R_Code_was_run")) {
 # This is never used other than as a way to set the value of subjectsToProcess
 wideAllSubjects <- testResults.big %>%
   filter(Result > 0) %>%
-  select(PureSampleName,SampleNumber,Lab_Submission_Batch) %>%
-  unique()
+  distinct(PureSampleName, SampleNumber, Lab_Submission_Batch)
 
 #subjectsToProcess <- wideAllSubjects   # JUst for some versions just set equal.
 #   BUT below use other system to subset which things to print (differentiate between what we include in the data and which we print)
@@ -123,8 +133,10 @@ logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png
 #docType<-"pdf_document"
 #outputFileType<-"pdf"
 
-
-
+# TEST for not existing
+if (!file.exists(rmd_code)) {
+  stop("RMarkdown template not found: ", rmd_code)
+}
 
 # Call the function to render all the reports
 # THIS does all the work here
