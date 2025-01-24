@@ -25,7 +25,7 @@ setwd(here::here())
 In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALWAYS set  customiization-per-user to be ON
 
 ### THIS is a  function to actually render the reports.  Define it here to make things clear what variables it depends on
-render_reports <- function(wideAllSubjects, subjectsToProcess, outputFileType, output_directory, docType, rmd_code, logo_path) {
+render_reports <- function(subjectsToProcess, outputFileType, output_directory, docType, rmd_code, logo_path) {
   ## I replaced using "wideAllSubjects" with "subjecsToProcess" which is slightly confusing cause obviously I'm not needing to use wideAllSubjects at ALL
   ## So really i should get RID of wide all subjects
   for (i in 1:nrow(subjectsToProcess)) {
@@ -88,11 +88,17 @@ if (!exists("MyExp_Base_Code_v6_R_Code_was_run")) {
 # that list of subjects can be found with
 #allSubjects<- unique(testResults.big[testResults.big$Result>0,]$SampleNumber)
 
-# basically i am just grabbing all the names from testResults BUT i will later be redoing whole loop... just using this as way to do one-by-one reports not for data
+# basically i am just grabbing all the names from testResults BUT i will later be redoing whole loop...
+#   just using this as way to do one-by-one reports not for data
+# This is never used other than as a way to set the value of subjectsToProcess
 wideAllSubjects <- testResults.big %>%
   filter(Result > 0) %>%
   select(PureSampleName,SampleNumber,Lab_Submission_Batch) %>%
   unique()
+
+#subjectsToProcess <- wideAllSubjects   # JUst for some versions just set equal.
+#   BUT below use other system to subset which things to print (differentiate between what we include in the data and which we print)
+
 
 ### for SBIR_P2_Part1and2_35and71_FixUp   I am only going to PRINT from the newest batch even while i process all 71+31 I'm only generating 31
 subjectsToProcess <- wideAllSubjects %>%
@@ -124,7 +130,6 @@ logo_path <- here::here("images", "myExposomeLogo_with_transparent_padding25.png
 # THIS does all the work here
 # everything below is commented out and old
 render_reports(
-  wideAllSubjects = wideAllSubjects,
   subjectsToProcess=subjectsToProcess,
   outputFileType = outputFileType,
   output_directory = output_directory,
