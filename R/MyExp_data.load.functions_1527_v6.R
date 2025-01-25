@@ -628,6 +628,9 @@ fixUpTestResults <- function(testResults, FixupFile) {
   #
   # SO i'm going to make sure we always have it so stop if we don't
   # and if we do, make it numeric
+  #
+  # SHOULD WE calculate days worn from weeks worn if days_worn is not found???
+  #
   if ("Days_worn" %in% colnames(fixUpResults)) {
     fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
   } else {
