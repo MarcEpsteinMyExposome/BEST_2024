@@ -144,7 +144,7 @@ load.classification <- function(classificationTableName) {
 
   # Name the ROWS of the classification matrix
   ## I'm commenting out the rownames since I don't use them and rownames are deprecated
-  #row.names(classification) <- classification$ParameterID
+  # row.names(classification) <- classification$ParameterID
 
   ## ELIMINATE FIRST 1 COLUMN (was an older version)
   #  NEW, eliminate  a column named 'recordID' if it exists, if not do nothing
@@ -296,12 +296,6 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecific
   class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
   class_L
 }
-
-
-
-
-
-
 
 ###  NOW READ IN THE RESULTS TABLE...
 ### SET in calling program OR SET IT HERE
@@ -560,7 +554,6 @@ load.testResults <- function(testResultsRawTable, masterParam, ExpectedUnits, Dr
 }
 
 
-
 fixUpTestResults <- function(testResults, FixupFile) {
   # THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
   # Use a Strategy Pattern for Customer-Specific Fixups
@@ -586,10 +579,62 @@ fixUpTestResults <- function(testResults, FixupFile) {
   # }
   ## ALSO i'm overloading concept of FIXUP.  really i just need to declare which CUSTOMER, which TEST, and which Date-or-version-or-RUN and then follow that logic thru
 
+
+  adjustResultsWeekSize <- function(results, week_factor, size_factor) {
+    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #
+    if (min(week_factor) < 0.05) {
+      stop(
+        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ", min(week_factor)
+      )
+    }
+
+    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #
+    if (min(size_factor) < 3.00) {
+      stop(
+        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ", min(size_factor)
+      )
+    }
+    results$Result <- results$Result / week_factor
+    results$Result <- signif(results$Result / size_factor, 3)
+    return(results)
+  }
+
+  adjustResultsDaySize <- function(results, Days_worn, size_factor) {
+    if (min(size_factor) < 3.00) {
+      stop(
+        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ", min(size_factor)
+      )
+    }
+    if (min(Days_worn) < 0.5) {
+      stop(
+        "MyExp DEBUG:  Found less that half a day, that can't be right, min days worn found = ", min(Days_worn)
+      )
+    }
+    results$Result <- results$Result / Days_worn
+    results$Result <- signif(results$Result / size_factor, 3)
+    return(results)
+  }
+
+  adjustResultsWeek <- function(results, week_factor) {
+    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #
+    if (min(week_factor) < 0.05) {
+      stop(
+        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ", min(week_factor)
+      )
+    }
+    results$Result <- results$Result / week_factor
+    return(results)
+  }
+
+  testResults$ResultOriginal <- testResults$Result # Save unmodified value   ALWAYS make ResultOriginal to be same as Result
+
+
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
   if (is.null(FixupFile)) {
-    testResults$ResultOriginal <- testResults$Result
     return(testResults)
   }
   fixUpResults <-
@@ -631,17 +676,21 @@ fixUpTestResults <- function(testResults, FixupFile) {
   #
   # SHOULD WE calculate days worn from weeks worn if days_worn is not found???
   #
-  if ("Days_worn" %in% colnames(fixUpResults)) {
-    fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-  } else {
-    stop(
-      "Marc Error:  STOP now -- need Days_Worn in test results to do air concentration... why not here? ",
-      "  Current file name is = ",
-      current_filename()
-    )
-  }
+  # if ("Days_worn" %in% colnames(fixUpResults)) {
+  #   fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
+  # } else {
+  #   stop(
+  #     "Marc Error:  STOP now -- need Days_Worn in test results to do air concentration... why not here? ",
+  #     "  Current file name is = ",
+  #     current_filename()
+  #   )
+  # } # SO WE KNOW that Days_worn is a valid column and is NUMERIC from above
+  fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
+  fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # Make Numeric
+  fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor) # Make Numeric
 
-  if (GEORGETOWNFixUp && ( RMD_type == "PHTH" | RMD_type =="FRAGRANCE")) {   # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
+
+  if (GEORGETOWNFixUp && (RMD_type == "PHTH" | RMD_type == "FRAGRANCE")) { # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
     #### Worked for UNMFixup...trying to make it generic?
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
@@ -651,18 +700,11 @@ fixUpTestResults <- function(testResults, FixupFile) {
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
-    fixUpResults$week_factor <-
-      as.numeric(fixUpResults$week_factor) # Adjust for week
 
-    fixUpResults$size_factor <-  as.numeric(fixUpResults$size_factor) # adjust for size
-
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
-    testResults2 <-
-      merge(fixUpResults, testResults, by = "SampleNumber")
-
-
+    # if ("Days_worn" %in% colnames(fixUpResults)) {
+    #   fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
+    # }
+    testResults2 <- merge(fixUpResults, testResults, by = "SampleNumber")
 
     #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
     #   WHICH could be ng/g or ng/WB depending.... that is confusing
@@ -670,46 +712,47 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #     if it were ng/WB
     #   set RESULT
     #
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
 
-#    testResults2$Result <-signif(testResults2$Result / testResults2$size_factor, 3)  # Do NOT adjust for size cause ng/g
+    testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
+
+    # testResults2$Result <-testResults2$Result / testResults2$week_factor
+    #    testResults2$Result <-signif(testResults2$Result / testResults2$size_factor, 3)  # Do NOT adjust for size cause ng/g
 
     # testResults2$TImeNormalFactor <- NULL
     # testResults2$WrisbandWeight <- NULL
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
-  } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) {             ###  ADd the 2nd batch as a separate batch
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
-    fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
-    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
+    return(testResults)
+  } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) { ###  ADd the 2nd batch as a separate batch
+    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
+    # fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
+    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
 
     # Suppress warnings during numeric conversion
     fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
     # Replace NA values with 24
     fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
 
-
-    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
     #
-    if (min(fixUpResults$week_factor) < 0.05) {
-      stop(
-        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
-        min(fixUpResults$week_factor)
-      )
-    }
-
-    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #     #
+    #     if (min(fixUpResults$week_factor) < 0.05) {
+    #       stop(
+    #         "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
+    #         min(fixUpResults$week_factor)
+    #       )
+    #     }
     #
-    if (min(fixUpResults$size_factor) < 3.00) {
-      stop(
-        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
-        min(fixUpResults$size_factor)
-      )
-    }
+    #     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
+    #     #
+    #     if (min(fixUpResults$size_factor) < 3.00) {
+    #       stop(
+    #         "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
+    #         min(fixUpResults$size_factor)
+    #       )
+    #     }
 
 
     testResults2 <-
@@ -725,12 +768,13 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #     if it were ng/WB
     #   set RESULT
     #
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
-    testResults2$Result <-
-      testResults2$Result / testResults2$Days_worn
-    testResults2$Result <-
-      signif(testResults2$Result / testResults2$size_factor, 3)
+    testResults2 <- adjustResultsDaySize(testResults2, testResults2$Days_worn, testResults2$size_factor)
+
+    # testResults2$Result <-    testResults2$Result / testResults2$Days_worn
+    # testResults2$Result <-    signif(testResults2$Result / testResults2$size_factor, 3)
+
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
       rename(Customer_Batch_Number = Batch_Num) %>%
@@ -782,8 +826,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #    fixUpResults <- fixUpResults %>%
     #      select(SampleNumber,week.factor,size.factor)
 
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
+    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
+    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
 
 
     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
@@ -818,12 +862,14 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #     if it were ng/WB
     #   set RESULT
     #
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
-    testResults2$Result <-
-      signif(testResults2$Result / testResults2$size_factor, 3)
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+
+    # testResults2$Result <-      testResults2$Result / testResults2$week_factor
+    # testResults2$Result <-      signif(testResults2$Result / testResults2$size_factor, 3)
+
+
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
       rename(Customer_Batch_Number = Batch_Num) %>%
@@ -888,18 +934,18 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #   set RESULT
     #
 
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
 
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
+    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
+    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
 
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber") ## HERE is where I add important values...
-    testResults2$ResultOriginal <-
-      testResults2$Result # Save unmodified value
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
+
+    testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
+
+    # testResults2$Result <-  testResults2$Result / testResults2$week_factor
 
     # as;dflkasd;fk:  NEED TO  NEVER do SIZE adjustment if in NG/G already yes???
 
@@ -1064,7 +1110,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #     if it were ng/WB
     #   set RESULT
     #
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
     testResults2$Result <-
       testResults2$Result / testResults2$week_factor
@@ -1116,7 +1162,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #     if it were ng/WB
     #   set RESULT
     #
-    testResults2$ResultOriginal <- testResults2$Result
+    # testResults2$ResultOriginal <- testResults2$Result
 
     testResults2$Result <-
       testResults2$Result / testResults2$week_factor
@@ -1629,19 +1675,19 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSo
     sub("[A-z]", uC, txt)
   }
   # THEN we apply taht new function to the ParameterName mcolumn
-  #NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
+  # NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
   chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
 
   ## FAILED PURRR replacement
-    # chemSourceMitigation[, "Chemical_Name"] <-
+  # chemSourceMitigation[, "Chemical_Name"] <-
   #   purrr::map_chr(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
 
 
   chemSourceMitigation
 }
 
-load.healthEffects <- function(healthEffectsTableName){
-  healthEffects <- read_csv(healthEffectsTableName,show_col_types = FALSE)
+load.healthEffects <- function(healthEffectsTableName) {
+  healthEffects <- read_csv(healthEffectsTableName, show_col_types = FALSE)
   return(healthEffects)
 }
 
