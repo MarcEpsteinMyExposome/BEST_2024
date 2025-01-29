@@ -24,7 +24,8 @@
 # masterParamTableName <-"./data/MASVtest2.csv"
 
 # READ IN the data
-load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
+load.masterParam <- function(masterParamTableName,
+                             DropSpecificChemicals) {
   masterParam <- read.table(
     masterParamTableName,
     sep = ",",
@@ -50,7 +51,7 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
 
   ## SOMETIMES the MasterParam data file comes with CASNumber instead of CasNumber and if so rename the column to fix
   if (is.null(masterParam$CasNumber) &
-    !is.null(masterParam$CASNumber)) {
+      !is.null(masterParam$CASNumber)) {
     masterParam <- masterParam %>% dplyr::rename(CasNumber = CASNumber)
   }
 
@@ -190,10 +191,7 @@ load.classification <- function(classificationTableName) {
   ### NOW collapse PAH and OPAH into PAH column
   ## on 6/19/2019 added this collapse
   classification$PAH <-
-    pmax(
-      classification$PAH,
-      classification$OPAH
-    )
+    pmax(classification$PAH, classification$OPAH)
   classification$OPAH <- NULL
 
 
@@ -283,7 +281,10 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 # Fix class_L by adding all VOC data using VOC MasterParameterTable
 #  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
-updateWithClassSpecificMasterParam <- function(classSpecificTitle, classSpecificMasterParamTable, class_L, DropSpecificChemicals) {
+updateWithClassSpecificMasterParam <- function(classSpecificTitle,
+                                               classSpecificMasterParamTable,
+                                               class_L,
+                                               DropSpecificChemicals) {
   classSpecifcMasterParam <-
     load.masterParam(
       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
@@ -354,7 +355,11 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
   testResults # Return the exact table read
 }
 
-load.testResults <- function(testResultsRawTable, masterParam, ExpectedUnits, DropAllZeroSampleNumbers, DropSpecificChemicals) {
+load.testResults <- function(testResultsRawTable,
+                             masterParam,
+                             ExpectedUnits,
+                             DropAllZeroSampleNumbers,
+                             DropSpecificChemicals) {
   # We read in the raw table elsewhere, now we're going to clean-it-up
   testResults <- testResultsRawTable
 
@@ -500,20 +505,16 @@ load.testResults <- function(testResultsRawTable, masterParam, ExpectedUnits, Dr
   # SELECT the columns we actually WANT
 
   testResults <-
-    testResults[, c(
-      "ParameterID",
-      "PureSampleName",
-      "SampleNumber",
-      "Result",
-      "Flag"
-    )]
+    testResults[, c("ParameterID",
+                    "PureSampleName",
+                    "SampleNumber",
+                    "Result",
+                    "Flag")]
 
   # Add the ParameterName and the CASNumber to the results table
   testResults <-
-    merge(testResults, masterParam[, c("ParameterID", "ParameterName", "CASNumber")],
-      by =
-        "ParameterID"
-    )
+    merge(testResults, masterParam[, c("ParameterID", "ParameterName", "CASNumber")], by =
+            "ParameterID")
 
   # Clean up unneeded variable
   # rm(list=c("resultsTable"))
@@ -565,7 +566,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #
     if (min(week_factor) < 0.05) {
       stop(
-        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ", min(week_factor)
+        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
+        min(week_factor)
       )
     }
 
@@ -573,7 +575,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #
     if (min(size_factor) < 3.00) {
       stop(
-        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ", min(size_factor)
+        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
+        min(size_factor)
       )
     }
     results$Result <- results$Result / week_factor
@@ -583,12 +586,14 @@ fixUpTestResults <- function(testResults, FixupFile) {
   adjustResultsDaySize <- function(results, Days_worn, size_factor) {
     if (min(size_factor) < 3.00) {
       stop(
-        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ", min(size_factor)
+        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
+        min(size_factor)
       )
     }
     if (min(Days_worn) < 0.5) {
       stop(
-        "MyExp DEBUG:  Found less that half a day, that can't be right, min days worn found = ", min(Days_worn)
+        "MyExp DEBUG:  Found less that half a day, that can't be right, min days worn found = ",
+        min(Days_worn)
       )
     }
     results$Result <- results$Result / Days_worn
@@ -600,24 +605,25 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #
     if (min(week_factor) < 0.05) {
       stop(
-        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ", min(week_factor)
+        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
+        min(week_factor)
       )
     }
     results$Result <- results$Result / week_factor
     return(results)
   }
 
-  #Define some functiosn to process specific customer data sets
+  # Define some functions to process specific customer data sets
   dartmouthUSCFandCombinedFixup <- function(fixUpResults, testResults) {
-
     testResults2 <-
       merge(fixUpResults,
             testResults,
             by.x = "FSES_ID",
-            by.y = "SampleNumber"
-      )
+            by.y = "SampleNumber")
 
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+    testResults2 <- adjustResultsWeekSize(testResults2,
+                                          testResults2$week_factor,
+                                          testResults2$size_factor)
 
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
@@ -650,32 +656,30 @@ fixUpTestResults <- function(testResults, FixupFile) {
     testResults2$PureSampleName <-
       paste(testResults2$PureSampleName,
             testResults2$Customer_WB_id,
-            sep = "_"
-      )
+            sep = "_")
 
     testResults <- testResults2
 
     rm(testResults2, fixUpResults)
     return(testResults)
     #
-
   }
-
   sbirP2fixup <- function(fixUpResults, testResults) {
     # Suppress warnings during numeric conversion  NOTE I DO NOT USE HOURS_WORN anywhere I don't think so this is old?
-    #fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
+    # fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
     # Replace NA values with 24
-    #fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
+    # fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
 
     testResults2 <-
       merge(fixUpResults,
             testResults,
             by.x = "FSES_ID",
-            by.y = "SampleNumber"
-      )
+            by.y = "SampleNumber")
 
 
-    testResults2 <- adjustResultsDaySize(testResults2, testResults2$Days_worn, testResults2$size_factor)
+    testResults2 <- adjustResultsDaySize(testResults2,
+                                         testResults2$Days_worn,
+                                         testResults2$size_factor)
 
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
@@ -705,8 +709,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     return(testResults)
     #
   }
-
-  wisconsinFixup <- function(fixUpResults,testResults ) {
+  wisconsinFixup <- function(fixUpResults, testResults) {
     ### this weird section is JUST for the    SET TO TRUE FOR  Wisconsin
     fixUpResults <- fixUpResults %>%
       rename(SampleNumber = FSES_ID)
@@ -716,8 +719,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
       merge(fixUpResults,
             testResults,
             by.x = "SampleNumber",
-            by.y = "SampleNumber"
-      )
+            by.y = "SampleNumber")
 
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber") ## HERE is where I add important values...
@@ -755,7 +757,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
     rm(testResults2, fixUpResults)
     return(testResults)
   }
-
   genericWeekSizeFixup <- function(fixUpResults, testResults) {
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
@@ -764,9 +765,11 @@ fixUpTestResults <- function(testResults, FixupFile) {
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
-    testResults2 <-   merge(fixUpResults, testResults, by = "SampleNumber")
+    testResults2 <- merge(fixUpResults, testResults, by = "SampleNumber")
 
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+    testResults2 <- adjustResultsWeekSize(testResults2,
+                                          testResults2$week_factor,
+                                          testResults2$size_factor)
 
 
     testResults <- testResults2
@@ -774,7 +777,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     return(testResults)
   }
 
-#####
+  #####
   testResults$ResultOriginal <- testResults$Result # Save unmodified value   ALWAYS make ResultOriginal to be same as Result
 
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
@@ -823,7 +826,10 @@ fixUpTestResults <- function(testResults, FixupFile) {
 
 
 
-  if (GEORGETOWNFixUp && (RMD_type == "PHTH" | RMD_type == "FRAGRANCE")) { # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
+  if (GEORGETOWNFixUp &&
+      (RMD_type == "PHTH" |
+       RMD_type == "FRAGRANCE")) {
+    # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
@@ -839,16 +845,19 @@ fixUpTestResults <- function(testResults, FixupFile) {
     rm(testResults2, fixUpResults)
     return(testResults)
     #
-  } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) { ###  ADd the 2nd batch as a separate batch
-    testResults<-sbirP2fixup(fixUpResults, testResults)
+  } else if ((SBIR_P2_Part1_71_FixUp ||
+              SBIR_P2_Part2_35_FixUp) ||
+             SBIR_P2_Part1and2_35and71_FixUp) {
+    ###  ADd the 2nd batch as a separate batch
+    testResults <- sbirP2fixup(fixUpResults, testResults)
     return(testResults)
   } else if (DartmouthFixup ||
-    UCSF2020Fixup ||
-    CombinedTestData) {
-    testResults<- dartmouthUSCFandCombinedFixup(fixUpResults, testResults)
+             UCSF2020Fixup ||
+             CombinedTestData) {
+    testResults <- dartmouthUSCFandCombinedFixup(fixUpResults, testResults)
     return(testResults)
   } else if (WisconsinFixup) {
-    testResults<- wisconsinFixup(fixUpResults,testResults )
+    testResults <- wisconsinFixup(fixUpResults, testResults)
     return(testResults)
     #
   } else if (LorealFixup) {
@@ -863,22 +872,21 @@ fixUpTestResults <- function(testResults, FixupFile) {
     return(testResults)
     #
   } else if (BuffaloFixup) {
-
     fixUpResults <- fixUpResults %>%
-      select(
-        FSES_ID,
-        week_factor,
-        size_factor,
-        PartName,
-        PrePost,
-        Days_worn
-      ) %>%
+      select(FSES_ID,
+             week_factor,
+             size_factor,
+             PartName,
+             PrePost,
+             Days_worn) %>%
       rename(SampleNumber = FSES_ID)
 
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
 
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+    testResults2 <- adjustResultsWeekSize(testResults2,
+                                          testResults2$week_factor,
+                                          testResults2$size_factor)
 
     testResults <- testResults2
     rm(testResults2, fixUpResults)
@@ -893,13 +901,18 @@ fixUpTestResults <- function(testResults, FixupFile) {
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
 
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+    testResults2 <- adjustResultsWeekSize(testResults2,
+                                          testResults2$week_factor,
+                                          testResults2$size_factor)
 
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     return(testResults)
     #
-  } else if (UniVisionFixup && (RMD_type == "PEST") && wristbands_time_adjusted_one_week_not_weight) { ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
+  } else if (UniVisionFixup &&
+             (RMD_type == "PEST") &&
+             wristbands_time_adjusted_one_week_not_weight) {
+    ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
     #### Worked for THIS IS to ONLY adjust for TIME and NOT for WEIGHT/SIzE of wristband
     fixUpResults <- fixUpResults %>%
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
@@ -910,25 +923,23 @@ fixUpTestResults <- function(testResults, FixupFile) {
 
     testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
 
-    testResults2$Result <-  signif(testResults2$Result, 3) ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
+    testResults2$Result <- signif(testResults2$Result, 3) ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     return(testResults)
   } else if (UNMFixup |
-    COLORADOFixUp |
-    ULILLEFRANCEFixup |
-    UCONNFixUp |
-    (CHICAGOFixUp &&
-      RMD_type == "DRS") |
-    (GEORGETOWNFixUp &&
-      RMD_type == "DRS") |
-    SBIR_P1_May2022Fixup |
-    UC_DAVISFixup |
-    BostonFixup |
-    UFL_FloridaFixup |
-    LouisvilleFixup |
-    (UniVisionFixup &&
-      RMD_type == "DRS")) {
+             COLORADOFixUp |
+             ULILLEFRANCEFixup |
+             UCONNFixUp |
+             (CHICAGOFixUp && RMD_type == "DRS") |
+             (GEORGETOWNFixUp &&  RMD_type == "DRS") |
+             SBIR_P1_May2022Fixup |
+             UC_DAVISFixup |
+             BostonFixup |
+             UFL_FloridaFixup |
+             LouisvilleFixup |
+             (UniVisionFixup && RMD_type == "DRS")
+             ) {
     testResults <- genericWeekSizeFixup(fixUpResults, testResults)
     return(testResults)
   } else if (FixupForAnyone) {
@@ -946,7 +957,10 @@ fixUpTestResults <- function(testResults, FixupFile) {
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
-addAirCalculationInformation <- function(tr, airConcentrationTable, cm3VolumeSiliconeOfOneGram, ExpectedUnits) {
+addAirCalculationInformation <- function(tr,
+                                         airConcentrationTable,
+                                         cm3VolumeSiliconeOfOneGram,
+                                         ExpectedUnits) {
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   airConcentrationLookup <-
@@ -1246,10 +1260,9 @@ load.riskCalifProp65 <-
     if (nrow(riskCxx) > 0) {
       riskCxx <-
         aggregate(toxicityType ~ ParameterID,
-          data = riskCxx,
-          paste,
-          collapse = " & "
-        ) #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
+                  data = riskCxx,
+                  paste,
+                  collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
 
       # Eliminate all rows where NO RISK
       # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
@@ -1297,7 +1310,8 @@ load.epaIris <- function(epaIrisTableName) {
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
 
-load.IARCRisk <- function(IARCRiskTableName, riskIARCdecodeTableName) {
+load.IARCRisk <- function(IARCRiskTableName,
+                          riskIARCdecodeTableName) {
   # cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
   IARCRisk <- read.table(
     IARCRiskTableName,
@@ -1415,13 +1429,18 @@ load.IARCRisk <- function(IARCRiskTableName, riskIARCdecodeTableName) {
 #### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
 # library(readxl)
 
-load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSourceSheetName) {
-  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName,
-    sheet = chemSourceSheetName
-  )
+load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
+                                       chemSourceSheetName) {
+  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName, sheet = chemSourceSheetName)
 
   chemSourceMitigation <- chemSourceMitigation %>%
-    select(Chemical_Name, Summary_of_Health_Effects, Sources_of_Exposure, Mitigation_Strategies, WIKIPEDIA_ARTICLE_URL)
+    select(
+      Chemical_Name,
+      Summary_of_Health_Effects,
+      Sources_of_Exposure,
+      Mitigation_Strategies,
+      WIKIPEDIA_ARTICLE_URL
+    )
 
 
   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
