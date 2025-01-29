@@ -557,29 +557,9 @@ load.testResults <- function(testResultsRawTable, masterParam, ExpectedUnits, Dr
 fixUpTestResults <- function(testResults, FixupFile) {
   # THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
   # Use a Strategy Pattern for Customer-Specific Fixups
-  # If the main reason for so many variables is the different customer-specific fixes (like DartmouthFixup, UCSF2020Fixup, etc.),
-  # consider refactoring to use a strategy pattern.
-  # Create a set of "fixup" functions, each implementing the adjustments for a specific customer or for generic customer
-  # Then, fixUpTestResults would simply select the appropriate function based on the customer:
-  #   dartmouthFixup <- function(testResults, FixupFile) {
-  #     # Dartmouth-specific fixup code here
-  #   }
-  #
-  # ucsfFixup <- function(testResults, FixupFile) {
-  #   # UCSF-specific fixup code here
-  # }
-  #
-  # fixUpTestResults <- function(testResults, FixupFile, customer) {
-  #   fixupFunction <- switch(customer,
-  #                           "Dartmouth" = dartmouthFixup,
-  #                           "UCSF" = ucsfFixup,
-  #                           # Add other customers as needed
-  #                           stop("Unknown customer"))
-  #   fixupFunction(testResults, FixupFile)
-  # }
   ## ALSO i'm overloading concept of FIXUP.  really i just need to declare which CUSTOMER, which TEST, and which Date-or-version-or-RUN and then follow that logic thru
 
-
+  # Define some functions to manipulate result value appropriately
   adjustResultsWeekSize <- function(results, week_factor, size_factor) {
     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
     #
@@ -670,90 +650,34 @@ fixUpTestResults <- function(testResults, FixupFile) {
   }
   #
   # IF we're doing fixups then for AIR CONCENTRATION we need Days_worn
-  #
-  # SO i'm going to make sure we always have it so stop if we don't
-  # and if we do, make it numeric
-  #
   # SHOULD WE calculate days worn from weeks worn if days_worn is not found???
-  #
-  # if ("Days_worn" %in% colnames(fixUpResults)) {
-  #   fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-  # } else {
-  #   stop(
-  #     "Marc Error:  STOP now -- need Days_Worn in test results to do air concentration... why not here? ",
-  #     "  Current file name is = ",
-  #     current_filename()
-  #   )
-  # } # SO WE KNOW that Days_worn is a valid column and is NUMERIC from above
+
   fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
   fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # Make Numeric
   fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor) # Make Numeric
 
 
   if (GEORGETOWNFixUp && (RMD_type == "PHTH" | RMD_type == "FRAGRANCE")) { # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
-    #### Worked for UNMFixup...trying to make it generic?
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
     fixUpResults <- fixUpResults %>%
-      # select(FSES_ID,week_factor,size_factor) %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
+      select(FSES_ID, week_factor, size_factor, Days_worn) %>%
       rename(SampleNumber = FSES_ID)
 
-
-    # if ("Days_worn" %in% colnames(fixUpResults)) {
-    #   fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    # }
     testResults2 <- merge(fixUpResults, testResults, by = "SampleNumber")
-
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-    # testResults2$ResultOriginal <- testResults2$Result
-
 
     testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
 
-    # testResults2$Result <-testResults2$Result / testResults2$week_factor
-    #    testResults2$Result <-signif(testResults2$Result / testResults2$size_factor, 3)  # Do NOT adjust for size cause ng/g
-
-    # testResults2$TImeNormalFactor <- NULL
-    # testResults2$WrisbandWeight <- NULL
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     return(testResults)
+    #
   } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) { ###  ADd the 2nd batch as a separate batch
-    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # NOT using this for SBIR P2
-    # fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn) ### USE DaysWORN as same as "days_factor"
-    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
-
-    # Suppress warnings during numeric conversion
-    fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
+    # Suppress warnings during numeric conversion  NOTE I DO NOT USE HOURS_WORN anywhere I don't think so this is old?
+    #fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
     # Replace NA values with 24
-    fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
-
-    #
-    #     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
-    #     #
-    #     if (min(fixUpResults$week_factor) < 0.05) {
-    #       stop(
-    #         "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
-    #         min(fixUpResults$week_factor)
-    #       )
-    #     }
-    #
-    #     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
-    #     #
-    #     if (min(fixUpResults$size_factor) < 3.00) {
-    #       stop(
-    #         "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
-    #         min(fixUpResults$size_factor)
-    #       )
-    #     }
-
+    #fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
 
     testResults2 <-
       merge(fixUpResults,
@@ -762,18 +686,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
         by.y = "SampleNumber"
       )
 
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-    # testResults2$ResultOriginal <- testResults2$Result
 
     testResults2 <- adjustResultsDaySize(testResults2, testResults2$Days_worn, testResults2$size_factor)
-
-    # testResults2$Result <-    testResults2$Result / testResults2$Days_worn
-    # testResults2$Result <-    signif(testResults2$Result / testResults2$size_factor, 3)
 
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
@@ -781,8 +695,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
       rename(PureSampleName = PureSampleName.x) %>%
       rename(Lab_Submission_Batch = Customer_Batch_Number)
     testResults2 <- testResults2 %>%
-      # rename(Start_Wearing = Start, End_Wearing = End) %>%   # Don't have start and end dates for DAY fixup
-      # rename(Wristband_Size = size) %>%   # Don't have wristband_Size
       select(
         SampleNumber,
         PureSampleName,
@@ -800,54 +712,14 @@ fixUpTestResults <- function(testResults, FixupFile) {
       )
 
 
-    #### NOW because marc is confused on 2/2/2020 about PureSampleName becuase sometimes (Dartmouth) it is not Uniqe...I'll append Customer_WB_id to PureSampleName just to be totally safe...
-    # But I don't think i ever really use PureSmpleName in any meaningful way so...
-    #### MaRC commented this out since not needed for SBIR P2 I believe
-    # testResults2$PureSampleName <-
-    #   paste(testResults2$PureSampleName,
-    #         testResults2$Customer_WB_id,
-    #         sep = "_")
-
-
     testResults <- testResults2
 
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (DartmouthFixup ||
     UCSF2020Fixup ||
     CombinedTestData) {
-    # added UCSF2020 fixup to this... hopefully that works?  Uses same fixupfile format as dartmouth now
-    ### this weird section is JUST for the    SET TO TRUE FOR DARTMOUTH FIXUP  (was also wisconsin but now separating to deal w/ new lookup tables)
-    #           to nanograms per gram of wristband normalized for one week.
-    #
-
-    # Select only the columns I want from fixup file
-    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
-    #    fixUpResults <- fixUpResults %>%
-    #      select(SampleNumber,week.factor,size.factor)
-
-    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
-
-
-    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
-    #
-    if (min(fixUpResults$week_factor) < 0.05) {
-      stop(
-        "MyExp DEBUG:  Found less that .05 weeks, that can't be right, min value found = ",
-        min(fixUpResults$week_factor)
-      )
-    }
-
-    ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
-    #
-    if (min(fixUpResults$size_factor) < 3.00) {
-      stop(
-        "MyExp DEBUG:  Found less that 3 grams in WB weight, that can't be right, min weight found = ",
-        min(fixUpResults$size_factor)
-      )
-    }
-
 
     testResults2 <-
       merge(fixUpResults,
@@ -856,18 +728,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
         by.y = "SampleNumber"
       )
 
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-    # testResults2$ResultOriginal <- testResults2$Result
-
     testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
 
-    # testResults2$Result <-      testResults2$Result / testResults2$week_factor
-    # testResults2$Result <-      signif(testResults2$Result / testResults2$size_factor, 3)
 
 
     testResults2 <- testResults2 %>%
@@ -896,7 +758,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
         Lab_Submission_Batch
       )
 
-
     #### NOW because marc is confused on 2/2/2020 about PureSampleName becuase sometimes (Dartmouth) it is not Uniqe...I'll append Customer_WB_id to PureSampleName just to be totally safe...
     # But I don't think i ever really use PureSmpleName in any meaningful way so...
     testResults2$PureSampleName <-
@@ -905,21 +766,17 @@ fixUpTestResults <- function(testResults, FixupFile) {
         sep = "_"
       )
 
-
     testResults <- testResults2
 
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (WisconsinFixup) {
     ### this weird section is JUST for the    SET TO TRUE FOR  Wisconsin
     fixUpResults <- fixUpResults %>%
-      # select(FSES_ID,week_factor,size_factor,Days_worn,PartName,PrePost) %>%   # I used to subset everything now use full thing?
       rename(SampleNumber = FSES_ID)
 
     # Select only the columns I want from fixup file
-    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
-    #    fixUpResults <- fixUpResults %>%
-    #      select(SampleNumber,week.factor,size.factor)
     testResults2 <-
       merge(fixUpResults,
         testResults,
@@ -927,46 +784,13 @@ fixUpTestResults <- function(testResults, FixupFile) {
         by.y = "SampleNumber"
       )
 
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-
-    # testResults2$ResultOriginal <- testResults2$Result
-
-
-    # fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    # fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
-
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber") ## HERE is where I add important values...
 
     testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
 
-    # testResults2$Result <-  testResults2$Result / testResults2$week_factor
-
-    # as;dflkasd;fk:  NEED TO  NEVER do SIZE adjustment if in NG/G already yes???
-
-    # testResults2$Result <- signif(testResults2$Result / testResults2$size.factor, 3)   #DO NOT DO SIZE FIXUP cause already in ng/g starting w/ PO 211
-    #### NEED TO FIGURE OUT when when when to upscale the original value
-    #  if original value in ng/g then... for AirConcentration need to use ONE GRAM as size
-    #   if original value in ng/WB then need to use actual WB size
-    #     SO can do the OVERRIDE when... in AIR CONCENTRATOR CALCULATOR we do this calculation!!!
-    # if (ExpectedUnits == "ng/g") {
-    #   testResults2$ResultOriginal <- testResults2$ResultOriginal * week_factor
-    # }
-
-
-    # testResults2$TImeNormalFactor <- NULL
-    # testResults2$WrisbandWeight <- NULL
-    #
-    #
-    #
     #
     testResults2 <- testResults2 %>%
-      # rename(SampleNumber=FSES_ID) %>%
       rename(Customer_Batch_Number = Batch_Num) %>%
       rename(Start_Wearing = Start, End_Wearing = End) %>%
       rename(Wristband_Size = size) %>%
@@ -992,12 +816,10 @@ fixUpTestResults <- function(testResults, FixupFile) {
         PartName
       )
 
-
-
-
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (LorealFixup) {
     ### this weird section is JUST for the    SET TO TRUE FOR LOREAL
     #           FIRST DRS run for Dartmouth to fix values
@@ -1017,17 +839,11 @@ fixUpTestResults <- function(testResults, FixupFile) {
       testResults2$Result <-
         signif(testResults2$Result / testResults2$Days_Worn, 3)
     }
-
-    # testResults2$TImeNormalFactor <- NULL
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (BuffaloFixup) {
-    ### this weird section is JUST for the
-    #       NOW just Buffalo as working on Dartmouth special formats above
-
-    # Select only the columns I want from fixup file
-    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
 
     fixUpResults <- fixUpResults %>%
       select(
@@ -1040,86 +856,48 @@ fixUpTestResults <- function(testResults, FixupFile) {
       ) %>%
       rename(SampleNumber = FSES_ID)
 
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
-
-
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
-    testResults2$Result <-
-      signif(testResults2$Result / testResults2$size_factor, 3)
-    # testResults2$TImeNormalFactor <- NULL
-    # testResults2$WrisbandWeight <- NULL
+
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (UCSFplusRandom10Fixup) {
-    ### this weird section is JUST for the
-    #       NOW just UCSF
-
     # Select only the columns I want from fixup file
-    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
     fixUpResults <- fixUpResults %>%
       select(FSES_ID, week_factor, size_factor, Days_worn) %>%
       rename(SampleNumber = FSES_ID)
 
-    fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor)
-    fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor)
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
-
 
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
-    testResults2$Result <-
-      signif(testResults2$Result / testResults2$size_factor, 3)
-    # testResults2$TImeNormalFactor <- NULL
-    # testResults2$WrisbandWeight <- NULL
+
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+
+
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
+    #
   } else if (UniVisionFixup && (RMD_type == "PEST") && wristbands_time_adjusted_one_week_not_weight) { ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
     #### Worked for THIS IS to ONLY adjust for TIME and NOT for WEIGHT/SIzE of wristband
     fixUpResults <- fixUpResults %>%
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
-    fixUpResults$week_factor <-
-      as.numeric(fixUpResults$week_factor) # Adjust for week
-    fixUpResults$size_factor <-
-      as.numeric(fixUpResults$size_factor) # adjust for size
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
 
 
+    testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
 
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-    # testResults2$ResultOriginal <- testResults2$Result
-
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
-    testResults2$Result <-
-      # signif(testResults2$Result / testResults2$size_factor, 3)  ### THIS LINE is to adjust for SIZE FACTOR
-      signif(testResults2$Result, 3) ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
+    testResults2$Result <-  signif(testResults2$Result, 3) ### This line is to   NOT adjust for SIZE/WEIGHT of wristband
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
   } else if (UNMFixup |
     COLORADOFixUp |
     ULILLEFRANCEFixup |
@@ -1135,44 +913,21 @@ fixUpTestResults <- function(testResults, FixupFile) {
     LouisvilleFixup |
     (UniVisionFixup &&
       RMD_type == "DRS")) {
-    #### Worked for UNMFixup...trying to make it generic?
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
     fixUpResults <- fixUpResults %>%
-      # select(FSES_ID,week_factor,size_factor) %>%
       select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
-    fixUpResults$week_factor <-
-      as.numeric(fixUpResults$week_factor) # Adjust for week
-    fixUpResults$size_factor <-
-      as.numeric(fixUpResults$size_factor) # adjust for size
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
-    testResults2 <-
-      merge(fixUpResults, testResults, by = "SampleNumber")
+    testResults2 <-   merge(fixUpResults, testResults, by = "SampleNumber")
+
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
 
 
-
-    #  SET ResultOriginal to the un-weighted-un-modfied original value from lab
-    #   WHICH could be ng/g or ng/WB depending.... that is confusing
-    #   IF it is ng/g then I need to UPSCALE IT to what it WOULD HAVE BEEN
-    #     if it were ng/WB
-    #   set RESULT
-    #
-    # testResults2$ResultOriginal <- testResults2$Result
-
-    testResults2$Result <-
-      testResults2$Result / testResults2$week_factor
-    testResults2$Result <-
-      signif(testResults2$Result / testResults2$size_factor, 3)
-    # testResults2$TImeNormalFactor <- NULL
-    # testResults2$WrisbandWeight <- NULL
     testResults <- testResults2
     rm(testResults2, fixUpResults)
-    testResults
+    return(testResults)
   } else if (FixupForAnyone) {
     stop(
       "MyExp DEBUG:  We are trying to do a FIXUP but no fixup type is setup which seems WRONG,  SET IT ub data.load.functions ",
@@ -1181,7 +936,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     )
   } else {
     # NO FIXUP NEEDED so just return testResults (SHOULD NEVER GET HERE????)
-    testResults
+    return(testResults)
   }
 }
 
