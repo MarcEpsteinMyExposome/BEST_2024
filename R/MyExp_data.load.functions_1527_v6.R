@@ -580,7 +580,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
     results$Result <- signif(results$Result / size_factor, 3)
     return(results)
   }
-
   adjustResultsDaySize <- function(results, Days_worn, size_factor) {
     if (min(size_factor) < 3.00) {
       stop(
@@ -596,7 +595,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
     results$Result <- signif(results$Result / size_factor, 3)
     return(results)
   }
-
   adjustResultsWeek <- function(results, week_factor) {
     ##### NOTENOTE NOTE NOTE_- The error catch below is GREAT
     #
@@ -609,8 +607,175 @@ fixUpTestResults <- function(testResults, FixupFile) {
     return(results)
   }
 
-  testResults$ResultOriginal <- testResults$Result # Save unmodified value   ALWAYS make ResultOriginal to be same as Result
+  #Define some functiosn to process specific customer data sets
+  dartmouthUSCFandCombinedFixup <- function(fixUpResults, testResults) {
 
+    testResults2 <-
+      merge(fixUpResults,
+            testResults,
+            by.x = "FSES_ID",
+            by.y = "SampleNumber"
+      )
+
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+
+    testResults2 <- testResults2 %>%
+      rename(SampleNumber = FSES_ID) %>%
+      rename(Customer_Batch_Number = Batch_Num) %>%
+      rename(Start_Wearing = Start, End_Wearing = End) %>%
+      rename(Wristband_Size = size) %>%
+      select(
+        ParameterID,
+        PureSampleName,
+        Result,
+        ResultOriginal,
+        ParameterName,
+        CASNumber,
+        Flag,
+        Customer_Batch_Number,
+        Customer_WB_id,
+        SampleNumber,
+        MyE_Received,
+        Start_Wearing,
+        End_Wearing,
+        Wristband_Size,
+        Days_worn,
+        size_factor,
+        week_factor,
+        Lab_Submission_Batch
+      )
+
+    #### NOW because marc is confused on 2/2/2020 about PureSampleName becuase sometimes (Dartmouth) it is not Uniqe...I'll append Customer_WB_id to PureSampleName just to be totally safe...
+    # But I don't think i ever really use PureSmpleName in any meaningful way so...
+    testResults2$PureSampleName <-
+      paste(testResults2$PureSampleName,
+            testResults2$Customer_WB_id,
+            sep = "_"
+      )
+
+    testResults <- testResults2
+
+    rm(testResults2, fixUpResults)
+    return(testResults)
+    #
+
+  }
+
+  sbirP2fixup <- function(fixUpResults, testResults) {
+    # Suppress warnings during numeric conversion  NOTE I DO NOT USE HOURS_WORN anywhere I don't think so this is old?
+    #fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
+    # Replace NA values with 24
+    #fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
+
+    testResults2 <-
+      merge(fixUpResults,
+            testResults,
+            by.x = "FSES_ID",
+            by.y = "SampleNumber"
+      )
+
+
+    testResults2 <- adjustResultsDaySize(testResults2, testResults2$Days_worn, testResults2$size_factor)
+
+    testResults2 <- testResults2 %>%
+      rename(SampleNumber = FSES_ID) %>%
+      rename(Customer_Batch_Number = Batch_Num) %>%
+      rename(PureSampleName = PureSampleName.x) %>%
+      rename(Lab_Submission_Batch = Customer_Batch_Number)
+    testResults2 <- testResults2 %>%
+      select(
+        SampleNumber,
+        PureSampleName,
+        Days_worn,
+        ParameterID,
+        Result,
+        ResultOriginal,
+        ParameterName,
+        CASNumber,
+        Flag,
+        MyE_Received,
+        size_factor,
+        week_factor,
+        Lab_Submission_Batch
+      )
+
+    testResults <- testResults2
+
+    rm(testResults2, fixUpResults)
+    return(testResults)
+    #
+  }
+
+  wisconsinFixup <- function(fixUpResults,testResults ) {
+    ### this weird section is JUST for the    SET TO TRUE FOR  Wisconsin
+    fixUpResults <- fixUpResults %>%
+      rename(SampleNumber = FSES_ID)
+
+    # Select only the columns I want from fixup file
+    testResults2 <-
+      merge(fixUpResults,
+            testResults,
+            by.x = "SampleNumber",
+            by.y = "SampleNumber"
+      )
+
+    testResults2 <-
+      merge(fixUpResults, testResults, by = "SampleNumber") ## HERE is where I add important values...
+
+    testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
+
+    #
+    testResults2 <- testResults2 %>%
+      rename(Customer_Batch_Number = Batch_Num) %>%
+      rename(Start_Wearing = Start, End_Wearing = End) %>%
+      rename(Wristband_Size = size) %>%
+      select(
+        ParameterID,
+        PureSampleName,
+        Result,
+        ResultOriginal,
+        ParameterName,
+        CASNumber,
+        Flag,
+        Customer_Batch_Number,
+        SampleNumber,
+        MyE_Received,
+        Start_Wearing,
+        End_Wearing,
+        Wristband_Size,
+        Days_worn,
+        size_factor,
+        week_factor,
+        Lab_Submission_Batch,
+        PrePost,
+        PartName
+      )
+
+    testResults <- testResults2
+    rm(testResults2, fixUpResults)
+    return(testResults)
+  }
+
+  genericWeekSizeFixup <- function(fixUpResults, testResults) {
+    ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
+    # Select only the columns I want from fixup file
+    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
+    fixUpResults <- fixUpResults %>%
+      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
+      rename(SampleNumber = FSES_ID)
+
+    testResults2 <-   merge(fixUpResults, testResults, by = "SampleNumber")
+
+    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
+
+
+    testResults <- testResults2
+    rm(testResults2, fixUpResults)
+    return(testResults)
+  }
+
+#####
+  testResults$ResultOriginal <- testResults$Result # Save unmodified value   ALWAYS make ResultOriginal to be same as Result
 
   # HOW to fix up varies from customer to customer... at the TOP here we have the initial-stuff we need to do that is common to every customer
   ##   READ IN the FixUpResultsFile!  NOTE that we ONLY call this function if we are DOING a fixup so this is safe to assume we have a fixupfile set
@@ -657,6 +822,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
   fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor) # Make Numeric
 
 
+
   if (GEORGETOWNFixUp && (RMD_type == "PHTH" | RMD_type == "FRAGRANCE")) { # FOR GEORGETOWN if PHTH or Fragrances then is in ng/g and don't adjust for weight just TIME
     ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
     # Select only the columns I want from fixup file
@@ -674,147 +840,15 @@ fixUpTestResults <- function(testResults, FixupFile) {
     return(testResults)
     #
   } else if ((SBIR_P2_Part1_71_FixUp || SBIR_P2_Part2_35_FixUp) || SBIR_P2_Part1and2_35and71_FixUp) { ###  ADd the 2nd batch as a separate batch
-    # Suppress warnings during numeric conversion  NOTE I DO NOT USE HOURS_WORN anywhere I don't think so this is old?
-    #fixUpResults$hours_worn <- suppressWarnings(as.numeric(fixUpResults$hours_worn))
-    # Replace NA values with 24
-    #fixUpResults$hours_worn[is.na(fixUpResults$hours_worn)] <- 24
-
-    testResults2 <-
-      merge(fixUpResults,
-        testResults,
-        by.x = "FSES_ID",
-        by.y = "SampleNumber"
-      )
-
-
-    testResults2 <- adjustResultsDaySize(testResults2, testResults2$Days_worn, testResults2$size_factor)
-
-    testResults2 <- testResults2 %>%
-      rename(SampleNumber = FSES_ID) %>%
-      rename(Customer_Batch_Number = Batch_Num) %>%
-      rename(PureSampleName = PureSampleName.x) %>%
-      rename(Lab_Submission_Batch = Customer_Batch_Number)
-    testResults2 <- testResults2 %>%
-      select(
-        SampleNumber,
-        PureSampleName,
-        Days_worn,
-        ParameterID,
-        Result,
-        ResultOriginal,
-        ParameterName,
-        CASNumber,
-        Flag,
-        MyE_Received,
-        size_factor,
-        week_factor,
-        Lab_Submission_Batch
-      )
-
-    testResults <- testResults2
-
-    rm(testResults2, fixUpResults)
+    testResults<-sbirP2fixup(fixUpResults, testResults)
     return(testResults)
-    #
   } else if (DartmouthFixup ||
     UCSF2020Fixup ||
     CombinedTestData) {
-
-    testResults2 <-
-      merge(fixUpResults,
-        testResults,
-        by.x = "FSES_ID",
-        by.y = "SampleNumber"
-      )
-
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
-
-    testResults2 <- testResults2 %>%
-      rename(SampleNumber = FSES_ID) %>%
-      rename(Customer_Batch_Number = Batch_Num) %>%
-      rename(Start_Wearing = Start, End_Wearing = End) %>%
-      rename(Wristband_Size = size) %>%
-      select(
-        ParameterID,
-        PureSampleName,
-        Result,
-        ResultOriginal,
-        ParameterName,
-        CASNumber,
-        Flag,
-        Customer_Batch_Number,
-        Customer_WB_id,
-        SampleNumber,
-        MyE_Received,
-        Start_Wearing,
-        End_Wearing,
-        Wristband_Size,
-        Days_worn,
-        size_factor,
-        week_factor,
-        Lab_Submission_Batch
-      )
-
-    #### NOW because marc is confused on 2/2/2020 about PureSampleName becuase sometimes (Dartmouth) it is not Uniqe...I'll append Customer_WB_id to PureSampleName just to be totally safe...
-    # But I don't think i ever really use PureSmpleName in any meaningful way so...
-    testResults2$PureSampleName <-
-      paste(testResults2$PureSampleName,
-        testResults2$Customer_WB_id,
-        sep = "_"
-      )
-
-    testResults <- testResults2
-
-    rm(testResults2, fixUpResults)
+    testResults<- dartmouthUSCFandCombinedFixup(fixUpResults, testResults)
     return(testResults)
-    #
   } else if (WisconsinFixup) {
-    ### this weird section is JUST for the    SET TO TRUE FOR  Wisconsin
-    fixUpResults <- fixUpResults %>%
-      rename(SampleNumber = FSES_ID)
-
-    # Select only the columns I want from fixup file
-    testResults2 <-
-      merge(fixUpResults,
-        testResults,
-        by.x = "SampleNumber",
-        by.y = "SampleNumber"
-      )
-
-    testResults2 <-
-      merge(fixUpResults, testResults, by = "SampleNumber") ## HERE is where I add important values...
-
-    testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
-
-    #
-    testResults2 <- testResults2 %>%
-      rename(Customer_Batch_Number = Batch_Num) %>%
-      rename(Start_Wearing = Start, End_Wearing = End) %>%
-      rename(Wristband_Size = size) %>%
-      select(
-        ParameterID,
-        PureSampleName,
-        Result,
-        ResultOriginal,
-        ParameterName,
-        CASNumber,
-        Flag,
-        Customer_Batch_Number,
-        SampleNumber,
-        MyE_Received,
-        Start_Wearing,
-        End_Wearing,
-        Wristband_Size,
-        Days_worn,
-        size_factor,
-        week_factor,
-        Lab_Submission_Batch,
-        PrePost,
-        PartName
-      )
-
-    testResults <- testResults2
-    rm(testResults2, fixUpResults)
+    testResults<- wisconsinFixup(fixUpResults,testResults )
     return(testResults)
     #
   } else if (LorealFixup) {
@@ -822,20 +856,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
     #           FIRST DRS run for Dartmouth to fix values
     #           from nanograms per wristband for however long worn TO
     #           to nanograms per gram of wristband normalized for one DAY
-    if ("Days_worn" %in% colnames(fixUpResults)) {
-      fixUpResults$Days_worn <- as.numeric(fixUpResults$Days_worn)
-    }
-
-
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
-
-    ### CAREFUL:  This maybe messed EVERYTHING UP cause RESULT and OriginalResult need to be correct
-
-    if ("Days_worn" %in% colnames(testResults2)) {
-      testResults2$Result <-
-        signif(testResults2$Result / testResults2$Days_Worn, 3)
-    }
     testResults <- testResults2
     rm(testResults2, fixUpResults)
     return(testResults)
@@ -868,12 +890,10 @@ fixUpTestResults <- function(testResults, FixupFile) {
       select(FSES_ID, week_factor, size_factor, Days_worn) %>%
       rename(SampleNumber = FSES_ID)
 
-
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
 
     testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
-
 
     testResults <- testResults2
     rm(testResults2, fixUpResults)
@@ -887,7 +907,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
 
     testResults2 <-
       merge(fixUpResults, testResults, by = "SampleNumber")
-
 
     testResults2 <- adjustResultsWeek(testResults2, testResults2$week_factor)
 
@@ -910,20 +929,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     LouisvilleFixup |
     (UniVisionFixup &&
       RMD_type == "DRS")) {
-    ### THIS IS generic when doing FULL FIXUP meaning WEEK and SIZE
-    # Select only the columns I want from fixup file
-    #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
-    fixUpResults <- fixUpResults %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
-      rename(SampleNumber = FSES_ID)
-
-    testResults2 <-   merge(fixUpResults, testResults, by = "SampleNumber")
-
-    testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
-
-
-    testResults <- testResults2
-    rm(testResults2, fixUpResults)
+    testResults <- genericWeekSizeFixup(fixUpResults, testResults)
     return(testResults)
   } else if (FixupForAnyone) {
     stop(
