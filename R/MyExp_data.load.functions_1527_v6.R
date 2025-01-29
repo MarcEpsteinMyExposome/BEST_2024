@@ -711,7 +711,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
         Lab_Submission_Batch
       )
 
-
     testResults <- testResults2
 
     rm(testResults2, fixUpResults)
@@ -729,8 +728,6 @@ fixUpTestResults <- function(testResults, FixupFile) {
       )
 
     testResults2 <- adjustResultsWeekSize(testResults2, testResults2$week_factor, testResults2$size_factor)
-
-
 
     testResults2 <- testResults2 %>%
       rename(SampleNumber = FSES_ID) %>%
