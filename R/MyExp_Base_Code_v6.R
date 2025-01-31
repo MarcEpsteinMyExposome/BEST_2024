@@ -517,35 +517,73 @@ testResults <- testResults %>%
 # 1) Normalizing results by parameter (norm_Result)
 # 2) Computing quartiles for each parameter
 # 3) Flagging the maximum values
-# If this logic is repeated across multiple scripts, consider extracting it into a dedicated function for reuse.
 
+### NOTE:  I replaced with better system to accurately calculate quartiles (1/31/2025)...eventually delete commented out section
 testResults.big <- testResults %>%
-  group_by(ParameterID) %>%
-  mutate(norm_Result = Result / max(Result)) %>%                         # Normalize each result to the parameter's maximum.
-  filter(!sum(Result) == 0) %>%                                          # Drop entire group if sum of all results for that param is 0.
+  # group_by(ParameterID) %>%
+  # mutate(norm_Result = Result / max(Result)) %>%                         # Normalize each result to the parameter's maximum.
+  # filter(!sum(Result) == 0) %>%                                          # Drop entire group if sum of all results for that param is 0.
+  # mutate(
+  #   quartile = if (length(unique(quantile(Result, probs = 0:4 / 4))) < 2) {
+  #     rep(2, length(Result))                                            # If no variation (all identical), assign them to quartile 2.
+  #   } else {
+  #     cut(
+  #       Result,
+  #       breaks = unique(quantile(Result, probs = 0:4 / 4)),
+  #       include.lowest = TRUE,
+  #       labels = FALSE
+  #     )
+  #   },
+  #   param_max    = max(quartile),
+  #   is_this_max  = Result == max(Result)
+  # ) %>%
+  # ungroup() %>%
+  # mutate(
+  #   Result   = round(Result, 2),
+  #   quartile = quartile + (4 - param_max),                                # Shift quartile scale so top is always 4.
+  #   quartile = ifelse(Result == 0, 0, quartile)                           # Force quartile=0 for zero results (if any remain).
+  # ) %>%
+  # select(-param_max) %>%
+  # mutate_if(is.numeric, ~ replace_na(., 0)) %>%                           # Replace any numeric NAs with 0.
+  # mutate_if(is.character, ~ replace_na(., "not_found"))                  # Replace char NAs with 'not_found'.
+  group_by(ParameterID) %>%  # This makes sure we're only doing quartiles PER ROW
+  mutate(norm_Result = Result / max(Result)) %>%  # Keep existing side effect: normalize each row's result by the parameter's maximum
+  filter(!sum(Result) == 0) %>%    # Remove entire group if sum of all results for that param is 0
+  # 1) Count how many distinct non-zero values we have
+  mutate(distinct_nonzero = length(unique(Result[Result > 0]))) %>%
+  # 2) Assign quartile values ignoring zeros
   mutate(
-    quartile = if (length(unique(quantile(Result, probs = 0:4 / 4))) < 2) {
-      rep(2, length(Result))                                            # If no variation (all identical), assign them to quartile 2.
-    } else {
-      cut(
-        Result,
-        breaks = unique(quantile(Result, probs = 0:4 / 4)),
+    quartile = case_when(
+      # If all non-zero values are identical, put them in quartile=4, zeros remain 0
+      distinct_nonzero < 2 & Result > 0 ~ 4,
+      Result == 0 ~ 0,
+      # Otherwise, do a standard quartile cut using only non-zero data
+      TRUE ~ as.numeric(cut(
+        x = Result,
+        breaks = unique(quantile(Result[Result > 0], probs = 0:4 / 4, na.rm = TRUE)),
         include.lowest = TRUE,
         labels = FALSE
-      )
-    },
-    param_max    = max(quartile),
-    is_this_max  = Result == max(Result)
+      ))
+    )
+  ) %>%
+  # 2.5) Mark rows whose Result is the highest in this group
+  mutate(is_this_max = Result == max(Result, na.rm = TRUE)) %>%
+  # 3) Shift so the top bin is always 4, unless there's only one distinct non-zero value
+  mutate(
+    param_max = max(quartile, na.rm = TRUE),
+    quartile = if_else(
+      distinct_nonzero >= 2 & quartile > 0,
+      quartile + (4 - param_max),
+      quartile
+    )
   ) %>%
   ungroup() %>%
-  mutate(
-    Result   = round(Result, 2),
-    quartile = quartile + (4 - param_max),                                # Shift quartile scale so top is always 4.
-    quartile = ifelse(Result == 0, 0, quartile)                           # Force quartile=0 for zero results (if any remain).
-  ) %>%
-  select(-param_max) %>%
-  mutate_if(is.numeric, ~ replace_na(., 0)) %>%                           # Replace any numeric NAs with 0.
-  mutate_if(is.character, ~ replace_na(., "not_found"))                  # Replace char NAs with 'not_found'.
+  # Round the Result values
+  mutate(Result = round(Result, 2)) %>%
+  # Clean up temporary columns and fill any NAs
+  select(-param_max, -distinct_nonzero) %>%
+  mutate_if(is.numeric, ~ replace_na(., 0)) %>%
+  mutate_if(is.character, ~ replace_na(., "not_found"))
 
 # Remove the original testResults since we're done building testResults.big.
 rm(testResults)
