@@ -762,7 +762,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     # Select only the columns I want from fixup file
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
     fixUpResults <- fixUpResults %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
+      select(FSES_ID, week_factor, size_factor, Days_worn,Lab_Submission_Batch) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
     testResults2 <- merge(fixUpResults, testResults, by = "SampleNumber")
@@ -834,7 +834,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     # Select only the columns I want from fixup file
     #     NOTE:  The other columns MIGHT BE USEFUL SOMEDAY to output lookup tables and such but that differs customer to customer
     fixUpResults <- fixUpResults %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>%
+      select(FSES_ID, week_factor, size_factor, Days_worn,Lab_Submission_Batch) %>%
       rename(SampleNumber = FSES_ID)
 
     testResults2 <- merge(fixUpResults, testResults, by = "SampleNumber")
@@ -878,7 +878,8 @@ fixUpTestResults <- function(testResults, FixupFile) {
              size_factor,
              PartName,
              PrePost,
-             Days_worn) %>%
+             Days_worn,
+             Lab_Submission_Batch) %>%
       rename(SampleNumber = FSES_ID)
 
     testResults2 <-
@@ -895,7 +896,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
   } else if (UCSFplusRandom10Fixup) {
     # Select only the columns I want from fixup file
     fixUpResults <- fixUpResults %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>%
+      select(FSES_ID, week_factor, size_factor, Days_worn,Lab_Submission_Batch) %>%
       rename(SampleNumber = FSES_ID)
 
     testResults2 <-
@@ -915,7 +916,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     ## NOTE REALLY ONLY NEED TO TEST FOR  wristbands_time_adjusted_one_week_not_weight to make generic
     #### Worked for THIS IS to ONLY adjust for TIME and NOT for WEIGHT/SIzE of wristband
     fixUpResults <- fixUpResults %>%
-      select(FSES_ID, week_factor, size_factor, Days_worn) %>% ### ADDED THIS LINE cause otherwise things broke
+      select(FSES_ID, week_factor, size_factor, Days_worn,Lab_Submission_Batch) %>% ### ADDED THIS LINE cause otherwise things broke
       rename(SampleNumber = FSES_ID)
 
     testResults2 <-

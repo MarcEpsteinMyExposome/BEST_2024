@@ -135,9 +135,9 @@ FixupForAnyone <- any(
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
   CombinedDRS_November6_2024 <- FALSE,
   SBIR_P2_Part1_71_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
-  GEORGETOWNFixUp <- FALSE,
+  GEORGETOWNFixUp <- TRUE,
   SBIR_P2_Part2_35_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
-  SBIR_P2_Part1and2_35and71_FixUp<- TRUE
+  SBIR_P2_Part1and2_35and71_FixUp<- FALSE
 
 )
 
@@ -154,10 +154,10 @@ FixupForAnyone <- any(
 # RMD_type <- 'VOC_2024' ## New VOC list of 18 compounds, so this is 3rd VOC list (VOC, then VOPAH, now VOC_2024)
 # RMD_type <- 'PEST'
 # RMD_type <- 'FLAME'
-RMD_type <- "DRS"
+#RMD_type <- "DRS"
 # RMD_type<-'SBIR_P1_DRS_plus'
 #RMD_type <- 'PHTH'
-#RMD_type <- 'FRAGRANCE'
+RMD_type <- 'FRAGRANCE'
 
 
 
