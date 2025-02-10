@@ -281,6 +281,39 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 # Fix class_L by adding all VOC data using VOC MasterParameterTable
 #  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
+
+# classSpecificTitle<- PAH_text_string
+# classSpecificMasterParamTable<-pahMasterParameterTable
+# class_L<-class_L
+# DropSpecificChemicals<-DropSpecificChemicals
+
+# updateWithClassSpecificMasterParam <- function(classSpecificTitle,
+#                                                classSpecificMasterParamTable,
+#                                                class_L,
+#                                                DropSpecificChemicals) {
+#   classSpecifcMasterParam <-
+#     load.masterParam(
+#       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
+#       DropSpecificChemicals
+#     ) # Read in new parameter Table
+#   classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
+#   class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
+#   classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
+#   class_L <- union(classSpecifcMasterParam, class_L) # MERGE existing class_L with new masterParam
+#   class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
+#   return(class_L)
+# }
+
+# Fix class_L by adding all VOC data using VOC MasterParameterTable
+#  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
+### FIRST create a FUNCTION which updates the class_L information with new unique rows
+
+## SPECIFIC EXAMPLE VALUES TO TEST
+# classSpecificTitle<- PAH_text_string
+# classSpecificMasterParamTable<-pahMasterParameterTable
+# class_L<-class_L
+# DropSpecificChemicals<-DropSpecificChemicals
+
 updateWithClassSpecificMasterParam <- function(classSpecificTitle,
                                                classSpecificMasterParamTable,
                                                class_L,
@@ -290,13 +323,22 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
       DropSpecificChemicals
     ) # Read in new parameter Table
-  classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
-  class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
-  classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
-  class_L <- union(classSpecifcMasterParam, class_L) # MERGE existing class_L with new masterParam
-  class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
-  class_L
+  classSpecifcMasterParam<-as_tibble(classSpecifcMasterParam)
+  classSpecifcMasterParam$classification <- classSpecificTitle  # Hard-code value
+  class_L$classification <- as.character(class_L$classification) # Convert to char for merging
+  classSpecifcMasterParam <- classSpecifcMasterParam %>%  select(ParameterID, classification)  # Pick columns needed
+  class_L <- bind_rows(classSpecifcMasterParam, class_L) %>%  # Merge existing class_L with new data
+    distinct()  # Remove duplicates
+#  class_L <- union(classSpecifcMasterParam, class_L)  #OLD WAY ... UNION doesn't keep TIBBLE for some reason
+#  class_L_TEMP <- as_tibble(union(classSpecifcMasterParam, class_L))  # Merge existing class_L with new data
+  class_L$classification <- as.factor(class_L$classification)  # Convert back to factor
+  return(as_tibble(class_L))  #  Ensure the function returns a tibble
 }
+#str(class_L)
+#str(classSpecifcMasterParam)
+#str(class_L_TEMP)
+
+
 
 ###  NOW READ IN THE RESULTS TABLE...
 ### SET in calling program OR SET IT HERE

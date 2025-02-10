@@ -178,7 +178,7 @@ masterParam <- load.masterParam(masterParamTableName, DropSpecificChemicals)
 classification <- load.classification(classificationTableName)
 
 # Remove loader functions from environment to avoid naming conflicts
-rm(load.classification, classificationTableName)
+#rm(load.classification, classificationTableName)
 
 # Optionally keep a copy of classification if needed for debugging/testing
 # class_TEMP_hold <- classification  # DELETE AFTER TESTING if desired
@@ -198,7 +198,8 @@ class_L <- classification %>%
   semi_join(masterParam, by = "ParameterID")          # Only keep ParameterIDs found in masterParam.
 
 # classification object no longer needed.
-rm(classification)
+#rm(classification)
+#str(class_L)
 
 # Update 'class_L' by calling custom functions that handle domain-specific classification additions.
 # Each call typically adds or modifies classification rows.
@@ -232,11 +233,12 @@ class_L <- class_L %>%
   add_row(ParameterID = "301467", classification = consumerProduct_text_string) %>% # Also Celestolide as Consumer Product
   add_row(ParameterID = "301765", classification = PAH_text_string) %>%  # Mark 1,3-dimethylnaphthalene as PAH
   distinct() %>%
-  filter(!(ParameterID == 301467 & classification == PAH_text_string)) %>%         # Remove Celestolide as PAH
-  filter(!(ParameterID == 301449 & classification == PAH_text_string)) %>%         # Remove Cashmeran as PAH
-  filter(!(ParameterID == 301478 & classification == PAH_text_string)) %>%         # Remove Phantolide as PAH
-  filter(!(ParameterID == 481 & classification == pharmacological__text_string)) %>%# Remove Fluoranthene as pharmacological
-  filter(!(ParameterID == 300639 & classification == VOC_text_string))             # Remove Tributyl phosphate as VOC
+  filter(!(ParameterID == 301467 & classification == PAH_text_string)) %>%             # Remove Celestolide as PAH
+  filter(!(ParameterID == 301449 & classification == PAH_text_string)) %>%             # Remove Cashmeran as PAH
+  filter(!(ParameterID == 301478 & classification == PAH_text_string)) %>%             # Remove Phantolide as PAH
+  filter(!(ParameterID == 481 & classification == pharmacological__text_string)) %>%   # Remove Fluoranthene as pharmacological
+  filter(!(ParameterID == 300639 & classification == VOC_text_string))  %>%               # Remove Tributyl phosphate as VOC
+  distinct()
 
 # Convert classification to a new, reduced set of categories.
 class_L <- unique(
@@ -481,6 +483,9 @@ results_W <- testResults %>%
 
 
 # Move parameter names into row names.
+#   > rownames(results_W) <- results_W$ParameterName
+# Warning message:
+#   Setting row names on a tibble is deprecated.
 rownames(results_W) <- results_W$ParameterName
 results_W$ParameterName <- NULL
 
@@ -518,52 +523,45 @@ testResults <- testResults %>%
 # 2) Computing quartiles for each parameter
 # 3) Flagging the maximum values
 
-### NOTE:  I replaced with better system to accurately calculate quartiles (1/31/2025)...eventually delete commented out section
+#####
 testResults.big <- testResults %>%
-  # group_by(ParameterID) %>%
-  # mutate(norm_Result = Result / max(Result)) %>%                         # Normalize each result to the parameter's maximum.
-  # filter(!sum(Result) == 0) %>%                                          # Drop entire group if sum of all results for that param is 0.
-  # mutate(
-  #   quartile = if (length(unique(quantile(Result, probs = 0:4 / 4))) < 2) {
-  #     rep(2, length(Result))                                            # If no variation (all identical), assign them to quartile 2.
-  #   } else {
-  #     cut(
-  #       Result,
-  #       breaks = unique(quantile(Result, probs = 0:4 / 4)),
-  #       include.lowest = TRUE,
-  #       labels = FALSE
-  #     )
-  #   },
-  #   param_max    = max(quartile),
-  #   is_this_max  = Result == max(Result)
-  # ) %>%
-  # ungroup() %>%
-  # mutate(
-  #   Result   = round(Result, 2),
-  #   quartile = quartile + (4 - param_max),                                # Shift quartile scale so top is always 4.
-  #   quartile = ifelse(Result == 0, 0, quartile)                           # Force quartile=0 for zero results (if any remain).
-  # ) %>%
-  # select(-param_max) %>%
-  # mutate_if(is.numeric, ~ replace_na(., 0)) %>%                           # Replace any numeric NAs with 0.
-  # mutate_if(is.character, ~ replace_na(., "not_found"))                  # Replace char NAs with 'not_found'.
-  group_by(ParameterID) %>%  # This makes sure we're only doing quartiles PER ROW
-  mutate(norm_Result = Result / max(Result)) %>%  # Keep existing side effect: normalize each row's result by the parameter's maximum
-  filter(!sum(Result) == 0) %>%    # Remove entire group if sum of all results for that param is 0
-  # 1) Count how many distinct non-zero values we have
+  group_by(ParameterID) %>%
+
+  # Normalize 'Result' within each 'ParameterID' group
+  mutate(norm_Result = Result / max(Result)) %>%
+
+  # Remove entire group if all values are zero
+  filter(!sum(Result) == 0) %>%
+
+  # Count how many distinct nonzero values exist
   mutate(distinct_nonzero = length(unique(Result[Result > 0]))) %>%
-  # 2) Assign quartile values ignoring zeros
+
+  # Assign quartile values while handling edge cases
   mutate(
     quartile = case_when(
-      # If all non-zero values are identical, put them in quartile=4, zeros remain 0
+
+      # 🟢 If all nonzero values are identical, assign quartile = 4
       distinct_nonzero < 2 & Result > 0 ~ 4,
+
+      # 🟢 Keep zeros in their own category (quartile = 0)
       Result == 0 ~ 0,
-      # Otherwise, do a standard quartile cut using only non-zero data
-      TRUE ~ as.numeric(cut(
-        x = Result,
-        breaks = unique(quantile(Result[Result > 0], probs = 0:4 / 4, na.rm = TRUE)),
-        include.lowest = TRUE,
-        labels = FALSE
-      ))
+
+      # 🟢 Otherwise, assign quartiles using `cut()`, ensuring at least 2 breakpoints
+      TRUE ~ as.numeric(
+        cut(
+          x = Result,
+
+          # 🔹 Ensure at least 2 unique breakpoints in `cut()`
+          breaks = sort(unique(c(0, quantile(
+            Result[Result > 0],  # Consider only nonzero values
+            probs = 0:4 / 4,     # Compute quartiles
+            na.rm = TRUE
+          )))),
+
+          include.lowest = TRUE,  # Include lowest range in binning
+          labels = FALSE          # Assign quartile numbers (1, 2, 3, 4)
+        )
+      )
     )
   ) %>%
   # 2.5) Mark rows whose Result is the highest in this group
@@ -584,6 +582,8 @@ testResults.big <- testResults %>%
   select(-param_max, -distinct_nonzero) %>%
   mutate_if(is.numeric, ~ replace_na(., 0)) %>%
   mutate_if(is.character, ~ replace_na(., "not_found"))
+
+
 
 # Remove the original testResults since we're done building testResults.big.
 rm(testResults)
