@@ -1,3 +1,20 @@
+#
+# Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
+if (!exists("subject")) {
+  source(here::here("R","MyExp_set_key_variables.R"))
+}
+
+#results_W_CustName_NEW<-"nothing"
+
+# This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
+if (!exists("masterParam")) {
+  source(r_code)
+}
+
+# Clean up environment a little
+rm(list=ls()[!ls() %in% c("testResults.big")])
+
+
 #first run "MyExp_Base....R"
 # that creates testResult.big
 # then select just columns wanted:
@@ -73,7 +90,7 @@ plot(rules, method = "graph", control = list(max = 100))
 plot(sort(rules, by = "lift")[1:30], method = "graph")
 plot(rules, method = "scatterplot", measure = "support", shading = "lift")
 
-rules_filtered <- subset(rules, rhs %pin% "Benzyl cinnamate" == FALSE)
+#rules_filtered <- subset(rules, rhs %pin% "Benzyl cinnamate" == FALSE)
 inspect(sort(rules_filtered, by = "lift")[1:10])
 
 
@@ -106,4 +123,153 @@ plot(g, vertex.size = 5, edge.width = E(g)$n, layout = layout_with_fr, main = "P
 
 
 
+############################## NEW TRY:
+# z/*
+# n R code i have a set of data i want to investigate.
+#
+# the data represents the test results of testing 71 people for a bunch of different chemicals.
+#
+# the data is organized in a tidy tibble like this:
+#
+#   tibble [1,279 × 3] (S3: tbl_df/tbl/data.frame)
+#
+# $ SampleNumber : chr [1:1279] "A241264" "A241134" "A241137" "A241142" ...
+#
+# $ ParameterName: chr [1:1279] "Tri-p-tolyl phosphate" "TPP" "TPP" "TPP" ...
+#
+# $ Result : num [1:1279] 44.1 25.7 33.9 55.1 95.7 23.2 17.7 45.3 24.3 223 ...
+#
+# where sampleNumber is the person, ParameterName is the chemical found, and Result is the number of nanograms found.
+#
+# every person was tested for every chemical but we've stripped out the numerous zero results.. here is a glimpse:
+#
+# > glimpse(tr)Rows: 1,279
+#
+# so i'd like to see any statistically important information about this data.
+# particularly looking for coorelations between chemials (like, if chem1 shows
+# up the frequently chems 2 and 3 also show up) or....
+# maybe (if chem1 is > 100 then chem2 will never appear) or ... similar observations.
+#
+#
+#
+# how can i do this?
+# Explanation and Key Improvements:
+#
+#   Wide Format Conversion: The crucial first step is converting your data to a wide format using pivot_wider.
+# This is essential for correlation analysis because you need each chemical's results as a separate column.
+# I've added values_fn = mean to average results for duplicate ParameterName entries for a given SampleNumber.
+#
+# Correlation Matrix: The correlate() function from the corrr package provides an easy way to calculate correlation coefficients.
+# ggcorrplot creates a nice heatmap for visualization.  hc.order = TRUE orders the chemicals based on similarity, making patterns easier to see.
+#
+# Scatter Plots:  Scatter plots help visualize the relationships between specific pairs of chemicals.
+# The geom_smooth() function adds a trend line (linear by default, but you can change the method).
+#
+# Conditional Relationships: The example shows how to explore relationships based on thresholds
+# (e.g., "if chemical A is high"). You can adapt this to your specific hypotheses.
+#
+# Clustering: Hierarchical clustering can help group chemicals that tend to appear together.
+#
+# Statistical Tests:  cor.test() allows you to perform formal correlation tests,
+# giving you p-values to assess statistical significance.  Regression analysis can model the relationship between chemicals.
+#
+# Handling Zeroes: I've added code to show how to include zeroes if you need to.  H
+# owever, think carefully about whether including all the zeroes is appropriate for your analysis.
+# It will significantly change the data distribution and therefore the results.
+# Often, in this kind of chemical testing data, the absence of a chemical is not as meaningful as its presence above a detection limit.
+tr<- testResults.big %>% select(SampleNumber,ParameterName,Result)
+#tr <- tr %>% filter(Result>0)
+
+
+
+library(tidyverse)
+#install.packages("corrr")
+
+library(corrr)
+#install.packages("ggcorrplot")
+library(ggcorrplot)
+
+# Your data (replace with your actual data)
+# tr <- tibble(
+#   SampleNumber = rep(paste0("A", 1:71), each = 18), # Assuming 18 chemicals
+#   ParameterName = rep(LETTERS[1:18], 71), # Example chemical names
+#   Result = runif(1278, 0, 100) # Example results (replace with your data)
+# )
+
+# 1. Data Preparation: Wide Format
+
+# Convert to wide format for correlation analysis
+tr_wide <- tr %>%
+  pivot_wider(names_from = ParameterName, values_from = Result, values_fn = mean) # handles duplicate ParameterNames for a SampleNumber by averaging
+
+# 2. Correlation Analysis
+
+# Calculate correlations
+correlations <- tr_wide %>%
+  select(-SampleNumber) %>%  # Remove the SampleNumber column
+  correlate()
+
+# Visualize correlations (heatmap)
+ggcorrplot(correlations, hc.order = TRUE, type = "upper",
+           lab = TRUE, lab_size = 3, method = "circle",
+           colors = c("red", "white", "blue"),
+           title = "Correlation Matrix of Chemicals")
+
+# 3. Exploring Specific Relationships
+
+# Scatter plots for pairs of chemicals
+# Example: Relationship between chemical A and B
+ggplot(tr_wide, aes(x = A, y = B)) +
+  geom_point() +
+  geom_smooth(method = "lm") +  # Add a trend line
+  labs(title = "Relationship between Chemical A and B")
+
+# Example: Relationship between chemical A and C
+ggplot(tr_wide, aes(x = A, y = C)) +
+  geom_point() +
+  geom_smooth(method = "lm") +  # Add a trend line
+  labs(title = "Relationship between Chemical A and C")
+
+# 4. Conditional Relationships (e.g., if chem1 > 100 then chem2 ...)
+
+# Example: If chemical A > a threshold, what happens to chemical B?
+threshold <- 50  # Set your threshold
+tr_wide <- tr_wide %>%
+  mutate(A_high = ifelse(A > threshold, "High", "Low"))
+
+ggplot(tr_wide, aes(x = A_high, y = B)) +
+  geom_boxplot() +
+  labs(title = "Chemical B vs. Chemical A (High/Low)")
+
+# 5. Clustering (Optional)
+
+# Hierarchical clustering to group similar chemicals
+chemical_matrix <- tr_wide %>%
+  select(-SampleNumber) %>%
+  as.matrix()
+
+distance_matrix <- dist(cor(chemical_matrix)) # Distance based on correlation
+hc <- hclust(distance_matrix, method = "ward.D2")
+plot(hc, main = "Hierarchical Clustering of Chemicals")
+
+# 6. Statistical Tests
+
+# Correlation tests (e.g., Spearman's rank correlation for non-normal data)
+cor.test(tr_wide$A, tr_wide$B, method = "spearman")
+
+# Regression analysis (if you want to predict one chemical based on others)
+model <- lm(B ~ A, data = tr_wide)  # Linear regression
+summary(model)
+
+# 7.  Handling Zeroes (if you want to include them)
+
+# If you want to include the zeroes, you can fill them in before converting to wide format.
+# Be aware that this could drastically change the results of the analysis.
+tr_filled <- tr %>%
+  complete(SampleNumber, ParameterName, fill = list(Result = 0)) # Fills in all combinations with 0
+
+tr_wide_filled <- tr_filled %>%
+  pivot_wider(names_from = ParameterName, values_from = Result, values_fn = mean) # handles duplicate ParameterNames for a SampleNumber by averaging
+
+# ... then proceed with the correlation and other analysis as above.
 
