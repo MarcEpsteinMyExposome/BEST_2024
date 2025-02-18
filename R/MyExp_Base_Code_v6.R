@@ -79,14 +79,12 @@ MyExp_Base_Code_v6_R_Code_was_run <- TRUE  # Use this test if this code was run.
 
 # Function to check, install, and load packages
 load_package <- function(packages) {
-  for (pkg in packages) {
-    if (!require(pkg, character.only = TRUE)) {
-      install.packages(pkg, dependencies = TRUE)
-      suppressMessages(library(pkg, character.only = TRUE))
-    } else {
-      suppressMessages(library(pkg, character.only = TRUE))
-    }
-  }
+  not_installed <- packages[!packages %in% installed.packages()[,"Package"]]
+  if(length(not_installed)) install.packages(not_installed)
+
+  lapply(packages, function(pkg) {
+    suppressMessages(library(pkg, character.only = TRUE))
+  })
 }
 
 # List of required packages
