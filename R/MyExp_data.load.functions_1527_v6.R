@@ -248,6 +248,18 @@ load.classification <- function(classificationTableName) {
         # NOTE the 6/2017 data has 2 new columns we will IGNORE
       )
     )
+  # classification <- dplyr::rename(
+  #   classification,
+  #   !!rlang::sym(PAH_text_string)             = PAH,
+  #   !!rlang::sym(flameRetardant_text_string)    = flameRetardant,
+  #   !!rlang::sym(PCB_text_string)               = PCB,
+  #   !!rlang::sym(pharmacological__text_string)    = pharmacological,
+  #   !!rlang::sym(personalCare_text_string)        = personalCare,
+  #   !!rlang::sym(industrial_text_string)          = industrial,
+  #   !!rlang::sym(pest_text_string)                = pest,
+  #   !!rlang::sym(consumerProduct_text_string)     = consumerProduct,
+  #   !!rlang::sym(dioxinsAndFurans_text_string)     = dioxinsAndFurans
+  # )
 
   classification
 }
@@ -1461,10 +1473,10 @@ load.epaIris <- function(epaIrisTableName) {
   # epaIris<-epaIris[!epaIris$Iris_ID=="NULL",]
   # Rename column
   # epaIris<-rename(epaIris,c("masterParameterID"="ParameterID"))
-  epaIris <-
-    plyr:::rename(epaIris, c("ChemicalUrl" = "IRIS_Summary"))
 
-  #  epaIris <- dplyr::rename(epaIris, IRIS_Summary = ChemicalUrl)
+  #epaIris <-   plyr:::rename(epaIris, c("ChemicalUrl" = "IRIS_Summary"))
+
+  epaIris <- dplyr::rename(epaIris, IRIS_Summary = ChemicalUrl)
 
   # eliminste all columns except the three we want   OLD VERSION HAD EXTRA COLUMN
   # epaIris<-epaIris[ , c("ParameterID" , "IRIS_Summary"	,"Iris_ID")]
@@ -1546,10 +1558,9 @@ load.IARCRisk <- function(IARCRiskTableName,
   #   "
   # )
   # RENAME the columns
-  IARCRisk <-
-              plyr:::rename(IARCRisk, c("decode" = "IARC_Classification"))
+  #IARCRisk <- plyr:::rename(IARCRisk, c("decode" = "IARC_Classification"))
 
-  #IARCRisk <- dplyr::rename(IARCRisk, IARC_Classification = decode)
+  IARCRisk <- dplyr::rename(IARCRisk, IARC_Classification = decode)
 
 
   # Drop extra columns
