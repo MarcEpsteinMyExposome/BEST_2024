@@ -24,19 +24,26 @@
 # masterParamTableName <-"./data/MASVtest2.csv"
 
 # READ IN the data
-load.masterParam <- function(masterParamTableName,
-                             DropSpecificChemicals) {
-  masterParam <- read.table(
-    masterParamTableName,
-    sep = ",",
-    header = TRUE,
-    colClasses = "character" # Import all as character
-    ,
-    comment.char = "" # Don't allow use of "#" as comment in input
-    ,
-    quote = "\"",
-    fileEncoding = "UTF-8-BOM"
-  )
+load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
+  # Check if file exists
+  if (!file.exists(masterParamTableName)) {
+    stop(sprintf("File not found: %s", masterParamTableName))
+  }
+
+  masterParam <- tryCatch({
+    read.table(
+      masterParamTableName,
+      sep = ",",
+      header = TRUE,
+      colClasses = "character", # Import all as character
+      comment.char = "",         # Don't allow '#' as comment in input
+      quote = "\"",
+      fileEncoding = "UTF-8-BOM"
+    )
+  }, error = function(e) {
+    stop(sprintf("Error reading master parameter file '%s': %s",
+                 masterParamTableName, e$message))
+  })
 
   # TEST that there are no columns where the columns where chemID is na
   # masterParam[is.na(masterParam$CasNumber),]
@@ -114,17 +121,28 @@ load.masterParam <- function(masterParamTableName,
 # Read in Classification File
 # Read in Classification File
 load.classification <- function(classificationTableName) {
-  classification <- read.table(
-    classificationTableName,
-    sep = ",",
-    header = TRUE,
-    colClasses = "character" # Import all as character
-    ,
-    comment.char = "" # Don't allow use of "#" as comment in input
-    ,
-    quote = "\"",
-    fileEncoding = "UTF-8-BOM"
-  )
+  # Check if file exists
+  if (!file.exists(classificationTableName)) {
+    stop(sprintf("File not found: %s", classificationTableName))
+  }
+
+  # Read file with error handling
+  classification <- tryCatch({
+    read.table(
+      classificationTableName,
+      sep = ",",
+      header = TRUE,
+      colClasses = "character", # Import all as character
+      comment.char = "",         # Do not treat '#' as a comment
+      quote = "\"",
+      fileEncoding = "UTF-8-BOM"
+    )
+  }, error = function(e) {
+    stop(sprintf("Error reading classification file '%s': %s",
+                 classificationTableName, e$message))
+  })
+
+
   # REPLACE any string="NULL" values with 0
   classification <-
     replace(classification, classification == "NULL", "0")
@@ -237,9 +255,19 @@ load.classification <- function(classificationTableName) {
 
 ### CONTINUE TO FIX UP CLASSIFICATIONS:  This builds on the data load of classifications and collapses set further.  could merge the two later
 convert_to_new_reduced_classifications <- function(class_L, class_conversion_table_name) {
-  # Read in the new classification mapping file to adjust the classifications down
-  class_conversion_table <- read.csv(class_conversion_table_name) %>%
-    select(Classification, CurrentClassifications)
+  # Check if the conversion table file exists
+  if (!file.exists(class_conversion_table_name)) {
+    stop(sprintf("File not found: %s", class_conversion_table_name))
+  }
+
+  # Read in the classification conversion table with error handling
+  class_conversion_table <- tryCatch({
+    read.csv(class_conversion_table_name) %>%
+      select(Classification, CurrentClassifications)
+  }, error = function(e) {
+    stop(sprintf("Error reading classification conversion file '%s': %s",
+                 class_conversion_table_name, e$message))
+  })
 
   # Create a long format of the class_conversion_table
   class_conversion_long <- class_conversion_table %>%
@@ -350,51 +378,100 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
 ### PROBLEM:  NO RESULTS TABLE??? in 1/28/2015 delivery???
 #### this is NOT a problem cause the results table is skinny and hence new columns in classification don't hurt it
 #### BUT there is no results that will hit some of the new features... so need to add more results!
-
+#
+# load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals) {
+#   testResults <-
+#     read.table(
+#       resultsTableName,
+#       sep = ",",
+#       header = TRUE,
+#       colClasses = "character" # Import all as character
+#       ,
+#       comment.char = "" # Don't allow use of "#" as comment in input
+#       ,
+#       quote = "\"",
+#       fileEncoding = "UTF-8-BOM"
+#     )
+#
+#   # If any chemicals are set as "ignore/drop these chemicals for this run of the data"
+#   # Then reset testResult to ignore those chemicals.
+#   #  ALSO need to drop those chem from masterParameter
+#   testResults <- testResults %>%
+#     filter(!ParameterID %in% DropSpecificChemicals)
+#
+#
+#   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+#   # So we define a FUNCTION which takes any string and uppercases the first letter
+#   uppercaseFirst <- function(txt) {
+#     pos <- regexpr("[A-z]", txt)
+#     char1 <- substr(txt, pos, pos)
+#     uC <- toupper(char1)
+#     sub("[A-z]", uC, txt)
+#   }
+#   # # THEN we apply taht new function to the ParameterName mcolumn
+#   # testResults[, "ParameterName"] <-
+#   #   sapply(testResults[, "ParameterName"], uppercaseFirst)
+#
+#   testResults[, "ParameterName"] <-
+#     map_chr(testResults[, "ParameterName"], uppercaseFirst)
+#
+#   # original_result <- sapply(testResults[, "ParameterName"], uppercaseFirst)
+#   #   # Updated using purrr::map_chr
+#   # updated_result <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
+#   #   # Compare
+#   # identical(original_result, updated_result) # Should return TRUE
+#
+#
+#   testResults # Return the exact table read
+# }
+#
+##############NEWER VERSION BELOW
+# The improvements are:
+# Check if file exists before trying to read
+# Verify data has rows
+# Verify required columns exist
+# Wrap read.table in error handling
 load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals) {
-  testResults <-
-    read.table(
+  if (!file.exists(resultsTableName)) {
+    stop(sprintf("Results file not found: %s", resultsTableName))
+  }
+
+  tryCatch({
+    testResults <- read.table(
       resultsTableName,
       sep = ",",
       header = TRUE,
-      colClasses = "character" # Import all as character
-      ,
-      comment.char = "" # Don't allow use of "#" as comment in input
-      ,
+      colClasses = "character",
+      comment.char = "",
       quote = "\"",
       fileEncoding = "UTF-8-BOM"
     )
 
-  # If any chemicals are set as "ignore/drop these chemicals for this run of the data"
-  # Then reset testResult to ignore those chemicals.
-  #  ALSO need to drop those chem from masterParameter
-  testResults <- testResults %>%
-    filter(!ParameterID %in% DropSpecificChemicals)
+    if (nrow(testResults) == 0) {
+      stop("Results file is empty")
+    }
 
+    if (!all(c("ParameterID", "ParameterName") %in% names(testResults))) {
+      stop("Required columns 'ParameterID' and 'ParameterName' not found in results file")
+    }
 
-  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-  # So we define a FUNCTION which takes any string and uppercases the first letter
-  uppercaseFirst <- function(txt) {
-    pos <- regexpr("[A-z]", txt)
-    char1 <- substr(txt, pos, pos)
-    uC <- toupper(char1)
-    sub("[A-z]", uC, txt)
-  }
-  # # THEN we apply taht new function to the ParameterName mcolumn
-  # testResults[, "ParameterName"] <-
-  #   sapply(testResults[, "ParameterName"], uppercaseFirst)
+    testResults <- testResults %>%
+      filter(!ParameterID %in% DropSpecificChemicals)
 
-  testResults[, "ParameterName"] <-
-    map_chr(testResults[, "ParameterName"], uppercaseFirst)
+    uppercaseFirst <- function(txt) {
+      pos <- regexpr("[A-z]", txt)
+      char1 <- substr(txt, pos, pos)
+      uC <- toupper(char1)
+      sub("[A-z]", uC, txt)
+    }
 
-  # original_result <- sapply(testResults[, "ParameterName"], uppercaseFirst)
-  #   # Updated using purrr::map_chr
-  # updated_result <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
-  #   # Compare
-  # identical(original_result, updated_result) # Should return TRUE
+    testResults[, "ParameterName"] <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
 
+    testResults
 
-  testResults # Return the exact table read
+  }, error = function(e) {
+    stop(sprintf("Error reading results file: %s", e$message))
+  })
 }
 
 load.testResults <- function(testResultsRawTable,
@@ -596,6 +673,12 @@ load.testResults <- function(testResultsRawTable,
   testResults
 }
 
+
+
+#####################################
+#####################################
+#####################################
+#####################################
 
 fixUpTestResults <- function(testResults, FixupFile) {
   # THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
@@ -827,19 +910,25 @@ fixUpTestResults <- function(testResults, FixupFile) {
   if (is.null(FixupFile)) {
     return(testResults)
   }
-  fixUpResults <-
+  # Check if the fixup file exists
+  if (!file.exists(FixupFile)) {
+    stop(sprintf("Fixup file not found: %s", FixupFile))
+  }
+
+  # Read in the fixup file with error handling
+  fixUpResults <- tryCatch({
     read.table(
       FixupFile,
-      # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
-      colClasses = "character" # Import all as character
-      ,
-      comment.char = "" # Don't allow use of "#" as comment in input
-      ,
+      colClasses = "character",  # Import all as character
+      comment.char = "",          # Do not treat '#' as a comment
       quote = "\"",
-      fileEncoding = "UTF-8-BOM" # THIS gets rid of the weird characters near the beginning of the first line.
+      fileEncoding = "UTF-8-BOM"
     )
+  }, error = function(e) {
+    stop(sprintf("Error reading fixup file '%s': %s", FixupFile, e$message))
+  })
 
   # Lets make srue the FIXUP file has all the same things we need to DO the fixup....
   # We're going to merge the fixup file with the testResults file based on "FSES_ID" (aka "SampleNumber" )
@@ -997,6 +1086,13 @@ fixUpTestResults <- function(testResults, FixupFile) {
   }
 }
 
+
+############################################
+############################################
+############################################
+############################################
+
+
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
@@ -1004,21 +1100,27 @@ addAirCalculationInformation <- function(tr,
                                          airConcentrationTable,
                                          cm3VolumeSiliconeOfOneGram,
                                          ExpectedUnits) {
+  # Check if the air concentration lookup file exists
+  if (!file.exists(airConcentrationTable)) {
+    stop(sprintf("Air concentration lookup file not found: %s", airConcentrationTable))
+  }
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
-  airConcentrationLookup <-
+  # Read the air concentration lookup table with error handling
+  airConcentrationLookup <- tryCatch({
     read.table(
       airConcentrationTable,
-      # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
-      colClasses = "character" # Import all as character
-      ,
-      comment.char = "" # Don't allow use of "#" as comment in input
-      ,
+      colClasses = "character",  # Import all as character
+      comment.char = "",          # Do not treat '#' as a comment
       quote = "\"",
-      fileEncoding = "UTF-8-BOM" # THIS gets rid of the weird characters near the beginning of the first line.
+      fileEncoding = "UTF-8-BOM"
     )
+  }, error = function(e) {
+    stop(sprintf("Error reading air concentration lookup file '%s': %s",
+                 airConcentrationTable, e$message))
+  })
   ### Then calculate each column of STevens spreadsheet
   # tr<-testResults
   ### THen JOIN the looku table to testResults
@@ -1180,21 +1282,26 @@ addAirCalculationInformation <- function(tr,
 ### this is in BETA
 ###
 addAirNioshOsha <- function(testResults, airNioshOshaTable) {
+  # Check if the AirNioshOsha lookup file exists
+  if (!file.exists(airNioshOshaTable)) {
+    stop(sprintf("AirNioshOsha lookup file not found: %s", airNioshOshaTable))
+  }
   ###  NEXT read in the LOOKUP table for air concentration with NIOSH OSHA info...
   # airNioshOshaLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
-  airNioshOshaLookup <-
+  # Read the lookup file with error handling
+  airNioshOshaLookup <- tryCatch({
     read.table(
       airNioshOshaTable,
-      # USE a VARIABLE to decide what the FIXUP File looks like.
       sep = ",",
       header = TRUE,
-      colClasses = "character" # Import all as character
-      ,
-      comment.char = "" # Don't allow use of "#" as comment in input
-      ,
+      colClasses = "character",  # Import all as character
+      comment.char = "",          # Do not treat '#' as a comment
       quote = "\"",
-      fileEncoding = "UTF-8-BOM" # THIS gets rid of the weird characters near the beginning of the first line.
+      fileEncoding = "UTF-8-BOM"
     )
+  }, error = function(e) {
+    stop(sprintf("Error reading AirNioshOsha lookup file '%s': %s", airNioshOshaTable, e$message))
+  })
 
   ### THen JOIN the looku table to testResults
   testResults <-
@@ -1270,17 +1377,25 @@ onlyPickSomeBatchesFromBiggerData <-
 # Read in california risk database
 load.riskCalifProp65 <-
   function(riskCalifProp65TableName, masterParam) {
-    riskCalifProp65 <- read.table(
-      riskCalifProp65TableName,
-      sep = ",",
-      header = TRUE,
-      colClasses = "character" # Import all as character
-      ,
-      comment.char = "" # Don't allow use of "#" as comment in input
-      ,
-      quote = "\"",
-      fileEncoding = "UTF-8-BOM"
-    )
+    # Check if the risk Calif Prop65 file exists
+    if (!file.exists(riskCalifProp65TableName)) {
+      stop(sprintf("Risk Calif Prop65 file not found: %s", riskCalifProp65TableName))
+    }
+    # Read in the risk Calif Prop65 table with error handling
+    riskCalifProp65 <- tryCatch({
+      read.table(
+        riskCalifProp65TableName,
+        sep = ",",
+        header = TRUE,
+        colClasses = "character",  # Import all as character
+        comment.char = "",           # Do not treat '#' as a comment
+        quote = "\"",
+        fileEncoding = "UTF-8-BOM"
+      )
+    }, error = function(e) {
+      stop(sprintf("Error reading risk Calif Prop65 file '%s': %s",
+                   riskCalifProp65TableName, e$message))
+    })
     # Rename column to standard
     # Don't need to rename, name is correct already
     names(riskCalifProp65)[names(riskCalifProp65) == "masterParameterID"] <-
@@ -1322,17 +1437,25 @@ load.riskCalifProp65 <-
 # epaIrisTableName<-"./data/EDF_Phase1_EPA_Iris.csv"
 # epaIrisTableName <- "./data/MASV15_epa_iris_risk.csv"
 load.epaIris <- function(epaIrisTableName) {
-  epaIris <- read.table(
-    epaIrisTableName,
-    sep = ",",
-    header = TRUE,
-    colClasses = "character" # Import all as character
-    ,
-    comment.char = "" # Don't allow use of "#" as comment in input
-    ,
-    quote = "\"",
-    fileEncoding = "UTF-8-BOM"
-  )
+  # Check if the EPA IRIS file exists
+  if (!file.exists(epaIrisTableName)) {
+    stop(sprintf("EPA IRIS file not found: %s", epaIrisTableName))
+  }
+
+  # Read the EPA IRIS table with error handling
+  epaIris <- tryCatch({
+    read.table(
+      epaIrisTableName,
+      sep = ",",
+      header = TRUE,
+      colClasses = "character",  # Import all columns as character
+      comment.char = "",          # Do not treat '#' as a comment
+      quote = "\"",
+      fileEncoding = "UTF-8-BOM"
+    )
+  }, error = function(e) {
+    stop(sprintf("Error reading EPA IRIS file '%s': %s", epaIrisTableName, e$message))
+  })
   # Eliminate all rows where IRIS ID
   # This was for OLD VERSION of this database
   # epaIris<-epaIris[!epaIris$Iris_ID=="NULL",]
@@ -1340,6 +1463,9 @@ load.epaIris <- function(epaIrisTableName) {
   # epaIris<-rename(epaIris,c("masterParameterID"="ParameterID"))
   epaIris <-
     plyr:::rename(epaIris, c("ChemicalUrl" = "IRIS_Summary"))
+
+  #  epaIris <- dplyr::rename(epaIris, IRIS_Summary = ChemicalUrl)
+
   # eliminste all columns except the three we want   OLD VERSION HAD EXTRA COLUMN
   # epaIris<-epaIris[ , c("ParameterID" , "IRIS_Summary"	,"Iris_ID")]
   # eliminste all columns except the TWO we want
@@ -1355,18 +1481,25 @@ load.epaIris <- function(epaIrisTableName) {
 
 load.IARCRisk <- function(IARCRiskTableName,
                           riskIARCdecodeTableName) {
+  # Check if the IARC Risk table file exists
+  if (!file.exists(IARCRiskTableName)) {
+    stop(sprintf("IARC Risk table file not found: %s", IARCRiskTableName))
+  }
   # cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
-  IARCRisk <- read.table(
-    IARCRiskTableName,
-    sep = ",",
-    header = TRUE,
-    colClasses = "character" # Import all as character
-    ,
-    comment.char = "" # Don't allow use of "#" as comment in input
-    ,
-    quote = "\"",
-    fileEncoding = "UTF-8-BOM"
-  )
+  # Read the IARC Risk table with error handling
+  IARCRisk <- tryCatch({
+    read.table(
+      IARCRiskTableName,
+      sep = ",",
+      header = TRUE,
+      colClasses = "character",  # Import all columns as character
+      comment.char = "",          # Do not treat '#' as a comment
+      quote = "\"",
+      fileEncoding = "UTF-8-BOM"
+    )
+  }, error = function(e) {
+    stop(sprintf("Error reading IARC Risk table file '%s': %s", IARCRiskTableName, e$message))
+  })
   # cat("001 in data load...\n", file = "debug_log.txt", append = TRUE)
 
   # NOTE that we see some DUPLICATION
@@ -1414,7 +1547,10 @@ load.IARCRisk <- function(IARCRiskTableName,
   # )
   # RENAME the columns
   IARCRisk <-
-    plyr:::rename(IARCRisk, c("decode" = "IARC_Classification"))
+              plyr:::rename(IARCRisk, c("decode" = "IARC_Classification"))
+
+  #IARCRisk <- dplyr::rename(IARCRisk, IARC_Classification = decode)
+
 
   # Drop extra columns
   IARCRisk <-
@@ -1474,7 +1610,17 @@ load.IARCRisk <- function(IARCRiskTableName,
 
 load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
                                        chemSourceSheetName) {
-  chemSourceMitigation <- read_excel(chemSourceMitigationInfoTableName, sheet = chemSourceSheetName)
+  # Check if the Excel file exists
+  if (!file.exists(chemSourceMitigationInfoTableName)) {
+    stop(sprintf("Chem source mitigation file not found: %s", chemSourceMitigationInfoTableName))
+  }
+  # Read the Excel file with error handling (requires the readxl package)
+  chemSourceMitigation <- tryCatch({
+    read_excel(chemSourceMitigationInfoTableName, sheet = chemSourceSheetName)
+  }, error = function(e) {
+    stop(sprintf("Error reading chem source mitigation file '%s': %s",
+                 chemSourceMitigationInfoTableName, e$message))
+  })
 
   chemSourceMitigation <- chemSourceMitigation %>%
     select(
@@ -1496,7 +1642,10 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
   }
   # THEN we apply taht new function to the ParameterName mcolumn
   # NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
-  chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+  #WITHOUT TESTING I CHANGED THE LINE BELOW BECAUSE CHATGPT said it was incorrect...
+  #chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
+  chemSourceMitigation <- chemSourceMitigation %>%
+    mutate(Chemical_Name = sapply(Chemical_Name, uppercaseFirst))
 
   ## FAILED PURRR replacement
   # chemSourceMitigation[, "Chemical_Name"] <-
@@ -1507,9 +1656,21 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
 }
 
 load.healthEffects <- function(healthEffectsTableName) {
-  healthEffects <- read_csv(healthEffectsTableName, show_col_types = FALSE)
-  return(healthEffects)
+  # Check if the file exists
+  if (!file.exists(healthEffectsTableName)) {
+    stop(sprintf("Health effects file not found: %s", healthEffectsTableName))
+  }
+
+  # Read the CSV file with error handling (using readr::read_csv)
+  healthEffects <- tryCatch({
+    read_csv(healthEffectsTableName, show_col_types = FALSE)
+  }, error = function(e) {
+    stop(sprintf("Error reading health effects file '%s': %s", healthEffectsTableName, e$message))
+  })
+
+  healthEffects
 }
+
 
 
 
