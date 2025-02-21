@@ -21,7 +21,8 @@ rm(list=ls()[!ls() %in% c("testResults.big")])
 tr<- testResults.big %>% select(SampleNumber,ParameterName,Result)
 tr <- tr %>% filter(Result>0)
 
-
+write.csv(tr,"testResultsWristband.csv", row.names = FALSE)
+tr2<-read.csv("testResultsWristband.csv")
 
 ### WAYS TO GO:
 # Conclusion:
@@ -50,15 +51,38 @@ co_occurrence_matrix <- tr %>%
   spread(key = ParameterName, value = Present, fill = 0) %>%
   select(-SampleNumber)  # Removing SampleNumber to keep only the matrix
 
-# Compute correlations between parameters
-cor_matrix <- cor(co_occurrence_matrix, method = "pearson")
+# filter constant columns
+co_occurrence_matrix <- co_occurrence_matrix %>% select_if(~ n_distinct(.) > 1)
 
-# View top correlated parameter pairs
-cor_matrix[upper.tri(cor_matrix)] <- NA  # Remove duplicates for readability
-as.data.frame(as.table(cor_matrix)) %>%
-  filter(!is.na(Freq)) %>%
-  arrange(desc(Freq)) %>%
-  head(10)  # Show top correlations
+
+# 1. Compute the correlation matrix and remove self-correlations
+cor_matrix <- cor(co_occurrence_matrix, method = "pearson")
+diag(cor_matrix) <- NA
+
+# 2. Compute the co-occurrence count matrix
+# This multiplies the binary matrix (columns: parameters, rows: samples)
+co_occurrence_count <- t(as.matrix(co_occurrence_matrix)) %*% as.matrix(co_occurrence_matrix)
+
+# 3. Convert both matrices to long format (data frames)
+cor_df <- as.data.frame(as.table(cor_matrix)) %>%
+  rename(correlation = Freq)
+
+occ_df <- as.data.frame(as.table(co_occurrence_count)) %>%
+  rename(count = Freq)
+
+# 4. Merge the correlation and co-occurrence data frames by the parameter pairs
+merged_df <- merge(cor_df, occ_df, by = c("Var1", "Var2"))
+
+# 5. Filter out pairs with co-occurrence count less than 2 and sort by correlation
+top_correlations <- merged_df %>%
+  filter(count >= 10, as.character(Var1) < as.character(Var2)) %>%  # Remove duplicate orderings
+  arrange(desc(correlation)) %>%
+  head(100)
+
+top_correlations
+
+
+
 
 #######
 # Use Association Rules (Apriori Algorithm)
