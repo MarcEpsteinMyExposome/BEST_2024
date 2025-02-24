@@ -1636,7 +1636,7 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
   chemSourceMitigation <- chemSourceMitigation %>%
     select(
       Chemical_Name,
-      Summary_of_Health_Effects,
+      Summary_of_Health_Effects,   # THIS IS NEVER USED... we get this from Silent Spring Methodology
       Sources_of_Exposure,
       Mitigation_Strategies,
       WIKIPEDIA_ARTICLE_URL

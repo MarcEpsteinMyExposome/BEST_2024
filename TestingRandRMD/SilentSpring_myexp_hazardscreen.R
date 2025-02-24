@@ -1,4 +1,6 @@
 # PURPOSE: cross the 112 MyExposome chemicals list with the CA candidate
+#       NOTE:  I changed it to cross the 1500 screen
+#       NOTE:  Really i should just put ALL the chemicals in the WHOLE DATABASE from LIMS SYSTEM into this and get that one table... which would then work for all tests...
 # chemicals lists and BCRC list (SSI hazard screen approach)
 # AUTHOR: Katie Boronow
 # STARTED: 2024-08-06
@@ -216,7 +218,7 @@ cclist_health %>%
   arrange(desc(n))
 
 
-# get MyExp chem list ###################################################### THIS IS THE 112 1112 112
+# get MyExp chem list ###################################################### THIS IS THE 112 1112 112  NO NO... i moved to 1500+ so this below is not useful
 # THIS IS IN An xlsx with this info:
 #   CAS	chem	class
 # 115-86-6	triphenyl phosphate	FLAME
