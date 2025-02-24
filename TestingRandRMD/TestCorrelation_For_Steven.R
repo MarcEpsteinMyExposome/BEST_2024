@@ -243,7 +243,6 @@ t_tests <- tr_long %>%
 print(t_tests)
 
 
-library(ggplot2)
 
 # Example: Facet the boxplot for all chemicals.
 # (You might want to filter to a smaller set for clarity.)
