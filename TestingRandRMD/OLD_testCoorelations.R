@@ -4,8 +4,6 @@ if (!exists("subject")) {
   source(here::here("R","MyExp_set_key_variables.R"))
 }
 
-#results_W_CustName_NEW<-"nothing"
-
 # This test makes sure that if the SOURCE not yet run, we run it... but don't run it "again"
 if (!exists("masterParam")) {
   source(r_code)
@@ -19,10 +17,14 @@ rm(list=ls()[!ls() %in% c("testResults.big")])
 # that creates testResult.big
 # then select just columns wanted:
 tr<- testResults.big %>% select(SampleNumber,ParameterName,Result)
+trWithPureSampleName<- testResults.big %>% select(SampleNumber,ParameterName,Result,PureSampleName)
 tr <- tr %>% filter(Result>0)
+trWithPureSampleName <- trWithPureSampleName %>% filter(Result>0)
 
 write.csv(tr,"testResultsWristband.csv", row.names = FALSE)
-tr2<-read.csv("testResultsWristband.csv")
+write.csv(trWithPureSampleName,"testResultsWristbandPureSampleName.csv", row.names = FALSE)
+#tr2<-read.csv("testResultsWristband.csv")
+
 
 ### WAYS TO GO:
 # Conclusion:
