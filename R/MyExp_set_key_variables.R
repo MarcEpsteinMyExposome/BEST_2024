@@ -134,10 +134,10 @@ FixupForAnyone <- any(
   UFL_FloridaFixup <- FALSE,
   DartmouthFixup <- FALSE, # is to to force weird division and fix up
   CombinedDRS_November6_2024 <- FALSE,
-  SBIR_P2_Part1_71_FixUp <- TRUE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
   GEORGETOWNFixUp <- FALSE,
+  SBIR_P2_Part1_71_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
   SBIR_P2_Part2_35_FixUp <- FALSE,  # ALWAYS MAKE LAST ONE TRUE, REST FALSE
-  SBIR_P2_Part1and2_35and71_FixUp<- FALSE
+  SBIR_P2_Part1and2_35and71_FixUp<- TRUE   ### NOTE THAT WE had some BAD 35 data... but it should now be fixed
 
 )
 
@@ -276,10 +276,12 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
 } else if (SBIR_P2_Part1and2_35and71_FixUp) {
-  resultsTableName <- "F24-27 MyExpo PO262 excel CoA_SBIRP2_Batch1amd2_71_35-WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
+  # WAS BAD VERSION:  resultsTableName <- "F24-27 MyExpo PO262 excel CoA_SBIRP2_Batch1amd2_71_35-WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
+  resultsTableName <- "reanalysis F24-27 MyExpo PO262 Batch1and2_71_35_WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 NOTE NOTE NOTE:   NOT COMBINING YET WITH PREVIOUS
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
-  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
 
 
   wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
@@ -684,8 +686,13 @@ class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassifi
 # chemSourceMitigationInfoTableName <- "All270_Chems_Marc_Try2.csv"
 ### tRING DIFFERENT LOOKUP TABLE WITHJUST gemini  on 10/18/2024 USING XLSX intead of cSV with more info some hand-crafted
 #### THIS TABLE IS BASED ON JUST the 88 compounds in the group of 71 WBs
-chemSourceMitigationInfoTableName2 <- setMASTERPARAM_CLASS_RISKSdirectory("Test_figure_out_chemical_exposure_Copilot_ChatGPT_10_31_2024.xlsx") # Steven/Kelsie updated the sources and mitigation information and TG fixes
-chemSourceSheetName2 <- "STEVEN_New71_ChatGPT-Try2"
+#chemSourceMitigationInfoTableName2 <- setMASTERPARAM_CLASS_RISKSdirectory("Test_figure_out_chemical_exposure_Copilot_ChatGPT_10_31_2024.xlsx") # Steven/Kelsie updated the sources and mitigation information and TG fixes
+#chemSourceSheetName2 <- "STEVEN_New71_ChatGPT-Try2"
+
+# STEVEN KELSIE updated to other high-runner possible chemicals.... so that added 35 or so more chemicals...
+chemSourceMitigationInfoTableName2 <- setMASTERPARAM_CLASS_RISKSdirectory("Test_figure_out_chemical_exposure_Copilot_ChatGPT_02_24_2025.xlsx") # Steven/Kelsie updated the sources and mitigation information and TG fixes
+chemSourceSheetName2 <- "STEVEN_New71_35_ChatGPT-Try3"
+
 
 #  SET name of RMD file
 rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of make markdown file for all tests

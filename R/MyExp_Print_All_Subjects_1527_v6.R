@@ -110,7 +110,7 @@ wideAllSubjects <- testResults.big %>%
 #   BUT below use other system to subset which things to print (differentiate between what we include in the data and which we print)
 
 
-### for SBIR_P2_Part1and2_35and71_FixUp   I am only going to PRINT from the newest batch even while i process all 71+31 I'm only generating 31
+### for SBIR_P2_Part1and2_35and71_FixUp   I am only going to PRINT from the newest batch even while i process all 71+31 I'm only generating 31 (actually 35 not 31)
 subjectsToProcess <- wideAllSubjects %>%
   filter(Lab_Submission_Batch=="PO 262")
 
@@ -149,9 +149,6 @@ render_reports(
   rmd_code = rmd_code,
   logo_path = logo_path
 )
-
-#Delete anything we created
-rm(list=ls())
 
 
 
