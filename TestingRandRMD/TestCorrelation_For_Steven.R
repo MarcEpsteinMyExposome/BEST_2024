@@ -106,8 +106,8 @@ occ_df <- as_tibble(co_occurrence_count, rownames = "Var1") %>%
 merged_df <- inner_join(cor_df, occ_df, by = c("Var1", "Var2"))
 
 # Define filtering criteria:
-filterCount <- 4         # Minimum co-occurrence count required
-minimumCorrelation <- 0.3  # Minimum correlation threshold
+filterCount <- 3  #4         # Minimum co-occurrence count required
+minimumCorrelation <- .5  #0.3  # Minimum correlation threshold
 
 # Filter out pairs that do not meet the criteria and remove duplicate pairs:
 # - Keep only pairs where Var1 comes alphabetically before Var2 to avoid duplicates.
@@ -115,8 +115,8 @@ top_correlations <- merged_df %>%
   filter(count >= filterCount,
          as.character(Var1) < as.character(Var2),
          correlation >= minimumCorrelation) %>%
-  arrange(desc(correlation)) %>%
-  slice_head(n = 50)
+  arrange(desc(correlation))  # %>%
+  #slice_head(n = 50)
 
 # Display the top correlated parameter pairs
 print(top_correlations)
