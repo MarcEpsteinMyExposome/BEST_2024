@@ -25,16 +25,27 @@ testResultsWithClass <- left_join(testResults.big
 
 # Convert classificaiton col to character
 # Do SQL call without doing SQL using native stuff
+# AllResultClassified <- testResultsWithClass %>%
+#   select(ParameterName, CASNumber, classification) %>%
+#   distinct() %>%
+#   group_by(ParameterName, CASNumber) %>%
+#   dplyr::summarise(Classifications = paste(classification, collapse = ", ")) %>%
+#   arrange(ParameterName)
+
+
+
+# Ensure "ParameterName" is included as a proper column
 AllResultClassified <- testResultsWithClass %>%
   select(ParameterName, CASNumber, classification) %>%
   distinct() %>%
   group_by(ParameterName, CASNumber) %>%
-  dplyr::summarise(Classifications = paste(classification, collapse = ", ")) %>%
+  summarise(Classifications = paste(classification, collapse = ", "), .groups = "drop") %>%
   arrange(ParameterName)
 
 
 
-names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Chemical Group(s)")
+
+#names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Chemical Group(s)")
 
 
 # THIS REPORT got TOO WIDE so was made to fit onto multiple pages and so the basic table point was LOST
@@ -46,18 +57,20 @@ names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Chemical Group(s
 #   split.table = Inf
 # )
 
-library(gt)
 
+# Convert to gt table with proper alignment
 AllResultClassified %>%
+  select(ParameterName, CASNumber, Classifications) %>%  # Ensure correct order
   gt() %>%
   tab_header(title = md("**Classification Report Across All WB in Study**")) %>%
-  cols_align(align = "left", columns = 1:2) %>%
-  cols_align(align = "center", columns = 3:ncol(AllResultClassified)) %>%
-  tab_options(
-    container.overflow.x = TRUE   ,  # Alternative to opt_table_overflow
-    table.width = px(600)  # Adjust width for readability
-  )
-
+  cols_label(
+    ParameterName = md("**Chemical Name**"),
+    CASNumber = md("**CAS Number**"),
+    Classifications = md("**Chemical Group(s)**")
+  ) %>%
+  cols_align(align = "left", columns = c(ParameterName, CASNumber)) %>%  # Left-align first two columns
+  cols_align(align = "center", columns = Classifications) %>%  # Center-align last column
+  tab_options(table.width = px(900))  # Adjust width
 
 
 
