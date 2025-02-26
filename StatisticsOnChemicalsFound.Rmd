@@ -19,7 +19,7 @@ bs_modal(id = "StandardDeviation3", title = "Definition of Standard Deviation", 
 
 
 
-One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDeviation3")`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.  The table lists all the chemicals found in your wristband.  Your chemicals are in the first column. The remaining columns describe mathmatical characteristics of these chemicals across the entire group of people.
+One important way to look at the data is, for each chemical, what was the smallest, largest, average, and middle value found, how many wristbands was it found on, and the `r bs_button("standard deviation", button_type = "primary", class = "btn-xs btn-outline-info") %>% bs_attach_modal(id_modal = "StandardDeviation3")`. The wristbands were tested for different chemicals. The results show how much of each chemical was found, adjusted for the time worn.  Anything we couldn't clearly detect was left out of the table below.  The table lists all the chemicals found in your wristband.  Your chemicals are in the first column. Your chemical numbers represent the nanograms of each chemical found in each gram of silicone. The remaining columns describe mathmatical characteristics of these chemicals across the entire group of people.
 
 
 <!--
