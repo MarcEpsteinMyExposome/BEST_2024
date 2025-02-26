@@ -26,12 +26,17 @@ mP<-masterParam[1:min(nrow(masterParam),100),
 names(mP)<-c("Chemical Name", "CAS Number")
 #knitr::kable(mP[1:10,],format="markdown")
 
-pandoc.table(mP,
-             caption="Full List of Chemicals",
-             justify=c("left","center"),
-             emphasis.rownames=TRUE,
-             split.table = Inf
-             )
+mP %>%
+  gt() %>%
+  tab_header(title = md("**Full List of Chemicals**")) %>%
+  cols_label(
+    `Chemical Name` = md("**Chemical Name**"),
+    `CAS Number` = md("**CAS Number**")
+  ) %>%
+  cols_align(align = "left", columns = `Chemical Name`) %>%  # Left-align the first column
+  cols_align(align = "center", columns = `CAS Number`) %>%  # Center-align the rest
+  tab_options(table.width = px(600))  # Optional: Adjust width
+
 rm(mP)
 
 ```

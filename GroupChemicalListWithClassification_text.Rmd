@@ -42,7 +42,7 @@ names(AllResultClassified) <- c("Chemical Name", "CAS Number", "Chemical Group(s
 pandoc.table(as.data.frame(AllResultClassified),
   caption = "Classification Report Across all WB in Study",
   justify = c("left", "left", "center"),
-  emphasis.rownames = TRUE,
+  emphasis.rownames = TRUE,  #RowNames never get emphasis... SHOULD switch to gt() someday
   split.table = Inf
 )
 rm(AllResultClassified)

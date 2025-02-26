@@ -156,7 +156,7 @@ if (FALSE) { # THIS IS THE BIG DATA
   pandoc.table(as.data.frame(bigStatSummary),
     caption = "Statistical Report on all Chemicals on all Wristbands found  in Large Demo Set compared to this smaller data set",
     justify = "right",
-    emphasis.rownames = TRUE,
+    emphasis.rownames = TRUE, #RowNames never get emphasis... SHOULD switch to gt() someday
     split.table = Inf
   )
 }
@@ -168,7 +168,7 @@ if (OutputBigComparisonStatTable) {
   pandoc.table(as.data.frame(bigStatSummaryJustTheseChemicals),
     caption = "Statistical Report on all Chemicals on This Groups Wristbands compared to values for these chemicals in Larger Demo  data set",
     justify = "right",
-    emphasis.rownames = TRUE,
+    emphasis.rownames = TRUE, #RowNames never get emphasis... SHOULD switch to gt() someday
     split.table = Inf
   )
 }
