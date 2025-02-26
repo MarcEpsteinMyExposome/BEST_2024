@@ -30,9 +30,19 @@ If we look at this data broken down by chemical groups we can also examine how m
 
 names(CountChemicalsInEachClassification)<-c("Classification","Unique Chemicals across all Wristbands")
 
-pandoc.table(CountChemicalsInEachClassification,
-              justify=c("left","center")
-              ,split.table = Inf)
+# 
+# pandoc.table(CountChemicalsInEachClassification,
+#               justify=c("left","center")
+#               ,split.table = Inf)
+
+# Convert to gt table
+CountChemicalsInEachClassification %>%
+  gt() %>%
+  tab_header(title = md("**Chemical Classifications Across Wristbands**")) %>%
+  cols_align(align = "left", columns = "Classification") %>%  # Left-align first column
+  cols_align(align = "center", columns = "Unique Chemicals across all Wristbands") %>%  # Center-align second column
+  tab_options(table.width = px(600))  # Keep table width fixed
+
 
 ```
 

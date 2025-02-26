@@ -28,12 +28,19 @@ names(AllResultClassified)<-c("Chemical Name", "CAS Number")
 
 #THIS REPORT got TOO WIDE so was made to fit onto multiple pages and so the basic table point was LOST
 # NOTE that "split.table= Inf" is the thing that makes this NEVER PAGE WRAP and so is good for HTML but not so good for WORD
-pandoc.table(as.data.frame(AllResultClassified)
-             ,caption="All Chemicals found Across all WB in Study"
-             ,justify=c("left","left")
-             ,emphasis.rownames=TRUE #RowNames never get emphasis... SHOULD switch to gt() someday
-             ,split.table = Inf
-             )
+# pandoc.table(as.data.frame(AllResultClassified)
+#              ,caption="All Chemicals found Across all WB in Study"
+#              ,justify=c("left","left")
+#              ,emphasis.rownames=TRUE #RowNames never get emphasis... SHOULD switch to gt() someday
+#              ,split.table = Inf
+#              )
+
+AllResultClassified %>%
+  gt() %>%
+  tab_header(title = md("**All Chemicals Found Across All WB in Study**")) %>%
+  cols_align(align = "left", columns = everything()) %>%  # Left-align all columns
+  tab_options(table.width = px(800))  # Adjust width for readability
+
 rm(AllResultClassified)
 
 ```

@@ -26,11 +26,23 @@ AllResultInvertClassified<- as.data.frame(
     arrange(classification))
 
 names(AllResultInvertClassified)<-c("Classification", "Chemical Name(s)" )
-pandoc.table(AllResultInvertClassified,
-             caption="Classification Report across all Wristbands",
-             justify=c("left","center")
-              ,split.table = Inf
-             ,emphasis.rownames=TRUE) #RowNames never get emphasis... SHOULD switch to gt() someday
+
+
+# pandoc.table(AllResultInvertClassified,
+#              caption="Classification Report across all Wristbands",
+#              justify=c("left","center")
+#               ,split.table = Inf
+#              ,emphasis.rownames=TRUE) #RowNames never get emphasis... SHOULD switch to gt() someday
+
+AllResultInvertClassified %>%
+  gt() %>%
+  tab_header(title = md("**Classification Report Across All Wristbands**")) %>%
+  cols_align(align = "left", columns = 1) %>%  # Left-align first column
+  cols_align(align = "center", columns = 2:ncol(AllResultInvertClassified)) %>%  # Center-align rest
+  tab_options(table.width = px(900))  # Adjust width for readability
+
+
+
 
 ```
 
