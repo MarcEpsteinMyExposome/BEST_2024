@@ -29,7 +29,7 @@ Every chemical in the testing is classified into one **or more** of the followin
 #              )
 
 # Read CSV instead of read.table (better for modern workflows)
-classExplainTable <- read_csv(class_explain_table_name) %>%
+classExplainTable <- read_csv(class_explain_table_name, show_col_types=FALSE) %>%
   rename(`Chemical Group` = Classification)  # 
 
 # Convert to gt table
