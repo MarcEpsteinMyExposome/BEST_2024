@@ -77,14 +77,14 @@
 
 MyExp_Base_Code_v6_R_Code_was_run <- TRUE  # Use this test if this code was run...
 
-# Function to check, install, and load packages
+# Load required packages
+# Function to check, install, and load packagesf
 load_package <- function(packages) {
   not_installed <- packages[!packages %in% installed.packages()[,"Package"]]
   if(length(not_installed)) install.packages(not_installed)
-
-  lapply(packages, function(pkg) {
-    suppressMessages(library(pkg, character.only = TRUE))
-  })
+  invisible(lapply(packages, function(pkg) {
+    suppressPackageStartupMessages(library(pkg, character.only = TRUE))
+  }))
 }
 
 # List of required packages
@@ -94,9 +94,11 @@ required_packages <- c(
   # "plyr",
   # "dplyr",  # Explicitly loading plyr before dplyr and plyr is needed for sinaplot
   # "sinaplot",
+  "tidyverse", "knitr", "rmarkdown" ,
+  "scriptName", "grid",
   "ggforce", ## UNCLEAR
-  "png", "ggplot2", "ggtext", "plotly", "htmltools", "rlang",
-  "RColorBrewer", "reshape2", "pander", "scales", "tidyverse", "scriptName", "knitr", "rmarkdown", "grid",
+  "png", "ggplot2", "ggtext", "plotly", "htmltools", "RColorBrewer", "reshape2", "pander", "scales",
+  "rlang",
   "styler", # Added styler to allow manual styling of code using the "addins" menu item
   "readxl",
   "bsplus", # Added BSPLUS to allow popup bottons
@@ -484,8 +486,10 @@ results_W <- testResults %>%
 #   > rownames(results_W) <- results_W$ParameterName
 # Warning message:
 #   Setting row names on a tibble is deprecated.
-rownames(results_W) <- results_W$ParameterName
-results_W$ParameterName <- NULL
+
+### 2/26/2025  STOP putting in ROWNAMES???
+#rownames(results_W) <- results_W$ParameterName
+#results_W$ParameterName <- NULL
 
 # Create final testResults.big adding zero-rows for each tested chemical.
 

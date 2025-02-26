@@ -9,6 +9,7 @@
 
 
 ## USES:  testResults, subject, SubClassScores, results_W
+#testResults<-testResults.big
 buildMesgVIndividual <-
   function(testResults,
            mesg.v,
@@ -133,15 +134,33 @@ buildMesgVIndividual <-
     if (howManyWristbandsTested > 1) {
       # place holder
       rw5 <- results_W
+
       # r_wide<-results_W[,2:ncol(rw5)]
       # change everything > 0 to 1  for every column
-      rw5[rw5 > 0] <- 1
-      rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
+      #THIS IS OLD WAY WITH ROWNAMES
+      #rw5[rw5 > 0] <- 1
+      #rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
+
+      #THIS IS NEW WAY with tibbles
+      # change everything > 0 to 1  for every column
+      rw5 <- rw5 %>%
+        mutate_if(is.numeric, ~ ifelse(. > 0, 1, 0)) %>%
+        mutate_if(is.numeric, ~ replace(., is.na(.), 0))
 
       # Only those chemicals whos ROW SUMS = 1 have exactly one wristband with some value
       #   and of those, the ones which OUR subject has "1"
-      chems <-
-        rownames(rw5[rowSums(rw5) == 1 & rw5[, subject] == 1, ])
+      ## THIS WAS OLD WAY RELY ON ROWNAMES.... NOW doing new way
+      # chems <-
+      #   rownames(rw5[rowSums(rw5) == 1 & rw5[, subject] == 1, ])
+
+      #THIS new way uses the ParameterName column to get the list of chems and propoerly references the subject with the [[]] syntax to extract a vector
+      chems <- rw5$ParameterName[rowSums(rw5[, setdiff(names(rw5), "ParameterName")]) == 1 & rw5[[subject]] == 1]
+
+
+
+
+
+
 
       # Loop through all chems and assemble message
       for (chem in chems) {
@@ -196,7 +215,11 @@ buildMesgVIndividual <-
             ## FOR EVERY ROW that meets our criteria of being MAX for our subject, 2 or more readings, max is 5x next
             row <- h2[i, ] # GRAB the i'th ROW
             if (row$subjectDividedByMaxWitoutSubject >= multiplierGreater) {
-              rname <- rownames(row)
+              # THIS WAS OLD WAY using RowNames
+              #rname <- rownames(row)
+              # This is new way with tibbles keeping parametername column
+              rname <- row$ParameterName
+
               txt <-
                 paste(
                   "Your wristband had",
@@ -257,6 +280,7 @@ buildMesgVIndividual <-
   }
 
 ## USES:  testResults, subject, SubClassScores, results_W
+#testResults<-testResults.big
 buildMesgVGroup <-
   function(testResults,
            mesg.v,
@@ -292,9 +316,18 @@ buildMesgVGroup <-
     # place holder
     rw5 <- results_W
     # r_wide<-results_W[,2:ncol(rw5)]
+
+
+
     # change everything > 0 to 1  for every column
-    rw5[rw5 > 0] <- 1
-    rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
+    #rw5[rw5 > 0] <- 1
+    #rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
+
+    #THIS version replaces above lines now that we don't have row names
+    # change everything > 0 to 1  for every column
+    rw5 <- rw5 %>%
+      mutate(across(where(is.numeric), ~ ifelse(. > 0, 1, 0))) %>%
+      mutate(across(where(is.numeric), ~ replace(., is.na(.), 0)))
 
     ## THE NEXT THREE "IF's" add messages indicating the TOTAL found elements across all the wristbands
     #     in the relevent databases
@@ -364,10 +397,15 @@ buildMesgVGroup <-
       # Get names of all chems found on every wristband
       # Only those chemicals whos ROW SUMS = total number of subject have every wristband with some value
       if (howManySubjects == 1) {
-        chems <- rownames(rw5) # NOTE:  I added this HACK for a case of ONE wristband but it is stupid hack cause is meaningless data
+        #chems <- rownames(rw5) # NOTE:  I added this HACK for a case of ONE wristband but it is stupid hack cause is meaningless data
+        chems <- rw5$ParameterName  # Replace rownames with explicit column
       } else {
-        chems <-
-          rownames(as.data.frame(rw5[rowSums(rw5) == howManySubjects, ]))
+        #OLD ROWNAME WAY
+#        chems <-
+#          rownames(as.data.frame(rw5[rowSums(rw5) == howManySubjects, ]))
+        chems <- rw5 %>%
+          filter(rowSums(select(., -ParameterName)) == howManySubjects) %>%
+          pull(ParameterName)
       }
       # THIS below does the same thing as line above WITHOUT using "rw5"
       # rownames(r_wide[apply(r_wide>0,1,all),])
