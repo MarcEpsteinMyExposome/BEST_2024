@@ -29,7 +29,7 @@ names(oneResultClassified)<-c("Chemical Name", "CAS Number","Chemical Group(s)")
 pandoc.table(as.data.frame(oneResultClassified)
              ,caption="Grouping Report on your Wristband"
              ,justify=c("left","left","center")
-             ,emphasis.rownames=TRUE
+             ,emphasis.rownames=TRUE #RowNames never get emphasis... SHOULD switch to gt() someday
              ,split.table = Inf
              )
 rm(oneResultClassified)

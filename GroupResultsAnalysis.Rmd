@@ -1089,7 +1089,7 @@ quant_data<-tr.big.without.NotFound  %>%
 pandoc.table(quant_data,
              caption="Full List of Chemicals"  ,
              justify=c("center"),
-             emphasis.rownames=TRUE,
+             emphasis.rownames=TRUE, #RowNames never get emphasis... SHOULD switch to gt() someday
              #split.tables=110  #80 the default
              split.table = Inf
              )
@@ -1209,7 +1209,7 @@ raw_data<-tr.big.without.NotFound %>%
 pandoc.table(raw_data,
              caption="Full List of Chemicals"  ,
              justify=c("center"),
-             emphasis.rownames=TRUE,
+             emphasis.rownames=TRUE, #RowNames never get emphasis... SHOULD switch to gt() someday
              #split.tables=110  #80 the default
              split.table = Inf
              )

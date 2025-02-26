@@ -27,7 +27,7 @@ pandoc.table(oneResultInvertClassified,
              caption = "Chemical Group Report on your Wristband",
              justify = c("left", "center"),
              split.table = Inf,
-             emphasis.rownames = TRUE)
+             emphasis.rownames = TRUE) #RowNames never get emphasis... SHOULD switch to gt() someday
 
 
 

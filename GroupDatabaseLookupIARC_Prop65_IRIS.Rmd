@@ -16,7 +16,7 @@ Some of the chemicals found on some of the wristbands in this group have evaluat
 pandoc.table(as.data.frame(EPAirisHits),
              caption="Observed Chemical List showing EPA IRIS URLs",
              justify=c("left","center"),
-             emphasis.rownames=TRUE
+             emphasis.rownames=TRUE #RowNames never get emphasis... SHOULD switch to gt() someday
               ,split.table = Inf)
 
 #rm(oneResultEpaIris)
