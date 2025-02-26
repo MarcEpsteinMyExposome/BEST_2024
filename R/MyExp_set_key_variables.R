@@ -284,8 +284,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
   #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
-  #subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
-  subject <- "A241136" # this is  45-N which is from some batch of NECKLACE
+  subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
+  #subject <- "A241136" # this is  45-N which is from some batch of NECKLACE
 
 
 
@@ -553,7 +553,7 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 #
 
-whatKindReportToDo <- "SpecificSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
+whatKindReportToDo <- "GroupAndSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
 # ONLY DO ONE OF THESE THREE THINGS
 if (whatKindReportToDo == "Group") { ## JUST do GROUp Analysis
   DoSpecificSubjectAnalysis <- FALSE # idea is to do specific-subject-analysis output with or without GROUP analysis

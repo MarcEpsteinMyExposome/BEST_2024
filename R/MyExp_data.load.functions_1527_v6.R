@@ -1618,7 +1618,8 @@ load.IARCRisk <- function(IARCRiskTableName,
 
 #### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
 # library(readxl)
-
+#chemSourceMitigationInfoTableName<-chemSourceMitigationInfoTableName2
+#chemSourceSheetName<-chemSourceSheetName2
 load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
                                        chemSourceSheetName) {
   # Check if the Excel file exists
