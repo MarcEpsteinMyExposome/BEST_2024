@@ -277,9 +277,9 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   ExpectedUnits <- "ng/WB"
 } else if (SBIR_P2_Part1and2_35and71_FixUp) {
 
-  resultsTableName <- "MyExpo PO262 PO259  Batch1and2_71_35_WBdata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
+  resultsTableName <- "MyExpo PO262 PO259  Batch1and2_71_35_WBdata_fix.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
   #resultsTableName <- "MyExpo PO262 PO259  Batch1and2_70_33_Ndata.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
-  #resultsTableName <- "MyExpo PO262 PO259  Batch1and2_71_35_70_33_WB_N_data.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
+  #resultsTableName <- "MyExpo PO262 PO259  Batch1and2_71_35_70_33_WB_N_data_fix.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
 
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
@@ -696,7 +696,8 @@ class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassifi
 
 # STEVEN KELSIE updated to other high-runner possible chemicals.... so that added 35 or so more chemicals...
 chemSourceMitigationInfoTableName2 <- setMASTERPARAM_CLASS_RISKSdirectory("Test_figure_out_chemical_exposure_Copilot_ChatGPT_02_24_2025.xlsx") # Steven/Kelsie updated the sources and mitigation information and TG fixes
-chemSourceSheetName2 <- "STEVEN_New71_35_ChatGPT-Try3"
+#chemSourceSheetName2 <- "STEVEN_New71_35_ChatGPT-Try3"
+chemSourceSheetName2 <- "STEVEN_New71_35_ChatGPT-Try4"
 
 
 #  SET name of RMD file
