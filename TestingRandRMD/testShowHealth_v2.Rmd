@@ -28,7 +28,7 @@ bs_modal(
   title = "Health Concern Information",
   body = div(
     HTML("
-      <p>In the table below, ***(FAKE INFO FOR NOW NEEDS TO BE FIXED WHEN WE DECIDE WHAT HEALTH CONCERNS TO FLAG)*** a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
+      <p>In the table , ***(FAKE INFO FOR NOW NEEDS TO BE FIXED WHEN WE DECIDE WHAT HEALTH CONCERNS TO FLAG)*** a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available, or, existing evidence does not support a link.</p>
       <ul>
         <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
         <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>

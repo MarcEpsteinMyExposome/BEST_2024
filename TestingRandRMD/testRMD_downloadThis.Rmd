@@ -1,6 +1,18 @@
 ---
 title: "testDownloadThis"
-output: html_document
+output:
+  rmdformats::readthedown:       #rmdformats::readthedown:
+    self_contained: true
+    number_sections: false
+    css: "..\\customMyExpTEST_v1.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
+              # base_url: ""   ###  This is not needed, did it because if right click download was converting links from relative to absolute
+              # and the CSS does lots of stuff to control how it prints
+    toc_depth: 3   # DELETE/COMMENT this line for some rmdformats      toc_depth: 3
+    toc_collapse: FALSE
+    df_print: "paged"
+    #lightbox: true   # Enables the lightbox for clickable images           # 
+    #gallery: true    # Groups images into a gallery with navigation between images
+    thumbnails: false # Images will appear at their original size
 date: "2024-11-11"
 ---
 
@@ -13,6 +25,10 @@ library("downloadthis")
 
 
 ```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 ## R Markdown
 
@@ -34,9 +50,26 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+
+### Including Plots with 3 hash
+
+THIS IS plots with 3 hash
+THIS IS plots with 3 hash
+THIS IS plots with 3 hash
+
+#### Including plots with 4 hash
+
+THIS IS plots with 4 hash
+THIS IS plots with 4 hash
+THIS IS plots with 4 hash
+
 ## download idea
 
 another idea testing download
+another idea testing download
+another idea testing download
+another idea testing download
+s
 .br
 <br>
 
@@ -55,3 +88,18 @@ mtcars %>%
   )
 
 ```
+
+
+
+
+
+<!-- Script to change the title of the TOC to Table of Contents instead of repeating the name of the file -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const anchorElement = document.querySelector('h2 a[href="#content"]');
+    if (anchorElement) {
+      anchorElement.textContent = 'Table of Contents';
+    }
+  });
+</script>
+
