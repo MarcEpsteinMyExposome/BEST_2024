@@ -1,6 +1,6 @@
 
 
-## Chemicals with their Chemical Groups  {.tabset}
+## Chemical Groups  {.tabset}
 
 The following chemicals were found on your wristband.  We show how each chemical is grouped. We have listed the chemicals both individually, showing their chemical group, and by group, showing all the chemicals with each group.
 
@@ -21,7 +21,7 @@ oneResultClassified<-inner_join(oneResult_with_Y_flag,class_L, by="ParameterID")
 
 
 
-names(oneResultClassified)<-c("Chemical Name", "CAS Number","Chemical Group(s)")
+names(oneResultClassified)<-c("Chemical Name", "Chemical ID Number","Chemical Group(s)")
 
 
 #THIS REPORT got TOO WIDE so was made to fit onto multiple pages and so the basic table point was LOST

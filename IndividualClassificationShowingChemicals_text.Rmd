@@ -19,7 +19,7 @@ names(oneResultInvertClassified)<-c("Chemical Group", "Chemical Name(s)" )
 
 
 
-classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
+#classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   )
 
 
 #Print the table 

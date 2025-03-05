@@ -114,13 +114,13 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
         geom_point(
           data = highlight_point,
           aes(x = factor(ParameterName), y = Result),
-          color = "red",
+          color = "darkmagenta",
           # Highlight the specific subject with red color
           stroke = 1.25,
           # Thickness of the outline (adjust as desired)
           size = 4,
           shape = 21,
-          fill = "#ff6969" # now set to RED to fill circle, was NA for Hollow point for the highlighted subject
+          fill = "magenta" # now set to RED to fill circle, was NA for Hollow point for the highlighted subject
         )
     }
     nonZeroPlot <- nonZeroPlot+
@@ -137,14 +137,15 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       if (is.null(subject)){
         colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, , including chemOfConcern
       } else {
-        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:red;'>Your</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, and subject, including chemOfConcern
+        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:darkmagenta;'>Your</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, and subject, including chemOfConcern
       }
 
       nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
         labs(
-          title = colorizedTitle, # Add color-coded title for mean, median, and subject, including chemOfConcern.  DO NOT do subject if subject NULL
-          y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n", # Add y-axis label with explanation
-          x = "" # Remove x-axis label
+         title = colorizedTitle, # Add color-coded title for mean, median, and subject, including chemOfConcern.  DO NOT do subject if subject NULL
+         # y = "Nanograms per Gram Silicone \nNumbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.' \n", # Add y-axis label with explanation
+         y = "Nanograms per Gram Silicone\n<span style='font-size:10pt;'>Numbers get rapidly bigger towards the right of the graph due to use of 'Log Scale.'</span>",
+         x = "" # Remove x-axis label
         )
     }
 

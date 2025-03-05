@@ -4,14 +4,15 @@ params:
 output:
   rmdformats::readthedown:       #rmdformats::readthedown:
     self_contained: true
-    number_sections: true
+    number_sections: false  # DO NOT number the sections
     css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
               # base_url: ""   ###  This is not needed, did it because if right click download was converting links from relative to absolute
               # and the CSS does lots of stuff to control how it prints
     toc_depth: 3   # DELETE/COMMENT this line for some rmdformats      toc_depth: 3
+    toc_collapse: FALSE
     df_print: "paged"
-    lightbox: true   # Enables the lightbox for clickable images
-    gallery: true    # Groups images into a gallery with navigation between images
+    #lightbox: true   # Enables the lightbox for clickable images           # 
+    #gallery: true    # Groups images into a gallery with navigation between images
     thumbnails: false # Images will appear at their original size
   distill::distill_article:
     toc: true
@@ -145,7 +146,7 @@ rm(img)
 
 
 ---
-title: "`r testName`"
+title: "`r reportTitle`"
 author: "MyExposome, Inc."
 ---
 
@@ -615,12 +616,8 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 ```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }
 ```
 
-<!-- Add a button to print the report -->
-<div style="text-align: right; margin-top: 20px;">
-  <button onclick="window.print()" class="btn btn-success" style="color: white; background-color: #1a3edd; border-radius: 8px; padding: 10px 20px; font-size: 16px; cursor: pointer;">
-    <i class="fa fa-print"></i> Print Report
-  </button>
-</div>
+
+
 
 
 <!-- add javascript to remove x_ from the beginning of visible chemical names 
@@ -639,7 +636,7 @@ window.addEventListener("load", () => {
     }
 
     chemicalTabLinks.forEach((tab) => {
-      console.log(`Processing chemical tab: ${tab.outerHTML}`);
+      //console.log(`Processing chemical tab: ${tab.outerHTML}`);
       const visibleText = tab.innerText || tab.textContent;
       if (visibleText.startsWith("x_")) {
         tab.textContent = visibleText.replace(/^x_/, ""); // Remove the "x_" prefix from visible text
@@ -651,4 +648,56 @@ window.addEventListener("load", () => {
   }, 100); // Add delay to ensure DOM is fully loaded
 });
 
+</script>
+
+
+<!-- Container for the buttons -->
+<div style="display: flex; justify-content: flex-end; gap: 20px; margin-top: 20px;">
+  <!-- Print button -->
+  <button onclick="window.print()" class="btn btn-success" 
+          style="color: white; background-color: #1a3edd; border-radius: 8px; 
+                 padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    <i class="fa fa-print"></i> Print Report
+  </button>
+
+  <!-- Download button as a button element -->
+  <button id="download-button" class="btn btn-success" 
+          style="color: white; background-color: #1a3edd; border-radius: 8px; 
+                 padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    <i class="fa fa-download"></i> Download Full Report As HTML File
+  </button>
+</div>
+
+<!-- JavaScript to support downloading the report -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById("download-button");
+    btn.addEventListener("click", function() {
+      // Get the path of the current page, e.g. "/MyExposome_Report_175-WB.html"
+      var path = window.location.pathname;
+      // Extract the file name (everything after the last '/')
+      var filename = path.substring(path.lastIndexOf('/') + 1);
+      // Create a temporary anchor element to trigger the download
+      var a = document.createElement("a");
+      a.href = filename;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  });
+</script>
+
+
+
+
+
+<!-- Script to change the title of the TOC to Table of Contents instead of repeating the name of the file -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const anchorElement = document.querySelector('h2 a[href="#content"]');
+    if (anchorElement) {
+      anchorElement.textContent = 'Table of Contents';
+    }
+  });
 </script>

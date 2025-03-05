@@ -602,6 +602,15 @@ testResults.big <- testResults.big %>%
 # Remove loading function references.
 rm(load.healthEffects, healthEffectsTableName)
 
+
+
+# Read CSV instead of read.table (better for modern workflows)
+classExplainTable <- load.classificationTable(class_explain_table_name) %>%
+  rename(`Chemical Group` = Classification)  # Rename for clarity
+
+# Remove loading function references.
+rm(load.classificationTable)
+
 # Summaries
 #   - howManyWristbandsTested tracks how many distinct samples (wristbands) are in the data.
 howManyWristbandsTested <- length(unique(testResults.big$SampleNumber))

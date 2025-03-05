@@ -1,9 +1,10 @@
-## Chemical Group Sources & Strategies {#class_link_id}
+
+## Sources & Strategies {#class_link_id} 
 
 We tested for **`r howManyChemicalsTested`** chemicals and grouped them into categories to make the results easier to understand.
 
 
-<!-- Our `r testName`  tests for **`r howManyChemicalsTested`** chemicals. 
+<!-- Our r testName  tests for **r howManyChemicalsTested** chemicals. 
 We have classified these chemicals into a few categories to make these results easier to understand.
 -->
 
@@ -28,9 +29,9 @@ Every chemical in the testing is classified into one **or more** of the followin
 #              #,style = 'rmarkdown'
 #              )
 
-# Read CSV instead of read.table (better for modern workflows)
-classExplainTable <- read_csv(class_explain_table_name, show_col_types=FALSE) %>%
-  rename(`Chemical Group` = Classification)  # 
+# # Read CSV instead of read.table (better for modern workflows)
+# classExplainTable <- read_csv(class_explain_table_name, show_col_types=FALSE) %>%
+#   rename(`Chemical Group` = Classification)  # 
 
 # Convert to gt table
 classExplainTable %>%

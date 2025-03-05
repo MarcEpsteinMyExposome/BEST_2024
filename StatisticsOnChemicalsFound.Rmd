@@ -1,7 +1,7 @@
 
 
 
-## Statistics on Chemicals Found
+## List of All Chemicals Found
 
 ```{r setupbsYY_modal_std_dev3, echo=FALSE}
 
@@ -59,6 +59,9 @@ cat("The data is the raw nanograms found normalized to time-adjust the values as
 
 # Function to create gt table for summary data
 generate_gt_table <- function(data, title) {
+  data <- data %>%
+    mutate(`Percent Had` = `Percent Had` / howManyWristbandsTested)
+  
   data %>%
     gt() %>%
     tab_options(row.striping.include_table_body = TRUE) %>%
@@ -72,6 +75,8 @@ generate_gt_table <- function(data, title) {
     fmt_number(columns = c("Smallest Value Found", "Largest Value Found", "Average Value Found", "Middle Value Found"),
                sep_mark = ",",
                decimals = 1) %>% # Format numeric values with commas
+    fmt_percent(columns = "Percent Had", decimals = 0) %>%  # This displays as 25% instead of 0.25
+
     tab_style(
       style = cell_text(weight = "bold"),
       locations = cells_column_labels(everything()) # Make column labels bold
@@ -85,7 +90,7 @@ if ("Chemical_Name" %in% colnames(statSummary)) {
                                                "Largest Value Found" = MaxResult,
                                                "Average Value Found" = MeanResult,
                                                "Middle Value Found" = MedianResult,
-                                               "How Many Wristbands Had this" = Count)
+                                               "Percent Had" = Count)
 }
 # And here is how i call this function:
 

@@ -275,6 +275,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
+  reportTitle <- "Your Wristband Report"
+
 } else if (SBIR_P2_Part1and2_35and71_FixUp) {
 
   resultsTableName <- "MyExpo PO262 PO259  Batch1and2_71_35_WBdata_fix.csv" #  NOW DOING SBIR Phase 2 Second group of 35 with adding old group of 71
@@ -297,7 +299,7 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   # testDoneFor <- "a MyExposome Wristband Study"     ### COMMENT THIS OUT TO REMOVE FROM REPORT
   testDoneFor <- ""
   ExpectedUnits <- "ng/WB"
-
+  reportTitle <- "Your Wristband Report"
 
   } else if (UniVisionFixup) {
   FixupFile <- "Sample Key_Univision_lookup_table.csv"

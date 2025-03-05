@@ -96,7 +96,7 @@ a[role="tab"]:hover {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 0 2em;
-    color: #1a3edd ;  /* changed b utton color */
+    color: #1a3edd ;  /* changed button color */
     font-weight: 300;
     padding: .125em 1px 0 1px;
     transition: background-position .15s, color .15s;
@@ -106,7 +106,6 @@ a[role="tab"]:hover {
 #sidebar h2 {
     background-color:  #1a3edd;   /* also a light blue:  #1a3edd */ /* SUPER DARK BLUE #1c0761;*/ /* Deep Red  #9F2042;*/
 }
-
 
 
 /* Add underline to all hyperlinks */
@@ -172,4 +171,150 @@ a {
 }
 
 
+
+
+/*change overall sidebar including icon:*/
+#sidebar {
+      position: fixed;
+      top: 0px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: lightgray; /* Changed here */
+      z-index: 200;
+      font-size: 16px;
+    }
+
+
+
+/* MESSING WITH SIDE BAR */
+#sidebar h2 {
+  background-color: transparent;
+}
+
+
+/* Add underline to all hyperlinks */
+#sidebar a {
+    text-decoration: underline;
+}
+
+
+/* set background color of the top left rectangle */
+/* h2 > a together means: "Select only the <a> elements that are direct children of an <h2> element."   */
+/* In simpler terms, it targets links that are immediately inside an <h2> tag. */
+#sidebar h2 > a {
+  background-color: rgb(0, 86, 179);
+}
+
+
+
+/* change the color of the text in the top left rectangle */
+#sidebar h2 {
+  background-color: rgb(0, 86, 179) !important;
+  margin-bottom: 0px !important;
+}
+
+/* #sidebar h2 a {
+  pointer-events: none;
+  color: rgb(255, 255, 255);
+}
+*/
+
+
+
+/* make the border around the date the same color as the background which is a blue color */
+
+/*#sidebar > div#postamble > p.date */
+#sidebar p.date {
+  background-color: rgb(0, 86, 179);
+  border: 1px solid rgb(0, 86, 179);
+  color: white;
+  padding: 0 px;
+  /* change padding  */
+}
+
+#sidebar > div#postamble {
+  border-top-width: 0px;
+  background-color: rgb(0, 86, 179);
+}
+
+#sidebar > div#postamble p.date {
+  outline: none;
+}
+
+
+#sidebar a {
+  color: rgb(100, 100, 100) !important; /* Darker grey */
+}
+
+/* Make sure that the link to the content is white Table of Contents */
+#sidebar h2 a[href="#content"] {
+  color: white !important;
+}
+
+#sidebar li.active a {
+  color: rgb(0, 0, 0); /* Black */
+}
+
+
+/* change the color of the hover for all list items in the sidebar */
+#sidebar li:hover {
+    background-color: transparent !important;
+    border: none !important;
+    color: inherit !important;
+}
+#sidebar a:hover {
+  color: white !important;
+}
+#sidebar li.active {
+    color: black !important;
+}
+#sidebar li.active a {
+    color: black !important;
+}
+#sidebar li.active > a:hover {
+    color: white !important;
+}
+
+
+
+
+
+/* show the toc list items down to level 3 always.  stop them from auto-collapsing */
+div#toc ul.nav > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > a {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > a {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li > a {
+  display: block !important;
+}
 

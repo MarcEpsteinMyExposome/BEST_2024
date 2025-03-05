@@ -44,7 +44,7 @@ rm(mP)
 
 <br>
 
-### Other information about report
+### Print or Download Report
 
 ```{r Versions,  results='asis', echo=FALSE, message=FALSE}
 info <- sessionInfo()

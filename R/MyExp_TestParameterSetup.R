@@ -209,7 +209,9 @@ if (RMD_type=="FRAGRANCE"){
   } else if (RMD_type == "DRS") { # THESE 4 LINEsE are for 1528/drs test
     URL_of_Chemicals_Tested <- "https://www.myexposome.com/fullscreen" # USED in printing report
     # testingTypeText<- "our broadest spectrum of compounds"
+    ?
     testName <- "Full Screen Quantitative Analysis"
+
 
     testExplanation <- "This project provides a broad screen to identify compounds across many chemical groups with a focus on Personal Care Products, Pesticides, Chemicals in Commerce, Flame Retardants and other chemicals of interest."
     ###  WE COULD LIST THESE HERE:    Consumer & Personal Care Products,  Industrial & Commercial Chemicals (Including VOCs), Agricultural & Pharmaceutical Chemicals, Persistent Organic Pollutants (POPs), Flame Retardants, Polycyclic Aromatic Hydrocarbons (PAHs)
@@ -307,4 +309,11 @@ if (RMD_type=="FRAGRANCE"){
     ##### MOVED THESE TO THE WHICH_CUSTOMER area above  resultsTableName <- "F24-22_MyExpoP.O.#259_CoA-WBdata.csv" #  NOW DOING SBIR Phase 2 first group of 71
     ##### MOVED THESE TO THE WHICH_CUSTOMER area above  subject <- "A241133" # Random one from SBIR P2 Group 1 of 71
   }
+# We're going to override the report title if it's not defined
+# The idea is we use reportTitle at the top of the report and define it in initial
+# set up BUT we don't do that for most uses... only for reports for individuals
+# so if it is NOT defined we'll use testName
+if (!exists("reportTitle")) {
+  reportTitle <- testName
+}
 

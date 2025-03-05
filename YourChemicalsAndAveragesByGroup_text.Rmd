@@ -1,4 +1,4 @@
-## Chemical Groups: Averages and Percentages
+## Averages and Percentages
 
 We can look at the findings by chemical groups (keeping in mind that some chemicals appear in more than one group).   Here we see the counts of chemicals in each chemical group and we can also see how your individual count of chemicals in a group compares to the average number of chemicals found in that group.
 

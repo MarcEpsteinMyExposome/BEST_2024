@@ -1684,6 +1684,24 @@ load.healthEffects <- function(healthEffectsTableName) {
 }
 
 
+load.classificationTable <- function(class_explain_table_name) {
+  # Check if the file exists
+  if (!file.exists(class_explain_table_name)) {
+    stop(sprintf("Classification table file not found: %s", class_explain_table_name))
+  }
+
+  # Read the CSV file with error handling (using readr::read_csv)
+  classificationTable <- tryCatch({
+    read_csv(class_explain_table_name, show_col_types = FALSE)
+  }, error = function(e) {
+    stop(sprintf("Error reading classification table file '%s': %s", class_explain_table_name, e$message))
+  })
+
+  classificationTable
+}
+
+
+
 
 
 # READ in classificaiton of chemicals by RISK per IARC

@@ -13,7 +13,7 @@ As previously stated, the average number of chemicals found was **`r round(avera
 
 
 
-## Plot each Chemical of Concern {.tabset  .tabset-pills}
+## Chemicals of Concern {.tabset  .tabset-pills}
 
 We checked all the chemicals anyone in this study was exposed to in databases that flag harmful chemicals. Just because a chemical is flagged doesn't mean the amount an individual was exposed to is harmful. Also, many chemicals haven't been tested for safety so not being in a database doesn't mean it's safe. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click each chemical name to see how exposures compares.
 
@@ -32,7 +32,7 @@ info_modal <- bs_modal(
   title = "Health Concern Information",
   body = div(
     HTML("
-      <p>In the table below a checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available or existing evidence does not support a link.</p>
+      <p>A checkmark means there is positive evidence that the chemical exposure is linked to the health concern although the required level of exposure or length of exposure that would create a health issue is unknown. An empty box means either there is no data available or existing evidence does not support a link.</p>
       <ul>
         <li><strong>Reproduction and fertility:</strong> Chemicals that affect the reproductive system or people’s ability to have children.</li>
         <li><strong>Brain and behavior:</strong> Chemicals that affect the brain, nervous system, or learning and behavior.</li>
@@ -48,7 +48,7 @@ info_modal <- bs_modal(
 )
 
 
-modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information about the <b>Health Effects</b> in the table below</a>")
+modal_trigger <- HTML("<a href='#' data-toggle='modal' data-target='#info_modal'>Click here for more information about the <b>Health Effects</b> in the table</a>")
 
 showHealthEffectsTable <- TRUE
 #showHealthEffectsTable <- FALSE
@@ -100,7 +100,7 @@ if (!is.null(plotlyC_Group_concern)) {
 ```
 
 
-## Plot Remaining Chemicals {.tabset  .tabset-pills}
+## Remaining Chemicals {.tabset  .tabset-pills}
 
 
 Besides the chemicals already mentioned, other chemicals were also found on wristbands in this study group. Many chemicals haven't been tested for safety so not being in a database doesn’t mean it’s safe, but it also doesn’t mean it’s harmful.  In fact, some of these compounds may occur naturally and even be beneficial at some levels. The graph shows how much of a certain chemical was found in wristbands. The blue circle is the average amount, the green circle is the middle value. The wider light blue area represents how common different amounts are, with wider parts showing levels found in more people. Click on each chemical name to compare your exposure to others in the study.
