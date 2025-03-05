@@ -1,0 +1,99 @@
+
+this should change postamble:
+#postamble {
+  color: rgb(252, 252, 252);
+  background: lightgray; /* We changed this in a previous step */
+  border-top: 10px solid lightgray; /* Changed here */
+  font-family: Lato, proxima-nova, "Helvetica Neue", Arial, sans-serif;
+  font-size: 90%;
+  z-index: 400;
+  padding: 12px;
+}
+    
+    
+change overall sidebar including icon:
+#sidebar {
+      position: fixed;
+      top: 0px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: lightgray; /* Changed here */
+      z-index: 200;
+      font-size: 16px;
+    }
+
+
+THIS MAYBE DIDN"T WORK:
+#sidebar h2 a {
+  color: darkblue; /* Changed here */
+  text-decoration: none;
+}
+
+
+/* set background color of the top left rectangle */
+#sidebar h2 {
+  background-color: transparent;
+}
+
+
+/* set background color of the top left rectangle */
+/* h2 > a together means: "Select only the <a> elements that are direct children of an <h2> element."   */
+/* In simpler terms, it targets links that are immediately inside an <h2> tag. */
+h2 > a {
+  background-color: rgb(0, 86, 179);
+}
+
+
+
+
+/* #toc a:not(.active) { color: rgb(100, 100, 100); }: This new rule targets the <a> elements themselves when they are not active and sets their text color to rgb(100, 100, 100). This ensures that the link itself has the darker gray color. */
+/* #toc a:not(.active) span { color: rgb(100, 100, 100); }: This rule remains the same, ensuring that the <span> elements within the inactive links also have the darker gray color. */
+/* By applying the color to both the <a> and the <span> elements, we're covering all bases and ensuring that the darker gray is applied regardless of where the light gray color might be originating from. */
+#toc a:not(.active) {
+  color: rgb(100, 100, 100);
+}
+#toc a:not(.active) span {
+  color: rgb(100, 100, 100);
+}
+
+p.date {
+  background-color: rgb(0, 86, 179);
+  border: 1px solid rgb(0, 86, 179);
+  color: white;
+  padding: 5px;
+}
+
+p.author {
+  background-color: rgb(0, 86, 179);
+  border: 1px solid rgb(0, 86, 179);
+  color: white;
+  padding: 5px;
+}
+
+
+SOME CLUES:
+
+/* Default style for TOC links */
+#toc a {
+  color: black; /* Or whatever your default color is */
+  text-decoration: none; /* Remove underline by default */
+}
+
+/* Style for TOC links when they have keyboard focus */
+#toc a:focus {
+  color: blue; /* Change the color when focused */
+  outline: 2px solid blue; /* Add a visible outline */
+}
+
+/* Style for TOC links when they are being clicked */
+#toc a:active {
+  color: red; /* Change the color when clicked */
+}
+
+/* Style for TOC links when the mouse is hovering over them */
+#toc a:hover {
+  color: green; /* Change the color on hover */
+  text-decoration: underline; /* Add an underline on hover */
+}

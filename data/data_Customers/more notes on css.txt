@@ -1,0 +1,35 @@
+div#toc ul.nav > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li > ul {
+  display: block !important;
+}
+
+div#toc ul.nav > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li {
+  display: block !important;
+}
+
+div#toc ul.nav > li > a {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > a {
+  display: block !important;
+}
+
+div#toc ul.nav > li > ul > li > ul > li > a {
+  display: block !important;
+}
