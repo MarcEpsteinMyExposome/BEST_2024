@@ -1,0 +1,46 @@
+i need to find clipart that represents various phrases. can i give you the phrases and ask you to find the clipart for me?
+
+as context, I'm providing users with a test of their environemtal exposure.  Then i am
+reporting back to them the results.  
+
+To make the results easier to understand I'm grouping all the chemical compounds into categories.  
+
+The first area of the report will have the highlights for each group of chemicals.
+
+I'd like a clipart image or similar drawing that represents each very broad group.
+
+Here is the list:
+
+Consumer & Personal Care Products
+Industrial & Commercial Chemicals
+Agricultural & Pharmaceutical Chemicals
+Persistent Organic Pollutants (POPs)
+Flame Retardants
+Pollutants from crude oil, fuel, and fires
+
+For example, for "industrial and commercial" perhaps an image of a factory with a smokestack and smoke coming out 
+for example, perhaps for comsumer and personal care we can find images of shampoo and fragrances/perfumes 
+but those are just EXAMPLES.
+
+The key is to come up with 6 images and ideally they would all be stylistically similar
+i searched those and couldn't find anything. I can't just search for one of the specific clipart ideas cause they are too wordy. Or... i can find ONE icon for one item (like a shampoo bottle) but then i'd need to find all the other icons and create some kind of collage... that's a lot of work. is there an AI i can use to do this for me?
+
+i'm going to try to use adobe firefly first before i go to the others.  I have an account.
+
+Consumer & Personal Care Products
+"Flat vector icons of shampoo bottle, perfume bottle, toothpaste tube, and soap bar, simple clean lines, pastel colors, white background, consistent style, representing consumer and personal care products."
+
+Industrial & Commercial Chemicals
+"Flat vector icons of a factory with smokestack, chemical beakers, and a gear, simple clean lines, pastel colors, white background, consistent style, representing industrial and commercial chemicals."
+
+Agricultural & Pharmaceutical Chemicals
+"Flat vector icons of a just one wheat stalk AND one man in a protective suit spraying chemicals on that wheat stalk, simple clean lines, pastel colors, white background, consistent style, representing agricultural and pharmaceutical chemicals."
+
+Persistent Organic Pollutants (POPs)
+Flat vector icons of a globe with a superimposed hazard symbol, simple clean lines, pastel colors, white background, consistent style, representing persistent organic pollutants (POPs).
+
+Flame Retardants
+Flat vector icons of a flame with a shield symbol and a couch cushion with a 'no' symbol over a flame, simple clean lines, pastel colors, white background, consistent style, representing flame retardants.
+
+Pollutants from crude oil, fuel, and fires
+Flat vector icons of a grill with smoke coming up and in the background an oil rig for drilling, simple clean lines, pastel colors, white background, consistent style, representing pollutants from crude oil, fuel, and fires.
