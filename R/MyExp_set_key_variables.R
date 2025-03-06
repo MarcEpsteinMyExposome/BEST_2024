@@ -685,7 +685,8 @@ vocMasterParamTableName <- "MyExposome_VOC_MasterParameter_List_3_6_2019.csv" ##
 class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping3.csv")  # Changed from 2 to 3 to add fragrances
 
 # class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
-class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv") # Steven Edited tiny bit more
+#class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv") # Steven Edited tiny bit more
+class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription4.csv") # added image column
 
 
 #### Created a lookup table with GEMINI / CHatGPT / BARD trying to list chemical sources of exposure, health impacts, mitigation strategies etc...

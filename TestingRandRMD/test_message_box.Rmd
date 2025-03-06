@@ -64,3 +64,52 @@ for (msg in report_messages) {
 
 cat(html_output)
 ```
+
+
+
+```{r test again, echo=FALSE, results='asis'}
+# Assume you have already generated your report_table like this:
+# report_table <- generate_report(subject, testResults.bigWithClass)
+#
+# For demonstration, here's a fake report_table:
+report_table <- data.frame(
+  classification = c("Consumer & Personal Care Products",
+                     "Industrial & Commercial Chemicals",
+                     "Agricultural & Pharmaceutical Chemicals"),
+  message = c("You had Consumer & Personal Care Products compound, Indole detected at a high level that was not found in most other wristbands.",
+              "You had Industrial & Commercial Chemicals compound, Indole detected at a high level that was not found in most other wristbands.",
+              "You had a higher level of Agricultural & Pharmaceutical Chemicals compound, Diethyl phthalate, compared to 95% of other people in the study."),
+  image = c("factory.png", "factory2.png", "factory3.png"),
+  explanation = c("Description for Consumer & Personal Care Products.",
+                  "Description for Industrial & Commercial Chemicals.",
+                  "Description for Agricultural & Pharmaceutical Chemicals."),
+  strategies = c("Use natural alternatives, check labels, and reduce exposure.",
+                 "Improve ventilation, use protective equipment, and follow safety protocols.",
+                 "Wash produce, opt for organic options, and limit exposure."),
+  stringsAsFactors = FALSE
+)
+
+# Build the HTML output string
+html_output <- "<h2>Key Messages</h2>
+<p>Chemicals are often grouped based on how we’re exposed to them—through breathing, skin contact, or what we eat—and how we can avoid them, like washing hands, improving ventilation, or restricting certain products. Here are some key points from your results. Keep in mind that a chemical might show up in more than one group since chemicals can come from different sources.</p>"
+
+# Loop through each row of report_table
+for (i in 1:nrow(report_table)) {
+  html_output <- paste0(
+    html_output,
+    "<div class='message-box'>",
+      "<div class='header'>", report_table$message[i], "</div>",
+      "<div class='content'>",
+        "<div class='icon'><img src='images/", report_table$image[i], "' alt='Icon' style='width:100px; height:auto;'></div>",
+        "<div class='text'>",
+          "<div class='action-title'>WHAT YOU CAN DO</div>",
+          "<div class='action-text'>", report_table$strategies[i], "</div>",
+        "</div>",
+      "</div>",
+    "</div>"
+  )
+}
+
+# Output the constructed HTML
+cat(html_output)
+```

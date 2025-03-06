@@ -37,10 +37,42 @@ testResults.bigWithClass  <- testResults.big %>%
 
 
 ## Call the function
-report_messages <- generate_report(subject, testResults.bigWithClass)
-
+#report_messages <- generate_report(subject, testResults.bigWithClass)
+report_messages2 <- generate_report2(subject, testResults.bigWithClass)
 #rm(testResults.bigWithClass)  I may use this later
 
+```
+
+
+
+```{css, echo=FALSE}
+.message-box {
+  border: 1px solid red;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.message-box .header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.message-box .content {
+  display: flex;
+  align-items: flex-start;
+}
+.message-box .icon {
+  margin-right: 10px;
+}
+.message-box .text {
+  flex: 1;
+}
+.message-box .action-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.message-box .action-text {
+  font-size: 0.9em;
+}
 ```
 
 
@@ -50,17 +82,21 @@ report_messages <- generate_report(subject, testResults.bigWithClass)
 
 ### Load the R code to fill in the value of report_messages
 #source("HeadlinesAmountByChemicalGroup_R_Code.R", local = knitr::knit_global())
-
-if (!is.null(report_messages)) {
-  cat("## Key Messages\n")
-    cat(paste0("Chemicals are often grouped based on how we’re exposed to them—through breathing, skin contact, or what we eat—and how we can avoid them, ",
-    "like washing hands, improving ventilation, or restricting certain products. Here are some key points from your results. ",
-    "Keep in mind that a chemical might show up in more than one group since chemicals can come from different sources.\n\n"  ) )
-  # Print the messages
-  for (message in report_messages) {
-    cat("* ", message, "\n")
-  }
-}
+# 
+# if (!is.null(report_messages)) {
+#   cat("## Key Messages\n")
+#   cat(
+#     paste0(
+#       "Chemicals are often grouped based on how we’re exposed to them—through breathing, skin contact, or what we eat—and how we can avoid them, ",
+#       "like washing hands, improving ventilation, or restricting certain products. Here are some key points from your results. ",
+#       "Keep in mind that a chemical might show up in more than one group since chemicals can come from different sources.\n\n"
+#     )
+#   )
+#   # Print the messages
+#   for (message in report_messages) {
+#     cat("* ", message, "\n")
+#   }
+# }
 
 #generate_report("AAG0AAG", testResults.bigWithClass)
 #generate_report("AAG0AC0", testResults.bigWithClass)
@@ -71,6 +107,39 @@ if (!is.null(report_messages)) {
 
 
 #cat("\n\n **This is not yet tested FULLY.  This is to print HEADLINE RULES by CHEM GROUP if we decide to do that** \n")
+cat("## Key Messages\n")
+cat(
+  paste0(
+    "Chemicals are often grouped based on how we’re exposed to them—through breathing, skin contact, or what we eat—and how we can avoid them, ",
+    "like washing hands, improving ventilation, or restricting certain products. Here are some key points from your results. ",
+    "Keep in mind that a chemical might show up in more than one group since chemicals can come from different sources.\n\n"
+  )
+)
+
+
+# Build the HTML output string
+html_output <- ""
+
+# Loop through each row of report_table
+for (i in which(!is.na(report_messages2$message) & report_messages2$message != "")) {
+  html_output <- paste0(
+    html_output,
+    "<div class='message-box'>",
+      "<div class='header'>", report_messages2$message[i], "</div>",
+      "<div class='content'>",
+        "<div class='icon'><img src='images/", report_messages2$image[i], "' alt='Icon' style='width:100px; height:auto;'></div>",
+        "<div class='text'>",
+          "<div class='action-title'>WHAT YOU CAN DO</div>",
+          "<div class='action-text'>", report_messages2$strategies[i], "</div>",
+        "</div>",
+      "</div>",
+    "</div>"
+  )
+}
+
+# Output the constructed HTML
+cat(html_output)
+
 
 
 # 

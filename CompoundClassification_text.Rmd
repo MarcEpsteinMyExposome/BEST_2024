@@ -14,34 +14,17 @@ Every chemical in the testing is classified into one **or more** of the followin
 ```{r classInfoLoadPrep, echo=FALSE, results='asis'}
 
 
-
-# 
-# classExplainTable <- read.table(class_explain_table_name,  sep = ",",  header = TRUE   ) %>%
-#   dplyr::rename("Chemical Group"=Classification)
-# 
-# pandoc.table(classExplainTable,
-#              justify=c("right","left","left","left","left"),  #ADD "left" as needed for number of "ncol" above
-#              emphasis.co.names=TRUE,
-#              caption=""
-#              ,split.table = Inf
-#              ,split.cells=70
-#              #,style = 'grid'
-#              #,style = 'rmarkdown'
-#              )
-
-# # Read CSV instead of read.table (better for modern workflows)
-# classExplainTable <- read_csv(class_explain_table_name, show_col_types=FALSE) %>%
-#   rename(`Chemical Group` = Classification)  # 
-
 # Convert to gt table
-classExplainTable %>%
+
+# Select the columns i want for output
+classExplainTableOutput <- classExplainTable %>%
+  select(`Chemical Group`, `Description`, `Sources`, `Examples`, `Strategies`)
+# Output with gt()
+classExplainTableOutput %>%
   gt() %>%
   tab_header(title = md("**Classification Explanation Table**")) %>%
   cols_align(align = "right", columns = 1) %>%  # First column right-aligned
-  cols_align(align = "left", columns = 2:ncol(classExplainTable))   # Other columns left-aligned
-  #opt_table_overflow(scroll_x = TRUE)  # Enable horizontal scrolling for long text
-
-
+  cols_align(align = "left", columns = 2:ncol(classExplainTableOutput))   # Other columns left-aligned
 
 
 ```
