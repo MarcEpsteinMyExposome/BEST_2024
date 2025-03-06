@@ -3,6 +3,8 @@ params:
   logo_path: "images/myExposomeLogo_with_transparent_padding25.png"
 output:
   rmdformats::readthedown:       #rmdformats::readthedown:
+    includes:
+      in_header: "myexp_favicon.html" 
     self_contained: true
     number_sections: false  # DO NOT number the sections
     css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
