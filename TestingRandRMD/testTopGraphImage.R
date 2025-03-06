@@ -22,7 +22,7 @@ increment <- 5
 
 # Title message:
 howManyChemicalsFoundThisWristband <- 4
-numChemMessage <- paste0("The total number of chemicals found in your wristband was **",
+numChemMessage <- paste0("The number of chemicals found in your wristband was **",
                          howManyChemicalsFoundThisWristband, "**.")
 
 # Create triangle polygons for Minimum, Median, and Maximum:
