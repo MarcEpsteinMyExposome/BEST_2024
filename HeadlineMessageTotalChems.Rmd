@@ -8,7 +8,7 @@ We propose applying these headlines to each chemical group separately. The parti
 
 
 
-## Number of Chemicals
+## Chemicals In Your Wristband
 ```{r pickMessageForTotalNumberChemDetect, results='asis', echo=FALSE, message=FALSE, fig.width=10, fig.height=2}
 #,fig.width=10, fig.height=4
 # I need to find out if >95% or >75 or 25-to-75 or < 25% chemicals detected compared to others then generate a text message and a number line
@@ -107,7 +107,7 @@ create_numberline <- function(cohort_values, individual_value) {
   # Combine these values into a data frame
   values <- c(min_value, median_value, individual_value, max_value)
   labels <- c("Minimum", "Median", paste("You: ", individual_value), "Maximum")
-  colors <- c("black", "black", "darkmagenta", "black")  # Color for each label
+  colors <- c("black", "black", "magenta", "black")  # Color for each label
   positions <- c(-1, -1, -2.4, -1)  # Position for each label
   
   data <- data.frame(
@@ -121,7 +121,8 @@ create_numberline <- function(cohort_values, individual_value) {
                            howManyChemicalsFoundThisWristband, "**.")
   
   p <- ggplot(data, aes(x = value, y = 1)) +
-    geom_hline(yintercept = 1, color = "black", linetype = "solid") +
+    geom_hline(yintercept = 1, color = "steelblue", linetype = "solid",linewidth = 1.0) +
+    #geom_hline(yintercept = 1, color = "black", linetype = "solid",linewidth = 0.75) +
     geom_point(aes(color = color), size = 3) +
     geom_label(aes(label = label, color = color, vjust = position), 
                fill = "white", label.size = 0.5) +

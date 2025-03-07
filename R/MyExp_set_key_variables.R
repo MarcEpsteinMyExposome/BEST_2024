@@ -285,8 +285,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
 
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
-  #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
-  subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
+  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  #subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
   #subject <- "A241136" # this is  45-N which is from some batch of NECKLACE
 
 
@@ -683,6 +683,7 @@ vocMasterParamTableName <- "MyExposome_VOC_MasterParameter_List_3_6_2019.csv" ##
 ##       SECOND is later we collapse using a file we read-in that tells us how the resulting classifications should collapse.
 ##        eventually this should be standardized
 class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("ReivsedClassificationMapping3.csv")  # Changed from 2 to 3 to add fragrances
+class_conversion_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationMapping4.csv")  # Changed from 3 to 4 to correct name of pollutants from fire PLUS fix spelling or "Revised" in file name
 
 # class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription2.csv")
 #class_explain_table_name <- setMASTERPARAM_CLASS_RISKSdirectory("RevisedClassificationTextDescription3.csv") # Steven Edited tiny bit more

@@ -137,7 +137,7 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
       if (is.null(subject)){
         colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, , including chemOfConcern
       } else {
-        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:darkmagenta;'>Your</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, and subject, including chemOfConcern
+        colorizedTitle = paste0("<span style='color:blue;'>Mean</span>, <span style='color:green;'>Median</span>, and <span style='color:magenta;'>Your</span> exposure to ", chemOfConcern) # Add color-coded title for mean, median, and subject, including chemOfConcern
       }
 
       nonZeroPlot <- nonZeroPlot + scale_y_log10(labels = scales::comma_format(big.mark = ",")) +
