@@ -196,7 +196,7 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FAL
         class,
         "</strong></a>",
 
-        " compound, **",
+        " compound, ",
         generateTabLink(compounds_meeting_criteria2[1]),
         ", compared to 95% of other people in the study."
       )
