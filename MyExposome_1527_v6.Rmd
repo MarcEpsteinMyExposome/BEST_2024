@@ -4,9 +4,7 @@ params:
 output:
   rmdformats::readthedown:       #rmdformats::readthedown:
     includes:
-      #in_header: "favicon_and_header.html" 
       in_header: "myexp_favicon.html" 
-      #in_header: "header.html"
     self_contained: true
     number_sections: false  # DO NOT number the sections
     css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
