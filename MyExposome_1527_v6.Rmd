@@ -4,7 +4,9 @@ params:
 output:
   rmdformats::readthedown:       #rmdformats::readthedown:
     includes:
+      #in_header: "favicon_and_header.html" 
       in_header: "myexp_favicon.html" 
+      #in_header: "header.html"
     self_contained: true
     number_sections: false  # DO NOT number the sections
     css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
@@ -140,6 +142,10 @@ rm(img)
 
 
 
+
+
+
+
 <!-- DIV in html to insert the logo but only do this when PRINTING --> 
 
 <div id="print-logo">
@@ -227,6 +233,47 @@ function openTab(tabId) {
   }
 }
 </script>
+
+
+
+```{r generate_modals, echo=FALSE, results='hide'}
+
+# For each row, build the modal HTML string.
+modal_strings <- apply(classExplainTable, 1, function(row) {
+  group <- row["Chemical Group"]
+  desc <- row["Description"]
+  modal_id <- generateTabID(group)
+  
+  paste0(
+    '<div id="', modal_id, '" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="', modal_id, '-title">',
+    '  <div class="modal-dialog" role="document">',
+    '    <div class="modal-content">',
+    '      <div class="modal-header">',
+    '        <button type="button" class="close" data-dismiss="modal" aria-label="Close">',
+    '          <span aria-hidden="true">&times;</span>',
+    '        </button>',
+    '        <h4 class="modal-title" id="', modal_id, '-title">DESCRIPTION OF CHEMICAL GROUP</h4>',
+    '      </div>',
+    '      <div class="modal-body">',
+    '        <p>', desc, '</p>',
+    '      </div>',
+    '      <div class="modal-footer">',
+    '        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>',
+    '      </div>',
+    '    </div>',
+    '  </div>',
+    '</div>'
+  )
+})
+
+# Concatenate all modal HTML strings.
+all_modals <- paste(modal_strings, collapse = "\n")
+```
+
+```{=html}
+`r all_modals`
+```
+
 
 
 ```{r UseSetupGeneralInfoNotSubjectSpecific, echo=FALSE, message=FALSE, include=FALSE}
@@ -703,3 +750,9 @@ window.addEventListener("load", () => {
     }
   });
 </script>
+
+
+
+
+
+

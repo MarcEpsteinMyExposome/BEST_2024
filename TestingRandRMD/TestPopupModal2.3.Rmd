@@ -1,0 +1,95 @@
+---
+title: "Programmatically Generated Modals with Raw HTML Block"
+output: html_document
+header-includes:
+  - <meta name="viewport" content="width=device-width, initial-scale=1">
+  - <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  - <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  - <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+---
+
+## Pre-generated Modals
+
+Below we generate the modal HTML for each chemical group from a tibble, and then output it using the raw HTML block syntax.
+
+```{r generate_modals, echo=FALSE, results='hide'}
+library(dplyr)
+
+# Example tibble; in your application this is already provided
+classExplainTable <- tibble::tribble(
+  ~`Chemical Group`,                             ~Description,
+  "Agricultural & Pharmaceutical Chemicals",    "Description for Agricultural & Pharmaceutical Chemicals.",
+  "Industrial & Commercial Chemicals",          "Description for Industrial & Commercial Chemicals.",
+  "Flame Retardants",                            "Description for Flame Retardants.",
+  "Pollutants from Burning Fuels, Soot, Smoke",   "Description for Pollutants from Burning Fuels, Soot & Smoke.",
+  "Consumer & Personal Care Products",          "Description for Consumer & Personal Care Products.",
+  "Persistent Organic Pollutants (POPs)",         "Description for POPs."
+)
+
+# Simple generateTabID function: replace spaces with hyphens, remove non-alphanumeric (except hyphens), convert to lowercase.
+generateTabID <- function(x) {
+  x <- gsub(" ", "-", x)
+  x <- gsub("[^a-zA-Z0-9-]", "", x)
+  tolower(x)
+}
+
+# For each row, build the modal HTML string.
+modal_strings <- apply(classExplainTable, 1, function(row) {
+  group <- row["Chemical Group"]
+  desc <- row["Description"]
+  modal_id <- generateTabID(group)
+  
+  paste0(
+    '<div id="', modal_id, '" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="', modal_id, '-title">',
+    '  <div class="modal-dialog" role="document">',
+    '    <div class="modal-content">',
+    '      <div class="modal-header">',
+    '        <button type="button" class="close" data-dismiss="modal" aria-label="Close">',
+    '          <span aria-hidden="true">&times;</span>',
+    '        </button>',
+    '        <h4 class="modal-title" id="', modal_id, '-title">DESCRIPTION</h4>',
+    '      </div>',
+    '      <div class="modal-body">',
+    '        <p>', desc, '</p>',
+    '      </div>',
+    '      <div class="modal-footer">',
+    '        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>',
+    '      </div>',
+    '    </div>',
+    '  </div>',
+    '</div>'
+  )
+})
+
+# Concatenate all modal HTML strings.
+all_modals <- paste(modal_strings, collapse = "\n")
+```
+
+Now, to output these modals into your final HTML using the raw HTML block syntax, add the following block at the desired location (for example, near the end of your document):
+
+```{=html}
+`r all_modals`
+```
+
+## Test Trigger
+
+Below is a test trigger for one of the modals. Clicking this link should open the modal for "Agricultural & Pharmaceutical Chemicals".
+
+```{=html}
+<a href="#" data-toggle="modal" data-target="#agricultural--pharmaceutical-chemicals"><strong>Agricultural & Pharmaceutical Chemicals</strong></a>
+```
+
+### Instructions
+
+1. **Save the file:**  
+   Copy the entire text above (from the first line with `---` to the final code block) into a new file named, for example, `ModalTest_RawHTML.Rmd`.
+
+2. **Knit to HTML:**  
+   Open the file in RStudio and click **Knit** to produce the HTML output.
+
+3. **Test the Modal:**  
+   In the rendered HTML, click the link under **Test Trigger**. It should open a Bootstrap modal popup with the title “DESCRIPTION” and the description text for "Agricultural & Pharmaceutical Chemicals".
+
+This approach uses the raw HTML block (```{=html}) to insert the pre-generated modal HTML directly into the document. Since it’s generated programmatically (using your tibble and generateTabID), you can later adapt it for your full application without hard-coding all modal markup.
+
+Let me know if this solution works for you or if you have any further questions!
