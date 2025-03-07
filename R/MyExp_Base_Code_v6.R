@@ -106,7 +106,8 @@ required_packages <- c(
   "here", # USE the HERE package to locate the LOGO and provide an absolute path instead of a relative path cause relative path messes up print-all-subjects
   "base64enc",
   "gt", # for printing fancier tables
-  "downloadthis"
+  "downloadthis",
+  "glue" # for string interpolation
 
   # "reactable"  # added as test to do display of table data you can sort filter download     ### DELETED THIS CAUSE IT DIDN"T WORK
 )

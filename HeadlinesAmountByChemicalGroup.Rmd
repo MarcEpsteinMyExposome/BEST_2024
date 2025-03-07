@@ -117,11 +117,12 @@ cat(
 )
 
 
-# Build the HTML output string
+# Build the HTML output string for the message boxes
 html_output <- ""
 
-# Loop through each row of report_table
+# Loop through each row of report_messages2 where message is not empty.
 for (i in which(!is.na(report_messages2$message) & report_messages2$message != "")) {
+  whatCanYouDoMessage <- paste0("WHAT CAN YOU DO ABOUT: ", toupper(report_messages2$classification[i]))
   html_output <- paste0(
     html_output,
     "<div class='message-box'>",
@@ -129,18 +130,33 @@ for (i in which(!is.na(report_messages2$message) & report_messages2$message != "
       "<div class='content'>",
         "<div class='icon'><img src='images/", report_messages2$image[i], "' alt='Icon' style='width:100px; height:auto;'></div>",
         "<div class='text'>",
-          "<div class='action-title'>WHAT YOU CAN DO</div>",
+          "<div class='action-title'>", whatCanYouDoMessage, "</div>",
           "<div class='action-text'>", report_messages2$strategies[i], "</div>",
         "</div>",
       "</div>",
     "</div>"
   )
 }
+# 
+# # Build a string containing all the modal HTML (one per classification)
+# modals_output <- ""
+# for (i in which(!is.na(report_messages2$modal) & report_messages2$modal != "")) {
+#   modals_output <- paste0(modals_output, report_messages2$modal[i])
+# }
 
-# Output the constructed HTML
+# Then output both parts:
 cat(html_output)
+#cat(as.character(htmltools::HTML(modals_output)))
+#knitr::asis_output(htmltools::HTML(modals_output))
 
 
 
 # 
 ```
+
+
+<!-- ```{r modals_output, echo=FALSE, results='asis'} -->
+<!-- knitr::asis_output(htmltools::HTML(modals_output)) -->
+<!-- ``` -->
+
+

@@ -285,8 +285,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
 
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
-  subject <- "A241259" # this is 154-WB	WB which is someone who is great example
-  #subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
+  #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
+  subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
   #subject <- "A241136" # this is  45-N which is from some batch of NECKLACE
 
 
