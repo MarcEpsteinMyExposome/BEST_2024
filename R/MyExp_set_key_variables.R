@@ -555,7 +555,7 @@ if (subsetBasedOnBatchNumber) {
 # NOTE: Normally next 2 (HideIndividualization,DoSpecificSubjectAnalysis are set to different things) < HUH?  Set to SAME things, righit????>
 # NOTE:  Could move this UP near the top so... I can test for it and set some other variables based on it including REPORT TITLE
 
-whatKindReportToDo <- "Group" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
+whatKindReportToDo <- "SpecificSubject" # Either "Group" or "SpecificSubject" or "GroupAndSubject"
 # ONLY DO ONE OF THESE THREE THINGS
 if (whatKindReportToDo == "Group") { ## JUST do GROUp Analysis
   DoSpecificSubjectAnalysis <- FALSE # idea is to do specific-subject-analysis output with or without GROUP analysis

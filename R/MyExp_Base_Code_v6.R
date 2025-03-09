@@ -209,7 +209,6 @@ class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, VOC_2024_Mas
 class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParameterTable, class_L, DropSpecificChemicals)
 class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L, DropSpecificChemicals)
 class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L, DropSpecificChemicals)
-
 # Add FRAGRANCE classification in a similar manner.
 class_L <- updateWithClassSpecificMasterParam(FRAGRANCE_text_string, FRAGRANCEmasterParameterTable, class_L, DropSpecificChemicals)
 
