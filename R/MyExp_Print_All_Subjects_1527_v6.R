@@ -150,5 +150,6 @@ render_reports(
   logo_path = logo_path
 )
 
+rm(list=ls())  # clear things out
 
 
