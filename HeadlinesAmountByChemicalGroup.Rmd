@@ -26,7 +26,7 @@ source(setRdirectory("HeadlinesAmountByChemicalGroup_R_Code.R"),
 ### HERE WE DEFINE testResults.bigWithClass and this gets done when this file is first SOURCED and then it is passed-in as value
 testResults.bigWithClass  <- testResults.big %>%
   #filter(Result > 0) %>% # choose only hits
-  left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>%
+  left_join(class_L, by = "ParameterID",relationship = "many-to-many") %>% #this is many to many because many wristbands have same parameter ID and some ParameterIDs have multiple classifications
   select(ParameterID,ParameterName,SampleNumber,Result, classification)
 
 # ADDING CLASSIFICATION to testResults.big BUT NOTE that this creates duplicate rows cause some parameterID have multiple class SO
@@ -38,7 +38,7 @@ testResults.bigWithClass  <- testResults.big %>%
 
 ## Call the function
 #report_messages <- generate_report(subject, testResults.bigWithClass)
-report_messages2 <- generate_report2(subject, testResults.bigWithClass)
+report_messages2 <- generate_report2(subject, testResults.bigWithClass, oneResult)
 #rm(testResults.bigWithClass)  I may use this later
 
 ```

@@ -8,13 +8,14 @@
 # Define the function
 #
 #     ### THESE ARE THE RULES from Silient spring BUT i slightly reworded AND skipped a few just to get something done.
-generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FALSE, debug2 = FALSE) {
+generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, debug = FALSE, debug2 = FALSE) {
   #sampleNumber<-subject
   # Helper function to calculate specified percentile of a numeric vector
   calculate_percentile <- function(x, percentile) {
     quantile(x, probs = percentile / 100, na.rm = TRUE)
   }
 
+  # so individual_data will be all the data for this one user sample
   individual_data <- testResults.bigWithClass %>% filter(SampleNumber == sampleNumber)
   # Get the list of unique classifications in the dataset
   classifications <- unique(testResults.bigWithClass$classification)
@@ -26,18 +27,38 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FAL
     image = character(),
     explanation = character(),
     strategies = character(),
+    countConcern = integer(),  # count of compounds in classification for this sample that are chemicals-of-concern
     stringsAsFactors = FALSE
   )
 
   # Iterate through each classification to generate report messages
   for (class in classifications) {
     #class <- "Pollutants from burning fuels, soot, smoke"
+
+
+    # get the rows ONLY that match this classification
+    individual_class_data <- individual_data %>% filter(classification == class)
+
+
+
     if (debug) {
       cat("in classification loop, classification = ", class, "\n")
     }
 
-    class_data <- testResults.bigWithClass %>% filter(classification == class)
+    # get the rows ONLY that match this classification.  NOTE now we have a way to see all data for this class AND all individual_data for this class
+    class_data <- testResults.bigWithClass %>% filter(classification == class) # this is the data for the current classification
+
+    # how many chemicals of concern did this subject have for this classification
+    countChemsOfConcern <- oneResult %>%
+      left_join(class_L, by="ParameterID") %>%
+      filter(classification==class) %>%
+      pull(ParameterName)%>%
+      length()
+
+    # # Get the list of unique samples in the dataset
     sample_count <- length(unique(testResults.bigWithClass$SampleNumber))
+
+
 
     # Initialize empty vectors for various criteria
     compounds_meeting_criteria1 <- c()
@@ -49,80 +70,103 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FAL
     compounds_meeting_criteria7 <- c()
     compounds_meeting_criteria8 <- c()
 
-    # Loop through each compound in the classification
+    # Loop through each compound in the classification if it is in this individual data or NOT
     for (compound in unique(class_data$ParameterName)) {
+      #compound <- "Naphthalene" # this is one in FUELS and burning
       if (debug) {
         cat("in compound loop, compound = ", compound, "  class = ", class, "\n")
       }
 
+      # Get the data for this compound zero aan non-zero
       compound_data <- class_data %>% filter(ParameterName == compound)
+      # Get the data for this compound that is non-zero
       compound_data_non_zero <- compound_data %>% filter(Result > 0)
 
+      # This should be at most ONE ROW because we are ONE subject, one compound, so that should be exactly ONE
+      individual_class_compound_data <- individual_class_data %>% filter(ParameterName == compound)
+
+      # STOP with an error if       length(individual_class_compound_data$Result) not exactly 1
+      if (length(individual_class_compound_data$Result) != 1) {
+        stop("Error: Expected exactly one row for this subject and compound")
+      }
+
+      # SilentSpring maybe wanted these % to cover ALL zero and non-zero... i didn't do that
       pct_95 <- calculate_percentile(compound_data_non_zero$Result, 95)
       pct_75 <- calculate_percentile(compound_data_non_zero$Result, 75)
       pct_50 <- calculate_percentile(compound_data_non_zero$Result, 50)
       pct_25 <- calculate_percentile(compound_data_non_zero$Result, 25)
       median_result <- median(compound_data_non_zero$Result, na.rm = TRUE)
 
+      #as a reminder for myself i now have lots of variables:
+      #         individual_data
+      #         individual_class_data
+      #         individual_class_compound_data
+      #         compound_data
+      #         compound_data_non_zero
+
+
+      # # Criteria 1: Result >= 95th percentile and found in <= 10% of samples
+      # if (any(individual_data$Result > 0 &
+      #         individual_data$ParameterName == compound &
+      #         individual_data$Result >= pct_95) &&
+      #     (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
+      #   compounds_meeting_criteria1 <- c(compounds_meeting_criteria1, compound)
+      # }
       # Criteria 1: Result >= 95th percentile and found in <= 10% of samples
-      if (any(individual_data$Result > 0 &
-              individual_data$ParameterName == compound &
-              individual_data$Result >= pct_95) &&
+      if (individual_class_compound_data$Result >= pct_95 &&
           (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
         compounds_meeting_criteria1 <- c(compounds_meeting_criteria1, compound)
       }
+
+      # # Criteria 2: Result >= 95th percentile and > 10 times the median
+      # if (any(
+      #   individual_data$Result > 0 &
+      #   individual_data$ParameterName == compound &
+      #   individual_data$Result >= pct_95 &
+      #   individual_data$Result >= (10 * median_result)
+      # )) {
+      #   compounds_meeting_criteria2 <- c(compounds_meeting_criteria2, compound)
+      # }
       # Criteria 2: Result >= 95th percentile and > 10 times the median
-      if (any(
-        individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_95 &
-        individual_data$Result >= (10 * median_result)
-      )) {
+      if (
+        individual_class_compound_data$Result  >= pct_95 &
+        individual_class_compound_data$Result >= 10 * median_result
+      ) {
         compounds_meeting_criteria2 <- c(compounds_meeting_criteria2, compound)
       }
+
       # Criteria 3: Result >= 95th percentile and found in >= 10% of samples
-      if (any(
-        individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_95
-      ) &&
-      (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
+      if (individual_class_compound_data$Result >= pct_95   &&
+        (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
         compounds_meeting_criteria3 <- c(compounds_meeting_criteria3, compound)
       }
       # Criteria 4: Result >= 75th percentile and >10 times median
-      if (any(
-        individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_75 &
-        (individual_data$Result > 10 * median_result)
-      )) {
+      if (
+        individual_class_compound_data$Result  >= pct_75 &
+        individual_class_compound_data$Result > 10 * median_result
+      ) {
         compounds_meeting_criteria4 <- c(compounds_meeting_criteria4, compound)
       }
       # Criteria 5: Result >= 75th percentile and at least 25% of samples detect
-      if (any(
-        individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result >= pct_75
-      ) &&
-      (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
+      if (individual_class_compound_data$Result  >= pct_75 &
+          (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
         compounds_meeting_criteria5 <- c(compounds_meeting_criteria5, compound)
       }
-      # Criteria 6: Some compound detected (even if low)
-      if (any(individual_data$ParameterName == compound)) {
+      # Criteria 6: Not detected for all compounds in a group
+      # so here what i want to do is check if a compound IS detected for this subject because then if ANY compound is we do NOT meet criteria 6
+      # NOTE i could more easily just check here if   countChemsOfConcern   is equal 0...that should be same and doesn't need to be in this loop but...
+      if (individual_class_compound_data$Result != 0) {
         compounds_meeting_criteria6 <- c(compounds_meeting_criteria6, compound)
       }
       # Criteria 7: Result < 50th percentile for all compounds in group
-      if (all(
-        individual_data$Result > 0 &
-        individual_data$ParameterName == compound &
-        individual_data$Result <= pct_50
-      )) {
+      #     and we know that at least ONE compound is FOUND for this group from test 6 above
+      #    so we can just check if this compound is GREATER that 50% and if it is then add it to list and that means we don't meet criteria 7
+      if (individual_class_compound_data$Result > pct_50) {
         compounds_meeting_criteria7 <- c(compounds_meeting_criteria7, compound)
       }
-      # Criteria 8: Not detected and ≤10% of measurements are non-detects
-      if (all(individual_data$ParameterName == compound &
-              individual_data$Result == 0) &&
-          (sum(compound_data$Result == 0) / sample_count) <= 0.10) {
+      # Criteria 8: Not detected and ≤20% of measurements are non-detects
+      if (individual_class_compound_data$Result == 0 &&
+          (sum(compound_data$Result == 0) / sample_count) <= 0.20) {
         compounds_meeting_criteria8 <- c(compounds_meeting_criteria8, compound)
       }
     } # end compound loop
@@ -252,7 +296,7 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FAL
 
         " detected in your wristband."
       )
-    } else if (length(compounds_meeting_criteria7) > 0) {
+    } else if (length(compounds_meeting_criteria7) == 0) {  # We only added compounds to this list if they were GREATER than 50% so if we have any then we don't meet criteria 7
       message <- paste0(
         "You had lower levels of ",
 
@@ -304,7 +348,7 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, debug = FAL
       image = image_file,
       explanation = explanation_text,
       strategies = strategies_text,
-      #modal = as.character(modal_html),  # NEW: store modal HTML here
+      countConcern= countChemsOfConcern,
       stringsAsFactors = FALSE
     )
     report_table <- rbind(report_table, new_row)
