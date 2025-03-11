@@ -106,8 +106,8 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
 
 
   # THEN we apply  function to the ParameterName mcolumn
-  masterParam[, "ParameterName"] <-
-    purrr::map_chr(masterParam[, "ParameterName"], uppercaseFirst)
+  masterParam <- masterParam %>%
+    mutate(ParameterName = purrr::map_chr(ParameterName, uppercaseFirst))
 
 
   # IF any chemicals are set to be IGNORED by being put into "DropSpecificChemicals"
@@ -413,7 +413,8 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
     testResults <- testResults %>%
       filter(!ParameterID %in% DropSpecificChemicals)
 
-    testResults[, "ParameterName"] <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
+    testResults <- testResults %>%
+      mutate(ParameterName = purrr::map_chr(ParameterName, uppercaseFirst))
 
     testResults
 
@@ -1549,7 +1550,7 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
   #WITHOUT TESTING I CHANGED THE LINE BELOW BECAUSE CHATGPT said it was incorrect...
   #chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
   chemSourceMitigation <- chemSourceMitigation %>%
-    mutate(Chemical_Name = sapply(Chemical_Name, uppercaseFirst))
+    mutate(Chemical_Name = purrr::map_chr(Chemical_Name, uppercaseFirst))
 
   chemSourceMitigation
 }
