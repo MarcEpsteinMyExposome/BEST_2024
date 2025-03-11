@@ -608,16 +608,6 @@ makeClickableURL <- function(URL, clickableText) {
 ##    it makes everything lower and strips out paraenthasis and replaces space with dash
 ##      CAUTION:  Maybe there are other special characters we'll need to address also if we find them???
 ##
-# I'm putting generateTabID() into multiple spots for now... obviously move it to support functions later
-
-## THIS FUNCTION removes left/right paraen, left/right brackets, spaces commas  THIS WORKs(i think) and is all the things we found in real data (needs to test)
-## The below version is simple but unclear if worked since I added [] processing... i wanted to be MORE complete
-# generateTabID <- function(chem_name) {
-#   tolower(gsub("[,()\\[\\]]", "", gsub(" ", "-", chem_name)))
-# }
-
-
-
 
 # PREPEND an x_ in front of title cause i need it to get around weird problems with rmarkdown forcing LINK ID to be changed
 #   in this case, just add the x_ for the tab title, i later use javascript to remove it.

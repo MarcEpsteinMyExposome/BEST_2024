@@ -19,6 +19,16 @@
 
 #  DOCUMENTATION on KNITR:  http://cran.r-project.org/web/packages/knitr/knitr.pdf
 
+
+# We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
+# So we define a FUNCTION which takes any string and uppercases the first letter
+uppercaseFirst <- function(txt) {
+  pos <- regexpr("[A-z]", txt)
+  char1 <- substr(txt, pos, pos)
+  uC <- toupper(char1)
+  sub("[A-z]", uC, txt)
+}
+
 # masterParamTableName <-"./data/MASV15_parameters.csv"
 
 # masterParamTableName <-"./data/MASVtest2.csv"
@@ -94,17 +104,8 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
   masterParam <-
     select(masterParam, ParameterID, ParameterName, CASNumber = CasNumber)
 
-  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-  # So we define a FUNCTION which takes any string and uppercases the first letter
-  uppercaseFirst <- function(txt) {
-    pos <- regexpr("[A-z]", txt)
-    char1 <- substr(txt, pos, pos)
-    uC <- toupper(char1)
-    sub("[A-z]", uC, txt)
-  }
-  # THEN we apply taht new function to the ParameterName mcolumn
-  # masterParam[, "ParameterName"] <-
-  #   sapply(masterParam[, "ParameterName"], uppercaseFirst)
+
+  # THEN we apply  function to the ParameterName mcolumn
   masterParam[, "ParameterName"] <-
     purrr::map_chr(masterParam[, "ParameterName"], uppercaseFirst)
 
@@ -379,64 +380,6 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
 #str(class_L_TEMP)
 
 
-
-###  NOW READ IN THE RESULTS TABLE...
-### SET in calling program OR SET IT HERE
-# resultsTable<- "./data/ResultsTable.csv"
-# resultsTableName<- "./data/ResultsTableMarc_and_Fake.csv"
-# resultsTableName<- "./data/F17-03-ResultsV2.csv" # VERSION of good maimi data STILL has zero-WBs and has Flag field
-# JUST IN CASE the calling program doesn't set resultsTable, here is default value
-
-### PROBLEM:  NO RESULTS TABLE??? in 1/28/2015 delivery???
-#### this is NOT a problem cause the results table is skinny and hence new columns in classification don't hurt it
-#### BUT there is no results that will hit some of the new features... so need to add more results!
-#
-# load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals) {
-#   testResults <-
-#     read.table(
-#       resultsTableName,
-#       sep = ",",
-#       header = TRUE,
-#       colClasses = "character" # Import all as character
-#       ,
-#       comment.char = "" # Don't allow use of "#" as comment in input
-#       ,
-#       quote = "\"",
-#       fileEncoding = "UTF-8-BOM"
-#     )
-#
-#   # If any chemicals are set as "ignore/drop these chemicals for this run of the data"
-#   # Then reset testResult to ignore those chemicals.
-#   #  ALSO need to drop those chem from masterParameter
-#   testResults <- testResults %>%
-#     filter(!ParameterID %in% DropSpecificChemicals)
-#
-#
-#   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-#   # So we define a FUNCTION which takes any string and uppercases the first letter
-#   uppercaseFirst <- function(txt) {
-#     pos <- regexpr("[A-z]", txt)
-#     char1 <- substr(txt, pos, pos)
-#     uC <- toupper(char1)
-#     sub("[A-z]", uC, txt)
-#   }
-#   # # THEN we apply taht new function to the ParameterName mcolumn
-#   # testResults[, "ParameterName"] <-
-#   #   sapply(testResults[, "ParameterName"], uppercaseFirst)
-#
-#   testResults[, "ParameterName"] <-
-#     map_chr(testResults[, "ParameterName"], uppercaseFirst)
-#
-#   # original_result <- sapply(testResults[, "ParameterName"], uppercaseFirst)
-#   #   # Updated using purrr::map_chr
-#   # updated_result <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
-#   #   # Compare
-#   # identical(original_result, updated_result) # Should return TRUE
-#
-#
-#   testResults # Return the exact table read
-# }
-#
 ##############NEWER VERSION BELOW
 # The improvements are:
 # Check if file exists before trying to read
@@ -469,13 +412,6 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
 
     testResults <- testResults %>%
       filter(!ParameterID %in% DropSpecificChemicals)
-
-    uppercaseFirst <- function(txt) {
-      pos <- regexpr("[A-z]", txt)
-      char1 <- substr(txt, pos, pos)
-      uC <- toupper(char1)
-      sub("[A-z]", uC, txt)
-    }
 
     testResults[, "ParameterName"] <- map_chr(testResults[, "ParameterName"], uppercaseFirst)
 
@@ -1579,41 +1515,6 @@ load.IARCRisk <- function(IARCRiskTableName,
 # masterParam is maps ParameterID to ParameterName and CASNumber
 
 
-#### NOW START MESSING WITH DETAILED INFO ON CHEMICALS
-#
-#  THIS IS OLDER WORKING ATTEMPT>.. about to make new attempt as well.
-#
-
-# load.chemSourceMitigation <- function(chemSourceMitigationInfoTableName) {
-#   chemSourceMitigation <- read.table(
-#     chemSourceMitigationInfoTableName,
-#     sep = ",",
-#     header = TRUE,
-#     colClasses = "character" # Import all as character
-#     ,
-#     comment.char = "" # Don't allow use of "#" as comment in input
-#     ,
-#     quote = "\"",
-#     fileEncoding = "UTF-8-BOM"
-#   )
-#   chemSourceMitigation <- chemSourceMitigation %>%
-#     select(Chemical_Name,Summary_of_Health_Effects,Commercial_Products,Mitigation_Strategies)
-#
-#   # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-#   # So we define a FUNCTION which takes any string and uppercases the first letter
-#   uppercaseFirst <- function(txt) {
-#     pos <- regexpr("[A-z]", txt)
-#     char1 <- substr(txt, pos, pos)
-#     uC <- toupper(char1)
-#     sub("[A-z]", uC, txt)
-#   }
-#   # THEN we apply taht new function to the ParameterName mcolumn
-#   chemSourceMitigation[, "Chemical_Name"] <-
-#     sapply(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
-#
-#   chemSourceMitigation
-# }
-
 
 
 #### New attempt 10/18/2024 using new table xlsx chemSourceMitigationInfoTableName2
@@ -1643,26 +1544,12 @@ load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
       WIKIPEDIA_ARTICLE_URL
     )
 
-
-  # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
-  # So we define a FUNCTION which takes any string and uppercases the first letter
-  uppercaseFirst <- function(txt) {
-    pos <- regexpr("[A-z]", txt)
-    char1 <- substr(txt, pos, pos)
-    uC <- toupper(char1)
-    sub("[A-z]", uC, txt)
-  }
-  # THEN we apply taht new function to the ParameterName mcolumn
+  # THEN we apply function to the ParameterName mcolumn
   # NOTE NOTE:  Problem: Accessing a column with $ after subsetting (e.g., [, "Chemical_Name"]$Chemical_Name) is likely unnecessary or incorrect. If chemSourceMitigation is a data frame, this should be simplified:
   #WITHOUT TESTING I CHANGED THE LINE BELOW BECAUSE CHATGPT said it was incorrect...
   #chemSourceMitigation[, "Chemical_Name"]$Chemical_Name <- sapply(chemSourceMitigation[, "Chemical_Name"]$Chemical_Name, uppercaseFirst)
   chemSourceMitigation <- chemSourceMitigation %>%
     mutate(Chemical_Name = sapply(Chemical_Name, uppercaseFirst))
-
-  ## FAILED PURRR replacement
-  # chemSourceMitigation[, "Chemical_Name"] <-
-  #   purrr::map_chr(chemSourceMitigation[, "Chemical_Name"], uppercaseFirst)
-
 
   chemSourceMitigation
 }

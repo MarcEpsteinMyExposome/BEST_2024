@@ -29,6 +29,51 @@ output:
 ---
 
 
+
+<!--
+TRYING AGAIN, 3/11/2025, with CLAUDE accessing github to generate a call tree:
+
+MyExposome_1527_v6.Rmd
+    ├── R/MyExp_set_key_variables.R
+    │   ├── R/MyExp_TestParameterSetup.R
+    │   └── R/customer_Output.R
+    ├── R/MyExp_Base_Code_v6.R
+    │   └── R/MyExp_data.load.functions_1527_v6.R
+    ├── R/MyExp_support_functions_1527_v6.R
+    ├── SpecificSubjectAnalysisIntro_text.Rmd
+    ├── GroupAnalysisIntro_text.Rmd
+    ├── GroupAndIndividualAnalysisIntro_text.Rmd
+    ├── GroupResultsAnalysis__w_Violin_Precursor.Rmd
+    │   └── R/BuildViolinPlot_SinaOnly.R
+    ├── IndividualResultsAnalysis__w_Violin_Precursor.Rmd
+    │   └── R/BuildViolinPlot_SinaOnly.R
+    ├── HeadlineMessageTotalChems.Rmd
+    ├── HeadlinesAmountByChemicalGroup.Rmd
+    │   └── R/HeadlinesAmountByChemicalGroup_R_Code.R
+    ├── IndividualResultsAnalysis.Rmd
+    │   ├── StatisticsOnChemicalsFound.Rmd
+    │   ├── YourChemicalsAndAveragesByGroup_text.Rmd
+    │   ├── IndividualChemicalListWithClassification_text.Rmd
+    │   ├── IndividualChemicalListWithOutClassification_text.Rmd
+    │   └── IndividualClassificationShowingChemicals_text.Rmd
+    ├── CompoundClassification_text.Rmd
+    └── GroupResultsAnalysis.Rmd
+        ├── GroupDatabaseLookupIARC_Prop65_IRIS.Rmd
+        ├── GroupChemicalListWithClassification_text.Rmd
+        ├── GroupChemicalListWithOutClassification_text.Rmd
+        ├── airConcentrationOutput.Rmd
+        ├── GroupClassificationAnyWristband_text.Rmd
+        ├── StatisticGroupsOnChemicalsFound.Rmd
+        ├── GroupClassificationAtLeastOne_text.Rmd
+        ├── GroupClassificationEveryWristband_text.Rmd
+        └── loreal_venn_text.Rmd
+    ├── testPrePostProcessing.Rmd
+    └── AdditionalInformation.Rmd
+
+-->
+
+
+
 <!--
  Project Root       --- INACCURATE regarding R code but rest seems right
 2    °--MyExposome_1527_v6.Rmd                                                                                         
