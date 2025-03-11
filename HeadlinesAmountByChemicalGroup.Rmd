@@ -38,7 +38,7 @@ testResults.bigWithClass  <- testResults.big %>%
 
 ## Call the function
 #report_messages <- generate_report(subject, testResults.bigWithClass)
-report_messages2 <- generate_report2(subject, testResults.bigWithClass, oneResult)
+report_messages2 <- generate_report2(subject, testResults.bigWithClass, oneResult, classExplainTable, class_L)
 #rm(testResults.bigWithClass)  I may use this later
 
 ```
