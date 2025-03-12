@@ -274,6 +274,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   FixupFile <- "SBIR_NIH_Part2_35_SampleKey.csv"
   subject <- "A241564" # this is RANDOM one
 
+
+
   wristbands_time_adjusted_one_day <- TRUE # ADd text messages about TIME-ADJUSTING VALUES to ONE DAY
   wristbands_time_adjusted <- wristbands_time_adjusted_one_day || wristbands_time_adjusted_one_week
   wristbands_time_and_weight_adjusted <- TRUE
@@ -293,7 +295,8 @@ if (GEORGETOWNFixUp) { #  GEORGETOWN
   FixupFile <- "SBIR_NIH_Part1amd2_71and35_SampleKey.csv"
   #subject <- "A241564" # this is RANDOM one
   #subject <- "A241259" # this is 154-WB	WB which is someone who is great example
-  subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
+  #subject <- "A241576" # this is  175-WB which is from 2nd batch of 35 WB
+  subject <-"A241592" # this is  189-WB which is from 2nd batch of 35 WB   This is BECS
   #subject <- "A241136" # this is  45-N which is from some batch of NECKLACE
 
 
