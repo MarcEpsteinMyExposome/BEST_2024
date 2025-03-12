@@ -130,16 +130,16 @@ pandoc.table(as.data.frame(oneResultIARCRisk),
 
 
 
-```{r IndividualChemicalListWithClassification, child='IndividualChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualChemicalListWithClassification, child=setRMDdirectory('IndividualChemicalListWithClassification_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 
-```{r IndividualChemicalListWithOutClassification, child='IndividualChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```{r IndividualChemicalListWithOutClassification, child=setRMDdirectory('IndividualChemicalListWithOutClassification_text.Rmd'), eval = HideClassificationInformation}
 ```
 
 
 
-```{r IndividualClassificationShowingChemicalsAndAverages, child='IndividualClassificationShowingChemicalsAndAverages_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualClassificationShowingChemicalsAndAverages, child=setRMDdirectory('IndividualClassificationShowingChemicalsAndAverages_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 

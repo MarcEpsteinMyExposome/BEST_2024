@@ -53,7 +53,7 @@ MyExp_set_key_variables_R_file_is_loaded <- TRUE
 
 # Set working directory to be at root of project
 library(here)
-setwd(here::here())
+here::here()
 
 # SETUP key environment stuff:
 #      Setup data directory
@@ -62,6 +62,13 @@ if (!file.exists(here::here("data"))) {
 }
 
 #########  The following functions tell the code about the directory structure.  Where are the different kinds of files.
+
+# Set up location of RMD files
+setRMDdirectory <- function(fileName) {
+  here::here("RMD", fileName)
+}
+
+
 # Set up name of R CODE files
 setRdirectory <- function(fileName) {
   here::here("R", fileName)
@@ -705,7 +712,7 @@ chemSourceSheetName2 <- "STEVEN_New71_35_ChatGPT-Try4"
 
 
 #  SET name of RMD file
-rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of make markdown file for all tests
+rmd_code <- setRMDdirectory("MyExposome_1527_v6.Rmd") # Set up name of make markdown file for all tests
 
 
 ### THIS SOURCE CODE IS JUST CODE< not a function> so it is essentially just more INLINE code

@@ -12,7 +12,7 @@
   # Set all masterParameterTableNames:
   #
 if (RMD_type=="FRAGRANCE"){
-  rmd_code <- "MyExposome_1527_v6.Rmd"
+  rmd_code <- setRMDdirectory("MyExposome_1527_v6.Rmd")
   URL_of_Chemicals_Tested <-NULL
   #URL_of_Chemicals_Tested <- "Will add FRAGRANCE URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
   testName <- "Fragrances Quantitative test "
@@ -21,7 +21,7 @@ if (RMD_type=="FRAGRANCE"){
   allowDifferentParameterCounts <- FALSE # DRS is the only method where the masterParameterTable and the resultsTable will always have different parameter counts cause DRS doesn't list all the zero parameters
   masterParamTableName <- FRAGRANCEmasterParameterTable
 } else if (RMD_type == "PHTH") { #
-    rmd_code <- "MyExposome_1527_v6.Rmd"
+    rmd_code <- setRMDdirectory("MyExposome_1527_v6.Rmd")
     URL_of_Chemicals_Tested <- NULL
     #URL_of_Chemicals_Tested <- "Will add Phtalate URL to Website.  In mean time, see data report" # USED in printing report   THIS IS WRONG WRONG WRONG
     testName <- "Phthalates Quantitative test "
@@ -37,7 +37,7 @@ if (RMD_type=="FRAGRANCE"){
     #ExpectedUnits <- "ng/g" ### NOT SURE why have to change this HERE but makes sense it is TEST SPECIFIC and not CUSTOMER SPECIFIC
 
   } else if (RMD_type == "SBIR_P1_DRS_plus") { #
-    rmd_code <- "MyExposome_1527_v6 - SBIR.Rmd" # Set up name of DRS/1528 R Markdown File
+    rmd_code <- setRMDdirectory("MyExposome_1527_v6 - SBIR.Rmd") # Set up name of DRS/1528 R Markdown File
     URL_of_Chemicals_Tested <- "SBIR NEEDS TO BE UPDATED -- I DELETED THIS SECTION FROM SBIR REPORT" # USED in printing report   THIS IS WRONG WRONG WRONG
     testName <- "Chemical Analysis of Personal Environmental Exposures "
     testExplanation <- "This project detects chemicals from different groups with a focus on Pesticides, Chemicals in Commerce, PCBs (a type of industrial chemical), Flame Retardants and other chemicals of interest."
@@ -83,7 +83,7 @@ if (RMD_type=="FRAGRANCE"){
     masterParamTableName <- vocMasterParamTableName
     #resultsTableName <- "Wisconsin_MyExposome_PO_206_VOC_CoA.csv"
     #subject <- "A180359" # PAH this is one of WISCONSIN
-    rmd_code <- "MyExposome_1527_v6.Rmd" # Set up name of DRS/1528 R Markdown File
+    rmd_code <- setRMDdirectory("MyExposome_1527_v6.Rmd") # Set up name of DRS/1528 R Markdown File
     #                                     (maybe someday make RMD unique to each type of test but using this is base generic)
   } else if (RMD_type == "PAH") { # THESE 4 LINES are for PAH TEST (which includes Miami Firefighters)
     URL_of_Chemicals_Tested <- "https://www.myexposome.com/pah" # USED in printing report
@@ -120,7 +120,7 @@ if (RMD_type=="FRAGRANCE"){
     # subject<-"A170213"             #PAH REAL   # THIS IS FOR PAH.  Good representiatvie sample from 2nd 52
     # subject<-"A170241"             #PAH REAL   # Miami Data BAD READ ON 15 CHEMICALS, compromised wristband...
     # subject<-"A170229"             #PAH REAL   # THIS IS FOR PAH   BEST representative sample from 1st 25
-    # rmd_code = "MyExposome_PAH_v2.Rmd"  ###   #Set up name of PAH R Markdown File (unique to each type of test)
+    # rmd_code = setRMDdirectory("MyExposome_PAH_v2.Rmd")  ###   #Set up name of PAH R Markdown File (unique to each type of test)
     # subject<-"A180359"   #PAH this is one of WISCONSIN
     # subject<-"A191134"  #PAH this is one of WISCONSIN from 2nd batch
     # subject<-"A200555"  #PAH this is one of WISCONSIN from 3rd batch

@@ -128,7 +128,7 @@ for (i in which(!is.na(report_messages2$message) & report_messages2$message != "
     "<div class='message-box'>",
       "<div class='header'>", report_messages2$message[i], "</div>",
       "<div class='content'>",
-        "<div class='icon'><img src='images/", report_messages2$image[i], "' alt='Icon' style='width:100px; height:auto;'></div>",
+        "<div class='icon'><img src='../images/", report_messages2$image[i], "' alt='Icon' style='width:100px; height:auto;'></div>",
         "<div class='text'>",
           "<div class='action-title'>", whatCanYouDoMessage, "</div>",
           "<div class='action-text'>", report_messages2$strategies[i], "</div>",

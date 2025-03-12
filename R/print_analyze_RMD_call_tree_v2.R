@@ -137,7 +137,7 @@ build_tree <- function(dependencies) {
 }
 
 # Example: Start parsing from the main RMD file
-main_rmd_file <- "MyExposome_1527_v6.Rmd"
+main_rmd_file <- setRMDdirectory("MyExposome_1527_v6.Rmd")
 all_dependencies <- build_dependency_tree(main_rmd_file)
 
 # Build and display the tree

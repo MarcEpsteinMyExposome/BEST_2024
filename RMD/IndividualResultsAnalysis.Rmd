@@ -160,7 +160,7 @@ if (!is.null(plotlyC_remaining)) {
 
 
 
-```{r StatisticsIndivOnAllChemicalsFound, child='StatisticsOnChemicalsFound.Rmd', eval = TRUE}
+```{r StatisticsIndivOnAllChemicalsFound, child=setRMDdirectory('StatisticsOnChemicalsFound.Rmd'), eval = TRUE}
 ```
 
 
@@ -168,20 +168,20 @@ if (!is.null(plotlyC_remaining)) {
 
 
 
-```{r IndividualClassificationVsAverages, child='YourChemicalsAndAveragesByGroup_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualClassificationVsAverages, child=setRMDdirectory('YourChemicalsAndAveragesByGroup_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 
-```{r IndividualChemicalListWithClassification, child='IndividualChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualChemicalListWithClassification, child=setRMDdirectory('IndividualChemicalListWithClassification_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 
-```{r IndividualChemicalListWithOutClassification, child='IndividualChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```{r IndividualChemicalListWithOutClassification, child=setRMDdirectory('IndividualChemicalListWithOutClassification_text.Rmd'), eval = HideClassificationInformation}
 ```
 
 
 
-```{r IndividualClassificationShowingChemicals, child='IndividualClassificationShowingChemicals_text.Rmd', eval = !HideClassificationInformation}
+```{r IndividualClassificationShowingChemicals, child=setRMDdirectory('IndividualClassificationShowingChemicals_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 

@@ -176,7 +176,7 @@ if (!is.null(plotlyC_Group_remaining)) {
 
 For all the chemicals found on ANY wristband during this project we will look that chemical up in various databases to show what various scientific organizations have determined regarding issues with those chemicals. Please note that unless we explicitly call it out we do not have information that determines any of the levels reported on these compounds are unsafe.
 
-```{r GroupDatabaseLookupReporting, child='GroupDatabaseLookupIARC_Prop65_IRIS.Rmd', eval = DoGroupDatabaseLookupReporting}
+```{r GroupDatabaseLookupReporting, child=setRMDdirectory('GroupDatabaseLookupIARC_Prop65_IRIS.Rmd'), eval = DoGroupDatabaseLookupReporting}
 ```
 
 
@@ -184,21 +184,21 @@ For all the chemicals found on ANY wristband during this project we will look th
 
 ## Group: Chemical Info
 
-```{r GroupChemicalListWithClassification, child='GroupChemicalListWithClassification_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupChemicalListWithClassification, child=setRMDdirectory('GroupChemicalListWithClassification_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
-```{r GroupChemicalListWithOutClassification, child='GroupChemicalListWithOutClassification_text.Rmd', eval = HideClassificationInformation}
+```{r GroupChemicalListWithOutClassification, child=setRMDdirectory('GroupChemicalListWithOutClassification_text.Rmd'), eval = HideClassificationInformation}
 ```
 
-```{r GroupAirConcentrationNioshOsha, child='airConcentrationOutput.Rmd', eval = doAIRplusNioshOSHAreporting}
+```{r GroupAirConcentrationNioshOsha, child=setRMDdirectory('airConcentrationOutput.Rmd'), eval = doAIRplusNioshOSHAreporting}
 ```
 
-```{r GroupClassificationAnyWristband, child='GroupClassificationAnyWristband_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupClassificationAnyWristband, child=setRMDdirectory('GroupClassificationAnyWristband_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 
 <!-- I MADE THIS FALSE FOR DEBUGGING -->
-```{r StatisticsOnGroupAllChemicalsFound, child='StatisticGroupsOnChemicalsFound.Rmd', eval = TRUE}
+```{r StatisticsOnGroupAllChemicalsFound, child=setRMDdirectory('StatisticGroupsOnChemicalsFound.Rmd'), eval = TRUE}
 ```
 
 
@@ -381,10 +381,10 @@ for (i in seq_len(length(many_plots))) {
 
 ```
 
-```{r GroupGroupClassificationAtLeastOne, child='GroupClassificationAtLeastOne_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupGroupClassificationAtLeastOne, child=setRMDdirectory('GroupClassificationAtLeastOne_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
-```{r GroupGroupClassificationEveryWristband, child='GroupClassificationEveryWristband_text.Rmd', eval = !HideClassificationInformation}
+```{r GroupGroupClassificationEveryWristband, child=setRMDdirectory('GroupClassificationEveryWristband_text.Rmd'), eval = !HideClassificationInformation}
 ```
 
 ### Chart of All Tested-for Chemicals
@@ -981,7 +981,7 @@ rm(c)
 
 ```
 
-```{r print_loreal_vennGroup, child='loreal_venn_text.Rmd', eval=FALSE}
+```{r print_loreal_vennGroup, child=setRMDdirectory('loreal_venn_text.Rmd'), eval=FALSE}
 ```
 
 ### Numerical Matrixes of all Data

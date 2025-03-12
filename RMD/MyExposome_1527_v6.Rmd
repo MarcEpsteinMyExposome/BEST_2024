@@ -4,10 +4,10 @@ params:
 output:
   rmdformats::readthedown:       #rmdformats::readthedown:
     includes:
-      in_header: "myexp_favicon.html" 
+      in_header: ../CSS_HTML_RESOURCES/myexp_favicon.html
     self_contained: true
     number_sections: false  # DO NOT number the sections
-    css: "customMyExp.css" # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
+    css: ../CSS_HTML_RESOURCES/customMyExp.css # Use CSS to change color scheme from Red/Black to BLUE/black for readthedown rmdformat
               # base_url: ""   ###  This is not needed, did it because if right click download was converting links from relative to absolute
               # and the CSS does lots of stuff to control how it prints
     toc_depth: 3   # DELETE/COMMENT this line for some rmdformats      toc_depth: 3
@@ -73,52 +73,6 @@ MyExposome_1527_v6.Rmd
 -->
 
 
-
-<!--
- Project Root       --- INACCURATE regarding R code but rest seems right
-2    °--MyExposome_1527_v6.Rmd                                                                                         
-3        ¦--R/MyExp_set_key_variables.R                                                                                
-4        ¦--setRdirectory("MyExp_set_key_variables.R"                                                                  
-5        ¦--here::here("R", "MyExp_set_key_variables.R"                                                                
-6        ¦--C:/Users/marce/Documents/MyExp/R_Analysis/R_CODE_DATA_OUTPUTS/BEST_2024/R/MyExp_Base_Code_v6.R             
-7        ¦--C:/Users/marce/Documents/MyExp/R_Analysis/R_CODE_DATA_OUTPUTS/BEST_2024/R/MyExp_support_functions_1527_v6.R
-8        ¦--SpecificSubjectAnalysisIntro_text.Rmd                                                                      
-9        ¦--GroupAnalysisIntro_text.Rmd                                                                                
-10       ¦--GroupAndIndividualAnalysisIntro_text.Rmd                                                                   
-11       ¦--GroupResultsAnalysis__w_Violin_Precursor.Rmd                                                               
-12      ¦   °--setRdirectory("BuildViolinPlot_SinaOnly.R"                                                             
-13       ¦--IndividualResultsAnalysis__w_Violin_Precursor.Rmd                                                          
-14      ¦   °--setRdirectory("BuildViolinPlot_SinaOnly.R"                                                             
-15       ¦--HeadlineMessageTotalChems.Rmd                                                                              
-16       ¦--HeadlinesAmountByChemicalGroup.Rmd                                                                         
-17      ¦   ¦--setRdirectory("HeadlinesAmountByChemicalGroup_R_Code.R"                                                
-18      ¦   °--"HeadlinesAmountByChemicalGroup_R_Code.R", local = knitr::knit_global(                                 
-19       ¦--IndividualResultsAnalysis.Rmd                                                                              
-20      ¦   ¦--StatisticsOnChemicalsFound.Rmd                                                                         
-21      ¦   ¦--YourChemicalsAndAveragesByGroup_text.Rmd                                                               
-22      ¦   ¦--IndividualChemicalListWithClassification_text.Rmd                                                      
-23      ¦   ¦--IndividualChemicalListWithOutClassification_text.Rmd                                                   
-24      ¦   °--IndividualClassificationShowingChemicals_text.Rmd                                                      
-25       ¦--CompoundClassification_text.Rmd                                                                            
-26       ¦--GroupResultsAnalysis.Rmd                                                                                   
-27      ¦   ¦--GroupDatabaseLookupIARC_Prop65_IRIS.Rmd                                                                
-28      ¦   ¦--GroupChemicalListWithClassification_text.Rmd                                                           
-29      ¦   ¦--GroupChemicalListWithOutClassification_text.Rmd                                                        
-30      ¦   ¦--airConcentrationOutput.Rmd                                                                             
-31      ¦   ¦--GroupClassificationAnyWristband_text.Rmd                                                               
-32      ¦   ¦--StatisticGroupsOnChemicalsFound.Rmd                                                                    
-33      ¦   ¦--GroupClassificationAtLeastOne_text.Rmd                                                                 
-34      ¦   ¦--GroupClassificationEveryWristband_text.Rmd                                                             
-35      ¦   °--loreal_venn_text.Rmd                                                                                   
-36       ¦--testPrePostProcessing.Rmd                                                                                  
-37       °--AdditionalInformation.Rmd
-
-
-
-
-
--->
-
 ```{r loadAndRunMainCode, echo=FALSE, message=FALSE, include=FALSE}
 # THIS FILE requires that an R source file be run first to
 #     populate the environment.
@@ -128,7 +82,7 @@ MyExposome_1527_v6.Rmd
 # cat("222 Starting the RMarkdown execution...\n", file = "debug_log.txt", append = TRUE)
 
 library(here)
-setwd(here::here())
+here::here()
 #
 # Set all key variables.  Use the existance (or not) of "subject" to decide if they need to be loaded
 #  CHange how i do this test to use MyExp_set_key_variables_R_file_is_loaded
@@ -424,17 +378,17 @@ ClassCompareSubject <- left_join(
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE INDIVUDAL REPORT -->
 
-```{r SpecificSubjectAnalysisIntro, child='SpecificSubjectAnalysisIntro_text.Rmd', eval=(DoSpecificSubjectAnalysis && !DoGroupAnalysis) }
+```{r SpecificSubjectAnalysisIntro, child=setRMDdirectory('SpecificSubjectAnalysisIntro_text.Rmd'), eval=(DoSpecificSubjectAnalysis && !DoGroupAnalysis) }
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE GROUP REPORT (WITH NO INDIVIDUAL REPORT) -->
 
-```{r GroupAnalysisIntro, child='GroupAnalysisIntro_text.Rmd', eval= (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
+```{r GroupAnalysisIntro, child=setRMDdirectory('GroupAnalysisIntro_text.Rmd'), eval= (DoGroupAnalysis && !DoSpecificSubjectAnalysis) }
 ```
 
 <!-- RUN RMD TO PRINT MESSAGE INTRO'ING THE  INDIVIDUAL REPORT and GROUP MESSAGE -->
 
-```{r GroupAndIndividualAnalysisIntro, child='GroupAndIndividualAnalysisIntro_text.Rmd', eval= (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
+```{r GroupAndIndividualAnalysisIntro, child=setRMDdirectory('GroupAndIndividualAnalysisIntro_text.Rmd'), eval= (DoSpecificSubjectAnalysis && DoGroupAnalysis)}
 ```
 
 ```{r  IRiS_Prop65_IARC_Group_Results, results='asis', echo=FALSE, message=FALSE}
@@ -555,21 +509,21 @@ numIARCRiskFound <- nrow(oneResultIARCRisk)
 
 
 
-```{r preCalc_Group_plotlyC, child='GroupResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoGroupAnalysis}
+```{r preCalc_Group_plotlyC, child=setRMDdirectory('GroupResultsAnalysis__w_Violin_Precursor.Rmd'), , eval= DoGroupAnalysis}
 
 ```
 
 
 
-```{r preCalc_Individual_plotlyC, child='IndividualResultsAnalysis__w_Violin_Precursor.Rmd', , eval= DoSpecificSubjectAnalysis}
+```{r preCalc_Individual_plotlyC, child=setRMDdirectory('IndividualResultsAnalysis__w_Violin_Precursor.Rmd'), , eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring  THIS ONLY WORKS IF THERE IS INDIVIDUAL REPORT GOING ON... NOT FOR GROUP ONLY...-->
-```{r HeadlineMessageTotalNumChems, child='HeadlineMessageTotalChems.Rmd', eval= DoSpecificSubjectAnalysis}
+```{r HeadlineMessageTotalNumChems, child=setRMDdirectory('HeadlineMessageTotalChems.Rmd'), eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT Headline Rule on NumChems as denoted by Silent Spring -->
-```{r HeadlinesAmountByChemicalGroup, child='HeadlinesAmountByChemicalGroup.Rmd', eval= DoSpecificSubjectAnalysis}
+```{r HeadlinesAmountByChemicalGroup, child=setRMDdirectory('HeadlinesAmountByChemicalGroup.Rmd'), eval= DoSpecificSubjectAnalysis}
 ```
 
 ## Observations
@@ -685,23 +639,23 @@ if (any(testResults.big[, "Flag"] == "Y")) { # testing if we have any "Y"
 
 <!-- SHOW RESULTS FOR INDIVIDUAL SUBJECT IF DESIRED -->
 
-```{r IndividualResultsAnalysis, child='IndividualResultsAnalysis.Rmd', eval= DoSpecificSubjectAnalysis}
+```{r IndividualResultsAnalysis, child=setRMDdirectory('IndividualResultsAnalysis.Rmd'), eval= DoSpecificSubjectAnalysis}
 ```
 
 <!-- PRINT DESCRIPTION OF EACH CLASSIFICATION -->
 
-```{r CompoundClassification, child='CompoundClassification_text.Rmd', eval= !HideClassificationInformation}
+```{r CompoundClassification, child=setRMDdirectory('CompoundClassification_text.Rmd'), eval= !HideClassificationInformation}
 ```
 
 <!-- SHOW RESULTS FOR FULL GROUP -->
 
-```{r GroupResultsAnalysis, child='GroupResultsAnalysis.Rmd', eval= DoGroupAnalysis}
+```{r GroupResultsAnalysis, child=setRMDdirectory('GroupResultsAnalysis.Rmd'), eval= DoGroupAnalysis}
 ```
 
-```{r testingPrePostProcessing, child='testPrePostProcessing.Rmd', eval= (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
+```{r testingPrePostProcessing, child=setRMDdirectory('testPrePostProcessing.Rmd'), eval= (testing_PRE_POST && nrow(testResultsPrePost)>=2) }
 ```
 
-```{r  AdditionalInformation, child='AdditionalInformation.Rmd' }
+```{r  AdditionalInformation, child=setRMDdirectory('AdditionalInformation.Rmd') }
 ```
 
 

@@ -15,7 +15,9 @@
 rm(list=ls())  # clear things out
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre7')
 library("here")
-setwd(here::here())
+#setwd(here::here())
+here::here()
+
 
 
 # SUBJECT SHOULD NEVER EXIST on runing this since we JUST deleted everything with the "rm" command
@@ -36,6 +38,8 @@ In_Print_All_Subjects <- TRUE # USE this when setting key variables below to ALW
 #' @param rmd_code The path to the RMarkdown template.
 #' @param logo_path The path to the logo image.
 #' @return None
+
+
 render_reports <- function(subjectsToProcess, outputFileType, output_directory, docType, rmd_code, logo_path) {
   ## I replaced using "wideAllSubjects" with "subjecsToProcess" which is slightly confusing cause obviously I'm not needing to use wideAllSubjects at ALL
   ## So really i should get RID of wide all subjects
@@ -141,6 +145,7 @@ if (!file.exists(rmd_code)) {
 # Call the function to render all the reports
 # THIS does all the work here
 # everything below is commented out and old
+
 render_reports(
   subjectsToProcess=subjectsToProcess,
   outputFileType = outputFileType,

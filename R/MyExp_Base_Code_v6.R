@@ -135,7 +135,7 @@ options(warn = -1) # Turn off all warning messages
 ### SO the line below STOPS the new error messages BUT to understand group / ungroup /summarize see this: https://stackoverflow.com/questions/62140483/how-to-interpret-dplyr-message-summarise-regrouping-output-by-x-override
 options(dplyr.summarise.inform = FALSE)
 
-setwd(here::here()) # If you’re using the here package for relative paths
+here::here() # If you’re using the here package for relative paths
 
 #----------------put refactored code BELOW here
 #----------------put refactored code BELOW here
