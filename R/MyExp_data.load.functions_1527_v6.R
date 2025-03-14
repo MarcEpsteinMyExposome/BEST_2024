@@ -34,7 +34,22 @@ uppercaseFirst <- function(txt) {
 # masterParamTableName <-"./data/MASVtest2.csv"
 
 # READ IN the data
-load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
+#' Load Master Parameter Data
+#'
+#' Reads and processes the master parameter table containing chemical parameter metadata.
+#'
+#' @param masterParamTableName Character. Path to the CSV file containing master parameter data.
+#' @param DropSpecificChemicals Character vector. ParameterIDs of chemicals to exclude.
+#' @param uppercaseFirst Function. Function used to capitalize first letter of chemical names.
+#'
+#' @return A data frame with processed master parameter data.
+#'
+#' @examples
+#' \dontrun{
+#' masterParam <- load.masterParam("data/MasterParameterTable.csv", c(), uppercaseFirst)
+#' }
+#'
+load.masterParam <- function(masterParamTableName, DropSpecificChemicals, uppercaseFirst) {
   # Check if file exists
   if (!file.exists(masterParamTableName)) {
     stop(sprintf("File not found: %s", masterParamTableName))
@@ -121,7 +136,22 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals) {
 # Read in Classification File
 # Read in Classification File
 # Read in Classification File
-load.classification <- function(classificationTableName) {
+#' Load Chemical Classification Data
+#'
+#' Reads and processes the classification table that maps chemicals to their classifications.
+#'
+#' @param classificationTableName Character. Path to the CSV file containing classification data.
+#' @param classificationTextStrings List. Named list of text strings for each classification category.
+#'
+#' @return A data frame with processed classification data.
+#'
+#' @examples
+#' \dontrun{
+#' classification <- load.classification("data/classifications.csv",
+#'                                      list(PAH = "Polycyclic Aromatic Hydrocarbons"))
+#' }
+#'
+load.classification <- function(classificationTableName, classificationTextStrings) {
   # Check if file exists
   if (!file.exists(classificationTableName)) {
     stop(sprintf("File not found: %s", classificationTableName))
@@ -227,6 +257,18 @@ load.classification <- function(classificationTableName) {
 
   c <- classification
   classification <- c
+
+  # Extract classification text strings from the passed parameter
+  PAH_text_string <- classificationTextStrings$PAH
+  flameRetardant_text_string <- classificationTextStrings$flameRetardant
+  PCB_text_string <- classificationTextStrings$PCB
+  pharmacological__text_string <- classificationTextStrings$pharmacological
+  personalCare_text_string <- classificationTextStrings$personalCare
+  industrial_text_string <- classificationTextStrings$industrial
+  pest_text_string <- classificationTextStrings$pest
+  consumerProduct_text_string <- classificationTextStrings$consumerProduct
+  dioxinsAndFurans_text_string <- classificationTextStrings$dioxinsAndFurans
+
   ##
   ## NOW rename all columns (except not ParameterID)
   classification <-
@@ -267,6 +309,20 @@ load.classification <- function(classificationTableName) {
 
 
 ### CONTINUE TO FIX UP CLASSIFICATIONS:  This builds on the data load of classifications and collapses set further.  could merge the two later
+#' Convert to New Reduced Classifications
+#'
+#' Collapses the initial classification set to a reduced set of categories based on a mapping file.
+#'
+#' @param class_L Tibble. The classification lookup table.
+#' @param class_conversion_table_name Character. Path to CSV file with classification conversion mapping.
+#'
+#' @return A tibble with updated classification categories.
+#'
+#' @examples
+#' \dontrun{
+#' class_L <- convert_to_new_reduced_classifications(class_L, "path/to/conversion_table.csv")
+#' }
+#'
 convert_to_new_reduced_classifications <- function(class_L, class_conversion_table_name) {
   # Check if the conversion table file exists
   if (!file.exists(class_conversion_table_name)) {
@@ -355,14 +411,43 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 # class_L<-class_L
 # DropSpecificChemicals<-DropSpecificChemicals
 
+#' Update Class_L with Classification from a Specific Master Parameter Table
+#'
+#' Adds classification information from a specific master parameter table to the class_L table.
+#'
+#' @param classSpecificTitle Character. The text string for the classification.
+#' @param classSpecificMasterParamTable Character. Path to the CSV file containing master parameters for a specific classification.
+#' @param class_L Tibble. The current classification lookup table.
+#' @param DropSpecificChemicals Character vector. ParameterIDs of chemicals to exclude.
+#' @param setMASTERPARAM_CLASS_RISKSdirectory Function. Function to get the proper directory path.
+#' @param load.masterParam Function. Function to load master parameter data.
+#' @param uppercaseFirst Function. Function used to capitalize first letter of chemical names.
+#'
+#' @return The updated class_L tibble with added classifications.
+#'
+#' @examples
+#' \dontrun{
+#' class_L <- updateWithClassSpecificMasterParam("PAH", "PAH_parameters.csv", class_L, c(), setDir, loadParam, uppercaseFirst)
+#' }
+#'
 updateWithClassSpecificMasterParam <- function(classSpecificTitle,
                                                classSpecificMasterParamTable,
                                                class_L,
-                                               DropSpecificChemicals) {
+                                               DropSpecificChemicals,
+                                               setMASTERPARAM_CLASS_RISKSdirectory,
+                                               load.masterParam,
+                                               uppercaseFirst) {
+  ## SPECIFIC EXAMPLE VALUES TO TEST
+  # classSpecificTitle<- PAH_text_string
+  # classSpecificMasterParamTable<-pahMasterParameterTable
+  # class_L<-class_L
+  # DropSpecificChemicals<-DropSpecificChemicals
+
   classSpecifcMasterParam <-
     load.masterParam(
       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
-      DropSpecificChemicals
+      DropSpecificChemicals,
+      uppercaseFirst
     ) # Read in new parameter Table
   classSpecifcMasterParam<-as_tibble(classSpecifcMasterParam)
   classSpecifcMasterParam$classification <- classSpecificTitle  # Hard-code value
@@ -370,11 +455,12 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
   classSpecifcMasterParam <- classSpecifcMasterParam %>%  select(ParameterID, classification)  # Pick columns needed
   class_L <- bind_rows(classSpecifcMasterParam, class_L) %>%  # Merge existing class_L with new data
     distinct()  # Remove duplicates
-#  class_L <- union(classSpecifcMasterParam, class_L)  #OLD WAY ... UNION doesn't keep TIBBLE for some reason
-#  class_L_TEMP <- as_tibble(union(classSpecifcMasterParam, class_L))  # Merge existing class_L with new data
+  #  class_L <- union(classSpecifcMasterParam, class_L)  #OLD WAY ... UNION doesn't keep TIBBLE for some reason
+  #  class_L_TEMP <- as_tibble(union(classSpecifcMasterParam, class_L))  # Merge existing class_L with new data
   class_L$classification <- as.factor(class_L$classification)  # Convert back to factor
   return(as_tibble(class_L))  #  Ensure the function returns a tibble
 }
+
 #str(class_L)
 #str(classSpecifcMasterParam)
 #str(class_L_TEMP)
@@ -386,7 +472,22 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
 # Verify data has rows
 # Verify required columns exist
 # Wrap read.table in error handling
-load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals) {
+#' Load Test Results Table Without Processing
+#'
+#' Reads the raw test results table from a CSV file.
+#'
+#' @param resultsTableName Character. Path to the CSV file containing test results.
+#' @param DropSpecificChemicals Character vector. ParameterIDs of chemicals to exclude.
+#' @param uppercaseFirst Function. Function used to capitalize first letter of chemical names.
+#'
+#' @return A data frame with the raw test results.
+#'
+#' @examples
+#' \dontrun{
+#' testResultsRawTable <- load.testResults_justReadTable("data/results.csv", c(), uppercaseFirst)
+#' }
+#'
+load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemicals, uppercaseFirst) {
   if (!file.exists(resultsTableName)) {
     stop(sprintf("Results file not found: %s", resultsTableName))
   }
@@ -423,11 +524,30 @@ load.testResults_justReadTable <- function(resultsTableName, DropSpecificChemica
   })
 }
 
+#' Load and Process Test Results Data
+#'
+#' Processes raw test results data, handling flags, converting values, and applying various filters.
+#'
+#' @param testResultsRawTable Data frame. The raw test results data.
+#' @param masterParam Data frame. Master parameter table with chemical metadata.
+#' @param ExpectedUnits Character. The expected units in the data (e.g., "ng/WB").
+#' @param DropAllZeroSampleNumbers Logical. Whether to drop samples with all zero values.
+#' @param DropSpecificChemicals Character vector. ParameterIDs of chemicals to exclude.
+#' @param current_filename Function. Function to get the current filename for error messages.
+#'
+#' @return A processed data frame with test results.
+#'
+#' @examples
+#' \dontrun{
+#' testResults <- load.testResults(rawData, masterParam, "ng/WB", FALSE, c(), current_filename)
+#' }
+#'
 load.testResults <- function(testResultsRawTable,
                              masterParam,
                              ExpectedUnits,
                              DropAllZeroSampleNumbers,
-                             DropSpecificChemicals) {
+                             DropSpecificChemicals,
+                             current_filename) {
   # We read in the raw table elsewhere, now we're going to clean-it-up
   testResults <- testResultsRawTable
 
@@ -629,10 +749,53 @@ load.testResults <- function(testResultsRawTable,
 #####################################
 #####################################
 
-fixUpTestResults <- function(testResults, FixupFile) {
+#' Fix Up Test Results
+#'
+#' Applies customer-specific data adjustments to test results based on configuration.
+#'
+#' @param testResults Data frame. The test results to adjust.
+#' @param FixupFile Character. Path to the CSV file with fixup data.
+#' @param customerConfig List. Customer-specific configuration parameters.
+#' @param current_filename Function. Function to get the current filename for error messages.
+#'
+#' @return A data frame with adjusted test results.
+#'
+#' @examples
+#' \dontrun{
+#' testResults <- fixUpTestResults(testResults, "data/fixup.csv", customerConfig, current_filename)
+#' }
+#'
+fixUpTestResults <- function(testResults, FixupFile, customerConfig, current_filename) {
   # THIS RELIES on a stupid # of global variables defined in set-variables initial R file.  THis is not ideal.  What i shold do is refactor as follows:
   # Use a Strategy Pattern for Customer-Specific Fixups
   ## ALSO i'm overloading concept of FIXUP.  really i just need to declare which CUSTOMER, which TEST, and which Date-or-version-or-RUN and then follow that logic thru
+
+  # Extract customer configuration parameters
+  GEORGETOWNFixUp <- customerConfig$GEORGETOWNFixUp
+  RMD_type <- customerConfig$RMD_type
+  DartmouthFixup <- customerConfig$DartmouthFixup
+  UCSF2020Fixup <- customerConfig$UCSF2020Fixup
+  CombinedTestData <- customerConfig$CombinedTestData
+  WisconsinFixup <- customerConfig$WisconsinFixup
+  LorealFixup <- customerConfig$LorealFixup
+  BuffaloFixup <- customerConfig$BuffaloFixup
+  UCSFplusRandom10Fixup <- customerConfig$UCSFplusRandom10Fixup
+  UniVisionFixup <- customerConfig$UniVisionFixup
+  wristbands_time_adjusted_one_week_not_weight <- customerConfig$wristbands_time_adjusted_one_week_not_weight
+  UNMFixup <- customerConfig$UNMFixup
+  COLORADOFixUp <- customerConfig$COLORADOFixUp
+  ULILLEFRANCEFixup <- customerConfig$ULILLEFRANCEFixup
+  UCONNFixUp <- customerConfig$UCONNFixUp
+  CHICAGOFixUp <- customerConfig$CHICAGOFixUp
+  SBIR_P1_May2022Fixup <- customerConfig$SBIR_P1_May2022Fixup
+  UC_DAVISFixup <- customerConfig$UC_DAVISFixup
+  BostonFixup <- customerConfig$BostonFixup
+  UFL_FloridaFixup <- customerConfig$UFL_FloridaFixup
+  LouisvilleFixup <- customerConfig$LouisvilleFixup
+  SBIR_P2_Part1_71_FixUp <- customerConfig$SBIR_P2_Part1_71_FixUp
+  SBIR_P2_Part2_35_FixUp <- customerConfig$SBIR_P2_Part2_35_FixUp
+  SBIR_P2_Part1and2_35and71_FixUp <- customerConfig$SBIR_P2_Part1and2_35and71_FixUp
+  FixupForAnyone <- customerConfig$FixupForAnyone
 
   # Define some functions to manipulate result value appropriately
   adjustResultsWeekSize <- function(results, week_factor, size_factor) {
@@ -879,7 +1042,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
     stop(sprintf("Error reading fixup file '%s': %s", FixupFile, e$message))
   })
 
-  # Lets make srue the FIXUP file has all the same things we need to DO the fixup....
+  # Lets make sure the FIXUP file has all the same things we need to DO the fixup....
   # We're going to merge the fixup file with the testResults file based on "FSES_ID" (aka "SampleNumber" )
 
   # 359  length(unique(testResults$SampleNumber))
@@ -904,8 +1067,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
   fixUpResults$week_factor <- as.numeric(fixUpResults$week_factor) # Make Numeric
   fixUpResults$size_factor <- as.numeric(fixUpResults$size_factor) # Make Numeric
 
-
-
+  # Apply appropriate fixup based on customer settings
   if (GEORGETOWNFixUp &&
       (RMD_type == "PHTH" |
        RMD_type == "FRAGRANCE")) {
@@ -1020,7 +1182,7 @@ fixUpTestResults <- function(testResults, FixupFile) {
              UFL_FloridaFixup |
              LouisvilleFixup |
              (UniVisionFixup && RMD_type == "DRS")
-             ) {
+  ) {
     testResults <- genericWeekSizeFixup(fixUpResults, testResults)
     return(testResults)
   } else if (FixupForAnyone) {
@@ -1522,8 +1684,22 @@ load.IARCRisk <- function(IARCRiskTableName,
 # library(readxl)
 #chemSourceMitigationInfoTableName<-chemSourceMitigationInfoTableName2
 #chemSourceSheetName<-chemSourceSheetName2
-load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName,
-                                       chemSourceSheetName) {
+#' Load Chemical Source and Mitigation Data
+#'
+#' Loads information about chemical sources and mitigation strategies from an Excel file.
+#'
+#' @param chemSourceMitigationInfoTableName Character. Path to the Excel file.
+#' @param chemSourceSheetName Character. Name of the sheet in the Excel file to load.
+#' @param uppercaseFirst Function. Function to capitalize the first letter of chemical names.
+#'
+#' @return A data frame with chemical source and mitigation information.
+#'
+#' @examples
+#' \dontrun{
+#' chemSourceMitigation <- load.chemSourceMitigation2("data/sources.xlsx", "Chemicals", uppercaseFirst)
+#' }
+#'
+load.chemSourceMitigation2 <- function(chemSourceMitigationInfoTableName, chemSourceSheetName, uppercaseFirst) {
   # Check if the Excel file exists
   if (!file.exists(chemSourceMitigationInfoTableName)) {
     stop(sprintf("Chem source mitigation file not found: %s", chemSourceMitigationInfoTableName))

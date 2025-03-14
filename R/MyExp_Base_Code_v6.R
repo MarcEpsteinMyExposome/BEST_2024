@@ -173,11 +173,21 @@ options(warn = 0)
 # --- MasterParam & Classification Data ---
 
 # Load masterParam data (contains parameter metadata)
-masterParam <- load.masterParam(masterParamTableName, DropSpecificChemicals)
+masterParam <- load.masterParam(masterParamTableName, DropSpecificChemicals, uppercaseFirst)
 
 # Load raw classification table (usually wide format with many classification columns)
-classification <- load.classification(classificationTableName)
-
+classificationTextStrings <- list(
+  PAH = PAH_text_string,
+  flameRetardant = flameRetardant_text_string,
+  PCB = PCB_text_string,
+  pharmacological = pharmacological__text_string,
+  personalCare = personalCare_text_string,
+  industrial = industrial_text_string,
+  pest = pest_text_string,
+  consumerProduct = consumerProduct_text_string,
+  dioxinsAndFurans = dioxinsAndFurans_text_string
+)
+classification <- load.classification(classificationTableName, classificationTextStrings)
 # Remove loader functions from environment to avoid naming conflicts
 #rm(load.classification, classificationTableName)
 
@@ -204,13 +214,61 @@ class_L <- classification %>%
 
 # Update 'class_L' by calling custom functions that handle domain-specific classification additions.
 # Each call typically adds or modifies classification rows.
-class_L <- updateWithClassSpecificMasterParam(PAH_text_string, pahMasterParameterTable, class_L, DropSpecificChemicals)
-class_L <- updateWithClassSpecificMasterParam(VOC_2024_text_string, VOC_2024_MasterParamTableName, class_L, DropSpecificChemicals)
-class_L <- updateWithClassSpecificMasterParam(pest_text_string, pestMasterParameterTable, class_L, DropSpecificChemicals)
-class_L <- updateWithClassSpecificMasterParam(flameRetardant_text_string, flameMasterParamTableName, class_L, DropSpecificChemicals)
-class_L <- updateWithClassSpecificMasterParam(PHTH_text_string, PHTHmasterParameterTable, class_L, DropSpecificChemicals)
-# Add FRAGRANCE classification in a similar manner.
-class_L <- updateWithClassSpecificMasterParam(FRAGRANCE_text_string, FRAGRANCEmasterParameterTable, class_L, DropSpecificChemicals)
+# New calls
+class_L <- updateWithClassSpecificMasterParam(
+  PAH_text_string,
+  pahMasterParameterTable,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
+class_L <- updateWithClassSpecificMasterParam(
+  VOC_2024_text_string,
+  VOC_2024_MasterParamTableName,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
+class_L <- updateWithClassSpecificMasterParam(
+  pest_text_string,
+  pestMasterParameterTable,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
+class_L <- updateWithClassSpecificMasterParam(
+  flameRetardant_text_string,
+  flameMasterParamTableName,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
+class_L <- updateWithClassSpecificMasterParam(
+  PHTH_text_string,
+  PHTHmasterParameterTable,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
+class_L <- updateWithClassSpecificMasterParam(
+  FRAGRANCE_text_string,
+  FRAGRANCEmasterParameterTable,
+  class_L,
+  DropSpecificChemicals,
+  setMASTERPARAM_CLASS_RISKSdirectory,
+  load.masterParam,
+  uppercaseFirst
+)
 
 # Remove the function object now that updates are done.
 rm(load.masterParam)
@@ -252,7 +310,7 @@ rm(convert_to_new_reduced_classifications)
 
 # Load chem source/mitigation data (used for a subset of compounds).
 ### GO TO Google doc and find tab and download the whole thing make sure right SHEET NAME
-chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2, chemSourceSheetName2)
+chemSourceMitigation <- load.chemSourceMitigation2(chemSourceMitigationInfoTableName2, chemSourceSheetName2, uppercaseFirst)
 
 # Remove references to keep environment clean.
 rm(load.chemSourceMitigation2, chemSourceSheetName2)
@@ -260,7 +318,7 @@ rm(load.chemSourceMitigation2, chemSourceSheetName2)
 # Next, load test results in two parts: raw table, then final processed data.
 
 # 1) Read raw table, store in testResultsRawTable.
-testResultsRawTable <- load.testResults_justReadTable(resultsTableName, DropSpecificChemicals)
+testResultsRawTable <- load.testResults_justReadTable(resultsTableName, DropSpecificChemicals, uppercaseFirst)
 
 # Remove the loader function reference.
 rm(load.testResults_justReadTable)
@@ -332,17 +390,48 @@ rm(mismatchPrompt)
 # Load final processed testResults, applying domain logic like unit conversions.
 testResults <- load.testResults(
   testResultsRawTable, masterParam, ExpectedUnits,
-  DropAllZeroSampleNumbers, DropSpecificChemicals
+  DropAllZeroSampleNumbers, DropSpecificChemicals,
+  current_filename
 )
 
 # Remove objects and functions no longer needed.
 rm(testResultsRawTable, allowDifferentParameterCounts, load.testResults, ExpectedUnits, DropAllZeroSampleNumbers)
 
 # Optional fixup logic for special cases.
+# New call
 if (FixupForAnyone) {
   if (!is.null(FixupFile)) {
+    # Create a customer config list with all the needed settings
+    customerConfig <- list(
+      GEORGETOWNFixUp = GEORGETOWNFixUp,
+      RMD_type = RMD_type,
+      DartmouthFixup = DartmouthFixup,
+      UCSF2020Fixup = UCSF2020Fixup,
+      CombinedTestData = CombinedTestData,
+      WisconsinFixup = WisconsinFixup,
+      LorealFixup = LorealFixup,
+      BuffaloFixup = BuffaloFixup,
+      UCSFplusRandom10Fixup = UCSFplusRandom10Fixup,
+      UniVisionFixup = UniVisionFixup,
+      wristbands_time_adjusted_one_week_not_weight = wristbands_time_adjusted_one_week_not_weight,
+      UNMFixup = UNMFixup,
+      COLORADOFixUp = COLORADOFixUp,
+      ULILLEFRANCEFixup = ULILLEFRANCEFixup,
+      UCONNFixUp = UCONNFixUp,
+      CHICAGOFixUp = CHICAGOFixUp,
+      SBIR_P1_May2022Fixup = SBIR_P1_May2022Fixup,
+      UC_DAVISFixup = UC_DAVISFixup,
+      BostonFixup = BostonFixup,
+      UFL_FloridaFixup = UFL_FloridaFixup,
+      LouisvilleFixup = LouisvilleFixup,
+      SBIR_P2_Part1_71_FixUp = SBIR_P2_Part1_71_FixUp,
+      SBIR_P2_Part2_35_FixUp = SBIR_P2_Part2_35_FixUp,
+      SBIR_P2_Part1and2_35and71_FixUp = SBIR_P2_Part1and2_35and71_FixUp,
+      FixupForAnyone = FixupForAnyone
+    )
+
     # If a fixup file is provided, do final tweaks on testResults.
-    testResults <- fixUpTestResults(testResults, FixupFile)
+    testResults <- fixUpTestResults(testResults, FixupFile, customerConfig, current_filename)
   }
 } else if (doAIRplusNioshOSHAreporting) {
   # If we needed fixups for air calculations but didn't do them, throw an error.
