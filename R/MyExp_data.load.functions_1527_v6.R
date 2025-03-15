@@ -22,6 +22,19 @@
 
 # We would really like to capitalize the FIRST letter of each chemical (skipping numbers/spaces/etc)
 # So we define a FUNCTION which takes any string and uppercases the first letter
+#' Capitalize the First Letter of a String
+#'
+#' This function finds the first alphabetic character in a string and capitalizes it,
+#' leaving the rest of the string unchanged.
+#'
+#' @param txt Character string to modify.
+#' @return Character string with the first letter capitalized.
+#'
+#' @examples
+#' uppercaseFirst("hello world") # Returns "Hello world"
+#' uppercaseFirst("1,2-dimethylbenzene") # Returns "1,2-Dimethylbenzene"
+#'
+#' @export
 uppercaseFirst <- function(txt) {
   pos <- regexpr("[A-z]", txt)
   char1 <- substr(txt, pos, pos)
@@ -33,7 +46,8 @@ uppercaseFirst <- function(txt) {
 
 # masterParamTableName <-"./data/MASVtest2.csv"
 
-# READ IN the data
+
+
 #' Load Master Parameter Data
 #'
 #' Reads and processes the master parameter table containing chemical parameter metadata.
@@ -49,6 +63,7 @@ uppercaseFirst <- function(txt) {
 #' masterParam <- load.masterParam("data/MasterParameterTable.csv", c(), uppercaseFirst)
 #' }
 #'
+#' @export
 load.masterParam <- function(masterParamTableName, DropSpecificChemicals, uppercaseFirst) {
   # Check if file exists
   if (!file.exists(masterParamTableName)) {
@@ -117,25 +132,23 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals, upperc
 
   # Select ONLY those columns we want and RENAME the columns as we wish
   masterParam <-
-    select(masterParam, ParameterID, ParameterName, CASNumber = CasNumber)
+    dplyr::select(masterParam, ParameterID, ParameterName, CASNumber = CasNumber)
 
 
-  # THEN we apply  function to the ParameterName mcolumn
+  # THEN we apply function to the ParameterName column
   masterParam <- masterParam %>%
-    mutate(ParameterName = purrr::map_chr(ParameterName, uppercaseFirst))
+    dplyr::mutate(ParameterName = purrr::map_chr(ParameterName, uppercaseFirst))
 
 
   # IF any chemicals are set to be IGNORED by being put into "DropSpecificChemicals"
   # THEN drop those chemicals from the masterParam dataset
   masterParam <- masterParam %>%
-    filter(!ParameterID %in% DropSpecificChemicals)
+    dplyr::filter(!ParameterID %in% DropSpecificChemicals)
 
   masterParam
 }
 
-# Read in Classification File
-# Read in Classification File
-# Read in Classification File
+
 #' Load Chemical Classification Data
 #'
 #' Reads and processes the classification table that maps chemicals to their classifications.
@@ -151,6 +164,7 @@ load.masterParam <- function(masterParamTableName, DropSpecificChemicals, upperc
 #'                                      list(PAH = "Polycyclic Aromatic Hydrocarbons"))
 #' }
 #'
+#' @export
 load.classification <- function(classificationTableName, classificationTextStrings) {
   # Check if file exists
   if (!file.exists(classificationTableName)) {
@@ -323,6 +337,7 @@ load.classification <- function(classificationTableName, classificationTextStrin
 #' class_L <- convert_to_new_reduced_classifications(class_L, "path/to/conversion_table.csv")
 #' }
 #'
+#' @export
 convert_to_new_reduced_classifications <- function(class_L, class_conversion_table_name) {
   # Check if the conversion table file exists
   if (!file.exists(class_conversion_table_name)) {
@@ -332,7 +347,7 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
   # Read in the classification conversion table with error handling
   class_conversion_table <- tryCatch({
     read.csv(class_conversion_table_name) %>%
-      select(Classification, CurrentClassifications)
+      dplyr::select(Classification, CurrentClassifications)
   }, error = function(e) {
     stop(sprintf("Error reading classification conversion file '%s': %s",
                  class_conversion_table_name, e$message))
@@ -340,17 +355,17 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 
   # Create a long format of the class_conversion_table
   class_conversion_long <- class_conversion_table %>%
-    mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
-    unnest(CurrentClassifications) %>%
-    mutate(CurrentClassifications = str_trim(str_replace_all(CurrentClassifications, '[\\"]', "")))
+    dplyr::mutate(CurrentClassifications = strsplit(CurrentClassifications, ",\\s*")) %>%
+    tidyr::unnest(CurrentClassifications) %>%
+    dplyr::mutate(CurrentClassifications = stringr::str_trim(stringr::str_replace_all(CurrentClassifications, '[\\"]', "")))
 
   rm(class_conversion_table)
 
   # Function to find the appropriate classification
   find_classification <- function(class_OLD) {
     match <- class_conversion_long %>%
-      filter(CurrentClassifications == class_OLD) %>%
-      pull(Classification)
+      dplyr::filter(CurrentClassifications == class_OLD) %>%
+      dplyr::pull(Classification)
 
     if (length(match) > 0) {
       return(match[1])
@@ -362,14 +377,14 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 
   # Update class_L
   class_L_new <- class_L %>%
-    rename(classification_OLD = classification) %>%
-    rowwise() %>%
-    mutate(classification = find_classification(str_trim(classification_OLD))) %>%
-    ungroup()
+    dplyr::rename(classification_OLD = classification) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(classification = find_classification(stringr::str_trim(classification_OLD))) %>%
+    dplyr::ungroup()
 
   # Select the desired columns
   class_L_new <- class_L_new %>%
-    select(ParameterID, classification)
+    dplyr::select(ParameterID, classification)
 
   class_L_new
 }
@@ -379,33 +394,6 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 #  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
 ### FIRST create a FUNCTION which updates the class_L information with new unique rows
 
-# classSpecificTitle<- PAH_text_string
-# classSpecificMasterParamTable<-pahMasterParameterTable
-# class_L<-class_L
-# DropSpecificChemicals<-DropSpecificChemicals
-
-# updateWithClassSpecificMasterParam <- function(classSpecificTitle,
-#                                                classSpecificMasterParamTable,
-#                                                class_L,
-#                                                DropSpecificChemicals) {
-#   classSpecifcMasterParam <-
-#     load.masterParam(
-#       setMASTERPARAM_CLASS_RISKSdirectory(classSpecificMasterParamTable),
-#       DropSpecificChemicals
-#     ) # Read in new parameter Table
-#   classSpecifcMasterParam$classification <- classSpecificTitle # hard-code value
-#   class_L$classification <- as.character(class_L$classification) # temporarily convert to char for union'ing
-#   classSpecifcMasterParam <- classSpecifcMasterParam %>% select(ParameterID, classification) # pick columns i need
-#   class_L <- union(classSpecifcMasterParam, class_L) # MERGE existing class_L with new masterParam
-#   class_L$classification <- as.factor(class_L$classification) # convert back to factor, undoing convert to CHAR above
-#   return(class_L)
-# }
-
-# Fix class_L by adding all VOC data using VOC MasterParameterTable
-#  and also adding all PAH data from PAH MasterParamTable and same for FLAME and Pest (and now also VOPAH)
-### FIRST create a FUNCTION which updates the class_L information with new unique rows
-
-## SPECIFIC EXAMPLE VALUES TO TEST
 # classSpecificTitle<- PAH_text_string
 # classSpecificMasterParamTable<-pahMasterParameterTable
 # class_L<-class_L
@@ -430,6 +418,7 @@ convert_to_new_reduced_classifications <- function(class_L, class_conversion_tab
 #' class_L <- updateWithClassSpecificMasterParam("PAH", "PAH_parameters.csv", class_L, c(), setDir, loadParam, uppercaseFirst)
 #' }
 #'
+#' @export
 updateWithClassSpecificMasterParam <- function(classSpecificTitle,
                                                classSpecificMasterParamTable,
                                                class_L,
@@ -449,18 +438,17 @@ updateWithClassSpecificMasterParam <- function(classSpecificTitle,
       DropSpecificChemicals,
       uppercaseFirst
     ) # Read in new parameter Table
-  classSpecifcMasterParam<-as_tibble(classSpecifcMasterParam)
+  classSpecifcMasterParam <- tibble::as_tibble(classSpecifcMasterParam)
   classSpecifcMasterParam$classification <- classSpecificTitle  # Hard-code value
   class_L$classification <- as.character(class_L$classification) # Convert to char for merging
-  classSpecifcMasterParam <- classSpecifcMasterParam %>%  select(ParameterID, classification)  # Pick columns needed
-  class_L <- bind_rows(classSpecifcMasterParam, class_L) %>%  # Merge existing class_L with new data
-    distinct()  # Remove duplicates
+  classSpecifcMasterParam <- classSpecifcMasterParam %>%  dplyr::select(ParameterID, classification)  # Pick columns needed
+  class_L <- dplyr::bind_rows(classSpecifcMasterParam, class_L) %>%  # Merge existing class_L with new data
+    dplyr::distinct()  # Remove duplicates
   #  class_L <- union(classSpecifcMasterParam, class_L)  #OLD WAY ... UNION doesn't keep TIBBLE for some reason
   #  class_L_TEMP <- as_tibble(union(classSpecifcMasterParam, class_L))  # Merge existing class_L with new data
   class_L$classification <- as.factor(class_L$classification)  # Convert back to factor
-  return(as_tibble(class_L))  #  Ensure the function returns a tibble
+  return(tibble::as_tibble(class_L))  #  Ensure the function returns a tibble
 }
-
 #str(class_L)
 #str(classSpecifcMasterParam)
 #str(class_L_TEMP)
