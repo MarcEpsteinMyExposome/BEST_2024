@@ -64,6 +64,8 @@
 #' @param class_L Tibble. Lookup table mapping chemical parameter IDs to their classifications.
 #' @param debug Logical. If TRUE, prints additional diagnostic information.
 #' @param debug2 Logical. If TRUE, prints detailed criteria evaluation information.
+#' @param generateTabID Function. Function to generate tab IDs from classification names.
+#' @param generateTabLink Function. Function to generate tab links for chemical names.
 #'
 #' @return A data frame (tibble) with the following columns:
 #'   \item{classification}{Character. The chemical classification group.}
@@ -74,16 +76,18 @@
 #'   \item{countConcern}{Integer. Count of compounds of concern in this classification.}
 #'
 #' @examples
+#' \dontrun{
 #' # Generate report for sample "A241576"
 #' report <- generate_report2("A241576", testResults.bigWithClass, oneResult,
 #'                            classExplainTable, class_L)
-generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, classExplainTable, class_L , debug = FALSE, debug2 = FALSE) {
+#' }
+generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, classExplainTable, class_L, generateTabID, generateTabLink,
+                             debug = FALSE, debug2 = FALSE) {
   # sampleNumber<-subject
   # Helper function to calculate specified percentile of a numeric vector
   calculate_percentile <- function(x, percentile) {
     quantile(x, probs = percentile / 100, na.rm = TRUE)
   }
-
 
   # Add validation for input data
   if (nrow(testResults.bigWithClass) == 0 || is.null(testResults.bigWithClass)) {
@@ -110,8 +114,6 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, 
   if (!(sampleNumber %in% oneResult$SampleNumber)) {
     stop(paste("Error: sampleNumber", sampleNumber, "not found in oneResult data"))
   }
-
-
 
   # so individual_data will be all the data for this one user sample
   individual_data <- testResults.bigWithClass %>% filter(SampleNumber == sampleNumber)
@@ -181,7 +183,7 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, 
       # This should be at most ONE ROW because we are ONE subject, one compound, so that should be exactly ONE
       individual_class_compound_data <- individual_class_data %>% filter(ParameterName == compound)
 
-      # STOP with an error if       length(individual_class_compound_data$Result) not exactly 1
+      # STOP with an error if length(individual_class_compound_data$Result) not exactly 1
       if (length(individual_class_compound_data$Result) != 1) {
         stop("Error: Expected exactly one row for this subject and compound")
       }
@@ -202,33 +204,33 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, 
 
       # Criteria 1: Result >= 95th percentile and found in <= 10% of samples
       if (individual_class_compound_data$Result >= pct_95 &&
-        (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
+          (length(compound_data_non_zero$Result) / sample_count) <= 0.10) {
         compounds_meeting_criteria1 <- c(compounds_meeting_criteria1, compound)
       }
 
       # Criteria 2: Result >= 95th percentile and > 10 times the median
       if (
         individual_class_compound_data$Result >= pct_95 &
-          individual_class_compound_data$Result >= 10 * median_result
+        individual_class_compound_data$Result >= 10 * median_result
       ) {
         compounds_meeting_criteria2 <- c(compounds_meeting_criteria2, compound)
       }
 
       # Criteria 3: Result >= 95th percentile and found in >= 10% of samples
       if (individual_class_compound_data$Result >= pct_95 &&
-        (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
+          (length(compound_data_non_zero$Result) / sample_count) >= 0.10) {
         compounds_meeting_criteria3 <- c(compounds_meeting_criteria3, compound)
       }
       # Criteria 4: Result >= 75th percentile and >10 times median
       if (
         individual_class_compound_data$Result >= pct_75 &
-          individual_class_compound_data$Result > 10 * median_result
+        individual_class_compound_data$Result > 10 * median_result
       ) {
         compounds_meeting_criteria4 <- c(compounds_meeting_criteria4, compound)
       }
       # Criteria 5: Result >= 75th percentile and at least 25% of samples detect
       if (individual_class_compound_data$Result >= pct_75 &
-        (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
+          (length(compound_data_non_zero$Result) / sample_count) >= 0.25) {
         compounds_meeting_criteria5 <- c(compounds_meeting_criteria5, compound)
       }
       # Criteria 6: Not detected for all compounds in a group
@@ -245,14 +247,12 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, 
       }
       # Criteria 8: Not detected and ≤20% of measurements are non-detects
       if (individual_class_compound_data$Result == 0 &&
-        (sum(compound_data$Result == 0) / sample_count) <= 0.20) {
+          (sum(compound_data$Result == 0) / sample_count) <= 0.20) {
         compounds_meeting_criteria8 <- c(compounds_meeting_criteria8, compound)
       }
     } # end compound loop
 
-
-    # Generate a sanitized modal id using  existing function
-    #  THIS SAME modal id is used generating the BS MODAL dialog in an "html" section in the top of the main Rmd file
+    # Generate a sanitized modal id using generateTabID
     modal_id <- generateTabID(class)
 
     message <- ""
@@ -410,7 +410,6 @@ generate_report2 <- function(sampleNumber, testResults.bigWithClass, oneResult, 
 }
 
 
-# generate_report2(sampleNumber, testResults.bigWithClass, debug = FALSE, debug2 = FALSE)
 
 
 # Print the messages

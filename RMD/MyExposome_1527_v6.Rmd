@@ -556,7 +556,8 @@ if (DoSpecificSubjectAnalysis) {
     numCalProp65Found,
     numIARCRiskFound,
     howManyWristbandsTested,
-    HideClassificationInformation
+    HideClassificationInformation,
+    generateTabLink
   )
 }
 
@@ -574,7 +575,9 @@ if (DoGroupAnalysis) {
     countEPAiristHits,
     countCalifProp65Hits,
     countIARCHits,
-    HideClassificationInformation
+    HideClassificationInformation,
+  classificationTextStrings,
+  generateTabLink
   )
 }
 

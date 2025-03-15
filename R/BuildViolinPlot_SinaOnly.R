@@ -237,6 +237,26 @@ buildPlotlySina <- function(chemOfConcern, testResults_ChemOfConcern, subject) {
 # Function to create a checkbox table styled with 'gt'
 # This function dynamically generates a table with headers, styles, and optional modal links.
 # TODO:  Consider putting function in separate file
+#' Create a Checkbox Table with GT Styling
+#'
+#' This function dynamically generates a table with styled headers, checkboxes, and optional modal links.
+#'
+#' @param labels Character vector. The column labels for the table.
+#' @param checkbox_states Logical vector. TRUE/FALSE states for each checkbox (corresponding to labels).
+#' @param description Character. The description text to show in the table header.
+#' @param modal_trigger HTML. An optional modal trigger element to append to the description.
+#'
+#' @return A gt table object with formatted checkboxes and styling.
+#'
+#' @examples
+#' \dontrun{
+#' labels <- c("Reproduction", "Brain", "Cancer")
+#' states <- c(TRUE, FALSE, TRUE)
+#' desc <- "Possible health effects"
+#' modal <- htmltools::tags$span(class="info-icon", "ⓘ")
+#' create_checkbox_table(labels, states, desc, modal)
+#' }
+#'
 create_checkbox_table <- function(labels, checkbox_states, description, modal_trigger) {
   # Map logical states to symbols for checkboxes
   values <- ifelse(checkbox_states, "☑", "")
@@ -325,30 +345,47 @@ create_checkbox_table <- function(labels, checkbox_states, description, modal_tr
 
 
 
-plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2) {
+#' Generate Plotly Chemical Visualizations
+#'
+#' Creates a list of visualizations and associated metadata for a list of chemicals.
+#'
+#' @param chemsList Character vector. List of chemicals to visualize.
+#' @param testResults.big Data frame. Full test results dataset.
+#' @param oneResultCalifProp65Risk Data frame. California Prop 65 risk information.
+#' @param oneResultEpaIris Data frame. EPA IRIS risk information.
+#' @param oneResultIARCRisk Data frame. IARC risk information.
+#' @param chemSourceMitigation Data frame. Chemical source and mitigation information.
+#' @param subject Character. Optional subject ID to highlight. Can be NULL for group analysis.
+#' @param howManyHaveParameterName Data frame. Count of how many samples have each parameter.
+#' @param howManyWristbandsTested Numeric. Total number of wristbands tested.
+#' @param modal_trigger_test2 HTML. Modal trigger element for the info icon.
+#' @param buildPlotlySina Function. Function to build the Sina plot visualization.
+#' @param makeClickableURL Function. Function to create clickable URL links.
+#' @param prepareTabTitle Function. Function to prepare tab titles.
+#'
+#' @return A list containing visualization components and metadata for each chemical.
+#'
+#' @examples
+#' \dontrun{
+#' results <- plotlyChems(chemsList, testResults.big, prop65Risk, epaIris, iarcRisk,
+#'                        chemSourceMitigation, "A123", howMany, totalWristbands,
+#'                        modalTrigger, buildPlotlySina, makeClickableURL, prepareTabTitle)
+#' }
+#'
+plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris,
+                        oneResultIARCRisk, chemSourceMitigation, subject,
+                        howManyHaveParameterName, howManyWristbandsTested, modal_trigger_test2,
+                        buildPlotlySina, makeClickableURL, prepareTabTitle) {
   # SPECIAL HANDLING:  If "subject" is NULL (is.null(subject)) then we are doing GROUP CHART and not INDIVIDUAL CHART and so must suppress all that individual stuff
   # Initialize a list to collect all generated content
-  # chemsList<-chemsNOTinConcernGroup
-  # chemsList<-chemsGroupNOTinConcernGroup
-  # chemsList<- chemsOfConcern
-  # chemsList<- chemsOfGroupConcern
-  # modal_trigger_test2<-modal_trigger_test3
   output_list <- list()
 
   if (length(chemsList) >= 1) {
     for (i in 1:length(chemsList)) {
       chemItem <- chemsList[i]
-      # chemItem <- chemsList[1]
-      # chemItem <- chemsList[2]
-      # chemItem <- chemsList[3]
-      # chemItem <- chemsList[4]
-      # chemItem <- chemsList[5]
-      # subject<-NULL
-
       # Filter data for the current chemical
       testResults_ChemItem <- testResults.big %>%
         filter(ParameterName == chemItem) %>%
-        #select(SampleNumber, Result, ParameterName)
         select(SampleNumber, Result, ParameterName,endocrine_toxicity,respiratory_toxicity,carcinogenicity,genotoxicity,reproductive_toxicity,developmental_toxicity,neurotoxicity,pbt,calSaferURL,Lab_Submission_Batch)
 
       # Get the one row which is ths subject and this chem assuming we're working with specific subjectd OTHERWISE just get a representative ROW (first row)
@@ -363,7 +400,6 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
           filter(SampleNumber == subject)
       }
 
-
       # Add the "cat" message (e.g., the tab header)
       output_list[[paste0(chemItem, "_cat_message")]] <- paste0("### ", prepareTabTitle(chemItem), " {-}\n\n")
 
@@ -377,10 +413,8 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
         "wristbands."
       )
 
-
-
       #calSaferURL
-      if( ! is.na(testResults_ChemItem_AnyRow$calSaferURL)){
+      if(!is.na(testResults_ChemItem_AnyRow$calSaferURL)){
         calSafer_Link <- makeClickableURL(testResults_ChemItem_AnyRow$calSaferURL, "calSAFER Chemical Link")
         newMessage <- paste(
           newMessage,
@@ -389,8 +423,6 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
           "."
         )
       }
-
-
 
       # Add additional information if available
       testInPROP65 <- oneResultCalifProp65Risk %>%
@@ -497,12 +529,7 @@ plotlyChems <- function(chemsList, testResults.big, oneResultCalifProp65Risk, on
       # Add to output list
       output_list[[paste0(chemItem, "_health_risk_table")]] <- risk_table_html
 
-
-
-
-
       # Create tab content (Plotly Sina plot or placeholder)
-      #subject<-"A241134"
       if (nrow(testResults_ChemItem[testResults_ChemItem$Result > 0, ]) > 1) {   ### If there is more than one data point!
         htmlTagList <- htmltools::tagList(
           htmltools::tags$div(

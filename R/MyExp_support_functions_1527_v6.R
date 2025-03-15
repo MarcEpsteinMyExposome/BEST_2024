@@ -8,8 +8,24 @@
 # just test
 
 
-## USES:  testResults, subject, SubClassScores, results_W
-#testResults<-testResults.big
+#' Build Message Vector for Individual Analysis
+#'
+#' Creates a vector of messages highlighting notable findings about a specific subject.
+#'
+#' @param testResults Data frame. The test results data.
+#' @param mesg.v Character vector. Initial message vector to append to.
+#' @param subject Character. The subject ID to analyze.
+#' @param SubClassScores Data frame. Classification scores for each subject.
+#' @param results_W Data frame. Wide-format test results.
+#' @param numEPAirisFound Integer. Number of EPA IRIS database matches found.
+#' @param numCalProp65Found Integer. Number of California Prop 65 database matches found.
+#' @param numIARCRiskFound Integer. Number of IARC risk database matches found.
+#' @param howManyWristbandsTested Integer. Total number of wristbands tested.
+#' @param HideClassificationInformation Logical. Whether to hide classification information.
+#' @param generateTabLink Function. Function to generate a tab link for a chemical name.
+#'
+#' @return A character vector of messages.
+#'
 buildMesgVIndividual <-
   function(testResults,
            mesg.v,
@@ -20,50 +36,17 @@ buildMesgVIndividual <-
            numCalProp65Found,
            numIARCRiskFound,
            howManyWristbandsTested,
-           HideClassificationInformation) {
+           HideClassificationInformation,
+           generateTabLink) {
     testResultsNonZero <- testResults[testResults$Result > 0, ]
 
-    #    length(unique(testResults$SampleNumber))<>length(unique(testResultsNonZero$SampleNumber))
-
-
-    # bullet<-"\x95"
-
     # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
-    # countTestResults <- sqldf(
-    #   "select t.SampleNumber,
-    #   count(*) as CountChem
-    #   from testResultsNonZero as t
-    #   group by t.SampleNumber
-    #   "
-    # )
-
-    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
-    # NEW way without SQLDF using dplyr
     countTestResults <- testResultsNonZero %>%
       select(SampleNumber, ParameterID) %>%
       group_by(SampleNumber) %>%
       mutate(CountChem = n()) %>%
       select(SampleNumber, CountChem) %>%
       distinct()
-
-    # # add message for number found in various databases.  Do NOT report if none-found
-    # if (numEPAirisFound == 1) {
-    #   mesg.v <-
-    #     addMesg(
-    #       mesg.v,
-    #       numEPAirisFound,
-    #       numEPAirisFound,
-    #       "of your detected chemicals is listed in the **EPA IRIS** dataset."
-    #     )
-    # } else if (numEPAirisFound > 1) {
-    #   mesg.v <-
-    #     addMesg(
-    #       mesg.v,
-    #       numEPAirisFound,
-    #       numEPAirisFound,
-    #       "of your detected chemicals are listed in the **EPA IRIS** dataset."
-    #     )
-    # }
 
     if (numCalProp65Found == 1) {
       mesg.v <-
@@ -83,84 +66,25 @@ buildMesgVIndividual <-
         )
     }
 
-
-    # if (numIARCRiskFound == 1) {
-    #   mesg.v <-
-    #     addMesg(
-    #       mesg.v,
-    #       numIARCRiskFound,
-    #       numIARCRiskFound,
-    #       "of your detected chemicals is listed in the **IARC** Cancer Report."
-    #     )
-    # } else if (numIARCRiskFound > 1) {
-    #   mesg.v <-
-    #     addMesg(
-    #       mesg.v,
-    #       numIARCRiskFound,
-    #       numIARCRiskFound,
-    #       "of your detected chemicals are listed in the **IARC** Cancer Report."
-    #     )
-    # }
-    #
-
-
-
     #  ADD TO MESG if this subject had the maximum # of chemical detected AND there were 2 or more wristbands tested
     if ((howManyWristbandsTested > 1) && (nrow(testResultsNonZero[testResultsNonZero$SampleNumber == subject, ]) == max(countTestResults$CountChem))) {
       txt <-
         "Your wristband had the maximum number of compounds detected in any of the wristbands."
-      # txt<-paste(bullet,txt)
-      # txt
       mesg.v <- cbind(mesg.v, txt)
     }
-
-
-    # COULD ADD MORE UNIQUE INFO to "mesg" variable
-    #  Your wristband was the only wristband NOT TO HAVE ANY ... OF CHEMA, B, C
-    #   Your wristband has the most XXX of any wristband
-    #   Your wristbands is X std deviations away from mean
-    #
-
-    # SEPARATE IDEA--->>> NEW IDEA FROM EDF on 2/26/2015...
-    # ADD HEAT MAP which is CATEGORY versus wristband
-    #  DIFFERENT HEATMAP FOR DIFF CATEGORIES OF CHEMICALS
-    #  FOCUS just by CATEGORY.and do
-
-    # LIST every chemical that was ONLY detected on THIS ONE wristband
-    # Get names of all chems found on JUST the SUBJECT wristband
-    # What I want to do is... find all the chems ONLY on "subject" wristband
-    # SO i  find all the rows where the SUBJECT value equals total value and subject value not zero
 
     if (howManyWristbandsTested > 1) {
       # place holder
       rw5 <- results_W
 
-      # r_wide<-results_W[,2:ncol(rw5)]
-      # change everything > 0 to 1  for every column
-      #THIS IS OLD WAY WITH ROWNAMES
-      #rw5[rw5 > 0] <- 1
-      #rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
-
-      #THIS IS NEW WAY with tibbles
-      # change everything > 0 to 1  for every column
+      # change everything > 0 to 1 for every column
       rw5 <- rw5 %>%
         mutate_if(is.numeric, ~ ifelse(. > 0, 1, 0)) %>%
         mutate_if(is.numeric, ~ replace(., is.na(.), 0))
 
-      # Only those chemicals whos ROW SUMS = 1 have exactly one wristband with some value
-      #   and of those, the ones which OUR subject has "1"
-      ## THIS WAS OLD WAY RELY ON ROWNAMES.... NOW doing new way
-      # chems <-
-      #   rownames(rw5[rowSums(rw5) == 1 & rw5[, subject] == 1, ])
-
-      #THIS new way uses the ParameterName column to get the list of chems and propoerly references the subject with the [[]] syntax to extract a vector
+      # Get the parameter names for rows where the sum is 1 (only one wristband has this compound)
+      # and the subject's value is 1 (this subject has the compound)
       chems <- rw5$ParameterName[rowSums(rw5[, setdiff(names(rw5), "ParameterName")]) == 1 & rw5[[subject]] == 1]
-
-
-
-
-
-
 
       # Loop through all chems and assemble message
       for (chem in chems) {
@@ -169,12 +93,10 @@ buildMesgVIndividual <-
             chem,
             "was detected only on your wristband."
           )
-        # txt<-paste(bullet,txt)
         mesg.v <- cbind(mesg.v, txt)
       }
       rm(chems) # Clean Up
     }
-
 
     ### NOW let's see if YOUR BAND had the MAXIUM amount of a chemical which 2 or more people also had
     # and then let's see if that MAXIMUM is 5x greater or more than anyone else
@@ -215,9 +137,6 @@ buildMesgVIndividual <-
             ## FOR EVERY ROW that meets our criteria of being MAX for our subject, 2 or more readings, max is 5x next
             row <- h2[i, ] # GRAB the i'th ROW
             if (row$subjectDividedByMaxWitoutSubject >= multiplierGreater) {
-              # THIS WAS OLD WAY using RowNames
-              #rname <- rownames(row)
-              # This is new way with tibbles keeping parametername column
               rname <- row$ParameterName
 
               txt <-
@@ -229,7 +148,6 @@ buildMesgVIndividual <-
                   "than any other tested wristband.",
                   sep = " "
                 )
-              # txt<-paste(bullet,txt)
               mesg.v <- cbind(mesg.v, txt)
             }
           }
@@ -237,11 +155,6 @@ buildMesgVIndividual <-
       }
     }
     if (!HideClassificationInformation && (howManyWristbandsTested > 1)) {
-      # LOOP through every row and build the message string for all UNIQUE classifications
-      # sub_classif <-
-      #   as.data.frame(SubClassScores[SubClassScores$SampleNumber == subject &
-      #                                  SubClassScores$aggScore == 1, ])
-
       # FIND all unique classifications...
       # FIRST find all the classifications that ONLY ONE SUBJECT (any sub) found
       # BUT ignore this if there is ONLY ONE WRISTBAND IN SET
@@ -279,8 +192,26 @@ buildMesgVIndividual <-
     mesg.v
   }
 
-## USES:  testResults, subject, SubClassScores, results_W
-#testResults<-testResults.big
+
+
+
+#' Build Message Vector for Group Analysis
+#'
+#' Creates a vector of messages highlighting notable findings about a group of subjects.
+#'
+#' @param testResults Data frame. The test results data.
+#' @param mesg.v Character vector. Initial message vector to append to.
+#' @param SubClassScores Data frame. Classification scores for each subject.
+#' @param results_W Data frame. Wide-format test results.
+#' @param countEPAiristHits Integer. Number of EPA IRIS database matches found.
+#' @param countCalifProp65Hits Integer. Number of California Prop 65 database matches found.
+#' @param countIARCHits Integer. Number of IARC risk database matches found.
+#' @param HideClassificationInformation Logical. Whether to hide classification information.
+#' @param classificationTextStrings List. Named list of text strings for each classification category.
+#' @param generateTabLink Function. Function to generate a tab link for a chemical name.
+#'
+#' @return A character vector of messages.
+#'
 buildMesgVGroup <-
   function(testResults,
            mesg.v,
@@ -289,21 +220,23 @@ buildMesgVGroup <-
            countEPAiristHits,
            countCalifProp65Hits,
            countIARCHits,
-           HideClassificationInformation) {
+           HideClassificationInformation,
+           classificationTextStrings,
+           generateTabLink) {
     testResultsNonZero <- testResults[testResults$Result > 0, ]
 
-    # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
-    # OLD way with sqldf
-    # countTestResults <- sqldf(
-    #   "select t.SampleNumber,
-    #   count(*) as CountChem
-    #   from testResultsNonZero as t
-    #   group by t.SampleNumber
-    #   "
-    # )
+    # Extract classification text strings from the passed parameter
+    PAH_text_string <- classificationTextStrings$PAH
+    flameRetardant_text_string <- classificationTextStrings$flameRetardant
+    PCB_text_string <- classificationTextStrings$PCB
+    pharmacological__text_string <- classificationTextStrings$pharmacological
+    personalCare_text_string <- classificationTextStrings$personalCare
+    industrial_text_string <- classificationTextStrings$industrial
+    pest_text_string <- classificationTextStrings$pest
+    consumerProduct_text_string <- classificationTextStrings$consumerProduct
+    dioxinsAndFurans_text_string <- classificationTextStrings$dioxinsAndFurans
 
     # Group by SampleNumber to allow easy finding of MIN and MAX values of COUNT of how many chem found per wristband
-    # NEW way without SQLDF using dplyr
     countTestResults <- testResultsNonZero %>%
       select(SampleNumber, ParameterID) %>%
       group_by(SampleNumber) %>%
@@ -311,19 +244,9 @@ buildMesgVGroup <-
       select(SampleNumber, CountChem) %>%
       distinct()
 
-
-
     # place holder
     rw5 <- results_W
-    # r_wide<-results_W[,2:ncol(rw5)]
 
-
-
-    # change everything > 0 to 1  for every column
-    #rw5[rw5 > 0] <- 1
-    #rw5[is.na(rw5)] <- 0 ### In some scenario we get NA
-
-    #THIS version replaces above lines now that we don't have row names
     # change everything > 0 to 1  for every column
     rw5 <- rw5 %>%
       mutate(across(where(is.numeric), ~ ifelse(. > 0, 1, 0))) %>%
@@ -386,8 +309,6 @@ buildMesgVGroup <-
         )
     }
 
-
-
     ### PRINT message for every chemical detected on EVERY wristband...
 
     # How many total subjects can be calculated as the # of columns in r_wide
@@ -397,12 +318,8 @@ buildMesgVGroup <-
       # Get names of all chems found on every wristband
       # Only those chemicals whos ROW SUMS = total number of subject have every wristband with some value
       if (howManySubjects == 1) {
-        #chems <- rownames(rw5) # NOTE:  I added this HACK for a case of ONE wristband but it is stupid hack cause is meaningless data
         chems <- rw5$ParameterName  # Replace rownames with explicit column
       } else {
-        #OLD ROWNAME WAY
-#        chems <-
-#          rownames(as.data.frame(rw5[rowSums(rw5) == howManySubjects, ]))
         chems <- rw5 %>%
           filter(rowSums(select(., -ParameterName)) == howManySubjects) %>%
           pull(ParameterName)
@@ -566,13 +483,28 @@ buildMesgVGroup <-
       }
     }
 
-
-
     mesg.v
   }
 
 
 
+
+#' Add Message to Message Vector
+#'
+#' Adds a formatted message to an existing message vector if a condition is met.
+#'
+#' @param mesgVector Character vector. The existing message vector.
+#' @param foundOrNot Numeric. Condition value determining whether to add the message.
+#' @param numFound Numeric. Value to include at the start of the message.
+#' @param newMesg Character. The message text to add.
+#'
+#' @return Updated character vector with the new message added if condition is met.
+#'
+#' @examples
+#' \dontrun{
+#' messages <- addMesg(messages, 5, 5, "chemicals were found in the database.")
+#' }
+#'
 addMesg <- function(mesgVector, foundOrNot, numFound, newMesg) {
   if (foundOrNot > 0) {
     mesgVector <- cbind(mesgVector, paste(numFound, newMesg, sep = " "))
@@ -587,10 +519,22 @@ addMesg <- function(mesgVector, foundOrNot, numFound, newMesg) {
 ###
 
 
-### To print various messages with URLs and having those URLs open in a new window
-# This function takes in a URL and a clickableText as inputs and returns an HTML anchor tag
-# that creates a clickable link that opens in a new browser tab.
-#  ALSO if we are generating NOT to html... then... don't use the HTML tags
+#' Create a Clickable URL Link
+#'
+#' This function takes in a URL and a clickable text as inputs and returns an HTML anchor tag
+#' that creates a clickable link that opens in a new browser tab (for HTML output)
+#' or a formatted text string (for non-HTML outputs).
+#'
+#' @param URL Character. The URL to link to.
+#' @param clickableText Character. The text to display for the link.
+#'
+#' @return Character string. HTML link tag or formatted text depending on output format.
+#'
+#' @examples
+#' \dontrun{
+#' makeClickableURL("https://example.com", "Example Website")
+#' }
+#'
 makeClickableURL <- function(URL, clickableText) {
   if (knitr::is_html_output()) {
     # Generate HTML anchor tag for HTML output
@@ -611,6 +555,20 @@ makeClickableURL <- function(URL, clickableText) {
 
 # PREPEND an x_ in front of title cause i need it to get around weird problems with rmarkdown forcing LINK ID to be changed
 #   in this case, just add the x_ for the tab title, i later use javascript to remove it.
+#' Prepare Tab Title for R Markdown
+#'
+#' Prepends 'x_' to tab names when needed to ensure compatibility with R Markdown's tab system.
+#'
+#' @param tab_name Character. The original tab name.
+#'
+#' @return Character. The prepared tab name, possibly with 'x_' prepended.
+#'
+#' @examples
+#' \dontrun{
+#' prepareTabTitle("2,3-Dimethylpentane") # Returns "x_2,3-Dimethylpentane"
+#' prepareTabTitle("Benzene") # Returns "Benzene" (no change needed)
+#' }
+#'
 prepareTabTitle <- function(tab_name) {
   # Check if the first character will be stripped by R Markdown
   if (!grepl("^[a-zA-Z_]", tab_name)) {
@@ -657,8 +615,20 @@ generateTabLink <- function(chem_name) {
 
 
 
-# Function to look up non_zero_count for a specific ParameterName
-## WHY am i putting this here... Don't know
+#' Look Up Non-Zero Count for a Chemical
+#'
+#' Retrieves the non-zero count for a specified chemical from a lookup table.
+#'
+#' @param parameter_name Character. The name of the parameter (chemical) to look up.
+#' @param howManyHaveParameterName Data frame. Table containing parameter names and their non-zero counts.
+#'
+#' @return Numeric. The non-zero count for the specified parameter.
+#'
+#' @examples
+#' \dontrun{
+#' count <- lookup_non_zero_count("Benzene", howManyHaveParameterName)
+#' }
+#'
 lookup_non_zero_count <- function(parameter_name, howManyHaveParameterName) {
   result <- howManyHaveParameterName %>%
     filter(ParameterName == parameter_name) %>%

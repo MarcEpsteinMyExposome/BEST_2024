@@ -1195,14 +1195,30 @@ fixUpTestResults <- function(testResults, FixupFile, customerConfig, current_fil
 ##### WE NOW want to add information, when available, about the AVERAGE AIR CONCENTRATION each person was exposed to....
 ### this is in BETA
 ###
-addAirCalculationInformation <- function(tr,
-                                         airConcentrationTable,
-                                         cm3VolumeSiliconeOfOneGram,
-                                         ExpectedUnits) {
+
+#' Add Air Calculation Information to Test Results
+#'
+#' Adds air concentration calculation fields to the test results data frame.
+#'
+#' @param testResults Data frame. The test results to augment.
+#' @param airConcentrationTable Character. Path to the CSV file with air concentration data.
+#' @param cm3VolumeSiliconeOfOneGram Numeric. Volume of one gram of silicone in cubic centimeters.
+#' @param ExpectedUnits Character. The expected units for the data (e.g., "ng/g", "ng/WB").
+#' @param current_filename Function. Function to get the current filename for error messages.
+#'
+#' @return A data frame with added air concentration calculation fields.
+#'
+#' @examples
+#' \dontrun{
+#' testResults <- addAirCalculationInformation(testResults, "air_concentration.csv", 0.934, "ng/g")
+#' }
+#'
+addAirCalculationInformation <- function(testResults, airConcentrationTable, cm3VolumeSiliconeOfOneGram, ExpectedUnits) {
   # Check if the air concentration lookup file exists
   if (!file.exists(airConcentrationTable)) {
     stop(sprintf("Air concentration lookup file not found: %s", airConcentrationTable))
   }
+
   ### FIRST read in the LOOKUP table for air concentration
   # airConcentrationLookup table has ParameterID and BoilingPoint where BoilingPoint is from TEST unless it is from Opera AND has NOT_FOUND if neither
   # Read the air concentration lookup table with error handling
@@ -1220,10 +1236,11 @@ addAirCalculationInformation <- function(tr,
     stop(sprintf("Error reading air concentration lookup file '%s': %s",
                  airConcentrationTable, e$message))
   })
+
   ### Then calculate each column of STevens spreadsheet
   # tr<-testResults
   ### THen JOIN the looku table to testResults
-  tr <- tr %>% left_join(airConcentrationLookup, by = "ParameterID")
+  tr <- testResults %>% left_join(airConcentrationLookup, by = "ParameterID")
 
   ### My input data has a value of "NOT_FOUND" if there is no valid boiling point found so STOP if we hit that in restResults
   ### My input data has a value of "NOT_FOUND" if there is no valid boiling point found so STOP if we hit that in restResults
@@ -1235,8 +1252,7 @@ addAirCalculationInformation <- function(tr,
     )
   }
 
-
-  # Make Numerica
+  # Make Numeric
   tr$BoilingPoint <-
     as.numeric(tr$BoilingPoint) ### NOTE that this USED TO creat NA's but I fixed that above by temp setting BP toooo HIGH
 
@@ -1283,7 +1299,6 @@ addAirCalculationInformation <- function(tr,
     stop("MyExp DEBUG:  Non Numeric Mixed_log_KSA_BP, that can't be right")
   }
 
-
   # USING THE TEST formula
   #  tr$Mixed_log_Ksa_BP = (0.0202*testResults$BoilingPoint)+0.527  # This is column (was U) "Single Best Model Ksa
   # USING THE OPERA FORUMLA
@@ -1300,18 +1315,6 @@ addAirCalculationInformation <- function(tr,
   # M5 is volume_factor
   # N5 is Days_worn
 
-
-
-  # =====================================================================OLD???#
-  # START OVER:  STUFF way below is too confusing.  We need to create AK which means we need to create AE
-  # AE = (($O5*1000       /          (    $M5*(10^U5) *   (1-      EXP        (  (-(($AA5*1000)*$N5))   /        ($M5*(10^U5))        )           ))
-  # AE    (   AE1         /                   AE2     *   (1-      2.71828 ^  (        AE3                 /               AE2        )           ))
-  ##
-  # Which means we need to decode AA
-  ## which means we need to decode Z5 and Z5 is =(-0.0116*H5)+1.96
-  # tr$log_Ke_BP <- (-0.0116*tr$BoilingPoint)+1.96   ## THIS IS CORRECT
-
-  #### NOTE:  I'm using TEST-HACK to be the boiling point values I found manually and not through automated process
   tr <- tr %>%
     mutate(
       log_Ke_BP = case_when(
@@ -1325,57 +1328,17 @@ addAirCalculationInformation <- function(tr,
       )
     )
 
-
   # and AA is therefore   #  =(M5/1000)*(10^U5)*(10^Z5)
   tr$Rs_in_L_per_Day <-
     (tr$volume_factor / 1000) * (10^tr$Mixed_log_Ksa_BP) * (10^tr$log_Ke_BP) #   AA5   ---   (M5/1000)*(10^U5)*(10^Z5)
-
-
-  # AE1 = $O5*1000
-  # tr$AE1 <- tr$ResultOriginal*1000
-  # AE2 =  $M5*(10^U5)
-  # tr$AE2 <- tr$volume_factor*(10^tr$Mixed_log_Ksa_BP)
-  # AE3 =   (-(($AA5* 1000)*$N5         ))
-  # tr$AE3 <- (-((tr$AA*1000)*tr$Days_worn))
-
-  # ($O12/($M12*(10^U12)*(1-EXP(-(($AA12*1000)*$N12)/($M12*(10^U12))))))*1000
-  #         ($O12*1000    /               ($M12*(10^U12)  *   ( 1-     EXP(-(($AA12*1000)*$N12)/($M12*(10^U12)))     )))
-  #     (   AE1         /                   AE2       *   ( 1-     2.71828 ^  - (        AE3                 /               AE2        )           ))
-  # tr$AE <- ( tr$AE1     /                 (    tr$AE2     *   ( 1-     exp(  - (        tr$AE3              /               tr$AE2     )           ))   ))
-
-  ########### NEW TRY BELOW:
-  # $O5/($M5*(10^U5)*(1-EXP(-(($AA5*1000)*$N5)/($M5*(10^U5))))))*1000
-
-
-  # TRYING TO SEE WHY THERE IS AN ERROR...
-  # holdValue<- (1-exp(-(tr$Rs_in_L_per_Day*1000*tr$Days_worn)/(tr$volume_factor*(10^tr$Mixed_log_Ksa_BP))   ))
-
 
   tr$Ca_for_Customer <- tr$ResultOriginal / (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP) * (1 - exp(
     -(tr$Rs_in_L_per_Day * 1000 * tr$Days_worn) /
       (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP))
   ))) * 1000
-  # BELOW is same as above, i just tried differnt parenthes () to see if that changed anything
-  # tr$Ca_for_Customer2 <- (tr$ResultOriginal / (tr$volume_factor * (10^tr$Mixed_log_Ksa_BP) * (1-exp(-((tr$Rs_in_L_per_Day*1000)*tr$Days_worn)/  ( tr$volume_factor*(10^tr$Mixed_log_Ksa_BP))   ))))*1000
 
-
-  ## WE NEED TO DO SOMETHING to fix the WEIRD NOT FOUND problem but... what exactly
-  ## Don't need to do anything at moment.. .just let NA happen in the data and ... so what for now.
-
-
-
-
-  #### Then clean up and add/delete columns
-
-
-  ###
-
-
-  ### then make sure we recover from any weird errors
-
-  tr
+  return(tr)
 }
-
 
 ##### WE NOW want to READ IN the NIOSH/OSHA limits using ParameterID to join
 ### this is in BETA
@@ -1435,102 +1398,153 @@ addAirNioshOsha <- function(testResults, airNioshOshaTable) {
 
 
 
-makeIntoDemoDataResults <-
-  function(testResults, howManyDemoResults) {
-    # Pick only top X results...
-    # howManyDemoResults<-20  # THIS IS SET UP in the calling function
-    allSampleNumbers <- testResults %>%
-      select(SampleNumber) %>%
-      unique()
-    if (count(allSampleNumbers) > howManyDemoResults) {
-      # topSampleNumbers<-top_n(allSampleNumbers,howManyDemoResults)   #OLDER VERSION
-      topSampleNumbers <-
-        slice_head(allSampleNumbers, n = howManyDemoResults) ### MAYBE newer version
-      testResults <-
-        pickSubsetOfResults(testResults = testResults, SampleNumbers = topSampleNumbers)
-    }
-
-    # if countOfUniqeSampleNmaes>X make table of unique names, take top X, join back to only select left join)
-
-    # Generate X unique IDs, Transform all IDs into Unique IDS
-    testResults
+#' Create Demo Data Results
+#'
+#' Creates a demo dataset by selecting a subset of test results.
+#'
+#' @param testResults Data frame. The original test results.
+#' @param howManyDemoResults Integer. The number of results to include in the demo.
+#'
+#' @return A reduced data frame containing only the specified number of sample results.
+#'
+#' @examples
+#' \dontrun{
+#' demoResults <- makeIntoDemoDataResults(testResults, 20)
+#' }
+#'
+makeIntoDemoDataResults <- function(testResults, howManyDemoResults) {
+  # Pick only top X results...
+  # howManyDemoResults<-20  # THIS IS SET UP in the calling function
+  allSampleNumbers <- testResults %>%
+    select(SampleNumber) %>%
+    unique()
+  if (count(allSampleNumbers) > howManyDemoResults) {
+    # topSampleNumbers<-top_n(allSampleNumbers,howManyDemoResults)   #OLDER VERSION
+    topSampleNumbers <-
+      slice_head(allSampleNumbers, n = howManyDemoResults) ### MAYBE newer version
+    testResults <-
+      pickSubsetOfResults(testResults = testResults, SampleNumbers = topSampleNumbers)
   }
 
+  # if countOfUniqeSampleNmaes>X make table of unique names, take top X, join back to only select left join)
+
+  # Generate X unique IDs, Transform all IDs into Unique IDS
+  testResults
+}
+
 # FILTER out all but selected sampleNumbers
+#' Filter Test Results for Selected Sample Numbers
+#'
+#' Filters the test results to include only data for the specified sample numbers.
+#'
+#' @param testResults Data frame. The test results to filter.
+#' @param SampleNumbers Data frame. Contains a column 'SampleNumber' with the sample numbers to keep.
+#'
+#' @return A filtered data frame containing only data for the specified sample numbers.
+#'
+#' @examples
+#' \dontrun{
+#' filteredResults <- pickSubsetOfResults(testResults, data.frame(SampleNumber = c("A1", "A2")))
+#' }
+#'
 pickSubsetOfResults <- function(testResults, SampleNumbers) {
   testResults <-
     filter(testResults, SampleNumber %in% SampleNumbers$SampleNumber)
 }
 
-# FILTER out all but selected batchNumber
-# batchNumber<-c("5")
-onlyPickSomeBatchesFromBiggerData <-
-  function(testResults, batchNumbers) {
-    testResults <-
-      testResults %>% filter(Lab_Submission_Batch %in% batchNumbers)
-  }
+#' Filter Test Results by Batch Number
+#'
+#' Filters the test results to include only data for the specified batch numbers.
+#'
+#' @param testResults Data frame. The test results to filter.
+#' @param batchNumbers Character vector. The batch numbers to keep.
+#'
+#' @return A filtered data frame containing only data from the specified batches.
+#'
+#' @examples
+#' \dontrun{
+#' filteredResults <- onlyPickSomeBatchesFromBiggerData(testResults, c("15", "16"))
+#' }
+#'
+onlyPickSomeBatchesFromBiggerData <- function(testResults, batchNumbers) {
+  testResults <-
+    testResults %>% filter(Lab_Submission_Batch %in% batchNumbers)
+}
 
 
 #
-# READ in classificaiton of chemicals by RISK per california prop 65
-# Read in california risk database
-load.riskCalifProp65 <-
-  function(riskCalifProp65TableName, masterParam) {
-    # Check if the risk Calif Prop65 file exists
-    if (!file.exists(riskCalifProp65TableName)) {
-      stop(sprintf("Risk Calif Prop65 file not found: %s", riskCalifProp65TableName))
-    }
-    # Read in the risk Calif Prop65 table with error handling
-    riskCalifProp65 <- tryCatch({
-      read.table(
-        riskCalifProp65TableName,
-        sep = ",",
-        header = TRUE,
-        colClasses = "character",  # Import all as character
-        comment.char = "",           # Do not treat '#' as a comment
-        quote = "\"",
-        fileEncoding = "UTF-8-BOM"
-      )
-    }, error = function(e) {
-      stop(sprintf("Error reading risk Calif Prop65 file '%s': %s",
-                   riskCalifProp65TableName, e$message))
-    })
-    # Rename column to standard
-    # Don't need to rename, name is correct already
-    names(riskCalifProp65)[names(riskCalifProp65) == "masterParameterID"] <-
-      "ParameterID"
+#' Load California Prop 65 Risk Data
+#'
+#' Reads and processes California Proposition 65 risk data for chemicals.
+#'
+#' @param riskCalifProp65TableName Character. Path to the CSV file with California Prop 65 risk data.
+#' @param masterParam Data frame. Master parameter table with chemical metadata.
+#'
+#' @return A data frame with processed California Prop 65 risk data.
+#'
+#' @examples
+#' \dontrun{
+#' riskCalifProp65 <- load.riskCalifProp65("data/prop65_risks.csv", masterParam)
+#' }
+#'
+load.riskCalifProp65 <- function(riskCalifProp65TableName, masterParam) {
+  # Check if the risk Calif Prop65 file exists
+  if (!file.exists(riskCalifProp65TableName)) {
+    stop(sprintf("Risk Calif Prop65 file not found: %s", riskCalifProp65TableName))
+  }
 
-    # Eliminate rows where not in the master paramater table
-    # inner join - use MERGE on data table
+  # Read in the risk Calif Prop65 table with error handling
+  riskCalifProp65 <- tryCatch({
+    read.table(
+      riskCalifProp65TableName,
+      sep = ",",
+      header = TRUE,
+      colClasses = "character",  # Import all as character
+      comment.char = "",           # Do not treat '#' as a comment
+      quote = "\"",
+      fileEncoding = "UTF-8-BOM"
+    )
+  }, error = function(e) {
+    stop(sprintf("Error reading risk Calif Prop65 file '%s': %s",
+                 riskCalifProp65TableName, e$message))
+  })
+
+  # Rename column to standard
+  # Don't need to rename, name is correct already
+  names(riskCalifProp65)[names(riskCalifProp65) == "masterParameterID"] <-
+    "ParameterID"
+
+  # Eliminate rows where not in the master paramater table
+  # inner join - use MERGE on data table
+  riskCxx <-
+    merge(riskCalifProp65, masterParam, by = "ParameterID")
+  # Now I have a list of all the prop 65 risks BUT some masterparam have duplicate rows.  380 unique ParameterIDs but 635 rows
+  # length(riskCxx2$ParameterID)
+  # length(unique(riskCxx2$ParameterID))
+  # Drop all columns except 2 I care about
+  riskCxx <- riskCxx[, c("ParameterID", "toxicityType")]
+
+  # Eliminate all rows where NO RISK
+  riskCxx <- riskCxx[!riskCxx$toxicityType == "NULL", ]
+
+  # Collapse all values of Toxicity type so only one row for each parameterID
+  if (nrow(riskCxx) > 0) {
     riskCxx <-
-      merge(riskCalifProp65, masterParam, by = "ParameterID")
-    # Now I have a list of all the prop 65 risks BUT some masterparam have duplicate rows.  380 unique ParameterIDs but 635 rows
-    # length(riskCxx2$ParameterID)
-    # length(unique(riskCxx2$ParameterID))
-    # Drop all columns except 2 I care about
-    riskCxx <- riskCxx[, c("ParameterID", "toxicityType")]
+      aggregate(toxicityType ~ ParameterID,
+                data = riskCxx,
+                paste,
+                collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
 
     # Eliminate all rows where NO RISK
-    riskCxx <- riskCxx[!riskCxx$toxicityType == "NULL", ]
+    # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
+    # riskCalifProp65<-riskCalifProp65[,c("ParameterID","toxicityType")]
 
-    # Collapse all values of Toxicity type so only one row for each parameterID
-    if (nrow(riskCxx) > 0) {
-      riskCxx <-
-        aggregate(toxicityType ~ ParameterID,
-                  data = riskCxx,
-                  paste,
-                  collapse = " & ") #  THIS USED TO BE &&  but I'm changing it to & and seeing if things break
-
-      # Eliminate all rows where NO RISK
-      # riskCalifProp65<-riskCalifProp65[!riskCalifProp65$toxicityType=="NULL",]
-      # riskCalifProp65<-riskCalifProp65[,c("ParameterID","toxicityType")]
-
-      # riskCalifProp65
-    }
-
-
-    riskCxx
+    # riskCalifProp65
   }
+
+  riskCxx
+}
+
 #
 # READ in EPA IRIS chemical classification
 # epaIrisTableName<-"./data/EDF_Phase1_EPA_Iris.csv"
@@ -1578,13 +1592,27 @@ load.epaIris <- function(epaIrisTableName) {
 # IARCRiskTableName<-"./data/EDF_Phase1_Risk_WHO.csv"
 # IARCRiskTableName<-"./data/MASV15_who_iarc_risk.csv"
 
-load.IARCRisk <- function(IARCRiskTableName,
-                          riskIARCdecodeTableName) {
+#' Load IARC Risk Data
+#'
+#' Reads and processes IARC (International Agency for Research on Cancer) risk data.
+#'
+#' @param IARCRiskTableName Character. Path to the CSV file with IARC risk data.
+#' @param riskIARCdecodeTableName Character. Path to the CSV file with IARC risk code decoding info.
+#' @param masterParam Data frame. Master parameter table with chemical metadata.
+#'
+#' @return A data frame with processed IARC risk data.
+#'
+#' @examples
+#' \dontrun{
+#' IARCRisk <- load.IARCRisk("data/iarc_risks.csv", "data/iarc_codes.csv", masterParam)
+#' }
+#'
+load.IARCRisk <- function(IARCRiskTableName, riskIARCdecodeTableName, masterParam) {
   # Check if the IARC Risk table file exists
   if (!file.exists(IARCRiskTableName)) {
     stop(sprintf("IARC Risk table file not found: %s", IARCRiskTableName))
   }
-  # cat("000 in data load...\n", file = "debug_log.txt", append = TRUE)
+
   # Read the IARC Risk table with error handling
   IARCRisk <- tryCatch({
     read.table(
@@ -1599,7 +1627,6 @@ load.IARCRisk <- function(IARCRiskTableName,
   }, error = function(e) {
     stop(sprintf("Error reading IARC Risk table file '%s': %s", IARCRiskTableName, e$message))
   })
-  # cat("001 in data load...\n", file = "debug_log.txt", append = TRUE)
 
   # NOTE that we see some DUPLICATION
   # length(IARCRisk$masterParameterID)
@@ -1614,9 +1641,6 @@ load.IARCRisk <- function(IARCRiskTableName,
   IARCRisk <- merge(IARCRisk, masterParam, by = "ParameterID")
   # Eliminate any that are NULL but there are none at moment
   IARCRisk <- IARCRisk[!IARCRisk$IARCgroup == "NULL", ]
-
-  # cat("111 in data load...\n", file = "debug_log.txt", append = TRUE)
-
 
   riskIARCdecode <- read.table(
     riskIARCdecodeTableName,
@@ -1649,15 +1673,12 @@ load.IARCRisk <- function(IARCRiskTableName,
 
   IARCRisk <- dplyr::rename(IARCRisk, IARC_Classification = decode)
 
-
   # Drop extra columns
   IARCRisk <-
     IARCRisk[, c("ParameterID", "IARCgroup", "IARC_Classification")]
 
   IARCRisk
 }
-
-
 
 
 #### HERE I have loaded all the results and classifications.

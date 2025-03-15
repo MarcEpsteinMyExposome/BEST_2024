@@ -58,9 +58,9 @@ modal_trigger_test3 <- HTML("<a href='#' data-toggle='modal' data-target='#info_
 
 #plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested, modal_trigger_test3)
 # CHANGE the call to plotyChems to NOT PASS IN a subject (pass NULL) and also pass in the FULL HITS not just oneResult HITS
-plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
+plotlyC_Group_concern <-   plotlyChems(chemsOfGroupConcern,         testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3,buildPlotlySina, makeClickableURL, prepareTabTitle)
 
-plotlyC_Group_remaining <- plotlyChems(chemsGroupNOTinConcernGroup, testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3)
+plotlyC_Group_remaining <- plotlyChems(chemsGroupNOTinConcernGroup, testResults.big,  CalifProp65Hits,          EPAirisHits,      IARCHits,          chemSourceMitigation, NULL, howManyHaveParameterName, howManyWristbandsTested,  modal_trigger_test3,buildPlotlySina, makeClickableURL, prepareTabTitle)
 
 # add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
 # chemListWithLinks <- plotlyC_concern + plotlyC_remaining

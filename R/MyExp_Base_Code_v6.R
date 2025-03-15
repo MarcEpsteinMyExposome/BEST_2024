@@ -498,7 +498,7 @@ if (testing_PRE_POST) {
 
 # For air calculations, augment testResults with concentration info and NIOSH/OSHA fields.
 if (doAIRplusNioshOSHAreporting) {
-  testResults <- addAirCalculationInformation(testResults, airConcentrationTable)
+  testResults <- addAirCalculationInformation(testResults, airConcentrationTable, cm3VolumeSiliconeOfOneGram, ExpectedUnits)
   testResults <- addAirNioshOsha(testResults, airNioshOshaTable)
   # MaxNioshOsha is the maximum of NIOSH vs OSHA limit for each row.
   testResults$MaxNioshOsha <- pmax(testResults$NIOSH, testResults$OSHA, na.rm = TRUE)
@@ -528,7 +528,9 @@ if (!result_file_output_done) {
     class_L,
     masterParam,
     DataFile_and_OutputFile_Prepend,
-    DartmouthFixup
+    DartmouthFixup,
+    output_directory = here::here("results_output", DataFile_and_OutputFile_Prepend)
+
   )
   rm(customer_Output)
 }
@@ -540,7 +542,7 @@ rm(load.riskCalifProp65, riskCalifProp65TableName)
 epaIris <- load.epaIris(epaIrisTableName)
 rm(load.epaIris, epaIrisTableName)
 
-IARCRisk <- load.IARCRisk(IARCRiskTableName, riskIARCdecodeTableName)
+IARCRisk <- load.IARCRisk(IARCRiskTableName, riskIARCdecodeTableName, masterParam)
 rm(load.IARCRisk, IARCRiskTableName, riskIARCdecodeTableName)
 
 # Remove leftover table name variables.

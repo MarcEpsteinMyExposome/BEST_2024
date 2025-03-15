@@ -5,38 +5,38 @@
 ##    NOTE this relys on various global variables that talk about file and path names
 ##      file path stuff is messy code, i switched to using "here/here" a bit but not fully.... fix someday
 ##
+#' Output Customer Data Files
+#'
+#' Writes out various CSV files with test results and metadata for customer use.
+#'
+#' @param testResults Data frame. The test results data.
+#' @param class_L Data frame. Classification lookup table.
+#' @param masterParam Data frame. Master parameter table with chemical metadata.
+#' @param DataFile_and_OutputFile_Prepend Character. Prefix for output file names.
+#' @param DartmouthFixup Logical. Whether to apply Dartmouth-specific formatting.
+#' @param output_directory Character. Directory where output files should be saved.
+#'
+#' @return NULL. Produces files on disk as a side effect.
+#'
+#' @examples
+#' \dontrun{
+#' customer_Output(testResults, class_L, masterParam, "UCSF", FALSE, "results_output")
+#' }
+#'
 customer_Output <-
-  function(testResults ,
+  function(testResults,
            class_L,
            masterParam,
            DataFile_and_OutputFile_Prepend,
-           DartmouthFixup
-           ) {
-
-        # SETUP text string(s) to point to correct place to put output directory
-
-    #cat("111 in customer_output...\n", file = "debug_log.txt", append = TRUE)
-
-
-    if (!exists("output_directory")) {
-      #output_directory <- here::here("results_output")
-      output_directory <- here::here("results_output",DataFile_and_OutputFile_Prepend)
+           DartmouthFixup,
+           output_directory = NULL) {
+    # Setup output directory
+    if (is.null(output_directory)) {
+      output_directory <- here::here("results_output", DataFile_and_OutputFile_Prepend)
     }
-
-
-    #cat("112 in customer_output...\n", file = "debug_log.txt", append = TRUE)
 
     if (!DartmouthFixup) {
       ## NOT doing dartmouth special format
-
-      # THIS IS OLD VERSION... using older R stuff with specific column references instad of "is.numeric)
-      # results_W_CustName <- testResults %>%
-      #   select(ParameterName, CASNumber, PureSampleName, Result) %>%
-      #   spread(PureSampleName, Result, fill = 0) %>%   #Convert LONG table to WIDE for printing/analysis
-      #   dplyr::rename(Chemical = ParameterName, CASRN = CASNumber) %>%
-      #   mutate(rsum = rowSums(.[3:ncol(.)])) %>%  #Create temp sum to allow Delete rows (chemicals) where no WB had that chem
-      #   filter(rsum > 0) %>%
-      #   select(-rsum)
 
       results_W_CustName <- testResults %>%
         select(ParameterName, CASNumber, PureSampleName, Result) %>%
@@ -46,24 +46,13 @@ customer_Output <-
         filter(rsum > 0) %>%
         select(-rsum)  # Drop the temporary column
 
-
-      #identical(results_W_CustName, results_W_CustName_NEW)
-
-
-
       # Write CSV in R of _ouput in their format
+      result_OutputFile <- here::here(output_directory, "ResultsOutputFile.csv")
 
-      #cat("113 in customer_output...\n", file = "debug_log.txt", append = TRUE)
-
-      if (!exists("result_OutputFile")) {
-        result_OutputFile <-
-          here::here(output_directory,  ###  NEED TO CHANGE THIS to use here() logic -- DONE!
-                 "ResultsOutputFile.csv")
-      }
       write.csv(results_W_CustName,
                 file = result_OutputFile,
                 row.names = FALSE)
-      #cat("114 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+
       ###############################################################################################
       # NOW WRITE OUT LONG FORM OF THIS OUTPUT: With Raw and Modified versions of data
       #Write CSV of full testResults including RAW and not-raw data
@@ -74,24 +63,17 @@ customer_Output <-
       }
       testResults_with_Raw <- testResults %>%
         select(PureSampleName,ResultOriginal,Result,ParameterName,CASNumber,SampleNumber)
-      if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
-        results_Raw_and_Modified_full_and_long <-
-          here::here( output_directory, "results_Raw_and_Modified_full_and_long.csv")
-      }
+
+      # Set up the file name and location to write the raw data out into
+      results_Raw_and_Modified_full_and_long <- here::here(output_directory, "results_Raw_and_Modified_full_and_long.csv")
+
       write.csv(
-        testResults_with_Raw,   ###  NEED TO CHANGE THIS to use here() logic
-        file = results_Raw_and_Modified_full_and_long,   ###  NEED TO CHANGE THIS to use here() logic
+        testResults_with_Raw,
+        file = results_Raw_and_Modified_full_and_long,
         row.names = FALSE
       )
       rm(testResults_with_Raw)
       ###############################################################################################
-
-
-
-
-
-      #cat("210 in customer_output...\n", file = "debug_log.txt", append = TRUE)
-
 
       # Create, then write out, Lookup table converting one set of names to MyExposome names
       #create table of unique PureSampleName (i.e. EDF names),and SampleNumber (i.e. OSU names)
@@ -102,8 +84,8 @@ customer_Output <-
         dplyr::rename(Customer_Name = PureSampleName, MyExposome_Name = SampleNumber) #change column names for easier reading
       #Write that table out
       write.csv(
-        lookupTable,              ###  NEED TO CHANGE THIS to use here() logic  -- DONE
-        file = here::here(output_directory, "CustomerLookupTable.csv" ),
+        lookupTable,
+        file = here::here(output_directory, "CustomerLookupTable.csv"),
         row.names = FALSE
       )
       rm(lookupTable, result_OutputFile)
@@ -123,11 +105,11 @@ customer_Output <-
       #Write that table out
       write.csv(
         class_W,
-        file = here::here(output_directory, "ChemicalClassifications.csv"),   ###  NEED TO CHANGE THIS to use here() logic -- DONE
+        file = here::here(output_directory, "ChemicalClassifications.csv"),
         row.names = FALSE
       )
     }
-    #cat("211 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+
     if (DartmouthFixup) {
       ## DOING dartmouth
       #
@@ -149,27 +131,18 @@ customer_Output <-
         spread(CASNumber_Chemical, Result, fill = 0)   #Convert LONG table to WIDE for printing/analysis BUT columns are chemicals, rows are wristbands
 
       # Write CSV in R of _ouput in their format
-      if (!exists("result_OutputFileSampleNumber")) {
-        result_OutputFileSampleNumber <-
-          here::here( output_directory, "ResultsOutputFileSampleNumber.csv" )
-      }
-
-      #cat("222 in customer_output...\n", file = "debug_log.txt", append = TRUE)
+      result_OutputFileSampleNumber <- here::here(output_directory, "ResultsOutputFileSampleNumber.csv")
 
       write.csv(results_W_CustNameSampleNumber,
                 file = result_OutputFileSampleNumber,
                 row.names = FALSE)
 
       # Write CSV in R of _ouput in their format
-      if (!exists("results_OutputFileSampleNumber_Transposed")) {
-        results_OutputFileSampleNumber_Transposed <-
-          here::here( output_directory,"ResultsOutputFileSampleNumber_Transposed.csv" )
-      }
+      results_OutputFileSampleNumber_Transposed <- here::here(output_directory, "ResultsOutputFileSampleNumber_Transposed.csv")
 
-      #cat("333 in customer_output...\n", file = "debug_log.txt", append = TRUE)
       write.csv(
         results_W_CustNameSampleNumber_Transposed,
-        file = results_OutputFileSampleNumber_Transposed,  ###  NEED TO CHANGE THIS to use here() logic  -- DONE
+        file = results_OutputFileSampleNumber_Transposed,
         row.names = FALSE
       )
       #
@@ -178,19 +151,17 @@ customer_Output <-
       # THIS was to write out the RAW info for dartmouth
       testResults_with_Raw <- testResults %>%
         select(PureSampleName,ResultOriginal,Result,ParameterName,CASNumber,Customer_WB_id,SampleNumber,Start_Wearing,End_Wearing,Wristband_Size,Days_worn,size_factor,week_factor,Lab_Submission_Batch,Customer_Batch_Number)
-      if (!exists("results_Raw_and_Modified_full_and_long")) { ## SET UP the file name and location to write the raw data out into
-        results_Raw_and_Modified_full_and_long <-
-          here::here(output_directory,"results_Raw_and_Modified_full_and_long.csv")
-      }
+
+      # Set up the file name and location to write the raw data out into
+      results_Raw_and_Modified_full_and_long <- here::here(output_directory, "results_Raw_and_Modified_full_and_long.csv")
+
       write.csv(
         testResults_with_Raw,
-        file = results_Raw_and_Modified_full_and_long,      ###  NEED TO CHANGE THIS to use here() logic  -- DONE
+        file = results_Raw_and_Modified_full_and_long,
         row.names = FALSE
       )
       rm(testResults_with_Raw)
       #
-
-      #cat("444 in customer_output...\n", file = "debug_log.txt", append = TRUE)
 
       #
       #
@@ -215,8 +186,8 @@ customer_Output <-
         dplyr::rename(Customer_Name = PureSampleName, MyExposome_Name = SampleNumber) #change column names for easier reading
       #Write that table out
       write.csv(
-        lookupTable,###  NEED TO CHANGE THIS to use here() logic -- DONE
-        file = here::here(output_directory, "Dartmouth_CustomerLookupTable.csv"   ),
+        lookupTable,
+        file = here::here(output_directory, "Dartmouth_CustomerLookupTable.csv"),
         row.names = FALSE
       )
       class_W_Dartmouth <-
@@ -238,42 +209,12 @@ customer_Output <-
 
       #Write that table out
       write.csv(
-        class_W_Dartmouth,###  NEED TO CHANGE THIS to use here::here() logic  -- DONE
-        file = here::here(output_directory,"Dartmouth_Classification_Table.csv" ),
+        class_W_Dartmouth,
+        file = here::here(output_directory, "Dartmouth_Classification_Table.csv"),
         row.names = FALSE
       )
-      #rm(output_directory)
-      #cat("999 leaving customer_output...\n", file = "debug_log.txt", append = TRUE)
-
     }
 
-
-
-
-    # BELOW testing to see if the # of distinct chemical names is same as # of distinct CAS Numbers
-    #nCompounds <- testResults %>% select(ParameterName) %>% distinct() %>% summarize(n=n())
-    #nCasNumber <-testResults %>% select(CASNumber) %>% distinct() %>% summarize(n=n())
-    # TEST if nCompunds <> nCasNumber and if so... then they have difference
-    #
-    #OR let's see what the max length of ParameterName is
-    #  testResults %>% mutate(ParamLen=nchar(ParameterName)) %>% summarize(maxL=max(ParamLen))
-
-    #So what I want to do... is ... create a lookup table that maps ParameterName into changed CASNumbers and then use that lookup-table to update CAS Numbers for some cases
-    #testResults %>% select(ParameterName,CASNumber) %>% distinct() %>% arrange(ParameterName) %>% ????
-    # BEST answer is just use a unique # (ParameterID maybe with an "M" before it) as a place-holder and add that info to special lookup file.
-
-
-
-
-
-
-
-    # Now eliminate result_file_output but keep the result_file_output_found
-  #  rm(
-#      results_W_CustName,
-      #results_W_CustNameSampleNumber,
-      #results_W_CustNameSampleNumber_Transposed,
-      #class_W,
-      #output_directory
-    #)
+    # Return NULL since this function is used for its side effects
+    return(NULL)
   }

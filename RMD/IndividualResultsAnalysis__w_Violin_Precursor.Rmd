@@ -59,9 +59,9 @@ modal_trigger_test2 <- HTML("<a href='#' data-toggle='modal' data-target='#info_
 
 # THESE calls create lists.
 
-plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+plotlyC_concern <- plotlyChems(chemsOfConcern, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2,buildPlotlySina, makeClickableURL, prepareTabTitle)
 
-plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2)
+plotlyC_remaining <- plotlyChems(chemsNOTinConcernGroup, testResults.big, oneResultCalifProp65Risk, oneResultEpaIris, oneResultIARCRisk, chemSourceMitigation, subject, howManyHaveParameterName, howManyWristbandsTested,modal_trigger_test2,buildPlotlySina, makeClickableURL, prepareTabTitle)
 
 # add both lists together.  This is silly cause all i need to keep is the IDs but... for now i'm keeping all
 # chemListWithLinks <- plotlyC_concern + plotlyC_remaining
